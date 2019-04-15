@@ -27,7 +27,7 @@ export default new Router({
 	// LANDING LAYOUT ROUTES
 	// =============================================================================
 			path: '/',
-			component: () => import('./layouts/landing/Landing.vue'),
+			component: () => import('./views/landing/Landing.vue'),
 			children: [
 		// =============================================================================
 		// Theme Routes
@@ -62,7 +62,7 @@ export default new Router({
 	// FULL PAGE LAYOUTS
 	// =============================================================================
 		{
-			path: '/full',
+			path: '/pages',
 			component: () => import('@/layouts/full-page/FullPage.vue'),
 			children: [
 		// =============================================================================
@@ -71,13 +71,18 @@ export default new Router({
 				{
 					path: '/pages/login',
 					name: 'pageLogin',
-					component: () => import('@/views/pages/Login.vue')
+					component: () => import('@/views/login/Login.vue')
 				},
 				{
 					path: '/pages/error-404',
 					name: 'pageError404',
 					component: () => import('@/views/pages/Error404.vue')
 				},
+				{
+					path: '/pages/unity',
+					name: 'unity',
+					component: () => import('@/components/unity/Unity.vue')
+				}
 			]
 		},
 		// Redirect to 404 page, if no match found
