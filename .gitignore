@@ -88,6 +88,9 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# Intellij Idea
+.idea/
+
 ### Vuejs ###
 # Recommended template: Node.gitignore
 
