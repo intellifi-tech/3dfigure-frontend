@@ -51,6 +51,9 @@ require('./assets/css/magnific-popup.css')
 require('./assets/css/style.css')
 require('./assets/css/responsive.css')
 
+import './assets/utils/jquery.js'
+
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -10,5 +10,6 @@
 
 
 module.exports = {
-  publicPath: '/'
+  publicPath: '/',
+  assetsDir: 'src/assets/'
 }
