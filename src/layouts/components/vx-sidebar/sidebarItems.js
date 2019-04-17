@@ -22,15 +22,23 @@
 
 export default [
 	{
-		url: "/",
-		name: "Home",
-		slug: "home",
-		icon: "HomeIcon",
+		url: "/yeni-model",
+		name: "Yeni Model",
+		slug: "yeni-model",
+		icon: "EditIcon",
 	},
 	{
-		url: "/page2",
-		name: "Page 2",
-		slug: "page2",
+		url: "/konseptler",
+		name: "Konseptler",
+		slug: "konseptler",
 		icon: "FileIcon",
 	},
+	{
+		url: "/onay-bekleyenler",
+		name: "Onay Bekleyenler",
+		slug: "onay-bekleyenler",
+		icon: "FileIcon",
+	
+	},
+	
 ]

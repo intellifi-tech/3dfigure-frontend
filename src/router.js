@@ -47,14 +47,19 @@ export default new Router({
 		// Theme Routes
 		// =============================================================================
 				{
-					path: '/',
-					name: 'home',
-					component: () => import('./views/Home.vue'),
+					path: '/yeni-model',
+					name: 'yeni-model',
+					component: () => import('./views/YeniModel.vue'),
 				},
 				{
-					path: '/page2',
-					name: 'page2',
-					component: () => import('./views/Page2.vue'),
+					path: '/konseptler',
+					name: 'konseptler',
+					component: () => import('./views/Konseptler.vue'),
+				},
+				{
+					path: '/onay-bekleyenler',
+					name: 'onay-bekleyenler',
+					component: () => import('./views/OnayBekleyenler.vue'),
 				},
 			],
 		},
