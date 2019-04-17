@@ -892,7 +892,7 @@ input:checked + .slider:before {
 ----------------------*/
 .breadcrumb-area {
   padding: 88px 0 118px 0;
-  background-image: url(../images/bg/breacrumb-bg.jpg);
+  background-image: url(../images/landing/bg/breacrumb-bg.jpg);
   position: relative;
   z-index: 0;
   background-size: cover;
@@ -2539,7 +2539,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
           font-size: 50px;
           line-height: 105px;
           margin-bottom: 22px;
-          background-image: url(../images/icon-bg.png);
+          background-image: url(../images/landing/icon-bg.png);
           background-position: center;
           background-repeat: no-repeat;
           color: #fff;
@@ -2574,7 +2574,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     z-index: -1; }
 
 .list-feature-bg {
-  background-image: url(../images/bg/list-feature-bg-2.png);
+  background-image: url(../images/landing/bg/list-feature-bg-2.png);
   background-size: cover;
   background-position: left; }
 
@@ -2986,7 +2986,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 .intro-video-area {
   padding: 150px 0 130px 0; }
   .intro-video-area.intro-video-bg {
-    background-image: url(../images/bg/intro-bg.jpg);
+    background-image: url(../images/landing/bg/intro-bg.jpg);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -3097,7 +3097,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     Testimonial Area
 ----------------------------*/
 .testimonial-area.testimonial-bg {
-  background-image: url(../images/bg/testimonial-bg.png);
+  background-image: url(../images/landing/bg/testimonial-bg.png);
   background-size: cover;
   background-position: center; }
 
@@ -3232,7 +3232,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     Contact Area
 ----------------------*/
 .contact-area.contact-bg {
-  background-image: url(../images/bg/contact.jpg);
+  background-image: url(../images/landing/bg/contact.jpg);
   background-image: cover;
   background-position: cover; }
 
@@ -3386,7 +3386,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     padding-top: 120px;
     padding-bottom: 100px; }
   .amazing-feature-area.amazing-feature-bg {
-    background-image: url(../images/bg/amazing-bg-2.png); }
+    background-image: url(../images/landing/bg/amazing-bg-2.png); }
   .amazing-feature-area.with-shape {
     margin-top: 270px;
     padding-top: 250px; }

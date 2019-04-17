@@ -1,5 +1,5 @@
 <template>
-  <unity src="assets/utils/unity/BuildWeb.json" width="1000" height="600"></unity>  
+  <unity src="assets/utils/unity/build3.json" width="1000" height="600" unityLoader="assets/utils/unity/UnityLoader.js"></unity>  
 </template>
 
 <script>

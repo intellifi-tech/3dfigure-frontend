@@ -11,7 +11,6 @@
 
 import Vue from 'vue'
 import App from './App.vue'
-import UVue from './components/unity/Unity.vue'
 
 // Vuesax Component Framework
 import Vuesax from 'vuesax'
@@ -52,6 +51,9 @@ require('./assets/css/magnific-popup.css')
 require('./assets/css/style.css')
 require('./assets/css/responsive.css')
 
+import './assets/utils/jquery.js'
+
+
 Vue.config.productionTip = false
 
 new Vue({
@@ -59,7 +61,3 @@ new Vue({
     store,
     render: h => h(App)
 }).$mount('#app')
-
-new Vue({
-  render: h => h(UVue)
-}).$mount('#uvue')

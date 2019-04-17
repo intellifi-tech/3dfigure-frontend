@@ -20,7 +20,7 @@
             <div class="container nav-container">
                 <div class="logo-wrapper navbar-brand">
                     <a href="index.html" class="logo ">
-                        <img src="../../assets/images/logo.png" alt="logo">
+                        <img src="../../assets/images/landing/logo.png" alt="logo">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="cgency">
@@ -90,16 +90,16 @@
         <!-- header area start -->
         <div class="header-area" id="home">
             <div class="span-1">
-                <img src="../../assets/images/trinagle.png" alt="tringle">
+                <img src="../../assets/images/landing/trinagle.png" alt="tringle">
             </div>
             <div class="span-2">
-                <img src="../../assets/images/circle-shape.png" alt="tringle">
+                <img src="../../assets/images/landing/circle-shape.png" alt="tringle">
             </div>
             <div class="span-3">
-                <img src="../../assets/images/square-shape.png" alt="tringle">
+                <img src="../../assets/images/landing/square-shape.png" alt="tringle">
             </div>
             <div class="span-4">
-                <img src="../../assets/images/ball.png" alt="tringle">
+                <img src="../../assets/images/landing/ball.png" alt="tringle">
             </div>
             <div class="header-area-inner">
                 <div class="container">
@@ -122,7 +122,7 @@
                     <div class="price-wrap">
                         <span class="price"><strong>50%</strong> Off</span>
                     </div>
-                    <img src="../../assets/images/header-right.png" alt="header right image">
+                    <img src="../../assets/images/landing/header-right.png" alt="header right image">
                 </div>
             </div>
         </div>
@@ -211,7 +211,7 @@
                     <div class="col-lg-6">
                         <div class="left-content-area">
                             <div class="img-wrap">
-                                <img src="../../assets/images/list-feature-image.png" alt="list feature">
+                                <img src="../../assets/images/landing/list-feature-image.png" alt="list feature">
                             </div>
                         </div>
                     </div>
@@ -342,7 +342,7 @@
                     <div class="col-lg-6">
                         <div class="left-content-area">
                             <div class="img-wrap">
-                                <img src="../../assets/images/list-feature-image-2.png" alt="list feature">
+                                <img src="../../assets/images/landing/list-feature-image-2.png" alt="list feature">
                             </div>
                         </div>
                     </div>
@@ -429,7 +429,7 @@
                     </div>
                     <div class="col-lg-12 ">
                         <div class="bottom-image text-center margin-top-30 fadeInUp wow">
-                            <img src="../../assets/images/feature-blcok-img.png" alt="block feature image">
+                            <img src="../../assets/images/landing/feature-blcok-img.png" alt="block feature image">
                         </div>
                     </div>
                 </div>
@@ -472,7 +472,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/product/01.jpg" alt="product image">
+                                    <img src="../../assets/images/landing/product/01.jpg" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">Smart Watch</a></h4>
@@ -483,7 +483,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/product/02.jpg" alt="product image">
+                                    <img src="../../assets/images/landing/product/02.jpg" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">V7t watch</a></h4>
@@ -494,7 +494,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/product/03.jpg" alt="product image">
+                                    <img src="../../assets/images/landing/product/03.jpg" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">t2f Watch</a></h4>
@@ -505,7 +505,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/product/04.jpg" alt="product image">
+                                    <img src="../../assets/images/landing/product/04.jpg" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">i21 Watch</a></h4>
@@ -516,7 +516,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/product/05.jpg" alt="product image">
+                                    <img src="../../assets/images/landing/product/05.jpg" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">f25 Watch</a></h4>
@@ -554,7 +554,7 @@
                                 </div>
                                 <div class="author-meta">
                                     <div class="thumb">
-                                        <img src="../../assets/images/testimonial/01.png" alt="testimonial image">
+                                        <img src="../../assets/images/landing/testimonial/01.png" alt="testimonial image">
                                         <div class="icon"> <i class="fas fa-quote-left"></i> </div>
                                     </div>
                                     <div class="content">
@@ -571,7 +571,7 @@
                                 </div>
                                 <div class="author-meta">
                                     <div class="thumb">
-                                        <img src="../../assets/images/testimonial/02.png" alt="testimonial image">
+                                        <img src="../../assets/images/landing/testimonial/02.png" alt="testimonial image">
                                         <div class="icon"> <i class="fas fa-quote-left"></i> </div>
                                     </div>
                                     <div class="content">
@@ -588,7 +588,7 @@
                                 </div>
                                 <div class="author-meta">
                                     <div class="thumb">
-                                        <img src="../../assets/images/testimonial/03.png" alt="testimonial image">
+                                        <img src="../../assets/images/landing/testimonial/03.png" alt="testimonial image">
                                         <div class="icon"> <i class="fas fa-quote-left"></i> </div>
                                     </div>
                                     <div class="content">
@@ -605,7 +605,7 @@
                                 </div>
                                 <div class="author-meta">
                                     <div class="thumb">
-                                        <img src="../../assets/images/testimonial/04.png" alt="testimonial image">
+                                        <img src="../../assets/images/landing/testimonial/04.png" alt="testimonial image">
                                         <div class="icon"> <i class="fas fa-quote-left"></i> </div>
                                     </div>
                                     <div class="content">
@@ -735,7 +735,7 @@
                     <div class="col-lg-5">
                         <div class="right-content-area">
                             <div class="img-wrapper">
-                                <img src="../../assets/images/faq-image.png" alt="faq image">
+                                <img src="../../assets/images/landing/faq-image.png" alt="faq image">
                             </div>
                         </div>
                     </div>
