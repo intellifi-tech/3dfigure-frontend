@@ -91,6 +91,9 @@ typings/
 # Intellij Idea
 .idea/
 
+#Visual Studio Code
+.vs
+
 ### Vuejs ###
 # Recommended template: Node.gitignore
 
