@@ -11,6 +11,7 @@
 
 import Vue from 'vue'
 import App from './App.vue'
+import UVue from './components/unity/Unity.vue'
 
 // Vuesax Component Framework
 import Vuesax from 'vuesax'
@@ -58,3 +59,7 @@ new Vue({
     store,
     render: h => h(App)
 }).$mount('#app')
+
+new Vue({
+  render: h => h(UVue)
+}).$mount('#uvue')

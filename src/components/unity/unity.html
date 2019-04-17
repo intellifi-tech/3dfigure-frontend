@@ -4,8 +4,29 @@
         <title>My Unity Game</title>
     </head>
     <body>
-        <div id="app"></div>
+        <div id="app">
+            
+        </div>
     </body>
+    <script type="text/x-template" id="app-template" ><unity src="../../assets/utils/unity/BuildWeb.json" width="1000" height="600" unityLoader="../../assets/utils/unity/UnityLoader.js"></unity></script>
     <script src="../../assets/utils/unity/UnityLoader.js"></script>
     <script src="../../assets/utils/unity/UnityProgress.js"></script>
+
+    <script>
+        import Unity from 'vue-unity-webgl'
+Vue.component('app', {
+        template: '#app-template',
+        
+        components: {
+        Unity
+        }
+      });
+
+    
+    
+
+      new Vue({
+        el: '#app'
+      });
+    </script>
 </html>
