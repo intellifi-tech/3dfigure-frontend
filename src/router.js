@@ -54,7 +54,7 @@ export default new Router({
 				{
 					path: '/concepts',
 					name: 'concepts',
-					component: () => import('./views/Concepts.vue'),
+					component: () => import('./views/concept/Concepts.vue'),
 				},
 				{
 					path: '/onay-bekleyenler',
@@ -62,9 +62,9 @@ export default new Router({
 					component: () => import('./views/OnayBekleyenler.vue'),
 				},
 				{
-					path: '/order',
-					name: 'order',
-					component: () => import('./views/order/Order.vue')
+					path: '/main',
+					name: 'main',
+					component: () => import('./views/main/Main.vue')
 				}
 			],
 		},
