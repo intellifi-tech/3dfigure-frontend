@@ -52,15 +52,20 @@ export default new Router({
 					component: () => import('./views/YeniModel.vue'),
 				},
 				{
-					path: '/konseptler',
-					name: 'konseptler',
-					component: () => import('./views/Konseptler.vue'),
+					path: '/concepts',
+					name: 'concepts',
+					component: () => import('./views/Concepts.vue'),
 				},
 				{
 					path: '/onay-bekleyenler',
 					name: 'onay-bekleyenler',
 					component: () => import('./views/OnayBekleyenler.vue'),
 				},
+				{
+					path: '/order',
+					name: 'order',
+					component: () => import('./views/order/Order.vue')
+				}
 			],
 		},
 	// =============================================================================
