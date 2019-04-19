@@ -47,9 +47,9 @@ export default new Router({
 		// Theme Routes
 		// =============================================================================
 				{
-					path: '/yeni-model',
-					name: 'yeni-model',
-					component: () => import('./views/YeniModel.vue'),
+					path: '/main',
+					name: 'main',
+					component: () => import('./views/Main.vue'),
 				},
 				{
 					path: '/concepts',
