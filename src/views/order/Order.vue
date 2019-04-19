@@ -1,10 +1,8 @@
 <template>
-<div>
-    <div><unity></unity></div>
+<div class="pt-5">
+    <div ><unity></unity></div>
     <div class="mt-5"><upload></upload></div>
     <div><concepts></concepts></div>
-
-
 </div>
 </template>
 
