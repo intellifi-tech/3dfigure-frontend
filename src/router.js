@@ -64,7 +64,7 @@ export default new Router({
 				{
 					path: '/main',
 					name: 'main',
-					component: () => import('./views/main/Main.vue')
+					component: () => import('./views/Main.vue')
 				}
 			],
 		},

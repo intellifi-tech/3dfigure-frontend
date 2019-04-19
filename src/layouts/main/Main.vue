@@ -51,7 +51,6 @@ import TheNavbar from '../components/TheNavbar.vue';
 import TheFooter from '../components/TheFooter.vue';
 import themeConfig from '@/../themeConfig.js';
 import sidebarItems from "@/layouts/components/vx-sidebar/sidebarItems.js";
-import Main from '@/views/main/Main.vue'
 
 export default {
 	data() {
@@ -159,7 +158,6 @@ export default {
 		VxSidebar,
 		TheNavbar,
 		TheFooter,
-		Main
 	},
 
 }
