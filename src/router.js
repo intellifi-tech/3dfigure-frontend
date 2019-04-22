@@ -47,14 +47,14 @@ export default new Router({
 		// Theme Routes
 		// =============================================================================
 				{
-					path: '/yeni-model',
-					name: 'yeni-model',
-					component: () => import('./views/YeniModel.vue'),
+					path: '/main',
+					name: 'main',
+					component: () => import('./views/Main.vue'),
 				},
 				{
 					path: '/concepts',
 					name: 'concepts',
-					component: () => import('./views/Concepts.vue'),
+					component: () => import('./views/concept/Concepts.vue'),
 				},
 				{
 					path: '/onay-bekleyenler',
@@ -62,9 +62,9 @@ export default new Router({
 					component: () => import('./views/OnayBekleyenler.vue'),
 				},
 				{
-					path: '/order',
-					name: 'order',
-					component: () => import('./views/order/Order.vue')
+					path: '/main',
+					name: 'main',
+					component: () => import('./views/Main.vue')
 				}
 			],
 		},

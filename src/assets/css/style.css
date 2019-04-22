@@ -349,8 +349,8 @@
   font-size: 25px;
   cursor: pointer;
   background-image: -moz-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
-  background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
   background-image: -ms-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+  background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
   -webkit-box-shadow: 0px 8px 16px 0px rgba(83, 105, 240, 0.7);
   box-shadow: 0px 8px 16px 0px rgba(83, 105, 240, 0.7);
   display: none; }
@@ -402,8 +402,8 @@
       color: #fff; }
   .btn-boxed.gr-bg {
     background-image: -moz-linear-gradient(90deg, #6aaf08 0%, #62be53 92%);
-    background-image: -webkit-linear-gradient(90deg, #6aaf08 0%, #62be53 92%);
-    background-image: -ms-linear-gradient(90deg, #6aaf08 0%, #62be53 92%); }
+    background-image: -ms-linear-gradient(90deg, #6aaf08 0%, #62be53 92%); 
+    background-image: -webkit-linear-gradient(90deg, #6aaf08 0%, #62be53 92%);}
 
 .boxed-btn {
   display: inline-block;
@@ -439,13 +439,13 @@
     background-color: #5369f0; }
   .boxed-btn.gd-bg {
     background-image: -moz-linear-gradient(0deg, #241884 0%, #f83c88 100%);
-    background-image: -webkit-linear-gradient(0deg, #241884 0%, #f83c88 100%);
     background-image: -ms-linear-gradient(0deg, #241884 0%, #f83c88 100%);
+    background-image: -webkit-linear-gradient(0deg, #241884 0%, #f83c88 100%);
     color: #fff; }
     .boxed-btn.gd-bg:hover {
       background-image: -moz-linear-gradient(0deg, #f83c88 0%, #241884 100%);
-      background-image: -webkit-linear-gradient(0deg, #f83c88 0%, #241884 100%);
       background-image: -ms-linear-gradient(0deg, #f83c88 0%, #241884 100%);
+      background-image: -webkit-linear-gradient(0deg, #f83c88 0%, #241884 100%);
       -webkit-box-shadow: 0px 8px 16px 0px rgba(241, 87, 19, 0.2);
       box-shadow: 0px 8px 16px 0px rgba(241, 87, 19, 0.2); }
   .boxed-btn.btn-rounded {
@@ -456,8 +456,8 @@
     color: #3c3954; }
     .boxed-btn.blank:hover {
       background-image: -moz-linear-gradient(0deg, #241884 0%, #f83c88 100%);
-      background-image: -webkit-linear-gradient(0deg, #241884 0%, #f83c88 100%);
       background-image: -ms-linear-gradient(0deg, #241884 0%, #f83c88 100%);
+      background-image: -webkit-linear-gradient(0deg, #241884 0%, #f83c88 100%);
       -webkit-box-shadow: 0px 8px 16px 0px rgba(241, 87, 19, 0.2);
       box-shadow: 0px 8px 16px 0px rgba(241, 87, 19, 0.2);
       color: #fff; }
@@ -535,8 +535,8 @@
       /* Chrome, Safari, Opera */
       transform: translateY(-50%);
       background-image: -moz-linear-gradient(0deg, #241884 0%, #f83c88 100%);
-      background-image: -webkit-linear-gradient(0deg, #241884 0%, #f83c88 100%);
-      background-image: -ms-linear-gradient(0deg, #241884 0%, #f83c88 100%); }
+      background-image: -ms-linear-gradient(0deg, #241884 0%, #f83c88 100%);
+      background-image: -webkit-linear-gradient(0deg, #241884 0%, #f83c88 100%); }
     .section-title .subtitle:before {
       position: absolute;
       left: 70px;
@@ -1773,8 +1773,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     height: 135px;
     border-radius: 50%;
     background-image: -moz-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
-    background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
     background-image: -ms-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+    background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
     text-align: center;
     color: #fff;
     display: -webkit-box;
@@ -1803,8 +1803,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
       height: 150px;
       border-radius: 50%;
       background-image: -moz-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
-      background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
       background-image: -ms-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+      background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
       content: '';
       z-index: -1;
       -ms-transform: translateX(-50%) translateY(-50%);
@@ -3042,8 +3042,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   transform: translateY(-50%); }
   .product-carousel .owl-nav div:hover {
     background-image: -moz-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
-    background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
     background-image: -ms-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+    background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
     color: #fff; }
   .product-carousel .owl-nav div.owl-next {
     left: auto;
@@ -3122,8 +3122,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   color: #fff; }
   .testimonial-carousel .owl-nav div:hover {
     background-image: -moz-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
-    background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
     background-image: -ms-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+    background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
     color: #fff; }
   .testimonial-carousel .owl-nav div.owl-next {
     left: auto;
@@ -3160,8 +3160,9 @@ ul.wp-block-latest-posts.is-grid.alignwide {
         line-height: 30px;
         font-size: 14px;
         background-image: -moz-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
-        background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
         background-image: -ms-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+        background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+      
         color: #fff; }
       .single-testimonial-item .author-meta .thumb img {
         width: 80px;
@@ -3265,8 +3266,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
       line-height: 60px;
       text-align: center;
       background-image: -moz-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
-      background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
       background-image: -ms-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+      background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
       color: #fff;
       font-size: 25px; }
     .contact-info-list .single-info-item .content {

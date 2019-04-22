@@ -28,7 +28,7 @@ export default [
 		icon: "EditIcon",
 	},
 	{
-		url: "/konseptler",
+		url: "/concepts",
 		name: "Konseptler",
 		slug: "konseptler",
 		icon: "FileIcon",

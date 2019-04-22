@@ -1,22 +1,15 @@
 <template>
-<div class="pt-5">
-    <div ><unity></unity></div>
-    <div class="mt-5"><upload></upload></div>
-    <div><concepts></concepts></div>
-</div>
+  <concepts></concepts>
 </template>
 
 <script>
-import Unity from '@/components/unity/Unity.vue'
-import Upload from '@/components/upload/UploadMultiple.vue'
-import Concepts from '@/views/Concepts.vue'
-
+import Concepts from "@/views/concept/Concepts.vue";
 export default {
-	components: {
-        Unity,
-        Upload,
-        Concepts
-	}
-}
-
+  components: {
+    Concepts
+  }
+};
 </script>
+
+<style>
+</style>
