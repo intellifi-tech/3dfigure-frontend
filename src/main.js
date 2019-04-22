@@ -42,6 +42,9 @@ import 'prismjs/themes/prism.css'
 
 // Feather font icon
 require('./assets/css/iconfont.css')
+
+//landing page
+
 require('./assets/css/bootstrap.min.css')
 require('./assets/css/fontawesome.min.css')
 require('./assets/css/flaticon.css')
@@ -51,7 +54,7 @@ require('./assets/css/magnific-popup.css')
 require('./assets/css/style.css')
 require('./assets/css/responsive.css')
 
-import './assets/utils/jquery.js'
+
 
 
 Vue.config.productionTip = false

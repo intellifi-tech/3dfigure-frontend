@@ -1,6 +1,6 @@
 <template>
-<div>
-    <div><unity></unity></div>
+<div class="pt-4">
+    <vx-card class="p-2"><unity></unity></vx-card>
     <div class="mt-5"><upload></upload></div>
     <div><concepts></concepts></div>
 
