@@ -18,12 +18,16 @@ import getters from "./getters"
 import mutations from "./mutations"
 import actions from "./actions"
 
+import moduleEmail from './email/moduleEmail.js'
 
 
 export default new Vuex.Store({
 	getters,
 	mutations,
 	state,
-	actions,
+  actions,
+  modules: {
+		email: moduleEmail,
+	},
 	strict: process.env.NODE_ENV !== 'production'
 })
