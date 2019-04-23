@@ -79,6 +79,11 @@ export default new Router({
 					component: () => import('@/views/login/Login.vue')
 				},
 				{
+					path: '/apps/email',
+					name: 'email',
+					component: () => import('./views/email/Email.vue')
+				},
+				{
 					path: '/pages/error-404',
 					name: 'pageError404',
 					component: () => import('@/views/pages/Error404.vue')
