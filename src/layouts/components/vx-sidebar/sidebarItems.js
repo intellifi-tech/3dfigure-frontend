@@ -22,7 +22,7 @@
 
 export default [
 	{
-		url: "/yeni-model",
+		url: "/main",
 		name: "Yeni Model",
 		slug: "yeni-model",
 		icon: "EditIcon",
@@ -40,5 +40,12 @@ export default [
 		icon: "FileIcon",
 	
 	},
+	{
+		url: "/apps/email",
+		name: "Ticket",
+		slug: "ticket",
+		icon: "FileIcon",
+	
+	}
 	
 ]

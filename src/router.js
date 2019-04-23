@@ -52,6 +52,11 @@ export default new Router({
 					component: () => import('./views/Main.vue'),
 				},
 				{
+					path: '/apps/email',
+					name: 'email',
+					component: () => import('./views/email/Email.vue')
+				},
+				{
 					path: '/concepts',
 					name: 'concepts',
 					component: () => import('./views/concept/Concepts.vue'),
@@ -77,11 +82,6 @@ export default new Router({
 					path: '/pages/login',
 					name: 'pageLogin',
 					component: () => import('@/views/login/Login.vue')
-				},
-				{
-					path: '/apps/email',
-					name: 'email',
-					component: () => import('./views/email/Email.vue')
 				},
 				{
 					path: '/pages/error-404',
