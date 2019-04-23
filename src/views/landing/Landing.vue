@@ -109,8 +109,8 @@
                                 <!-- header inner -->
                                 <h1 class="title wow FadeInDown">Best digital watch for your daily life</h1>
                                 <div class="btn-wrapper">
-                                    <a href="#" class="boxed-btn btn-rounded reverse-color"><i
-                                            class="fas fa-shopping-cart"></i> Order Now</a>
+                                    <a href="#/dashboard" class="boxed-btn btn-rounded reverse-color"><i
+                                            class="fas fa-shopping-cart"></i>Dashboard</a>
                                 </div>
                             </div><!-- //. header inner -->
                         </div>
