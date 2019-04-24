@@ -20,7 +20,7 @@
             <div class="container nav-container">
                 <div class="logo-wrapper navbar-brand">
                     <a href="index.html" class="logo ">
-                        <img src="../../assets/images/landing/logo.png" alt="logo">
+                        <img src="assets/images/3dfigurlogo_website2.png" alt="logo">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="cgency">
@@ -31,12 +31,12 @@
                             <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">Home
                                 <span class="sr-only">(current)</span>
                             </a>
-                            <div class="dropdown-menu">
+                          <!--  <div class="dropdown-menu">
                                 <a href="index.html" class="dropdown-item">Home 01</a>
                                 <a href="index-2.html" class="dropdown-item">Home 02</a>
                                 <a href="index-3.html" class="dropdown-item">Home 03</a>
                                 <a href="index-4.html" class="dropdown-item">Home 04</a>
-                            </div>
+                            </div>-->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#about">About</a>
@@ -61,6 +61,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="/#/main">Login</a>
                         </li>
                     </ul>
                     <!-- /.navbar-nav -->
@@ -88,7 +91,7 @@
         <!-- navbar area end -->
 
         <!-- header area start -->
-        <div class="header-area" id="home">
+        <div class="header-area" id="home" >
             <div class="span-1">
                 <img src="../../assets/images/landing/trinagle.png" alt="tringle">
             </div>
@@ -107,10 +110,10 @@
                         <div class="col-lg-6">
                             <div class="header-inner">
                                 <!-- header inner -->
-                                <h1 class="title wow FadeInDown">Best digital watch for your daily life</h1>
+                                <h1 class="title wow FadeInDown">2D Photo to <br>3D Print</h1>
                                 <div class="btn-wrapper">
-                                    <a href="#/dashboard" class="boxed-btn btn-rounded reverse-color"><i
-                                            class="fas fa-shopping-cart"></i>Dashboard</a>
+                                    <a href="#/main" class="boxed-btn btn-rounded reverse-color"><i
+                                            class="fas fa-shopping-cart"></i> Create Model</a>
                                 </div>
                             </div><!-- //. header inner -->
                         </div>
@@ -119,10 +122,10 @@
             </div>
             <div class="header-right-image">
                 <div class="right-image-with-price header-right-image-animation">
-                    <div class="price-wrap">
-                        <span class="price"><strong>50%</strong> Off</span>
-                    </div>
-                    <img src="../../assets/images/landing/header-right.png" alt="header right image">
+                    <!-- <div class="price-wrap">
+                       <span class="price"><strong>50%</strong> Off</span>
+                    </div>-->
+                    <img src="assets/images/3model-character2.png" alt="header right image">
                 </div>
             </div>
         </div>
@@ -134,11 +137,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="inline-feaure-wrap">
+                         <unity></unity>
                             <!-- inline feature wrap -->
-                            <ul>
+                            <!-- <ul>
                                 <li>
                                     <div class="single-inline-feature-item">
-                                        <!-- single inline-feature-item -->
+                                       
                                         <div class="icon">
                                             <i class="flaticon-chat"></i>
                                         </div>
@@ -149,11 +153,11 @@
                                             <p>Fat decisively pursuit regular so calling. West he plan girl been my then
                                                 up no. </p>
                                         </div>
-                                    </div><!-- //. single inline feature item -->
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="single-inline-feature-item">
-                                        <!-- single inline-feature-item -->
+                                       
                                         <div class="icon">
                                             <i class="flaticon-value"></i>
                                         </div>
@@ -164,11 +168,11 @@
                                             <p>Fat decisively pursuit regular so calling. West he plan girl been my then
                                                 up no. </p>
                                         </div>
-                                    </div><!-- //. single inline feature item -->
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="single-inline-feature-item">
-                                        <!-- single inline-feature-item -->
+                                      
                                         <div class="icon">
                                             <i class="flaticon-rocket"></i>
                                         </div>
@@ -179,11 +183,11 @@
                                             <p>Fat decisively pursuit regular so calling. West he plan girl been my then
                                                 up no. </p>
                                         </div>
-                                    </div><!-- //. single inline feature item -->
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="single-inline-feature-item">
-                                        <!-- single inline-feature-item -->
+                                      
                                         <div class="icon">
                                             <i class="flaticon-shield"></i>
                                         </div>
@@ -194,10 +198,10 @@
                                             <p>Fat decisively pursuit regular so calling. West he plan girl been my then
                                                 up no. </p>
                                         </div>
-                                    </div><!-- //. single inline feature item -->
+                                    </div>
                                 </li>
-                            </ul>
-                        </div><!-- //. inline feature warp -->
+                            </ul>-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,7 +209,7 @@
         <!-- inline feature area end -->
 
         <!-- list feature area start -->
-        <section class="list-feature-area padding-top-110 padding-bottom-115">
+       <!-- <section class="list-feature-area padding-top-110 padding-bottom-115">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
@@ -219,7 +223,7 @@
                         <div class="right-content-area">
                             <h3 class="title">More then watch that fill your needs in time</h3>
                             <div class="list-feature-wrap">
-                                <!-- list feature wrap -->
+                             
                                 <ul>
                                     <li>
                                         <div class="single-list-feature-item">
@@ -270,22 +274,21 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div><!-- //. list feature wrap -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- list feature area end -->
-        <!-- list feature area start -->
-        <section class="list-feature-area padding-top-110 padding-bottom-115 list-feature-bg">
+     
+       <section class="list-feature-area padding-top-110 padding-bottom-115 list-feature-bg">
             <div class="container">
                 <div class="row reorder-xs">
                     <div class="col-lg-6">
                         <div class="right-content-area white">
                             <h3 class="title">More then watch that fill your needs in time</h3>
                             <div class="list-feature-wrap white">
-                                <!-- list feature wrap -->
+                               
                                 <ul>
                                     <li>
                                         <div class="single-list-feature-item">
@@ -336,7 +339,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div><!-- //. list feature wrap -->
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -349,15 +352,13 @@
                 </div>
             </div>
         </section>
-        <!-- list feature area end -->
-
-        <!-- block feature area start -->
+      
         <div class="block-feature-area padding-top-120" id="feature">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="single-block-feature">
-                            <!-- single block fearure -->
+                           
                             <div class="icon">
                                 <i class="flaticon-charging"></i>
                             </div>
@@ -365,11 +366,11 @@
                                 <h4 class="title">Battery Backup</h4>
                                 <p> Intention age nay otherwise but breakfast. Around garden beyond to extent by. </p>
                             </div>
-                        </div><!-- //. single block feature -->
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="single-block-feature">
-                            <!-- single block fearure -->
+                         
                             <div class="icon">
                                 <i class="flaticon-wifi"></i>
                             </div>
@@ -377,11 +378,11 @@
                                 <h4 class="title">Support Wifi</h4>
                                 <p> Intention age nay otherwise but breakfast. Around garden beyond to extent by. </p>
                             </div>
-                        </div><!-- //. single block feature -->
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="single-block-feature">
-                            <!-- single block fearure -->
+                            
                             <div class="icon">
                                 <i class="flaticon-rocket-1"></i>
                             </div>
@@ -389,11 +390,11 @@
                                 <h4 class="title">Backups</h4>
                                 <p> Intention age nay otherwise but breakfast. Around garden beyond to extent by. </p>
                             </div>
-                        </div><!-- //. single block feature -->
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="single-block-feature">
-                            <!-- single block fearure -->
+                           
                             <div class="icon">
                                 <i class="flaticon-compass"></i>
                             </div>
@@ -401,11 +402,11 @@
                                 <h4 class="title">GPS Control</h4>
                                 <p> Intention age nay otherwise but breakfast. Around garden beyond to extent by. </p>
                             </div>
-                        </div><!-- //. single block feature -->
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="single-block-feature">
-                            <!-- single block fearure -->
+                            
                             <div class="icon">
                                 <i class="flaticon-photo-camera"></i>
                             </div>
@@ -413,11 +414,11 @@
                                 <h4 class="title">Camera</h4>
                                 <p> Intention age nay otherwise but breakfast. Around garden beyond to extent by. </p>
                             </div>
-                        </div><!-- //. single block feature -->
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="single-block-feature">
-                            <!-- single block fearure -->
+                        
                             <div class="icon">
                                 <i class="flaticon-fingerprint-2"></i>
                             </div>
@@ -425,7 +426,7 @@
                                 <h4 class="title">Battery Backup</h4>
                                 <p> Intention age nay otherwise but breakfast. Around garden beyond to extent by. </p>
                             </div>
-                        </div><!-- //. single block feature -->
+                        </div>
                     </div>
                     <div class="col-lg-12 ">
                         <div class="bottom-image text-center margin-top-30 fadeInUp wow">
@@ -435,9 +436,7 @@
                 </div>
             </div>
         </div>
-        <!-- block feature area end -->
-
-        <!-- intro video area start -->
+       
         <div class="intro-video-area intro-video-bg">
             <div class="container">
                 <div class="row">
@@ -450,7 +449,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- intro video area end -->
 
         <!-- our product area start -->
@@ -460,7 +459,7 @@
                     <div class="col-lg-6">
                         <div class="section-title text-center">
                             <!-- section title -->
-                            <h2 class="title">Our Products</h2>
+                            <h2 class="title">Our Concepts</h2>
                             <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
                                 incididunt ut labore et dolore </p>
                         </div><!-- //. section title -->
@@ -472,7 +471,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/landing/product/01.jpg" alt="product image">
+                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">Smart Watch</a></h4>
@@ -483,7 +482,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/landing/product/02.jpg" alt="product image">
+                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">V7t watch</a></h4>
@@ -494,7 +493,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/landing/product/03.jpg" alt="product image">
+                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">t2f Watch</a></h4>
@@ -505,7 +504,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/landing/product/04.jpg" alt="product image">
+                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">i21 Watch</a></h4>
@@ -516,7 +515,7 @@
                             <div class="single-product-item">
                                 <!-- single product item -->
                                 <div class="thumb">
-                                    <img src="../../assets/images/landing/product/05.jpg" alt="product image">
+                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
                                 </div>
                                 <div class="content">
                                     <h4 class="title"><a href="#">f25 Watch</a></h4>
@@ -531,23 +530,23 @@
         </section>
         <!-- our product area end -->
         <!-- testimonial area start -->
-        <section class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120" id="testimonial">
+       <!-- <section class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120" id="testimonial">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="section-title text-center white">
-                            <!-- section title -->
+                         
                             <h2 class="title">What users Says</h2>
                             <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
                                 incididunt ut labore et dolore </p>
-                        </div><!-- //. section title -->
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="testimonial-carousel">
                             <div class="single-testimonial-item">
-                                <!-- single testimonial item -->
+                                
                                 <div class="description">
                                     They provide innovative solutions with the best. tempor incididunt utla bore et
                                     dolor tempor incididunt .
@@ -562,9 +561,9 @@
                                         <span class="post">Director</span>
                                     </div>
                                 </div>
-                            </div><!-- //. single tesitmonial item -->
+                            </div>
                             <div class="single-testimonial-item">
-                                <!-- single testimonial item -->
+                        
                                 <div class="description">
                                     They provide innovative solutions with the best. tempor incididunt utla bore et
                                     dolor tempor incididunt .
@@ -579,9 +578,9 @@
                                         <span class="post">Director</span>
                                     </div>
                                 </div>
-                            </div><!-- //. single tesitmonial item -->
+                            </div>
                             <div class="single-testimonial-item">
-                                <!-- single testimonial item -->
+                            
                                 <div class="description">
                                     They provide innovative solutions with the best. tempor incididunt utla bore et
                                     dolor tempor incididunt .
@@ -596,9 +595,9 @@
                                         <span class="post">Director</span>
                                     </div>
                                 </div>
-                            </div><!-- //. single tesitmonial item -->
+                            </div>
                             <div class="single-testimonial-item">
-                                <!-- single testimonial item -->
+                             
                                 <div class="description">
                                     They provide innovative solutions with the best. tempor incididunt utla bore et
                                     dolor tempor incididunt .
@@ -613,25 +612,23 @@
                                         <span class="post">Director</span>
                                     </div>
                                 </div>
-                            </div><!-- //. single tesitmonial item -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- testimonial area end -->
-
-        <!-- faq area start -->
+       
         <section class="faq-area padding-top-110 padding-bottom-120" id="faq">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <div class="section-title text-center">
-                            <!-- section title -->
+                      
                             <h2 class="title">Frequently Asked Questions</h2>
                             <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
                                 incididunt ut labore et dolore </p>
-                        </div><!-- //. section title -->
+                        </div>
                     </div>
                 </div>
                 <div class="row reorder-xs">
@@ -741,7 +738,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
         <!-- faq area end -->
 
         <!-- contact area start -->
@@ -837,7 +834,7 @@
                                 <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                             </ul>
                             <div class="copyright-text margin-top-30">
-                                &copy; Copyrights 2019 Brolandix All rights reserved.
+                                &copy; 2019 3D Figür. Tüm hakları saklıdır. <a href="https://intellifi.tech" target="_blank" rel="nofollow">IntelliFi</a>
                             </div>
                         </div>
                     </div>
@@ -853,3 +850,14 @@
     </div>
 
 </template>
+<script>
+import Unity from '@/components/unity/Unity.vue'
+
+export default {
+	components: {
+        Unity
+       
+	}
+}
+
+</script>
