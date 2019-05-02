@@ -19,7 +19,6 @@
     <div class="mt-5">
       <vs-upload
         class="uploadBtn"
-        multiple
         text="Fotoğraf Yükle "
         action="https://jsonplaceholder.typicode.com/posts/"
         @on-success="successUpload"

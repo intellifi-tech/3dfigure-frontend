@@ -16,6 +16,14 @@ import App from './App.vue'
 import Vuesax from 'vuesax'
 import 'material-icons/iconfont/material-icons.css' //Material Icons
 import 'vuesax/dist/vuesax.css'; // Vuesax
+
+// Custom Framework
+import Vuelidate from 'vuelidate'
+import VeeValidate from 'vee-validate'
+import i18n from '@/plugins/i18n';
+
+Vue.use(VeeValidate)
+Vue.use(Vuelidate)
 Vue.use(Vuesax)
 
 // Theme Configurations
@@ -62,5 +70,6 @@ Vue.config.productionTip = false
 new Vue({
     router,
     store,
+    i18n,
     render: h => h(App)
 }).$mount('#app')

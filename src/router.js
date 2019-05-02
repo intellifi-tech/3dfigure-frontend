@@ -84,14 +84,14 @@ export default new Router({
 					component: () => import('@/views/login/Login.vue')
 				},
 				{
+					path: '/pages/register',
+					name: 'pageRegister',
+					component: () => import('@/views/login/Register.vue')
+				},
+				{
 					path: '/pages/error-404',
 					name: 'pageError404',
 					component: () => import('@/views/pages/Error404.vue')
-				},
-				{
-					path: '/pages/unity',
-					name: 'unity',
-					component: () => import('@/components/unity/Unity.vue')
 				}
 			]
 		},
