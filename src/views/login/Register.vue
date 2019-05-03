@@ -21,51 +21,50 @@
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center bg-white">
               <div class="p-8">
                 <div class="vx-card__title">
-                  <h4 class="mb-4">Create Account</h4>
-                  <p>Fill the below form to create a new account.</p>
+                  <h4 class="mb-4">{{$t('register.create')}}</h4>
                 </div>
                 <div class="clearfix">
                   <vs-input
                     label-placeholder="FirstName"
-                    placeholder="FirstName"
+                    :placeholder="$t('register.first')"
                     v-model="firstName"
                     class="w-full mb-6"
                   />
                   <vs-input
                     label-placeholder="LastName"
-                    placeholder="LastName"
+                    :placeholder="$t('register.last')"
                     v-model="lastName"
                     class="w-full mb-6"
                   />
                   <vs-input
                     type="email"
                     label-placeholder="Email"
-                    placeholder="Email"
+                    :placeholder="$t('register.email')"
                     v-model="email"
                     class="w-full mb-6"
                   />
                   <vs-input
                     type="password"
                     label-placeholder="Password"
-                    placeholder="Password"
+                    :placeholder="$t('register.pass')"
                     v-model="password"
                     class="w-full mb-6"
                   />
                   <vs-input
                     type="password"
                     label-placeholder="Confirm Password"
-                    placeholder="Confirm Password"
+                    :placeholder="$t('register.confirm')"
                     v-model="confirm"
                     class="w-full mb-6"
                   />
-                  <vs-checkbox v-model="checkBox1" class="mb-6">I accept the terms & conditions.</vs-checkbox>
+                  <vs-checkbox v-model="checkBox1" class="mb-6">{{$t('register.terms')}}</vs-checkbox>
                   <vs-alert
                     color="danger"
-                    title="Danger"
+                    :title="$t('register.alert.title')"
                     :active="activated"
-                  >Tootsie roll lollipop lollipop icing. Wafer cookie danish macaroon. Liquorice fruitcake apple pie I love cupcake cupcake.</vs-alert>
-                  <vs-button type="border" to="/pages/login">Login</vs-button>
-                  <vs-button class="float-right" @click="register">Register</vs-button>
+                  >{{$t('register.alert.message')}}</vs-alert>
+                  <vs-button type="border" to="/pages/login">{{$t('login.login')}}</vs-button>
+                  <vs-button class="float-right" @click="register">{{$t('login.reg')}}</vs-button>
                 </div>
               </div>
             </div>
@@ -78,6 +77,7 @@
 
 <script>
 import axios from "axios";
+import consta from "@/plugins/const";
 import {
   required,
   email,
@@ -99,29 +99,27 @@ export default {
   },
   methods: {
     register: function() {
-      if (this.$v.$invalid) {
+      if (this.$v.$invalid && !this.checkBox1) {
         this.activated = true;
         return;
       }
       this.activated = false;
+      var credential = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        login: this.email,
+        password: this.password
+      };
       axios
-        .post(
-          "http://localhost:8080/api/register",
-          {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            email: this.email,
-            login: this.email,
-            password: this.password
-          },
-          {
-            headers: {
-              "Content-Type": "application/json"
-            }
+        .post(consta.SIGNUP_URL, credential, {
+          headers: {
+            "Content-Type": "application/json"
           }
-        )
+        })
         .then(res => {
           console.log(res);
+          this.$router.push("/pages/login");
         })
         .catch(err => {
           console.log(err);

@@ -21,13 +21,12 @@
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center bg-white">
               <div class="p-8">
                 <div class="vx-card__title mb-8">
-                  <h4 class="mb-4">Login</h4>
-                  <p>Welcome back, please login to your account.</p>
+                  <h4 class="mb-4">{{$t('login.login')}}</h4>
                 </div>
                 <vs-input
                   icon="icon icon-user"
                   icon-pack="feather"
-                  label-placeholder="Username"
+                  :label-placeholder="$t('login.user')"
                   v-model="username"
                   class="w-full mb-6 no-icon-border"
                 />
@@ -35,26 +34,26 @@
                   type="password"
                   icon="icon icon-lock"
                   icon-pack="feather"
-                  label-placeholder="Password"
+                  :label-placeholder="$t('login.pass')"
                   v-model="password"
                   class="w-full mb-4 no-icon-border"
                 />
                 <div class="flex flex-wrap justify-between my-5">
-                  <vs-checkbox v-model="remember" class="mb-3">Remember Me</vs-checkbox>
-                  <router-link to="/pages/forgot-password">Forgot Password?</router-link>
+                  <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
+                  <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link>
                 </div>
-                <vs-button type="border" to="/pages/register">Register</vs-button>
-                <vs-button class="float-right" @click="login">Login</vs-button>
+                <vs-button type="border" to="/pages/register">{{$t('login.reg')}}</vs-button>
+                <vs-button class="float-right" @click="login">{{$t('login.login')}}</vs-button>
 
                 <vs-alert
                   color="danger"
-                  title="Danger"
+                  :title="$t('login.alert.title')"
                   :active="activated"
-                >Tootsie roll lollipop lollipop icing. Wafer cookie danish macaroon. Liquorice fruitcake apple pie I love cupcake cupcake.</vs-alert>
+                >{{$t('login.alert.message')}}</vs-alert>
                 <vs-divider position="center" class="my-8"></vs-divider>
 
                 <div class="social-login mb-4 flex flex-wrap justify-between">
-                  <span>Or Login With</span>
+                  <span>{{$t('login.sos')}}</span>
                   <div class="social-login-buttons flex">
                     <vs-button
                       color="#1551b1"
@@ -81,6 +80,7 @@
 
 <script>
 import axios from "axios";
+import consta from "@/plugins/const";
 import {
   required,
   email,
@@ -97,29 +97,34 @@ export default {
     };
   },
 
+  beforeCreate() {
+    var jwt = localStorage.getItem("id_token");
+    if (jwt) {
+      this.$router.push("/main");
+    }
+  },
+
   methods: {
     login: function() {
       if (this.$v.$invalid) {
         this.activated = true;
+        return;
       }
       this.activated = false;
+      var credential = {
+        username: this.username,
+        password: this.password,
+        rememberMe: this.remember
+      };
       axios
-        .post(
-          "http://localhost:8080/api/authenticate",
-          {
-            password: this.password,
-            username: this.username,
-            rememberMe: this.remember
-          },
-          {
-            headers: {
-              "Content-Type": "application/json"
-            }
+        .post(consta.LOGIN_URL, credential, {
+          headers: {
+            "Content-Type": "application/json"
           }
-        )
+        })
         .then(res => {
+          localStorage.setItem("id_token", res.data.id_token);
           this.$router.push("/main");
-          console.log(res);
         })
         .catch(err => {
           console.error(err);
@@ -129,7 +134,7 @@ export default {
   },
   validations: {
     username: { required, email },
-    password: { required, minLength: minLength(6), maxLength: maxLength(15) }
+    password: { required, minLength: minLength(5), maxLength: maxLength(15) }
   }
 };
 </script>

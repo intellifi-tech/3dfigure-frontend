@@ -28,7 +28,7 @@
                     <ul class="navbar-nav" id="primary-menu">
                         <!-- navbar- nav -->
                         <li class="nav-item active dropdown">
-                            <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">Home
+                            <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">{{ $t('landing.navbar.home') }}
                                 <span class="sr-only">(current)</span>
                             </a>
                           <!--  <div class="dropdown-menu">
@@ -39,18 +39,18 @@
                             </div>-->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link" href="#about">{{ $t('landing.navbar.about') }}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <router-link to="/pages/login" class="nav-link"><span>Feature</span></router-link>
+                            <a class="nav-link" href="#about">{{ $t('landing.navbar.feature') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#product">Product</a>
+                            <a class="nav-link" href="#product">{{ $t('landing.navbar.product') }}</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="#testimonial">Testimonial</a>
-                        </li>
-                        <li class="nav-item dropdown">
+                        </li> -->
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">Blog
                                 <span class="sr-only">(current)</span>
                             </a>
@@ -58,12 +58,13 @@
                                 <a href="blog.html" class="dropdown-item">Blog</a>
                                 <a href="blog-details.html" class="dropdown-item">Blog Details</a>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
+                            <a class="nav-link" href="#contact">{{ $t('landing.navbar.contact') }}</a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link" href="/#/pages/login">Login</a>
+                            <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
+                            <a class="nav-link" href="#/pages/login" >{{ $t('landing.navbar.login') }}</a>
                         </li>
                     </ul>
                     <!-- /.navbar-nav -->
@@ -110,10 +111,10 @@
                         <div class="col-lg-6">
                             <div class="header-inner">
                                 <!-- header inner -->
-                                <h1 class="title wow FadeInDown">2D Photo to <br>3D Print</h1>
+                                <h1 class="title wow FadeInDown">{{$t('landing.first.photo')}} <br>{{$t('landing.first.print')}}</h1>
                                 <div class="btn-wrapper">
-                                    <a href="#/main" class="boxed-btn btn-rounded reverse-color"><i
-                                            class="fas fa-shopping-cart"></i> Create Model</a>
+                                    <a href="#/pages/login" class="boxed-btn btn-rounded reverse-color"><i
+                                            class="fas fa-shopping-cart"></i> {{$t('landing.first.model')}}</a>
                                 </div>
                             </div><!-- //. header inner -->
                         </div>
@@ -137,7 +138,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="inline-feaure-wrap">
-                         <unity></unity>
+                         <!-- <unity></unity> -->
                             <!-- inline feature wrap -->
                             <!-- <ul>
                                 <li>
@@ -459,7 +460,7 @@
                     <div class="col-lg-6">
                         <div class="section-title text-center">
                             <!-- section title -->
-                            <h2 class="title">Our Concepts</h2>
+                            <h2 class="title">{{$t('landing.concept.header')}}</h2>
                             <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
                                 incididunt ut labore et dolore </p>
                         </div><!-- //. section title -->
@@ -748,9 +749,8 @@
                     <div class="col-lg-6">
                         <div class="contact-info-area">
                             <!-- contact infor area -->
-                            <h3 class="title">Contact Us</h3>
-                            <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
-                                incididunt ut labore et dolore </p>
+                            <h3 class="title">{{$t('landing.contact.us')}}</h3>
+                            <p>{{$t('landing.contact.info')}}</p>
                             <ul class="contact-info-list ">
                                 <li class="single-info-item">
                                     <!-- single info item -->
@@ -758,8 +758,8 @@
                                         <i class="fas fa-home"></i>
                                     </div>
                                     <div class="content">
-                                        <span class="details"> 143 castle road 517 </span>
-                                        <span class="details"> 143 castle road 517</span>
+                                        <span class="details"> {{$t('landing.contact.address')}} </span>
+                                        <span class="details"> {{$t('landing.contact.address')}}</span>
                                     </div>
                                 </li> <!-- //. single info item -->
                                 <li class="single-info-item">
@@ -768,8 +768,8 @@
                                         <i class="fas fa-phone"></i>
                                     </div>
                                     <div class="content">
-                                        <span class="details"> +3 123 456 789</span>
-                                        <span class="details"> +3 123 456 789</span>
+                                        <span class="details"> {{$t('landing.contact.phone')}}</span>
+                                        <span class="details"> {{$t('landing.contact.phone')}}</span>
                                     </div>
                                 </li> <!-- //. single info item -->
                                 <li class="single-info-item">
@@ -778,8 +778,8 @@
                                         <i class="far fa-envelope"></i>
                                     </div>
                                     <div class="content">
-                                        <span class="details"> info@yourmail.com </span>
-                                        <span class="details"> info@yourmail.com</span>
+                                        <span class="details"> {{$t('landing.contact.mail')}} </span>
+                                        <span class="details"> {{$t('landing.contact.mail')}}</span>
                                     </div>
                                 </li> <!-- //. single info item -->
                             </ul>
@@ -809,7 +809,7 @@
                                             <textarea name="message" id="message" class="form-control" cols="30"
                                                 placeholder="Message" rows="10"></textarea>
                                         </div>
-                                        <button class="submit-btn" type="submit">Submit Now</button>
+                                        <button class="submit-btn" type="submit">{{$t('landing.contact.submit')}}</button>
                                     </div>
                                 </div>
 
@@ -834,7 +834,7 @@
                                 <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                             </ul>
                             <div class="copyright-text margin-top-30">
-                                &copy; 2019 3D Figür. Tüm hakları saklıdır. <a href="https://intellifi.tech" target="_blank" rel="nofollow">IntelliFi</a>
+                                &copy; {{$t('footer.copyright')}} <a href="https://intellifi.tech" target="_blank" rel="nofollow"> {{$t('footer.company')}} </a>
                             </div>
                         </div>
                     </div>
@@ -851,13 +851,8 @@
 
 </template>
 <script>
-import Unity from '@/components/unity/Unity.vue'
-
 export default {
-	components: {
-        Unity
-       
-	}
+
 }
 
 </script>
