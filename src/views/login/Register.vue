@@ -76,15 +76,14 @@
 </template>
 
 <script>
-import axios from "axios";
-import consta from "@/plugins/const";
 import {
   required,
   email,
   sameAs,
   minLength,
   maxLength
-} from "vuelidate/lib/validators";
+} from "vuelidate/lib/validators"
+import { LoginService } from "@/services/login.service"
 export default {
   data() {
     return {
@@ -111,20 +110,10 @@ export default {
         login: this.email,
         password: this.password
       };
-      axios
-        .post(consta.SIGNUP_URL, credential, {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
-        .then(res => {
-          console.log(res);
-          this.$router.push("/pages/login");
-        })
-        .catch(err => {
-          console.log(err);
-          this.activated = true;
-        });
+      var status = LoginService.register(credential)
+      if (status < 400) {
+        this.$router.push('/login')
+      }
     }
   },
   validations: {

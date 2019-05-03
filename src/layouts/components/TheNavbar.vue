@@ -161,7 +161,7 @@
         <!-- USER META -->
         <div class="the-navbar__user-meta flex items-center sm:ml-5 ml-2">
           <div class="text-right leading-tight hidden sm:block">
-            <p class="font-semibold">{{getMember}}</p>
+            <p class="font-semibold">{{memberName}}</p>
           </div>
           <vs-dropdown vs-custom-content vs-trigger-click>
             <div class="con-img ml-3">
@@ -221,10 +221,8 @@
 </template>
 
 <script>
-import VxAutoSuggest from "@/components/vx-auto-suggest/VxAutoSuggest.vue";
-import VuePerfectScrollbar from "vue-perfect-scrollbar";
-import axios from "axios";
-import consta from "@/plugins/const";
+import VxAutoSuggest from "@/components/vx-auto-suggest/VxAutoSuggest.vue"
+import VuePerfectScrollbar from "vue-perfect-scrollbar"
 
 export default {
   name: "the-navbar",
@@ -232,7 +230,8 @@ export default {
     navbarColor: {
       type: String,
       default: "#fff"
-    }
+    },
+    memberName: String
   },
   data() {
     return {
@@ -287,23 +286,8 @@ export default {
         wheelSpeed: 0.6
       },
       autoFocusSearch: false,
-      showBookmarkPagesDropdown: false,
-      memberName: ""
+      showBookmarkPagesDropdown: false
     };
-  },
-  beforeCreate() {
-    axios
-      .get(consta.GETMEMBER, {
-        headers: {
-          Authorization: "Bearer ".concat(localStorage.getItem("id_token"))
-        }
-      })
-      .then(res => {
-        this.memberName = res.data.firstName;
-      })
-      .catch(res => {
-        console.log(res);
-      });
   },
   watch: {
     $route() {
@@ -337,9 +321,6 @@ export default {
     },
     starredPagesMore() {
       return this.starredPages.slice(10);
-    },
-    getMember() {
-      return this.memberName;
     }
   },
   methods: {

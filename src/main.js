@@ -20,7 +20,9 @@ import 'vuesax/dist/vuesax.css'; // Vuesax
 // Custom Framework
 import Vuelidate from 'vuelidate'
 import VeeValidate from 'vee-validate'
-import i18n from '@/plugins/i18n';
+import i18n from '@/plugins/i18n'
+import ApiService from '@/services/api.service'
+import { TokenService } from '@/services/storage.service'
 
 Vue.use(VeeValidate)
 Vue.use(Vuelidate)
@@ -61,6 +63,14 @@ require('./assets/css/owl.carousel.min.css')
 require('./assets/css/magnific-popup.css')
 require('./assets/css/style.css')
 require('./assets/css/responsive.css')
+
+// Set the base URL of the API
+ApiService.init(process.env.VUE_APP_ROOT_API)
+
+// If token exists set header
+if (TokenService.getToken()) {
+  ApiService.setHeader()
+}
 
 
 
