@@ -12,15 +12,14 @@ const LoginService = {
      **/
     login: async function (credential) {
         try {
-            const response = await ApiService.post("/authenicate", credential)
+            const response = await ApiService.post("/authenticate", credential)
 
-            TokenService.saveToken(response.data.access_token)
-            TokenService.saveRefreshToken(response.data.refresh_token)
+            TokenService.saveToken(response.data.id_token)
             ApiService.setHeader()
 
             // NOTE: We haven't covered this yet in our ApiService 
             //       but don't worry about this just yet - I'll come back to it later
-            ApiService.mount401Interceptor();
+            //ApiService.mount401Interceptor();
 
             return response.status
         } catch (error) {
@@ -35,7 +34,7 @@ const LoginService = {
     register: async function (credential) {
         try {
             const response = await ApiService.post("/register", credential)
-            return response.data.access_token
+            return response.status
         } catch (error) {
             return error.response.status
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
@@ -51,11 +50,10 @@ const LoginService = {
     logout() {
         // Remove the token and remove Authorization header from Api Service as well 
         TokenService.removeToken()
-        TokenService.removeRefreshToken()
         ApiService.removeHeader()
 
         // NOTE: Again, we'll cover the 401 Interceptor a bit later. 
-        ApiService.unmount401Interceptor()
+        //ApiService.unmount401Interceptor()
     }
 }
 

@@ -66,6 +66,7 @@ export default {
 			sidebarItems: sidebarItems,
 			disableCustomizer: themeConfig.disableCustomizer,
 			windowWidth: window.innerWidth, //width of windows
+			memberName: ''
 		}
 	},
 	watch: {
@@ -155,7 +156,9 @@ export default {
 		}else {
 			this.updateNavbarColor(this.navbarColor)
 		}
-		this.memberName = UserService.getMember().firstName
+		UserService.getMember().then(data => {
+			this.memberName = data.firstName
+		})
 	},
 	components: {
 		VxSidebar,

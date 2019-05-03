@@ -40,7 +40,7 @@
                 />
                 <div class="flex flex-wrap justify-between my-5">
                   <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
-                  <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link>
+                  <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
                 </div>
                 <vs-button type="border" to="/register">{{$t('login.reg')}}</vs-button>
                 <vs-button class="float-right" @click="login">{{$t('login.login')}}</vs-button>
@@ -84,8 +84,8 @@ import {
   email,
   minLength,
   maxLength
-} from "vuelidate/lib/validators"
-import { LoginService } from "@/services/login.service"
+} from "vuelidate/lib/validators";
+import { LoginService } from "@/services/login.service";
 export default {
   data() {
     return {
@@ -97,7 +97,7 @@ export default {
   },
 
   methods: {
-    login: function() {
+    login: async function() {
       if (this.$v.$invalid) {
         this.activated = true;
         return;
@@ -108,9 +108,9 @@ export default {
         password: this.password,
         rememberMe: this.remember
       };
-      var status = LoginService.login(credential);
-      if (status < 400) {
-        this.$router.push("/main");
+      var status = await LoginService.login(credential)
+      if (status == 200) {
+        this.$router.push("/main")
       }
     }
   },

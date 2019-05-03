@@ -53,12 +53,6 @@ export default {
       });
     },
   },
-  beforeCreate() {
-    var jwt = localStorage.getItem('id_token')
-    if (!jwt) {
-      this.$router.push('/pages/login')
-    }
-  },
   components: {
     Unity,
     Upload,

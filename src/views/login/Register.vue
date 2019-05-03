@@ -97,7 +97,7 @@ export default {
     };
   },
   methods: {
-    register: function() {
+    register: async function() {
       if (this.$v.$invalid && !this.checkBox1) {
         this.activated = true;
         return;
@@ -110,7 +110,7 @@ export default {
         login: this.email,
         password: this.password
       };
-      var status = LoginService.register(credential)
+      var status = await LoginService.register(credential)
       if (status < 400) {
         this.$router.push('/login')
       }

@@ -98,11 +98,6 @@ const router = new Router({
 					path: '/register',
 					name: 'pageRegister',
 					component: () => import('@/views/login/Register.vue')
-				},
-				{
-					path: '/pages/error-404',
-					name: 'pageError404',
-					component: () => import('@/views/pages/Error404.vue')
 				}
 			]
 		},
@@ -130,7 +125,7 @@ router.beforeEach((to, from, next) => {
 
 	// Do not allow user to visit login page or register page if they are logged in
 	if (loggedIn && onlyWhenLoggedOut) {
-		return next('/dashboard')
+		return next('/main')
 	}
 
 	next();
