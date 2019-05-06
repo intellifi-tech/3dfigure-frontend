@@ -1,17 +1,9 @@
-# base image
-FROM node:10.15.0
+FROM node:10
+COPY ./ /app
+WORKDIR /app
+RUN npm install && npm run build
 
-# set working directory
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
-
-# add `/usr/src/app/node_modules/.bin` to $PATH
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
-# install and cache app dependencies
-COPY package.json /usr/src/app/package.json
-RUN npm install
-RUN npm audit fix
-RUN npm install -g @vue/cli
-# start app
-CMD ["npm", "run", "serve"]
+FROM nginx
+RUN mkdir /app
+COPY --from=0 /app/dist /app
+COPY nginx.conf /etc/nginx/nginx.conf
