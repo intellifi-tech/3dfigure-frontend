@@ -9,7 +9,7 @@
 
 			<div class="content-wrapper">
 
-				<the-navbar :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
+				<the-navbar :memberName="memberName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
 
 				<div class="router-view">
 					<div class="router-content" :class="{'mt-0': navbarType == 'hidden'}">
@@ -51,6 +51,8 @@ import TheNavbar from '../components/TheNavbar.vue';
 import TheFooter from '../components/TheFooter.vue';
 import themeConfig from '@/../themeConfig.js';
 import sidebarItems from "@/layouts/components/vx-sidebar/sidebarItems.js";
+import { UserService } from '@/services/user.service'
+
 
 export default {
 	data() {
@@ -64,6 +66,7 @@ export default {
 			sidebarItems: sidebarItems,
 			disableCustomizer: themeConfig.disableCustomizer,
 			windowWidth: window.innerWidth, //width of windows
+			memberName: ''
 		}
 	},
 	watch: {
@@ -153,6 +156,9 @@ export default {
 		}else {
 			this.updateNavbarColor(this.navbarColor)
 		}
+		UserService.getMember().then(data => {
+			this.memberName = data.firstName
+		})
 	},
 	components: {
 		VxSidebar,

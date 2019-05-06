@@ -15,7 +15,7 @@
         :before-change="validateStep1"
       >
         <div>
-          <p>{{ $t('plugins') }}</p>
+          <upload></upload>
         </div>
       </tab-content>
       <tab-content title="Unity Preview" class="mb-5" icon="feather icon-briefcase">
@@ -52,12 +52,6 @@ export default {
         });
       });
     },
-  },
-  beforeCreate() {
-    var jwt = localStorage.getItem('id_token')
-    if (!jwt) {
-      this.$router.push('/pages/login')
-    }
   },
   components: {
     Unity,

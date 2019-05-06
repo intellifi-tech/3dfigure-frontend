@@ -40,9 +40,9 @@
                 />
                 <div class="flex flex-wrap justify-between my-5">
                   <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
-                  <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link>
+                  <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
                 </div>
-                <vs-button type="border" to="/pages/register">{{$t('login.reg')}}</vs-button>
+                <vs-button type="border" to="/register">{{$t('login.reg')}}</vs-button>
                 <vs-button class="float-right" @click="login">{{$t('login.login')}}</vs-button>
 
                 <vs-alert
@@ -79,14 +79,13 @@
 </template>
 
 <script>
-import axios from "axios";
-import consta from "@/plugins/const";
 import {
   required,
   email,
   minLength,
   maxLength
 } from "vuelidate/lib/validators";
+import { LoginService } from "@/services/login.service";
 export default {
   data() {
     return {
@@ -97,15 +96,8 @@ export default {
     };
   },
 
-  beforeCreate() {
-    var jwt = localStorage.getItem("id_token");
-    if (jwt) {
-      this.$router.push("/main");
-    }
-  },
-
   methods: {
-    login: function() {
+    login: async function() {
       if (this.$v.$invalid) {
         this.activated = true;
         return;
@@ -116,20 +108,10 @@ export default {
         password: this.password,
         rememberMe: this.remember
       };
-      axios
-        .post(consta.LOGIN_URL, credential, {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
-        .then(res => {
-          localStorage.setItem("id_token", res.data.id_token);
-          this.$router.push("/main");
-        })
-        .catch(err => {
-          console.error(err);
-          this.activated = true;
-        });
+      var status = await LoginService.login(credential)
+      if (status == 200) {
+        this.$router.push("/main")
+      }
     }
   },
   validations: {

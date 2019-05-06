@@ -64,7 +64,7 @@
                         </li>
                          <li class="nav-item">
                             <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
-                            <a class="nav-link" href="#/pages/login" >{{ $t('landing.navbar.login') }}</a>
+                            <a class="nav-link" href="/login" >{{ $t('landing.navbar.login') }}</a>
                         </li>
                     </ul>
                     <!-- /.navbar-nav -->
@@ -113,7 +113,7 @@
                                 <!-- header inner -->
                                 <h1 class="title wow FadeInDown">{{$t('landing.first.photo')}} <br>{{$t('landing.first.print')}}</h1>
                                 <div class="btn-wrapper">
-                                    <a href="#/pages/login" class="boxed-btn btn-rounded reverse-color"><i
+                                    <a href="/login" class="boxed-btn btn-rounded reverse-color"><i
                                             class="fas fa-shopping-cart"></i> {{$t('landing.first.model')}}</a>
                                 </div>
                             </div><!-- //. header inner -->

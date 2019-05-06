@@ -15,6 +15,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
+import { TokenService } from '@/services/storage.service'
 
 Vue.use(Router)
 
@@ -30,6 +31,7 @@ const router = new Router({
 			// =============================================================================
 			path: '/',
 			component: () => import('./views/landing/Landing.vue'),
+			meta: {public: true},
 			children: [
 				// =============================================================================
 				// Theme Routes
@@ -44,6 +46,9 @@ const router = new Router({
 			// =============================================================================
 			path: '/dashboard',
 			component: () => import('./layouts/main/Main.vue'),
+			meta: {
+				public: false
+			},
 			children: [
 				// =============================================================================
 				// Theme Routes
@@ -76,24 +81,23 @@ const router = new Router({
 		{
 			path: '/pages',
 			component: () => import('@/layouts/full-page/FullPage.vue'),
+			meta: {
+				public: true,
+				onlyWhenLoggedOut: true
+			},
 			children: [
 				// =============================================================================
 				// PAGES
 				// =============================================================================
 				{
-					path: '/pages/login',
+					path: '/login',
 					name: 'pageLogin',
 					component: () => import('@/views/login/Login.vue')
 				},
 				{
-					path: '/pages/register',
+					path: '/register',
 					name: 'pageRegister',
 					component: () => import('@/views/login/Register.vue')
-				},
-				{
-					path: '/pages/error-404',
-					name: 'pageError404',
-					component: () => import('@/views/pages/Error404.vue')
 				}
 			]
 		},
@@ -109,20 +113,22 @@ router.beforeEach((to, from, next) => {
 	const isPublic = to.matched.some(record => record.meta.public)
 	const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
 	const loggedIn = !!TokenService.getToken();
-  
+
 	if (!isPublic && !loggedIn) {
-	  return next({
-		path:'/login',
-		query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
-	  });
+		return next({
+			path: '/login',
+			query: {
+				redirect: to.fullPath
+			} // Store the full path to redirect the user to after login
+		});
 	}
-  
+
 	// Do not allow user to visit login page or register page if they are logged in
 	if (loggedIn && onlyWhenLoggedOut) {
-	  return next('/')
+		return next('/main')
 	}
-  
+
 	next();
-  })
+})
 
 export default router;
