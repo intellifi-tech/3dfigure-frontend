@@ -65,7 +65,11 @@ require('./assets/css/style.css')
 require('./assets/css/responsive.css')
 
 // Set the base URL of the API
-ApiService.init(process.env.VUE_APP_ROOT_API)
+if (process.env.NODE_ENV === 'production') {
+  ApiService.init(process.env.VUE_APP_PROD_ROOT_API)
+} else {
+  ApiService.init(process.env.VUE_APP_DEV_ROOT_API)
+}
 
 // If token exists set header
 if (TokenService.getToken()) {
