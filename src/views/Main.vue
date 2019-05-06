@@ -15,7 +15,7 @@
         :before-change="validateStep1"
       >
         <div>
-          <p>{{ $t('plugins') }}</p>
+          <upload></upload>
         </div>
       </tab-content>
       <tab-content title="Unity Preview" class="mb-5" icon="feather icon-briefcase">

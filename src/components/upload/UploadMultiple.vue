@@ -10,7 +10,7 @@
 
 
 <template>
-  <vx-card title="Fotoğraflarım" >
+  <vx-card title="Fotoğraflarım">
     <p>
       Figürünü oluşturmak istediğin fotoğrafı
       <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
@@ -20,7 +20,9 @@
       <vs-upload
         class="uploadBtn"
         text="Fotoğraf Yükle "
-        action="https://jsonplaceholder.typicode.com/posts/"
+        action="http://localhost:8080/api/images/upload"
+        :headers=authHeader()
+        fileName="image"
         @on-success="successUpload"
       />
     </div>
@@ -28,11 +30,26 @@
 </template>
 
 <script>
+import { TokenService } from "@/services/storage.service";
 export default {
-	methods: {
-		successUpload() {
-			this.$vs.notify({ color: 'success', title: '<br>Fotoğraf yüklendi!', text: '' })
-		}
-	}
-}
+  data() {
+    return {
+      actionUrl: ''
+    }
+  },
+  methods: {
+    successUpload() {
+      this.$vs.notify({
+        color: "success",
+        title: "<br>Fotoğraf yüklendi!",
+        text: ""
+      });
+    },
+    authHeader() {
+      return {
+        Authorization: `Bearer ${TokenService.getToken()}`
+      }
+    }
+  }
+};
 </script>
