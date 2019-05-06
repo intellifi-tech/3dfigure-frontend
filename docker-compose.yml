@@ -2,11 +2,7 @@ version: '3'
 services:
 
   frontend:
-    build: .
-    image: 3dfigure:latest
-    volumes:
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
+    build: ./
     ports:
-      - "8080:8080"
+      - "8081:80"
 
