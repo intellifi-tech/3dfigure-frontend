@@ -2,7 +2,7 @@
   <div>
     <!-- search Popup -->
     <div class="body-overlay" id="body-overlay"></div>
-    <div class="search-popup" id="search-popup">
+    <!--<div class="search-popup" id="search-popup">
       <form action="/" class="search-popup-form">
         <div class="form-element">
           <input type="text" class="input-field" placeholder="Search.....">
@@ -11,7 +11,7 @@
           <i class="fas fa-search"></i>
         </button>
       </form>
-    </div>
+    </div>-->
     <!-- //. search Popup -->
 
     <!-- navbar area start -->
@@ -84,16 +84,14 @@
           </button>
         </div>
         <!-- navbar collapse end -->
-        <div class="nav-right-content">
+       <div class="nav-right-content">
           <ul>
-            <li class="search" id="search">
-              <i class="fas fa-search"></i>
+            <li>
+             <select v-model="$i18n.locale" id="select-lang">
+      <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+    </select>
             </li>
-            <li class="cart">
-              <a href="#">
-                <i class="fas fa-shopping-cart"></i>
-              </a>
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -1241,9 +1239,12 @@
 </template>
 <script>
 export default {
+
+
   data() {
     return {
-      man: true
+      man: true,
+      langs: ['tr', 'en']
     };
   },
   methods: {
