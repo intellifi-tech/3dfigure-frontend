@@ -1,56 +1,56 @@
 <template>
-    <div>
-        <!-- search Popup -->
-        <div class="body-overlay" id="body-overlay"></div>
-        <div class="search-popup" id="search-popup">
-            <form action="index.html" class="search-popup-form">
-                <div class="form-element">
-                    <input type="text" class="input-field" placeholder="Search.....">
-                </div>
-                <button type="submit" class="submit-btn"><i class="fas fa-search"></i></button>
-            </form>
+  <div>
+    <!-- search Popup -->
+    <div class="body-overlay" id="body-overlay"></div>
+    <div class="search-popup" id="search-popup">
+      <form action="/" class="search-popup-form">
+        <div class="form-element">
+          <input type="text" class="input-field" placeholder="Search.....">
         </div>
-        <!-- //. search Popup -->
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <!-- //. search Popup -->
 
-
-
-
-        <!-- navbar area start -->
-        <nav class="navbar navbar-area navbar-expand-lg">
-            <div class="container nav-container">
-                <div class="logo-wrapper navbar-brand">
-                    <a href="index.html" class="logo ">
-                        <img src="assets/images/3dfigurlogo_website2.png" alt="logo">
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse" id="cgency">
-                    <!-- navbar collapse start -->
-                    <ul class="navbar-nav" id="primary-menu">
-                        <!-- navbar- nav -->
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">{{ $t('landing.navbar.home') }}
-                                <span class="sr-only">(current)</span>
-                            </a>
-                          <!--  <div class="dropdown-menu">
+    <!-- navbar area start -->
+    <nav class="navbar navbar-area navbar-expand-lg">
+      <div class="container nav-container">
+        <div class="logo-wrapper navbar-brand">
+          <a href="/" class="logo">
+            <img src="assets/images/3dfigurlogo.png" alt="logo">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="cgency">
+          <!-- navbar collapse start -->
+          <ul class="navbar-nav" id="primary-menu">
+            <!-- navbar- nav -->
+            <li class="nav-item active dropdown">
+              <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">
+                {{ $t('landing.navbar.home') }}
+                <span class="sr-only">(current)</span>
+              </a>
+              <!--  <div class="dropdown-menu">
                                 <a href="index.html" class="dropdown-item">Home 01</a>
                                 <a href="index-2.html" class="dropdown-item">Home 02</a>
                                 <a href="index-3.html" class="dropdown-item">Home 03</a>
                                 <a href="index-4.html" class="dropdown-item">Home 04</a>
-                            </div>-->
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about">{{ $t('landing.navbar.about') }}</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#about">{{ $t('landing.navbar.feature') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#product">{{ $t('landing.navbar.product') }}</a>
-                        </li>
-                        <!-- <li class="nav-item">
+              </div>-->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">{{ $t('landing.navbar.about') }}</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#about">{{ $t('landing.navbar.feature') }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#product">{{ $t('landing.navbar.product') }}</a>
+            </li>
+            <!-- <li class="nav-item">
                             <a class="nav-link" href="#testimonial">Testimonial</a>
-                        </li> -->
-                        <!-- <li class="nav-item dropdown">
+            </li>-->
+            <!-- <li class="nav-item dropdown">
                             <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">Blog
                                 <span class="sr-only">(current)</span>
                             </a>
@@ -58,159 +58,434 @@
                                 <a href="blog.html" class="dropdown-item">Blog</a>
                                 <a href="blog-details.html" class="dropdown-item">Blog Details</a>
                             </div>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">{{ $t('landing.navbar.contact') }}</a>
-                        </li>
-                         <li class="nav-item">
-                            <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
-                            <a class="nav-link" href="/login" >{{ $t('landing.navbar.login') }}</a>
-                        </li>
-                    </ul>
-                    <!-- /.navbar-nav -->
-                </div>
-                <!-- /.navbar btn wrapper -->
-                <div class="responsive-mobile-menu">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cgency"
-                        aria-controls="cgency" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <!-- navbar collapse end -->
-                <div class="nav-right-content">
-                    <ul>
-                        <li class="search" id="search">
-                            <i class="fas fa-search"></i>
-                        </li>
-                        <li class="cart">
-                            <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- navbar area end -->
+            </li>-->
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">{{ $t('landing.navbar.contact') }}</a>
+            </li>
+            <li class="nav-item">
+              <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
+              <a class="nav-link" href="/login">{{ $t('landing.navbar.login') }}</a>
+            </li>
+          </ul>
+          <!-- /.navbar-nav -->
+        </div>
+        <!-- /.navbar btn wrapper -->
+        <div class="responsive-mobile-menu">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#cgency"
+            aria-controls="cgency"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <!-- navbar collapse end -->
+        <div class="nav-right-content">
+          <ul>
+            <li class="search" id="search">
+              <i class="fas fa-search"></i>
+            </li>
+            <li class="cart">
+              <a href="#">
+                <i class="fas fa-shopping-cart"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- navbar area end -->
 
-        <!-- header area start -->
-        <div class="header-area" id="home" >
-            <div class="span-1">
-                <img src="../../assets/images/landing/trinagle.png" alt="tringle">
-            </div>
-            <div class="span-2">
-                <img src="../../assets/images/landing/circle-shape.png" alt="tringle">
-            </div>
-            <div class="span-3">
-                <img src="../../assets/images/landing/square-shape.png" alt="tringle">
-            </div>
-            <div class="span-4">
-                <img src="../../assets/images/landing/ball.png" alt="tringle">
-            </div>
-            <div class="header-area-inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="header-inner">
-                                <!-- header inner -->
-                                <h1 class="title wow FadeInDown">{{$t('landing.first.photo')}} <br>{{$t('landing.first.print')}}</h1>
-                                <div class="btn-wrapper">
-                                    <a href="/login" class="boxed-btn btn-rounded reverse-color"><i
-                                            class="fas fa-shopping-cart"></i> {{$t('landing.first.model')}}</a>
-                                </div>
-                            </div><!-- //. header inner -->
-                        </div>
-                    </div>
+    <!-- header area start -->
+    <div class="header-area" id="home">
+      <div class="span-1">
+        <img src="../../assets/images/landing/trinagle.png" alt="tringle">
+      </div>
+      <div class="span-2">
+        <img src="../../assets/images/landing/circle-shape.png" alt="tringle">
+      </div>
+      <div class="span-3">
+        <img src="../../assets/images/landing/square-shape.png" alt="tringle">
+      </div>
+      <div class="span-4">
+        <img src="../../assets/images/landing/ball.png" alt="tringle">
+      </div>
+      <div class="header-area-inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="header-inner">
+                <!-- header inner -->
+                <h1 class="title wow FadeInDown">
+                  {{$t('landing.first.photo')}}
+                  <br>
+                  {{$t('landing.first.print')}}
+                </h1>
+                <div class="btn-wrapper">
+                  <a href="/login" class="boxed-btn btn-rounded reverse-color">
+                    <i class="fas fa-shopping-cart"></i>
+                    {{$t('landing.first.model')}}
+                  </a>
                 </div>
+              </div>
+              <!-- //. header inner -->
             </div>
-            <div class="header-right-image">
-                <div class="right-image-with-price header-right-image-animation">
-                    <!-- <div class="price-wrap">
+          </div>
+        </div>
+      </div>
+      <div class="header-right-image">
+        <div class="right-image-with-price header-right-image-animation">
+          <!-- <div class="price-wrap">
                        <span class="price"><strong>50%</strong> Off</span>
-                    </div>-->
-                    <img src="assets/images/3model-character2.png" alt="header right image">
-                </div>
-            </div>
+          </div>-->
+          <img src="assets/images/3dmodel-man.png" alt="header right image">
         </div>
-        <!-- header area end -->
+      </div>
+    </div>
+    <!-- header area end -->
 
-        <!-- inline feature area start -->
-        <div class="inline-feature-area padding-top-120" id="about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="inline-feaure-wrap">
-                         <!-- <unity></unity> -->
-                            <!-- inline feature wrap -->
-                            <!-- <ul>
-                                <li>
-                                    <div class="single-inline-feature-item">
-                                       
-                                        <div class="icon">
-                                            <i class="flaticon-chat"></i>
-                                        </div>
-                                        <div class="content">
-                                            <a href="#">
-                                                <h4 class="title">Live Chat</h4>
-                                            </a>
-                                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then
-                                                up no. </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="single-inline-feature-item">
-                                       
-                                        <div class="icon">
-                                            <i class="flaticon-value"></i>
-                                        </div>
-                                        <div class="content">
-                                            <a href="#">
-                                                <h4 class="title">Easy Configure</h4>
-                                            </a>
-                                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then
-                                                up no. </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="single-inline-feature-item">
-                                      
-                                        <div class="icon">
-                                            <i class="flaticon-rocket"></i>
-                                        </div>
-                                        <div class="content">
-                                            <a href="#">
-                                                <h4 class="title">User Friendly</h4>
-                                            </a>
-                                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then
-                                                up no. </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="single-inline-feature-item">
-                                      
-                                        <div class="icon">
-                                            <i class="flaticon-shield"></i>
-                                        </div>
-                                        <div class="content">
-                                            <a href="#">
-                                                <h4 class="title">High Security</h4>
-                                            </a>
-                                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then
-                                                up no. </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>-->
+    <!-- inline feature area start -->
+    <div class="inline-feature-area padding-top-120" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 pl-0">
+            <div class="how-to-use">
+              <ul id="ul-man-or-woman" class="pl-0 mb-5">
+                <li>
+                  <input type="radio" name="name" id="one" v-on:change="change" checked>
+                  <label class="check" for="one"></label>
+                  <label for="one">Man</label>
+                </li>
+                <li>
+                  <input type="radio" name="name" id="two" v-on:change="change" >
+                  <label class="check" for="two"></label>
+                  <label for="two">Woman</label>
+                </li>
+              </ul>
+
+              <!-- how to selfie start-->
+              <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
+                <!-- man div start -->
+                <div class="man-div model-column" v-show="man">
+                  <ul id="man-list">
+                    <li>
+                      <div class="single-inline-feature-item">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/man/man-false-1.jpg" class="img-style img-fluid mb-4 ">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">Live Chat</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
                         </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/man/man-false-2.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">Easy Configure</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/man/man-false-3.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">User Friendly</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/man/man-false-4.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">User Friendly</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-true.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/man/man-true.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">High Security</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="row inline-feaure-wrap justify-content-center">
+                    <div class="col-lg-12 px-0">
+                      <div class="sketchfab-embed-wrapper">
+                        <iframe
+                          width="100%"
+                          height="500"
+                          src="https://sketchfab.com/models/91102961ad1040748145a4c341899840/embed"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; vr"
+                          mozallowfullscreen="true"
+                          webkitallowfullscreen="true"
+                        ></iframe>
+                      </div>
                     </div>
+                    <ul id="concepts-list">
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="#">
+                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <h4 class="title">Mezuniyet</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="#">
+                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <h4 class="title">Mezuniyet</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="#">
+                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <h4 class="title">Mezuniyet</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="#">
+                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <h4 class="title">Mezuniyet</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="/login">
+                              <img
+                                src="assets/images/icon/icon-plus.png"
+                                class="img-scale img-fluid mb-4"
+                              >
+                              <h4 class="title">Create!</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-            </div>
-        </div>
-        <!-- inline feature area end -->
+                <!--man div finish-->
 
-        <!-- list feature area start -->
-       <!-- <section class="list-feature-area padding-top-110 padding-bottom-115">
+                <!-- woman div start -->
+                <div class="woman-div model-column" v-show="!man">
+                  <ul id="woman-list">
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/woman/woman-false-1.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">Live Chat</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/woman/woman-false-2.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">Easy Configure</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/woman/woman-false-3.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">User Friendly</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/woman/woman-false-4.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">User Friendly</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="single-inline-feature-item">
+                           <img src="assets/images/icon/icon-true.png" class="selfie-status-icon"/>
+                        <img src="assets/images/portre/woman/woman-true.jpg" class="img-style img-fluid mb-4">
+                        <div class="content">
+                          <a href="#">
+                            <h4 class="title">High Security</h4>
+                          </a>
+                          <p>
+                            Fat decisively pursuit regular so calling. West he plan girl been my then
+                            up no.
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="row inline-feaure-wrap justify-content-center">
+                    <div class="col-lg-12 px-0">
+                      <div class="sketchfab-embed-wrapper">
+                        <iframe
+                          width="100%"
+                          height="500"
+                          src="https://sketchfab.com/models/ebe0accf659d43068cd774141a5731cb/embed"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; vr"
+                          mozallowfullscreen="true"
+                          webkitallowfullscreen="true"
+                        ></iframe>
+                      </div>
+                    </div>
+                    <ul id="concepts-list">
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="#">
+                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <h4 class="title">Mezuniyet</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="#">
+                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <h4 class="title">Mezuniyet</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="#">
+                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <h4 class="title">Mezuniyet</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="#">
+                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <h4 class="title">Mezuniyet</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <a href="/login">
+                              <img
+                                src="assets/images/icon/icon-plus.png"
+                                class="img-scale img-fluid mb-4"
+                              >
+                              <h4 class="title">Create!</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- woman div finish-->
+              </div>
+              <!-- how to selfie finish-->
+            </div>
+            <!--how to use finish-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- inline feature area end -->
+
+
+
+    <!-- list feature area start -->
+    <!-- <section class="list-feature-area padding-top-110 padding-bottom-115">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
@@ -450,88 +725,174 @@
                     </div>
                 </div>
             </div>
-        </div>-->
-        <!-- intro video area end -->
+    </div>-->
+    <!-- intro video area end -->
 
-        <!-- our product area start -->
-        <section class="product-area padding-top-110 padding-bottom-90" id="product">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="section-title text-center">
-                            <!-- section title -->
-                            <h2 class="title">{{$t('landing.concept.header')}}</h2>
-                            <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
-                                incididunt ut labore et dolore </p>
-                        </div><!-- //. section title -->
-                    </div>
+    <!-- our product area start -->
+    <section class="product-area padding-top-110 padding-bottom-90" id="product">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="section-title text-center">
+              <!-- section title -->
+              <h2 class="title">{{$t('landing.concept.header')}}</h2>
+              <p>
+                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
+                incididunt ut labore et dolore
+              </p>
+            </div>
+            <!-- //. section title -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="product-carousel">
+              <div class="single-product-item">
+                <!-- single product item -->
+                <div class="thumb">
+                  <img src="assets/images/3dmodelornek1.png" alt="product image">
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product-carousel">
-                            <div class="single-product-item">
-                                <!-- single product item -->
-                                <div class="thumb">
-                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">Smart Watch</a></h4>
-                                    <div class="price-wrap"><span class="price">$34</span> <del>$55</del></div>
-                                    <a href="#" class="boxed-bt">Buy Now</a>
-                                </div>
-                            </div><!-- //. single product item -->
-                            <div class="single-product-item">
-                                <!-- single product item -->
-                                <div class="thumb">
-                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">V7t watch</a></h4>
-                                    <div class="price-wrap"><span class="price">$34</span> <del>$55</del></div>
-                                    <a href="#" class="boxed-bt">Buy Now</a>
-                                </div>
-                            </div><!-- //. single product item -->
-                            <div class="single-product-item">
-                                <!-- single product item -->
-                                <div class="thumb">
-                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">t2f Watch</a></h4>
-                                    <div class="price-wrap"><span class="price">$34</span> <del>$55</del></div>
-                                    <a href="#" class="boxed-bt">Buy Now</a>
-                                </div>
-                            </div><!-- //. single product item -->
-                            <div class="single-product-item">
-                                <!-- single product item -->
-                                <div class="thumb">
-                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">i21 Watch</a></h4>
-                                    <div class="price-wrap"><span class="price">$34</span> <del>$55</del></div>
-                                    <a href="#" class="boxed-bt">Buy Now</a>
-                                </div>
-                            </div><!-- //. single product item -->
-                            <div class="single-product-item">
-                                <!-- single product item -->
-                                <div class="thumb">
-                                    <img src="assets/images/3dmodelornek1.png" alt="product image">
-                                </div>
-                                <div class="content">
-                                    <h4 class="title"><a href="#">f25 Watch</a></h4>
-                                    <div class="price-wrap"><span class="price">$34</span> <del>$55</del></div>
-                                    <a href="#" class="boxed-bt">Buy Now</a>
-                                </div>
-                            </div><!-- //. single product item -->
-                        </div>
-                    </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">Smart Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+              <!-- //. single product item -->
+              <div class="single-product-item">
+                <!-- single product item -->
+                <div class="thumb">
+                  <img src="assets/images/3dmodelornek1.png" alt="product image">
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">V7t watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+              <!-- //. single product item -->
+              <div class="single-product-item">
+                <!-- single product item -->
+                <div class="thumb">
+                  <img src="assets/images/3dmodelornek1.png" alt="product image">
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">t2f Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+              <!-- //. single product item -->
+              <div class="single-product-item">
+                <!-- single product item -->
+                <div class="thumb">
+                  <img src="assets/images/3dmodelornek1.png" alt="product image">
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">i21 Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+              <!-- //. single product item -->
+              <div class="single-product-item">
+                <!-- single product item -->
+                <div class="thumb">
+                  <img src="assets/images/3dmodelornek1.png" alt="product image">
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">f25 Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+              <!-- //. single product item -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- our product area end -->
+
+<div class="amazing-feature-area padding-top-50 padding-bottom-100 style-two" id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-title text-center"><!-- section title -->
+                        <h2 class="title">Pricing Tables</h2>
+                        <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt ut labore et dolore </p>   
+                    </div><!-- //. section title -->
                 </div>
             </div>
-        </section>
-        <!-- our product area end -->
-        <!-- testimonial area start -->
-       <!-- <section class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120" id="testimonial">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-amazing-feature-item"><!-- single inline-feature-item -->
+                       <img src="assets/images/pricing/pricing-3d-model.png" class="responsive mb-4 img-scale"/>
+                        <div class="content">
+                            <a href="#"><h4 class="title">Live Chat</h4></a>
+                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then up no. </p>   
+                        </div>
+                    </div><!-- //. single inline feature item -->
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-amazing-feature-item"><!-- single inline-feature-item -->
+                         <img src="assets/images/pricing/pricing-3d-model-editting.png" class="responsive mb-4 img-scale"/>
+                        <div class="content">
+                            <a href="#"><h4 class="title">Easy Configure</h4></a>
+                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then up no. </p>   
+                        </div>
+                    </div><!-- //. single inline feature item -->
+                </div>            
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-amazing-feature-item"><!-- single inline-feature-item -->
+                           <img src="assets/images/pricing/pricing-3d-print.png" class="responsive mb-4 img-scale"/>
+                        <div class="content">
+                            <a href="#"><h4 class="title">User Friendly</h4></a>
+                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then up no. </p>   
+                        </div>
+                    </div><!-- //. single inline feature item -->
+                </div>            
+                <div class="col-lg-3 col-md-6">
+                        <div class="single-amazing-feature-item"><!-- single inline-feature-item -->
+                            <img src="assets/images/pricing/pricing-special-request.png" class="responsive mb-4 img-scale"/>
+                            <div class="content">
+                                <a href="#"><h4 class="title">High Security</h4></a>
+                                <p>Fat decisively pursuit regular so calling. West he plan girl been my then up no. </p>   
+                            </div>
+                        </div><!-- //. single inline feature item -->
+                </div>            
+            </div>
+        </div>
+</div>
+
+
+    <!-- testimonial area start -->
+    <!-- <section class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120" id="testimonial">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
@@ -739,120 +1100,156 @@
                     </div>
                 </div>
             </div>
-        </section>-->
-        <!-- faq area end -->
+    </section>-->
+    <!-- faq area end -->
 
-        <!-- contact area start -->
-        <section class="contact-area contact-bg padding-120" id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="contact-info-area">
-                            <!-- contact infor area -->
-                            <h3 class="title">{{$t('landing.contact.us')}}</h3>
-                            <p>{{$t('landing.contact.info')}}</p>
-                            <ul class="contact-info-list ">
-                                <li class="single-info-item">
-                                    <!-- single info item -->
-                                    <div class="icon">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                    <div class="content">
-                                        <span class="details"> {{$t('landing.contact.address')}} </span>
-                                        <span class="details"> {{$t('landing.contact.address')}}</span>
-                                    </div>
-                                </li> <!-- //. single info item -->
-                                <li class="single-info-item">
-                                    <!-- single info item -->
-                                    <div class="icon">
-                                        <i class="fas fa-phone"></i>
-                                    </div>
-                                    <div class="content">
-                                        <span class="details"> {{$t('landing.contact.phone')}}</span>
-                                        <span class="details"> {{$t('landing.contact.phone')}}</span>
-                                    </div>
-                                </li> <!-- //. single info item -->
-                                <li class="single-info-item">
-                                    <!-- single info item -->
-                                    <div class="icon">
-                                        <i class="far fa-envelope"></i>
-                                    </div>
-                                    <div class="content">
-                                        <span class="details"> {{$t('landing.contact.mail')}} </span>
-                                        <span class="details"> {{$t('landing.contact.mail')}}</span>
-                                    </div>
-                                </li> <!-- //. single info item -->
-                            </ul>
-                        </div><!-- // contact info area -->
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="contact-form-area">
-                            <!-- contact form are -->
-                            <form action="index.html" id="get_in_touch" class="contact-form">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" id="name" class="form-control" placeholder="Your Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" id="email" class="form-control" placeholder="Your Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <input type="text" id="subject" class="form-control"
-                                                placeholder="Your Name">
-                                        </div>
-                                        <div class="form-group textarea">
-                                            <textarea name="message" id="message" class="form-control" cols="30"
-                                                placeholder="Message" rows="10"></textarea>
-                                        </div>
-                                        <button class="submit-btn" type="submit">{{$t('landing.contact.submit')}}</button>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div><!-- //. contact form area -->
-                    </div>
-                </div>
+    <!-- contact area start -->
+    <section class="contact-area contact-bg padding-120" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="contact-info-area">
+              <!-- contact infor area -->
+              <h3 class="title">{{$t('landing.contact.us')}}</h3>
+              <p>{{$t('landing.contact.info')}}</p>
+              <ul class="contact-info-list">
+                <li class="single-info-item">
+                  <!-- single info item -->
+                  <div class="icon">
+                    <i class="fas fa-home"></i>
+                  </div>
+                  <div class="content">
+                    <span class="details">{{$t('landing.contact.address')}}</span>
+                    <span class="details">{{$t('landing.contact.address')}}</span>
+                  </div>
+                </li>
+                <!-- //. single info item -->
+                <li class="single-info-item">
+                  <!-- single info item -->
+                  <div class="icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div class="content">
+                    <span class="details">{{$t('landing.contact.phone')}}</span>
+                    <span class="details">{{$t('landing.contact.phone')}}</span>
+                  </div>
+                </li>
+                <!-- //. single info item -->
+                <li class="single-info-item">
+                  <!-- single info item -->
+                  <div class="icon">
+                    <i class="far fa-envelope"></i>
+                  </div>
+                  <div class="content">
+                    <span class="details">{{$t('landing.contact.mail')}}</span>
+                    <span class="details">{{$t('landing.contact.mail')}}</span>
+                  </div>
+                </li>
+                <!-- //. single info item -->
+              </ul>
             </div>
-        </section>
-        <!-- contact area end -->
-
-        <!-- footer area start -->
-        <footer class="footer-area padding-100">
-            <div class="container">
+            <!-- // contact info area -->
+          </div>
+          <div class="col-lg-6">
+            <div class="contact-form-area">
+              <!-- contact form are -->
+              <form action="index.html" id="get_in_touch" class="contact-form">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer-inner text-center">
-                            <ul class="social-icon">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                            </ul>
-                            <div class="copyright-text margin-top-30">
-                                &copy; {{$t('footer.copyright')}} <a href="https://intellifi.tech" target="_blank" rel="nofollow"> {{$t('footer.company')}} </a>
-                            </div>
-                        </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input type="text" id="name" class="form-control" placeholder="Your Name">
                     </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input type="text" id="email" class="form-control" placeholder="Your Email">
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <input type="text" id="subject" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="form-group textarea">
+                      <textarea
+                        name="message"
+                        id="message"
+                        class="form-control"
+                        cols="30"
+                        placeholder="Message"
+                        rows="10"
+                      ></textarea>
+                    </div>
+                    <button class="submit-btn" type="submit">{{$t('landing.contact.submit')}}</button>
+                  </div>
                 </div>
+              </form>
             </div>
-        </footer>
-        <!-- footer area end -->
-
-
-        <div class="back-to-top base-color-2">
-            <i class="fas fa-rocket"></i>
+            <!-- //. contact form area -->
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
+    <!-- contact area end -->
 
+    <!-- footer area start -->
+    <footer class="footer-area padding-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="footer-inner text-center">
+              <ul class="social-icon">
+                <li>
+                  <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fab fa-google-plus-g"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fab fa-pinterest-p"></i>
+                  </a>
+                </li>
+              </ul>
+              <div class="copyright-text margin-top-30">
+                &copy; {{$t('footer.copyright')}}
+                <a
+                  href="https://intellifi.tech"
+                  target="_blank"
+                  rel="nofollow"
+                >{{$t('footer.company')}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer area end -->
+
+    <div class="back-to-top base-color-2">
+      <i class="fas fa-rocket"></i>
+    </div>
+  </div>
 </template>
 <script>
 export default {
-
-}
-
+  data() {
+    return {
+      man: true
+    };
+  },
+  methods: {
+    change() {
+      this.man = !this.man;
+    }
+  }
+};
 </script>

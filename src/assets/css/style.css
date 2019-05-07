@@ -1759,7 +1759,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   .header-area .header-right-image {
     position: absolute;
     right: 5%;
-    top: 110px; }
+    top: -15px; }
+    .header-area .header-right-image img { max-width:85%; }
 
 .right-image-with-price {
   display: inline-block;
@@ -3424,8 +3425,9 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     line-height: 80px;
     border-radius: 50%;
     background-image: -moz-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
-    background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
     background-image: -ms-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+    background-image: -webkit-linear-gradient(50deg, #70bfec 0%, #6a30ff 99%);
+    
     font-size: 40px;
     color: #fff;
     margin: 0 auto;
@@ -3767,3 +3769,116 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     font-weight: 600;
     font-size: 14px;
     line-height: 50px; }
+
+    /*custom by nebhenaytas*/
+
+    /* Variables
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+:root {
+	--primary-c: #5369f0;
+	--secondary-c: #B2D7F5;
+	
+	--white: #FDFBFB;
+	
+	--text: #082943;	
+	--bg: var(--primary-c);
+}
+
+
+
+
+
+#ul-man-or-woman ul {
+	list-style-type: none;
+	padding-left: 50px;
+	margin: 0;
+}
+
+#ul-man-or-woman li {
+	display:inline-block;
+	position: relative;
+	padding:  20px 14px 20px 20px;
+}
+
+
+/* Radio Button
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#ul-man-or-woman input[type=radio] {
+	position: absolute;
+	visibility: hidden;
+}
+
+#ul-man-or-woman label { 
+	cursor: pointer; 
+	font-weight: 400;
+	
+}
+
+#ul-man-or-woman .check {
+  cursor:pointer;
+	width: 30px; height: 30px;
+	position: absolute;
+	border-radius: 50%;
+	transition: transform .6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Reset */
+#ul-man-or-woman input#one ~ .check { 
+	transform: translate(4px,40px); 
+	background: var(--secondary-c); 
+}
+#ul-man-or-woman input#two ~ .check { 
+	transform: translate(-66px,40px); 
+	background: var(--primary-c);
+	box-shadow: 0 6px 12px rgba(33, 150, 243, 0.35);
+}
+
+/* Radio Input #1 */
+#ul-man-or-woman input#one:checked ~ .check { transform: translate(90px,40px); 
+}
+#ul-man-or-woman input:checked ~ label{
+	font-weight:700;
+}
+
+/* Radio Input #2  */
+#ul-man-or-woman input#two:checked ~ .check { transform: translate(18px,40px); }
+
+
+/*sketchfab footer */
+#how-to-use .sketchfab-embed-wrapper p{display: none !important;}
+
+.how-to-selfie .model-column img.img-style{
+  transition: all .5s;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.43);
+}
+
+.how-to-selfie .model-column li:hover img.img-style{ 
+  transform: scale(1.05);
+   transition: all .5s;  
+   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.32);
+  }
+img.img-scale{ 
+    transition: all .5s;
+}
+.how-to-selfie li:hover img.img-scale{ 
+  transform: scale(1.05);
+  transition: all .5s;
+}
+.single-amazing-feature-item:hover img.img-scale{ 
+  transform: scale(1.05);
+  transition: all .5s;
+}
+
+.how-to-selfie .title{ font-size:21px !important; }
+
+.how-to-selfie .model-column li{
+  position: relative;
+}
+.selfie-status-icon{
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  width: 40px;
+  z-index: 999;
+     
+}
