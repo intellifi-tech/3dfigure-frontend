@@ -39,13 +39,19 @@
               </div>-->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">{{ $t('landing.navbar.about') }}</a>
+              <a class="nav-link" href="#how-to-use">{{ $t('landing.navbar.howToUse') }}</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#about">{{ $t('landing.navbar.feature') }}</a>
+              <a class="nav-link" href="#concepts">{{ $t('landing.navbar.concepts') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#product">{{ $t('landing.navbar.product') }}</a>
+              <a class="nav-link" href="#about">{{ $t('landing.navbar.about') }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#faq">{{ $t('landing.navbar.faq') }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pricing">{{ $t('landing.navbar.pricing') }}</a>
             </li>
             <!-- <li class="nav-item">
                             <a class="nav-link" href="#testimonial">Testimonial</a>
@@ -84,14 +90,13 @@
           </button>
         </div>
         <!-- navbar collapse end -->
-       <div class="nav-right-content">
+        <div class="nav-right-content">
           <ul>
             <li>
-             <select v-model="$i18n.locale" id="select-lang">
-      <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
-    </select>
+              <select v-model="$i18n.locale" id="select-lang">
+                <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+              </select>
             </li>
-            
           </ul>
         </div>
       </div>
@@ -137,8 +142,10 @@
       </div>
       <div class="header-right-image">
         <div class="right-image-with-price header-right-image-animation">
-          <!-- <div class="price-wrap">
-                       <span class="price"><strong>50%</strong> Off</span>
+          <!--<div class="price-wrap">
+            <span class="price">
+              <strong>50%</strong> Off
+            </span>
           </div>-->
           <img src="assets/images/3dmodel-man.png" alt="header right image">
         </div>
@@ -147,22 +154,44 @@
     <!-- header area end -->
 
     <!-- inline feature area start -->
-    <div class="inline-feature-area padding-top-120" id="about">
+    <div class="inline-feature-area padding-top-120" id="how-to-use">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 pl-0">
             <div class="how-to-use">
+              <div class="row justify-content-center">
+                <div class="col-lg-4">
+                  <div class="section-title text-center">
+                    <!-- section title -->
+                    <h2 class="title">Nasıl yapılır?</h2>
+                    <p>Aşağıdaki uyarıları dikkate alarak sisteme fotoğrafınızı yükleyebilirsiniz.</p>
+                  </div>
+                </div>
+              </div>
               <ul id="ul-man-or-woman" class="pl-0 mb-5">
-                <li>
-                  <input type="radio" name="name" id="one" v-on:change="change" checked>
-                  <label class="check" for="one"></label>
-                  <label for="one">Man</label>
-                </li>
-                <li>
-                  <input type="radio" name="name" id="two" v-on:change="change" >
-                  <label class="check" for="two"></label>
-                  <label for="two">Woman</label>
-                </li>
+                <p class="btn-switch">
+                  <input
+                    type="radio"
+                    id="yes"
+                    name="switch"
+                    class="btn-switch__radio btn-switch__radio_yes"
+                    v-on:change="change"
+                    checked
+                  >
+                  <input
+                    type="radio"
+                    id="no"
+                    name="switch"
+                    class="btn-switch__radio btn-switch__radio_no"
+                    v-on:change="change"
+                  >
+                  <label for="yes" class="btn-switch__label btn-switch__label_yes">
+                    <span class="btn-switch__txt">Man</span>
+                  </label>
+                  <label for="no" class="btn-switch__label btn-switch__label_no">
+                    <span class="btn-switch__txt">Woman</span>
+                  </label>
+                </p>
               </ul>
 
               <!-- how to selfie start-->
@@ -172,8 +201,11 @@
                   <ul id="man-list">
                     <li>
                       <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/man/man-false-1.jpg" class="img-style img-fluid mb-4 ">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/man/man-false-1.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">Live Chat</h4>
@@ -187,8 +219,11 @@
                     </li>
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/man/man-false-2.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/man/man-false-2.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">Easy Configure</h4>
@@ -202,8 +237,11 @@
                     </li>
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/man/man-false-3.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/man/man-false-3.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">User Friendly</h4>
@@ -217,8 +255,11 @@
                     </li>
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/man/man-false-4.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/man/man-false-4.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">User Friendly</h4>
@@ -232,8 +273,11 @@
                     </li>
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-true.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/man/man-true.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-true.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/man/man-true.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">High Security</h4>
@@ -265,7 +309,10 @@
                         <div class="single-inline-feature-item">
                           <div class="content">
                             <a href="#">
-                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <img
+                                src="assets/images/3dmodelornek1.png"
+                                class="img-style img-fluid mb-4"
+                              >
                               <h4 class="title">Mezuniyet</h4>
                             </a>
                           </div>
@@ -275,7 +322,10 @@
                         <div class="single-inline-feature-item">
                           <div class="content">
                             <a href="#">
-                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <img
+                                src="assets/images/3dmodelornek1.png"
+                                class="img-style img-fluid mb-4"
+                              >
                               <h4 class="title">Mezuniyet</h4>
                             </a>
                           </div>
@@ -285,7 +335,10 @@
                         <div class="single-inline-feature-item">
                           <div class="content">
                             <a href="#">
-                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <img
+                                src="assets/images/3dmodelornek1.png"
+                                class="img-style img-fluid mb-4"
+                              >
                               <h4 class="title">Mezuniyet</h4>
                             </a>
                           </div>
@@ -295,7 +348,10 @@
                         <div class="single-inline-feature-item">
                           <div class="content">
                             <a href="#">
-                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <img
+                                src="assets/images/3dmodelornek1.png"
+                                class="img-style img-fluid mb-4"
+                              >
                               <h4 class="title">Mezuniyet</h4>
                             </a>
                           </div>
@@ -324,8 +380,11 @@
                   <ul id="woman-list">
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/woman/woman-false-1.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/woman/woman-false-1.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">Live Chat</h4>
@@ -339,8 +398,11 @@
                     </li>
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/woman/woman-false-2.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/woman/woman-false-2.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">Easy Configure</h4>
@@ -354,8 +416,11 @@
                     </li>
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/woman/woman-false-3.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/woman/woman-false-3.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">User Friendly</h4>
@@ -369,8 +434,11 @@
                     </li>
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/woman/woman-false-4.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/woman/woman-false-4.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">User Friendly</h4>
@@ -384,8 +452,11 @@
                     </li>
                     <li>
                       <div class="single-inline-feature-item">
-                           <img src="assets/images/icon/icon-true.png" class="selfie-status-icon"/>
-                        <img src="assets/images/portre/woman/woman-true.jpg" class="img-style img-fluid mb-4">
+                        <img src="assets/images/icon/icon-true.png" class="selfie-status-icon">
+                        <img
+                          src="assets/images/portre/woman/woman-true.jpg"
+                          class="img-style img-fluid mb-4"
+                        >
                         <div class="content">
                           <a href="#">
                             <h4 class="title">High Security</h4>
@@ -417,7 +488,10 @@
                         <div class="single-inline-feature-item">
                           <div class="content">
                             <a href="#">
-                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <img
+                                src="assets/images/3dmodelornek1.png"
+                                class="img-style img-fluid mb-4"
+                              >
                               <h4 class="title">Mezuniyet</h4>
                             </a>
                           </div>
@@ -427,7 +501,10 @@
                         <div class="single-inline-feature-item">
                           <div class="content">
                             <a href="#">
-                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <img
+                                src="assets/images/3dmodelornek1.png"
+                                class="img-style img-fluid mb-4"
+                              >
                               <h4 class="title">Mezuniyet</h4>
                             </a>
                           </div>
@@ -437,7 +514,10 @@
                         <div class="single-inline-feature-item">
                           <div class="content">
                             <a href="#">
-                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <img
+                                src="assets/images/3dmodelornek1.png"
+                                class="img-style img-fluid mb-4"
+                              >
                               <h4 class="title">Mezuniyet</h4>
                             </a>
                           </div>
@@ -447,7 +527,10 @@
                         <div class="single-inline-feature-item">
                           <div class="content">
                             <a href="#">
-                              <img src="assets/images/3dmodelornek1.png" class="img-style img-fluid mb-4">
+                              <img
+                                src="assets/images/3dmodelornek1.png"
+                                class="img-style img-fluid mb-4"
+                              >
                               <h4 class="title">Mezuniyet</h4>
                             </a>
                           </div>
@@ -479,8 +562,6 @@
       </div>
     </div>
     <!-- inline feature area end -->
-
-
 
     <!-- list feature area start -->
     <!-- <section class="list-feature-area padding-top-110 padding-bottom-115">
@@ -727,17 +808,14 @@
     <!-- intro video area end -->
 
     <!-- our product area start -->
-    <section class="product-area padding-top-110 padding-bottom-90" id="product">
+    <section class="product-area padding-top-110 padding-bottom-90" id="concepts">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <div class="section-title text-center">
               <!-- section title -->
               <h2 class="title">{{$t('landing.concept.header')}}</h2>
-              <p>
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
-                incididunt ut labore et dolore
-              </p>
+              <p>Çeşitli konseptlerle size uygun olanı seçin!</p>
             </div>
             <!-- //. section title -->
           </div>
@@ -837,269 +915,480 @@
     </section>
     <!-- our product area end -->
 
-<div class="amazing-feature-area padding-top-50 padding-bottom-100 style-two" id="about">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section-title text-center"><!-- section title -->
-                        <h2 class="title">Pricing Tables</h2>
-                        <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt ut labore et dolore </p>   
-                    </div><!-- //. section title -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-amazing-feature-item"><!-- single inline-feature-item -->
-                       <img src="assets/images/pricing/pricing-3d-model.png" class="responsive mb-4 img-scale"/>
-                        <div class="content">
-                            <a href="#"><h4 class="title">Live Chat</h4></a>
-                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then up no. </p>   
-                        </div>
-                    </div><!-- //. single inline feature item -->
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-amazing-feature-item"><!-- single inline-feature-item -->
-                         <img src="assets/images/pricing/pricing-3d-model-editting.png" class="responsive mb-4 img-scale"/>
-                        <div class="content">
-                            <a href="#"><h4 class="title">Easy Configure</h4></a>
-                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then up no. </p>   
-                        </div>
-                    </div><!-- //. single inline feature item -->
-                </div>            
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-amazing-feature-item"><!-- single inline-feature-item -->
-                           <img src="assets/images/pricing/pricing-3d-print.png" class="responsive mb-4 img-scale"/>
-                        <div class="content">
-                            <a href="#"><h4 class="title">User Friendly</h4></a>
-                            <p>Fat decisively pursuit regular so calling. West he plan girl been my then up no. </p>   
-                        </div>
-                    </div><!-- //. single inline feature item -->
-                </div>            
-                <div class="col-lg-3 col-md-6">
-                        <div class="single-amazing-feature-item"><!-- single inline-feature-item -->
-                            <img src="assets/images/pricing/pricing-special-request.png" class="responsive mb-4 img-scale"/>
-                            <div class="content">
-                                <a href="#"><h4 class="title">High Security</h4></a>
-                                <p>Fat decisively pursuit regular so calling. West he plan girl been my then up no. </p>   
-                            </div>
-                        </div><!-- //. single inline feature item -->
-                </div>            
-            </div>
-        </div>
-</div>
-
 
     <!-- testimonial area start -->
-    <!-- <section class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120" id="testimonial">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="section-title text-center white">
-                         
-                            <h2 class="title">What users Says</h2>
-                            <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
-                                incididunt ut labore et dolore </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="testimonial-carousel">
-                            <div class="single-testimonial-item">
-                                
-                                <div class="description">
-                                    They provide innovative solutions with the best. tempor incididunt utla bore et
-                                    dolor tempor incididunt .
-                                </div>
-                                <div class="author-meta">
-                                    <div class="thumb">
-                                        <img src="../../assets/images/landing/testimonial/01.png" alt="testimonial image">
-                                        <div class="icon"> <i class="fas fa-quote-left"></i> </div>
-                                    </div>
-                                    <div class="content">
-                                        <h4 class="name">Mark Anthony</h4>
-                                        <span class="post">Director</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-testimonial-item">
-                        
-                                <div class="description">
-                                    They provide innovative solutions with the best. tempor incididunt utla bore et
-                                    dolor tempor incididunt .
-                                </div>
-                                <div class="author-meta">
-                                    <div class="thumb">
-                                        <img src="../../assets/images/landing/testimonial/02.png" alt="testimonial image">
-                                        <div class="icon"> <i class="fas fa-quote-left"></i> </div>
-                                    </div>
-                                    <div class="content">
-                                        <h4 class="name">Mark Anthony</h4>
-                                        <span class="post">Director</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-testimonial-item">
-                            
-                                <div class="description">
-                                    They provide innovative solutions with the best. tempor incididunt utla bore et
-                                    dolor tempor incididunt .
-                                </div>
-                                <div class="author-meta">
-                                    <div class="thumb">
-                                        <img src="../../assets/images/landing/testimonial/03.png" alt="testimonial image">
-                                        <div class="icon"> <i class="fas fa-quote-left"></i> </div>
-                                    </div>
-                                    <div class="content">
-                                        <h4 class="name">Mark Anthony</h4>
-                                        <span class="post">Director</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-testimonial-item">
-                             
-                                <div class="description">
-                                    They provide innovative solutions with the best. tempor incididunt utla bore et
-                                    dolor tempor incididunt .
-                                </div>
-                                <div class="author-meta">
-                                    <div class="thumb">
-                                        <img src="../../assets/images/landing/testimonial/04.png" alt="testimonial image">
-                                        <div class="icon"> <i class="fas fa-quote-left"></i> </div>
-                                    </div>
-                                    <div class="content">
-                                        <h4 class="name">Mark Anthony</h4>
-                                        <span class="post">Director</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section
+      class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120"
+      id="about">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="section-title text-center white">
+              <h2 class="title">Hakkımızda</h2>
+              <p>Biz kimiz? Hikayemizi inceleyin!</p>
             </div>
-        </section>
-       
-        <section class="faq-area padding-top-110 padding-bottom-120" id="faq">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="section-title text-center">
-                      
-                            <h2 class="title">Frequently Asked Questions</h2>
-                            <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor
-                                incididunt ut labore et dolore </p>
-                        </div>
-                    </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="single-testimonial-item">
+              <div class="author-meta mb-4 col-12">
+                <div class>
+                  <img src="assets/images/3dfigurlogo.png" alt="testimonial image">
                 </div>
-                <div class="row reorder-xs">
-                    <div class="col-lg-7">
-                        <div class="accordion-wrapper">
-                            <div id="accordion">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h5 class="mb-0">
-                                            <a class="" data-toggle="collapse" data-target="#collapseOne"
-                                                aria-expanded="true" aria-controls="collapseOne">
-                                                Agreed but expect repair she nay sir silent person
-                                            </a>
-                                        </h5>
-                                    </div>
+              </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            My possible peculiar together to. Desire so better am cannot he up before
-                                            points. Remember mistaken opinions it pleasure of debating. Court front
-                                            maids forty if aware their at. Chicken use are pressed removed.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                                aria-expanded="false" aria-controls="collapseTwo">
-                                                It surprise informed mr advanced do outweigh.
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            My possible peculiar together to. Desire so better am cannot he up before
-                                            points. Remember mistaken opinions it pleasure of debating. Court front
-                                            maids forty if aware their at. Chicken use are pressed removed.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-target="#collapseThree"
-                                                aria-expanded="false" aria-controls="collapseThree">
-                                                Appetite welcomed interest the goodness boy not
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            My possible peculiar together to. Desire so better am cannot he up before
-                                            points. Remember mistaken opinions it pleasure of debating. Court front
-                                            maids forty if aware their at. Chicken use are pressed removed.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingFour">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-target="#collapseFour"
-                                                aria-expanded="false" aria-controls="collapseFour">
-                                                Expenses as material breeding insisted building to
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            My possible peculiar together to. Desire so better am cannot he up before
-                                            points. Remember mistaken opinions it pleasure of debating. Court front
-                                            maids forty if aware their at. Chicken use are pressed removed.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingFive">
-                                        <h5 class="mb-0">
-                                            <a class="collapsed" data-toggle="collapse" data-target="#collapseFive"
-                                                aria-expanded="false" aria-controls="collapseFive">
-                                                No in he real Wandered or strictly raillery stanhill a
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            My possible peculiar together to. Desire so better am cannot he up before
-                                            points. Remember mistaken opinions it pleasure of debating. Court front
-                                            maids forty if aware their at. Chicken use are pressed removed.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="right-content-area">
-                            <div class="img-wrapper">
-                                <img src="../../assets/images/landing/faq-image.png" alt="faq image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="description px-3 text-justify">
+                <p>2015 yılında başlayan çalışmalarımız ile yıllar içerisinde 3D Tarama, 3D Modelleme ve 3D Baskı alanında kendimizi çok iyi bir şekilde geliştirdik. Bu süre içerisinde en az 1000 kişinin 3D Taramasını yaparken ortalama 500 Kişininde renkli olarak 3D Baskısını yaptık.</p>
+
+                <p>Bu rakamların daha yüksek olması için önümüzde ki tek engel 3D Tarama yaparken, 3D Taraması yapılacak kişi ile buluşmak zorunda olmamızdı. Artık bu zorunluluğu da ortadan kaldırdık ve yıllar içerisinde yapılan 3D Tarama dataları ile eğitilen yapay zeka alt yapısını kullanarak, tam karşıdan net bir şekilde çekilmiş fotoğraf yollayan bir kişinin 3D Modelini oluşturmamız artık online ve neredeyse saniyeler içerisinde gerçekleşmektedir.</p>
+
+                <p>Yılların tecrübesi ve yapay zekanın gücü ile sizlere daha kaliteli ve hızlı hizmet sunmak için kendimizi yeniledik. Yenilenen altyapımızı test etmek, kendinizin ve sevdiklerinizin 3D Modelini oluşturmak hatta onlara güzel bir hediye vermek için sistemimizi hemen test edebilirsiniz.</p>
+              </div>
             </div>
-    </section>-->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-area padding-top-110 padding-bottom-120" id="faq">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="section-title text-center">
+              <h2 class="title">Sıkça Sorulan Sorular</h2>
+              <p>Merak edilenleri inceleyin!</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="accordion-wrapper">
+            <div id="accordion" class="col-lg-12 d-lg-flex">
+              <div class="col-lg-6 col-12 mb-4">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <a
+                        class
+                        data-toggle="collapse"
+                        data-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                      >
+                        <span class="count-sss">1.&nbsp;</span> Sitenizden sipariş vermek istiyorum. Nasıl sipariş vereceğim?
+                      </a>
+                    </h5>
+                  </div>
+
+                  <div
+                    id="collapseOne"
+                    class="collapse show"
+                    aria-labelledby="headingOne"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >3DFigur olarak tüm sipariş süreçlerimizi online olarak sürdürmekteyiz. Öncelikle sistemimize kaydınızı yaptıktan sonra karşınıza çıkacak olan kontrol paneline fotoğraflarınızı yükleyin ve sonrasında dilediğiniz konseptin seçimini yapıp ödemenizi yapıp siparişinizi tamamlayın.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                      >
+                        <span class="count-sss">2.&nbsp;</span>Siparişlerim ne kadar sürede elime ulaşır?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseTwo"
+                    class="collapse"
+                    aria-labelledby="headingTwo"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Siparişinizi verdikten sonra 3 farklı adımda ilerlemekteyiz. İlk adımda siparişinizin tasarımının istediğiniz konsepte göre hazırlanması ve sizin onayınıza sunulması. İkinci aşama ise onayladığınız tasarımın üretim süreci ve son olarakta siparişinizin teslimat süreci. Yüklemiş olduğumuz fotoğraf üretime uygun kalite de ve standartlarda ise yaklaşık 5 ile 7 iş günü içerisinde ürününüz kargoya verilecek şekilde hazır edilmektedir.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseThree"
+                        aria-expanded="false"
+                        aria-controls="collapseThree"
+                      >
+                        <span class="count-sss">3.&nbsp;</span>Fotoğraftan 3D Model oluşturmanız ne kadar süre almaktadır?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseThree"
+                    class="collapse"
+                    aria-labelledby="headingThree"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Eğer doğru fotoğraf yüklemesi yaptıysanız, 15 ile 45 saniye içerisinde 3D Modelinizi otomatik olarak görebileceksiniz.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseFour"
+                        aria-expanded="false"
+                        aria-controls="collapseFour"
+                      >
+                        <span class="count-sss">4.&nbsp;</span>Baskı öncesi kontrol yapıyor musunuz?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseFour"
+                    class="collapse"
+                    aria-labelledby="headingFour"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Üretim öncesinde tasarım süreci yer almaktadır. Tasarım sürecinin başında ise ilk olarak bizlere yollamış olduğunuz fotoğrafın kalitesi, çözünürlüğü ve modellemeye uygunluğunu test etmekteyiz. Sonrasında ise konsepte uygun olarak modellemesini gerçekleştirip sizin onayınıza sunmaktayız. Tüm bu süreç ortalama 1 iş günü sürmektedir.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseFive"
+                        aria-expanded="false"
+                        aria-controls="collapseFive"
+                      >
+                        <span class="count-sss">5.&nbsp;</span>Üretimden kaynaklı oluşabilecek bir hata durumunda ürün iadesi veya değişimi yapabilir miyim?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseFive"
+                    class="collapse"
+                    aria-labelledby="headingFive"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Sizlere tasarım onayında sunduğumuz üründen farklı bir ürün ile karşılaşmışsanız mutlaka değişimi yapılmaktadır. Değişim sürecinin hızlı ilerlemesini adına sorunu bizlere görselleri ile birlikte bildirmeniz önemlidir.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingSix">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseSix"
+                        aria-expanded="false"
+                        aria-controls="collapseSix"
+                      >
+                        <span class="count-sss">6.&nbsp;</span>Siparişimi verdikten sonra değişiklik yapabilir miyim?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseSix"
+                    class="collapse"
+                    aria-labelledby="headingSix"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Eğer süreç henüz tasarım onayında ise değişim talebinizi bildirdiğiniz takdirde 1 kereye mahsus olmak üzere değişiminiz onaylanacaktır.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header" id="headingSeven">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseSeven"
+                        aria-expanded="false"
+                        aria-controls="collapseSeven"
+                      >
+                        <span class="count-sss">7.&nbsp;</span>Kargo ücreti ücrete dahil midir?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseSeven"
+                    class="collapse"
+                    aria-labelledby="headingSeven"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Kargo ücreti tarafımıza aittir, müşterilerimiz herhangi bir şekilde kargo masrafı ile karşılaşmayacaktır. Eğer kargo firmasından kaynaklı sorunlar olursa, bunun telafisi firmamız tarafından yapılacaktır.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingEight">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseEight"
+                        aria-expanded="false"
+                        aria-controls="collapseEight"
+                      >
+                        <span class="count-sss">8.&nbsp;</span>Arkadaşımın 3D Figürünü yaptırabilir miyim?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseEight"
+                    class="collapse"
+                    aria-labelledby="headingEight"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Evet tabiki! Özellikle böyle ihtiyaçlara çözüm bulmak için bu websitesini sizlere hazırladık. Arakdaşınıza özel bir gününde en anlamlı hediyeyi hazırlayabilirsiniz.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingNine">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseNine"
+                        aria-expanded="false"
+                        aria-controls="collapseNine"
+                      >
+                        <span class="count-sss">9.&nbsp;</span>Daha önce vermiş olduğum siparişimin aynısından ürettirmek istiyorum. Ne yapmalıyım?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseNine"
+                    class="collapse"
+                    aria-labelledby="headingNine"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Sisteme girişinizi yaptıktan sonra kontrol paneliniz üzerinden ‘’önceki siparişlerim’’ sekmesine gelip oradan siparişinizi tekrarlayabilirsiniz.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTen">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseTen"
+                        aria-expanded="false"
+                        aria-controls="collapseTen"
+                      >
+                        <span class="count-sss">10.&nbsp;</span>İstediğim kadar fotoğraf yüklemesi yaparak 3D Model görüntülemesi sağlayabilir miyim?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseTen"
+                    class="collapse"
+                    aria-labelledby="headingTen"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Eğer üyeliğin kurumsal üyelik olarak tanımlı değilse, bir sipariş verene kadar sadece 10 adet fotoğrafın 3D Modellemesini gösterebilirsin. Dahası için ya sipariş verip fotoğraf yükleme hakkını sıfırlaman lazım ya da arkadaşlarını sitemize davet ederek ek model yükleme hakkı kazanman lazım.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingEleven">
+                    <h5 class="mb-0">
+                      <a
+                        class="collapsed"
+                        data-toggle="collapse"
+                        data-target="#collapseEleven"
+                        aria-expanded="false"
+                        aria-controls="collapseEleven"
+                      >
+                        <span class="count-sss">11.&nbsp;</span>Gözlüklü fotoğraf yüklenmiyor ama gözlük kişinin karakteristik özelliği, ne yapmalıyım?
+                      </a>
+                    </h5>
+                  </div>
+                  <div
+                    id="collapseEleven"
+                    class="collapse"
+                    aria-labelledby="headingEleven"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Evet, gözlüklü bir fotoğraf yüklemesi yapılmamaktadır. Eğer gözlük olmazsa olmaz ise sipariş aşamasında gözlüklü oalcağını belirtirsiniz. Bu durumda talep ettiğiniz gözlük modeline en yakın modelleme yapılarak üretim sonrasında model üzerine gözlük montajı yapılmaktadır. Bununda ek bir ücreti olmaktadır.</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwelve">
+                    <h5 class="mb-0">
+                      <a
+                        class
+                        data-toggle="collapse"
+                        data-target="#collapseTwelve"
+                        aria-expanded="false"
+                        aria-controls="collapseTwelve"
+                      >
+                        <span class="count-sss">12.&nbsp;</span>Ürünlerin boyaması nasıl yapılmaktadır? 3D Yazıcıdan renkli olarak mı üretilmektedir?
+                      </a>
+                    </h5>
+                  </div>
+
+                  <div
+                    id="collapseTwelve"
+                    class="collapse"
+                    aria-labelledby="headingTwelve"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Tüm renkli üretimlerimiz 3D Systems adlı firmanın Projet660 Pro adlı 3D Yazıcısında yapılmaktadır. Bu 3D Yazıcı hammadde olarak kumtaşı kullanmaktadır ve tüm renklendirme işlemlerini üretim esnasında yapmaktadır. Hiç bir ürünümüz el ile boyama sürecine girmemektedir.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- faq area end -->
+
+<!--pricing tables start-->
+
+  <section
+      id="pricing"
+      class="pricing padding-bottom-100 padding-top-50 ">
+      <div class="container">
+        <div class="row">
+          <center class="col-12">
+            <div class="col-lg-6">
+              <div class="section-title text-center">
+                <h2 class="title">Fiyatlandırma</h2>
+                <p>Size uygun olan paketi seçin!</p>
+              </div>
+            </div>
+          </center>
+          <div class="col-lg-3">
+            <div class="card mb-5 mb-lg-0">
+              <div class="card-body">
+                <h5 class="card-title text-white text-uppercase text-center">3D Model</h5>
+                <h6 class="card-price text-white text-center">
+                  $10
+                  <span class="period">+KDV</span>
+                </h6>
+                <hr>
+                <ul class="fa-ul pb-5 text-white">
+                  <li>
+                    <span class="fa-li">
+                      <i class="fas fa-check"></i>
+                    </span>fbx + texture
+                  </li>
+                  <li>
+                    <span class="fa-li">
+                      <i class="fas fa-check"></i>
+                    </span>ply + texture 
+                  </li>
+                </ul>
+                <a href="#" class="btn btn-block text-uppercase border-none">Satın al</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="card mb-5 mb-lg-0">
+              <div class="card-body">
+                <h5 class="card-title text-white text-uppercase text-center">3D Model + Düzenleme</h5>
+                <h6 class="card-price text-white text-center">
+                  $25
+                  <span class="period">+KDV</span>
+                </h6>
+                <hr>
+                <ul class="fa-ul pb-5 text-white">
+                  <li>
+                    <span class="fa-li">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    fbx, obj, wrl
+                  </li>
+                  <li>&nbsp;</li>
+                </ul>
+                <a href="#" class="btn btn-block border-none text-uppercase">Satın al</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-white text-uppercase text-center">3D Çıktı</h5>
+                <h6 class="card-price text-white text-center">
+                  $100
+                  <span class="period">+KDV</span>
+                </h6>
+                <hr>
+                <ul class="fa-ul pb-5 text-white">
+                  <li>
+                    <span class="fa-li">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    standart + text
+                  </li>
+                  <li>
+                    <span class="fa-li">
+                      <i class="fas fa-check"></i>
+                    </span>select concept (<strong>+$15</strong>) 
+                  </li>
+                </ul>
+                <a href="#" class="btn btn-block border-none text-uppercase">Satın al</a>
+              </div>
+            </div>
+          </div>
+           <div class="col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-white text-uppercase text-center">Özel</h5>
+                <h6 class="card-price text-white text-center">Talepler</h6>
+                <hr>
+                <ul class="fa-ul pb-5 text-white">
+                  <li>
+                    <span class="fa-li">
+                      <i class="fas fa-question"></i>
+                    </span>
+                    Özelleştirmeler
+                  </li>
+                  <li>&nbsp;</li>
+                </ul>
+                <a href="#" class="btn btn-block border-none text-uppercase">Bize Ulaşın</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!--pricing tables end-->
 
     <!-- contact area start -->
     <section class="contact-area contact-bg padding-120" id="contact">
@@ -1151,21 +1440,21 @@
           <div class="col-lg-6">
             <div class="contact-form-area">
               <!-- contact form are -->
-              <form action="index.html" id="get_in_touch" class="contact-form">
+              <form action="/" id="get_in_touch" class="contact-form">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <input type="text" id="name" class="form-control" placeholder="Your Name">
+                      <input type="text" id="name" class="form-control" placeholder="Ad Soyad">
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <input type="text" id="email" class="form-control" placeholder="Your Email">
+                      <input type="text" id="email" class="form-control" placeholder="E-posta">
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <input type="text" id="subject" class="form-control" placeholder="Your Name">
+                      <input type="text" id="subject" class="form-control" placeholder="Konu">
                     </div>
                     <div class="form-group textarea">
                       <textarea
@@ -1173,7 +1462,7 @@
                         id="message"
                         class="form-control"
                         cols="30"
-                        placeholder="Message"
+                        placeholder="Mesaj"
                         rows="10"
                       ></textarea>
                     </div>
@@ -1190,7 +1479,7 @@
     <!-- contact area end -->
 
     <!-- footer area start -->
-    <footer class="footer-area padding-100">
+    <footer class="footer-area padding-20">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -1239,12 +1528,10 @@
 </template>
 <script>
 export default {
-
-
   data() {
     return {
       man: true,
-      langs: ['tr', 'en']
+      langs: ["tr", "en"]
     };
   },
   methods: {
