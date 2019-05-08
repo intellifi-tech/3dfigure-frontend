@@ -7,6 +7,10 @@ const ApiService = {
         axios.defaults.baseURL = baseURL;
     },
 
+    getBaseURL() {
+        return axios.defaults.baseURL;
+    },
+
     setHeader() {
         axios.defaults.headers.common["Authorization"] = `Bearer ${TokenService.getToken()}`
     },
