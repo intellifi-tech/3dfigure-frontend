@@ -17,12 +17,17 @@
     </p>
 
     <div class="mt-5">
-      <vs-upload
+      <vs-custom-upload
+        :single-upload="true"
+        :limit="10"
         class="uploadBtn"
-        text="Fotoğraf Yükle "
-        action="http://localhost:8080/api/images/upload"
-        :headers=authHeader()
-        fileName="image"
+        text="Fotoğraf Yükle"
+        :server="actionUrl"
+        :avatarsdk="avatarsdk"
+        :headers="authHeader"
+        :avatarHeaders="avatarHeader"
+        fileName="photo"
+        accept="image/*"
         @on-success="successUpload"
       />
     </div>
@@ -30,12 +35,21 @@
 </template>
 
 <script>
+import ApiService from "@/services/api.service";
 import { TokenService } from "@/services/storage.service";
+import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 export default {
   data() {
     return {
-      actionUrl: ''
-    }
+      actionUrl: `${ApiService.getBaseURL()}\\images\\upload`,
+      avatarsdk: process.env.VUE_APP_AVATAR_SDK_AVATAR_API,
+      authHeader: {
+        Authorization: `Bearer ${TokenService.getToken()}`
+      },
+      avatarHeader: {
+        Authorization: `Bearer ${TokenService.getAvatarToken()}`
+      }
+    };
   },
   methods: {
     successUpload() {
@@ -44,12 +58,10 @@ export default {
         title: "<br>Fotoğraf yüklendi!",
         text: ""
       });
-    },
-    authHeader() {
-      return {
-        Authorization: `Bearer ${TokenService.getToken()}`
-      }
     }
+  },
+  components: {
+    VsCustomUpload
   }
 };
 </script>

@@ -1,24 +1,31 @@
-
-const TOKEN_KEY = process.env.TOKEN_KEY
-
 /**
  * Manage the how Access Tokens are being stored and retreived from storage.
  *
  * Current implementation stores to localStorage. Local Storage should always be
  * accessed through this instace.
-**/
+ **/
 const TokenService = {
     getToken() {
-        return localStorage.getItem(TOKEN_KEY)
+        return sessionStorage.getItem(process.env.VUE_APP_TOKEN_KEY)
     },
 
     saveToken(accessToken) {
-        localStorage.setItem(TOKEN_KEY, accessToken)
+        sessionStorage.setItem(process.env.VUE_APP_TOKEN_KEY, accessToken)
+    },
+
+    getAvatarToken() {
+        return sessionStorage.getItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
+    },
+
+    saveAvatarToken(avatarToken) {
+        sessionStorage.setItem(process.env.VUE_APP_AVATAR_TOKEN_KEY, avatarToken)
     },
 
     removeToken() {
-        localStorage.removeItem(TOKEN_KEY)
+        sessionStorage.removeItem(process.env.VUE_APP_TOKEN_KEY)
     }
 }
 
-export { TokenService }
+export {
+    TokenService
+}

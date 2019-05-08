@@ -22,7 +22,10 @@ import Vuelidate from 'vuelidate'
 import VeeValidate from 'vee-validate'
 import i18n from '@/plugins/i18n'
 import ApiService from '@/services/api.service'
-import { TokenService } from '@/services/storage.service'
+import AvatarSdkService from '@/services/avatarsdk.service'
+import {
+  TokenService
+} from '@/services/storage.service'
 
 Vue.use(VeeValidate)
 Vue.use(Vuelidate)
@@ -74,6 +77,7 @@ if (process.env.NODE_ENV === 'production') {
 // If token exists set header
 if (TokenService.getToken()) {
   ApiService.setHeader()
+  AvatarSdkService.setToken()
 }
 
 
@@ -82,8 +86,8 @@ if (TokenService.getToken()) {
 Vue.config.productionTip = false
 
 new Vue({
-    router,
-    store,
-    i18n,
-    render: h => h(App)
+  router,
+  store,
+  i18n,
+  render: h => h(App)
 }).$mount('#app')

@@ -15,13 +15,11 @@
         :before-change="validateStep1"
       >
         <div>
+          <vx-card class="p-2">
+            <unity></unity>
+          </vx-card>
           <upload></upload>
         </div>
-      </tab-content>
-      <tab-content title="Unity Preview" class="mb-5" icon="feather icon-briefcase">
-        <vx-card class="p-2">
-          <unity></unity>
-        </vx-card>
       </tab-content>
       <tab-content title="Konsept Seç" class="mb-5" icon="feather icon-home">
         <div>
@@ -51,7 +49,7 @@ export default {
           }
         });
       });
-    },
+    }
   },
   components: {
     Unity,
