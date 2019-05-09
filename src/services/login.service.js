@@ -14,10 +14,10 @@ const LoginService = {
     login: async function (credential) {
         try {
             const response = await ApiService.post("/authenticate", credential)
-
+            const res = await AvatarSdkService.setToken()
             TokenService.saveToken(response.data.id_token)
             ApiService.setHeader()
-            await AvatarSdkService.setToken()
+            TokenService.saveAvatarToken(res.data.access_token)
 
             // NOTE: We haven't covered this yet in our ApiService 
             //       but don't worry about this just yet - I'll come back to it later

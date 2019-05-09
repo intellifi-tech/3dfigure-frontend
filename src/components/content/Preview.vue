@@ -21,7 +21,9 @@
           :avatarHeaders="avatarHeader"
           fileName="photo"
           accept="image/*"
+          @click="clicked"
           @on-success="successUpload"
+          :showUploadButton="false"
         />
       </div>
     </vx-card>
@@ -47,15 +49,20 @@ export default {
     };
   },
   methods: {
+    clicked($event) {
+      console.log($event)
+    },
     successUpload($event) {
-      // Fix here
-      var response = JSON.parse($event.currentTarget.response);
-      this.$vs.notify({
-        color: "success",
-        title: "<br>Fotoğraf yüklendi!",
-        text: ""
-      });
-      setTimeout(() => this.$refs.unity.sendAvatar(response.code), 30000);
+      if (response !== "") {
+        // Avatar SDK isteğinin sonucu
+        var response = JSON.parse($event.currentTarget.response);
+        this.$vs.notify({
+          color: "success",
+          title: "<br>Fotoğraf yüklendi!",
+          text: ""
+        });
+        setTimeout(() => this.$refs.unity.sendAvatar(response.code), 30000);
+      }
     }
   },
   components: {

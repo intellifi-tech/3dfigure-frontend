@@ -22,18 +22,16 @@ const TokenService = {
     },
 
     getAvatarId(index) {
-        sessionStorage.getItem('avatar'.concat(index))
+        return sessionStorage.getItem('avatar'.concat(index))
     },
 
     getAvatarToken() {
-        var a = sessionStorage.getItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
-        return a
+        return sessionStorage.getItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
     },
 
     saveAvatarToken(avatarToken) {
         sessionStorage.setItem(process.env.VUE_APP_AVATAR_TOKEN_KEY, avatarToken)
     },
-
 
     removeAvatarToken() {
         sessionStorage.removeItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
