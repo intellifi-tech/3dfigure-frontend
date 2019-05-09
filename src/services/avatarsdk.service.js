@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
     TokenService
-} from './storage.service'
+} from './token.service'
 const AvatarSdkService = {
     setToken() {
         const formData = new FormData();

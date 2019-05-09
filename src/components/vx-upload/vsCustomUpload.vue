@@ -359,11 +359,12 @@ export default {
         };
       }
 
-      xhr.withCredentials = true;
+      xhr.withCredentials = false;
       let headers = null;
 
       if (forAvatar) {
         formData.append("pipeline", "head_1.1");
+        formData.append("name", "avatar");
         xhr.open("POST", this.avatarsdk);
 
         headers = this.avatarHeaders || {};

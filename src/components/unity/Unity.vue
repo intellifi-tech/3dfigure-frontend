@@ -22,8 +22,8 @@ export default {
     Unity
   },
   methods: {
-    sendAvatar() {
-      this.$refs.myInstance.message("Canvas", "showAvatar", this.avatar);
+    sendAvatar(avatarId) {
+      this.$refs.myInstance.message("Canvas", "showAvatar", avatarId);
     }
   }
 };

@@ -13,17 +13,31 @@ const TokenService = {
         sessionStorage.setItem(process.env.VUE_APP_TOKEN_KEY, accessToken)
     },
 
+    removeToken() {
+        sessionStorage.removeItem(process.env.VUE_APP_TOKEN_KEY)
+    },
+
+    saveAvatarId(index, avatarKey) {
+        sessionStorage.setItem('avatar'.concat(index), avatarKey)
+    },
+
+    getAvatarId(index) {
+        sessionStorage.getItem('avatar'.concat(index))
+    },
+
     getAvatarToken() {
-        return sessionStorage.getItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
+        var a = sessionStorage.getItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
+        return a
     },
 
     saveAvatarToken(avatarToken) {
         sessionStorage.setItem(process.env.VUE_APP_AVATAR_TOKEN_KEY, avatarToken)
     },
 
-    removeToken() {
-        sessionStorage.removeItem(process.env.VUE_APP_TOKEN_KEY)
-    }
+
+    removeAvatarToken() {
+        sessionStorage.removeItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
+    },
 }
 
 export {

@@ -25,7 +25,7 @@ import ApiService from '@/services/api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
 import {
   TokenService
-} from '@/services/storage.service'
+} from '@/services/token.service'
 
 Vue.use(VeeValidate)
 Vue.use(Vuelidate)
