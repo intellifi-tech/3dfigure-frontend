@@ -8,15 +8,17 @@ const messages = {
         landing: {
             navbar: {
                 home: 'Home',
-                about: 'About',
-                feature: 'Feature',
-                product: 'Product',
+                howToUse: 'How to Use?',
+                concepts: 'Concepts',
+                about: 'About Us',
+                faq: 'FAQ',
+                pricing:'Pricing',
                 contact: 'Contact',
                 login: 'Login'
             },
             first: {
-                photo: '2D Photo to',
-                print: '3D Print',
+                photo: 'From photo',
+                print: 'Create a 3D Figure!',
                 model: 'Create Model'
             },
             concept: {
@@ -72,20 +74,22 @@ const messages = {
     'tr': {
         landing: {
             navbar: {
-                home: 'Ana Sayfa',
+                home: 'Giriş',
+                howToUse: 'Nasıl Yapılır?',
+                concepts: 'Konseptler',
                 about: 'Hakkımızda',
-                feature: 'Özellik',
-                product: 'Ürün',
+                faq: 'S.S.S.',
+                pricing:'Fiyatlandırma',
                 contact: 'İletişim',
                 login: 'Giriş Yap'
             },
             first: {
-                photo: '2D Photo to',
-                print: '3D Print',
+                photo: 'Fotoğraftan',
+                print: '3D Figür oluştur!',
                 model: 'Model Oluştur'
             },
             concept: {
-                header: 'Our Concepts'
+                header: 'Konseptler'
             },
             contact: {
                 us: 'İletişim',
@@ -93,7 +97,7 @@ const messages = {
                 address: '143 castle road 517',
                 phone: '+3 123 456 789',
                 mail: 'info@yourmail.com',
-                submit: 'Gönderin'
+                submit: 'Gönder'
             }
         },
         footer: {
