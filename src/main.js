@@ -23,7 +23,6 @@ import VeeValidate from 'vee-validate'
 import i18n from '@/plugins/i18n'
 import ApiService from '@/services/api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
-import Notifications from 'vue-notification'
 import {
   TokenService
 } from '@/services/token.service'
@@ -31,7 +30,6 @@ import {
 Vue.use(VeeValidate)
 Vue.use(Vuelidate)
 Vue.use(Vuesax)
-Vue.use(Notifications)
 
 // Theme Configurations
 import '../themeConfig.js'
