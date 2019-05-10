@@ -15,10 +15,7 @@
         :before-change="validateStep1"
       >
         <div>
-          <vx-card class="p-2">
-            <unity></unity>
-          </vx-card>
-          <upload></upload>
+          <preview></preview>
         </div>
       </tab-content>
       <tab-content title="Konsept Seç" class="mb-5" icon="feather icon-home">
@@ -33,11 +30,18 @@
 <script>
 import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
-import Unity from "@/components/unity/Unity.vue";
-import Upload from "@/components/upload/UploadMultiple.vue";
+import Preview from "@/components/content/Preview";
 import Concepts from "@/views/concept/Concepts.vue";
 
 export default {
+  data() {
+    return {
+      order: {
+        choosenAvatar: null,
+        choosenConcept: null
+      }
+    }
+  },
   methods: {
     validateStep1() {
       return new Promise((resolve, reject) => {
@@ -52,8 +56,7 @@ export default {
     }
   },
   components: {
-    Unity,
-    Upload,
+    Preview,
     Concepts,
     FormWizard,
     TabContent

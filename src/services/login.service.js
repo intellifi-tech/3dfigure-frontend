@@ -2,7 +2,7 @@ import ApiService from './api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
 import {
     TokenService
-} from './storage.service'
+} from './token.service'
 
 const LoginService = {
     /**
@@ -14,10 +14,10 @@ const LoginService = {
     login: async function (credential) {
         try {
             const response = await ApiService.post("/authenticate", credential)
-
+            const res = await AvatarSdkService.setToken()
             TokenService.saveToken(response.data.id_token)
             ApiService.setHeader()
-            AvatarSdkService.setToken()
+            TokenService.saveAvatarToken(res.data.access_token)
 
             // NOTE: We haven't covered this yet in our ApiService 
             //       but don't worry about this just yet - I'll come back to it later
@@ -53,6 +53,7 @@ const LoginService = {
         // Remove the token and remove Authorization header from Api Service as well 
         TokenService.removeToken()
         ApiService.removeHeader()
+        AvatarSdkService.removeAvatarToken()
 
         // NOTE: Again, we'll cover the 401 Interceptor a bit later. 
         //ApiService.unmount401Interceptor()

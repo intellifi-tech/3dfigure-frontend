@@ -15,7 +15,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import { TokenService } from '@/services/storage.service'
+import { TokenService } from '@/services/token.service'
 
 Vue.use(Router)
 
