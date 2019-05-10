@@ -34,6 +34,14 @@ import Preview from "@/components/content/Preview";
 import Concepts from "@/views/concept/Concepts.vue";
 
 export default {
+  data() {
+    return {
+      order: {
+        choosenAvatar: null,
+        choosenConcept: null
+      }
+    }
+  },
   methods: {
     validateStep1() {
       return new Promise((resolve, reject) => {

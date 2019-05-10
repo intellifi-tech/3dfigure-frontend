@@ -116,7 +116,7 @@ export default {
   },
   validations: {
     username: { required, email },
-    password: { required, minLength: minLength(5), maxLength: maxLength(15) }
+    password: { required, minLength: minLength(5), maxLength: maxLength(15) } 
   }
 };
 </script>

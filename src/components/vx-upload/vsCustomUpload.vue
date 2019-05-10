@@ -41,7 +41,7 @@
               height: `${img.percent}%`
             }"
           class="btn-upload-file"
-          @click="upload(index)"
+          @click="upload(index, false)"
         >
           <i
             translate="no"
@@ -228,6 +228,7 @@ export default {
           }
         }
       } else {
+        this.$parent.$parent.currentAvatar = avatarKey;
         this.$parent.$parent.showAvatar(avatarKey);
       }
     },
@@ -316,7 +317,7 @@ export default {
         this.upload("all");
       }
     },
-    upload(index) {
+    upload(index, forAvatar) {
       const formData = new FormData();
       let postFiles = Array.prototype.slice.call(this.filesx);
       if (typeof index == "number") {
@@ -340,15 +341,15 @@ export default {
           }
           formData.append(this.fileName, filex, filex.name);
 
-          this.uploadx(index, formData, false);
-          this.uploadx(index, formData, true);
+          this.uploadx(index, formData, forAvatar);
+          // this.uploadx(index, formData, true);
         });
       } else {
         postFiles.forEach(filex => {
           formData.append(this.fileName, filex, filex.name);
         });
-        this.uploadx(index, formData, false);
-        this.uploadx(index, formData, true);
+        this.uploadx(index, formData, forAvatar);
+        // this.uploadx(index, formData, true);
       }
     },
     uploadx(index, formData, forAvatar) {
@@ -369,7 +370,12 @@ export default {
             self.srcs[index].error = true;
           }
         } else {
-          self.$emit("on-success", e, index);
+          if (!forAvatar) {
+            self.$emit("on-server-success", e, index);
+            self.upload(index, true);
+          } else {
+            self.$emit("on-avatar-success", e, index);
+          }
         }
       };
 

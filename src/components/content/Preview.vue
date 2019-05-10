@@ -21,7 +21,8 @@
           :avatarHeaders="avatarHeader"
           fileName="photo"
           accept="image/*"
-          @on-success="successUpload"
+          @on-server-success="serverUpload"
+          @on-avatar-success="avatarUpload"
           :showUploadButton="false"
           ref="upload"
         />
@@ -35,6 +36,7 @@ import Unity from "@/components/unity/Unity.vue";
 import ApiService from "@/services/api.service";
 import { TokenService } from "@/services/token.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
+import FigureService from "@/services/figure.service";
 export default {
   data() {
     return {
@@ -45,25 +47,39 @@ export default {
       },
       avatarHeader: {
         Authorization: `Bearer ${TokenService.getAvatarToken()}`
-      }
+      },
+      figure: {
+        figureName: null,
+        avatarKey: null,
+        imagePath: null
+      },
+      currentAvatar: null
     };
   },
-  beforeCreate() {
-
-  },
+  beforeCreate() {},
   methods: {
-    successUpload($event, index) {
-      if ($event.currentTarget.response !== "") {
-        // Avatar SDK isteğinin sonucu
-        var response = JSON.parse($event.currentTarget.response);
-        this.$vs.notify({
-          color: "success",
-          title: "<br>Fotoğraf yüklendi!",
-          text: ""
-        });
-        this.$refs.upload.srcs[index].avatarKey = response.code;
-        setTimeout(() => this.showAvatar(response.code), 30000);
+    avatarUpload($event, index) {
+      // Avatar SDK isteğinin sonucu
+      var response = JSON.parse($event.currentTarget.response);
+      this.$vs.notify({
+        color: "success",
+        title: "<br>Fotoğraf yüklendi!",
+        text: ""
+      });
+      this.$refs.upload.srcs[index].avatarKey = response.code;
+      setTimeout(() => this.showAvatar(response.code), 30000);
+      this.figure.avatarKey = response.code;
+      this.figure.figureName = response.code;
+
+      if (this.figure.avatarKey && this.figure.imagePath) {
+        /*const formData = new FormData()
+        formData.append("avatarKey", this.figure.avatarKey)
+        formData.append("imageName", this.figure.imagePath)*/
+        FigureService.saveUserFigure(this.figure);
       }
+    },
+    serverUpload($event) {
+      this.figure.imagePath = $event.currentTarget.response;
     },
     showAvatar(code) {
       this.$refs.unity.sendAvatar(code);
