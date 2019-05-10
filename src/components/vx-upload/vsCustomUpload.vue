@@ -3,7 +3,23 @@
     <view-upload v-if="viewActive" :src="viewSrc"/>
 
     <div class="con-img-upload">
+      <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
+      <div v-for="(img, index) in this.savedImages" :key="index" class="img-upload">
+        <img
+          v-if="img.src"
+          :alt="img.avatarKey"
+          :style="{
+              maxWidth:img.orientation == 'h'?'100%':'none',
+              maxHeight:img.orientation == 'w'?'100%':'none'
+            }"
+          :key="index"
+          :src="img.src"
+          @touchend="viewImage(img.src,$event, img.avatarKey)"
+          @click="viewImage(img.src,$event, img.avatarKey)"
+        >
+      </div>
       <!-- <transition-group v-for="(img,index) in getFilesFilter" :key="index" name="upload"> -->
+      <!-- Burası upload edildikten sonra oluşturuluyor -->
       <div
         v-for="(img,index) in getFilesFilter"
         :class="{
@@ -17,7 +33,6 @@
           <i translate="no" class="material-icons notranslate">clear</i>
         </button>
         <button
-          v-if="showUploadButton"
           :class="{
               'on-progress':img.percent,
               'ready-progress':img.percent >= 100
@@ -36,14 +51,15 @@
         </button>
         <img
           v-if="img.src"
+          :alt="img.avatarKey"
           :style="{
               maxWidth:img.orientation == 'h'?'100%':'none',
               maxHeight:img.orientation == 'w'?'100%':'none'
             }"
           :key="index"
           :src="img.src"
-          @touchend="viewImage(img.src,$event)"
-          @click="viewImage(img.src,$event)"
+          @touchend="viewImage(img.src,$event, img.avatarKey)"
+          @click="viewImage(img.src,$event, img.avatarKey)"
         >
         <h4 v-if="!img.src" class="text-archive">
           <i translate="no" class="material-icons notranslate">description</i>
@@ -141,6 +157,10 @@ export default {
     singleUpload: {
       default: false,
       type: Boolean
+    },
+    savedImages: {
+      default: null,
+      type: Object
     }
   },
   data: () => ({
@@ -182,29 +202,33 @@ export default {
     }
   },
   methods: {
-    viewImage(src, evt) {
+    viewImage(src, evt, avatarKey) {
       var timeout;
 
-      var eventx =
-        "ontouchstart" in window ||
-        (window.DocumentTouch && document instanceof window.DocumentTouch)
-          ? "touchstart"
-          : "click";
-      if (eventx == "click") {
-        this.viewActive = true;
-        this.viewSrc = src;
-      } else {
-        if (evt.type == "touchend") {
-          var currentTime = new Date().getTime();
-          var tapLength = currentTime - lastTap;
-          clearTimeout(timeout);
-          if (tapLength < 500 && tapLength > 0) {
-            this.viewActive = true;
-            this.viewSrc = src;
-            event.preventDefault();
+      if (!avatarKey) {
+        var eventx =
+          "ontouchstart" in window ||
+          (window.DocumentTouch && document instanceof window.DocumentTouch)
+            ? "touchstart"
+            : "click";
+        if (eventx == "click") {
+          this.viewActive = true;
+          this.viewSrc = src;
+        } else {
+          if (evt.type == "touchend") {
+            var currentTime = new Date().getTime();
+            var tapLength = currentTime - lastTap;
+            clearTimeout(timeout);
+            if (tapLength < 500 && tapLength > 0) {
+              this.viewActive = true;
+              this.viewSrc = src;
+              event.preventDefault();
+            }
+            lastTap = currentTime;
           }
-          lastTap = currentTime;
         }
+      } else {
+        this.$parent.$parent.showAvatar(avatarKey);
       }
     },
     removeFile(index) {
@@ -235,7 +259,8 @@ export default {
           type: _this.typex,
           percent: null,
           error: false,
-          remove: null
+          remove: null,
+          avatarKey: null
         });
       }
 
@@ -266,7 +291,8 @@ export default {
               type: "video",
               percent: null,
               error: false,
-              remove: null
+              remove: null,
+              avatarKey: null
             });
           } else {
             this.filesx.push(filex);
@@ -275,7 +301,8 @@ export default {
               name: filex.name,
               percent: null,
               error: false,
-              remove: null
+              remove: null,
+              avatarKey: null
             });
           }
           this.$emit("change", e.target.value, this.filesx);
@@ -342,7 +369,7 @@ export default {
             self.srcs[index].error = true;
           }
         } else {
-          self.$emit("on-success", e);
+          self.$emit("on-success", e, index);
         }
       };
 

@@ -21,9 +21,9 @@
           :avatarHeaders="avatarHeader"
           fileName="photo"
           accept="image/*"
-          @click="clicked"
           @on-success="successUpload"
           :showUploadButton="false"
+          ref="upload"
         />
       </div>
     </vx-card>
@@ -48,12 +48,12 @@ export default {
       }
     };
   },
+  beforeCreate() {
+
+  },
   methods: {
-    clicked($event) {
-      console.log($event)
-    },
-    successUpload($event) {
-      if (response !== "") {
+    successUpload($event, index) {
+      if ($event.currentTarget.response !== "") {
         // Avatar SDK isteğinin sonucu
         var response = JSON.parse($event.currentTarget.response);
         this.$vs.notify({
@@ -61,8 +61,12 @@ export default {
           title: "<br>Fotoğraf yüklendi!",
           text: ""
         });
-        setTimeout(() => this.$refs.unity.sendAvatar(response.code), 30000);
+        this.$refs.upload.srcs[index].avatarKey = response.code;
+        setTimeout(() => this.showAvatar(response.code), 30000);
       }
+    },
+    showAvatar(code) {
+      this.$refs.unity.sendAvatar(code);
     }
   },
   components: {
