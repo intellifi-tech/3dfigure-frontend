@@ -63,11 +63,12 @@ export default {
       var response = JSON.parse($event.currentTarget.response);
       this.$vs.notify({
         color: "success",
-        title: "<br>Fotoğraf yüklendi!",
-        text: ""
+        title: "<br>3D hazırlanıyor!",
+        text: "",
+        time: 30000
       });
       this.$refs.upload.srcs[index].avatarKey = response.code;
-      setTimeout(() => this.showAvatar(response.code), 30000);
+      setTimeout(() => this.showAvatar(response.code), 25000);
       this.figure.avatarKey = response.code;
       this.figure.figureName = response.code;
 
