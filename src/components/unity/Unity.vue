@@ -1,6 +1,6 @@
 <template>
   <unity
-    src="assets/utils/unity/build11_just_pre.json"
+    src="assets/utils/unity/build13_just_pre.json"
     class="w-100 responsive"
     height="550"
     unityLoader="assets/utils/unity/UnityLoader.js"
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     sendAvatar(avatarId) {
-      this.$refs.myInstance.message("Canvas", "showAvatar", avatarId);
+      this.$refs.myInstance.message("ViewerObj", "YenidenAc", avatarId);
     }
   }
 };
