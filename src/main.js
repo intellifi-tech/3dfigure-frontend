@@ -58,6 +58,7 @@ require('./assets/css/iconfont.css')
 
 //landing page
 
+
 require('./assets/css/bootstrap.min.css')
 require('./assets/css/fontawesome.min.css')
 require('./assets/css/flaticon.css')
@@ -66,6 +67,9 @@ require('./assets/css/owl.carousel.min.css')
 require('./assets/css/magnific-popup.css')
 require('./assets/css/style.css')
 require('./assets/css/responsive.css')
+require('./assets/css/slick.css')
+require('./assets/css/ekko-lightbox.min.css')
+
 
 // Set the base URL of the API
 if (process.env.NODE_ENV === 'production') {

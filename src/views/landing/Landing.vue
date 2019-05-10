@@ -26,8 +26,8 @@
           <!-- navbar collapse start -->
           <ul class="navbar-nav" id="primary-menu">
             <!-- navbar- nav -->
-            <li class="nav-item active dropdown">
-              <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">
+            <li class="nav-item active">
+              <a class="nav-link pl-0" href="#home">
                 {{ $t('landing.navbar.home') }}
                 <span class="sr-only">(current)</span>
               </a>
@@ -197,100 +197,92 @@
               <!-- how to selfie start-->
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
-                <div class="man-div model-column" v-show="man">
-                  <ul id="man-list">
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/man/man-false-1.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">Live Chat</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
-                        </div>
+                <div class="man-div model-column row" v-show="man">
+                  <div class="col-lg-5 con-vs-chip mx-0 px-0 rounded-lg">
+                    <div class="single-inline-feature-item">
+                      <img
+                        src="assets/images/portre/man/man-true.jpg"
+                        class="img-fluid mb-4 rounded-t-lg"
+                      >
+                      <div class="content pl-4">
+                        <h4>Aradığımız fotoğraf tam olarak bu!</h4>
+                        <p class="mb-1 pt-2">
+                          Tam karşıdan,
+                          <b>yüzde</b> gölge yok,
+                          <b>dişler</b> gözükmüyor.
+                          <br>
+                          <b class="text-dark">En doğal duruşunuzu yansıtıyor.</b>
+                        </p>
                       </div>
-                    </li>
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/man/man-false-2.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">Easy Configure</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
+                    </div>
+                  </div>
+                  <div class="col-lg-7">
+                    <ul id="man-list" class="falseList">
+                      <li>
+                        <div class="con-vs-chip mb-2 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img
+                              src="assets/images/portre/man/man-false-1.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p
+                              class="text-base"
+                            >Eğer selfie çekim yaparsan vücudunun duruşu bozulur ve ağzımız açık olursa modelde bozulma olur.</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/man/man-false-3.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">User Friendly</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
+                      </li>
+                      <li>
+                        <div class="con-vs-chip mb-2 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img
+                              src="assets/images/portre/man/man-false-3.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p
+                              class="text-base"
+                            >Yüzünüze el ve başka herhangi bir cismin teması modelin bozuk olarak oluşturulmasına sebep olacaktır.</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/man/man-false-4.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">User Friendly</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
+                      </li>
+                      <li>
+                        <div class="con-vs-chip mb-2 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img
+                              src="assets/images/portre/man/man-false-2.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p
+                              class="text-base"
+                            >Eğer gözlük takarsanız, gözlük yüzünüze birleşik olarak modellenecek ve kötü bir görüntü olacaktır. Eğer gözlük sizin olmazsa olmaz ise bunu biz daha sonradan ekleme yapabiliriz.</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-true.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/man/man-true.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">High Security</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
+                      </li>
+
+                      <li>
+                        <div class="con-vs-chip mb-2 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img
+                              src="assets/images/portre/man/man-false-4.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p
+                              class="text-base"
+                            >Eğer vucüdunun duruşu yan olursa, 3D Modelde de yan olur ve yüzünüzde böyle yan duruyorsa yüzünüzün modellemesinde ufakta olsa kaymalar oluşabilir.</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <div class="row inline-feaure-wrap justify-content-center">
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="row inline-feaure-wrap justify-content-center mt-5">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper">
                         <iframe
@@ -365,7 +357,7 @@
                                 src="assets/images/icon/icon-plus.png"
                                 class="img-scale img-fluid mb-4"
                               >
-                              <h4 class="title">Create!</h4>
+                              <h4 class="title">Ücretsiz Oluştur!</h4>
                             </a>
                           </div>
                         </div>
@@ -376,100 +368,93 @@
                 <!--man div finish-->
 
                 <!-- woman div start -->
-                <div class="woman-div model-column" v-show="!man">
-                  <ul id="woman-list">
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/woman/woman-false-1.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">Live Chat</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
-                        </div>
+                <div class="woman-div model-column row" v-show="!man">
+                 
+                  <div class="col-lg-5 con-vs-chip mx-0 px-0 rounded-lg">
+                    <div class="single-inline-feature-item">
+                      <img
+                        src="assets/images/portre/woman/woman-true.jpg"
+                        class="img-fluid mb-4 rounded-t-lg"
+                      >
+                      <div class="content pl-4">
+                        <h4>Aradığımız fotoğraf tam olarak bu!</h4>
+                        <p class="mb-1 pt-2">
+                          Tam karşıdan,
+                          <b>yüzde</b> gölge yok,
+                          <b>dişler</b> gözükmüyor.
+                          <br>
+                          <b class="text-dark">En doğal duruşunuzu yansıtıyor.</b>
+                        </p>
                       </div>
-                    </li>
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/woman/woman-false-2.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">Easy Configure</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
+                    </div>
+                  </div>
+                  <div class="col-lg-7">
+                    <ul id="woman-list" class="falseList">
+                      <li>
+                        <div class="con-vs-chip mb-2 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img
+                              src="assets/images/portre/woman/woman-false-1.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p
+                              class="text-base"
+                            >Eğer selfie çekim yaparsan vücudunun duruşu bozulur ve ağzımız açık olursa modelde bozulma olur.</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/woman/woman-false-3.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">User Friendly</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
+                      </li>
+                      <li>
+                        <div class="con-vs-chip mb-2 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img
+                              src="assets/images/portre/woman/woman-false-3.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p
+                              class="text-base"
+                            >Yüzünüze el ve başka herhangi bir cismin teması modelin bozuk olarak oluşturulmasına sebep olacaktır.</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-bad.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/woman/woman-false-4.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">User Friendly</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
+                      </li>
+                      <li>
+                        <div class="con-vs-chip mb-2 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img
+                              src="assets/images/portre/woman/woman-false-2.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p
+                              class="text-base"
+                            >Eğer gözlük takarsanız, gözlük yüzünüze birleşik olarak modellenecek ve kötü bir görüntü olacaktır. Eğer gözlük sizin olmazsa olmaz ise bunu biz daha sonradan ekleme yapabiliriz.</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="single-inline-feature-item">
-                        <img src="assets/images/icon/icon-true.png" class="selfie-status-icon">
-                        <img
-                          src="assets/images/portre/woman/woman-true.jpg"
-                          class="img-style img-fluid mb-4"
-                        >
-                        <div class="content">
-                          <a href="#">
-                            <h4 class="title">High Security</h4>
-                          </a>
-                          <p>
-                            Fat decisively pursuit regular so calling. West he plan girl been my then
-                            up no.
-                          </p>
+                      </li>
+
+                      <li>
+                        <div class="con-vs-chip mb-2 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img
+                              src="assets/images/portre/woman/woman-false-4.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p
+                              class="text-base"
+                            >Eğer vucüdunun duruşu yan olursa, 3D Modelde de yan olur ve yüzünüzde böyle yan duruyorsa yüzünüzün modellemesinde ufakta olsa kaymalar oluşabilir.</p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <div class="row inline-feaure-wrap justify-content-center">
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div class="row inline-feaure-wrap justify-content-center mt-5">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper">
                         <iframe
@@ -544,7 +529,7 @@
                                 src="assets/images/icon/icon-plus.png"
                                 class="img-scale img-fluid mb-4"
                               >
-                              <h4 class="title">Create!</h4>
+                              <h4 class="title">Ücretsiz Oluştur!</h4>
                             </a>
                           </div>
                         </div>
@@ -808,7 +793,7 @@
     <!-- intro video area end -->
 
     <!-- our product area start -->
-    <section class="product-area padding-top-110 padding-bottom-90" id="concepts">
+    <section class="product-area padding-top-110 padding-bottom-20" id="gallery">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
@@ -915,11 +900,240 @@
     </section>
     <!-- our product area end -->
 
+    <!-- <section class="product-area padding-top-110 padding-bottom-90" id="concepts">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="section-title text-center">
+           
+              <h2 class="title">{{$t('landing.concept.header')}}</h2>
+              <p>Çeşitli konseptlerle size uygun olanı seçin!</p>
+            </div>
+           
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="product-carousel">
+              <div class="single-product-item">
+              
+                <div class="thumb">
+                  <a
+                    href="https://unsplash.it/1200/768.jpg?image=251"
+                    data-toggle="lightbox"
+                    data-gallery="gallery"
+                  >
+                    <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid">
+                  </a>
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">Smart Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+              
+               <div class="single-product-item">
+           
+                <div class="thumb">
+                  <a
+                    href="https://unsplash.it/1200/768.jpg?image=252"
+                    data-toggle="lightbox"
+                    data-gallery="gallery"
+                  >
+                    <img src="https://unsplash.it/1200/768.jpg?image=252" class="img-fluid">
+                  </a>
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">Smart Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+             
+               <div class="single-product-item">
+              
+                <div class="thumb">
+                  <a
+                    href="https://unsplash.it/1200/768.jpg?image=253"
+                    data-toggle="lightbox"
+                    data-gallery="gallery"
+                  >
+                    <img src="https://unsplash.it/1200/768.jpg?image=253" class="img-fluid">
+                  </a>
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">Smart Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+              
+               <div class="single-product-item">
+             
+                <div class="thumb">
+                  <a
+                    href="https://unsplash.it/1200/768.jpg?image=254"
+                    data-toggle="lightbox"
+                    data-gallery="gallery"
+                  >
+                    <img src="https://unsplash.it/1200/768.jpg?image=254" class="img-fluid">
+                  </a>
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">Smart Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+             
+               <div class="single-product-item">
+              
+                <div class="thumb">
+                  <a
+                    href="https://unsplash.it/600.jpg?image=255"
+                    data-toggle="lightbox"
+                    data-gallery="gallery"
+                  >
+                    <img src="https://unsplash.it/600.jpg?image=255" class="img-fluid">
+                  </a>
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">Smart Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+            
+              <div class="single-product-item">
+              
+                <div class="thumb">
+                  <a
+                    href="https://unsplash.it/600.jpg?image=256"
+                    data-toggle="lightbox"
+                    data-gallery="gallery"
+                  >
+                    <img src="https://unsplash.it/600.jpg?image=256" class="img-fluid">
+                  </a>
+                </div>
+                <div class="content">
+                  <h4 class="title">
+                    <a href="#">Smart Watch</a>
+                  </h4>
+                  <div class="price-wrap">
+                    <span class="price">$34</span>
+                    <del>$55</del>
+                  </div>
+                  <a href="#" class="boxed-bt">Buy Now</a>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+
+    <section class="container padding-top-90 padding-bottom-20">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-title text-left dark">
+            <h2 class="title font-light font-sans">Örnek Çalışmalarımız</h2>
+          </div>
+        </div>
+      </div>
+      <div class="customer-logos slider padding-bottom-30">
+        <div class="slide">
+          <a
+            href="https://unsplash.it/1200/768.jpg?image=251"
+            data-toggle="lightbox"
+            data-gallery="gallery"
+            class="col-md-4"
+          >
+            <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid rounded">
+          </a>
+        </div>
+        <div class="slide">
+          <a
+            href="https://unsplash.it/1200/768.jpg?image=252"
+            data-toggle="lightbox"
+            data-gallery="gallery"
+            class="col-md-4"
+          >
+            <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid rounded">
+          </a>
+        </div>
+        <div class="slide">
+          <a
+            href="https://unsplash.it/1200/768.jpg?image=253"
+            data-toggle="lightbox"
+            data-gallery="gallery"
+            class="col-md-4"
+          >
+            <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid rounded">
+          </a>
+        </div>
+
+        <div class="slide">
+          <a
+            href="https://unsplash.it/1200/768.jpg?image=254"
+            data-toggle="lightbox"
+            data-gallery="gallery"
+            class="col-md-4"
+          >
+            <img src="https://unsplash.it/600.jpg?image=254" class="img-fluid rounded">
+          </a>
+        </div>
+        <div class="slide">
+          <a
+            href="https://unsplash.it/1200/768.jpg?image=255"
+            data-toggle="lightbox"
+            data-gallery="gallery"
+            class="col-md-4"
+          >
+            <img src="https://unsplash.it/600.jpg?image=255" class="img-fluid rounded">
+          </a>
+        </div>
+        <div class="slide">
+          <a
+            href="https://unsplash.it/1200/768.jpg?image=256"
+            data-toggle="lightbox"
+            data-gallery="gallery"
+            class="col-md-4"
+          >
+            <img src="https://unsplash.it/600.jpg?image=256" class="img-fluid rounded">
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- testimonial area start -->
-    <section
-      class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120"
-      id="about">
+    <section class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120" id="about">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
@@ -931,7 +1145,7 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <div class="single-testimonial-item">
+            <div class="single-testimonial-item rounded-lg">
               <div class="author-meta mb-4 col-12">
                 <div class>
                   <img src="assets/images/3dfigurlogo.png" alt="testimonial image">
@@ -939,7 +1153,7 @@
               </div>
 
               <div class="description px-3 text-justify">
-                <p>2015 yılında başlayan çalışmalarımız ile yıllar içerisinde 3D Tarama, 3D Modelleme ve 3D Baskı alanında kendimizi çok iyi bir şekilde geliştirdik. Bu süre içerisinde en az 1000 kişinin 3D Taramasını yaparken ortalama 500 Kişininde renkli olarak 3D Baskısını yaptık.</p>
+                <p>2015 yılında başlayan çalışmalarımız ile yıllar içerisinde 3D Tarama, 3D Modelleme ve 3D Baskı alanında kendimizi çok iyi bir şekilde geliştirdik. Bu süre içerisinde 1000’i aşkın kişinin 3D Taramasını yaparken ortalama 500 kişinin de renkli olarak 3D baskısını yaptık.</p>
 
                 <p>Bu rakamların daha yüksek olması için önümüzde ki tek engel 3D Tarama yaparken, 3D Taraması yapılacak kişi ile buluşmak zorunda olmamızdı. Artık bu zorunluluğu da ortadan kaldırdık ve yıllar içerisinde yapılan 3D Tarama dataları ile eğitilen yapay zeka alt yapısını kullanarak, tam karşıdan net bir şekilde çekilmiş fotoğraf yollayan bir kişinin 3D Modelini oluşturmamız artık online ve neredeyse saniyeler içerisinde gerçekleşmektedir.</p>
 
@@ -1086,9 +1300,13 @@
                     aria-labelledby="headingFive"
                     data-parent="#accordion"
                   >
-                    <div
-                      class="card-body"
-                    >Sizlere tasarım onayında sunduğumuz üründen farklı bir ürün ile karşılaşmışsanız mutlaka değişimi yapılmaktadır. Değişim sürecinin hızlı ilerlemesini adına sorunu bizlere görselleri ile birlikte bildirmeniz önemlidir.</div>
+                    <div class="card-body">
+                      Sizlere tasarım onayında sunduğumuz üründen farklı bir ürün ile karşılaşmışsanız mutlaka değişimi yapılmaktadır. Değişim sürecinin hızlı ilerlemesini adına sorunu bizlere görselleri ile birlikte bildirmeniz önemlidir. Taleplerinizi
+                      <a
+                        href="mailto:siparis@3dfigur.com"
+                        class="text-primary font-semibold"
+                      >siparis@3dfigur.com</a> adresine göndererek oluşturabilirsiniz.
+                    </div>
                   </div>
                 </div>
                 <div class="card">
@@ -1269,6 +1487,32 @@
                     >Tüm renkli üretimlerimiz 3D Systems adlı firmanın Projet660 Pro adlı 3D Yazıcısında yapılmaktadır. Bu 3D Yazıcı hammadde olarak kumtaşı kullanmaktadır ve tüm renklendirme işlemlerini üretim esnasında yapmaktadır. Hiç bir ürünümüz el ile boyama sürecine girmemektedir.</div>
                   </div>
                 </div>
+                <div class="card">
+                  <div class="card-header" id="headingThirteen">
+                    <h5 class="mb-0">
+                      <a
+                        class
+                        data-toggle="collapse"
+                        data-target="#collapseThirteen"
+                        aria-expanded="false"
+                        aria-controls="collapseThirteen"
+                      >
+                        <span class="count-sss">13.&nbsp;</span>Siparişim kargodan hasarlı çıktı ne yapmalıyım?
+                      </a>
+                    </h5>
+                  </div>
+
+                  <div
+                    id="collapseThirteen"
+                    class="collapse"
+                    aria-labelledby="headingThirteen"
+                    data-parent="#accordion"
+                  >
+                    <div
+                      class="card-body"
+                    >Siparişlerinizi teslim alırken lütfen kurye ile birlikte kontrolünü sağlayınız. Gönderileriniz hasarlı olması durumunda kurye ile konuşarak teslim almadan iade edebilirsiniz. Bu durumda tekrar modelin tekrar üretimi yapılarak tarafınıza gönderimi sağlanacaktır.</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1277,11 +1521,9 @@
     </section>
     <!-- faq area end -->
 
-<!--pricing tables start-->
+    <!--pricing tables start-->
 
-  <section
-      id="pricing"
-      class="pricing padding-bottom-100 padding-top-50 ">
+    <section id="pricing" class="pricing padding-bottom-100 padding-top-50">
       <div class="container">
         <div class="row">
           <center class="col-12">
@@ -1298,7 +1540,7 @@
                 <h5 class="card-title text-white text-uppercase text-center">3D Model</h5>
                 <h6 class="card-price text-white text-center">
                   $10
-                  <span class="period">+KDV</span>
+                  <span class="period">+ KDV</span>
                 </h6>
                 <hr>
                 <ul class="fa-ul pb-5 text-white">
@@ -1310,7 +1552,7 @@
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
-                    </span>ply + texture 
+                    </span>ply + texture
                   </li>
                 </ul>
                 <a href="#" class="btn btn-block text-uppercase border-none">Satın al</a>
@@ -1323,7 +1565,7 @@
                 <h5 class="card-title text-white text-uppercase text-center">3D Model + Düzenleme</h5>
                 <h6 class="card-price text-white text-center">
                   $25
-                  <span class="period">+KDV</span>
+                  <span class="period">+ KDV</span>
                 </h6>
                 <hr>
                 <ul class="fa-ul pb-5 text-white">
@@ -1345,7 +1587,7 @@
                 <h5 class="card-title text-white text-uppercase text-center">3D Çıktı</h5>
                 <h6 class="card-price text-white text-center">
                   $100
-                  <span class="period">+KDV</span>
+                  <span class="period">+ KDV</span>
                 </h6>
                 <hr>
                 <ul class="fa-ul pb-5 text-white">
@@ -1358,14 +1600,15 @@
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
-                    </span>select concept (<strong>+$15</strong>) 
+                    </span>select concept (
+                    <strong>+$15</strong>)
                   </li>
                 </ul>
                 <a href="#" class="btn btn-block border-none text-uppercase">Satın al</a>
               </div>
             </div>
           </div>
-           <div class="col-lg-3">
+          <div class="col-lg-3">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title text-white text-uppercase text-center">Özel</h5>
@@ -1388,7 +1631,7 @@
       </div>
     </section>
 
-<!--pricing tables end-->
+    <!--pricing tables end-->
 
     <!-- contact area start -->
     <section class="contact-area contact-bg padding-120" id="contact">

@@ -132,6 +132,7 @@
     display: block;
     width: 100%;
     -webkit-transform-style: preserve-3d;
+    border-radius:5px 5px 0 0 ;
 }
 
 .owl-carousel.owl-text-select-on .owl-item {

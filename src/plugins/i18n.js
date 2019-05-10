@@ -19,7 +19,7 @@ const messages = {
             first: {
                 photo: 'From photo',
                 print: 'Create a 3D Figure!',
-                model: 'Create Model'
+                model: 'Create Free 3D Figure'
             },
             concept: {
                 header: 'Our Concepts'
@@ -86,7 +86,7 @@ const messages = {
             first: {
                 photo: 'Fotoğraftan',
                 print: '3D Figür oluştur!',
-                model: 'Model Oluştur'
+                model: 'Ücretsiz 3D Figür Oluştur'
             },
             concept: {
                 header: 'Konseptler'

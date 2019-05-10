@@ -408,20 +408,20 @@
 .boxed-btn {
   display: inline-block;
   text-align: center;
-  height: 60px;
-  line-height: 60px;
+  height: 58px;
+  line-height: 58px;
   font-size: 14px;
   font-weight: 600;
   color: #fff;
   background-color: #282731;
-  padding: 0 30px;
+  padding: 0 24px;
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 1px; }
+  letter-spacing: .5px; }
   .boxed-btn .icon {
     color: #3c3954;
     width: 50px;
@@ -3052,6 +3052,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 
 .single-product-item {
   display: inline-block;
+  border-radius:5px;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
   margin-bottom: 30px; }
@@ -3926,6 +3927,27 @@ img.img-scale{
 .btn-switch__radio_yes:checked ~ .btn-switch__label_yes {
 	color: #fff;
 }
+
+.trueList{
+  display:block !important;
+}
+.trueList li {
+display: list-item !important;
+width: 100% !important;
+text-align:left;
+padding:2px 0;
+
+}
+
+.falseList{
+  display:block !important;
+}
+.falseList li {
+width: 100% !important;
+text-align:left;
+
+}
+
 /*radio input Man or Woman finish*/
 
 /*pricing table*/
@@ -3982,7 +4004,7 @@ img.img-scale{
   background-color: #fff;
 }
 
-/* Hover Effects on Card */
+/* Hover Effects Pricing Card */
 
 @media (min-width: 992px) {
   .pricing .card:hover {
@@ -3993,3 +4015,32 @@ img.img-scale{
   
 }
 /*pricing table finish*/
+
+/*lightbox custom*/
+.ekko-lightbox .modal-body{
+  padding:0 !important;
+}
+.ekko-lightbox .modal-header,.ekko-lightbox .modal-footer{
+  display: none !important;
+}
+
+@media (max-width: 489px) {
+.ekko-lightbox {top:35%;}
+}
+@media (max-width: 768px) {
+  .ekko-lightbox {top:25%;}
+  } 
+  @media (min-width: 769px) {
+    
+    } 
+
+    .slick-slide img{
+      transition: all .3s;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .12);
+    }
+    .slick-slide:hover img{
+      margin-top: -.25rem;
+      margin-bottom: .25rem;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .4);
+      transition: all .3s;
+    }
