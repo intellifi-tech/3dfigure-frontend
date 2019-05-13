@@ -6,16 +6,16 @@
       <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
       <div v-for="(img, index) in this.savedImages" :key="index" class="img-upload">
         <img
-          v-if="img.src"
+          v-if="img.avatarKey"
           :alt="img.avatarKey"
           :style="{
-              maxWidth:img.orientation == 'h'?'100%':'none',
-              maxHeight:img.orientation == 'w'?'100%':'none'
+              maxWidth:'100%',
+              maxHeight:'100%'
             }"
           :key="index"
-          :src="img.src"
-          @touchend="viewImage(img.src,$event, img.avatarKey)"
-          @click="viewImage(img.src,$event, img.avatarKey)"
+          :src="'assets/images/figures/'+img.imagePath"
+          @touchend="viewImage(img.imagePath,$event, img.avatarKey)"
+          @click="viewImage(img.imagePath,$event, img.avatarKey)"
         >
       </div>
       <!-- <transition-group v-for="(img,index) in getFilesFilter" :key="index" name="upload"> -->
@@ -160,7 +160,7 @@ export default {
     },
     savedImages: {
       default: null,
-      type: Object
+      type: Array
     }
   },
   data: () => ({

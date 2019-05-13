@@ -9,7 +9,7 @@
 
 			<div class="content-wrapper">
 
-				<the-navbar :memberName="memberName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
+				<the-navbar :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
 
 				<div class="router-view">
 					<div class="router-content" :class="{'mt-0': navbarType == 'hidden'}">
@@ -66,7 +66,7 @@ export default {
 			sidebarItems: sidebarItems,
 			disableCustomizer: themeConfig.disableCustomizer,
 			windowWidth: window.innerWidth, //width of windows
-			memberName: ''
+			member: null
 		}
 	},
 	watch: {
@@ -157,7 +157,7 @@ export default {
 			this.updateNavbarColor(this.navbarColor)
 		}
 		UserService.getMember().then(data => {
-			this.memberName = data.firstName
+			this.member = data
 		})
 	},
 	components: {

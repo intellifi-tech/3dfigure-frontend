@@ -108,15 +108,15 @@ export default {
         password: this.password,
         rememberMe: this.remember
       };
-      var status = await LoginService.login(credential)
+      var status = await LoginService.login(credential);
       if (status == 200) {
-        this.$router.push("/main")
+        this.$router.push("/main");
       }
     }
   },
   validations: {
     username: { required, email },
-    password: { required, minLength: minLength(5), maxLength: maxLength(15) } 
+    password: { required, minLength: minLength(5), maxLength: maxLength(15) }
   }
 };
 </script>

@@ -4,7 +4,7 @@ const FigureService = {
 
     getUserFigures: async function () {
         try {
-            const response = await ApiService.get("/figures")
+            const response = await ApiService.get("/figures/user")
             return response.data
         } catch (error) {
             return error.response.status
