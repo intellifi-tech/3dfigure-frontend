@@ -149,16 +149,14 @@ export default {
 			}
 		}
 	},
-	created() {
+	created: async function() {
 		this.setSidebarWidth();
 		if(this.navbarColor == "#fff" && this.isThemeDark) {
 			this.updateNavbarColor("#10163a")
 		}else {
 			this.updateNavbarColor(this.navbarColor)
 		}
-		UserService.getMember().then(data => {
-			this.member = data
-		})
+		this.member = await UserService.getMember()
 	},
 	components: {
 		VxSidebar,

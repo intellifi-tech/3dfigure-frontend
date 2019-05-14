@@ -76,7 +76,6 @@ export default {
       var number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
       this.limit = number.totalFigure - this.userFigures.length
-      debugger
     },
     avatarUpload($event, index) {
       // Avatar SDK isteğinin sonucu
