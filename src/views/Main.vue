@@ -23,6 +23,21 @@
           <concepts></concepts>
         </div>
       </tab-content>
+      <tab-content title="Checkout" class="mb-5" icon="feather icon-home">
+        <div>
+          <checkout :basketList="this.order.choosenConcept"></checkout>
+        </div>
+      </tab-content>
+      <tab-content title="Address" class="mb-5" icon="feather icon-home">
+        <div>
+          <concepts></concepts>
+        </div>
+      </tab-content>
+      <tab-content title="Payment" class="mb-5" icon="feather icon-home">
+        <div>
+          <concepts></concepts>
+        </div>
+      </tab-content>
     </form-wizard>
   </div>
 </template>
@@ -32,15 +47,16 @@ import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import Preview from "@/components/content/Preview";
 import Concepts from "@/views/concept/Concepts.vue";
+import Checkout from "@/views/checkout/Checkout.vue";
 
 export default {
   data() {
     return {
       order: {
         choosenAvatar: null,
-        choosenConcept: null
+        choosenConcept: []
       }
-    }
+    };
   },
   methods: {
     validateStep1() {
@@ -58,6 +74,7 @@ export default {
   components: {
     Preview,
     Concepts,
+    Checkout,
     FormWizard,
     TabContent
   }
