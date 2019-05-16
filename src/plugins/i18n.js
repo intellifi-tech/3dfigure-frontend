@@ -4,7 +4,7 @@ import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 
 const messages = {
-    'en': {
+    'EN': {
         landing: {
             navbar: {
                 home: 'Home',
@@ -21,21 +21,83 @@ const messages = {
                 print: 'Create a 3D Figure!',
                 model: 'Create Free 3D Figure'
             },
-            concept: {
-                header: 'Our Concepts'
+            howtouse:{
+                header:'How to Use?',
+                subheader:'You can upload your photo by following the warnings below.',
+
+                man:{
+                    radioText:'Man',
+                },
+                woman:{
+                    radioText:'Woman',
+                },
+                
+                trueHeader:'Aradığımız fotoğraf tam olarak bu!',
+                trueDesc:'Tam karşıdan, <b>yüzde</b> gölge yok, <b>dişler</b> gözükmüyor.<br><b class="text-dark">En doğal duruşunuzu yansıtıyor.</b>',
+                falseFirst:'Eğer selfie çekim yaparsan vücudunun duruşu bozulur ve ağzımız açık olursa modelde bozulma olur.',
+                falseSecond:'Yüzünüze el ve başka herhangi bir cismin teması modelin bozuk olarak oluşturulmasına sebep olacaktır.',
+                falseThird:'Eğer gözlük takarsanız, gözlük yüzünüze birleşik olarak modellenecek ve kötü bir görüntü olacaktır. Eğer gözlük sizin olmazsa olmaz ise bunu biz daha sonradan ekleme yapabiliriz.',
+                falseFourth:'Eğer vucüdunun duruşu yan olursa, 3D Modelde de yan olur ve yüzünüzde böyle yan duruyorsa yüzünüzün modellemesinde ufakta olsa kaymalar oluşabilir.',
+                createModel:'Create Free!',
+            },
+            concepts: {
+                header: 'Our Concepts',
+                subheader:'Choose what suits you with various concepts!',
+            },
+            examples:{
+                header:'Example Works',
+            },
+            about:{
+                header:'About us',
+                subheader:'Who are we? Check out our story!',
+            },
+            faq:{
+                header:'F.A.Q.',
+                subheader:'Review the questions of curiosity!',
+            },
+            pricing:{
+                header:'Pricing',
+                subheader:'Choose the package that suits you!',
+                kdv:'TAX',
+                buyNow:'Buy Now',
+                contactUs:'Contact us',
+                tableFirst:{
+                    title:'3D MODEL',
+                },
+                tableSecond:{
+                    title:'3D MODEL + EDITING',
+                },
+                tableThird:{
+                    title:'3D PRINT',
+                    listFirst:'standard + text',
+                    listSecond:'select concept'
+                },
+                tableFourth:{
+                    title:'SPECIAL',
+                    subTitle:'Request',
+                    listFirst:'Customizations'
+                },
             },
             contact: {
-                us: 'Contact Us',
-                info: 'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor incididunt ut labore et dolore',
-                address: '143 castle road 517',
-                phone: '+3 123 456 789',
-                mail: 'info@yourmail.com',
-                submit: 'Submit Now'
+                us: 'Contact Us', 
+                address: '<a href="https://www.google.com/maps/place/Abbasa%C4%9Fa+Mahallesi,+Bek%C3%A7i+Sk.+No:3,+34353+Be%C5%9Fikta%C5%9F%2F%C4%B0stanbul/@41.0496206,29.0052627,19z/data=!3m1!4b1!4m5!3m4!1s0x14cab7a5d2287bcf:0xe2dc664c4d87a338!8m2!3d41.0496672!4d29.0058455?hl=tr" target="_blank">Ihlamur Yıldız Street No:8/Z1 <br> Bahçeşehir University North Campus <br><b>Beşiktaş / İstanbul</b></a>',
+                phone: '+90 850 885 1991',
+                whatsapp:'+90 554 159 1525',
+                mail: 'info@3dfigur.com',
+                submit: 'Submit',
+            
+                form:{
+                    error:'Failed to send message.',
+                    fullname:'Full Name ',
+                    email:'E-mail',
+                    subject:'Subject',
+                    message:'Message',
+                }
 
             }
         },
         footer: {
-            copyright: '2019 Copyright 3D Figure',
+            copyright: '2019 3D Figure. All Rights Reserved.',
             company: 'IntelliFi'
         },
         login: {
@@ -71,7 +133,7 @@ const messages = {
         links: 'Essential Links',
         ecosystem: 'Ecosystem'
     },
-    'tr': {
+    'TR': {
         landing: {
             navbar: {
                 home: 'Giriş',
@@ -88,17 +150,80 @@ const messages = {
                 print: '3D Figür oluştur!',
                 model: 'Ücretsiz 3D Figür Oluştur'
             },
-            concept: {
-                header: 'Konseptler'
+            howtouse:{
+                header:'Nasıl Yapılır?',
+                subheader:'Aşağıdaki uyarıları dikkate alarak fotoğrafınızı yükleyebilirsiniz.',
+
+                man:{
+                    radioText:'Bay',
+                },
+                woman:{
+                    radioText:'Bayan',
+                },
+                
+                trueHeader:'Aradığımız fotoğraf tam olarak bu!',
+                trueDesc:'Tam karşıdan, <b>yüzde</b> gölge yok, <b>dişler</b> gözükmüyor.<br><b class="text-dark">En doğal duruşunuzu yansıtıyor.</b>',
+                falseFirst:'Eğer selfie çekim yaparsan vücudunun duruşu bozulur ve ağzımız açık olursa modelde bozulma olur.',
+                falseSecond:'Yüzünüze el ve başka herhangi bir cismin teması modelin bozuk olarak oluşturulmasına sebep olacaktır.',
+                falseThird:'Eğer gözlük takarsanız, gözlük yüzünüze birleşik olarak modellenecek ve kötü bir görüntü olacaktır. Eğer gözlük sizin olmazsa olmaz ise bunu biz daha sonradan ekleme yapabiliriz.',
+                falseFourth:'Eğer vucüdunun duruşu yan olursa, 3D Modelde de yan olur ve yüzünüzde böyle yan duruyorsa yüzünüzün modellemesinde ufakta olsa kaymalar oluşabilir.',
+                createModel:'Ücretsiz Oluştur!',
+            },
+            concepts: {
+                header: 'Konseptler',
+                subheader:'Çeşitli konseptlerle size uygun olanı seçin!',
+            },
+            examples:{
+                header:'Örnek Çalışmalarımız',
+            },
+            about:{
+                header:'Hakkımızda',
+                subheader:'Biz kimiz? Hikayemizi inceleyin!',
+            },
+            faq:{
+                header:'Sıkça Sorulan Sorular',
+                subheader:'Merak edilenleri inceleyin!',
+            },
+            pricing:{
+                header:'Fiyatlandırma',
+                subheader:'Size uygun olan paketi seçin!',
+                kdv:'KDV',
+                buyNow:'Satın Al',
+                contactUs:'Bize Ulaşın',
+                tableFirst:{
+                    title:'3D MODEL',
+                },
+                tableSecond:{
+                    title:'3D MODEL + Düzenleme',
+                },
+                tableThird:{
+                    title:'3D Çıktı',
+                    listFirst:'standart + yazılı kaide',
+                    listSecond:'konsept seçim'
+                },
+                tableFourth:{
+                    title:'Özel ',
+                    subTitle:'Talepler',
+                    listFirst:'Özelleştirmeler'
+                },
             },
             contact: {
                 us: 'İletişim',
-                info: 'consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor tempor incididunt ut labore et dolore',
-                address: '143 castle road 517',
-                phone: '+3 123 456 789',
-                mail: 'info@yourmail.com',
-                submit: 'Gönder'
+                address: '<a href="https://www.google.com/maps/place/Abbasa%C4%9Fa+Mahallesi,+Bek%C3%A7i+Sk.+No:3,+34353+Be%C5%9Fikta%C5%9F%2F%C4%B0stanbul/@41.0496206,29.0052627,19z/data=!3m1!4b1!4m5!3m4!1s0x14cab7a5d2287bcf:0xe2dc664c4d87a338!8m2!3d41.0496672!4d29.0058455?hl=tr" target="_blank">Ihlamur Yıldız Caddesi No:8/Z1 <br> Bahçeşehir Üniversitesi Kuzey Kampüsü <br><b>Beşiktaş / İstanbul</b></a>',
+                phone: '+90 850 885 1991',
+                whatsapp:'+90 554 159 1525',
+                mail: 'info@3dfigur.com',
+                submit: 'Gönder',
+            
+                form:{
+                    error:'Mesaj gönderilemedi.',
+                    fullname:'Ad Soyad',
+                    email:'E-posta',
+                    subject:'Konu',
+                    message:'Mesaj',
+                }
             }
+
         },
         footer: {
             copyright: '2019 3D Figür. Tüm hakları saklıdır.',
@@ -140,8 +265,8 @@ const messages = {
 };
 
 const i18n = new VueI18n({
-    locale: 'tr', // set locale
-    fallbackLocale: 'en', // set fallback locale
+    locale: 'TR', // set locale
+    fallbackLocale: 'EN', // set fallback locale
     messages, // set locale messages
 });
 
