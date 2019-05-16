@@ -198,7 +198,7 @@
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
                 <div class="man-div model-column row" v-show="man">
-                  <div class="col-lg-5 con-vs-chip mx-0 px-0 rounded-lg">
+                  <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item">
                        <img
                         src="assets/images/icon/icon-true.png"
@@ -206,18 +206,18 @@
                       >
                       <img
                         src="assets/images/portre/man/man-true.jpg"
-                        class="img-fluid mb-4 rounded-t-lg"
+                        class="img-fluid -mt-4 rounded-t-lg"
                       >
-                      <div class="content pl-4">
+                      <div class="content pt-4 px-4">
                         <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
-                        <p class="mb-1 pt-2" v-html="$t('landing.howtouse.trueDesc')"></p>
+                        <p class="pt-3" v-html="$t('landing.howtouse.trueDesc')"></p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-7">
+                  <div class="col-lg-7 pr-lg-0">
                     <ul id="man-list" class="falseList">
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
                              <img
                         src="assets/images/icon/icon-bad.png"
@@ -234,7 +234,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
                              <img
                         src="assets/images/icon/icon-bad.png"
@@ -251,7 +251,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
                              <img
                         src="assets/images/icon/icon-bad.png"
@@ -269,7 +269,7 @@
                       </li>
 
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light rounded-lg">
                           <div class="portre col-3 px-0">
                              <img
                         src="assets/images/icon/icon-bad.png"
@@ -288,9 +288,9 @@
                     </ul>
                   </div>
 
-                  <div class="row inline-feaure-wrap justify-content-center mt-5">
+                  <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
                     <div class="col-lg-12 px-0">
-                      <div class="sketchfab-embed-wrapper">
+                      <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
                           width="100%"
                           height="500"
@@ -348,7 +348,7 @@
                             <label for="mansampleFirst" class>
                               <img
                                 src="assets/images/portre/man/man-0.jpg"
-                                class="img-style img-fluid mb-4"
+                                class="img-style img-fluid mb-4 rounded"
                               >
                             </label>
                           </div>
@@ -368,7 +368,7 @@
                             <label for="mansampleSecond" class>
                               <img
                                 src="assets/images/portre/man/man-1.jpg"
-                                class="img-style img-fluid mb-4"
+                                class="img-style img-fluid mb-4 rounded"
                               >
                             </label>
                           </div>
@@ -387,7 +387,7 @@
                             <label for="mansampleThird" class>
                               <img
                                 src="assets/images/portre/man/man-2.jpg"
-                                class="img-style img-fluid mb-4"
+                                class="img-style img-fluid mb-4 rounded"
                               >
                             </label>
                           </div>
@@ -406,7 +406,7 @@
                             <label for="mansampleFourth" class>
                               <img
                                 src="assets/images/portre/man/boy-children.jpg"
-                                class="img-style img-fluid mb-4"
+                                class="img-style img-fluid mb-4 rounded"
                               >
                             </label>
                           </div>
@@ -432,7 +432,7 @@
 
                 <!-- woman div start -->
                 <div class="woman-div model-column row" v-show="!man">
-                  <div class="col-lg-5 con-vs-chip mx-0 px-0 rounded-lg">
+                  <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item">
                        <img
                         src="assets/images/icon/icon-true.png"
@@ -440,18 +440,18 @@
                       >
                       <img
                         src="assets/images/portre/woman/woman-true.jpg"
-                        class="img-fluid mb-4 rounded-t-lg"
+                        class="-mt-4 img-fluid rounded-t-lg"
                       >
-                      <div class="content pl-4">
+                      <div class="content pt-4 px-4">
                         <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
-                        <p class="mb-1 pt-2" v-html="$t('landing.howtouse.trueDesc')"></p>
+                        <p class="pt-3" v-html="$t('landing.howtouse.trueDesc')"></p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-7">
+                  <div class="col-lg-7 pr-lg-0">
                     <ul id="woman-list" class="falseList">
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
                              <img
                         src="assets/images/icon/icon-bad.png"
@@ -468,7 +468,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
                              <img
                         src="assets/images/icon/icon-bad.png"
@@ -485,7 +485,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
                              <img
                         src="assets/images/icon/icon-bad.png"
@@ -503,7 +503,7 @@
                       </li>
 
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light rounded-lg">
                           <div class="portre col-3 px-0">
                              <img
                         src="assets/images/icon/icon-bad.png"
@@ -522,9 +522,9 @@
                     </ul>
                   </div>
 
-                  <div class="row inline-feaure-wrap justify-content-center mt-5">
+                  <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
                     <div class="col-lg-12 px-0">
-                      <div class="sketchfab-embed-wrapper">
+                      <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
                           width="100%"
                           height="500"
@@ -581,7 +581,7 @@
                             <label for="womansampleFirst" class>
                               <img
                                 src="assets/images/portre/woman/woman-0.jpg"
-                                class="img-style img-fluid mb-4"
+                                class="img-style img-fluid mb-4 rounded"
                               >
                             </label>
                           </div>
@@ -601,7 +601,7 @@
                             <label for="womansampleSecond" class>
                               <img
                                 src="assets/images/portre/woman/woman-1.jpg"
-                                class="img-style img-fluid mb-4"
+                                class="img-style img-fluid mb-4 rounded"
                               >
                             </label>
                           </div>
@@ -621,7 +621,7 @@
                             <label for="womansampleThird" class>
                               <img
                                 src="assets/images/portre/woman/woman-2.jpg"
-                                class="img-style img-fluid mb-4"
+                                class="img-style img-fluid mb-4 rounded"
                               >
                             </label>
                           </div>
@@ -641,7 +641,7 @@
                             <label for="womansampleFourth" class>
                               <img
                                 src="assets/images/portre/woman/girl-children.jpg"
-                                class="img-style img-fluid mb-4"
+                                class="img-style img-fluid mb-4 rounded"
                               >
                             </label>
                           </div>
@@ -1553,7 +1553,7 @@
                   <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
                 </h6>
                 <hr>
-                <ul class="fa-ul pb-5 text-white">
+                <ul class="fa-ul mb-24 pb-24 text-white">
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
@@ -1583,7 +1583,7 @@
                   <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
                 </h6>
                 <hr>
-                <ul class="fa-ul pb-5 text-white">
+                <ul class="fa-ul mb-24 pb-24 text-white">
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
@@ -1610,7 +1610,7 @@
                   <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
                 </h6>
                 <hr>
-                <ul class="fa-ul pb-5 text-white">
+                <ul class="fa-ul mb-24 pb-24 text-white">
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
@@ -1645,7 +1645,7 @@
                   class="card-price text-white text-center"
                 >{{$t('landing.pricing.tableFourth.subTitle')}}</h6>
                 <hr>
-                <ul class="fa-ul pb-5 text-white">
+                <ul class="fa-ul mb-24 pb-24 text-white">
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-question"></i>
