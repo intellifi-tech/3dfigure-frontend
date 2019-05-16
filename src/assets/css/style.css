@@ -2526,7 +2526,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
       display: block;
       width: 25%; }
       .inline-feaure-wrap ul li .single-inline-feature-item {
-        padding: 40px 20px 34px 20px;
+        padding: 40px 20px 0px 20px;
         text-align: center; }
         .inline-feaure-wrap ul li .single-inline-feature-item:hover .title {
           color: #5369f0; }
@@ -3250,7 +3250,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   margin-top: 55px;
   list-style: none; }
   .contact-info-list .single-info-item {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3277,11 +3277,13 @@ ul.wp-block-latest-posts.is-grid.alignwide {
       -ms-flex: 1;
       flex: 1; }
       .contact-info-list .single-info-item .content .details {
-        display: block;
+         display: block; 
+         padding-top: 16px;
         -webkit-transition: all 0.3s ease-in;
         -moz-transition: all 0.3s ease-in;
         -o-transition: all 0.3s ease-in;
-        transition: all 0.3s ease-in; }
+        transition: all 0.3s ease-in;  
+      }
 
 .contact-form .form-group .form-control {
   height: 50px;
@@ -3803,18 +3805,24 @@ img.img-scale{
   transition: all .2s;
 }
 
-.how-to-selfie .title{ font-size:21px !important; }
+.how-to-selfie h4.title{ font-size:19px !important; }
 
 .how-to-selfie .model-column li{
   position: relative;
 }
-.selfie-status-icon{
+.selfie-true-icon{
   position: absolute;
-  top: 20px;
-  right: 5px;
-  width: 40px;
+  top: -20px;
+  left: -12px;
+  width: 50px;
   z-index: 999;
-     
+}
+.selfie-bad-icon{
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  z-index: 999;
 }
 
 /*lang select*/
@@ -4044,3 +4052,9 @@ text-align:left;
       box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .4);
       transition: all .3s;
     }
+
+/*contact section*/
+.single-info-item i.fa-whatsapp{
+  font-size: 33px;
+    padding: 12px 11px 12px 12px;
+}

@@ -11,28 +11,28 @@
 
             if (!name) {
                  $('#name').removeClass('error');
-                 $('#name').addClass('error').attr('placeholder', 'Your Name');
+                 $('#name').addClass('error');
              }else{
                  $('#name').removeClass('error');
              }
            
             if (!subject) {
                  $('#subject').removeClass('error');
-                 $('#subject').addClass('error').attr('placeholder', 'Subject');
+                 $('#subject').addClass('error');
              }else{
                  $('#subject').removeClass('error');
              }
            
             if (!email) {
                  $('#email').removeClass('error');
-                 $('#email').addClass('error').attr('placeholder','Enter Your Email')
+                 $('#email').addClass('error');
              }else{
                  $('#email').removeClass('error');
              }
 
             if (!message) {
                  $('#message').removeClass('error');
-                 $('#message').addClass('error').attr('placeholder','Write Your Message')
+                 $('#message').addClass('error');
              }else{
                  $('#message').removeClass('error');
              }
@@ -63,7 +63,7 @@
 	             });
              }else{
                 $('#get_in_touch').children('.email-success').remove();
-                $('#get_in_touch').prepend('<div class="alert alert-danger email-success">Somenthing is wrong</div>');
+                $('#get_in_touch').prepend("<div class='alert alert-danger email-success'>Mesaj gönderilemedi.</div>");
                 $('.email-success').fadeOut(5000);
              }
         });
