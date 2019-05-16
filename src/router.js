@@ -15,7 +15,9 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import { TokenService } from '@/services/token.service'
+import {
+	TokenService
+} from '@/services/token.service'
 
 Vue.use(Router)
 
@@ -31,7 +33,9 @@ const router = new Router({
 			// =============================================================================
 			path: '/',
 			component: () => import('./views/landing/Landing.vue'),
-			meta: {public: true},
+			meta: {
+				public: true
+			},
 			children: [
 				// =============================================================================
 				// Theme Routes
@@ -57,6 +61,11 @@ const router = new Router({
 					path: '/main',
 					name: 'main',
 					component: () => import('./views/Main.vue'),
+				},
+				{
+					path: '/checkout',
+					name: 'checkout',
+					component: () => import('./views/checkout/Checkout.vue'),
 				},
 				{
 					path: '/apps/email',

@@ -34,9 +34,9 @@ export default [
 		icon: "FileIcon",
 	},
 	{
-		url: "/onay-bekleyenler",
-		name: "Onay Bekleyenler",
-		slug: "onay-bekleyenler",
+		url: "/checkout",
+		name: "Sepetim",
+		slug: "checkout",
 		icon: "FileIcon",
 	
 	},

@@ -1,5 +1,6 @@
 import ApiService from './api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
+import CheckoutService from '@/services/checkout.service'
 import {
     TokenService
 } from './token.service'
@@ -18,6 +19,10 @@ const LoginService = {
             TokenService.saveToken(response.data.id_token)
             ApiService.setHeader()
             TokenService.saveAvatarToken(res.data.access_token)
+            const checkoutRes = await CheckoutService.getUserCheckout()
+            if (checkoutRes === 404) {
+                await CheckoutService.createCheckout()
+            }
 
             // NOTE: We haven't covered this yet in our ApiService 
             //       but don't worry about this just yet - I'll come back to it later
@@ -53,7 +58,7 @@ const LoginService = {
         // Remove the token and remove Authorization header from Api Service as well 
         TokenService.removeToken()
         ApiService.removeHeader()
-        AvatarSdkService.removeAvatarToken()
+        TokenService.removeAvatarToken()
 
         // NOTE: Again, we'll cover the 401 Interceptor a bit later. 
         //ApiService.unmount401Interceptor()
