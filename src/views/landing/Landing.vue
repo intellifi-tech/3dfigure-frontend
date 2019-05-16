@@ -933,92 +933,24 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <div class="product-carousel">
-              <div class="single-product-item">
-                <!-- single product item -->
+            <div class="product-carousel" >
+               <!-- single product item -->
+              <div class="single-product-item" v-for="n in 6" :key="n">
                 <div class="thumb">
                   <img src="assets/images/3dmodelornek1.png" alt="product image">
                 </div>
                 <div class="content">
                   <h4 class="title">
-                    <a href="#">Smart Watch</a>
+                    <a href="#">{{$t('landing.concepts.list.title')}}</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
+                    <span class="price">{{$t('landing.concepts.list.price')}}</span>
                   </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
+                  <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
+                  
                 </div>
               </div>
-              <!-- //. single product item -->
-              <div class="single-product-item">
-                <!-- single product item -->
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">V7t watch</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
-                  </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
-                </div>
-              </div>
-              <!-- //. single product item -->
-              <div class="single-product-item">
-                <!-- single product item -->
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">t2f Watch</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
-                  </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
-                </div>
-              </div>
-              <!-- //. single product item -->
-              <div class="single-product-item">
-                <!-- single product item -->
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">i21 Watch</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
-                  </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
-                </div>
-              </div>
-              <!-- //. single product item -->
-              <div class="single-product-item">
-                <!-- single product item -->
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">f25 Watch</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
-                  </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
-                </div>
-              </div>
-              <!-- //. single product item -->
+              <!-- // single product item -->
             </div>
           </div>
         </div>
@@ -1636,7 +1568,7 @@
                 <a
                   href="#"
                   class="btn btn-block text-uppercase border-none"
-                >{{$t('landing.pricing.buyNow')}}</a>
+                >{{$t('landing.pricing.buynow')}}</a>
               </div>
             </div>
           </div>
@@ -1663,7 +1595,7 @@
                 <a
                   href="#"
                   class="btn btn-block border-none text-uppercase"
-                >{{$t('landing.pricing.buyNow')}}</a>
+                >{{$t('landing.pricing.buynow')}}</a>
               </div>
             </div>
           </div>
@@ -1699,7 +1631,7 @@
                 <a
                   href="#"
                   class="btn btn-block border-none text-uppercase"
-                >{{$t('landing.pricing.buyNow')}}</a>
+                >{{$t('landing.pricing.buynow')}}</a>
               </div>
             </div>
           </div>

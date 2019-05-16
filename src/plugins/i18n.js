@@ -43,6 +43,11 @@ const messages = {
             concepts: {
                 header: 'Our Concepts',
                 subheader:'Choose what suits you with various concepts!',
+                list:{
+                    title:'Concept Example',
+                    price:'$100',
+                    buynow:'Buy Now',
+                }
             },
             examples:{
                 header:'Example Works',
@@ -59,7 +64,7 @@ const messages = {
                 header:'Pricing',
                 subheader:'Choose the package that suits you!',
                 kdv:'TAX',
-                buyNow:'Buy Now',
+                buynow:'Buy Now',
                 contactUs:'Contact us',
                 tableFirst:{
                     title:'3D MODEL',
@@ -172,6 +177,11 @@ const messages = {
             concepts: {
                 header: 'Konseptler',
                 subheader:'Çeşitli konseptlerle size uygun olanı seçin!',
+                list:{
+                    title:'Örnek Konsept',
+                    price:'$100',
+                    buynow:'Satın Al',
+                }
             },
             examples:{
                 header:'Örnek Çalışmalarımız',
@@ -188,7 +198,7 @@ const messages = {
                 header:'Fiyatlandırma',
                 subheader:'Size uygun olan paketi seçin!',
                 kdv:'KDV',
-                buyNow:'Satın Al',
+                buynow:'Satın Al',
                 contactUs:'Bize Ulaşın',
                 tableFirst:{
                     title:'3D MODEL',
