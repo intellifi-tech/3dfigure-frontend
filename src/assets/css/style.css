@@ -3200,6 +3200,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     border: none;
     padding: 0; }
     .accordion-wrapper .card .card-header a {
+      border-radius:.25rem;
       font-size: 18px;
       background-color: #fafafa;
       line-height: 28px;
