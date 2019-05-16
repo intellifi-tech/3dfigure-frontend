@@ -6,6 +6,7 @@
       :title="null"
       :subtitle="null"
       finishButtonText="Submit"
+      @on-complete="goToBasket"
     >
       <tab-content
         data-vv-scope="vs1"
@@ -19,21 +20,6 @@
         </div>
       </tab-content>
       <tab-content title="Konsept Seç" class="mb-5" icon="feather icon-home">
-        <div>
-          <concepts></concepts>
-        </div>
-      </tab-content>
-      <tab-content title="Checkout" class="mb-5" icon="feather icon-home">
-        <div>
-          <checkout :basketList="this.order.choosenConcept"></checkout>
-        </div>
-      </tab-content>
-      <tab-content title="Address" class="mb-5" icon="feather icon-home">
-        <div>
-          <concepts></concepts>
-        </div>
-      </tab-content>
-      <tab-content title="Payment" class="mb-5" icon="feather icon-home">
         <div>
           <concepts></concepts>
         </div>
@@ -59,6 +45,9 @@ export default {
     };
   },
   methods: {
+    goToBasket() {
+      this.$router.push("/checkout");
+    },
     validateStep1() {
       return new Promise((resolve, reject) => {
         this.$validator.validateAll("step-1").then(result => {

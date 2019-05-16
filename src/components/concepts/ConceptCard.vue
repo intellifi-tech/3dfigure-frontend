@@ -17,13 +17,21 @@
       <p class="text-grey">{{concept.price}}</p>
       <div class="flex justify-between flex-wrap">
         <vs-button
-          v-if="isAdded(concept)"
+          v-if="!this.isAdded"
           class="mt-4 shadow-lg"
           type="gradient"
           color="#7367F0"
           gradient-color-secondary="#CE9FFC"
           @click="addBasket(concept)"
         >Sepete Ekle</vs-button>
+        <vs-button
+          v-else
+          class="mt-4 shadow-lg"
+          type="gradient"
+          color="#7367F0"
+          gradient-color-secondary="#CE9FFC"
+          @click="outBasket(concept)"
+        >Sepetten Çıkar</vs-button>
         <vs-button @click="openAlert('primary')" class="mt-4" type="border" color="#b9b9b9">Detail</vs-button>
       </div>
     </vx-card>
@@ -31,10 +39,12 @@
 </template>
 
 <script>
+import CheckoutService from "@/services/checkout.service";
 export default {
   data() {
     return {
-      choosen: ""
+      choosen: "",
+      isAdded: null
     };
   },
   props: {
@@ -43,15 +53,17 @@ export default {
       required: true
     }
   },
+  created: async function() {
+    this.isAdded = await CheckoutService.isConceptAdded(this.concept.id);
+  },
   methods: {
-    addBasket(concept) {
-      this.$parent.$parent.$parent.$parent.$parent.order.choosenConcept.push(concept);
+    addBasket: async function(concept) {
+      await CheckoutService.addToBasket(concept);
+      this.isAdded = !this.isAdded;
     },
-    isAdded(concept) {
-      var isAdded = this.$parent.$parent.$parent.$parent.$parent.order.choosenConcept.filter(function(con) {
-        if (con.id === concept.id) return con;
-      });
-      return isAdded.length == 0;
+    outBasket: async function(concept) {
+      await CheckoutService.deleteFromBasket(concept.id)
+      this.isAdded = !this.isAdded;
     },
     openAlert() {
       this.$vs.dialog({
