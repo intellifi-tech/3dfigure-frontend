@@ -19,13 +19,20 @@ $(document).on("click", '[data-toggle="lightbox"]', function(event) {
         responsive: [{
             breakpoint: 768,
             settings: {
-                slidesToShow: 4
+                slidesToShow: 3
             }
         }, {
             breakpoint: 520,
             settings: {
-                slidesToShow: 3
+                slidesToShow: 2
             }
         }]
     });
 });
+
+/*landing page scroll href click events*/
+/*$("#cform").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#concepts").offset().top
+    }, 1500);
+});*/
