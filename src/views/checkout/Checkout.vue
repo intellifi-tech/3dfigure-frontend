@@ -9,18 +9,16 @@
     >
       <tab-content title="Checkout" class="mb-5" icon="feather icon-home">
         <div>
-          <checkout :basketList="this.order.choosenConcept"></checkout>
+          <checkout-list :basketList="this.basketList"></checkout-list>
         </div>
       </tab-content>
       <tab-content title="Address" class="mb-5" icon="feather icon-home">
         <div>
-          <concepts></concepts>
+          <address></address>
         </div>
       </tab-content>
       <tab-content title="Payment" class="mb-5" icon="feather icon-home">
-        <div>
-          <concepts></concepts>
-        </div>
+        <div></div>
       </tab-content>
     </form-wizard>
   </div>
@@ -29,11 +27,14 @@
 <script>
 import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
-import Checkout from "@/views/checkout/Checkout.vue";
+import CheckoutList from "@/components/checkout/CheckoutList.vue";
+import Address from "@/components/address/Address.vue";
+import ConceptService from "@/services/concept.service.js";
 
 export default {
   data() {
     return {
+      basketList: null,
       orderDTO: {
         orderCode: this.generateId(),
         cargoCode: null,
@@ -44,6 +45,9 @@ export default {
         lastModificationDate: null
       }
     };
+  },
+  created: async function() {
+    this.basketList = await ConceptService.getConceptsInBasket();
   },
   methods: {
     generateId() {
@@ -69,7 +73,8 @@ export default {
     }
   },
   components: {
-    Checkout,
+    CheckoutList,
+    Address,
     FormWizard,
     TabContent
   }

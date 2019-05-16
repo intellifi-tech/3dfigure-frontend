@@ -62,17 +62,8 @@ export default {
       this.isAdded = !this.isAdded;
     },
     outBasket: async function(concept) {
-      await CheckoutService.deleteFromBasket(concept.id)
+      await CheckoutService.deleteFromBasket(concept.id);
       this.isAdded = !this.isAdded;
-    },
-    openAlert() {
-      this.$vs.dialog({
-        color: this.colorAlert,
-        title: `Dialog`,
-        text:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        accept: this.acceptAlert
-      });
     }
   }
 };

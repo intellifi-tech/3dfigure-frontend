@@ -64,7 +64,7 @@ const router = new Router({
 				},
 				{
 					path: '/checkout',
-					name: 'main',
+					name: 'checkout',
 					component: () => import('./views/checkout/Checkout.vue'),
 				},
 				{
