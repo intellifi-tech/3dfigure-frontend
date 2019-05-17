@@ -3826,6 +3826,15 @@ img.img-scale{
   z-index: 999;
 }
 
+.order-status-icon{
+  position: absolute;
+  top: -20px;
+  right: -12px;
+  width: 60px;
+  z-index: 999;
+}
+
+
 /*lang select*/
 #select-lang{
 

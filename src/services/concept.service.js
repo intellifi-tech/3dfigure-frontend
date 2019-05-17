@@ -4,7 +4,7 @@ const ConceptService = {
 
     getAllConcepts: async function (page) {
         try {
-            const response = await ApiService.get("/concepts?page=" + page + "&size=4")
+            const response = await ApiService.get("/concepts?page=" + page + "&size=6")
             return response.data
         } catch (error) {
             return error.response.status

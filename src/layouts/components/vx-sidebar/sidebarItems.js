@@ -28,9 +28,9 @@ export default [
 		icon: "EditIcon",
 	},
 	{
-		url: "/concepts",
-		name: "Konseptler",
-		slug: "konseptler",
+		url: "/order",
+		name: "Figür Geçmişi",
+		slug: "figurgecmisi",
 		icon: "FileIcon",
 	},
 	{
