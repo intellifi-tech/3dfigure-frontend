@@ -63,7 +63,7 @@
                     :title="$t('register.alert.title')"
                     :active="activated"
                   >{{$t('register.alert.message')}}</vs-alert>
-                  <vs-button type="border" to="/pages/login">{{$t('login.login')}}</vs-button>
+                  <vs-button type="border" to="/login">{{$t('login.login')}}</vs-button>
                   <vs-button class="float-right" @click="register">{{$t('login.reg')}}</vs-button>
                 </div>
               </div>
