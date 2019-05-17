@@ -23,13 +23,13 @@
                 <div class="vx-card__title mb-8">
                   <h4 class="mb-4">{{$t('login.login')}}</h4>
                 </div>
-                <vs-input
-                  icon="icon icon-user"
-                  icon-pack="feather"
-                  :label-placeholder="$t('login.user')"
-                  v-model="username"
-                  class="w-full mb-6 no-icon-border"
-                />
+                  <vs-input
+                    icon="icon icon-user"
+                    icon-pack="feather"
+                    :label-placeholder="$t('login.user')"
+                    v-model="username"
+                    class="w-full mb-6 no-icon-border"
+                  />
                 <vs-input
                   type="password"
                   icon="icon icon-lock"

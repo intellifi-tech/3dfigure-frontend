@@ -70,7 +70,53 @@
             </li>
             <li class="nav-item">
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
-              <a class="nav-link" href="/login">{{ $t('landing.navbar.login') }}</a>
+              <a class="nav-link cursor-pointer" @click="popupActivo=true" >{{ $t('landing.navbar.login') }} </a>
+              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo">
+                <vs-input
+                  icon="icon icon-user"
+                  icon-pack="feather"
+                  :label-placeholder="$t('login.user')"
+                  v-model="username"
+                  class="w-full mb-6 no-icon-border"
+                />
+                <vs-input
+                  type="password"
+                  icon="icon icon-lock"
+                  icon-pack="feather"
+                  :label-placeholder="$t('login.pass')"
+                  v-model="password"
+                  class="w-full mb-4 no-icon-border"
+                />
+                <div class="flex flex-wrap justify-between my-5">
+                  <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
+                  <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
+                </div>
+                <vs-button type="border" @click="register">{{$t('login.reg')}}</vs-button>
+                <vs-button class="float-right" @click="login">{{$t('login.login')}}</vs-button>
+                <vs-alert
+                  color="danger"
+                  :title="$t('login.alert.title')"
+                  :active="activated"
+                >{{$t('login.alert.message')}}</vs-alert>
+                <vs-divider position="center" class="my-8"></vs-divider>
+                <div class="social-login mb-4 flex flex-wrap justify-between">
+                  <span>{{$t('login.sos')}}</span>
+                  <div class="social-login-buttons flex">
+                    <vs-button
+                      color="#1551b1"
+                      class="mr-4 px-8"
+                      icon="icon icon-facebook"
+                      icon-pack="feather"
+                    ></vs-button>
+                    <vs-button
+                      color="#00aaff"
+                      class="px-8"
+                      icon="icon icon-twitter"
+                      icon-pack="feather"
+                    ></vs-button>
+                  </div>
+                </div>
+              </vs-popup>
             </li>
           </ul>
           <!-- /.navbar-nav -->
@@ -200,10 +246,7 @@
                 <div class="man-div model-column row" v-show="man">
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item">
-                       <img
-                        src="assets/images/icon/icon-true.png"
-                        class="selfie-true-icon"
-                      >
+                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/man/man-true.jpg"
                         class="img-fluid -mt-4 rounded-t-lg"
@@ -219,10 +262,7 @@
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
-                             <img
-                        src="assets/images/icon/icon-bad.png"
-                        class="selfie-bad-icon"
-                      >
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-1.jpg"
                               class="rounded-l-lg img-scale"
@@ -236,10 +276,7 @@
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
-                             <img
-                        src="assets/images/icon/icon-bad.png"
-                        class="selfie-bad-icon"
-                      >
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-3.jpg"
                               class="rounded-l-lg img-scale"
@@ -253,10 +290,7 @@
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
-                             <img
-                        src="assets/images/icon/icon-bad.png"
-                        class="selfie-bad-icon"
-                      >
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-2.jpg"
                               class="rounded-l-lg img-scale"
@@ -271,10 +305,7 @@
                       <li>
                         <div class="card-group bg-light rounded-lg">
                           <div class="portre col-3 px-0">
-                             <img
-                        src="assets/images/icon/icon-bad.png"
-                        class="selfie-bad-icon"
-                      >
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-4.jpg"
                               class="rounded-l-lg img-scale"
@@ -299,7 +330,6 @@
                           allow="autoplay; fullscreen; vr"
                           mozallowfullscreen="true"
                           webkitallowfullscreen="true"
-                         
                         ></iframe>
                         <iframe
                           width="100%"
@@ -311,7 +341,7 @@
                           webkitallowfullscreen="true"
                           style="display:none !important;"
                         ></iframe>
-                         <iframe
+                        <iframe
                           width="100%"
                           height="500"
                           src="https://sketchfab.com/models/75e5ded5f8c54e5a9a63f3a778abb080/embed"
@@ -321,7 +351,7 @@
                           webkitallowfullscreen="true"
                           style="display:none !important;"
                         ></iframe>
-                         <iframe
+                        <iframe
                           width="100%"
                           height="500"
                           src="https://sketchfab.com/models/d187f4d9406b4a07a5b0443b48ddb59c/embed"
@@ -377,7 +407,7 @@
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                           <input
+                            <input
                               v-on:change="changeiframe"
                               type="radio"
                               name="switch"
@@ -396,7 +426,7 @@
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                           <input
+                            <input
                               v-on:change="changeiframe"
                               type="radio"
                               name="switch"
@@ -415,7 +445,7 @@
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a href="/login">
+                            <a @click="popupActivo=true">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
@@ -434,10 +464,7 @@
                 <div class="woman-div model-column row" v-show="!man">
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item">
-                       <img
-                        src="assets/images/icon/icon-true.png"
-                        class="selfie-true-icon"
-                      >
+                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/woman/woman-true.jpg"
                         class="-mt-4 img-fluid rounded-t-lg"
@@ -453,10 +480,7 @@
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
-                             <img
-                        src="assets/images/icon/icon-bad.png"
-                        class="selfie-bad-icon"
-                      >
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-1.jpg"
                               class="rounded-l-lg img-scale"
@@ -470,10 +494,7 @@
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
-                             <img
-                        src="assets/images/icon/icon-bad.png"
-                        class="selfie-bad-icon"
-                      >
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-3.jpg"
                               class="rounded-l-lg img-scale"
@@ -487,10 +508,7 @@
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
-                             <img
-                        src="assets/images/icon/icon-bad.png"
-                        class="selfie-bad-icon"
-                      >
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-2.jpg"
                               class="rounded-l-lg img-scale"
@@ -505,10 +523,7 @@
                       <li>
                         <div class="card-group bg-light rounded-lg">
                           <div class="portre col-3 px-0">
-                             <img
-                        src="assets/images/icon/icon-bad.png"
-                        class="selfie-bad-icon"
-                      >
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-4.jpg"
                               class="rounded-l-lg img-scale"
@@ -534,7 +549,7 @@
                           mozallowfullscreen="true"
                           webkitallowfullscreen="true"
                         ></iframe>
-                          <iframe
+                        <iframe
                           width="100%"
                           height="500"
                           src="https://sketchfab.com/models/4571b5cb637e464e838f82f12f3293fa/embed"
@@ -544,7 +559,7 @@
                           webkitallowfullscreen="true"
                           style="display:none !important;"
                         ></iframe>
-                          <iframe
+                        <iframe
                           width="100%"
                           height="500"
                           src="https://sketchfab.com/models/e51684e803b84f68bdae50e209741bdf/embed"
@@ -554,7 +569,7 @@
                           webkitallowfullscreen="true"
                           style="display:none !important;"
                         ></iframe>
-                          <iframe
+                        <iframe
                           width="100%"
                           height="500"
                           src="https://sketchfab.com/models/94bbe2f5ca6347189bcb6dd3d76922be/embed"
@@ -590,7 +605,7 @@
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                           <input
+                            <input
                               v-on:change="changeiframe"
                               type="radio"
                               name="switch"
@@ -630,7 +645,7 @@
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                          <input
+                            <input
                               v-on:change="changeiframe"
                               type="radio"
                               name="switch"
@@ -650,7 +665,7 @@
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a href="/login">
+                            <a @click="popupActivo=true">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
@@ -933,8 +948,8 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <div class="product-carousel" >
-               <!-- single product item -->
+            <div class="product-carousel">
+              <!-- single product item -->
               <div class="single-product-item" v-for="n in 6" :key="n">
                 <div class="thumb">
                   <img src="assets/images/3dmodelornek1.png" alt="product image">
@@ -947,7 +962,6 @@
                     <span class="price">{{$t('landing.concepts.list.price')}}</span>
                   </div>
                   <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
-                  
                 </div>
               </div>
               <!-- // single product item -->
@@ -1136,7 +1150,6 @@
             <img src="assets/images/3dmodelornek1.png" class="img-fluid rounded">
           </a>
         </div>
-        
       </div>
     </section>
 
@@ -1622,7 +1635,9 @@
                       <i class="fas fa-check"></i>
                     </span>
                     {{$t('landing.pricing.tableThird.listSecond')}} +
-                    <span class="underline h4">
+                    <span
+                      class="underline h4"
+                    >
                       $
                       <strong>15</strong>
                     </span>
@@ -1819,12 +1834,24 @@
   </div>
 </template>
 <script>
+import {
+  required,
+  email,
+  minLength,
+  maxLength
+} from "vuelidate/lib/validators";
+import { LoginService } from "@/services/login.service";
 export default {
   data() {
     return {
       man: true,
       sampleiframe: true,
-      langs: ["TR", "EN"]
+      langs: ["TR", "EN"],
+      popupActivo: false,
+      username: "",
+      password: "",
+      remember: false,
+      activated: false
     };
   },
   methods: {
@@ -1833,7 +1860,32 @@ export default {
     },
     changeiframe() {
       /*************************** */
+    },
+    register() {
+      this.popupActivo = false
+      this.$router.push("/register");
+    },
+    login: async function() {
+      if (this.$v.$invalid) {
+        this.activated = true;
+        return;
+      }
+      this.popupActivo = false;
+      this.activated = false;
+      var credential = {
+        username: this.username,
+        password: this.password,
+        rememberMe: this.remember
+      };
+      var status = await LoginService.login(credential);
+      if (status == 200) {
+        this.$router.push("/main");
+      }
     }
+  },
+  validations: {
+    username: { required, email },
+    password: { required, minLength: minLength(5), maxLength: maxLength(15) }
   }
 };
 </script>
