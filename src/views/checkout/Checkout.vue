@@ -12,9 +12,9 @@
           <checkout-list :basketList="this.basketList"></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Address" class="mb-5" icon="feather icon-home">
+      <tab-content title="Adres" class="mb-5" icon="feather icon-home">
         <div>
-          <address></address>
+          <adres></adres>
         </div>
       </tab-content>
       <tab-content title="Payment" class="mb-5" icon="feather icon-home">
@@ -28,7 +28,7 @@
 import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import CheckoutList from "@/components/checkout/CheckoutList.vue";
-import Address from "@/components/address/Address.vue";
+import Adres from "@/components/address/Adres.vue";
 import ConceptService from "@/services/concept.service.js";
 
 export default {
@@ -74,9 +74,9 @@ export default {
   },
   components: {
     CheckoutList,
-    Address,
+    Adres,
     FormWizard,
-    TabContent
+    TabContent,
   }
 };
 </script>
