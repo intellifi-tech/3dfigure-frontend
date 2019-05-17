@@ -22,10 +22,12 @@
             <h6 class="mt-4 text-success" icon-pack="feather" icon="icon-check">Kargo Ücretsiz</h6>
             <input type="button" value="KALDIR" class="btn btn-block btn-danger mt-4">
           </div>
+
         </div>
         <!--row card products-->
          
       </div>
+
       <!--col products-->
  
       <div class="col-lg-4">
@@ -64,6 +66,7 @@
           >
         </div>
         <!--card totals-->
+
       </div>
       <!--col totals-->
     </div>
@@ -73,10 +76,20 @@
 </template>
 
 <script>
+import CheckoutService from "@/services/checkout.service";
 export default {
   props: {
     basketList: {
       type: Array
+    }
+  },
+  methods: {
+    outBasket: async function(concept) {
+      await CheckoutService.deleteFromBasket(concept.id);
+      this.basketList = this.basketList.filter(function(element) {
+        return element.id !== concept.id;
+      });
+      this.isAdded = !this.isAdded;
     }
   }
 };
