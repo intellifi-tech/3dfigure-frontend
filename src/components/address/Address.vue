@@ -3,17 +3,17 @@
     <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="8" vs-sm="4" vs-xs="12">
       <vx-card>
         <vs-row>
-          <vs-column vs-justify="center" vs-align="left" vs-lg="6">
-            <vs-input label="Name" placeholder="Placeholder" v-model="value1"/>
-            <vs-input label="Name" placeholder="Placeholder" v-model="value1"/>
-            <vs-input label="Name" placeholder="Placeholder" v-model="value1"/>
-            <vs-input label="Name" placeholder="Placeholder" v-model="value1"/>
+          <vs-column vs-justify="center" vs-align="left" vs-lg="6">1
+            <vs-input  class="inputx" label="Name" placeholder="Placeholder" v-model="value1"/>
+            <vs-input  class="inputx" label="Name" placeholder="Placeholder" v-model="value1"/>
+            <vs-input  class="inputx" label="Name" placeholder="Placeholder" v-model="value1"/>
+            <vs-input  class="inputx" label="Name" placeholder="Placeholder" v-model="value1"/>
           </vs-column>
           <vs-column vs-justify="center" vs-align="right" vs-lg="6">
-            <vs-input label="Name" placeholder="Placeholder" v-model="value1"/>
-            <vs-input label="Name" placeholder="Placeholder" v-model="value1"/>
-            <vs-input label="Name" placeholder="Placeholder" v-model="value1"/>
-            <vs-input label="Name" placeholder="Placeholder" v-model="value1"/>
+            <vs-input  class="inputx" label="Name" placeholder="Placeholder" v-model="value1"/>
+            <vs-input  class="inputx" label="Name" placeholder="Placeholder" v-model="value1"/>
+            <vs-input  class="inputx" label="Name" placeholder="Placeholder" v-model="value1"/>
+            <vs-input  class="inputx" label="Name" placeholder="Placeholder" v-model="value1"/>
           </vs-column>
         </vs-row>
       </vx-card>

@@ -73,9 +73,9 @@ const router = new Router({
 					component: () => import('./views/email/Email.vue')
 				},
 				{
-					path: '/concepts',
-					name: 'concepts',
-					component: () => import('./views/concept/Concepts.vue'),
+					path: '/order',
+					name: 'order',
+					component: () => import('./views/order/Order.vue'),
 				},
 				{
 					path: '/onay-bekleyenler',
