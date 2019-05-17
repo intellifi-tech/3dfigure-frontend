@@ -5,4 +5,6 @@ services:
     build: ./
     ports:
       - "8081:80"
+    volumes:
+      - ./public/assets/images/figures:/app/assets/images/figures
 

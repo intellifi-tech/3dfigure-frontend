@@ -1,47 +1,82 @@
 <template>
-  <vs-row vs-w="12">
-    <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="8" vs-sm="4" vs-xs="12">
-      <vx-card>
-      </vx-card>
-    </vs-col>
-    <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-lg="4" vs-sm="4" vs-xs="12">
-      <vx-card>
-        <h2>Price Detail</h2>
-        <vs-divider color="dark"></vs-divider>
-        <div v-for="basket in basketList" :key="basket.showIndex">
-          <vs-col
-            vs-offset="0"
-            vs-type="flex"
-            vs-justify="center"
-            vs-align="center"
-            vs-w="10"
-          >
-            <div>{{basket.conceptName}}</div>
-          </vs-col>
-          <vs-col
-            vs-offset="10"
-            vs-type="flex"
-            vs-justify="center"
-            vs-align="center"
-            vs-w="2"
-          >
-            <div>{{basket.price}}</div>
-          </vs-col>
+  <div class="pt-4">
+    <form-wizard
+      color="rgba(var(--vs-primary), 1)"
+      errorColor="rgba(var(--vs-danger), 1)"
+      :title="null"
+      :subtitle="null"
+      finishButtonText="Submit"
+    >
+      <tab-content title="Checkout" class="mb-5" icon="feather icon-home">
+        <div>
+          <checkout-list :basketList="this.basketList"></checkout-list>
         </div>
-      </vx-card>
-    </vs-col>
-  </vs-row>
+      </tab-content>
+      <tab-content title="Address" class="mb-5" icon="feather icon-home">
+        <div>
+          <address></address>
+        </div>
+      </tab-content>
+      <tab-content title="Payment" class="mb-5" icon="feather icon-home">
+        <div></div>
+      </tab-content>
+    </form-wizard>
+  </div>
 </template>
 
 <script>
+import { FormWizard, TabContent } from "vue-form-wizard";
+import "vue-form-wizard/dist/vue-form-wizard.min.css";
+import CheckoutList from "@/components/checkout/CheckoutList.vue";
+import Address from "@/components/address/Address.vue";
+import ConceptService from "@/services/concept.service.js";
+
 export default {
-  props: {
-    basketList: {
-      type: Array
+  data() {
+    return {
+      basketList: null,
+      orderDTO: {
+        orderCode: this.generateId(),
+        cargoCode: null,
+        orderStatus: "BUILD",
+        information: null,
+        totalPrice: null,
+        createdDate: null,
+        lastModificationDate: null
+      }
+    };
+  },
+  created: async function() {
+    this.basketList = await ConceptService.getConceptsInBasket();
+  },
+  methods: {
+    generateId() {
+      var length = 11;
+      var timestamp = +new Date();
+
+      var _getRandomInt = function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+
+      return function() {
+        var ts = timestamp.toString();
+        var parts = ts.split("").reverse();
+        var id = "";
+
+        for (var i = 0; i < length; ++i) {
+          var index = _getRandomInt(0, parts.length - 1);
+          id += parts[index];
+        }
+
+        return id;
+      };
     }
+  },
+  components: {
+    CheckoutList,
+    Address,
+    FormWizard,
+    TabContent
   }
 };
 </script>
-
-<style>
-</style>

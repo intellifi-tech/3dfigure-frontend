@@ -17,9 +17,9 @@
     <!-- navbar area start -->
     <nav class="navbar navbar-area navbar-expand-lg">
       <div class="container nav-container">
-        <div class="logo-wrapper navbar-brand">
+        <div class="logo-wrapper navbar-brand col-7 col-lg-2 col-md-4">
           <a href="/" class="logo">
-            <img src="assets/images/3dfigurlogo.png" alt="logo">
+            <img src="assets/images/logo/logo.png" alt="logo">
           </a>
         </div>
         <div class="collapse navbar-collapse" id="cgency">
@@ -41,7 +41,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#how-to-use">{{ $t('landing.navbar.howToUse') }}</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item">
               <a class="nav-link" href="#concepts">{{ $t('landing.navbar.concepts') }}</a>
             </li>
             <li class="nav-item">
@@ -70,7 +70,53 @@
             </li>
             <li class="nav-item">
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
-              <a class="nav-link" href="/login">{{ $t('landing.navbar.login') }}</a>
+              <a class="nav-link cursor-pointer" @click="popupActivo=true" >{{ $t('landing.navbar.login') }} </a>
+              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo">
+                <vs-input
+                  icon="icon icon-user"
+                  icon-pack="feather"
+                  :label-placeholder="$t('login.user')"
+                  v-model="username"
+                  class="w-full mb-6 no-icon-border"
+                />
+                <vs-input
+                  type="password"
+                  icon="icon icon-lock"
+                  icon-pack="feather"
+                  :label-placeholder="$t('login.pass')"
+                  v-model="password"
+                  class="w-full mb-4 no-icon-border"
+                />
+                <div class="flex flex-wrap justify-between my-5">
+                  <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
+                  <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
+                </div>
+                <vs-button type="border" @click="register">{{$t('login.reg')}}</vs-button>
+                <vs-button class="float-right" @click="login">{{$t('login.login')}}</vs-button>
+                <vs-alert
+                  color="danger"
+                  :title="$t('login.alert.title')"
+                  :active="activated"
+                >{{$t('login.alert.message')}}</vs-alert>
+                <vs-divider position="center" class="my-8"></vs-divider>
+                <div class="social-login mb-4 flex flex-wrap justify-between">
+                  <span>{{$t('login.sos')}}</span>
+                  <div class="social-login-buttons flex">
+                    <vs-button
+                      color="#1551b1"
+                      class="mr-4 px-8"
+                      icon="icon icon-facebook"
+                      icon-pack="feather"
+                    ></vs-button>
+                    <vs-button
+                      color="#00aaff"
+                      class="px-8"
+                      icon="icon icon-twitter"
+                      icon-pack="feather"
+                    ></vs-button>
+                  </div>
+                </div>
+              </vs-popup>
             </li>
           </ul>
           <!-- /.navbar-nav -->
@@ -163,17 +209,17 @@
                 <div class="col-lg-4">
                   <div class="section-title text-center">
                     <!-- section title -->
-                    <h2 class="title">Nasıl yapılır?</h2>
-                    <p>Aşağıdaki uyarıları dikkate alarak sisteme fotoğrafınızı yükleyebilirsiniz.</p>
+                    <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
+                    <p>{{$t('landing.howtouse.subheader')}}</p>
                   </div>
                 </div>
               </div>
-              <ul id="ul-man-or-woman" class="pl-0 mb-5">
+              <ul id="ul-man-or-woman" class="row mb-5">
                 <p class="btn-switch">
                   <input
                     type="radio"
                     id="yes"
-                    name="switch"
+                    name="switchFirst"
                     class="btn-switch__radio btn-switch__radio_yes"
                     v-on:change="change"
                     checked
@@ -181,15 +227,15 @@
                   <input
                     type="radio"
                     id="no"
-                    name="switch"
+                    name="switchFirst"
                     class="btn-switch__radio btn-switch__radio_no"
                     v-on:change="change"
                   >
                   <label for="yes" class="btn-switch__label btn-switch__label_yes">
-                    <span class="btn-switch__txt">Man</span>
+                    <span class="btn-switch__txt">{{$t('landing.howtouse.man.radioText')}}</span>
                   </label>
                   <label for="no" class="btn-switch__label btn-switch__label_no">
-                    <span class="btn-switch__txt">Woman</span>
+                    <span class="btn-switch__txt">{{$t('landing.howtouse.woman.radioText')}}</span>
                   </label>
                 </p>
               </ul>
@@ -198,93 +244,84 @@
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
                 <div class="man-div model-column row" v-show="man">
-                  <div class="col-lg-5 con-vs-chip mx-0 px-0 rounded-lg">
+                  <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item">
+                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/man/man-true.jpg"
-                        class="img-fluid mb-4 rounded-t-lg"
+                        class="img-fluid -mt-4 rounded-t-lg"
                       >
-                      <div class="content pl-4">
-                        <h4>Aradığımız fotoğraf tam olarak bu!</h4>
-                        <p class="mb-1 pt-2">
-                          Tam karşıdan,
-                          <b>yüzde</b> gölge yok,
-                          <b>dişler</b> gözükmüyor.
-                          <br>
-                          <b class="text-dark">En doğal duruşunuzu yansıtıyor.</b>
-                        </p>
+                      <div class="content pt-4 px-4">
+                        <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
+                        <p class="pt-3" v-html="$t('landing.howtouse.trueDesc')"></p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-7">
+                  <div class="col-lg-7 pr-lg-0">
                     <ul id="man-list" class="falseList">
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-1.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
                           <div class="content col-9 pt-3">
-                            <p
-                              class="text-base"
-                            >Eğer selfie çekim yaparsan vücudunun duruşu bozulur ve ağzımız açık olursa modelde bozulma olur.</p>
+                            <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-3.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
                           <div class="content col-9 pt-3">
-                            <p
-                              class="text-base"
-                            >Yüzünüze el ve başka herhangi bir cismin teması modelin bozuk olarak oluşturulmasına sebep olacaktır.</p>
+                            <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-2.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
                           <div class="content col-9 pt-3">
-                            <p
-                              class="text-base"
-                            >Eğer gözlük takarsanız, gözlük yüzünüze birleşik olarak modellenecek ve kötü bir görüntü olacaktır. Eğer gözlük sizin olmazsa olmaz ise bunu biz daha sonradan ekleme yapabiliriz.</p>
+                            <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
                           </div>
                         </div>
                       </li>
 
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light rounded-lg">
                           <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-4.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
                           <div class="content col-9 pt-3">
-                            <p
-                              class="text-base"
-                            >Eğer vucüdunun duruşu yan olursa, 3D Modelde de yan olur ve yüzünüzde böyle yan duruyorsa yüzünüzün modellemesinde ufakta olsa kaymalar oluşabilir.</p>
+                            <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
                           </div>
                         </div>
                       </li>
                     </ul>
                   </div>
 
-                  <div class="row inline-feaure-wrap justify-content-center mt-5">
+                  <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
                     <div class="col-lg-12 px-0">
-                      <div class="sketchfab-embed-wrapper">
+                      <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
                           width="100%"
                           height="500"
@@ -294,70 +331,126 @@
                           mozallowfullscreen="true"
                           webkitallowfullscreen="true"
                         ></iframe>
+                        <iframe
+                          width="100%"
+                          height="500"
+                          src="https://sketchfab.com/models/97c994795c1d4ddbb3ef57af8da88276/embed"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; vr"
+                          mozallowfullscreen="true"
+                          webkitallowfullscreen="true"
+                          style="display:none !important;"
+                        ></iframe>
+                        <iframe
+                          width="100%"
+                          height="500"
+                          src="https://sketchfab.com/models/75e5ded5f8c54e5a9a63f3a778abb080/embed"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; vr"
+                          mozallowfullscreen="true"
+                          webkitallowfullscreen="true"
+                          style="display:none !important;"
+                        ></iframe>
+                        <iframe
+                          width="100%"
+                          height="500"
+                          src="https://sketchfab.com/models/d187f4d9406b4a07a5b0443b48ddb59c/embed"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; vr"
+                          mozallowfullscreen="true"
+                          webkitallowfullscreen="true"
+                          style="display:none !important;"
+                        ></iframe>
                       </div>
                     </div>
-                    <ul id="concepts-list">
+                    <ul class="concepts-list">
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <a href="#">
+                            <input
+                              v-on:change="changeiframe"
+                              type="radio"
+                              name="switch"
+                              class="btn-switch__radio"
+                              id="mansampleFirst"
+                              checked
+                            >
+                            <label for="mansampleFirst" class>
                               <img
-                                src="assets/images/3dmodelornek1.png"
-                                class="img-style img-fluid mb-4"
+                                src="assets/images/portre/man/man-0.jpg"
+                                class="img-style img-fluid mb-4 rounded"
                               >
-                              <h4 class="title">Mezuniyet</h4>
-                            </a>
+                            </label>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="single-inline-feature-item">
+                          <div class="content">
+                            <input
+                              v-on:change="changeiframe"
+                              type="radio"
+                              name="switch"
+                              class="btn-switch__radio"
+                              id="mansampleSecond"
+                            >
+                            <label for="mansampleSecond" class>
+                              <img
+                                src="assets/images/portre/man/man-1.jpg"
+                                class="img-style img-fluid mb-4 rounded"
+                              >
+                            </label>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <a href="#">
+                            <input
+                              v-on:change="changeiframe"
+                              type="radio"
+                              name="switch"
+                              class="btn-switch__radio"
+                              id="mansampleThird"
+                            >
+                            <label for="mansampleThird" class>
                               <img
-                                src="assets/images/3dmodelornek1.png"
-                                class="img-style img-fluid mb-4"
+                                src="assets/images/portre/man/man-2.jpg"
+                                class="img-style img-fluid mb-4 rounded"
                               >
-                              <h4 class="title">Mezuniyet</h4>
-                            </a>
+                            </label>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <a href="#">
+                            <input
+                              v-on:change="changeiframe"
+                              type="radio"
+                              name="switch"
+                              class="btn-switch__radio"
+                              id="mansampleFourth"
+                            >
+                            <label for="mansampleFourth" class>
                               <img
-                                src="assets/images/3dmodelornek1.png"
-                                class="img-style img-fluid mb-4"
+                                src="assets/images/portre/man/boy-children.jpg"
+                                class="img-style img-fluid mb-4 rounded"
                               >
-                              <h4 class="title">Mezuniyet</h4>
-                            </a>
+                            </label>
                           </div>
                         </div>
                       </li>
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a href="#">
-                              <img
-                                src="assets/images/3dmodelornek1.png"
-                                class="img-style img-fluid mb-4"
-                              >
-                              <h4 class="title">Mezuniyet</h4>
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item">
-                          <div class="content">
-                            <a href="/login">
+                            <a @click="popupActivo=true">
                               <img
                                 src="assets/images/icon/icon-plus.png"
-                                class="img-scale img-fluid mb-4"
+                                class="border-0 img-scale img-thumbnail"
                               >
-                              <h4 class="title">Ücretsiz Oluştur!</h4>
+                              <h4 class="title">{{$t('landing.howtouse.createModel')}}</h4>
                             </a>
                           </div>
                         </div>
@@ -369,94 +462,84 @@
 
                 <!-- woman div start -->
                 <div class="woman-div model-column row" v-show="!man">
-                 
-                  <div class="col-lg-5 con-vs-chip mx-0 px-0 rounded-lg">
+                  <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item">
+                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/woman/woman-true.jpg"
-                        class="img-fluid mb-4 rounded-t-lg"
+                        class="-mt-4 img-fluid rounded-t-lg"
                       >
-                      <div class="content pl-4">
-                        <h4>Aradığımız fotoğraf tam olarak bu!</h4>
-                        <p class="mb-1 pt-2">
-                          Tam karşıdan,
-                          <b>yüzde</b> gölge yok,
-                          <b>dişler</b> gözükmüyor.
-                          <br>
-                          <b class="text-dark">En doğal duruşunuzu yansıtıyor.</b>
-                        </p>
+                      <div class="content pt-4 px-4">
+                        <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
+                        <p class="pt-3" v-html="$t('landing.howtouse.trueDesc')"></p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-7">
+                  <div class="col-lg-7 pr-lg-0">
                     <ul id="woman-list" class="falseList">
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-1.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
                           <div class="content col-9 pt-3">
-                            <p
-                              class="text-base"
-                            >Eğer selfie çekim yaparsan vücudunun duruşu bozulur ve ağzımız açık olursa modelde bozulma olur.</p>
+                            <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-3.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
                           <div class="content col-9 pt-3">
-                            <p
-                              class="text-base"
-                            >Yüzünüze el ve başka herhangi bir cismin teması modelin bozuk olarak oluşturulmasına sebep olacaktır.</p>
+                            <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-2.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
                           <div class="content col-9 pt-3">
-                            <p
-                              class="text-base"
-                            >Eğer gözlük takarsanız, gözlük yüzünüze birleşik olarak modellenecek ve kötü bir görüntü olacaktır. Eğer gözlük sizin olmazsa olmaz ise bunu biz daha sonradan ekleme yapabiliriz.</p>
+                            <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
                           </div>
                         </div>
                       </li>
 
                       <li>
-                        <div class="con-vs-chip mb-2 rounded-lg">
+                        <div class="card-group bg-light rounded-lg">
                           <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-4.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
                           <div class="content col-9 pt-3">
-                            <p
-                              class="text-base"
-                            >Eğer vucüdunun duruşu yan olursa, 3D Modelde de yan olur ve yüzünüzde böyle yan duruyorsa yüzünüzün modellemesinde ufakta olsa kaymalar oluşabilir.</p>
+                            <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
                           </div>
                         </div>
                       </li>
                     </ul>
                   </div>
-                  
-                  <div class="row inline-feaure-wrap justify-content-center mt-5">
+
+                  <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
                     <div class="col-lg-12 px-0">
-                      <div class="sketchfab-embed-wrapper">
+                      <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
                           width="100%"
                           height="500"
@@ -466,70 +549,128 @@
                           mozallowfullscreen="true"
                           webkitallowfullscreen="true"
                         ></iframe>
+                        <iframe
+                          width="100%"
+                          height="500"
+                          src="https://sketchfab.com/models/4571b5cb637e464e838f82f12f3293fa/embed"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; vr"
+                          mozallowfullscreen="true"
+                          webkitallowfullscreen="true"
+                          style="display:none !important;"
+                        ></iframe>
+                        <iframe
+                          width="100%"
+                          height="500"
+                          src="https://sketchfab.com/models/e51684e803b84f68bdae50e209741bdf/embed"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; vr"
+                          mozallowfullscreen="true"
+                          webkitallowfullscreen="true"
+                          style="display:none !important;"
+                        ></iframe>
+                        <iframe
+                          width="100%"
+                          height="500"
+                          src="https://sketchfab.com/models/94bbe2f5ca6347189bcb6dd3d76922be/embed"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; vr"
+                          mozallowfullscreen="true"
+                          webkitallowfullscreen="true"
+                          style="display:none !important;"
+                        ></iframe>
                       </div>
                     </div>
-                    <ul id="concepts-list">
+                    <ul class="concepts-list">
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <a href="#">
+                            <input
+                              v-on:change="changeiframe"
+                              type="radio"
+                              name="switch"
+                              class="btn-switch__radio"
+                              id="womansampleFirst"
+                              checked
+                            >
+                            <label for="womansampleFirst" class>
                               <img
-                                src="assets/images/3dmodelornek1.png"
-                                class="img-style img-fluid mb-4"
+                                src="assets/images/portre/woman/woman-0.jpg"
+                                class="img-style img-fluid mb-4 rounded"
                               >
-                              <h4 class="title">Mezuniyet</h4>
-                            </a>
+                            </label>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <a href="#">
+                            <input
+                              v-on:change="changeiframe"
+                              type="radio"
+                              name="switch"
+                              class="btn-switch__radio"
+                              id="womansampleSecond"
+                              checked
+                            >
+                            <label for="womansampleSecond" class>
                               <img
-                                src="assets/images/3dmodelornek1.png"
-                                class="img-style img-fluid mb-4"
+                                src="assets/images/portre/woman/woman-1.jpg"
+                                class="img-style img-fluid mb-4 rounded"
                               >
-                              <h4 class="title">Mezuniyet</h4>
-                            </a>
+                            </label>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <a href="#">
+                            <input
+                              v-on:change="changeiframe"
+                              type="radio"
+                              name="switch"
+                              class="btn-switch__radio"
+                              id="womansampleThird"
+                              checked
+                            >
+                            <label for="womansampleThird" class>
                               <img
-                                src="assets/images/3dmodelornek1.png"
-                                class="img-style img-fluid mb-4"
+                                src="assets/images/portre/woman/woman-2.jpg"
+                                class="img-style img-fluid mb-4 rounded"
                               >
-                              <h4 class="title">Mezuniyet</h4>
-                            </a>
+                            </label>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <a href="#">
+                            <input
+                              v-on:change="changeiframe"
+                              type="radio"
+                              name="switch"
+                              class="btn-switch__radio"
+                              id="womansampleFourth"
+                              checked
+                            >
+                            <label for="womansampleFourth" class>
                               <img
-                                src="assets/images/3dmodelornek1.png"
-                                class="img-style img-fluid mb-4"
+                                src="assets/images/portre/woman/girl-children.jpg"
+                                class="img-style img-fluid mb-4 rounded"
                               >
-                              <h4 class="title">Mezuniyet</h4>
-                            </a>
+                            </label>
                           </div>
                         </div>
                       </li>
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a href="/login">
+                            <a @click="popupActivo=true">
                               <img
                                 src="assets/images/icon/icon-plus.png"
-                                class="img-scale img-fluid mb-4"
+                                class="border-0 img-scale img-thumbnail"
                               >
-                              <h4 class="title">Ücretsiz Oluştur!</h4>
+                              <h4 class="title">{{$t('landing.howtouse.createModel')}}</h4>
                             </a>
                           </div>
                         </div>
@@ -793,14 +934,14 @@
     <!-- intro video area end -->
 
     <!-- our product area start -->
-    <section class="product-area padding-top-110 padding-bottom-20" id="gallery">
+    <section class="product-area padding-top-110 padding-bottom-20" id="concepts">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <div class="section-title text-center">
               <!-- section title -->
-              <h2 class="title">{{$t('landing.concept.header')}}</h2>
-              <p>Çeşitli konseptlerle size uygun olanı seçin!</p>
+              <h2 class="title">{{$t('landing.concepts.header')}}</h2>
+              <p>{{$t('landing.concepts.subheader')}}</p>
             </div>
             <!-- //. section title -->
           </div>
@@ -808,91 +949,22 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="product-carousel">
-              <div class="single-product-item">
-                <!-- single product item -->
+              <!-- single product item -->
+              <div class="single-product-item" v-for="n in 6" :key="n">
                 <div class="thumb">
                   <img src="assets/images/3dmodelornek1.png" alt="product image">
                 </div>
                 <div class="content">
                   <h4 class="title">
-                    <a href="#">Smart Watch</a>
+                    <a href="#">{{$t('landing.concepts.list.title')}}</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
+                    <span class="price">{{$t('landing.concepts.list.price')}}</span>
                   </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
+                  <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
                 </div>
               </div>
-              <!-- //. single product item -->
-              <div class="single-product-item">
-                <!-- single product item -->
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">V7t watch</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
-                  </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
-                </div>
-              </div>
-              <!-- //. single product item -->
-              <div class="single-product-item">
-                <!-- single product item -->
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">t2f Watch</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
-                  </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
-                </div>
-              </div>
-              <!-- //. single product item -->
-              <div class="single-product-item">
-                <!-- single product item -->
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">i21 Watch</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
-                  </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
-                </div>
-              </div>
-              <!-- //. single product item -->
-              <div class="single-product-item">
-                <!-- single product item -->
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">f25 Watch</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
-                  </div>
-                  <a href="#" class="boxed-bt">Buy Now</a>
-                </div>
-              </div>
-              <!-- //. single product item -->
+              <!-- // single product item -->
             </div>
           </div>
         </div>
@@ -906,7 +978,7 @@
           <div class="col-lg-6">
             <div class="section-title text-center">
            
-              <h2 class="title">{{$t('landing.concept.header')}}</h2>
+              <h2 class="title">{{$t('landing.concepts.header')}}</h2>
               <p>Çeşitli konseptlerle size uygun olanı seçin!</p>
             </div>
            
@@ -1059,74 +1131,23 @@
       </div>
     </section>-->
 
-    <section class="container padding-top-90 padding-bottom-20">
+    <section class="container padding-top-90 padding-bottom-20" id="examples">
       <div class="row">
         <div class="col-lg-6">
           <div class="section-title text-left dark">
-            <h2 class="title font-light font-sans">Örnek Çalışmalarımız</h2>
+            <h2 class="title font-light font-sans">{{$t('landing.examples.header')}}</h2>
           </div>
         </div>
       </div>
       <div class="customer-logos slider padding-bottom-30">
-        <div class="slide">
+        <div class="slide" v-for="n in 6" :key="n">
           <a
-            href="https://unsplash.it/1200/768.jpg?image=251"
+            href="assets/images/3dmodelornek1.png"
             data-toggle="lightbox"
             data-gallery="gallery"
             class="col-md-4"
           >
-            <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid rounded">
-          </a>
-        </div>
-        <div class="slide">
-          <a
-            href="https://unsplash.it/1200/768.jpg?image=252"
-            data-toggle="lightbox"
-            data-gallery="gallery"
-            class="col-md-4"
-          >
-            <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid rounded">
-          </a>
-        </div>
-        <div class="slide">
-          <a
-            href="https://unsplash.it/1200/768.jpg?image=253"
-            data-toggle="lightbox"
-            data-gallery="gallery"
-            class="col-md-4"
-          >
-            <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid rounded">
-          </a>
-        </div>
-
-        <div class="slide">
-          <a
-            href="https://unsplash.it/1200/768.jpg?image=254"
-            data-toggle="lightbox"
-            data-gallery="gallery"
-            class="col-md-4"
-          >
-            <img src="https://unsplash.it/600.jpg?image=254" class="img-fluid rounded">
-          </a>
-        </div>
-        <div class="slide">
-          <a
-            href="https://unsplash.it/1200/768.jpg?image=255"
-            data-toggle="lightbox"
-            data-gallery="gallery"
-            class="col-md-4"
-          >
-            <img src="https://unsplash.it/600.jpg?image=255" class="img-fluid rounded">
-          </a>
-        </div>
-        <div class="slide">
-          <a
-            href="https://unsplash.it/1200/768.jpg?image=256"
-            data-toggle="lightbox"
-            data-gallery="gallery"
-            class="col-md-4"
-          >
-            <img src="https://unsplash.it/600.jpg?image=256" class="img-fluid rounded">
+            <img src="assets/images/3dmodelornek1.png" class="img-fluid rounded">
           </a>
         </div>
       </div>
@@ -1138,17 +1159,17 @@
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <div class="section-title text-center white">
-              <h2 class="title">Hakkımızda</h2>
-              <p>Biz kimiz? Hikayemizi inceleyin!</p>
+              <h2 class="title">{{$t('landing.about.header')}}</h2>
+              <p>{{$t('landing.about.subheader')}}</p>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-12">
             <div class="single-testimonial-item rounded-lg">
-              <div class="author-meta mb-4 col-12">
+              <div class="author-meta mb-4 col-3">
                 <div class>
-                  <img src="assets/images/3dfigurlogo.png" alt="testimonial image">
+                  <img src="assets/images/logo/logo.png" alt="testimonial image">
                 </div>
               </div>
 
@@ -1170,8 +1191,8 @@
         <div class="row justify-content-center">
           <div class="col-lg-6">
             <div class="section-title text-center">
-              <h2 class="title">Sıkça Sorulan Sorular</h2>
-              <p>Merak edilenleri inceleyin!</p>
+              <h2 class="title">{{$t('landing.faq.header')}}</h2>
+              <p>{{$t('landing.faq.subheader')}}</p>
             </div>
           </div>
         </div>
@@ -1529,21 +1550,23 @@
           <center class="col-12">
             <div class="col-lg-6">
               <div class="section-title text-center">
-                <h2 class="title">Fiyatlandırma</h2>
-                <p>Size uygun olan paketi seçin!</p>
+                <h2 class="title">{{$t('landing.pricing.header')}}</h2>
+                <p>{{$t('landing.pricing.subheader')}}</p>
               </div>
             </div>
           </center>
           <div class="col-lg-3">
             <div class="card mb-5 mb-lg-0">
               <div class="card-body">
-                <h5 class="card-title text-white text-uppercase text-center">3D Model</h5>
+                <h5
+                  class="card-title text-white text-uppercase text-center"
+                >{{$t('landing.pricing.tableFirst.title')}}</h5>
                 <h6 class="card-price text-white text-center">
                   $10
-                  <span class="period">+ KDV</span>
+                  <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
                 </h6>
                 <hr>
-                <ul class="fa-ul pb-5 text-white">
+                <ul class="fa-ul mb-24 pb-24 text-white">
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
@@ -1555,20 +1578,25 @@
                     </span>ply + texture
                   </li>
                 </ul>
-                <a href="#" class="btn btn-block text-uppercase border-none">Satın al</a>
+                <a
+                  href="#"
+                  class="btn btn-block text-uppercase border-none"
+                >{{$t('landing.pricing.buynow')}}</a>
               </div>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="card mb-5 mb-lg-0">
               <div class="card-body">
-                <h5 class="card-title text-white text-uppercase text-center">3D Model + Düzenleme</h5>
+                <h5
+                  class="card-title text-white text-uppercase text-center"
+                >{{$t('landing.pricing.tableSecond.title')}}</h5>
                 <h6 class="card-price text-white text-center">
                   $25
-                  <span class="period">+ KDV</span>
+                  <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
                 </h6>
                 <hr>
-                <ul class="fa-ul pb-5 text-white">
+                <ul class="fa-ul mb-24 pb-24 text-white">
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
@@ -1577,60 +1605,80 @@
                   </li>
                   <li>&nbsp;</li>
                 </ul>
-                <a href="#" class="btn btn-block border-none text-uppercase">Satın al</a>
+                <a
+                  href="#"
+                  class="btn btn-block border-none text-uppercase"
+                >{{$t('landing.pricing.buynow')}}</a>
               </div>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title text-white text-uppercase text-center">3D Çıktı</h5>
+                <h5
+                  class="card-title text-white text-uppercase text-center"
+                >{{$t('landing.pricing.tableThird.title')}}</h5>
                 <h6 class="card-price text-white text-center">
                   $100
-                  <span class="period">+ KDV</span>
+                  <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
                 </h6>
                 <hr>
-                <ul class="fa-ul pb-5 text-white">
+                <ul class="fa-ul mb-24 pb-24 text-white">
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
                     </span>
-                    standart + text
+                    {{$t('landing.pricing.tableThird.listFirst')}}
                   </li>
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
-                    </span>select concept (
-                    <strong>+$15</strong>)
+                    </span>
+                    {{$t('landing.pricing.tableThird.listSecond')}} +
+                    <span
+                      class="underline h4"
+                    >
+                      $
+                      <strong>15</strong>
+                    </span>
                   </li>
                 </ul>
-                <a href="#" class="btn btn-block border-none text-uppercase">Satın al</a>
+                <a
+                  href="#"
+                  class="btn btn-block border-none text-uppercase"
+                >{{$t('landing.pricing.buynow')}}</a>
               </div>
             </div>
           </div>
           <div class="col-lg-3">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title text-white text-uppercase text-center">Özel</h5>
-                <h6 class="card-price text-white text-center">Talepler</h6>
+                <h5
+                  class="card-title text-white text-uppercase text-center"
+                >{{$t('landing.pricing.tableFourth.title')}}</h5>
+                <h6
+                  class="card-price text-white text-center"
+                >{{$t('landing.pricing.tableFourth.subTitle')}}</h6>
                 <hr>
-                <ul class="fa-ul pb-5 text-white">
+                <ul class="fa-ul mb-24 pb-24 text-white">
                   <li>
                     <span class="fa-li">
                       <i class="fas fa-question"></i>
                     </span>
-                    Özelleştirmeler
+                    {{$t('landing.pricing.tableFourth.listFirst')}}
                   </li>
                   <li>&nbsp;</li>
                 </ul>
-                <a href="#" class="btn btn-block border-none text-uppercase">Bize Ulaşın</a>
+                <a
+                  href="#contact"
+                  class="btn btn-block border-none text-uppercase"
+                >{{$t('landing.pricing.contactUs')}}</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <!--pricing tables end-->
 
     <!-- contact area start -->
@@ -1641,16 +1689,14 @@
             <div class="contact-info-area">
               <!-- contact infor area -->
               <h3 class="title">{{$t('landing.contact.us')}}</h3>
-              <p>{{$t('landing.contact.info')}}</p>
               <ul class="contact-info-list">
                 <li class="single-info-item">
                   <!-- single info item -->
                   <div class="icon">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-building"></i>
                   </div>
                   <div class="content">
-                    <span class="details">{{$t('landing.contact.address')}}</span>
-                    <span class="details">{{$t('landing.contact.address')}}</span>
+                    <span v-html="$t('landing.contact.address')"></span>
                   </div>
                 </li>
                 <!-- //. single info item -->
@@ -1660,8 +1706,20 @@
                     <i class="fas fa-phone"></i>
                   </div>
                   <div class="content">
-                    <span class="details">{{$t('landing.contact.phone')}}</span>
-                    <span class="details">{{$t('landing.contact.phone')}}</span>
+                    <span class="details">
+                      <a href="tel:+90 850 885 1991">+90 850 885 1991</a>
+                    </span>
+                  </div>
+                </li>
+                <li class="single-info-item">
+                  <!-- single info item -->
+                  <div class="icon">
+                    <i class="fab fa-whatsapp"></i>
+                  </div>
+                  <div class="content">
+                    <span class="details">
+                      <a href="https://api.whatsapp.com/send?phone=905541591525">+90 554 159 1525</a>
+                    </span>
                   </div>
                 </li>
                 <!-- //. single info item -->
@@ -1671,8 +1729,9 @@
                     <i class="far fa-envelope"></i>
                   </div>
                   <div class="content">
-                    <span class="details">{{$t('landing.contact.mail')}}</span>
-                    <span class="details">{{$t('landing.contact.mail')}}</span>
+                    <span class="details">
+                      <a href="mailto:info@3dfigur.com">info@3dfigur.com</a>
+                    </span>
                   </div>
                 </li>
                 <!-- //. single info item -->
@@ -1687,17 +1746,32 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <input type="text" id="name" class="form-control" placeholder="Ad Soyad">
+                      <input
+                        type="text"
+                        id="name"
+                        class="form-control"
+                        v-bind:placeholder="$t('landing.contact.form.fullname')"
+                      >
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <input type="text" id="email" class="form-control" placeholder="E-posta">
+                      <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        v-bind:placeholder="$t('landing.contact.form.email')"
+                      >
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <input type="text" id="subject" class="form-control" placeholder="Konu">
+                      <input
+                        type="text"
+                        id="subject"
+                        class="form-control"
+                        v-bind:placeholder="$t('landing.contact.form.subject')"
+                      >
                     </div>
                     <div class="form-group textarea">
                       <textarea
@@ -1705,7 +1779,7 @@
                         id="message"
                         class="form-control"
                         cols="30"
-                        placeholder="Mesaj"
+                        v-bind:placeholder="$t('landing.contact.form.message')"
                         rows="10"
                       ></textarea>
                     </div>
@@ -1729,23 +1803,13 @@
             <div class="footer-inner text-center">
               <ul class="social-icon">
                 <li>
-                  <a href="#">
+                  <a href="https://www.instagram.com/3dfigur/" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/3dfigur" target="_blank">
                     <i class="fab fa-facebook-f"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fab fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fab fa-google-plus-g"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fab fa-pinterest-p"></i>
                   </a>
                 </li>
               </ul>
@@ -1770,17 +1834,58 @@
   </div>
 </template>
 <script>
+import {
+  required,
+  email,
+  minLength,
+  maxLength
+} from "vuelidate/lib/validators";
+import { LoginService } from "@/services/login.service";
 export default {
   data() {
     return {
       man: true,
-      langs: ["tr", "en"]
+      sampleiframe: true,
+      langs: ["TR", "EN"],
+      popupActivo: false,
+      username: "",
+      password: "",
+      remember: false,
+      activated: false
     };
   },
   methods: {
     change() {
       this.man = !this.man;
+    },
+    changeiframe() {
+      /*************************** */
+    },
+    register() {
+      this.popupActivo = false
+      this.$router.push("/register");
+    },
+    login: async function() {
+      if (this.$v.$invalid) {
+        this.activated = true;
+        return;
+      }
+      this.popupActivo = false;
+      this.activated = false;
+      var credential = {
+        username: this.username,
+        password: this.password,
+        rememberMe: this.remember
+      };
+      var status = await LoginService.login(credential);
+      if (status == 200) {
+        this.$router.push("/main");
+      }
     }
+  },
+  validations: {
+    username: { required, email },
+    password: { required, minLength: minLength(5), maxLength: maxLength(15) }
   }
 };
 </script>
