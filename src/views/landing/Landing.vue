@@ -175,7 +175,7 @@
                   {{$t('landing.first.print')}}
                 </h1>
                 <div class="btn-wrapper">
-                  <a href="/login" class="boxed-btn btn-rounded reverse-color">
+                  <a @click="popupActivo=true" style="cursor:pointer;" class="boxed-btn btn-rounded reverse-color text-white">
                     <i class="fas fa-shopping-cart"></i>
                     {{$t('landing.first.model')}}
                   </a>
@@ -445,7 +445,7 @@
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a @click="popupActivo=true">
+                            <a @click="popupActivo=true" style="cursor:pointer;">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
