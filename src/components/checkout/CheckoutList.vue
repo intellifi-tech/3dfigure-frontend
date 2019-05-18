@@ -1,6 +1,5 @@
 <template>
   <div class="container-fluid">
-
     <div class="col-12 vx-card py-3 px-5 mt-5" v-if="basketList.length == 0">
       Sepette ürün bulunmuyor.
       <a href="/main">Yeni Model Oluştur!</a>
@@ -9,10 +8,12 @@
     <div class="row" v-else>
       <div class="col-lg-8">
         <div class="row vx-card shadow-md px-4 py-4 mb-5" v-for="basket in basketList" :key="basket.id">
+
           <div class="col-lg-2 px-0">
             <img src="assets/images/3dmodelornek1.png">
           </div>
           <div class="border-black border-right col-lg-7 pl-5">
+
             <h3 class="card-title pb-3">{{basket.conceptName}}</h3>
             <!--<h5 class="text-gray">
             Konsept:
@@ -72,6 +73,7 @@
             class="vs-button vs-button-filled vs-button-success btn-block"
           >
         </div>
+
         <!--card checkout -->
       </div>
       <!--col totals -->
@@ -79,6 +81,7 @@
     <!--row checkout -->
   </div>
   <!--container checkout -->
+
 </template>
 
 <script>
