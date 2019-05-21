@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vx-card class="p-2">
+    <vx-card class="p-2 mb-4">
       <unity ref="unity"></unity>
     </vx-card>
     <vx-card title="Fotoğraflarım">
@@ -75,31 +75,38 @@ export default {
     initialize: async function() {
       var number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
-      this.limit = number.totalFigure - this.userFigures.length
+      this.limit = number.totalFigure - this.userFigures.length;
     },
     avatarUpload($event, index) {
       // Avatar SDK isteğinin sonucu
       var response = JSON.parse($event.currentTarget.response);
+      // Open loading page
       this.$vs.loading({
         text: "3D Figure Hazırlanıyor",
         clickEffect: true,
         textAfter: true
       });
 
-      this.$refs.upload.srcs[index].avatarKey = response.code;
-      setTimeout(() => {
-        this.$vs.loading.close();
-        this.showAvatar(response.code);
-      }, 30000);
-      this.figure.avatarKey = response.code;
-      this.figure.figureName = response.code;
-      if (this.figure.avatarKey) {
+      if (response.code) {
+        this.$refs.upload.srcs[index].avatarKey = response.code;
+        setTimeout(() => {
+          this.$vs.loading.close();
+          this.showAvatar(response.code);
+        }, 30000);
+        this.figure.avatarKey = response.code;
+        this.figure.figureName = response.code;
+
         /*const formData = new FormData()
         formData.append("avatarKey", this.figure.avatarKey)
         formData.append("imageName", this.figure.imagePath)*/
-        debugger
-        this.figure.userId = this.$parent.$parent.$parent.$parent.member.id
+        this.figure.userId = this.$parent.$parent.$parent.$parent.member.id;
         FigureService.saveUserFigure(this.figure);
+      } else {
+        this.$vs.notify({
+          title: "HATA",
+          text: "Avatar key oluşturulamadı tekrar deneyiniz",
+          color: "danger"
+        });
       }
     },
     serverUpload($event) {
