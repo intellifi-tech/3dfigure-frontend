@@ -9,7 +9,7 @@
     >
       <tab-content title="Checkout" class="mb-5" icon="feather icon-home">
         <div>
-          <checkout-list :basketList="this.basketList"></checkout-list>
+          <checkout-list :basketList="this.basketList" :kdv="this.kdv" :totalPriceNet="this.totalPriceNet" :totalPrice="this.totalPrice"></checkout-list>
         </div>
       </tab-content>
       <tab-content title="Adres" class="mb-5" icon="feather icon-home">
@@ -34,7 +34,10 @@ import ConceptService from "@/services/concept.service.js";
 export default {
   data() {
     return {
-      basketList: null,
+      basketList: [],
+      totalPrice: 0,
+      kdv: 0,
+      totalPriceNet: 0,
       orderDTO: {
         orderCode: this.generateId(),
         cargoCode: null,
@@ -46,8 +49,13 @@ export default {
       }
     };
   },
-  created: async function() {
+  beforeCreate: async function() {
     this.basketList = await ConceptService.getConceptsInBasket();
+    this.basketList.forEach(element => {
+      this.totalPriceNet += element.price * element.quantity;
+      this.totalPrice += element.price * element.quantity * 1.18;
+      this.kdv += element.price * element.quantity * 0.18;
+    });
   },
   methods: {
     generateId() {
@@ -76,7 +84,7 @@ export default {
     CheckoutList,
     Adres,
     FormWizard,
-    TabContent,
+    TabContent
   }
 };
 </script>
