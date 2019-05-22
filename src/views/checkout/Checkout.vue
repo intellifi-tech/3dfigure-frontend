@@ -12,7 +12,7 @@
           <checkout-list></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Adres" class="mb-5" icon="feather icon-home">
+      <tab-content title="Adress" class="mb-5" icon="feather icon-home">
         <div>
           <adres></adres>
         </div>
@@ -35,6 +35,17 @@ export default {
     return {
     };
   },
+<<<<<<< HEAD
+=======
+  beforeCreate: async function() {
+    this.basketList = await ConceptService.getConceptsInBasket();
+    this.basketList.forEach(element => {
+      this.totalPriceNet += element.price * 1;
+      this.totalPrice += element.price * 1 * 1.18;
+      this.kdv += element.price * 1 * 0.18;
+    });
+  },
+>>>>>>> f86bf7410d384e7c726f30322dff85c98444f4a9
   methods: {
     generateId() {
       var length = 11;
