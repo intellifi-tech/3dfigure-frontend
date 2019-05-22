@@ -57,15 +57,9 @@
               </div>
               <span class="text-muted">${{this.kdv.toFixed(2)}}</span>
             </li>
-<<<<<<< HEAD
             <li class="mb-2 py-3 d-flex justify-content-between">
               <span>Total (USD)</span>
               <strong>${{this.totalPrice.toFixed(2)}}</strong>
-=======
-            <li class="pt-3 d-flex justify-content-between">
-              <strong>Toplam (USD)</strong>
-              <strong>${{totalPrice.toFixed(2)}}</strong>
->>>>>>> f86bf7410d384e7c726f30322dff85c98444f4a9
             </li>
           </ul>
         </div>
