@@ -12,7 +12,7 @@
           <checkout-list :basketList="this.basketList" :kdv="this.kdv" :totalPriceNet="this.totalPriceNet" :totalPrice="this.totalPrice"></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Adres" class="mb-5" icon="feather icon-home">
+      <tab-content title="Adress" class="mb-5" icon="feather icon-home">
         <div>
           <adres></adres>
         </div>
@@ -52,9 +52,9 @@ export default {
   beforeCreate: async function() {
     this.basketList = await ConceptService.getConceptsInBasket();
     this.basketList.forEach(element => {
-      this.totalPriceNet += element.price * element.quantity;
-      this.totalPrice += element.price * element.quantity * 1.18;
-      this.kdv += element.price * element.quantity * 0.18;
+      this.totalPriceNet += element.price * 1;
+      this.totalPrice += element.price * 1 * 1.18;
+      this.kdv += element.price * 1 * 0.18;
     });
   },
   methods: {

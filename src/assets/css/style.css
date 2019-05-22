@@ -4068,3 +4068,6 @@ text-align:left;
   font-size: 33px;
     padding: 12px 11px 12px 12px;
 }
+
+/*sepet adreslerim list*/
+.adreslerimList li {padding:10px 0}

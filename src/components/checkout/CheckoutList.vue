@@ -43,7 +43,7 @@
 
       <div class="col-lg-4">
         <div class="vx-card shadow-md py-8 px-4">
-          <ul class="list-group mb-3">
+          <ul class="list-group">
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
                 <h6 class="my-0">Ürün Fiyatı</h6>
@@ -56,16 +56,11 @@
               </div>
               <span class="text-muted">${{kdv.toFixed(2)}}</span>
             </li>
-            <li class="mb-2 py-3 d-flex justify-content-between">
-              <span>Total (USD)</span>
+            <li class="pt-3 d-flex justify-content-between">
+              <strong>Toplam (USD)</strong>
               <strong>${{totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>
-          <input
-            type="button"
-            value="SİPARİŞ VER"
-            class="vs-button vs-button-filled vs-button-success btn-block"
-          >
         </div>
 
         <!--card checkout -->
