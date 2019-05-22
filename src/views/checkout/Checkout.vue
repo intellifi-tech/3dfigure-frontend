@@ -29,7 +29,7 @@ import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import CheckoutList from "@/components/checkout/CheckoutList.vue";
 import Adres from "@/components/address/Adres.vue";
-import ConceptService from "@/services/concept.service.js";
+import CheckoutService from "@/services/checkout.service"
 
 export default {
   data() {
@@ -47,7 +47,7 @@ export default {
     };
   },
   created: async function() {
-    this.basketList = await ConceptService.getConceptsInBasket();
+    this.basketList = await CheckoutService.getUserCheckout();
   },
   methods: {
     generateId() {

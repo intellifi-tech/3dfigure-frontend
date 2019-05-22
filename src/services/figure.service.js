@@ -19,6 +19,39 @@ const FigureService = {
         } catch (error) {
             return error.response.status
         }
+    },
+
+    addAndDeleteFromFigure: async function (concept) {
+        try {
+            const res = await ApiService.put("/figures/added", concept)
+            return res.data
+        } catch (error) {
+            return error.response.status
+        }
+    },
+    isConceptAdded: async function (avatarKey, conceptId) {
+        try {
+            const res = await ApiService.get("/figures/isAdded/" + avatarKey + "/" + conceptId)
+            return res.data
+        } catch (error) {
+            return error.response.data
+        }
+    },
+    hasItConcept: async function (avatarKey) {
+        try {
+            const res = await ApiService.get("/figures/hasConcept/" + avatarKey)
+            return res.data
+        } catch (error) {
+            return error.response.data
+        }
+    },
+    getFigureId: async function (avatarKey) {
+        try {
+            const res = await ApiService.get("/figures/f/" + avatarKey)
+            return res.data
+        } catch (error) {
+            return error.response.data
+        }
     }
 }
 

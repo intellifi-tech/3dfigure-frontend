@@ -228,8 +228,8 @@ export default {
           }
         }
       } else {
-        this.$parent.$parent.currentAvatar = avatarKey;
         this.$parent.$parent.showAvatar(avatarKey);
+        this.$parent.$parent.addFigureToBasket(avatarKey);
       }
     },
     removeFile(index) {
