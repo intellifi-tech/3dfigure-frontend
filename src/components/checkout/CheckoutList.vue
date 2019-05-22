@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid">
-    <div class="col-12 vx-card py-3 px-5 mt-5" v-if="basketList === null || basketList.length === 0">
+    <div class="col-12 vx-card py-3 px-5 mt-5" v-if="this.basketList === null || this.basketList.length === 0">
       Sepette ürün bulunmuyor.
       <a href="/main">Yeni Model Oluştur!</a>
     </div>
 
     <div class="row" v-else>
       <div class="col-lg-8">
-        <div v-for="basket in basketList" :key="basket.id">
+        <div v-for="basket in this.basketList" :key="basket.id">
           <div
             class="row vx-card shadow-md px-4 py-4 mb-5"
             v-for="concept in basket.concepts"
@@ -82,21 +82,23 @@
 import CheckoutService from "@/services/checkout.service";
 export default {
   data() {
-    return {};
+    return {
+      basketList: [],
+      totalPrice: 0,
+      kdv: 0,
+      totalPriceNet: 0,
+    };
   },
-  props: {
-    basketList: {
-      type: Array
-    },
-    totalPriceNet: {
-      type: Number
-    },
-    kdv: {
-      type: Number
-    },
-    totalPrice: {
-      type: Number
-    }
+  created: async function() {
+    this.basketList = await CheckoutService.getUserCheckout();
+    sessionStorage.setItem("basket", this.basketList.length)
+    this.basketList.forEach(element => {
+      element.concepts.forEach(el => {
+        this.totalPriceNet += el.price * 1;
+        this.totalPrice += el.price * 1 * 1.18;
+        this.kdv += el.price * 1 * 0.18;
+      });
+    });
   },
   methods: {
     outBasket: async function(basket, concept) {
@@ -123,6 +125,7 @@ export default {
           this.kdv += el.price * 1 * 0.18;
         })
       });
+      sessionStorage.setItem("basket", this.basketList.length)
     }
   }
 };
