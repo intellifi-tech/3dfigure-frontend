@@ -47,28 +47,19 @@
           <ul class="list-group mb-3">
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
+                <h6 class="my-0">Net Toplam</h6>
               </div>
-              <span class="text-muted">$12</span>
+              <span class="text-muted">${{totalPriceNet.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
+                <h6 class="my-0">KDV</h6>
               </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
+              <span class="text-muted">${{kdv.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong>$20</strong>
+              <strong>${{totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>
           <input
@@ -93,6 +84,15 @@ export default {
   props: {
     basketList: {
       type: Array
+    },
+    totalPriceNet: {
+      type: Number
+    },
+    kdv: {
+      type: Number
+    },
+    totalPrice: {
+      type: Number
     }
   },
   methods: {
@@ -111,6 +111,16 @@ export default {
           this.basketList.splice(index, 1)
         }       
       }
+      this.totalPriceNet = 0;
+      this.totalPrice = 0;
+      this.kdv = 0;
+      this.basketList.forEach(element => {
+        element.concepts.forEach(el => {
+          this.totalPriceNet += el.price * 1;
+          this.totalPrice += el.price * 1 * 1.18;
+          this.kdv += el.price * 1 * 0.18;
+        })
+      });
     }
   }
 };
