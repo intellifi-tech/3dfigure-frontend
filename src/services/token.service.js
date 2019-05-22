@@ -36,6 +36,14 @@ const TokenService = {
     removeAvatarToken() {
         sessionStorage.removeItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
     },
+
+    addClickedPhoto(avatarToken) {
+        sessionStorage.setItem("clicked", avatarToken)
+    },
+
+    getClickedPhoto() {
+        return sessionStorage.getItem("clicked")
+    }
 }
 
 export {

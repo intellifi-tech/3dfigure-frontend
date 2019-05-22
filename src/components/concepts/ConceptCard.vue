@@ -30,7 +30,7 @@
           type="gradient"
           color="#7367F0"
           gradient-color-secondary="#CE9FFC"
-          @click="outBasket(concept)"
+          @click="addBasket(concept)"
         >Sepetten Çıkar</vs-button>
         <vs-button @click="openAlert('primary')" class="mt-4" type="border" color="#b9b9b9">Detail</vs-button>
       </div>
@@ -39,7 +39,8 @@
 </template>
 
 <script>
-import CheckoutService from "@/services/checkout.service";
+import FigureService from "@/services/figure.service";
+import { TokenService } from "@/services/token.service";
 export default {
   data() {
     return {
@@ -53,17 +54,20 @@ export default {
       required: true
     }
   },
-  created: async function() {
-    this.isAdded = await CheckoutService.isConceptAdded(this.concept.id);
+  mounted: async function() {
+    this.checkIsAdded();
   },
   methods: {
     addBasket: async function(concept) {
-      await CheckoutService.addToBasket(concept);
+      concept.avatarKey = TokenService.getClickedPhoto();
+      await FigureService.addAndDeleteFromFigure(concept);
       this.isAdded = !this.isAdded;
     },
-    outBasket: async function(concept) {
-      await CheckoutService.deleteFromBasket(concept.id);
-      this.isAdded = !this.isAdded;
+    checkIsAdded: async function() {
+      this.isAdded = await FigureService.isConceptAdded(
+        TokenService.getClickedPhoto(),
+        this.concept.id
+      );
     }
   }
 };

@@ -7,9 +7,14 @@
       :subtitle="null"
       finishButtonText="Submit"
     >
-      <tab-content title="Checkout" class="mb-5" icon="feather icon-home">
+      <tab-content title="Checkout" class="mb-5" icon="feather icon-home" :before-change="validateStep1">
         <div>
-          <checkout-list :basketList="this.basketList" :kdv="this.kdv" :totalPriceNet="this.totalPriceNet" :totalPrice="this.totalPrice"></checkout-list>
+          <checkout-list
+            :basketList="this.basketList"
+            :kdv="this.kdv"
+            :totalPriceNet="this.totalPriceNet"
+            :totalPrice="this.totalPrice"
+          ></checkout-list>
         </div>
       </tab-content>
       <tab-content title="Adres" class="mb-5" icon="feather icon-home">
@@ -29,7 +34,7 @@ import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import CheckoutList from "@/components/checkout/CheckoutList.vue";
 import Adres from "@/components/address/Adres.vue";
-import ConceptService from "@/services/concept.service.js";
+import CheckoutService from "@/services/checkout.service";
 
 export default {
   data() {
@@ -38,23 +43,16 @@ export default {
       totalPrice: 0,
       kdv: 0,
       totalPriceNet: 0,
-      orderDTO: {
-        orderCode: this.generateId(),
-        cargoCode: null,
-        orderStatus: "BUILD",
-        information: null,
-        totalPrice: null,
-        createdDate: null,
-        lastModificationDate: null
-      }
     };
   },
-  beforeCreate: async function() {
-    this.basketList = await ConceptService.getConceptsInBasket();
+  created: async function() {
+    this.basketList = await CheckoutService.getUserCheckout();
     this.basketList.forEach(element => {
-      this.totalPriceNet += element.price * element.quantity;
-      this.totalPrice += element.price * element.quantity * 1.18;
-      this.kdv += element.price * element.quantity * 0.18;
+      element.concepts.forEach(el => {
+        this.totalPriceNet += el.price * 1;
+        this.totalPrice += el.price * 1 * 1.18;
+        this.kdv += el.price * 1 * 0.18;
+      });
     });
   },
   methods: {
@@ -78,6 +76,9 @@ export default {
 
         return id;
       };
+    },
+    validateStep1() {
+      return !(this.basketList === null || this.basketList.length === 0)
     }
   },
   components: {

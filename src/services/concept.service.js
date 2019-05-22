@@ -11,9 +11,9 @@ const ConceptService = {
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
-    getConceptsInBasket: async function () {
+    getConceptsInFigure: async function () {
         try {
-            const response = await ApiService.get("/concepts/baskets")
+            const response = await ApiService.get("/concepts/figure")
             return response.data
         } catch (error) {
             return error.response.status

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vx-card class="p-2">
+    <vx-card class="p-2 mb-4">
       <unity ref="unity"></unity>
     </vx-card>
     <vx-card title="Fotoğraflarım">
@@ -39,6 +39,7 @@ import { TokenService } from "@/services/token.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
 import PricingService from "@/services/pricing.service";
+
 export default {
   data() {
     return {
@@ -75,31 +76,38 @@ export default {
     initialize: async function() {
       var number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
-      this.limit = number.totalFigure - this.userFigures.length
+      this.limit = number.totalFigure - this.userFigures.length;
     },
     avatarUpload($event, index) {
       // Avatar SDK isteğinin sonucu
       var response = JSON.parse($event.currentTarget.response);
-      this.$vs.loading({
-        text: "3D Figure Hazırlanıyor",
-        clickEffect: true,
-        textAfter: true
-      });
+      if (response.code) {
+        // Open loading page
+        this.$vs.loading({
+          text: "3D Figure Hazırlanıyor",
+          clickEffect: true,
+          textAfter: true
+        });
 
-      this.$refs.upload.srcs[index].avatarKey = response.code;
-      setTimeout(() => {
-        this.$vs.loading.close();
-        this.showAvatar(response.code);
-      }, 30000);
-      this.figure.avatarKey = response.code;
-      this.figure.figureName = response.code;
-      if (this.figure.avatarKey) {
+        this.$refs.upload.srcs[index].avatarKey = response.code;
+        setTimeout(() => {
+          this.$vs.loading.close();
+          this.showAvatar(response.code);
+        }, 30000);
+        this.figure.avatarKey = response.code;
+        this.figure.figureName = response.code;
+
         /*const formData = new FormData()
         formData.append("avatarKey", this.figure.avatarKey)
         formData.append("imageName", this.figure.imagePath)*/
-        debugger
-        this.figure.userId = this.$parent.$parent.$parent.$parent.member.id
+        this.figure.userId = this.$parent.$parent.$parent.$parent.member.id;
         FigureService.saveUserFigure(this.figure);
+      } else {
+        this.$vs.notify({
+          title: "HATA",
+          text: "Avatar key oluşturulamadı başka fotoğraf deneyiniz",
+          color: "danger"
+        });
       }
     },
     serverUpload($event) {
@@ -107,6 +115,10 @@ export default {
     },
     showAvatar(code) {
       this.$refs.unity.sendAvatar(code);
+    },
+    addFigureToBasket: function(code) {
+      // const res = await FigureService.getFigureId(code)
+      TokenService.addClickedPhoto(code);
     }
   },
   components: {
