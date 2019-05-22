@@ -49,17 +49,17 @@
               <div>
                 <h6 class="my-0">Net Toplam</h6>
               </div>
-              <span class="text-muted">${{totalPriceNet.toFixed(2)}}</span>
+              <span class="text-muted">${{this.totalPriceNet.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
                 <h6 class="my-0">KDV</h6>
               </div>
-              <span class="text-muted">${{kdv.toFixed(2)}}</span>
+              <span class="text-muted">${{this.kdv.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong>${{totalPrice.toFixed(2)}}</strong>
+              <strong>${{this.totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>
           <input
@@ -101,13 +101,12 @@ export default {
   methods: {
     outBasket: async function(basket, concept) {
       await CheckoutService.deleteFromBasket(basket.id, concept.id);
-
       for (let index = 0; index < this.basketList.length; index++) {
         const figure = this.basketList[index];
-        for (let indexy = 0; index < figure.concepts.length; indexy++) {
+        for (let indexy = 0; indexy < figure.concepts.length; indexy++) {
           const conceptx = figure.concepts[indexy];
           if (conceptx.id === concept.id) {
-            figure.concepts.splice(indexy, 1)
+            figure.concepts.splice(indexy, 1);
           }
         }
         if (figure.concepts.length === 0) {
