@@ -106,7 +106,7 @@ const messages = {
             company: 'IntelliFi'
         },
         login: {
-            login: 'Login',
+            login: 'Login and Create 3D Figure',
             user: 'Username',
             pass: 'Password',
             rem: 'Remember Me',
@@ -240,7 +240,7 @@ const messages = {
             company: 'IntelliFi'
         },
         login: {
-            login: 'Giriş Yap',
+            login: 'Giriş Yapın ve 3D Modelinizi Oluşturun',
             user: 'Kullanıcı Adı',
             pass: 'Parola',
             rem: 'Beni Hatırla',

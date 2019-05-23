@@ -1804,7 +1804,6 @@ export default {
         this.activated = true;
         return;
       }
-      this.popupActivo = false;
       this.activated = false;
       var credential = {
         username: this.username,
@@ -1813,6 +1812,7 @@ export default {
       };
       var status = await LoginService.login(credential);
       if (status == 200) {
+        this.popupActivo = false;
         this.$router.push("/main");
       }
     }
