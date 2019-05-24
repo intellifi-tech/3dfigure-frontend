@@ -1,7 +1,7 @@
 <template>
   <vx-card class="mt-5 pt-2 px-2">
     <h4>Konseptler</h4>
-    <div class="search-page__search-bar flex items-center">
+    <div class="search-page__search-bar flex items-center pt-3">
       <vs-input
         placeholder="Search"
         v-model="searchQuery"

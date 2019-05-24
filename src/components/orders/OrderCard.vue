@@ -1,11 +1,11 @@
 <template>
   <div class="vx-col w-full mb-base">
-    <vx-card class="shadow-md">
+    <vx-card class="shadow">
       <div slot="no-body">
         <img src="../../assets/images/landing/icon/wait.png" class="order-status-icon">
         <iframe
           class="responsive card-img-top"
-          style="height: 300px"
+          style="height: 250px"
           :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed'"
           frameborder="0"
           allow="autoplay; fullscreen; vr"
@@ -23,7 +23,7 @@
           @click="popupActive=true"
           gradient-color-secondary="#CE9FFC"
           type="gradient"
-        >Detail</vs-button>
+        >Detayı gör</vs-button>
       </div>
       <vs-popup class="popupDetail" title="Onay bekliyor" :active.sync="popupActive">
         <div class="row">

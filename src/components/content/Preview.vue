@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <vx-card class="p-2 mb-4">
+  <div class="row">
+    <div class="col-lg-12 mb-4">
+    <vx-card>
       <unity ref="unity"></unity>
     </vx-card>
+    </div>
+    <!--unity card column-->
+    <div class="col-lg-12 mb-3">
     <vx-card title="Fotoğraflarım">
       <p>
         Figürünü oluşturmak istediğin fotoğrafı
@@ -29,7 +33,10 @@
         />
       </div>
     </vx-card>
+    </div>
+    <!--fotoğraflar card column -->
   </div>
+  <!--preview row-->
 </template>
 
 <script>

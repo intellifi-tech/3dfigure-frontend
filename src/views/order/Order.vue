@@ -3,7 +3,7 @@
     <h4>Figür Geçmişi</h4>
     <div class="search-page__search-bar flex items-center pt-4">
       <vs-input
-        placeholder="Search"
+        placeholder="Ara"
         v-model="searchQuery"
         class="w-full input-rounded-full no-icon-border"
         icon="icon-search"

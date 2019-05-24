@@ -1,17 +1,18 @@
 <template>
-  <div class="pt-4">
+  <div class="pt-0">
     <form-wizard
       color="rgba(var(--vs-primary), 1)"
       errorColor="rgba(var(--vs-danger), 1)"
       :title="null"
       :subtitle="null"
       finishButtonText="Sepete Git"
+      nextButtonText="Devam et"
+      backButtonText="Geri dön"
       @on-complete="goToBasket"
     >
       <tab-content
         data-vv-scope="vs1"
-        :title="$t('plugins')"
-        class="mb-5"
+        title="3D Figür Oluştur"
         icon="feather icon-home"
         :before-change="validateStep1"
       >
