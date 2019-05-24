@@ -9,10 +9,10 @@
 
 			<div class="content-wrapper">
 
-				<the-navbar :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
+				<!--<the-navbar :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />-->
 
 				<div class="router-view">
-					<div class="router-content" :class="{'mt-0': navbarType == 'hidden'}">
+					<div class="router-content mt-0" ><!--:class="{'mt-0': navbarType == 'hidden'}"-->
 						<transition :name="routerTransition">
 						<div class="router-header flex flex-wrap items-center mb-6" v-if="$route.meta.breadcrumb || $route.meta.pageTitle">
 							<div class="content-area__heading" :class="{'pr-4 border-0 md:border-r border-t-0 border-b-0 border-l-0 border-solid border-grey-light' : $route.meta.breadcrumb}">

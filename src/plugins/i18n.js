@@ -106,29 +106,30 @@ const messages = {
             company: 'IntelliFi'
         },
         login: {
-            login: 'Login',
+            login: 'Login and Create 3D Figure',
             user: 'Username',
             pass: 'Password',
             rem: 'Remember Me',
             forgot: 'Forgot Password',
             reg: 'Register',
+            loginbtn:"Login",
             sos: 'Login With',
             alert: {
                 title: 'Error',
-                message: 'Tootsie roll lollipop lollipop icing. Wafer cookie danish macaroon. Liquorice fruitcake apple pie I love cupcake cupcake.'
+                message: 'There was an unwanted problem. Please try again later.'
             }
         },
         register: {
             create: 'Create Account',
             first: 'Firstname',
             last: 'Lastname',
-            email: 'Email',
+            email: 'E-mail',
             pass: 'Password',
             confirm: 'Confirm Password',
             terms: 'I accept the terms & conditions',
             alert: {
                 title: 'Error',
-                message: 'Tootsie roll lollipop lollipop icing. Wafer cookie danish macaroon. Liquorice fruitcake apple pie I love cupcake cupcake.'
+                message: 'There was an unwanted problem. Please try again later.'
             }
         },
         welcomeMsg: 'Welcome to Your Vue.js App',
@@ -240,29 +241,30 @@ const messages = {
             company: 'IntelliFi'
         },
         login: {
-            login: 'Giriş Yap',
+            login: 'Giriş Yap ve 3D Figürünü Oluştur',
             user: 'Kullanıcı Adı',
             pass: 'Parola',
             rem: 'Beni Hatırla',
             forgot: 'Parolamı Unuttum',
+            loginbtn:"Giriş Yap",
             reg: 'Kayıt Ol',
             sos: 'İle Giriş Yap',
             alert: {
                 title: 'Hata Oluştu',
-                message: 'Tootsie roll lollipop lollipop icing. Wafer cookie danish macaroon. Liquorice fruitcake apple pie I love cupcake cupcake.'
+                message: 'İstenmeyen bir sorun oluştu. Lütfen daha sonra tekrar deneyiniz.'
             }
         },
         register: {
-            create: 'Hesap Oluştur',
-            first: 'İsim',
-            last: 'Soyisim',
-            email: 'Email',
+            create: 'Kayıt ol ve 3D Figürünü oluşturmaya başla!',
+            first: 'Ad',
+            last: 'Soyad',
+            email: 'E-posta',
             pass: 'Parola',
             confirm: 'Parola Onayı',
             terms: 'Kullanım şartlarını kabul ediyorum',
             alert: {
                 title: 'Hata Oluştu',
-                message: 'Tootsie roll lollipop lollipop icing. Wafer cookie danish macaroon. Liquorice fruitcake apple pie I love cupcake cupcake.'
+                message: 'İstenmeyen bir sorun oluştu. Lütfen daha sonra tekrar deneyiniz.'
             }
         },
         welcomeMsg: 'Bienvenido a tu aplicación Vue.js',

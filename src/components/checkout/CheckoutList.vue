@@ -53,12 +53,12 @@
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
-                <h6 class="my-0">KDV</h6>
+                <h6 class="my-0">KDV(%18)</h6>
               </div>
               <span class="text-muted">${{this.kdv.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 d-flex justify-content-between">
-              <span>Total (USD)</span>
+              <span>Genel Toplam (USD)</span>
               <strong>${{this.totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>

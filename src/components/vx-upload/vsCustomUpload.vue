@@ -4,7 +4,7 @@
 
     <div class="con-img-upload">
       <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
-      <div v-for="(img, index) in this.savedImages" :key="index" class="img-upload">
+      <div v-for="(img, index) in this.savedImages" :key="index" class="main-upload img-upload">
         <img
           v-if="img.avatarKey"
           :alt="img.avatarKey"
@@ -27,7 +27,7 @@
             'removeItem':itemRemove.includes(index)
           }"
         :key="index"
-        class="img-upload"
+        class="img-upload main-upload"
       >
         <button class="btn-x-file" @click="removeFile(index)">
           <i translate="no" class="material-icons notranslate">clear</i>

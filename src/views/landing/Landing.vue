@@ -90,12 +90,12 @@
                   v-model="password"
                   class="w-full mb-4 no-icon-border"
                 />
-                <div class="flex flex-wrap justify-between my-5">
+                <div class="flex flex-wrap justify-between pt-4 pb-4">
                   <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
                   <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
                 </div>
-                <vs-button type="border" @click="register">{{$t('login.reg')}}</vs-button>
-                <vs-button class="float-right" @click="login">{{$t('login.login')}}</vs-button>
+                <vs-button @click="login">{{$t('login.loginbtn')}}</vs-button>
+                <vs-button  class="float-right" type="border" @click="register">{{$t('login.reg')}}</vs-button>
                 <vs-alert
                   color="danger"
                   :title="$t('login.alert.title')"
@@ -1804,7 +1804,6 @@ export default {
         this.activated = true;
         return;
       }
-      this.popupActivo = false;
       this.activated = false;
       var credential = {
         username: this.username,
@@ -1813,6 +1812,7 @@ export default {
       };
       var status = await LoginService.login(credential);
       if (status == 200) {
+        this.popupActivo = false;
         this.$router.push("/main");
       }
     }

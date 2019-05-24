@@ -5,19 +5,21 @@
       errorColor="rgba(var(--vs-danger), 1)"
       :title="null"
       :subtitle="null"
-      finishButtonText="Submit"
+      nextButtonText="Devam et"
+      backButtonText="Geri dön"
+      finishButtonText="Siparişi Tamamla"
     >
-      <tab-content title="Checkout" class="mb-5" icon="feather icon-home" :before-change="validateStep1">
+      <tab-content title="Sepet" class="mb-5" icon="feather icon-home" :before-change="validateStep1">
         <div>
           <checkout-list></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Adress" class="mb-5" icon="feather icon-home">
+      <tab-content title="Adres" class="mb-5" icon="feather icon-home">
         <div>
           <adres></adres>
         </div>
       </tab-content>
-      <tab-content title="Payment" class="mb-5" icon="feather icon-home">
+      <tab-content title="Ödeme" class="mb-5" icon="feather icon-home">
         <div></div>
       </tab-content>
     </form-wizard>

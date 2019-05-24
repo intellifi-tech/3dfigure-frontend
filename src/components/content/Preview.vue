@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <vx-card class="p-2 mb-4">
+  <div class="row">
+    <div class="col-lg-12 mb-4">
+    <vx-card>
       <unity ref="unity"></unity>
     </vx-card>
+    </div>
+    <!--unity card column-->
+    <div class="col-lg-12 mb-3">
     <vx-card title="Fotoğraflarım">
       <p>
         Figürünü oluşturmak istediğin fotoğrafı
@@ -29,7 +33,10 @@
         />
       </div>
     </vx-card>
+    </div>
+    <!--fotoğraflar card column -->
   </div>
+  <!--preview row-->
 </template>
 
 <script>
@@ -84,16 +91,16 @@ export default {
       if (response.code) {
         // Open loading page
         this.$vs.loading({
-          text: "3D Figure Hazırlanıyor",
+          text: "Biraz bekletiyoruz ama bir de heykel traşları düşünün..",
           clickEffect: true,
           textAfter: true
         });
-
-        this.$refs.upload.srcs[index].avatarKey = response.code;
         setTimeout(() => {
           this.$vs.loading.close();
           this.showAvatar(response.code);
         }, 30000);
+
+        this.$refs.upload.srcs[index].avatarKey = response.code;
         this.figure.avatarKey = response.code;
         this.figure.figureName = response.code;
 
@@ -102,6 +109,11 @@ export default {
         formData.append("imageName", this.figure.imagePath)*/
         this.figure.userId = this.$parent.$parent.$parent.$parent.member.id;
         FigureService.saveUserFigure(this.figure);
+        this.$vs.notify({
+          title: "Çok Güzel",
+          text: "Şimdi istediğiniz konsepti seçin",
+          color: "info"
+        });
       } else {
         this.$vs.notify({
           title: "HATA",
