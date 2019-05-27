@@ -80,6 +80,7 @@
                   icon-pack="feather"
                   :label-placeholder="$t('login.user')"
                   v-model="username"
+                  @keyup.enter="login"
                   class="w-full mb-6 no-icon-border"
                 />
                 <vs-input
@@ -88,6 +89,7 @@
                   icon-pack="feather"
                   :label-placeholder="$t('login.pass')"
                   v-model="password"
+                  @keyup.enter="login"
                   class="w-full mb-4 no-icon-border"
                 />
                 <div class="flex flex-wrap justify-between pt-4 pb-4">
@@ -1827,5 +1829,11 @@ export default {
 .vs-radio .vs-radio--circle,
 .vs-radio .vs-radio--borde {
   display: none !important;
+}
+input:focus {
+  outline: none;
+}
+.error {
+  border: 1px solid red;
 }
 </style>
