@@ -7,14 +7,14 @@
 
     <div class="row" v-else>
       <div class="col-lg-8">
-        <div v-for="basket in this.$store.state.checkout.basketList" :key="basket.id">
+        <div v-for="figure in this.$store.state.checkout.basketList" :key="figure.id">
           <div
             class="row vx-card shadow-md px-4 py-4 mb-5"
-            v-for="concept in basket.concepts"
+            v-for="concept in figure.concepts"
             :key="concept.id"
           >
             <div class="col-lg-2 px-0">
-              <img :src='"assets/images/figures/"+basket.imagePath'>
+              <img :src='"assets/images/figures/"+figure.imagePath'>
             </div>
             <div class="border-black border-right col-lg-7 pl-5">
               <h3 class="card-title pb-3">{{concept.conceptName}}</h3>
@@ -30,7 +30,7 @@
               <!--<h6 class="mt-4 text-success" icon-pack="feather" icon="icon-check">Kargo Ücretsiz</h6>-->
               <input
                 type="button"
-                @click="outBasket(basket.id, concept.id)"
+                @click="outBasket(figure.id, concept.id)"
                 value="KALDIR"
                 class="btn btn-block btn-danger mt-4"
               >
@@ -85,9 +85,9 @@ export default {
   },
   methods: {
     ...mapActions('checkout', ['initBasketList', 'deleteFromBasketList']),
-    outBasket: async function(basketId, conceptId) {
+    outBasket: async function(figureId, conceptId) {
       debugger
-      this.deleteFromBasketList(basketId, conceptId)
+      this.deleteFromBasketList(figureId, conceptId)
     },
     initPage: async function() {
       this.initBasketList()

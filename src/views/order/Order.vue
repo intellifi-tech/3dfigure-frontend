@@ -14,8 +14,9 @@
       <div v-for="order in this.orderValues" :key="order.showIndex">
         <div v-for="figure in order.basketId.figures" :key="figure.id">
           <div v-for="concept in figure.concepts" :key="concept.id">
-          <orders :order="concept" :price="order.totalPrice"></orders>
-
+            <orders :order="concept" :price="order.totalPrice"></orders>
+          </div>
+        </div>
       </div>
     </div>
     <div class="my-5">

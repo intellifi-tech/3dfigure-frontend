@@ -1871,7 +1871,7 @@ export default {
       this.popupActivo2 = false;
     },
     register: async function() {
-      if (this.$v.$invalid && !this.checkBox1) {
+      if (registerCheck() && !this.checkBox1) {
         this.activated = true;
         return;
       }
@@ -1891,7 +1891,7 @@ export default {
       }
     },
     login: async function() {
-      if (this.$v.$invalid) {
+      if (loginCheck()) {
         this.activated = true;
         return;
       }
@@ -1918,6 +1918,13 @@ export default {
     confirm: { required, sameAsPassword: sameAs("passwordReg") }
   }
 };
+function loginCheck() {
+  return this.$v.username.$invalid || this.$v.password.$invalid;
+}
+
+function registerCheck() {
+  return this.$v.email.$invalid || this.$v.firstName.$invalid || this.$v.lastName.$invalid || this.$v.password.$invalid;
+}
 </script>
 <style>
 .vs-radio .vs-radio--circle,
