@@ -11,8 +11,11 @@
       />
     </div>
     <div class="vx-row pt-5">
-      <div class="col-md-4" v-for="concept in this.conceptValues" :key="concept.showIndex">
-        <orders :concept="concept"></orders>
+      <div v-for="order in this.orderValues" :key="order.showIndex">
+        <div v-for="figure in order.basketId.figures" :key="figure.id">
+          <div v-for="concept in figure.concepts" :key="concept.id">
+          <orders :order="concept" :price="order.totalPrice"></orders>
+
       </div>
     </div>
     <div class="my-5">
@@ -23,31 +26,31 @@
 
 <script>
 import Orders from "@/components/orders/OrderCard.vue";
-import ConceptService from "@/services/concept.service";
+import OrderService from "@/services/order.service";
 
 export default {
   data() {
     return {
       searchQuery: null,
       currentx: 1,
-      conceptValues: null,
+      orderValues: null,
       totalPages: 0
     };
   },
   created: async function() {
-    var res = await ConceptService.getAllConcepts(0);
-    this.conceptValues = res.content;
+    var res = await OrderService.getAllOrders(0);
+    this.orderValues = res.content;
     this.totalPages = res.totalPages;
   },
   watch: {
     currentx: async function() {
-      var res = await ConceptService.getAllConcepts(this.currentx - 1);
-      this.conceptValues = res.content;
+      var res = await OrderService.getAllOrders(this.currentx - 1);
+      this.orderValues = res.content;
     }
   },
   methods: {},
   components: {
-     Orders
+    Orders
   }
 };
 </script>

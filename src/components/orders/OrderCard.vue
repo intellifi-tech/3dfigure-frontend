@@ -54,6 +54,12 @@ export default {
     concept: {
       type: Object,
       required: true
+    },
+    price: {
+      type: Double
+    },
+    orderName: {
+      type: String
     }
   }
 };
