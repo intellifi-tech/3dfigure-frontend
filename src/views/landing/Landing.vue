@@ -97,7 +97,7 @@
                   <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
                 </div>
                 <vs-button @click="login">{{$t('login.loginbtn')}}</vs-button>
-                <vs-button  class="float-right" type="border" @click="register">{{$t('login.reg')}}</vs-button>
+                <vs-button class="float-right" type="border" @click="openRegister">{{$t('login.reg')}}</vs-button>
                 <vs-alert
                   color="danger"
                   :title="$t('login.alert.title')"
@@ -119,6 +119,63 @@
                       icon="icon icon-twitter"
                       icon-pack="feather"
                     ></vs-button>
+                  </div>
+                </div>
+              </vs-popup>
+            </li>
+            <li>
+              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo2">
+                <div class="p-8">
+                  <div class="vx-card__title">
+                    <h4 class="mb-4">{{$t('register.create')}}</h4>
+                  </div>
+                  <div class="clearfix">
+                    <vs-input
+                      label-placeholder="FirstName"
+                      :placeholder="$t('register.first')"
+                      v-model="firstName"
+                      class="w-full mb-6"
+                    />
+                    <vs-input
+                      label-placeholder="LastName"
+                      :placeholder="$t('register.last')"
+                      v-model="lastName"
+                      class="w-full mb-6"
+                    />
+                    <vs-input
+                      type="email"
+                      label-placeholder="Email"
+                      :placeholder="$t('register.email')"
+                      v-model="email"
+                      class="w-full mb-6"
+                    />
+                    <vs-input
+                      type="password"
+                      label-placeholder="Password"
+                      :placeholder="$t('register.pass')"
+                      v-model="passwordReg"
+                      class="w-full mb-6"
+                    />
+                    <vs-input
+                      type="password"
+                      label-placeholder="Confirm Password"
+                      :placeholder="$t('register.confirm')"
+                      v-model="confirm"
+                      class="w-full mb-6"
+                    />
+                    <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
+                    <vs-alert
+                      class="mb-3"
+                      color="danger"
+                      :title="$t('register.alert.title')"
+                      :active="activated"
+                    >{{$t('register.alert.message')}}</vs-alert>
+                    <vs-button @click="register">{{$t('login.reg')}}</vs-button>
+                    <vs-button
+                      class="float-right"
+                      type="border"
+                      @click="openLogin"
+                    >{{$t('login.loginbtn')}}</vs-button>
                   </div>
                 </div>
               </vs-popup>
@@ -533,11 +590,11 @@
                               vs-value="ebe0accf659d43068cd774141a5731cb"
                             >
                               <label for="womansampleFirst" class>
-                              <img
-                                src="assets/images/portre/woman/woman-0.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                                <img
+                                  src="assets/images/portre/woman/woman-0.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
                             </vs-radio>
                           </div>
                         </div>
@@ -545,17 +602,17 @@
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                           <vs-radio
+                            <vs-radio
                               id="womansampleSecond"
                               v-model="iframeModelID2"
                               vs-value="4571b5cb637e464e838f82f12f3293fa"
                             >
                               <label for="womansampleSecond" class>
-                              <img
-                                src="assets/images/portre/woman/woman-1.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                                <img
+                                  src="assets/images/portre/woman/woman-1.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
                             </vs-radio>
                           </div>
                         </div>
@@ -568,12 +625,12 @@
                               v-model="iframeModelID2"
                               vs-value="e51684e803b84f68bdae50e209741bdf"
                             >
-                            <label for="womansampleThird" class>
-                              <img
-                                src="assets/images/portre/woman/woman-2.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="womansampleThird" class>
+                                <img
+                                  src="assets/images/portre/woman/woman-2.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
                             </vs-radio>
                           </div>
                         </div>
@@ -586,12 +643,12 @@
                               v-model="iframeModelID2"
                               vs-value="94bbe2f5ca6347189bcb6dd3d76922be"
                             >
-                            <label for="womansampleFourth" class>
-                              <img
-                                src="assets/images/portre/woman/girl-children.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="womansampleFourth" class>
+                                <img
+                                  src="assets/images/portre/woman/girl-children.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
                             </vs-radio>
                           </div>
                         </div>
@@ -1771,6 +1828,7 @@
 import {
   required,
   email,
+  sameAs,
   minLength,
   maxLength
 } from "vuelidate/lib/validators";
@@ -1779,13 +1837,19 @@ export default {
   data() {
     return {
       iframeModelID: "91102961ad1040748145a4c341899840",
-      iframeModelID2:"ebe0accf659d43068cd774141a5731cb",
+      iframeModelID2: "ebe0accf659d43068cd774141a5731cb",
       man: true,
       sampleiframe: true,
       langs: ["TR", "EN"],
       popupActivo: false,
+      popupActivo2: false,
       username: "",
       password: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      confirm: "",
+      passwordReg: "",
       remember: false,
       activated: false
     };
@@ -1797,9 +1861,34 @@ export default {
     changeiframe() {
       /*************************** */
     },
-    register() {
+    openRegister() {
       this.popupActivo = false;
-      this.$router.push("/register");
+      this.popupActivo2 = true;
+      // this.$router.push("/register");
+    },
+    openLogin() {
+      this.popupActivo = true;
+      this.popupActivo2 = false;
+    },
+    register: async function() {
+      if (this.$v.$invalid && !this.checkBox1) {
+        this.activated = true;
+        return;
+      }
+      this.activated = false;
+      var credential = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        login: this.email,
+        password: this.passwordReg
+      };
+      var status = await LoginService.register(credential)
+      if (status < 400) {
+        this.popupActivo2 = false;
+        // Logine yönlendirilebilir ya da otomatik login yapılır
+        this.popupActivo = true;
+      }
     },
     login: async function() {
       if (this.$v.$invalid) {
@@ -1821,7 +1910,12 @@ export default {
   },
   validations: {
     username: { required, email },
-    password: { required, minLength: minLength(5), maxLength: maxLength(15) }
+    password: { required, minLength: minLength(5), maxLength: maxLength(15) },
+    email: { required, email },
+    firstName: { required },
+    lastName: { required },
+    passwordReg: { required, minLength: minLength(6), maxLength: maxLength(15) },
+    confirm: { required, sameAsPassword: sameAs("passwordReg") }
   }
 };
 </script>
@@ -1829,11 +1923,5 @@ export default {
 .vs-radio .vs-radio--circle,
 .vs-radio .vs-radio--borde {
   display: none !important;
-}
-input:focus {
-  outline: none;
-}
-.error {
-  border: 1px solid red;
 }
 </style>
