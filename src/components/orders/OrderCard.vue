@@ -56,7 +56,7 @@ export default {
       required: true
     },
     price: {
-      type: Double
+      type: Number
     },
     orderName: {
       type: String
