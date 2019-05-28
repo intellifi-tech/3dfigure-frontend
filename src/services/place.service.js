@@ -1,28 +1,29 @@
 import ApiService from './api.service'
 
-const ConceptService = {
+const PlaceService = {
 
-    getAllConcepts: async function (page) {
+    getCities: async function () {
         try {
-            const response = await ApiService.get("/concepts?page=" + page + "&size=6")
+            const response = await ApiService.get("/cities")
             return response.data
         } catch (error) {
             return error.response.status
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
-    getConceptsInFigure: async function () {
+    getTownsByCity: async function (cityId) {
         try {
-            const response = await ApiService.get("/concepts/figure")
+            const response = await ApiService.get("/towns/city/" + cityId)
             return response.data
         } catch (error) {
             return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     }
 }
 
-export default ConceptService
+export default PlaceService
 
 export {
-    ConceptService
+    PlaceService
 }

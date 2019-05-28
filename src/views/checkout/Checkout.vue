@@ -5,19 +5,21 @@
       errorColor="rgba(var(--vs-danger), 1)"
       :title="null"
       :subtitle="null"
-      finishButtonText="Submit"
+      nextButtonText="Devam et"
+      backButtonText="Geri dön"
+      finishButtonText="Siparişi Tamamla"
     >
-      <tab-content title="Checkout" class="mb-5" icon="feather icon-home">
+      <tab-content title="Sepet" class="mb-5" icon="feather icon-home" :before-change="validateStep1">
         <div>
-          <checkout-list :basketList="this.basketList"></checkout-list>
+          <checkout-list></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Address" class="mb-5" icon="feather icon-home">
+      <tab-content title="Adres" class="mb-5" icon="feather icon-home">
         <div>
-          <address></address>
+          <adres></adres>
         </div>
       </tab-content>
-      <tab-content title="Payment" class="mb-5" icon="feather icon-home">
+      <tab-content title="Ödeme" class="mb-5" icon="feather icon-home">
         <div></div>
       </tab-content>
     </form-wizard>
@@ -28,26 +30,11 @@
 import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import CheckoutList from "@/components/checkout/CheckoutList.vue";
-import Address from "@/components/address/Address.vue";
-import ConceptService from "@/services/concept.service.js";
-
+import Adres from "@/components/address/Adres.vue";
 export default {
   data() {
     return {
-      basketList: null,
-      orderDTO: {
-        orderCode: this.generateId(),
-        cargoCode: null,
-        orderStatus: "BUILD",
-        information: null,
-        totalPrice: null,
-        createdDate: null,
-        lastModificationDate: null
-      }
     };
-  },
-  created: async function() {
-    this.basketList = await ConceptService.getConceptsInBasket();
   },
   methods: {
     generateId() {
@@ -70,11 +57,15 @@ export default {
 
         return id;
       };
+    },
+    validateStep1() {
+      const a = this.$store.state.checkout.basketList.length !== 0
+      return a
     }
   },
   components: {
     CheckoutList,
-    Address,
+    Adres,
     FormWizard,
     TabContent
   }

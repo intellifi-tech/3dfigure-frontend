@@ -30,6 +30,7 @@ const state = {
 	},
 
 	themePrimaryColor: colors.primary,
+	member: null
 }
 
 export default state

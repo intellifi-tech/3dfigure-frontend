@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <vx-card class="p-2">
+  <div class="row">
+    <div class="col-lg-12 mb-4">
+    <vx-card>
       <unity ref="unity"></unity>
     </vx-card>
+    </div>
+    <!--unity card column-->
+    <div class="col-lg-12 mb-3">
     <vx-card title="Fotoğraflarım">
       <p>
         Figürünü oluşturmak istediğin fotoğrafı
@@ -29,7 +33,10 @@
         />
       </div>
     </vx-card>
+    </div>
+    <!--fotoğraflar card column -->
   </div>
+  <!--preview row-->
 </template>
 
 <script>
@@ -39,6 +46,7 @@ import { TokenService } from "@/services/token.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
 import PricingService from "@/services/pricing.service";
+
 export default {
   data() {
     return {
@@ -75,31 +83,43 @@ export default {
     initialize: async function() {
       var number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
-      this.limit = number.totalFigure - this.userFigures.length
+      this.limit = number.totalFigure - this.userFigures.length;
     },
     avatarUpload($event, index) {
       // Avatar SDK isteğinin sonucu
       var response = JSON.parse($event.currentTarget.response);
-      this.$vs.loading({
-        text: "3D Figure Hazırlanıyor",
-        clickEffect: true,
-        textAfter: true
-      });
+      if (response.code) {
+        // Open loading page
+        this.$vs.loading({
+          text: "Biraz bekletiyoruz ama bir de heykel traşları düşünün..",
+          clickEffect: true,
+          textAfter: true
+        });
+        setTimeout(() => {
+          this.$vs.loading.close();
+          this.showAvatar(response.code);
+        }, 30000);
 
-      this.$refs.upload.srcs[index].avatarKey = response.code;
-      setTimeout(() => {
-        this.$vs.loading.close();
-        this.showAvatar(response.code);
-      }, 30000);
-      this.figure.avatarKey = response.code;
-      this.figure.figureName = response.code;
-      if (this.figure.avatarKey) {
+        this.$refs.upload.srcs[index].avatarKey = response.code;
+        this.figure.avatarKey = response.code;
+        this.figure.figureName = response.code;
+
         /*const formData = new FormData()
         formData.append("avatarKey", this.figure.avatarKey)
         formData.append("imageName", this.figure.imagePath)*/
-        debugger
-        this.figure.userId = this.$parent.$parent.$parent.$parent.member.id
+        this.figure.userId = this.$parent.$parent.$parent.$parent.member.id;
         FigureService.saveUserFigure(this.figure);
+        this.$vs.notify({
+          title: "Çok Güzel",
+          text: "Şimdi istediğiniz konsepti seçin",
+          color: "info"
+        });
+      } else {
+        this.$vs.notify({
+          title: "HATA",
+          text: "Avatar key oluşturulamadı başka fotoğraf deneyiniz",
+          color: "danger"
+        });
       }
     },
     serverUpload($event) {
@@ -107,6 +127,10 @@ export default {
     },
     showAvatar(code) {
       this.$refs.unity.sendAvatar(code);
+    },
+    addFigureToBasket: function(code) {
+      // const res = await FigureService.getFigureId(code)
+      TokenService.addClickedPhoto(code);
     }
   },
   components: {

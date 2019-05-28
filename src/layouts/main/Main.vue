@@ -9,10 +9,10 @@
 
 			<div class="content-wrapper">
 
-				<the-navbar :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
+				<!--<the-navbar :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />-->
 
 				<div class="router-view">
-					<div class="router-content" :class="{'mt-0': navbarType == 'hidden'}">
+					<div class="router-content mt-0" ><!--:class="{'mt-0': navbarType == 'hidden'}"-->
 						<transition :name="routerTransition">
 						<div class="router-header flex flex-wrap items-center mb-6" v-if="$route.meta.breadcrumb || $route.meta.pageTitle">
 							<div class="content-area__heading" :class="{'pr-4 border-0 md:border-r border-t-0 border-b-0 border-l-0 border-solid border-grey-light' : $route.meta.breadcrumb}">
@@ -51,7 +51,7 @@ import TheNavbar from '../components/TheNavbar.vue';
 import TheFooter from '../components/TheFooter.vue';
 import themeConfig from '@/../themeConfig.js';
 import sidebarItems from "@/layouts/components/vx-sidebar/sidebarItems.js";
-import { UserService } from '@/services/user.service'
+import { mapActions } from "vuex";
 
 
 export default {
@@ -66,7 +66,6 @@ export default {
 			sidebarItems: sidebarItems,
 			disableCustomizer: themeConfig.disableCustomizer,
 			windowWidth: window.innerWidth, //width of windows
-			member: null
 		}
 	},
 	watch: {
@@ -93,6 +92,9 @@ export default {
 		bodyOverlay() {
 			return this.$store.state.bodyOverlay;
 		},
+		member() {
+			return this.$store.state.member;
+		},
 		contentAreaClass() {
 			if(this.sidebarWidth == "default") return "content-area-default"
 			else if(this.sidebarWidth == "reduced") return "content-area-reduced"
@@ -115,6 +117,7 @@ export default {
 		},
 	},
 	methods: {
+		...mapActions(["getCurrentUser"]),
 		changeRouteTitle(title) {
 			this.routeTitle = title;
 		},
@@ -149,14 +152,14 @@ export default {
 			}
 		}
 	},
-	created: async function() {
+	created: function() {
 		this.setSidebarWidth();
 		if(this.navbarColor == "#fff" && this.isThemeDark) {
 			this.updateNavbarColor("#10163a")
 		}else {
 			this.updateNavbarColor(this.navbarColor)
 		}
-		this.member = await UserService.getMember()
+		this.getCurrentUser()
 	},
 	components: {
 		VxSidebar,

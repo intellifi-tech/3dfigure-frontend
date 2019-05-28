@@ -70,13 +70,17 @@
             </li>
             <li class="nav-item">
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
-              <a class="nav-link cursor-pointer" @click="popupActivo=true" >{{ $t('landing.navbar.login') }} </a>
+              <a
+                class="nav-link cursor-pointer"
+                @click="popupActivo=true"
+              >{{ $t('landing.navbar.login') }}</a>
               <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo">
                 <vs-input
                   icon="icon icon-user"
                   icon-pack="feather"
                   :label-placeholder="$t('login.user')"
                   v-model="username"
+                  @keyup.enter="login"
                   class="w-full mb-6 no-icon-border"
                 />
                 <vs-input
@@ -85,14 +89,15 @@
                   icon-pack="feather"
                   :label-placeholder="$t('login.pass')"
                   v-model="password"
+                  @keyup.enter="login"
                   class="w-full mb-4 no-icon-border"
                 />
-                <div class="flex flex-wrap justify-between my-5">
+                <div class="flex flex-wrap justify-between pt-4 pb-4">
                   <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
                   <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
                 </div>
-                <vs-button type="border" @click="register">{{$t('login.reg')}}</vs-button>
-                <vs-button class="float-right" @click="login">{{$t('login.login')}}</vs-button>
+                <vs-button @click="login">{{$t('login.loginbtn')}}</vs-button>
+                <vs-button class="float-right" type="border" @click="openRegister">{{$t('login.reg')}}</vs-button>
                 <vs-alert
                   color="danger"
                   :title="$t('login.alert.title')"
@@ -114,6 +119,63 @@
                       icon="icon icon-twitter"
                       icon-pack="feather"
                     ></vs-button>
+                  </div>
+                </div>
+              </vs-popup>
+            </li>
+            <li>
+              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo2">
+                <div class="p-8">
+                  <div class="vx-card__title">
+                    <h4 class="mb-4">{{$t('register.create')}}</h4>
+                  </div>
+                  <div class="clearfix">
+                    <vs-input
+                      label-placeholder="FirstName"
+                      :placeholder="$t('register.first')"
+                      v-model="firstName"
+                      class="w-full mb-6"
+                    />
+                    <vs-input
+                      label-placeholder="LastName"
+                      :placeholder="$t('register.last')"
+                      v-model="lastName"
+                      class="w-full mb-6"
+                    />
+                    <vs-input
+                      type="email"
+                      label-placeholder="Email"
+                      :placeholder="$t('register.email')"
+                      v-model="email"
+                      class="w-full mb-6"
+                    />
+                    <vs-input
+                      type="password"
+                      label-placeholder="Password"
+                      :placeholder="$t('register.pass')"
+                      v-model="passwordReg"
+                      class="w-full mb-6"
+                    />
+                    <vs-input
+                      type="password"
+                      label-placeholder="Confirm Password"
+                      :placeholder="$t('register.confirm')"
+                      v-model="confirm"
+                      class="w-full mb-6"
+                    />
+                    <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
+                    <vs-alert
+                      class="mb-3"
+                      color="danger"
+                      :title="$t('register.alert.title')"
+                      :active="activated"
+                    >{{$t('register.alert.message')}}</vs-alert>
+                    <vs-button @click="register">{{$t('login.reg')}}</vs-button>
+                    <vs-button
+                      class="float-right"
+                      type="border"
+                      @click="openLogin"
+                    >{{$t('login.loginbtn')}}</vs-button>
                   </div>
                 </div>
               </vs-popup>
@@ -175,7 +237,10 @@
                   {{$t('landing.first.print')}}
                 </h1>
                 <div class="btn-wrapper">
-                  <a href="/login" class="boxed-btn btn-rounded reverse-color">
+                  <a
+                    @click="popupActivo=true"
+                    class="boxed-btn btn-rounded reverse-color text-white cursor-pointer"
+                  >
                     <i class="fas fa-shopping-cart"></i>
                     {{$t('landing.first.model')}}
                   </a>
@@ -325,41 +390,11 @@
                         <iframe
                           width="100%"
                           height="500"
-                          src="https://sketchfab.com/models/91102961ad1040748145a4c341899840/embed"
+                          :src='"https://sketchfab.com/models/"+iframeModelID+"/embed"'
                           frameborder="0"
                           allow="autoplay; fullscreen; vr"
                           mozallowfullscreen="true"
                           webkitallowfullscreen="true"
-                        ></iframe>
-                        <iframe
-                          width="100%"
-                          height="500"
-                          src="https://sketchfab.com/models/97c994795c1d4ddbb3ef57af8da88276/embed"
-                          frameborder="0"
-                          allow="autoplay; fullscreen; vr"
-                          mozallowfullscreen="true"
-                          webkitallowfullscreen="true"
-                          style="display:none !important;"
-                        ></iframe>
-                        <iframe
-                          width="100%"
-                          height="500"
-                          src="https://sketchfab.com/models/75e5ded5f8c54e5a9a63f3a778abb080/embed"
-                          frameborder="0"
-                          allow="autoplay; fullscreen; vr"
-                          mozallowfullscreen="true"
-                          webkitallowfullscreen="true"
-                          style="display:none !important;"
-                        ></iframe>
-                        <iframe
-                          width="100%"
-                          height="500"
-                          src="https://sketchfab.com/models/d187f4d9406b4a07a5b0443b48ddb59c/embed"
-                          frameborder="0"
-                          allow="autoplay; fullscreen; vr"
-                          mozallowfullscreen="true"
-                          webkitallowfullscreen="true"
-                          style="display:none !important;"
                         ></iframe>
                       </div>
                     </div>
@@ -367,85 +402,79 @@
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <input
-                              v-on:change="changeiframe"
-                              type="radio"
-                              name="switch"
-                              class="btn-switch__radio"
+                            <vs-radio
                               id="mansampleFirst"
-                              checked
+                              v-model="iframeModelID"
+                              vs-value="91102961ad1040748145a4c341899840"
                             >
-                            <label for="mansampleFirst" class>
-                              <img
-                                src="assets/images/portre/man/man-0.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="mansampleFirst">
+                                <img
+                                  src="assets/images/portre/man/man-0.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
+                            </vs-radio>
                           </div>
                         </div>
                       </li>
-
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <input
-                              v-on:change="changeiframe"
-                              type="radio"
-                              name="switch"
-                              class="btn-switch__radio"
+                            <vs-radio
                               id="mansampleSecond"
+                              v-model="iframeModelID"
+                              vs-value="97c994795c1d4ddbb3ef57af8da88276"
                             >
-                            <label for="mansampleSecond" class>
-                              <img
-                                src="assets/images/portre/man/man-1.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="mansampleSecond" class>
+                                <img
+                                  src="assets/images/portre/man/man-1.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
+                            </vs-radio>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <input
-                              v-on:change="changeiframe"
-                              type="radio"
-                              name="switch"
-                              class="btn-switch__radio"
+                            <vs-radio
                               id="mansampleThird"
+                              v-model="iframeModelID"
+                              vs-value="75e5ded5f8c54e5a9a63f3a778abb080"
                             >
-                            <label for="mansampleThird" class>
-                              <img
-                                src="assets/images/portre/man/man-2.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="mansampleThird" class>
+                                <img
+                                  src="assets/images/portre/man/man-2.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
+                            </vs-radio>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <input
-                              v-on:change="changeiframe"
-                              type="radio"
-                              name="switch"
-                              class="btn-switch__radio"
+                            <vs-radio
                               id="mansampleFourth"
+                              v-model="iframeModelID"
+                              vs-value="d187f4d9406b4a07a5b0443b48ddb59c"
                             >
-                            <label for="mansampleFourth" class>
-                              <img
-                                src="assets/images/portre/man/boy-children.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="mansampleFourth" class>
+                                <img
+                                  src="assets/images/portre/man/boy-children.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
+                            </vs-radio>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a @click="popupActivo=true">
+                            <a @click="popupActivo=true" class="cursor-pointer">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
@@ -543,41 +572,11 @@
                         <iframe
                           width="100%"
                           height="500"
-                          src="https://sketchfab.com/models/ebe0accf659d43068cd774141a5731cb/embed"
+                          :src='"https://sketchfab.com/models/"+iframeModelID2+"/embed"'
                           frameborder="0"
                           allow="autoplay; fullscreen; vr"
                           mozallowfullscreen="true"
                           webkitallowfullscreen="true"
-                        ></iframe>
-                        <iframe
-                          width="100%"
-                          height="500"
-                          src="https://sketchfab.com/models/4571b5cb637e464e838f82f12f3293fa/embed"
-                          frameborder="0"
-                          allow="autoplay; fullscreen; vr"
-                          mozallowfullscreen="true"
-                          webkitallowfullscreen="true"
-                          style="display:none !important;"
-                        ></iframe>
-                        <iframe
-                          width="100%"
-                          height="500"
-                          src="https://sketchfab.com/models/e51684e803b84f68bdae50e209741bdf/embed"
-                          frameborder="0"
-                          allow="autoplay; fullscreen; vr"
-                          mozallowfullscreen="true"
-                          webkitallowfullscreen="true"
-                          style="display:none !important;"
-                        ></iframe>
-                        <iframe
-                          width="100%"
-                          height="500"
-                          src="https://sketchfab.com/models/94bbe2f5ca6347189bcb6dd3d76922be/embed"
-                          frameborder="0"
-                          allow="autoplay; fullscreen; vr"
-                          mozallowfullscreen="true"
-                          webkitallowfullscreen="true"
-                          style="display:none !important;"
                         ></iframe>
                       </div>
                     </div>
@@ -585,80 +584,72 @@
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <input
-                              v-on:change="changeiframe"
-                              type="radio"
-                              name="switch"
-                              class="btn-switch__radio"
+                            <vs-radio
                               id="womansampleFirst"
-                              checked
+                              v-model="iframeModelID2"
+                              vs-value="ebe0accf659d43068cd774141a5731cb"
                             >
-                            <label for="womansampleFirst" class>
-                              <img
-                                src="assets/images/portre/woman/woman-0.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="womansampleFirst" class>
+                                <img
+                                  src="assets/images/portre/woman/woman-0.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
+                            </vs-radio>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <input
-                              v-on:change="changeiframe"
-                              type="radio"
-                              name="switch"
-                              class="btn-switch__radio"
+                            <vs-radio
                               id="womansampleSecond"
-                              checked
+                              v-model="iframeModelID2"
+                              vs-value="4571b5cb637e464e838f82f12f3293fa"
                             >
-                            <label for="womansampleSecond" class>
-                              <img
-                                src="assets/images/portre/woman/woman-1.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="womansampleSecond" class>
+                                <img
+                                  src="assets/images/portre/woman/woman-1.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
+                            </vs-radio>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <input
-                              v-on:change="changeiframe"
-                              type="radio"
-                              name="switch"
-                              class="btn-switch__radio"
+                            <vs-radio
                               id="womansampleThird"
-                              checked
+                              v-model="iframeModelID2"
+                              vs-value="e51684e803b84f68bdae50e209741bdf"
                             >
-                            <label for="womansampleThird" class>
-                              <img
-                                src="assets/images/portre/woman/woman-2.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="womansampleThird" class>
+                                <img
+                                  src="assets/images/portre/woman/woman-2.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
+                            </vs-radio>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="single-inline-feature-item">
                           <div class="content">
-                            <input
-                              v-on:change="changeiframe"
-                              type="radio"
-                              name="switch"
-                              class="btn-switch__radio"
+                            <vs-radio
                               id="womansampleFourth"
-                              checked
+                              v-model="iframeModelID2"
+                              vs-value="94bbe2f5ca6347189bcb6dd3d76922be"
                             >
-                            <label for="womansampleFourth" class>
-                              <img
-                                src="assets/images/portre/woman/girl-children.jpg"
-                                class="img-style img-fluid mb-4 rounded"
-                              >
-                            </label>
+                              <label for="womansampleFourth" class>
+                                <img
+                                  src="assets/images/portre/woman/girl-children.jpg"
+                                  class="img-style img-fluid mb-4 rounded"
+                                >
+                              </label>
+                            </vs-radio>
                           </div>
                         </div>
                       </li>
@@ -1837,6 +1828,7 @@
 import {
   required,
   email,
+  sameAs,
   minLength,
   maxLength
 } from "vuelidate/lib/validators";
@@ -1844,12 +1836,20 @@ import { LoginService } from "@/services/login.service";
 export default {
   data() {
     return {
+      iframeModelID: "91102961ad1040748145a4c341899840",
+      iframeModelID2: "ebe0accf659d43068cd774141a5731cb",
       man: true,
       sampleiframe: true,
       langs: ["TR", "EN"],
       popupActivo: false,
+      popupActivo2: false,
       username: "",
       password: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      confirm: "",
+      passwordReg: "",
       remember: false,
       activated: false
     };
@@ -1861,16 +1861,40 @@ export default {
     changeiframe() {
       /*************************** */
     },
-    register() {
-      this.popupActivo = false
-      this.$router.push("/register");
+    openRegister() {
+      this.popupActivo = false;
+      this.popupActivo2 = true;
+      // this.$router.push("/register");
+    },
+    openLogin() {
+      this.popupActivo = true;
+      this.popupActivo2 = false;
+    },
+    register: async function() {
+      if (this.$v.$invalid && !this.checkBox1) {
+        this.activated = true;
+        return;
+      }
+      this.activated = false;
+      var credential = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        login: this.email,
+        password: this.passwordReg
+      };
+      var status = await LoginService.register(credential)
+      if (status < 400) {
+        this.popupActivo2 = false;
+        // Logine yönlendirilebilir ya da otomatik login yapılır
+        this.popupActivo = true;
+      }
     },
     login: async function() {
       if (this.$v.$invalid) {
         this.activated = true;
         return;
       }
-      this.popupActivo = false;
       this.activated = false;
       var credential = {
         username: this.username,
@@ -1879,13 +1903,25 @@ export default {
       };
       var status = await LoginService.login(credential);
       if (status == 200) {
+        this.popupActivo = false;
         this.$router.push("/main");
       }
     }
   },
   validations: {
     username: { required, email },
-    password: { required, minLength: minLength(5), maxLength: maxLength(15) }
+    password: { required, minLength: minLength(5), maxLength: maxLength(15) },
+    email: { required, email },
+    firstName: { required },
+    lastName: { required },
+    passwordReg: { required, minLength: minLength(6), maxLength: maxLength(15) },
+    confirm: { required, sameAsPassword: sameAs("passwordReg") }
   }
 };
 </script>
+<style>
+.vs-radio .vs-radio--circle,
+.vs-radio .vs-radio--borde {
+  display: none !important;
+}
+</style>

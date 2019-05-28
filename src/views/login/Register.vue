@@ -57,14 +57,15 @@
                     v-model="confirm"
                     class="w-full mb-6"
                   />
-                  <vs-checkbox v-model="checkBox1" class="mb-6">{{$t('register.terms')}}</vs-checkbox>
+                  <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
                   <vs-alert
+                    class="mb-3"
                     color="danger"
                     :title="$t('register.alert.title')"
                     :active="activated"
                   >{{$t('register.alert.message')}}</vs-alert>
-                  <vs-button type="border" to="/login">{{$t('login.login')}}</vs-button>
-                  <vs-button class="float-right" @click="register">{{$t('login.reg')}}</vs-button>
+                  <vs-button  @click="register">{{$t('login.reg')}}</vs-button>
+                  <vs-button class="float-right" type="border" to="/login">{{$t('login.loginbtn')}}</vs-button>
                 </div>
               </div>
             </div>

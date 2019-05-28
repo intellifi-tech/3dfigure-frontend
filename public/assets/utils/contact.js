@@ -63,7 +63,7 @@
 	             });
              }else{
                 $('#get_in_touch').children('.email-success').remove();
-                $('#get_in_touch').prepend("<div class='alert alert-danger email-success'>Mesaj gönderilemedi.</div>");
+                /*$('#get_in_touch').prepend("<div class='alert alert-danger email-success'>Mesaj gönderilemedi.</div>");*/
                 $('.email-success').fadeOut(5000);
              }
         });

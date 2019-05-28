@@ -1,17 +1,18 @@
 <template>
-  <div class="pt-4">
+  <div class="pt-0">
     <form-wizard
       color="rgba(var(--vs-primary), 1)"
       errorColor="rgba(var(--vs-danger), 1)"
       :title="null"
       :subtitle="null"
-      finishButtonText="Submit"
+      finishButtonText="Sepete Git"
+      nextButtonText="Devam et"
+      backButtonText="Geri dön"
       @on-complete="goToBasket"
     >
       <tab-content
         data-vv-scope="vs1"
-        :title="$t('plugins')"
-        class="mb-5"
+        title="3D Figür Oluştur"
         icon="feather icon-home"
         :before-change="validateStep1"
       >
@@ -34,30 +35,42 @@ import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import Preview from "@/components/content/Preview";
 import Concepts from "@/views/concept/Concepts.vue";
 import Checkout from "@/views/checkout/Checkout.vue";
+import { TokenService } from "@/services/token.service";
+import CheckoutService from "@/services/checkout.service";
+import FigureService from "@/services/figure.service";
 
 export default {
   data() {
     return {
-      order: {
-        choosenAvatar: null,
-        choosenConcept: []
-      }
     };
   },
   methods: {
-    goToBasket() {
-      this.$router.push("/checkout");
+    goToBasket: async function() {
+      const res = await FigureService.hasItConcept(
+        TokenService.getClickedPhoto()
+      );
+      if (res) {
+        CheckoutService.addToBasket(TokenService.getClickedPhoto());
+        this.$router.push("/checkout");
+      } else {
+        this.$vs.notify({
+          title: "HATA",
+          text: "En az 1 konsept seçmelisiniz",
+          color: "danger"
+        });
+      }
     },
     validateStep1() {
-      return new Promise((resolve, reject) => {
-        this.$validator.validateAll("step-1").then(result => {
-          if (result) {
-            resolve(true);
-          } else {
-            reject("correct all values");
-          }
+      const res = TokenService.getClickedPhoto() !== null;
+      if (!res) {
+        this.$vs.notify({
+          title: "HATA",
+          text: "Fotoğraf yüklemeli ya da seçmelisiniz",
+          color: "danger"
         });
-      });
+      }
+      // this.$root.$emit('checkIsAdded')
+      return res;
     }
   },
   components: {

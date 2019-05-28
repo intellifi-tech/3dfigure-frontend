@@ -83,11 +83,10 @@
         </template>
 
         <vs-spacer></vs-spacer>
-
-        <!-- NOTIFICATIONS -->
+      <!-- NOTIFICATIONS -->
         <vs-dropdown vs-custom-content vs-trigger-click>
           <feather-icon
-            icon="BellIcon"
+            icon="ShoppingCartIcon"
             class="cursor-pointer mx-6 mt-1"
             :badge="unreadNotifications.length"
           ></feather-icon>
@@ -129,7 +128,7 @@
             </VuePerfectScrollbar>
           </vs-dropdown-menu>
         </vs-dropdown>
-
+       
         <!-- SEARCHBAR -->
         <div
           class="search-full-container w-full h-full absolute pin-l rounded-lg"
