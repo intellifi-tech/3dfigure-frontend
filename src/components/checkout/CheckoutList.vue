@@ -81,16 +81,20 @@ export default {
     };
   },
   created: async function() {
-    this.initBasketList()
+    await this.initPage()
   },
   methods: {
-    ...mapActions(["initBasketList", "deleteFromBasketList"]),
+    ...mapActions('checkout', ['initBasketList', 'deleteFromBasketList']),
     outBasket: async function(basketId, conceptId) {
+      debugger
       this.deleteFromBasketList(basketId, conceptId)
+    },
+    initPage: async function() {
+      this.initBasketList()
     }
   },
   computed: {
-    ...mapGetters(['basketList', 'totalPrice', 'totalPriceNet', 'kdv'])
+    ...mapGetters('checkout', ['basketList', 'totalPrice', 'totalPriceNet', 'kdv'])
   }
 };
 </script>

@@ -11,9 +11,9 @@ const mutations = {
                 kdv += el.price * 1 * 0.18
             })
         });
-        this.SET_TOTAL_PRICE_NET(state, totalPriceNet)
-        this.SET_TOTAL_PRICE(state, totalPrice)
-        this.SET_KDV(state, kdv)
+        state.totalPrice = totalPrice
+        state.kdv = kdv
+        state.totalPriceNet = totalPriceNet
     },
     SET_TOTAL_PRICE(state, totalPrice) {
         state.totalPrice = totalPrice
@@ -48,9 +48,9 @@ const mutations = {
                 kdv += el.price * 1 * 0.18
             })
         });
-        this.SET_TOTAL_PRICE_NET(state, totalPriceNet)
-        this.SET_TOTAL_PRICE(state, totalPrice)
-        this.SET_KDV(state, kdv)
+        state.totalPrice = totalPrice
+        state.kdv = kdv
+        state.totalPriceNet = totalPriceNet
     }
 }
 
