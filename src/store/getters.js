@@ -13,7 +13,9 @@ const getters = {
 
 	// COMPONENT
 		// vx-autosuggest
-	starredPages: state => state.navbarSearchAndPinList.data.filter((page) => page.highlightAction),
+  starredPages: state => state.navbarSearchAndPinList.data.filter((page) => page.highlightAction),
+  
+  currentMember: state => state.member
 }
 
 export default getters

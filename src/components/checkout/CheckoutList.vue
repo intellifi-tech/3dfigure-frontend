@@ -1,13 +1,13 @@
 <template>
   <div class="container-fluid">
-    <div class="col-12 vx-card py-3 px-5 mt-5" v-if="this.basketList === null || this.basketList.length === 0">
+    <div class="col-12 vx-card py-3 px-5 mt-5" v-if="this.$store.state.checkout.basketList === null || this.$store.state.checkout.basketList.length === 0">
       Sepette ürün bulunmuyor.
       <a href="/main">Yeni Model Oluştur!</a>
     </div>
 
     <div class="row" v-else>
       <div class="col-lg-8">
-        <div v-for="basket in this.basketList" :key="basket.id">
+        <div v-for="basket in this.$store.state.checkout.basketList" :key="basket.id">
           <div
             class="row vx-card shadow-md px-4 py-4 mb-5"
             v-for="concept in basket.concepts"
@@ -30,7 +30,7 @@
               <!--<h6 class="mt-4 text-success" icon-pack="feather" icon="icon-check">Kargo Ücretsiz</h6>-->
               <input
                 type="button"
-                @click="outBasket(basket, concept)"
+                @click="outBasket(basket.id, concept.id)"
                 value="KALDIR"
                 class="btn btn-block btn-danger mt-4"
               >
@@ -49,17 +49,17 @@
               <div>
                 <h6 class="my-0">Net Toplam</h6>
               </div>
-              <span class="text-muted">${{this.totalPriceNet.toFixed(2)}}</span>
+              <span class="text-muted">${{totalPriceNet.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
                 <h6 class="my-0">KDV(%18)</h6>
               </div>
-              <span class="text-muted">${{this.kdv.toFixed(2)}}</span>
+              <span class="text-muted">${{kdv.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 d-flex justify-content-between">
               <span>Genel Toplam (USD)</span>
-              <strong>${{this.totalPrice.toFixed(2)}}</strong>
+              <strong>${{totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>
         </div>
@@ -74,54 +74,23 @@
 </template>
 
 <script>
-import CheckoutService from "@/services/checkout.service";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      basketList: [],
-      totalPrice: 0,
-      kdv: 0,
-      totalPriceNet: 0,
     };
   },
   created: async function() {
-    this.basketList = await CheckoutService.getUserCheckout();
-    sessionStorage.setItem("basket", this.basketList.length)
-    this.basketList.forEach(element => {
-      element.concepts.forEach(el => {
-        this.totalPriceNet += el.price * 1;
-        this.totalPrice += el.price * 1 * 1.18;
-        this.kdv += el.price * 1 * 0.18;
-      });
-    });
+    this.initBasketList()
   },
   methods: {
-    outBasket: async function(basket, concept) {
-      await CheckoutService.deleteFromBasket(basket.id, concept.id);
-      for (let index = 0; index < this.basketList.length; index++) {
-        const figure = this.basketList[index];
-        for (let indexy = 0; indexy < figure.concepts.length; indexy++) {
-          const conceptx = figure.concepts[indexy];
-          if (conceptx.id === concept.id) {
-            figure.concepts.splice(indexy, 1);
-          }
-        }
-        if (figure.concepts.length === 0) {
-          this.basketList.splice(index, 1)
-        }       
-      }
-      this.totalPriceNet = 0;
-      this.totalPrice = 0;
-      this.kdv = 0;
-      this.basketList.forEach(element => {
-        element.concepts.forEach(el => {
-          this.totalPriceNet += el.price * 1;
-          this.totalPrice += el.price * 1 * 1.18;
-          this.kdv += el.price * 1 * 0.18;
-        })
-      });
-      sessionStorage.setItem("basket", this.basketList.length)
+    ...mapActions(["initBasketList", "deleteFromBasketList"]),
+    outBasket: async function(basketId, conceptId) {
+      this.deleteFromBasketList(basketId, conceptId)
     }
+  },
+  computed: {
+    ...mapGetters(['basketList', 'totalPrice', 'totalPriceNet', 'kdv'])
   }
 };
 </script>

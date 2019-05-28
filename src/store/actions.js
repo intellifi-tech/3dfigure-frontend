@@ -7,7 +7,7 @@
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-
+import UserService from '@/services/user.service';
 
 const actions = {
 
@@ -35,6 +35,11 @@ const actions = {
 	// VxAutoSuggest
 	updateStarredPage({commit}, payload) {
 		commit('UPDATE_STARRED_PAGE', payload)
+	},
+
+	async getCurrentUser({ commit }){
+		const res = await UserService.getMember();
+		commit('CURRENT_USER', res)
 	}
 }
 
