@@ -39,6 +39,9 @@ const mutations = {
 	UPDATE_PRIMARY_COLOR(state, val) {
 		state.themePrimaryColor = val;	
 	},
+	CURRENT_USER(state, val) {
+		state.member = val;
+	},
 
 	// ////////////////////////////////////////////
 	// COMPONENT

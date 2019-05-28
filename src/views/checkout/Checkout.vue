@@ -31,7 +31,6 @@ import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import CheckoutList from "@/components/checkout/CheckoutList.vue";
 import Adres from "@/components/address/Adres.vue";
-
 export default {
   data() {
     return {
@@ -60,7 +59,8 @@ export default {
       };
     },
     validateStep1() {
-      return sessionStorage.getItem("basket") !== 0
+      const a = this.$store.state.checkout.basketList.length !== 0
+      return a
     }
   },
   components: {

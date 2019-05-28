@@ -10,24 +10,14 @@
         </vs-tab>
       </vs-tabs>
       <div class="adreslerim" v-if="newAdres==!this.tabAdres">
-        <ul class="adreslerimList">
+        <ul class="adreslerimList" v-for="adres in this.address" :key="adres.id">
           <li>
             <vs-radio color="success" v-model="radios2" vs-value="evAdresi">
               <div class="pl-4">
-                <i>Ev Adresi</i>
-                <br><b>Nebhen Aytaş</b> - (539) 505 06 47 
-                <br>Sarıdemir Mahallesi, Ragıp Gümüşpala Cad. No:14,
-                <br>EMİNÖNÜ / FATİH - İSTANBUL 34134
-              </div>
-            </vs-radio>
-          </li>
-          <li>
-            <vs-radio color="success" v-model="radios2" vs-value="isAdresi">
-              <div class="pl-4">
-                <i>İş Adresi</i>
-                <br><b>Nebhen Aytaş</b> - (539) 505 06 47 
-                <br>Ortabayır Mahallesi, Talatpaşa Cad. No:67/5 Kat:3,
-                <br>Gültepe / Kağıthane - İSTANBUL 34134
+                <i>{{adres.addressName}}</i>  
+                <br>
+                <b>{{adres.person}}</b> - {{adres.mobile}}
+                <br>{{adres.adress}}
               </div>
             </vs-radio>
           </li>
@@ -75,7 +65,7 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-6"  v-if="this.checkBox1">
+              <div class="vx-row mb-6" v-if="this.checkBox1">
                 <div class="vx-col w-full">
                   <vs-input
                     type="text"
@@ -85,7 +75,7 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-6"  v-if="this.checkBox1">
+              <div class="vx-row mb-6" v-if="this.checkBox1">
                 <div class="vx-col w-full">
                   <vs-input
                     type="text"
@@ -97,22 +87,22 @@
               </div>
               <div class="vx-row mb-6">
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="İlçe / Semt" v-model="select1">
+                  <vs-select class="selectExample w-full" label="İlçe / Semt" v-model="town">
                     <vs-select-item
                       :key="index"
-                      :value="item.value"
-                      :text="item.text"
-                      v-for="(item,index) in options1"
+                      :value="item.id"
+                      :text="item.name"
+                      v-for="(item,index) in towns"
                     />
                   </vs-select>
                 </div>
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="Şehir" v-model="select2">
+                  <vs-select class="selectExample w-full" label="Şehir" v-model="city">
                     <vs-select-item
                       :key="index"
-                      :value="item.value"
-                      :text="item.text"
-                      v-for="(item,index) in options2"
+                      :value="item.id"
+                      :text="item.name"
+                      v-for="(item,index) in cities"
                     />
                   </vs-select>
                 </div>
@@ -178,22 +168,22 @@
               </div>
               <div class="vx-row mb-6">
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="İlçe / Semt" v-model="select1">
+                  <vs-select class="selectExample w-full" label="İlçe / Semt" v-model="townF">
                     <vs-select-item
                       :key="index"
-                      :value="item.value"
-                      :text="item.text"
-                      v-for="(item,index) in options1"
+                      :value="item.id"
+                      :text="item.name"
+                      v-for="(item,index) in townsF"
                     />
                   </vs-select>
                 </div>
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="Şehir" v-model="select2">
+                  <vs-select class="selectExample w-full" label="Şehir" v-model="cityF">
                     <vs-select-item
                       :key="index"
-                      :value="item.value"
-                      :text="item.text"
-                      v-for="(item,index) in options2"
+                      :value="item.id"
+                      :text="item.name"
+                      v-for="(item,index) in citiesF"
                     />
                   </vs-select>
                 </div>
@@ -213,6 +203,12 @@
 </template>
 
 <script>
+import {
+  required,
+  helpers
+} from "vuelidate/lib/validators";
+import PlaceService from "@/services/place.service";
+const mobileRegex = helpers.regex('mobile', /^[2-9]\d{2}-\d{3}-\d{4}$/);
 export default {
   data() {
     return {
@@ -229,40 +225,40 @@ export default {
       addressName: "",
       postCode: "",
 
-      select1: 1,
-      select2: 2,
-      options1: [
-        { text: "Square", value: 1 },
-        { text: "Rectangle", value: 2 },
-        { text: "Rombo", value: 3 },
-        { text: "Romboid", value: 4 },
-        { text: "Trapeze", value: 5 },
-        { text: "Triangle", value: 6 },
-        { text: "Polygon", value: 7 },
-        { text: "Regular polygon", value: 8 },
-        { text: "Circumference", value: 9 },
-        { text: "Circle", value: 10 },
-        { text: "Circular sector", value: 11 },
-        { text: "Circular trapeze", value: 12 }
-      ],
-      options2: [
-        { text: "Square", value: 1 },
-        { text: "Rectangle", value: 2 },
-        { text: "Rombo", value: 3 },
-        { text: "Romboid", value: 4 },
-        { text: "Trapeze", value: 5 },
-        { text: "Triangle", value: 6 },
-        { text: "Polygon", value: 7 },
-        { text: "Regular polygon", value: 8 },
-        { text: "Circumference", value: 9 },
-        { text: "Circle", value: 10 },
-        { text: "Circular sector", value: 11 },
-        { text: "Circular trapeze", value: 12 }
-      ]
+      town: null,
+      city: 1,
+      townF: null,
+      cityF: 1,
+      cities: [],
+      citiesF: [],
+      towns: [],
+      townsF: []
     };
+  },
+  watch: {
+    city: async function() {
+      this.towns = await PlaceService.getTownsByCity(this.city);
+    },
+    cityF: async function() {
+      this.townsF = await PlaceService.getTownsByCity(this.cityF);
+    }
+  },
+  created: async function() {
+    this.cities = await PlaceService.getCities();
+    this.citiesF = await PlaceService.getCities();
+
   },
   methods: {
     changenewAdres() {}
+  },
+  validations: {
+    name: { required },
+    surname: { required },
+    address: {required},
+    postCode: {required},
+    mobile: {mobileRegex},
+    town: {required},
+    city: {required}
   }
 };
 </script>

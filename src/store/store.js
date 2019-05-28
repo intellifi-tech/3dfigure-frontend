@@ -19,6 +19,7 @@ import mutations from "./mutations"
 import actions from "./actions"
 
 import moduleEmail from './email/moduleEmail.js'
+import moduleCheckout from './checkout/moduleCheckout.js'
 
 
 export default new Vuex.Store({
@@ -27,7 +28,8 @@ export default new Vuex.Store({
 	state,
   actions,
   modules: {
-		email: moduleEmail,
+    email: moduleEmail,
+    checkout: moduleCheckout
 	},
 	strict: process.env.NODE_ENV !== 'production'
 })

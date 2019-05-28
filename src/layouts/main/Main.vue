@@ -51,7 +51,7 @@ import TheNavbar from '../components/TheNavbar.vue';
 import TheFooter from '../components/TheFooter.vue';
 import themeConfig from '@/../themeConfig.js';
 import sidebarItems from "@/layouts/components/vx-sidebar/sidebarItems.js";
-import { UserService } from '@/services/user.service'
+import { mapActions } from "vuex";
 
 
 export default {
@@ -66,7 +66,6 @@ export default {
 			sidebarItems: sidebarItems,
 			disableCustomizer: themeConfig.disableCustomizer,
 			windowWidth: window.innerWidth, //width of windows
-			member: null
 		}
 	},
 	watch: {
@@ -93,6 +92,9 @@ export default {
 		bodyOverlay() {
 			return this.$store.state.bodyOverlay;
 		},
+		member() {
+			return this.$store.state.member;
+		},
 		contentAreaClass() {
 			if(this.sidebarWidth == "default") return "content-area-default"
 			else if(this.sidebarWidth == "reduced") return "content-area-reduced"
@@ -115,6 +117,7 @@ export default {
 		},
 	},
 	methods: {
+		...mapActions(["getCurrentUser"]),
 		changeRouteTitle(title) {
 			this.routeTitle = title;
 		},
@@ -149,14 +152,14 @@ export default {
 			}
 		}
 	},
-	created: async function() {
+	created: function() {
 		this.setSidebarWidth();
 		if(this.navbarColor == "#fff" && this.isThemeDark) {
 			this.updateNavbarColor("#10163a")
 		}else {
 			this.updateNavbarColor(this.navbarColor)
 		}
-		this.member = await UserService.getMember()
+		this.getCurrentUser()
 	},
 	components: {
 		VxSidebar,
