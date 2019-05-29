@@ -16,7 +16,7 @@
 			<div @mouseenter="sidebarMouseEntered" @mouseleave="sidebarMouseLeave">
 				<div class="pr-2 pt-1 header-sidebar flex items-end justify-between" slot="header">
 					<div class="logo flex items-center">
-						<img :src="logo" alt="logo" class="w-100 mr-4" v-if="logo">
+						<router-link to="main"><img :src="logo" alt="logo" class="w-100 mr-4" v-if="logo"></router-link>
 						<span class="logo-text" v-show="isMouseEnter || !reduce" v-if="title">{{ title }}</span>
 					</div>
 					<div class="mb-2 pb-5">

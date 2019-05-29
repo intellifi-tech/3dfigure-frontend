@@ -4081,5 +4081,23 @@ text-align:left;
 
 /*preview sayfası fotoğraflarım alanı*/
 .preview-images{
-  max-height: 475px;
+  max-height: 480px;
+}
+
+/*scroll bar style*/
+::-webkit-scrollbar {
+  width: 11px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius:10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius:10px;
+  background: #888; 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
