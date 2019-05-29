@@ -4078,3 +4078,8 @@ text-align:left;
   width:150px ;
   height:150px !important;
 }*/
+
+/*preview sayfası fotoğraflarım alanı*/
+.preview-images{
+  max-height: 475px;
+}

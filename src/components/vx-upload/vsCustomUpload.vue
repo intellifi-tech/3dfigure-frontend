@@ -2,7 +2,7 @@
   <div class="con-upload">
     <view-upload v-if="viewActive" :src="viewSrc"/>
 
-    <div class="con-img-upload">
+    <div class="con-img-upload overflow-y-auto preview-images" >
       <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
       <div v-for="(img, index) in this.savedImages" :key="index" class="main-upload img-upload">
         <img
@@ -68,13 +68,15 @@
       </div>
       <!-- </transition-group > -->
 
+    </div>
+    
       <div
         :class="{
           'on-progress-all-upload':percent != 0,
           'is-ready-all-upload':percent >= 100,
           'disabled-upload':$attrs.hasOwnProperty('disabled') || limit?(srcs.length - itemRemove.length) >= Number(limit):false
         }"
-        class="con-input-upload"
+        class="con-input-upload mt-3"
       >
         <input
           ref="fileInput"
@@ -98,7 +100,6 @@
           <i translate="no" class="material-icons notranslate">cloud_upload</i>
         </button>
       </div>
-    </div>
   </div>
 </template>
 <script>
