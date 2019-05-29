@@ -39,7 +39,13 @@ const actions = {
 
 	async getCurrentUser({ commit }){
 		const res = await UserService.getMember();
+		debugger
 		commit('CURRENT_USER', res)
+	},
+
+	async updateFirstLogin({ commit }, member) {
+		await UserService.setMember(member)
+		commit('CURRENT_USER', member)
 	}
 }
 

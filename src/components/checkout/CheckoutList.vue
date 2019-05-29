@@ -86,7 +86,6 @@ export default {
   methods: {
     ...mapActions('checkout', ['initBasketList', 'deleteFromBasketList']),
     outBasket: async function(figureId, conceptId) {
-      debugger
       this.deleteFromBasketList(figureId, conceptId)
     },
     initPage: async function() {

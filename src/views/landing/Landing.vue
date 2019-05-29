@@ -1891,7 +1891,6 @@ export default {
       }
     },
     login: async function() {
-      debugger
       if (loginCheck(this.$v)) {
         this.activated = true;
         return;
