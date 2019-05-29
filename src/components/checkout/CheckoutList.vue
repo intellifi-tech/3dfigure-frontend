@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="col-12 vx-card py-3 px-5 mt-5" v-if="this.$store.state.checkout.basketList === null || this.$store.state.checkout.basketList.length === 0">
       Sepette ürün bulunmuyor.
-      <a href="/main">Yeni Model Oluştur!</a>
+     <router-link to="main">Yeni Model Oluştur!</router-link>
     </div>
 
     <div class="row" v-else>
