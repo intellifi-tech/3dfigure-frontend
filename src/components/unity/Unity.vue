@@ -2,7 +2,7 @@
   <unity
     src="assets/utils/unity/build13_just_pre.json"
     class="w-100 responsive"
-    height="400"
+    height="350"
     unityLoader="assets/utils/unity/UnityLoader.js"
     ref="myInstance"
   ></unity>

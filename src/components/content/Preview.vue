@@ -1,19 +1,27 @@
 <template>
   <div class="row">
-    <div class="col-lg-12 mb-4">
-    <vx-card>
+    <div class="col-lg-6 mb-4">
+    <vx-card class="mb-3">
       <unity ref="unity"></unity>
     </vx-card>
+    <vx-card
+    title="Açıklama Bilgisi"
+    subtitle="Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir."
+    title-color="#fff"
+    content-color="#fff"
+    card-background="linear-gradient(120deg, #7f7fd5, #86a8e7, #91eae4)">
+    <p class="mb-3"> Lorem Ipsum, <strong>dizgi ve baskı</strong> endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.</p>
+</vx-card>
     </div>
     <!--unity card column-->
-    <div class="col-lg-12 mb-3">
+    <div class="col-lg-6 mb-3">
     <vx-card title="Fotoğraflarım">
       <p>
         Figürünü oluşturmak istediğin fotoğrafı
         <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
       </p>
 
-      <div class="mt-5">
+      <div class="mt-4">
         <vs-custom-upload
           :single-upload="true"
           :limit="limit"
