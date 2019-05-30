@@ -79,7 +79,7 @@
                   icon="icon icon-user"
                   icon-pack="feather"
                   :label-placeholder="$t('login.user')"
-                  v-model="username"
+                  v-model="login.username"
                   @keyup.enter="login"
                   class="w-full mb-6 no-icon-border"
                 />
@@ -88,16 +88,20 @@
                   icon="icon icon-lock"
                   icon-pack="feather"
                   :label-placeholder="$t('login.pass')"
-                  v-model="password"
+                  v-model="login.password"
                   @keyup.enter="login"
                   class="w-full mb-4 no-icon-border"
                 />
                 <div class="flex flex-wrap justify-between pt-4 pb-4">
-                  <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
+                  <vs-checkbox v-model="login.remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
                   <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
                 </div>
                 <vs-button @click="login">{{$t('login.loginbtn')}}</vs-button>
-                <vs-button class="float-right" type="border" @click="openRegister">{{$t('login.reg')}}</vs-button>
+                <vs-button
+                  class="float-right"
+                  type="border"
+                  @click="openRegister"
+                >{{$t('login.reg')}}</vs-button>
                 <vs-alert
                   color="danger"
                   :title="$t('login.alert.title')"
@@ -133,34 +137,34 @@
                     <vs-input
                       label-placeholder="FirstName"
                       :placeholder="$t('register.first')"
-                      v-model="firstName"
+                      v-model="register.firstName"
                       class="w-full mb-6"
                     />
                     <vs-input
                       label-placeholder="LastName"
                       :placeholder="$t('register.last')"
-                      v-model="lastName"
+                      v-model="register.lastName"
                       class="w-full mb-6"
                     />
                     <vs-input
                       type="email"
                       label-placeholder="Email"
                       :placeholder="$t('register.email')"
-                      v-model="email"
+                      v-model="register.email"
                       class="w-full mb-6"
                     />
                     <vs-input
                       type="password"
                       label-placeholder="Password"
                       :placeholder="$t('register.pass')"
-                      v-model="passwordReg"
+                      v-model="register.password"
                       class="w-full mb-6"
                     />
                     <vs-input
                       type="password"
                       label-placeholder="Confirm Password"
                       :placeholder="$t('register.confirm')"
-                      v-model="confirm"
+                      v-model="register.confirm"
                       class="w-full mb-6"
                     />
                     <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
@@ -1778,7 +1782,11 @@
                         rows="10"
                       ></textarea>
                     </div>
-                    <button @click="sendMail" class="submit-btn" type="submit">{{$t('landing.contact.submit')}}</button>
+                    <button
+                      @click="sendMail"
+                      class="submit-btn"
+                      type="submit"
+                    >{{$t('landing.contact.submit')}}</button>
                   </div>
                 </div>
               </form>
@@ -1848,14 +1856,18 @@ export default {
       langs: ["TR", "EN"],
       popupActivo: false,
       popupActivo2: false,
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      confirm: "",
-      passwordReg: "",
-      remember: false,
+      login: {
+        username: "",
+        password: "",
+        remember: false
+      },
+      register: {
+        firstName: "",
+        lastName: "",
+        password: "",
+        email: "",
+        confirm: ""
+      },
       activated: false,
       contact: {
         mail: "",
@@ -1867,7 +1879,7 @@ export default {
   },
   methods: {
     sendMail: async function() {
-      ContactService.sendMail(this.contact)
+      ContactService.sendMail(this.contact);
     },
     change() {
       this.man = !this.man;
@@ -1891,13 +1903,13 @@ export default {
       }
       this.activated = false;
       var credential = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        login: this.email,
-        password: this.passwordReg
+        firstName: this.register.firstName,
+        lastName: this.register.lastName,
+        email: this.register.email,
+        login: this.register.email,
+        password: this.register.password
       };
-      var status = await LoginService.register(credential)
+      var status = await LoginService.register(credential);
       if (status < 400) {
         this.popupActivo2 = false;
         // Logine yönlendirilebilir ya da otomatik login yapılır
@@ -1905,16 +1917,16 @@ export default {
       }
     },
     login: async function() {
-      debugger
+      debugger;
       if (loginCheck(this.$v)) {
         this.activated = true;
         return;
       }
       this.activated = false;
       var credential = {
-        username: this.username,
-        password: this.password,
-        rememberMe: this.remember
+        username: this.login.username,
+        password: this.login.password,
+        rememberMe: this.login.remember
       };
       var status = await LoginService.login(credential);
       if (status == 200) {
@@ -1924,13 +1936,21 @@ export default {
     }
   },
   validations: {
-    username: { required, email },
-    password: { required, minLength: minLength(5), maxLength: maxLength(15) },
-    email: { required, email },
-    firstName: { required },
-    lastName: { required },
-    passwordReg: { required, minLength: minLength(6), maxLength: maxLength(15) },
-    confirm: { required, sameAsPassword: sameAs("passwordReg") }
+    login: {
+      username: { required, email },
+      password: { required, minLength: minLength(5), maxLength: maxLength(15) }
+    },
+    register: {
+      email: { required, email },
+      firstName: { required },
+      lastName: { required },
+      password: {
+        required,
+        minLength: minLength(6),
+        maxLength: maxLength(15)
+      },
+      confirm: { required, sameAsPassword: sameAs("register.password") }
+    }
   }
 };
 function loginCheck(v) {
@@ -1938,7 +1958,12 @@ function loginCheck(v) {
 }
 
 function registerCheck(v) {
-  return v.email.$invalid || v.firstName.$invalid || v.lastName.$invalid || v.password.$invalid;
+  return (
+    v.email.$invalid ||
+    v.firstName.$invalid ||
+    v.lastName.$invalid ||
+    v.password.$invalid
+  );
 }
 </script>
 <style>
