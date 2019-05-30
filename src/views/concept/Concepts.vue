@@ -1,17 +1,29 @@
 <template>
   <vx-card class="mt-5 pt-2 px-2">
+    <div class="row">
+    <div class="col-lg-4">
     <h4>Konseptler</h4>
+    </div>
+    <div class="col-lg-8">
+   <ul class="row px-4 float-right">
+    <li>
+      <vs-checkbox v-model="tags" vs-value="mezuniyet">Mezuniyet</vs-checkbox>
+    </li>
+  </ul>
+  </div>
+  </div>
     <div class="search-page__search-bar flex items-center pt-3">
       <vs-input
-        placeholder="Search"
+        placeholder="Konsept bul"
         v-model="searchQuery"
         class="w-full input-rounded-full no-icon-border"
         icon="icon-search"
         icon-pack="feather"
       />
     </div>
+
     <div class="vx-row pt-5">
-      <div class="col-md-4" v-for="concept in this.conceptValues" :key="concept.showIndex">
+      <div class="col-md-3" v-for="concept in this.conceptValues" :key="concept.showIndex">
         <concept :concept="concept"></concept>
       </div>
     </div>
@@ -28,7 +40,8 @@ import ConceptService from "@/services/concept.service";
 
 export default {
   data() {
-    return {
+    return { 
+      Tags: [],
       searchQuery: null,
       currentx: 1,
       conceptValues: null,
