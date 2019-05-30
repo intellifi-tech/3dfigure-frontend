@@ -60,7 +60,7 @@ export default {
     },
     validateStep1() {
       const a = this.$store.state.checkout.basketList.length !== 0
-      return a
+      return true
     }
   },
   components: {

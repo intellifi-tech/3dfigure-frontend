@@ -73,6 +73,7 @@
               <a
                 class="nav-link cursor-pointer"
                 @click="popupActivo=true"
+                href="#"
               >{{ $t('landing.navbar.login') }}</a>
               <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo">
                 <vs-input
@@ -97,12 +98,11 @@
                   <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
                 </div>
                 <vs-button @click="login">{{$t('login.loginbtn')}}</vs-button>
-                <vs-button class="float-right" type="border" @click="openRegister">{{$t('login.reg')}}</vs-button>
-                <vs-alert
-                  color="danger"
-                  :title="$t('login.alert.title')"
-                  :active="activated"
-                >{{$t('login.alert.message')}}</vs-alert>
+                <vs-button
+                  class="float-right"
+                  type="border"
+                  @click="openRegister"
+                >{{$t('login.reg')}}</vs-button>
                 <vs-divider position="center" class="my-8"></vs-divider>
                 <div class="social-login mb-4 flex flex-wrap justify-between">
                   <span>{{$t('login.sos')}}</span>
@@ -164,12 +164,6 @@
                       class="w-full mb-6"
                     />
                     <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
-                    <vs-alert
-                      class="mb-3"
-                      color="danger"
-                      :title="$t('register.alert.title')"
-                      :active="activated"
-                    >{{$t('register.alert.message')}}</vs-alert>
                     <vs-button @click="register">{{$t('login.reg')}}</vs-button>
                     <vs-button
                       class="float-right"
@@ -1851,7 +1845,7 @@ export default {
       confirm: "",
       passwordReg: "",
       remember: false,
-      activated: false
+      checkBox1: false
     };
   },
   methods: {
@@ -1872,10 +1866,13 @@ export default {
     },
     register: async function() {
       if (registerCheck(this.$v) && !this.checkBox1) {
-        this.activated = true;
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
         return;
       }
-      this.activated = false;
       var credential = {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -1883,20 +1880,28 @@ export default {
         login: this.email,
         password: this.passwordReg
       };
-      var status = await LoginService.register(credential)
+      var status = await LoginService.register(credential);
       if (status < 400) {
         this.popupActivo2 = false;
         // Logine yönlendirilebilir ya da otomatik login yapılır
         this.popupActivo = true;
+      } else {
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
       }
     },
     login: async function() {
-      debugger
       if (loginCheck(this.$v)) {
-        this.activated = true;
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
         return;
       }
-      this.activated = false;
       var credential = {
         username: this.username,
         password: this.password,
@@ -1906,6 +1911,12 @@ export default {
       if (status == 200) {
         this.popupActivo = false;
         this.$router.push("/main");
+      } else {
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
       }
     }
   },
@@ -1915,7 +1926,11 @@ export default {
     email: { required, email },
     firstName: { required },
     lastName: { required },
-    passwordReg: { required, minLength: minLength(6), maxLength: maxLength(15) },
+    passwordReg: {
+      required,
+      minLength: minLength(6),
+      maxLength: maxLength(15)
+    },
     confirm: { required, sameAsPassword: sameAs("passwordReg") }
   }
 };
@@ -1924,7 +1939,12 @@ function loginCheck(v) {
 }
 
 function registerCheck(v) {
-  return v.email.$invalid || v.firstName.$invalid || v.lastName.$invalid || v.password.$invalid;
+  return (
+    v.email.$invalid ||
+    v.firstName.$invalid ||
+    v.lastName.$invalid ||
+    v.password.$invalid
+  );
 }
 </script>
 <style>
