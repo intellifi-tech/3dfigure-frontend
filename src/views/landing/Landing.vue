@@ -1741,6 +1741,7 @@
                         type="text"
                         id="name"
                         class="form-control"
+                        :value="contact.nameSurname"
                         v-bind:placeholder="$t('landing.contact.form.fullname')"
                       >
                     </div>
@@ -1750,6 +1751,7 @@
                       <input
                         type="email"
                         id="email"
+                        v-model="contact.mail"
                         class="form-control"
                         v-bind:placeholder="$t('landing.contact.form.email')"
                       >
@@ -1760,6 +1762,7 @@
                       <input
                         type="text"
                         id="subject"
+                        v-model="contact.subject"
                         class="form-control"
                         v-bind:placeholder="$t('landing.contact.form.subject')"
                       >
@@ -1770,11 +1773,12 @@
                         id="message"
                         class="form-control"
                         cols="30"
+                        v-model="contact.message"
                         v-bind:placeholder="$t('landing.contact.form.message')"
                         rows="10"
                       ></textarea>
                     </div>
-                    <button class="submit-btn" type="submit">{{$t('landing.contact.submit')}}</button>
+                    <button @click="sendMail" class="submit-btn" type="submit">{{$t('landing.contact.submit')}}</button>
                   </div>
                 </div>
               </form>
@@ -1833,6 +1837,7 @@ import {
   maxLength
 } from "vuelidate/lib/validators";
 import { LoginService } from "@/services/login.service";
+import { ContactService } from "@/services/contact.service";
 export default {
   data() {
     return {
@@ -1851,10 +1856,19 @@ export default {
       confirm: "",
       passwordReg: "",
       remember: false,
-      activated: false
+      activated: false,
+      contact: {
+        mail: "",
+        nameSurname: "",
+        subject: "",
+        message: ""
+      }
     };
   },
   methods: {
+    sendMail: async function() {
+      ContactService.sendMail(this.contact)
+    },
     change() {
       this.man = !this.man;
     },
