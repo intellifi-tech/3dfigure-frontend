@@ -73,6 +73,7 @@
               <a
                 class="nav-link cursor-pointer"
                 @click="popupActivo=true"
+                href="#"
               >{{ $t('landing.navbar.login') }}</a>
               <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo">
                 <vs-input
@@ -102,11 +103,6 @@
                   type="border"
                   @click="openRegister"
                 >{{$t('login.reg')}}</vs-button>
-                <vs-alert
-                  color="danger"
-                  :title="$t('login.alert.title')"
-                  :active="activated"
-                >{{$t('login.alert.message')}}</vs-alert>
                 <vs-divider position="center" class="my-8"></vs-divider>
                 <div class="social-login mb-4 flex flex-wrap justify-between">
                   <span>{{$t('login.sos')}}</span>
@@ -168,12 +164,6 @@
                       class="w-full mb-6"
                     />
                     <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
-                    <vs-alert
-                      class="mb-3"
-                      color="danger"
-                      :title="$t('register.alert.title')"
-                      :active="activated"
-                    >{{$t('register.alert.message')}}</vs-alert>
                     <vs-button @click="register">{{$t('login.reg')}}</vs-button>
                     <vs-button
                       class="float-right"
@@ -1898,10 +1888,13 @@ export default {
     },
     register: async function() {
       if (registerCheck(this.$v) && !this.checkBox1) {
-        this.activated = true;
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
         return;
       }
-      this.activated = false;
       var credential = {
         firstName: this.register.firstName,
         lastName: this.register.lastName,
@@ -1914,14 +1907,23 @@ export default {
         this.popupActivo2 = false;
         // Logine yönlendirilebilir ya da otomatik login yapılır
         this.popupActivo = true;
+      } else {
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
       }
     },
     login: async function() {
       if (loginCheck(this.$v)) {
-        this.activated = true;
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
         return;
       }
-      this.activated = false;
       var credential = {
         username: this.login.username,
         password: this.login.password,
@@ -1931,6 +1933,12 @@ export default {
       if (status == 200) {
         this.popupActivo = false;
         this.$router.push("/main");
+      } else {
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
       }
     }
   },
