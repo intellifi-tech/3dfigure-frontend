@@ -33,9 +33,10 @@ const CheckoutService = {
             return error.response.status
         }
     },
-    deleteFromBasket: async function (figureId, conceptId) {
+    deleteFromBasket: async function (ids) {
         try {
-            const res = await ApiService.delete("/baskets/concept/" + figureId + "/" + conceptId)
+            debugger
+            const res = await ApiService.delete("/baskets/concept/" + ids.f + "/" + ids.c)
             return res.data
         } catch (error) {
             error.response.data

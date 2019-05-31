@@ -8,9 +8,9 @@ const actions = {
         const res = await CheckoutService.getUserCheckout();
         commit('SET_CHECKOUT_LIST', res)
     },
-    async deleteFromBasketList({ commit }, figureId, conceptId) {
-        await CheckoutService.deleteFromBasket(figureId, conceptId);
-        commit('DELETE_FROM_CHECKOUT_LIST', conceptId);
+    async deleteFromBasketList({ commit }, ids) {
+        await CheckoutService.deleteFromBasket(ids);
+        commit('DELETE_FROM_CHECKOUT_LIST', ids.c);
     }
 }
 
