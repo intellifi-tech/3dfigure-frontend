@@ -81,7 +81,7 @@
                   icon-pack="feather"
                   :label-placeholder="$t('login.user')"
                   v-model="login.username"
-                  @keyup.enter="login"
+                  @keyup.enter="loginF"
                   class="w-full mb-6 no-icon-border"
                 />
                 <vs-input
@@ -90,14 +90,14 @@
                   icon-pack="feather"
                   :label-placeholder="$t('login.pass')"
                   v-model="login.password"
-                  @keyup.enter="login"
+                  @keyup.enter="loginF"
                   class="w-full mb-4 no-icon-border"
                 />
                 <div class="flex flex-wrap justify-between pt-4 pb-4">
                   <vs-checkbox v-model="login.remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
                   <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
                 </div>
-                <vs-button @click="login">{{$t('login.loginbtn')}}</vs-button>
+                <vs-button @click="loginF">{{$t('login.loginbtn')}}</vs-button>
                 <vs-button
                   class="float-right"
                   type="border"
@@ -164,7 +164,7 @@
                       class="w-full mb-6"
                     />
                     <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
-                    <vs-button @click="register">{{$t('login.reg')}}</vs-button>
+                    <vs-button @click="registerF">{{$t('login.reg')}}</vs-button>
                     <vs-button
                       class="float-right"
                       type="border"
@@ -1846,6 +1846,7 @@ export default {
       langs: ["TR", "EN"],
       popupActivo: false,
       popupActivo2: false,
+      checkBox1: false,
       login: {
         username: "",
         password: "",
@@ -1886,7 +1887,7 @@ export default {
       this.popupActivo = true;
       this.popupActivo2 = false;
     },
-    register: async function() {
+    registerF: async function() {
       if (registerCheck(this.$v) && !this.checkBox1) {
         this.$vs.notify({
           title: "Color",
@@ -1915,7 +1916,7 @@ export default {
         });
       }
     },
-    login: async function() {
+    loginF: async function() {
       if (loginCheck(this.$v)) {
         this.$vs.notify({
           title: "Color",
@@ -1961,15 +1962,15 @@ export default {
   }
 };
 function loginCheck(v) {
-  return v.username.$invalid || v.password.$invalid;
+  return v.login.username.$invalid || v.login.password.$invalid;
 }
 
 function registerCheck(v) {
   return (
-    v.email.$invalid ||
-    v.firstName.$invalid ||
-    v.lastName.$invalid ||
-    v.password.$invalid
+    v.register.email.$invalid ||
+    v.register.firstName.$invalid ||
+    v.register.lastName.$invalid ||
+    v.register.password.$invalid
   );
 }
 </script>

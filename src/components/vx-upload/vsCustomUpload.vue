@@ -4,6 +4,7 @@
 
     <div class="con-img-upload overflow-y-auto preview-images" >
       <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
+      <pull-infinite-scroller>
       <div v-for="(img, index) in this.savedImages" :key="index" class="main-upload img-upload">
         <img
           v-if="img.avatarKey"
@@ -18,6 +19,7 @@
           @click="viewImage(img.imagePath,$event, img.avatarKey)"
         >
       </div>
+      </pull-infinite-scroller>
       <!-- <transition-group v-for="(img,index) in getFilesFilter" :key="index" name="upload"> -->
       <!-- Burası upload edildikten sonra oluşturuluyor -->
       <div
@@ -104,6 +106,7 @@
 </template>
 <script>
 import viewUpload from "./viewUpload";
+import VuePullInfiniteScroller from 'vue-pull-infinite-scroller';
 var lastTap = 0;
 export default {
   components: {
