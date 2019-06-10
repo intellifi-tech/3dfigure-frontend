@@ -19,8 +19,8 @@ const LoginService = {
             TokenService.saveToken(response.data.id_token)
             ApiService.setHeader()
             TokenService.saveAvatarToken(res.data.access_token)
-            const checkoutRes = await CheckoutService.getUserCheckout()
-            if (checkoutRes === 404) {
+            const checkoutRes = await CheckoutService.isLastBasket()
+            if (!checkoutRes.last) {
                 await CheckoutService.createCheckout()
             }
 
