@@ -1,46 +1,56 @@
 <template>
   <div class="row">
     <div class="col-lg-6 mb-4">
-    <vx-card class="mb-3">
-      <unity ref="unity"></unity>
-    </vx-card>
-    <vx-card
-    title="Açıklama Bilgisi"
-    subtitle="Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir."
-    title-color="#fff"
-    content-color="#fff"
-    card-background="linear-gradient(120deg, #7f7fd5, #86a8e7, #91eae4)">
-    <p class="mb-3"> Lorem Ipsum, <strong>dizgi ve baskı</strong> endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.</p>
-</vx-card>
+      <vx-card class="mb-3">
+        <unity ref="unity"></unity>
+      </vx-card>
+      <vx-card
+        title="Açıklama Bilgisi"
+        subtitle="Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir."
+        title-color="#fff"
+        content-color="#fff"
+        card-background="linear-gradient(120deg, #7f7fd5, #86a8e7, #91eae4)"
+      >
+        <p class="mb-3">
+          Lorem Ipsum,
+          <strong>dizgi ve baskı</strong> endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.
+        </p>
+      </vx-card>
     </div>
     <!--unity card column-->
     <div class="col-lg-6 mb-3">
-    <vx-card title="Fotoğraflarım">
-      <p>
-        Figürünü oluşturmak istediğin fotoğrafı
-        <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
-      </p>
-
-      <div class="mt-4">
-        <vs-custom-upload
-          :single-upload="true"
-          :limit="limit"
-          class="uploadBtn"
-          text="Fotoğraf Yükle"
-          :server="actionUrl"
-          :avatarsdk="avatarsdk"
-          :headers="authHeader"
-          :avatarHeaders="avatarHeader"
-          fileName="photo"
-          accept="image/*"
-          @on-server-success="serverUpload"
-          @on-avatar-success="avatarUpload"
-          :showUploadButton="false"
-          :savedImages="userFigures"
-          ref="upload"
-        />
-      </div>
-    </vx-card>
+      <vx-card title="Fotoğraflarım">
+        <p>
+          Figürünü oluşturmak istediğin fotoğrafı
+          <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
+        </p>
+        <VuePerfectScrollbar
+          ref="mainSidebarPs"
+          class="scroll-area--nofications p-0"
+          :settings="settings"
+          
+        >
+          <div class="mt-4">
+            <vs-custom-upload
+              :single-upload="true"
+              :limit="limit"
+              class="uploadBtn"
+              text="Fotoğraf Yükle"
+              :server="actionUrl"
+              :avatarsdk="avatarsdk"
+              :headers="authHeader"
+              :avatarHeaders="avatarHeader"
+              fileName="photo"
+              accept="image/*"
+              @on-server-success="serverUpload"
+              @on-avatar-success="avatarUpload"
+              :showUploadButton="false"
+              :savedImages="userFigures"
+              ref="upload"
+            />
+          </div>
+        </VuePerfectScrollbar>
+      </vx-card>
     </div>
     <!--fotoğraflar card column -->
   </div>
@@ -54,6 +64,7 @@ import { TokenService } from "@/services/token.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
 import PricingService from "@/services/pricing.service";
+import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
   data() {
@@ -75,7 +86,12 @@ export default {
       },
       currentAvatar: null,
       limit: null,
-      userFigures: null
+      userFigures: null,
+      settings: {
+        // perfectscrollbar settings
+        maxScrollbarLength: 60,
+        wheelSpeed: 0.6
+      }
     };
   },
   created() {
@@ -88,6 +104,9 @@ export default {
     $route: "initialize"
   },
   methods: {
+    updateGallery: async function() {
+
+    },
     initialize: async function() {
       var number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
@@ -143,7 +162,8 @@ export default {
   },
   components: {
     Unity,
-    VsCustomUpload
+    VsCustomUpload,
+    VuePerfectScrollbar
   }
 };
 </script>
