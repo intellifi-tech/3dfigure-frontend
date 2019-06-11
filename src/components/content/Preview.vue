@@ -115,7 +115,7 @@ export default {
         /*const formData = new FormData()
         formData.append("avatarKey", this.figure.avatarKey)
         formData.append("imageName", this.figure.imagePath)*/
-        this.figure.userId = this.$parent.$parent.$parent.$parent.member.id;
+        this.figure.userId = this.$store.member.id;
         FigureService.saveUserFigure(this.figure);
         this.$vs.notify({
           title: "Çok Güzel",

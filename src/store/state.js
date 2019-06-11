@@ -30,7 +30,12 @@ const state = {
 	},
 
 	themePrimaryColor: colors.primary,
-	member: {}
+	member: {},
+	general: {
+		appToken: "",
+		avatarToken: "",
+		singleFigure: ""
+	}
 }
 
 export default state
