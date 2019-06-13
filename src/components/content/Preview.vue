@@ -22,7 +22,7 @@
       <vx-card title="Fotoğraflarım">
         <p>
           Figürünü oluşturmak istediğin fotoğrafı
-          <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
+          <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.number.totalFigure}}
         </p>
 
         <div class="mt-4">
@@ -79,7 +79,8 @@ export default {
       },
       currentAvatar: null,
       limit: null,
-      userFigures: null
+      userFigures: null,
+      number: {}
     };
   },
   created() {
@@ -96,9 +97,9 @@ export default {
 
     },
     initialize: async function() {
-      var number = await PricingService.getUserPricing();
+      this.number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
-      this.limit = number.totalFigure - this.userFigures.length;
+      this.limit = this.number.totalFigure - this.userFigures.length;
     },
     avatarUpload($event, index) {
       // Avatar SDK isteğinin sonucu
