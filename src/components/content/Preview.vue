@@ -78,7 +78,7 @@ export default {
         imagePath: null,
         isProduct: false,
         userId: null,
-        isFail: false
+        isLiked: false
       },
       currentAvatar: null,
       limit: null,
@@ -153,15 +153,14 @@ export default {
                   var res = await AvatarSdkService.getAvatarInformation(
                     response.code
                   );
-                  debugger;
                   if (res.data.status === "Failed") {
                     this.$vs.notify({
                       title: "HATA",
+                      time: 4000,
                       text:
                         "Avatar key oluşturulamadı başka fotoğraf deneyiniz",
                       color: "danger"
                     });
-                    this.figure.isFail = true;
                   } else {
                     this.showAvatar(response.code);
                     this.$refs.upload.srcs[index].avatarKey = response.code;
