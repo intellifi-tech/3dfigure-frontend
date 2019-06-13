@@ -1901,13 +1901,15 @@ export default {
         lastName: this.register.lastName,
         email: this.register.email,
         login: this.register.email,
-        password: this.register.password
+        password: this.register.password,
+        langKey: "en"
       };
       var status = await LoginService.register(credential);
       if (status < 400) {
         this.popupActivo2 = false;
+        this.register = {};
         // Logine yönlendirilebilir ya da otomatik login yapılır
-        this.popupActivo = true;
+        // this.popupActivo = true;
       } else {
         this.$vs.notify({
           title: "Color",
