@@ -6,35 +6,43 @@
  **/
 const TokenService = {
     getToken() {
-        return this.$store.general.appToken
+        return sessionStorage.getItem(process.env.VUE_APP_TOKEN_KEY)
     },
 
     saveToken(accessToken) {
-        this.$store.general.appToken = accessToken
+        sessionStorage.setItem(process.env.VUE_APP_TOKEN_KEY, accessToken)
     },
 
     removeToken() {
-        this.$store.general.appToken = ""
+        sessionStorage.removeItem(process.env.VUE_APP_TOKEN_KEY)
+    },
+
+    saveAvatarId(index, avatarKey) {
+        sessionStorage.setItem('avatar'.concat(index), avatarKey)
+    },
+
+    getAvatarId(index) {
+        return sessionStorage.getItem('avatar'.concat(index))
     },
 
     getAvatarToken() {
-        return this.$store.general.avatarToken
+        return sessionStorage.getItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
     },
 
     saveAvatarToken(avatarToken) {
-        this.$store.general.avatarToken = avatarToken
+        sessionStorage.setItem(process.env.VUE_APP_AVATAR_TOKEN_KEY, avatarToken)
     },
 
     removeAvatarToken() {
-        this.$store.general.avatarToken = ""
+        sessionStorage.removeItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
     },
 
-    addClickedPhoto(avatarKey) {
-        this.$store.general.singleFigure = avatarKey
+    addClickedPhoto(avatarToken) {
+        sessionStorage.setItem("clicked", avatarToken)
     },
 
     getClickedPhoto() {
-        return this.$store.general.singleFigure
+        return sessionStorage.getItem("clicked")
     }
 }
 

@@ -4,6 +4,10 @@
 
     <div class="con-img-upload overflow-y-auto preview-images" ref="savedImg">
       <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
+      <div class="main-upload img-upload">
+        <img src="assets/images/portre/man/man-0.jpg" alt="" v-if="this.$store.state.member.sex === 'M'">
+        <img src="assets/images/portre/woman/woman-0.jpg" alt="" v-else>
+      </div>
       <div
         v-for="(img, index) in this.savedImages"
         :key="index"

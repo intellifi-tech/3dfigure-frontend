@@ -62,7 +62,10 @@
               <strong>${{totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>
+          <div><vs-button color="success" type="filled" to="main">Alışverişe Devam Et</vs-button></div>
         </div>
+
+        
 
         <!--card checkout -->
       </div>

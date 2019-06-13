@@ -264,15 +264,6 @@
         <div class="row">
           <div class="col-lg-12 pl-0">
             <div class="how-to-use">
-              <div class="row justify-content-center">
-                <div class="col-lg-4">
-                  <div class="section-title text-center">
-                    <!-- section title -->
-                    <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
-                    <p>{{$t('landing.howtouse.subheader')}}</p>
-                  </div>
-                </div>
-              </div>
               <ul id="ul-man-or-woman" class="row mb-5">
                 <p class="btn-switch">
                   <input
@@ -303,81 +294,6 @@
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
                 <div class="man-div model-column row" v-show="man">
-                  <div class="card-footer col-lg-5 px-0 rounded-lg">
-                    <div class="single-inline-feature-item">
-                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
-                      <img
-                        src="assets/images/portre/man/man-true.jpg"
-                        class="img-fluid -mt-4 rounded-t-lg"
-                      >
-                      <div class="content pt-4 px-4">
-                        <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
-                        <p class="pt-3" v-html="$t('landing.howtouse.trueDesc')"></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-7 pr-lg-0">
-                    <ul id="man-list" class="falseList">
-                      <li>
-                        <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
-                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
-                            <img
-                              src="assets/images/portre/man/man-false-1.jpg"
-                              class="rounded-l-lg img-scale"
-                            >
-                          </div>
-                          <div class="content col-9 pt-3">
-                            <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
-                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
-                            <img
-                              src="assets/images/portre/man/man-false-3.jpg"
-                              class="rounded-l-lg img-scale"
-                            >
-                          </div>
-                          <div class="content col-9 pt-3">
-                            <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
-                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
-                            <img
-                              src="assets/images/portre/man/man-false-2.jpg"
-                              class="rounded-l-lg img-scale"
-                            >
-                          </div>
-                          <div class="content col-9 pt-3">
-                            <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li>
-                        <div class="card-group bg-light rounded-lg">
-                          <div class="portre col-3 px-0">
-                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
-                            <img
-                              src="assets/images/portre/man/man-false-4.jpg"
-                              class="rounded-l-lg img-scale"
-                            >
-                          </div>
-                          <div class="content col-9 pt-3">
-                            <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-
                   <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
@@ -479,18 +395,23 @@
                         </div>
                       </li>
                     </ul>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-4">
+                        <div class="section-title text-center">
+                          <!-- section title -->
+                          <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
+                          <p>{{$t('landing.howtouse.subheader')}}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <!--man div finish-->
 
-                <!-- woman div start -->
-                <div class="woman-div model-column row" v-show="!man">
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
-                        src="assets/images/portre/woman/woman-true.jpg"
-                        class="-mt-4 img-fluid rounded-t-lg"
+                        src="assets/images/portre/man/man-true.jpg"
+                        class="img-fluid -mt-4 rounded-t-lg"
                       >
                       <div class="content pt-4 px-4">
                         <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
@@ -499,13 +420,13 @@
                     </div>
                   </div>
                   <div class="col-lg-7 pr-lg-0">
-                    <ul id="woman-list" class="falseList">
+                    <ul id="man-list" class="falseList">
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
-                              src="assets/images/portre/woman/woman-false-1.jpg"
+                              src="assets/images/portre/man/man-false-1.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
@@ -519,7 +440,7 @@
                           <div class="portre col-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
-                              src="assets/images/portre/woman/woman-false-3.jpg"
+                              src="assets/images/portre/man/man-false-3.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
@@ -533,7 +454,7 @@
                           <div class="portre col-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
-                              src="assets/images/portre/woman/woman-false-2.jpg"
+                              src="assets/images/portre/man/man-false-2.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
@@ -548,7 +469,7 @@
                           <div class="portre col-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
-                              src="assets/images/portre/woman/woman-false-4.jpg"
+                              src="assets/images/portre/man/man-false-4.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
@@ -559,7 +480,11 @@
                       </li>
                     </ul>
                   </div>
+                </div>
+                <!--man div finish-->
 
+                <!-- woman div start -->
+                <div class="woman-div model-column row" v-show="!man">
                   <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
@@ -657,6 +582,89 @@
                               >
                               <h4 class="title">{{$t('landing.howtouse.createModel')}}</h4>
                             </a>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-4">
+                        <div class="section-title text-center">
+                          <!-- section title -->
+                          <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
+                          <p>{{$t('landing.howtouse.subheader')}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer col-lg-5 px-0 rounded-lg">
+                    <div class="single-inline-feature-item">
+                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
+                      <img
+                        src="assets/images/portre/woman/woman-true.jpg"
+                        class="-mt-4 img-fluid rounded-t-lg"
+                      >
+                      <div class="content pt-4 px-4">
+                        <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
+                        <p class="pt-3" v-html="$t('landing.howtouse.trueDesc')"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-7 pr-lg-0">
+                    <ul id="woman-list" class="falseList">
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-1.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-3.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-2.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="card-group bg-light rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-4.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
                           </div>
                         </div>
                       </li>

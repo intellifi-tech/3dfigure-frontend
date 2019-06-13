@@ -79,12 +79,7 @@ export default {
       },
       currentAvatar: null,
       limit: null,
-      userFigures: null,
-      settings: {
-        // perfectscrollbar settings
-        maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+      userFigures: null
     };
   },
   created() {
@@ -153,6 +148,7 @@ export default {
                     position: "top-right",
                     time: 6000
                   });
+                  debugger
                   this.showAvatar(response.code);
                 }, 6000);
               }, 6000);
@@ -167,7 +163,7 @@ export default {
         /*const formData = new FormData()
         formData.append("avatarKey", this.figure.avatarKey)
         formData.append("imageName", this.figure.imagePath)*/
-        this.figure.userId = this.$store.member.id;
+        this.figure.userId = this.$store.state.member.id;
         FigureService.saveUserFigure(this.figure);
       } else {
         this.$vs.notify({
