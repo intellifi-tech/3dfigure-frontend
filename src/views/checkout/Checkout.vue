@@ -37,30 +37,8 @@ export default {
     };
   },
   methods: {
-    generateId() {
-      var length = 11;
-      var timestamp = +new Date();
-
-      var _getRandomInt = function(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      };
-
-      return function() {
-        var ts = timestamp.toString();
-        var parts = ts.split("").reverse();
-        var id = "";
-
-        for (var i = 0; i < length; ++i) {
-          var index = _getRandomInt(0, parts.length - 1);
-          id += parts[index];
-        }
-
-        return id;
-      };
-    },
     validateStep1() {
-      const a = this.$store.state.checkout.basketList.length !== 0
-      return true
+      return this.$store.state.checkout.basketList.length !== 0
     }
   },
   components: {

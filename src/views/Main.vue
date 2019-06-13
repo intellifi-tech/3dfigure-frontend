@@ -61,7 +61,7 @@ export default {
       }
     },
     validateStep1() {
-      const res = TokenService.getClickedPhoto() !== "";
+      const res = TokenService.getClickedPhoto() !== null;
       if (!res) {
         this.$vs.notify({
           title: "HATA",

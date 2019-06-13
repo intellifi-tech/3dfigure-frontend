@@ -22,7 +22,7 @@
       <vx-card title="Fotoğraflarım">
         <p>
           Figürünü oluşturmak istediğin fotoğrafı
-          <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
+          <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.number.totalFigure}}
         </p>
 
         <div class="mt-4">
@@ -80,11 +80,7 @@ export default {
       currentAvatar: null,
       limit: null,
       userFigures: null,
-      settings: {
-        // perfectscrollbar settings
-        maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+      number: {}
     };
   },
   created() {
@@ -101,9 +97,9 @@ export default {
 
     },
     initialize: async function() {
-      var number = await PricingService.getUserPricing();
+      this.number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
-      this.limit = number.totalFigure - this.userFigures.length;
+      this.limit = this.number.totalFigure - this.userFigures.length;
     },
     avatarUpload($event, index) {
       // Avatar SDK isteğinin sonucu
@@ -153,6 +149,7 @@ export default {
                     position: "top-right",
                     time: 6000
                   });
+                  debugger
                   this.showAvatar(response.code);
                 }, 6000);
               }, 6000);
@@ -167,7 +164,7 @@ export default {
         /*const formData = new FormData()
         formData.append("avatarKey", this.figure.avatarKey)
         formData.append("imageName", this.figure.imagePath)*/
-        this.figure.userId = this.$store.member.id;
+        this.figure.userId = this.$store.state.member.id;
         FigureService.saveUserFigure(this.figure);
       } else {
         this.$vs.notify({
