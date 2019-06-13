@@ -225,8 +225,8 @@ export default {
         }
       } else {
         this.clicked = index;
-        this.$parent.$parent.$parent.showAvatar(avatarKey);
-        this.$parent.$parent.$parent.addFigureToBasket(avatarKey);
+        this.$parent.$parent.showAvatar(avatarKey);
+        this.$parent.$parent.addFigureToBasket(avatarKey);
       }
     },
     removeFile(index) {

@@ -24,12 +24,6 @@
           Figürünü oluşturmak istediğin fotoğrafı
           <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
         </p>
-        <VuePerfectScrollbar
-          ref="mainSidebarPs"
-          class="scroll-area--nofications p-0"
-          :settings="settings"
-          
-        >
           <div class="mt-4">
             <vs-custom-upload
               :single-upload="true"
@@ -49,7 +43,6 @@
               ref="upload"
             />
           </div>
-        </VuePerfectScrollbar>
       </vx-card>
     </div>
     <!--fotoğraflar card column -->
@@ -64,7 +57,6 @@ import { TokenService } from "@/services/token.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
 import PricingService from "@/services/pricing.service";
-import VuePerfectScrollbar from "vue-perfect-scrollbar";
 
 export default {
   data() {
@@ -162,8 +154,7 @@ export default {
   },
   components: {
     Unity,
-    VsCustomUpload,
-    VuePerfectScrollbar
+    VsCustomUpload
   }
 };
 </script>
