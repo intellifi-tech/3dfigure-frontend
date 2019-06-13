@@ -79,7 +79,12 @@ export default {
       },
       currentAvatar: null,
       limit: null,
-      userFigures: null
+      userFigures: null,
+      settings: {
+        // perfectscrollbar settings
+        maxScrollbarLength: 60,
+        wheelSpeed: 0.6
+      }
     };
   },
   created() {
@@ -92,6 +97,9 @@ export default {
     $route: "initialize"
   },
   methods: {
+    updateGallery: async function() {
+
+    },
     initialize: async function() {
       var number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
