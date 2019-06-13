@@ -16,15 +16,18 @@
           class="holamundo"
           title="Merhaba, 3D"
           :active.sync="this.$store.state.member.firstLogin"
-          :button-close-hidden=false
+          :button-close-hidden="false"
         >
           <div class="pt-0">
-            <form-wizard @on-complete="finish">
-              <tab-content title="3D Figür Oluştur" icon="feather icon-home">
-                <div>Hello</div>
+            <form-wizard title="3D Figure" @on-complete="finish">
+              <tab-content title="Fotoğraf Yükle" icon="feather icon-home">
+                <img src="assets/images/info/1.png" alt>
               </tab-content>
-              <tab-content title="3D Figür Oluştur 2" icon="feather icon-home">
-                <div>Hello2</div>
+              <tab-content title="Konsept Seç" icon="feather icon-home">
+                <img src="assets/images/info/2.png" alt>
+              </tab-content>
+              <tab-content title="Sipariş Süreci" icon="feather icon-home">
+                <img src="assets/images/info/3.png" alt>
               </tab-content>
             </form-wizard>
           </div>
