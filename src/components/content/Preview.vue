@@ -1,46 +1,50 @@
 <template>
   <div class="row">
     <div class="col-lg-6 mb-4">
-    <vx-card class="mb-3">
-      <unity ref="unity"></unity>
-    </vx-card>
-    <vx-card
-    title="Açıklama Bilgisi"
-    subtitle="Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir."
-    title-color="#fff"
-    content-color="#fff"
-    card-background="linear-gradient(120deg, #7f7fd5, #86a8e7, #91eae4)">
-    <p class="mb-3"> Lorem Ipsum, <strong>dizgi ve baskı</strong> endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.</p>
-</vx-card>
+      <vx-card class="mb-3">
+        <unity ref="unity"></unity>
+      </vx-card>
+      <vx-card
+        title="Açıklama Bilgisi"
+        subtitle="Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir."
+        title-color="#fff"
+        content-color="#fff"
+        card-background="linear-gradient(120deg, #7f7fd5, #86a8e7, #91eae4)"
+      >
+        <p class="mb-3">
+          Lorem Ipsum,
+          <strong>dizgi ve baskı</strong> endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.
+        </p>
+      </vx-card>
     </div>
     <!--unity card column-->
     <div class="col-lg-6 mb-3">
-    <vx-card title="Fotoğraflarım">
-      <p>
-        Figürünü oluşturmak istediğin fotoğrafı
-        <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
-      </p>
+      <vx-card title="Fotoğraflarım">
+        <p>
+          Figürünü oluşturmak istediğin fotoğrafı
+          <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin.
+        </p>
 
-      <div class="mt-4">
-        <vs-custom-upload
-          :single-upload="true"
-          :limit="limit"
-          class="uploadBtn"
-          text="Fotoğraf Yükle"
-          :server="actionUrl"
-          :avatarsdk="avatarsdk"
-          :headers="authHeader"
-          :avatarHeaders="avatarHeader"
-          fileName="photo"
-          accept="image/*"
-          @on-server-success="serverUpload"
-          @on-avatar-success="avatarUpload"
-          :showUploadButton="false"
-          :savedImages="userFigures"
-          ref="upload"
-        />
-      </div>
-    </vx-card>
+        <div class="mt-4">
+          <vs-custom-upload
+            :single-upload="true"
+            :limit="limit"
+            class="uploadBtn"
+            text="Fotoğraf Yükle"
+            :server="actionUrl"
+            :avatarsdk="avatarsdk"
+            :headers="authHeader"
+            :avatarHeaders="avatarHeader"
+            fileName="photo"
+            accept="image/*"
+            @on-server-success="serverUpload"
+            @on-avatar-success="avatarUpload"
+            :showUploadButton="false"
+            :savedImages="userFigures"
+            ref="upload"
+          />
+        </div>
+      </vx-card>
     </div>
     <!--fotoğraflar card column -->
   </div>
@@ -99,14 +103,54 @@ export default {
       if (response.code) {
         // Open loading page
         this.$vs.loading({
-          text: "Biraz bekletiyoruz ama bir de heykel traşları düşünün..",
+          text: "Fotoğraf, bulut sunucumuza yükleniyor..",
           clickEffect: true,
           textAfter: true
         });
         setTimeout(() => {
           this.$vs.loading.close();
-          this.showAvatar(response.code);
-        }, 30000);
+          this.$vs.loading({
+            text: "Şimdi fotoğraflar üzerinden analiz yapılıyor..",
+            clickEffect: true,
+            textAfter: true
+          });
+          setTimeout(() => {
+            this.$vs.loading.close();
+            this.$vs.loading({
+              text:
+                "Derin öğrenme ile en doğru geometri ve doku oluşturuluyor..",
+              clickEffect: true,
+              textAfter: true
+            });
+            setTimeout(() => {
+              this.$vs.loading.close();
+              this.$vs.loading({
+                text: "Biraz bekletiyoruz ama bir de heykel traşları düşünün..",
+                clickEffect: true,
+                textAfter: true
+              });
+              setTimeout(() => {
+                this.$vs.loading.close();
+                this.$vs.loading({
+                  text: "Sonuca yaklaştık.. Hazır mısınız…",
+                  clickEffect: true,
+                  textAfter: true
+                });
+                setTimeout(() => {
+                  this.$vs.loading.close();
+                  this.$vs.notify({
+                    text:
+                      "Modelde bazı eksiklikler olabilir, hiç endişe etmeyin. Siz istediğiniz konsepti seçin. Geri kalan tüm düzenlemeleri biz tasarım aşamasında gerçekleştirmekteyiz. Sonrasında ise siparişinizi üretime almadan önce sizin onayınıza sunacağız.",
+                    color: "dark",
+                    position: "top-right",
+                    time: 6000
+                  });
+                  this.showAvatar(response.code);
+                }, 6000);
+              }, 6000);
+            }, 6000);
+          }, 6000);
+        }, 6000);
 
         this.$refs.upload.srcs[index].avatarKey = response.code;
         this.figure.avatarKey = response.code;
@@ -117,11 +161,6 @@ export default {
         formData.append("imageName", this.figure.imagePath)*/
         this.figure.userId = this.$parent.$parent.$parent.$parent.member.id;
         FigureService.saveUserFigure(this.figure);
-        this.$vs.notify({
-          title: "Çok Güzel",
-          text: "Şimdi istediğiniz konsepti seçin",
-          color: "info"
-        });
       } else {
         this.$vs.notify({
           title: "HATA",

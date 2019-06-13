@@ -109,7 +109,8 @@ export default {
         lastName: this.lastName,
         email: this.email,
         login: this.email,
-        password: this.password
+        password: this.password,
+        langKey: "en"
       };
       var status = await LoginService.register(credential)
       if (status < 400) {
