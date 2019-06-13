@@ -22,7 +22,8 @@
       <vx-card title="Fotoğraflarım">
         <p>
           Figürünü oluşturmak istediğin fotoğrafı
-          <code>Galerinden</code> seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.number.totalFigure}}
+          <code>Galerinden</code>
+          seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.number.totalFigure}}
         </p>
 
         <div class="mt-4">
@@ -58,6 +59,7 @@ import { TokenService } from "@/services/token.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
 import PricingService from "@/services/pricing.service";
+import AvatarSdkService from "@/services/avatarsdk.service";
 
 export default {
   data() {
@@ -75,7 +77,8 @@ export default {
         avatarKey: null,
         imagePath: null,
         isProduct: false,
-        userId: null
+        userId: null,
+        isFail: false
       },
       currentAvatar: null,
       limit: null,
@@ -93,15 +96,13 @@ export default {
     $route: "initialize"
   },
   methods: {
-    updateGallery: async function() {
-
-    },
+    updateGallery: async function() {},
     initialize: async function() {
       this.number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
       this.limit = this.number.totalFigure - this.userFigures.length;
     },
-    avatarUpload($event, index) {
+    avatarUpload: async function($event, index) {
       // Avatar SDK isteğinin sonucu
       var response = JSON.parse($event.currentTarget.response);
       if (response.code) {
@@ -140,7 +141,7 @@ export default {
                   clickEffect: true,
                   textAfter: true
                 });
-                setTimeout(() => {
+                setTimeout(async () => {
                   this.$vs.loading.close();
                   this.$vs.notify({
                     text:
@@ -149,23 +150,35 @@ export default {
                     position: "top-right",
                     time: 6000
                   });
-                  debugger
-                  this.showAvatar(response.code);
+                  var res = await AvatarSdkService.getAvatarInformation(
+                    response.code
+                  );
+                  debugger;
+                  if (res.data.status === "Failed") {
+                    this.$vs.notify({
+                      title: "HATA",
+                      text:
+                        "Avatar key oluşturulamadı başka fotoğraf deneyiniz",
+                      color: "danger"
+                    });
+                    this.figure.isFail = true;
+                  } else {
+                    this.showAvatar(response.code);
+                    this.$refs.upload.srcs[index].avatarKey = response.code;
+                    this.figure.avatarKey = response.code;
+                    this.figure.figureName = response.code;
+
+                    /*const formData = new FormData()
+        formData.append("avatarKey", this.figure.avatarKey)
+        formData.append("imageName", this.figure.imagePath)*/
+                    this.figure.userId = this.$store.state.member.id;
+                    FigureService.saveUserFigure(this.figure);
+                  }
                 }, 6000);
               }, 6000);
             }, 6000);
           }, 6000);
         }, 6000);
-
-        this.$refs.upload.srcs[index].avatarKey = response.code;
-        this.figure.avatarKey = response.code;
-        this.figure.figureName = response.code;
-
-        /*const formData = new FormData()
-        formData.append("avatarKey", this.figure.avatarKey)
-        formData.append("imageName", this.figure.imagePath)*/
-        this.figure.userId = this.$store.state.member.id;
-        FigureService.saveUserFigure(this.figure);
       } else {
         this.$vs.notify({
           title: "HATA",
