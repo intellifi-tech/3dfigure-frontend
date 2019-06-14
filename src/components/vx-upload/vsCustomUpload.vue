@@ -76,16 +76,14 @@
           <span>{{ img.name }}</span>
         </h4>
       </div>
-      <!-- </transition-group > -->
-    </div>
-
-    <div
+      <!-- photo upload input start-->
+      <div
       :class="{
           'on-progress-all-upload':percent != 0,
           'is-ready-all-upload':percent >= 100,
           'disabled-upload':$attrs.hasOwnProperty('disabled') || limit?(srcs.length - itemRemove.length) >= Number(limit):false
         }"
-      class="con-input-upload mt-3"
+      class="con-input-upload img-upload bg-primary shadow-primary text-white p-0"
     >
       <input
         ref="fileInput"
@@ -94,11 +92,15 @@
         type="file"
         @change="getFiles"
       >
-      <span class="text-input">{{ text }}</span>
+      <span class="text-input text-5xl">+<!--{{ text }}--></span>
       <span :style="{
             width:`${percent}%`
           }" class="input-progress"></span>
+      </div>
+      <!--photo upload input end-->
     </div>
+
+    
   </div>
 </template>
 <script>
@@ -423,5 +425,19 @@ export default {
 <style>
 .selected {
   border: 2px solid greenyellow;
+}
+.con-img-upload .img-upload{
+    width: 170px;
+    height: 170px;
+    margin: 15px 5px;
+}
+.shadow-primary{
+    -webkit-box-shadow: 0 5px 20px 0 rgba(var(--vs-primary),1) !important;
+    box-shadow: 0 5px 20px 0 rgba(var(--vs-primary),1) !important;
+}
+@media only screen and (min-width: 1440px){
+ .con-img-upload .img-upload{
+   margin: 1.5rem;
+ }
 }
 </style>
