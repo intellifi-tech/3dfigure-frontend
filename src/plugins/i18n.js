@@ -161,10 +161,10 @@ const messages = {
                 subheader:'Aşağıdaki uyarıları dikkate alarak fotoğrafınızı yükleyebilirsiniz.',
 
                 man:{
-                    radioText:'Bay',
+                    radioText:'Erkek',
                 },
                 woman:{
-                    radioText:'Bayan',
+                    radioText:'Kadın',
                 },
                 
                 trueHeader:'Aradığımız fotoğraf tam olarak bu!',

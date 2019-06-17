@@ -72,112 +72,23 @@
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
               <a
                 class="nav-link cursor-pointer"
-                @click="popupActivo=true"
+                @click="openLogin"
+                href="#"
               >{{ $t('landing.navbar.login') }}</a>
-              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo">
-                <vs-input
-                  icon="icon icon-user"
-                  icon-pack="feather"
-                  :label-placeholder="$t('login.user')"
-                  v-model="username"
-                  @keyup.enter="login"
-                  class="w-full mb-6 no-icon-border"
-                />
-                <vs-input
-                  type="password"
-                  icon="icon icon-lock"
-                  icon-pack="feather"
-                  :label-placeholder="$t('login.pass')"
-                  v-model="password"
-                  @keyup.enter="login"
-                  class="w-full mb-4 no-icon-border"
-                />
-                <div class="flex flex-wrap justify-between pt-4 pb-4">
-                  <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
-                  <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
-                </div>
-                <vs-button @click="login">{{$t('login.loginbtn')}}</vs-button>
-                <vs-button class="float-right" type="border" @click="openRegister">{{$t('login.reg')}}</vs-button>
-                <vs-alert
-                  color="danger"
-                  :title="$t('login.alert.title')"
-                  :active="activated"
-                >{{$t('login.alert.message')}}</vs-alert>
-                <vs-divider position="center" class="my-8"></vs-divider>
-                <div class="social-login mb-4 flex flex-wrap justify-between">
-                  <span>{{$t('login.sos')}}</span>
-                  <div class="social-login-buttons flex">
-                    <vs-button
-                      color="#1551b1"
-                      class="mr-4 px-8"
-                      icon="icon icon-facebook"
-                      icon-pack="feather"
-                    ></vs-button>
-                    <vs-button
-                      color="#00aaff"
-                      class="px-8"
-                      icon="icon icon-twitter"
-                      icon-pack="feather"
-                    ></vs-button>
-                  </div>
+              
+              <vs-popup button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.loginPopup">
+               <div class="position-relative">
+                 
+                <login :isPopup=true></login>
+                <button class="position-absolute btn btn-danger" style="top:0px;right:0px;z-index:99999" @click="closePopup">x</button>
                 </div>
               </vs-popup>
+              
             </li>
             <li>
-              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo2">
-                <div class="p-8">
-                  <div class="vx-card__title">
-                    <h4 class="mb-4">{{$t('register.create')}}</h4>
-                  </div>
-                  <div class="clearfix">
-                    <vs-input
-                      label-placeholder="FirstName"
-                      :placeholder="$t('register.first')"
-                      v-model="firstName"
-                      class="w-full mb-6"
-                    />
-                    <vs-input
-                      label-placeholder="LastName"
-                      :placeholder="$t('register.last')"
-                      v-model="lastName"
-                      class="w-full mb-6"
-                    />
-                    <vs-input
-                      type="email"
-                      label-placeholder="Email"
-                      :placeholder="$t('register.email')"
-                      v-model="email"
-                      class="w-full mb-6"
-                    />
-                    <vs-input
-                      type="password"
-                      label-placeholder="Password"
-                      :placeholder="$t('register.pass')"
-                      v-model="passwordReg"
-                      class="w-full mb-6"
-                    />
-                    <vs-input
-                      type="password"
-                      label-placeholder="Confirm Password"
-                      :placeholder="$t('register.confirm')"
-                      v-model="confirm"
-                      class="w-full mb-6"
-                    />
-                    <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
-                    <vs-alert
-                      class="mb-3"
-                      color="danger"
-                      :title="$t('register.alert.title')"
-                      :active="activated"
-                    >{{$t('register.alert.message')}}</vs-alert>
-                    <vs-button @click="register">{{$t('login.reg')}}</vs-button>
-                    <vs-button
-                      class="float-right"
-                      type="border"
-                      @click="openLogin"
-                    >{{$t('login.loginbtn')}}</vs-button>
-                  </div>
-                </div>
+              <vs-popup button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.registerPopup">
+                 <button class="position-relative btn btn-danger float-right" style="top:10px;right:10px;z-index:99" @click="closePopup">x</button>
+                <register :isPopup=true></register>
               </vs-popup>
             </li>
           </ul>
@@ -270,15 +181,6 @@
         <div class="row">
           <div class="col-lg-12 pl-0">
             <div class="how-to-use">
-              <div class="row justify-content-center">
-                <div class="col-lg-4">
-                  <div class="section-title text-center">
-                    <!-- section title -->
-                    <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
-                    <p>{{$t('landing.howtouse.subheader')}}</p>
-                  </div>
-                </div>
-              </div>
               <ul id="ul-man-or-woman" class="row mb-5">
                 <p class="btn-switch">
                   <input
@@ -309,81 +211,6 @@
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
                 <div class="man-div model-column row" v-show="man">
-                  <div class="card-footer col-lg-5 px-0 rounded-lg">
-                    <div class="single-inline-feature-item">
-                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
-                      <img
-                        src="assets/images/portre/man/man-true.jpg"
-                        class="img-fluid -mt-4 rounded-t-lg"
-                      >
-                      <div class="content pt-4 px-4">
-                        <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
-                        <p class="pt-3" v-html="$t('landing.howtouse.trueDesc')"></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-7 pr-lg-0">
-                    <ul id="man-list" class="falseList">
-                      <li>
-                        <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
-                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
-                            <img
-                              src="assets/images/portre/man/man-false-1.jpg"
-                              class="rounded-l-lg img-scale"
-                            >
-                          </div>
-                          <div class="content col-9 pt-3">
-                            <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
-                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
-                            <img
-                              src="assets/images/portre/man/man-false-3.jpg"
-                              class="rounded-l-lg img-scale"
-                            >
-                          </div>
-                          <div class="content col-9 pt-3">
-                            <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
-                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
-                            <img
-                              src="assets/images/portre/man/man-false-2.jpg"
-                              class="rounded-l-lg img-scale"
-                            >
-                          </div>
-                          <div class="content col-9 pt-3">
-                            <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li>
-                        <div class="card-group bg-light rounded-lg">
-                          <div class="portre col-3 px-0">
-                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
-                            <img
-                              src="assets/images/portre/man/man-false-4.jpg"
-                              class="rounded-l-lg img-scale"
-                            >
-                          </div>
-                          <div class="content col-9 pt-3">
-                            <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-
                   <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
@@ -485,18 +312,23 @@
                         </div>
                       </li>
                     </ul>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-4">
+                        <div class="section-title text-center">
+                          <!-- section title -->
+                          <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
+                          <p>{{$t('landing.howtouse.subheader')}}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <!--man div finish-->
 
-                <!-- woman div start -->
-                <div class="woman-div model-column row" v-show="!man">
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
-                        src="assets/images/portre/woman/woman-true.jpg"
-                        class="-mt-4 img-fluid rounded-t-lg"
+                        src="assets/images/portre/man/man-true.jpg"
+                        class="img-fluid -mt-4 rounded-t-lg"
                       >
                       <div class="content pt-4 px-4">
                         <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
@@ -505,13 +337,13 @@
                     </div>
                   </div>
                   <div class="col-lg-7 pr-lg-0">
-                    <ul id="woman-list" class="falseList">
+                    <ul id="man-list" class="falseList">
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
                           <div class="portre col-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
-                              src="assets/images/portre/woman/woman-false-1.jpg"
+                              src="assets/images/portre/man/man-false-1.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
@@ -525,7 +357,7 @@
                           <div class="portre col-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
-                              src="assets/images/portre/woman/woman-false-3.jpg"
+                              src="assets/images/portre/man/man-false-3.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
@@ -539,7 +371,7 @@
                           <div class="portre col-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
-                              src="assets/images/portre/woman/woman-false-2.jpg"
+                              src="assets/images/portre/man/man-false-2.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
@@ -554,7 +386,7 @@
                           <div class="portre col-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
-                              src="assets/images/portre/woman/woman-false-4.jpg"
+                              src="assets/images/portre/man/man-false-4.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
@@ -565,7 +397,11 @@
                       </li>
                     </ul>
                   </div>
+                </div>
+                <!--man div finish-->
 
+                <!-- woman div start -->
+                <div class="woman-div model-column row" v-show="!man">
                   <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
@@ -663,6 +499,89 @@
                               >
                               <h4 class="title">{{$t('landing.howtouse.createModel')}}</h4>
                             </a>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-4">
+                        <div class="section-title text-center">
+                          <!-- section title -->
+                          <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
+                          <p>{{$t('landing.howtouse.subheader')}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer col-lg-5 px-0 rounded-lg">
+                    <div class="single-inline-feature-item">
+                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
+                      <img
+                        src="assets/images/portre/woman/woman-true.jpg"
+                        class="-mt-4 img-fluid rounded-t-lg"
+                      >
+                      <div class="content pt-4 px-4">
+                        <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
+                        <p class="pt-3" v-html="$t('landing.howtouse.trueDesc')"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-7 pr-lg-0">
+                    <ul id="woman-list" class="falseList">
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-1.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-3.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-2.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="card-group bg-light rounded-lg">
+                          <div class="portre col-3 px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-4.jpg"
+                              class="rounded-l-lg img-scale"
+                            >
+                          </div>
+                          <div class="content col-9 pt-3">
+                            <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
                           </div>
                         </div>
                       </li>
@@ -1741,6 +1660,7 @@
                         type="text"
                         id="name"
                         class="form-control"
+                        :value="contact.nameSurname"
                         v-bind:placeholder="$t('landing.contact.form.fullname')"
                       >
                     </div>
@@ -1750,6 +1670,7 @@
                       <input
                         type="email"
                         id="email"
+                        v-model="contact.mail"
                         class="form-control"
                         v-bind:placeholder="$t('landing.contact.form.email')"
                       >
@@ -1760,6 +1681,7 @@
                       <input
                         type="text"
                         id="subject"
+                        v-model="contact.subject"
                         class="form-control"
                         v-bind:placeholder="$t('landing.contact.form.subject')"
                       >
@@ -1770,11 +1692,16 @@
                         id="message"
                         class="form-control"
                         cols="30"
+                        v-model="contact.message"
                         v-bind:placeholder="$t('landing.contact.form.message')"
                         rows="10"
                       ></textarea>
                     </div>
-                    <button class="submit-btn" type="submit">{{$t('landing.contact.submit')}}</button>
+                    <button
+                      @click="sendMail"
+                      class="submit-btn"
+                      type="submit"
+                    >{{$t('landing.contact.submit')}}</button>
                   </div>
                 </div>
               </form>
@@ -1825,15 +1752,14 @@
   </div>
 </template>
 <script>
-import {
-  required,
-  email,
-  sameAs,
-  minLength,
-  maxLength
-} from "vuelidate/lib/validators";
-import { LoginService } from "@/services/login.service";
+import { ContactService } from "@/services/contact.service";
+import Register from '@/components/login/Register.vue'
+import Login from "@/components/login/Login.vue";
 export default {
+  components: {
+    Register,
+    Login
+  },
   data() {
     return {
       iframeModelID: "91102961ad1040748145a4c341899840",
@@ -1841,20 +1767,24 @@ export default {
       man: true,
       sampleiframe: true,
       langs: ["TR", "EN"],
-      popupActivo: false,
-      popupActivo2: false,
-      username: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      confirm: "",
-      passwordReg: "",
-      remember: false,
-      activated: false
+      checkBox1: false,
+      activated: false,
+      contact: {
+        mail: "",
+        nameSurname: "",
+        subject: "",
+        message: ""
+      }
     };
   },
   methods: {
+    closePopup() {
+      this.$store.commit('UPDATE_LOGIN_POPUP', false)
+      this.$store.commit('UPDATE_REGISTER_POPUP', false)
+    },
+    sendMail: async function() {
+      ContactService.sendMail(this.contact);
+    },
     change() {
       this.man = !this.man;
     },
@@ -1862,74 +1792,28 @@ export default {
       /*************************** */
     },
     openRegister() {
-      this.popupActivo = false;
-      this.popupActivo2 = true;
+      this.$store.commit('UPDATE_LOGIN_POPUP', false)
+      this.$store.commit('UPDATE_REGISTER_POPUP', true)
       // this.$router.push("/register");
     },
     openLogin() {
-      this.popupActivo = true;
-      this.popupActivo2 = false;
-    },
-    register: async function() {
-      if (registerCheck(this.$v) && !this.checkBox1) {
-        this.activated = true;
-        return;
-      }
-      this.activated = false;
-      var credential = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        login: this.email,
-        password: this.passwordReg
-      };
-      var status = await LoginService.register(credential)
-      if (status < 400) {
-        this.popupActivo2 = false;
-        // Logine yönlendirilebilir ya da otomatik login yapılır
-        this.popupActivo = true;
-      }
-    },
-    login: async function() {
-      debugger
-      if (loginCheck(this.$v)) {
-        this.activated = true;
-        return;
-      }
-      this.activated = false;
-      var credential = {
-        username: this.username,
-        password: this.password,
-        rememberMe: this.remember
-      };
-      var status = await LoginService.login(credential);
-      if (status == 200) {
-        this.popupActivo = false;
-        this.$router.push("/main");
-      }
+      this.$store.commit('UPDATE_REGISTER_POPUP', false)
+      this.$store.commit('UPDATE_LOGIN_POPUP', true)
     }
-  },
-  validations: {
-    username: { required, email },
-    password: { required, minLength: minLength(5), maxLength: maxLength(15) },
-    email: { required, email },
-    firstName: { required },
-    lastName: { required },
-    passwordReg: { required, minLength: minLength(6), maxLength: maxLength(15) },
-    confirm: { required, sameAsPassword: sameAs("passwordReg") }
   }
 };
-function loginCheck(v) {
-  return v.username.$invalid || v.password.$invalid;
-}
-
-function registerCheck(v) {
-  return v.email.$invalid || v.firstName.$invalid || v.lastName.$invalid || v.password.$invalid;
-}
 </script>
 <style>
 .vs-radio .vs-radio--circle,
 .vs-radio .vs-radio--borde {
   display: none !important;
+}
+.vs-popup{
+  width:900px !important;
+}
+.vs-popup--content{
+  width: 100% !important;
+  padding:0 !important;
+  margin:0 !important;
 }
 </style>

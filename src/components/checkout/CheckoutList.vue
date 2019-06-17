@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="col-12 vx-card py-3 px-5 mt-5" v-if="this.$store.state.checkout.basketList === null || this.$store.state.checkout.basketList.length === 0">
       Sepette ürün bulunmuyor.
-      <a href="/main">Yeni Model Oluştur!</a>
+     <router-link to="main">Yeni Model Oluştur!</router-link>
     </div>
 
     <div class="row" v-else>
@@ -62,7 +62,10 @@
               <strong>${{totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>
+          <div><vs-button color="success" type="filled" to="main">Alışverişe Devam Et</vs-button></div>
         </div>
+
+        
 
         <!--card checkout -->
       </div>
@@ -86,8 +89,7 @@ export default {
   methods: {
     ...mapActions('checkout', ['initBasketList', 'deleteFromBasketList']),
     outBasket: async function(figureId, conceptId) {
-      debugger
-      this.deleteFromBasketList(figureId, conceptId)
+      this.deleteFromBasketList({f: figureId, c: conceptId})
     },
     initPage: async function() {
       this.initBasketList()

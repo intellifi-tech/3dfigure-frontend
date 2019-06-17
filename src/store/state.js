@@ -30,7 +30,16 @@ const state = {
 	},
 
 	themePrimaryColor: colors.primary,
-	member: null
+	member: {},
+	general: {
+		appToken: "",
+		avatarToken: "",
+		singleFigure: ""
+	},
+	landing: {
+		loginPopup: false,
+		registerPopup: false
+	}
 }
 
 export default state

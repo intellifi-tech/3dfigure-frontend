@@ -11,6 +11,15 @@ const CheckoutService = {
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
+    isLastBasket: async function () {
+        try {
+            const response = await ApiService.get("/baskets/user")
+            return response.data
+        } catch (error) {
+            return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
     createCheckout: async function () {
         try {
             var credential = {
@@ -33,9 +42,10 @@ const CheckoutService = {
             return error.response.status
         }
     },
-    deleteFromBasket: async function (figureId, conceptId) {
+    deleteFromBasket: async function (ids) {
         try {
-            const res = await ApiService.delete("/baskets/concept/" + figureId + "/" + conceptId)
+            debugger
+            const res = await ApiService.delete("/baskets/concept/" + ids.f + "/" + ids.c)
             return res.data
         } catch (error) {
             error.response.data

@@ -4,7 +4,7 @@
       <div slot="no-body">
         <iframe
           class="responsive card-img-top"
-          style="height: 250px"
+          style="height: 200px"
           :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed'"
           frameborder="0"
           allow="autoplay; fullscreen; vr"
@@ -18,7 +18,7 @@
       <div class="flex justify-between flex-wrap">
         <vs-button
           v-if="!this.isAdded"
-          class="mt-4 shadow-md"
+          class="shadow-md w-1/2 px-2 mt-4"
           type="gradient"
           color="#7367F0"
           gradient-color-secondary="#CE9FFC"
@@ -26,13 +26,13 @@
         >Sepete Ekle</vs-button>
         <vs-button
           v-else
-          class="mt-4 shadow-lg"
+          class="shadow-md px-2 mt-4"
           type="gradient"
           color="#7367F0"
           gradient-color-secondary="#CE9FFC"
           @click="addBasket(concept)"
         >Sepetten Çıkar</vs-button>
-        <vs-button @click="openAlert('primary')" class="mt-4" type="border" color="#b9b9b9">Detayı gör</vs-button>
+        <vs-button @click="openAlert('primary')" class="px-2 mt-4" type="border" color="#b9b9b9">Detayı gör</vs-button>
       </div>
     </vx-card>
   </div>

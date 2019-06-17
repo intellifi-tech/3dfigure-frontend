@@ -2,9 +2,17 @@
   <div class="con-upload">
     <view-upload v-if="viewActive" :src="viewSrc"/>
 
-    <div class="con-img-upload">
+    <div class="con-img-upload overflow-y-auto preview-images" ref="savedImg">
       <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
-      <div v-for="(img, index) in this.savedImages" :key="index" class="main-upload img-upload">
+      <div class="main-upload img-upload">
+        <img src="assets/images/portre/man/man-0.jpg" alt="" v-if="this.$store.state.member.sex === 'M'">
+        <img src="assets/images/portre/woman/woman-0.jpg" alt="" v-else>
+      </div>
+      <div
+        v-for="(img, index) in this.savedImages"
+        :key="index"
+        class="main-upload img-upload"
+      >
         <img
           v-if="img.avatarKey"
           :alt="img.avatarKey"
@@ -12,15 +20,17 @@
               maxWidth:'100%',
               maxHeight:'100%'
             }"
+            :class="{selected:index == clicked}"
           :key="index"
           :src="'assets/images/figures/'+img.imagePath"
-          @touchend="viewImage(img.imagePath,$event, img.avatarKey)"
-          @click="viewImage(img.imagePath,$event, img.avatarKey)"
+          @touchend="viewImage(img.imagePath,$event, img.avatarKey, null)"
+          @click="viewImage(img.imagePath,$event, img.avatarKey, index)"
         >
       </div>
       <!-- <transition-group v-for="(img,index) in getFilesFilter" :key="index" name="upload"> -->
       <!-- Burası upload edildikten sonra oluşturuluyor -->
       <div
+
         v-for="(img,index) in getFilesFilter"
         :class="{
             'fileError':img.error,
@@ -66,39 +76,31 @@
           <span>{{ img.name }}</span>
         </h4>
       </div>
-      <!-- </transition-group > -->
-
+      <!-- photo upload input start-->
       <div
-        :class="{
+      :class="{
           'on-progress-all-upload':percent != 0,
           'is-ready-all-upload':percent >= 100,
           'disabled-upload':$attrs.hasOwnProperty('disabled') || limit?(srcs.length - itemRemove.length) >= Number(limit):false
         }"
-        class="con-input-upload"
+      class="con-input-upload img-upload bg-primary shadow-primary text-white p-0"
+    >
+      <input
+        ref="fileInput"
+        v-bind="$attrs"
+        :disabled="$attrs.disabled || limit?(srcs.length - itemRemove.length) >= Number(limit):false"
+        type="file"
+        @change="getFiles"
       >
-        <input
-          ref="fileInput"
-          v-bind="$attrs"
-          :disabled="$attrs.disabled || limit?(srcs.length - itemRemove.length) >= Number(limit):false"
-          type="file"
-          @change="getFiles"
-        >
-        <span class="text-input">{{ text }}</span>
-        <span :style="{
+      <span class="text-input text-5xl">+<!--{{ text }}--></span>
+      <span :style="{
             width:`${percent}%`
           }" class="input-progress"></span>
-        <button
-          v-if="showUploadButton"
-          :disabled="filesx.length == 0"
-          type="button"
-          title="Upload"
-          class="btn-upload-all vs-upload--button-upload"
-          @click="upload('all')"
-        >
-          <i translate="no" class="material-icons notranslate">cloud_upload</i>
-        </button>
       </div>
+      <!--photo upload input end-->
     </div>
+
+    
   </div>
 </template>
 <script>
@@ -171,7 +173,8 @@ export default {
     itemRemove: [],
     percent: 0,
     viewActive: false,
-    viewSrc: null
+    viewSrc: null,
+    clicked: -1
   }),
   computed: {
     getFilesFilter() {
@@ -202,9 +205,8 @@ export default {
     }
   },
   methods: {
-    viewImage(src, evt, avatarKey) {
+    viewImage(src, evt, avatarKey, index) {
       var timeout;
-
       if (!avatarKey) {
         var eventx =
           "ontouchstart" in window ||
@@ -228,6 +230,7 @@ export default {
           }
         }
       } else {
+        this.clicked = index;
         this.$parent.$parent.showAvatar(avatarKey);
         this.$parent.$parent.addFigureToBasket(avatarKey);
       }
@@ -398,6 +401,7 @@ export default {
       if (forAvatar) {
         formData.append("pipeline", "head_1.1");
         formData.append("name", "avatar");
+        formData.append("pipeline_subtype", "base/legacy");
         xhr.open("POST", this.avatarsdk);
 
         headers = this.avatarHeaders || {};
@@ -418,3 +422,22 @@ export default {
   }
 };
 </script>
+<style>
+.selected {
+  border: 2px solid greenyellow;
+}
+.con-img-upload .img-upload{
+    width: 170px;
+    height: 170px;
+    margin: 15px 5px;
+}
+.shadow-primary{
+    -webkit-box-shadow: 0 5px 20px 0 rgba(var(--vs-primary),1) !important;
+    box-shadow: 0 5px 20px 0 rgba(var(--vs-primary),1) !important;
+}
+@media only screen and (min-width: 1440px){
+ .con-img-upload .img-upload{
+   margin: 1.5rem;
+ }
+}
+</style>

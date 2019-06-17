@@ -29,7 +29,7 @@
         /*------------------------------
         smoth achor effect
         ------------------------------*/
-        $(document).on('click','#primary-menu li a', function (e) {
+        /*$(document).on('click','#primary-menu li a', function (e) {
             var anchor = $(this).attr('href');
             var link = anchor.slice(0,1);
             if ('#' == link) {
@@ -41,7 +41,7 @@
                 $(this).parent().addClass('active').siblings().removeClass('active');
             }
            
-        });
+        });*/
       
        
         /*-------------------------------------
