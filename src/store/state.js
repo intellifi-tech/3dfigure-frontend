@@ -35,6 +35,10 @@ const state = {
 		appToken: "",
 		avatarToken: "",
 		singleFigure: ""
+	},
+	landing: {
+		loginPopup: false,
+		registerPopup: false
 	}
 }
 
