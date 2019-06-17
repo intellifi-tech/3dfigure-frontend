@@ -72,106 +72,23 @@
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
               <a
                 class="nav-link cursor-pointer"
-                @click="popupActivo=true"
+                @click="openLogin"
                 href="#"
               >{{ $t('landing.navbar.login') }}</a>
-              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo">
-                <vs-input
-                  icon="icon icon-user"
-                  icon-pack="feather"
-                  :label-placeholder="$t('login.user')"
-                  v-model="login.username"
-                  @keyup.enter="loginF"
-                  class="w-full mb-6 no-icon-border"
-                />
-                <vs-input
-                  type="password"
-                  icon="icon icon-lock"
-                  icon-pack="feather"
-                  :label-placeholder="$t('login.pass')"
-                  v-model="login.password"
-                  @keyup.enter="loginF"
-                  class="w-full mb-4 no-icon-border"
-                />
-                <div class="flex flex-wrap justify-between pt-4 pb-4">
-                  <vs-checkbox v-model="login.remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
-                  <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
-                </div>
-                <vs-button @click="loginF">{{$t('login.loginbtn')}}</vs-button>
-                <vs-button
-                  class="float-right"
-                  type="border"
-                  @click="openRegister"
-                >{{$t('login.reg')}}</vs-button>
-                <vs-divider position="center" class="my-8"></vs-divider>
-                <div class="social-login mb-4 flex flex-wrap justify-between">
-                  <span>{{$t('login.sos')}}</span>
-                  <div class="social-login-buttons flex">
-                    <vs-button
-                      color="#1551b1"
-                      class="mr-4 px-8"
-                      icon="icon icon-facebook"
-                      icon-pack="feather"
-                    ></vs-button>
-                    <vs-button
-                      color="#00aaff"
-                      class="px-8"
-                      icon="icon icon-twitter"
-                      icon-pack="feather"
-                    ></vs-button>
-                  </div>
+              
+              <vs-popup button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.loginPopup">
+               <div class="position-relative">
+                 
+                <login :isPopup=true></login>
+                <button class="position-absolute btn btn-danger" style="top:0px;right:0px;z-index:99999" @click="closePopup">x</button>
                 </div>
               </vs-popup>
+              
             </li>
             <li>
-              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="popupActivo2">
-                <div class="p-8">
-                  <div class="vx-card__title">
-                    <h4 class="mb-4">{{$t('register.create')}}</h4>
-                  </div>
-                  <div class="clearfix">
-                    <vs-input
-                      label-placeholder="FirstName"
-                      :placeholder="$t('register.first')"
-                      v-model="register.firstName"
-                      class="w-full mb-6"
-                    />
-                    <vs-input
-                      label-placeholder="LastName"
-                      :placeholder="$t('register.last')"
-                      v-model="register.lastName"
-                      class="w-full mb-6"
-                    />
-                    <vs-input
-                      type="email"
-                      label-placeholder="Email"
-                      :placeholder="$t('register.email')"
-                      v-model="register.email"
-                      class="w-full mb-6"
-                    />
-                    <vs-input
-                      type="password"
-                      label-placeholder="Password"
-                      :placeholder="$t('register.pass')"
-                      v-model="register.password"
-                      class="w-full mb-6"
-                    />
-                    <vs-input
-                      type="password"
-                      label-placeholder="Confirm Password"
-                      :placeholder="$t('register.confirm')"
-                      v-model="register.confirm"
-                      class="w-full mb-6"
-                    />
-                    <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
-                    <vs-button @click="registerF">{{$t('login.reg')}}</vs-button>
-                    <vs-button
-                      class="float-right"
-                      type="border"
-                      @click="openLogin"
-                    >{{$t('login.loginbtn')}}</vs-button>
-                  </div>
-                </div>
+              <vs-popup button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.registerPopup">
+                 <button class="position-relative btn btn-danger float-right" style="top:10px;right:10px;z-index:99" @click="closePopup">x</button>
+                <register :isPopup=true></register>
               </vs-popup>
             </li>
           </ul>
@@ -1835,16 +1752,14 @@
   </div>
 </template>
 <script>
-import {
-  required,
-  email,
-  sameAs,
-  minLength,
-  maxLength
-} from "vuelidate/lib/validators";
-import { LoginService } from "@/services/login.service";
 import { ContactService } from "@/services/contact.service";
+import Register from '@/components/login/Register.vue'
+import Login from "@/components/login/Login.vue";
 export default {
+  components: {
+    Register,
+    Login
+  },
   data() {
     return {
       iframeModelID: "91102961ad1040748145a4c341899840",
@@ -1852,21 +1767,7 @@ export default {
       man: true,
       sampleiframe: true,
       langs: ["TR", "EN"],
-      popupActivo: false,
-      popupActivo2: false,
       checkBox1: false,
-      login: {
-        username: "",
-        password: "",
-        remember: false
-      },
-      register: {
-        firstName: "",
-        lastName: "",
-        password: "",
-        email: "",
-        confirm: ""
-      },
       activated: false,
       contact: {
         mail: "",
@@ -1877,6 +1778,10 @@ export default {
     };
   },
   methods: {
+    closePopup() {
+      this.$store.commit('UPDATE_LOGIN_POPUP', false)
+      this.$store.commit('UPDATE_REGISTER_POPUP', false)
+    },
     sendMail: async function() {
       ContactService.sendMail(this.contact);
     },
@@ -1887,106 +1792,28 @@ export default {
       /*************************** */
     },
     openRegister() {
-      this.popupActivo = false;
-      this.popupActivo2 = true;
+      this.$store.commit('UPDATE_LOGIN_POPUP', false)
+      this.$store.commit('UPDATE_REGISTER_POPUP', true)
       // this.$router.push("/register");
     },
     openLogin() {
-      this.popupActivo = true;
-      this.popupActivo2 = false;
-    },
-    registerF: async function() {
-      if (registerCheck(this.$v) && !this.checkBox1) {
-        this.$vs.notify({
-          title: "Color",
-          text: "Lorem ipsum dolor sit amet, consectetur",
-          color: "danger"
-        });
-        return;
-      }
-      var credential = {
-        firstName: this.register.firstName,
-        lastName: this.register.lastName,
-        email: this.register.email,
-        login: this.register.email,
-        password: this.register.password,
-        langKey: "en"
-      };
-      var status = await LoginService.register(credential);
-      if (status < 400) {
-        this.popupActivo2 = false;
-        this.register = {};
-        // Logine yönlendirilebilir ya da otomatik login yapılır
-        // this.popupActivo = true;
-      } else {
-        this.$vs.notify({
-          title: "Color",
-          text: "Lorem ipsum dolor sit amet, consectetur",
-          color: "danger"
-        });
-      }
-    },
-    loginF: async function() {
-      if (loginCheck(this.$v)) {
-        this.$vs.notify({
-          title: "Color",
-          text: "Lorem ipsum dolor sit amet, consectetur",
-          color: "danger"
-        });
-        return;
-      }
-      var credential = {
-        username: this.login.username,
-        password: this.login.password,
-        rememberMe: this.login.remember
-      };
-      var status = await LoginService.login(credential);
-      if (status == 200) {
-        this.popupActivo = false;
-        this.$router.push("/main");
-      } else {
-        this.$vs.notify({
-          title: "Color",
-          text: "Lorem ipsum dolor sit amet, consectetur",
-          color: "danger"
-        });
-      }
-    }
-  },
-  validations: {
-    login: {
-      username: { required, email },
-      password: { required, minLength: minLength(5), maxLength: maxLength(15) }
-    },
-    register: {
-      email: { required, email },
-      firstName: { required },
-      lastName: { required },
-      password: {
-        required,
-        minLength: minLength(6),
-        maxLength: maxLength(15)
-      },
-      confirm: { required, sameAsPassword: sameAs("register.password") }
+      this.$store.commit('UPDATE_REGISTER_POPUP', false)
+      this.$store.commit('UPDATE_LOGIN_POPUP', true)
     }
   }
 };
-function loginCheck(v) {
-  return v.login.username.$invalid || v.login.password.$invalid;
-}
-
-function registerCheck(v) {
-  return (
-    v.register.email.$invalid ||
-    v.register.firstName.$invalid ||
-    v.register.lastName.$invalid ||
-    v.register.password.$invalid
-  );
-}
 </script>
 <style>
 .vs-radio .vs-radio--circle,
 .vs-radio .vs-radio--borde {
   display: none !important;
+}
+.vs-popup{
+  width:900px !important;
+}
+.vs-popup--content{
+  width: 100% !important;
+  padding:0 !important;
+  margin:0 !important;
 }
 </style>

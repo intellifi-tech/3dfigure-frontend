@@ -37,7 +37,7 @@ const mutations = {
 		state.breakpoint = val;
 	},
 	UPDATE_PRIMARY_COLOR(state, val) {
-		state.themePrimaryColor = val;	
+		state.themePrimaryColor = val;
 	},
 	CURRENT_USER(state, val) {
 		state.member = val;
@@ -51,6 +51,14 @@ const mutations = {
 	UPDATE_STARRED_PAGE(state, payload) {
 		const index = state.navbarSearchAndPinList.data.findIndex((item) => item.index == payload.index)
 		state.navbarSearchAndPinList.data[index].highlightAction = payload.val;
+	},
+
+	UPDATE_LOGIN_POPUP(state, value) {
+		state.landing.loginPopup = value;
+	},
+
+	UPDATE_REGISTER_POPUP(state, value) {
+		state.landing.registerPopup = value;
 	}
 }
 
