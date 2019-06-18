@@ -50,12 +50,6 @@
               >{{$t('login.reg')}}</vs-button>
               <vs-button v-else class="float-right" @click="openRegister">{{$t('login.reg')}}</vs-button>
 
-              <vs-alert
-                class="mt-4"
-                color="danger"
-                :title="$t('login.alert.title')"
-                :active="activated"
-              >{{$t('login.alert.message')}}</vs-alert>
               <vs-divider position="center" class="my-8"></vs-divider>
 
               <div class="social-login mb-4 flex flex-wrap justify-between">
@@ -108,7 +102,7 @@ export default {
       if (this.$v.$invalid) {
         this.$vs.notify({
           time: 4000,
-          title: "$t('login.alert.title')",
+          title: "Error",
           text: "Lorem ipsum dolor sit amet, consectetur",
           color: "danger"
         });
@@ -126,7 +120,7 @@ export default {
       } else {
         this.$vs.notify({
           time: 4000,
-          title: "$t('login.alert.title')",
+          title: "Error",
           text: "Lorem ipsum dolor sit amet, consectetur",
           color: "danger"
         });
