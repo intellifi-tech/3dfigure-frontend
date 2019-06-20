@@ -5,13 +5,18 @@
     <div class="con-img-upload overflow-y-auto preview-images" ref="savedImg">
       <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
       <div class="main-upload img-upload">
-        <img src="assets/images/portre/man/man-0.jpg" alt="" v-if="this.$store.state.member.sex === 'M'">
-        <img src="assets/images/portre/woman/woman-0.jpg" alt="" v-else>
+        <img
+          src="assets/images/portre/man/man-0.jpg"
+          alt
+          v-if="this.$store.state.member.sex === 'M'"
+        >
+        <img src="assets/images/portre/woman/woman-0.jpg" alt v-else>
       </div>
       <div
         v-for="(img, index) in this.savedImages"
         :key="index"
         class="main-upload img-upload"
+        :class="toogleClass(img.avatarKey)"
       >
         <img
           v-if="img.avatarKey"
@@ -20,17 +25,18 @@
               maxWidth:'100%',
               maxHeight:'100%'
             }"
-            :class="{selected:index == clicked}"
           :key="index"
           :src="'assets/images/figures/'+img.imagePath"
-          @touchend="viewImage(img.imagePath,$event, img.avatarKey, null)"
-          @click="viewImage(img.imagePath,$event, img.avatarKey, index)"
+          @touchend="viewImage(img.imagePath,$event, img.avatarKey)"
+          @click="viewImage(img.imagePath,$event, img.avatarKey)"
         >
+        <span>
+          <vs-icon icon-pack="fa fa-check" hidden></vs-icon>
+        </span>
       </div>
       <!-- <transition-group v-for="(img,index) in getFilesFilter" :key="index" name="upload"> -->
       <!-- Burası upload edildikten sonra oluşturuluyor -->
       <div
-
         v-for="(img,index) in getFilesFilter"
         :class="{
             'fileError':img.error,
@@ -78,29 +84,30 @@
       </div>
       <!-- photo upload input start-->
       <div
-      :class="{
+        :class="{
           'on-progress-all-upload':percent != 0,
           'is-ready-all-upload':percent >= 100,
           'disabled-upload':$attrs.hasOwnProperty('disabled') || limit?(srcs.length - itemRemove.length) >= Number(limit):false
         }"
-      class="con-input-upload img-upload bg-primary shadow-primary text-white p-0"
-    >
-      <input
-        ref="fileInput"
-        v-bind="$attrs"
-        :disabled="$attrs.disabled || limit?(srcs.length - itemRemove.length) >= Number(limit):false"
-        type="file"
-        @change="getFiles"
+        class="con-input-upload img-upload bg-primary shadow-primary text-white p-0"
       >
-      <span class="text-input text-5xl">+<!--{{ text }}--></span>
-      <span :style="{
+        <input
+          ref="fileInput"
+          v-bind="$attrs"
+          :disabled="$attrs.disabled || limit?(srcs.length - itemRemove.length) >= Number(limit):false"
+          type="file"
+          @change="getFiles"
+        >
+        <span class="text-input text-5xl">
+          +
+          <!--{{ text }}-->
+        </span>
+        <span :style="{
             width:`${percent}%`
           }" class="input-progress"></span>
       </div>
       <!--photo upload input end-->
     </div>
-
-    
   </div>
 </template>
 <script>
@@ -167,6 +174,7 @@ export default {
   },
   data: () => ({
     inputValue: null,
+    selectedTags: [],
     type: null,
     srcs: [],
     filesx: [],
@@ -205,7 +213,14 @@ export default {
     }
   },
   methods: {
-    viewImage(src, evt, avatarKey, index) {
+    toogleClass(index) {
+      const isSelected = this.$store.state.selectedFigures.includes(index);
+
+      return {
+        selected: isSelected
+      };
+    },
+    viewImage(src, evt, avatarKey) {
       var timeout;
       if (!avatarKey) {
         var eventx =
@@ -230,9 +245,23 @@ export default {
           }
         }
       } else {
-        this.clicked = index;
-        this.$parent.$parent.showAvatar(avatarKey);
-        this.$parent.$parent.addFigureToBasket(avatarKey);
+        const findex = this.$store.state.selectedFigures.findIndex(t => t == avatarKey);
+
+        if (findex >= 0) this.$store.commit('DELETE_FIGURE_FROM_SELECTED', findex);
+        else {
+          if (this.$store.state.selectedFigures.length == 2) {
+            this.$vs.notify({
+              time: 4000,
+              title: "Error",
+              text: "Lorem ipsum dolor sit amet, consectetur",
+              color: "danger"
+            });
+          } else {
+            this.$store.commit('ADD_FIGURE_SELECTED', avatarKey);
+          }
+        }
+
+        this.$emit('show-avatar', avatarKey)
       }
     },
     removeFile(index) {
@@ -426,18 +455,27 @@ export default {
 .selected {
   border: 2px solid greenyellow;
 }
-.con-img-upload .img-upload{
-    width: 170px;
-    height: 170px;
-    margin: 15px 5px;
+.selected .fa {
+  position: absolute;
+  color: #000000;
+  background-color: #99e622;
+  padding: 10px;
+  top: 0;
+  right: 0;
+  display: block !important;
 }
-.shadow-primary{
-    -webkit-box-shadow: 0 5px 20px 0 rgba(var(--vs-primary),1) !important;
-    box-shadow: 0 5px 20px 0 rgba(var(--vs-primary),1) !important;
+.con-img-upload .img-upload {
+  width: 170px;
+  height: 170px;
+  margin: 15px 5px;
 }
-@media only screen and (min-width: 1440px){
- .con-img-upload .img-upload{
-   margin: 1.5rem;
- }
+.shadow-primary {
+  -webkit-box-shadow: 0 5px 20px 0 rgba(var(--vs-primary), 1) !important;
+  box-shadow: 0 5px 20px 0 rgba(var(--vs-primary), 1) !important;
+}
+@media only screen and (min-width: 1440px) {
+  .con-img-upload .img-upload {
+    margin: 1.5rem;
+  }
 }
 </style>

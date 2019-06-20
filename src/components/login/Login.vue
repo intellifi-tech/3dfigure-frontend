@@ -35,6 +35,7 @@
                 :label-placeholder="$t('login.pass')"
                 v-model="password"
                 class="w-full mb-4 no-icon-border"
+                @keyup.enter="login"
               />
               <div class="flex flex-wrap justify-between py-3">
                 <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
