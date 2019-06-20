@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     validateStep1: async function() {
-      const res = this.$store.state.selectedFigures.length != 0;
+      const res = this.$store.state.selectedFigures.avatarKey.length != 0;
       if (!res) {
         this.$vs.notify({
           title: "HATA",
@@ -53,7 +53,7 @@ export default {
         return res;
       }
       // this.$root.$emit('checkIsAdded')
-      var res1 = await ConceptService.getAllConcepts(0, this.$store.state.selectedFigures.length == 2);
+      var res1 = await ConceptService.getAllConcepts(0, this.$store.state.selectedFigures.avatarKey.length == 2);
       this.$store.dispatch('initConcept', res1)
 
       return res;

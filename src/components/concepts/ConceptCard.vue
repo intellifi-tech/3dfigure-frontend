@@ -59,18 +59,18 @@ export default {
   methods: {
     addBasket: async function(concept) {
       if (concept.doubleConcept) {
-        concept.avatarKey = btoa(this.$store.state.selectedFigures[0] + ',' + this.$store.state.selectedFigures[1])
+        concept.avatarKey = btoa(this.$store.state.selectedFigures.avatarKey[0] + ',' + this.$store.state.selectedFigures.avatarKey[1])
         await FigureService.saveUserFigure({
         figureName: concept.avatarKey,
         avatarKey: concept.avatarKey,
-        imagePath: concept.avatarKey,
+        imagePath: btoa(this.$store.state.selectedFigures.imagePath[0] + ',' + this.$store.state.selectedFigures.imagePath[1]),
         isProduct: false,
         isDoubled: true,
         userId: this.$store.state.member.id,
         isLiked: false
       })
       } else {
-        concept.avatarKey = this.$store.state.selectedFigures[0]
+        concept.avatarKey = this.$store.state.selectedFigures.avatarKey[0]
       }
       await FigureService.addAndDeleteFromFigure(concept);
       this.isAdded = !this.isAdded;
@@ -79,12 +79,12 @@ export default {
     checkIsAdded: async function() {
       if (this.concept.doubleConcept) {
         this.isAdded = await FigureService.isConceptAdded(
-        btoa(this.$store.state.selectedFigures[0] + ',' + this.$store.state.selectedFigures[1]),
+        btoa(this.$store.state.selectedFigures.avatarKey[0] + ',' + this.$store.state.selectedFigures.avatarKey[1]),
         this.concept.id
       );
       } else {
         this.isAdded = await FigureService.isConceptAdded(
-        this.$store.state.selectedFigures[0],
+        this.$store.state.selectedFigures.avatarKey[0],
         this.concept.id
       );
       }

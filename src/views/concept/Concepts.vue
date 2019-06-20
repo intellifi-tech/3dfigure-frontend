@@ -63,7 +63,7 @@ export default {
       if (this.tags.length === 0) {
         res = await ConceptService.getAllConcepts(
           this.currentx - 1,
-          this.$store.state.selectedFigures.length == 2
+          this.$store.state.selectedFigures.avatarKey.length == 2
         );
 
         this.$store.dispatch("initConcept", res);
@@ -71,7 +71,7 @@ export default {
         res = await ConceptService.getAllConceptsByCategory(
           this.tags,
           this.currentx - 1,
-          this.$store.state.selectedFigures.length == 2
+          this.$store.state.selectedFigures.avatarKey.length == 2
         );
         this.$store.dispatch("initConcept", res);
       }
@@ -81,14 +81,14 @@ export default {
       if (this.tags.length === 0) {
         res = await ConceptService.getAllConcepts(
           this.currentx - 1,
-          this.$store.state.selectedFigures.length == 2
+          this.$store.state.selectedFigures.avatarKey.length == 2
         );
         this.$store.dispatch("initConcept", res);
       } else {
         res = await ConceptService.getAllConceptsByCategory(
           this.tags,
           0,
-          this.$store.state.selectedFigures.length == 2
+          this.$store.state.selectedFigures.avatarKey.length == 2
         );
         this.$store.dispatch("initConcept", res);
       }

@@ -40,7 +40,10 @@ const state = {
 		loginPopup: false,
 		registerPopup: false
 	},
-	selectedFigures: [],
+	selectedFigures: {
+		avatarKey: [],
+		imagePath: []
+	},
 	conceptPage: {
 		conceptList: {},
 		totalPages: -1

@@ -60,12 +60,14 @@ const mutations = {
 		state.landing.registerPopup = value;
 	},
 
-	DELETE_FIGURE_FROM_SELECTED(state, findex) {
-		state.selectedFigures.splice(findex, 1);
+	DELETE_FIGURE_FROM_SELECTED(state, indexes) {
+		state.selectedFigures.avatarKey.splice(indexes.f, 1);
+		state.selectedFigures.imagePath.splice(indexes.m, 1);
 	},
 
 	ADD_FIGURE_SELECTED(state, value) {
-		state.selectedFigures.push(value);
+		state.selectedFigures.avatarKey.push(value.a);
+		state.selectedFigures.imagePath.push(value.s);
 	},
 
 	INIT_CONCEPT(state, value) {

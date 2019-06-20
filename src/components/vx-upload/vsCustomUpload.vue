@@ -214,7 +214,7 @@ export default {
   },
   methods: {
     toogleClass(index) {
-      const isSelected = this.$store.state.selectedFigures.includes(index);
+      const isSelected = this.$store.state.selectedFigures.avatarKey.includes(index);
 
       return {
         selected: isSelected
@@ -245,11 +245,11 @@ export default {
           }
         }
       } else {
-        const findex = this.$store.state.selectedFigures.findIndex(t => t == avatarKey);
-
-        if (findex >= 0) this.$store.commit('DELETE_FIGURE_FROM_SELECTED', findex);
+        const findex = this.$store.state.selectedFigures.avatarKey.findIndex(t => t == avatarKey);
+        const mindex = this.$store.state.selectedFigures.imagePath.findIndex(t => t == src);
+        if (findex >= 0) this.$store.commit('DELETE_FIGURE_FROM_SELECTED', {f: findex, m: mindex});
         else {
-          if (this.$store.state.selectedFigures.length == 2) {
+          if (this.$store.state.selectedFigures.avatarKey.length == 2) {
             this.$vs.notify({
               time: 4000,
               title: "Error",
@@ -257,7 +257,7 @@ export default {
               color: "danger"
             });
           } else {
-            this.$store.commit('ADD_FIGURE_SELECTED', avatarKey);
+            this.$store.commit('ADD_FIGURE_SELECTED', {a: avatarKey, s: src});
           }
         }
 
