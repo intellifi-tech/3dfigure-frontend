@@ -27,7 +27,7 @@
           <ul class="navbar-nav" id="primary-menu">
             <!-- navbar- nav -->
             <li class="nav-item active">
-              <a class="nav-link pl-0" href="#home">
+              <a class="nav-link pl-0" href="/login">
                 {{ $t('landing.navbar.home') }}
                 <span class="sr-only">(current)</span>
               </a>
@@ -76,7 +76,7 @@
                 href="#"
               >{{ $t('landing.navbar.login') }}</a>
               
-              <vs-popup button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.loginPopup">
+              <vs-popup :button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.loginPopup">
                <div class="position-relative">
                  
                 <login :isPopup=true></login>
@@ -86,7 +86,7 @@
               
             </li>
             <li>
-              <vs-popup button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.registerPopup">
+              <vs-popup :button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.registerPopup">
                  <button class="position-relative btn btn-danger float-right" style="top:10px;right:10px;z-index:99" @click="closePopup">x</button>
                 <register :isPopup=true></register>
               </vs-popup>
@@ -112,7 +112,7 @@
         <div class="nav-right-content">
           <ul>
             <li>
-              <select v-model="$i18n.locale" id="select-lang">
+              <select v-model="$i18n.locale" id="select-lang" @change="changeLang">
                 <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
               </select>
             </li>
@@ -149,7 +149,7 @@
                 </h1>
                 <div class="btn-wrapper">
                   <a
-                    @click="popupActivo=true"
+                    @click="openLogin"
                     class="boxed-btn btn-rounded reverse-color text-white cursor-pointer"
                   >
                     <i class="fas fa-shopping-cart"></i>
@@ -301,7 +301,7 @@
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a @click="popupActivo=true" class="cursor-pointer">
+                            <a @click="openLogin" class="cursor-pointer">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
@@ -492,7 +492,7 @@
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a @click="popupActivo=true">
+                            <a @click="openLogin">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
@@ -1768,7 +1768,6 @@ export default {
       sampleiframe: true,
       langs: ["TR", "EN"],
       checkBox1: false,
-      activated: false,
       contact: {
         mail: "",
         nameSurname: "",
@@ -1778,6 +1777,9 @@ export default {
     };
   },
   methods: {
+    changeLang() {
+      sessionStorage.setItem('lang', this.$i18n.locale)
+    },
     closePopup() {
       this.$store.commit('UPDATE_LOGIN_POPUP', false)
       this.$store.commit('UPDATE_REGISTER_POPUP', false)

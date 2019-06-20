@@ -6,11 +6,11 @@ const actions = {
     },
     async initBasketList({ commit }) {
         const res = await CheckoutService.getUserCheckout();
-        commit('SET_CHECKOUT_LIST', res)
+        commit('SET_CHECKOUT_LIST', res.concepts)
     },
     async deleteFromBasketList({ commit }, ids) {
         await CheckoutService.deleteFromBasket(ids);
-        commit('DELETE_FROM_CHECKOUT_LIST', ids.c);
+        commit('DELETE_FROM_CHECKOUT_LIST', ids);
     }
 }
 

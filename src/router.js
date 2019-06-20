@@ -15,6 +15,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
+import i18n from '@/plugins/i18n.js'
 import {
 	TokenService
 } from '@/services/token.service'
@@ -132,6 +133,9 @@ router.beforeEach((to, from, next) => {
 	const api = to.matched.some(record => record.meta.api)
 	const loggedIn = !!TokenService.getToken();
 
+	if (sessionStorage.getItem('lang') !== null && sessionStorage.getItem('lang') !== i18n.locale) {
+		i18n.locale = sessionStorage.getItem('lang');
+	}
 	if (!api) {
 
 		if (!isPublic && !loggedIn) {

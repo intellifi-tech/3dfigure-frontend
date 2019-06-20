@@ -31,13 +31,13 @@ const actions = {
 	// ////////////////////////////////////////////
 	// COMPONENT
 	// ////////////////////////////////////////////	
-	
+
 	// VxAutoSuggest
-	updateStarredPage({commit}, payload) {
+	updateStarredPage({ commit }, payload) {
 		commit('UPDATE_STARRED_PAGE', payload)
 	},
 
-	async getCurrentUser({ commit }){
+	async getCurrentUser({ commit }) {
 		const res = await UserService.getMember();
 		commit('CURRENT_USER', res)
 	},
@@ -45,6 +45,11 @@ const actions = {
 	async updateFirstLogin({ commit }, member) {
 		await UserService.setMember(member)
 		commit('CURRENT_USER', member)
+	},
+
+	initConcept({ commit }, response) {
+		commit('INIT_CONCEPT', response.content)
+		commit('INIT_CONCEPT_PAGE', response.totalPages)
 	}
 }
 

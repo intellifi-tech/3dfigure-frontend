@@ -39,6 +39,11 @@ const state = {
 	landing: {
 		loginPopup: false,
 		registerPopup: false
+	},
+	selectedFigures: [],
+	conceptPage: {
+		conceptList: {},
+		totalPages: -1
 	}
 }
 

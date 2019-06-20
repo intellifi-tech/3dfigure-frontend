@@ -40,6 +40,7 @@
             accept="image/*"
             @on-server-success="serverUpload"
             @on-avatar-success="avatarUpload"
+            @show-avatar="showAvatar"
             :showUploadButton="false"
             :savedImages="userFigures"
             ref="upload"
@@ -77,6 +78,7 @@ export default {
         avatarKey: null,
         imagePath: null,
         isProduct: false,
+        isDoubled: false,
         userId: null,
         isLiked: false
       },
@@ -191,10 +193,6 @@ export default {
     },
     showAvatar(code) {
       this.$refs.unity.sendAvatar(code);
-    },
-    addFigureToBasket: function(code) {
-      // const res = await FigureService.getFigureId(code)
-      TokenService.addClickedPhoto(code);
     }
   },
   components: {

@@ -8,7 +8,6 @@
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
 const mutations = {
 
 	// ////////////////////////////////////////////
@@ -59,6 +58,22 @@ const mutations = {
 
 	UPDATE_REGISTER_POPUP(state, value) {
 		state.landing.registerPopup = value;
+	},
+
+	DELETE_FIGURE_FROM_SELECTED(state, findex) {
+		state.selectedFigures.splice(findex, 1);
+	},
+
+	ADD_FIGURE_SELECTED(state, value) {
+		state.selectedFigures.push(value);
+	},
+
+	INIT_CONCEPT(state, value) {
+		state.conceptPage.conceptList = value
+	},
+
+	INIT_CONCEPT_PAGE(state, pages) {
+		state.conceptPage.totalPages = pages
 	}
 }
 

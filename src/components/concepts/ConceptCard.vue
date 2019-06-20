@@ -40,7 +40,6 @@
 
 <script>
 import FigureService from "@/services/figure.service";
-import { TokenService } from "@/services/token.service";
 export default {
   data() {
     return {
@@ -59,15 +58,36 @@ export default {
   },
   methods: {
     addBasket: async function(concept) {
-      concept.avatarKey = TokenService.getClickedPhoto();
+      if (concept.doubleConcept) {
+        concept.avatarKey = btoa(this.$store.state.selectedFigures[0] + ',' + this.$store.state.selectedFigures[1])
+        await FigureService.saveUserFigure({
+        figureName: concept.avatarKey,
+        avatarKey: concept.avatarKey,
+        imagePath: concept.avatarKey,
+        isProduct: false,
+        isDoubled: true,
+        userId: this.$store.state.member.id,
+        isLiked: false
+      })
+      } else {
+        concept.avatarKey = this.$store.state.selectedFigures[0]
+      }
       await FigureService.addAndDeleteFromFigure(concept);
       this.isAdded = !this.isAdded;
+      this.$router.push("/checkout");
     },
     checkIsAdded: async function() {
-      this.isAdded = await FigureService.isConceptAdded(
-        TokenService.getClickedPhoto(),
+      if (this.concept.doubleConcept) {
+        this.isAdded = await FigureService.isConceptAdded(
+        btoa(this.$store.state.selectedFigures[0] + ',' + this.$store.state.selectedFigures[1]),
         this.concept.id
       );
+      } else {
+        this.isAdded = await FigureService.isConceptAdded(
+        this.$store.state.selectedFigures[0],
+        this.concept.id
+      );
+      }
     }
   }
 };

@@ -20,7 +20,7 @@ const LoginService = {
             ApiService.setHeader()
             TokenService.saveAvatarToken(res.data.access_token)
             const checkoutRes = await CheckoutService.isLastBasket()
-            if (!checkoutRes.last) {
+            if (checkoutRes === 404) {
                 await CheckoutService.createCheckout()
             }
 
