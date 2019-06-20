@@ -87,24 +87,22 @@
               </div>
               <div class="vx-row mb-6">
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="İlçe / Semt" v-model="town">
-                    <vs-select-item
+                  <select class="selecting selectExample w-full" label="İlçe / Semt" v-model="town">
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
                       v-for="(item,index) in towns"
-                    />
-                  </vs-select>
+                    >{{item.name}}</option>
+                  </select>
                 </div>
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="Şehir" v-model="city">
-                    <vs-select-item
+                  <select class="selecting selectExample w-full" label="Şehir" v-model="city">
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
                       v-for="(item,index) in cities"
-                    />
-                  </vs-select>
+                    >{{item.name}}</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -168,24 +166,22 @@
               </div>
               <div class="vx-row mb-6">
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="İlçe / Semt" v-model="townF">
-                    <vs-select-item
+                  <select class="selecting selectExample w-full" label="İlçe / Semt" v-model="townF">
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
                       v-for="(item,index) in townsF"
-                    />
-                  </vs-select>
+                    >{{item.name}} </option>
+                  </select>
                 </div>
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="Şehir" v-model="cityF">
-                    <vs-select-item
+                  <select class="selecting selectExample w-full" label="Şehir" v-model="cityF">
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
                       v-for="(item,index) in citiesF"
-                    />
-                  </vs-select>
+                    >{{item.name}} </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -262,4 +258,11 @@ export default {
   }
 };
 </script>
+<style>
+.selecting {
+  font-size: 1rem;
+  color: #7f7c96;
+}
+</style>
+
 
