@@ -424,12 +424,15 @@ export default {
 </script>
 <style>
 .selected {
-  border: 2px solid greenyellow;
+  border: 5px solid #2bff45;
 }
 .con-img-upload .img-upload{
     width: 170px;
     height: 170px;
     margin: 15px 5px;
+}
+.con-img-upload .img-upload img{
+    max-width: 100%;
 }
 .shadow-primary{
     -webkit-box-shadow: 0 5px 20px 0 rgba(var(--vs-primary),1) !important;

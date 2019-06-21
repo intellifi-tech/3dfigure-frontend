@@ -55,7 +55,7 @@ export default {
       } else {
         this.$vs.notify({
           title: "HATA",
-          text: "En az 1 konsept seçmelisiniz",
+          text: "En az 1 konsept seçmelisiniz!",
           color: "danger"
         });
       }
@@ -65,7 +65,7 @@ export default {
       if (!res) {
         this.$vs.notify({
           title: "HATA",
-          text: "Fotoğraf yüklemeli ya da seçmelisiniz",
+          text: "Fotoğraf yüklemeli ya da seçmelisiniz!",
           color: "danger"
         });
       }

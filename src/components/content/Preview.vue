@@ -1,32 +1,43 @@
 <template>
   <div class="row">
     <div class="col-lg-6 mb-4">
-      <vx-card class="mb-3">
+      <vx-card class="mb-4">
         <unity ref="unity"></unity>
       </vx-card>
       <vx-card
-        title="Açıklama Bilgisi"
-        subtitle="Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir."
-        title-color="#fff"
-        content-color="#fff"
-        card-background="linear-gradient(120deg, #7f7fd5, #86a8e7, #91eae4)"
+        title=""
+        subtitle=""
+        class="shadow-primary"
       >
+      <h4 class="pb-4">
+        <span class="align-text-bottom  mr-2">
+           <vs-icon class="" icon="info" size="small" bg="blue" color="white" round></vs-icon>
+        </span>Bilgilendirme Panosu </h4>
         <p class="mb-3">
-          Lorem Ipsum,
-          <strong>dizgi ve baskı</strong> endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır.
+          Modelde bazı eksiklikler olabilir, hiç endişe etmeyin. Siz istediğiniz konsepti seçin. Geri kalan tüm düzenlemeleri biz tasarım aşamasında gerçekleştirmekteyiz. Sonrasında ise siparişinizi üretime almadan önce izin onayınıza sunacağız.
+
         </p>
       </vx-card>
     </div>
     <!--unity card column-->
     <div class="col-lg-6 mb-3">
-      <vx-card title="Fotoğraflarım">
+      <vx-card class="fotograflarim-card">
+        <div class="mb-4 row">
+         <div class="col-xl-6">
+             <h4 class="pb-4">Fotoğraflarım </h4>
+         </div>
+         <div class="col-xl-6 text-right">
+             <span class="h6">Fotoğraf yükleme hakkınız: </span>
+             <h3 class="text-primary">{{this.limit}} / {{ this.number.totalFigure}}</h3>
+         </div>
+        </div>
         <p>
           Figürünü oluşturmak istediğin fotoğrafı
           <code>Galerinden</code>
-          seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.number.totalFigure}}
+          seçebilir veya yeni fotoğraf yükleyebilirsin.
         </p>
-
-        <div class="mt-4">
+      <hr>
+        <div class="mt-0">
           <vs-custom-upload
             :single-upload="true"
             :limit="limit"
@@ -137,28 +148,21 @@ export default {
               setTimeout(() => {
                 this.$vs.loading.close();
                 this.$vs.loading({
-                  text: "Sonuca yaklaştık.. Hazır mısınız…",
+                  text: "Sonuca yaklaştık.. Hazır mısınız…?",
                   clickEffect: true,
                   textAfter: true
                 });
                 setTimeout(async () => {
                   this.$vs.loading.close();
-                  this.$vs.notify({
-                    text:
-                      "Modelde bazı eksiklikler olabilir, hiç endişe etmeyin. Siz istediğiniz konsepti seçin. Geri kalan tüm düzenlemeleri biz tasarım aşamasında gerçekleştirmekteyiz. Sonrasında ise siparişinizi üretime almadan önce sizin onayınıza sunacağız.",
-                    color: "dark",
-                    position: "top-right",
-                    time: 6000
-                  });
                   var res = await AvatarSdkService.getAvatarInformation(
                     response.code
                   );
                   if (res.data.status === "Failed") {
                     this.$vs.notify({
                       title: "HATA",
-                      time: 4000,
+                      time: 30000,
                       text:
-                        "Avatar key oluşturulamadı başka fotoğraf deneyiniz",
+                        "Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!",
                       color: "danger"
                     });
                   } else {
@@ -181,7 +185,7 @@ export default {
       } else {
         this.$vs.notify({
           title: "HATA",
-          text: "Avatar key oluşturulamadı başka fotoğraf deneyiniz",
+          text: "Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!",
           color: "danger"
         });
       }
@@ -203,3 +207,15 @@ export default {
   }
 };
 </script>
+<style>
+.fotograflarim-card .vx-card__body{
+    padding-bottom: .6rem;
+}
+.title-loading{
+  font-weight: 900;
+  font-size:2rem;
+}
+.con-vs-loading{
+ background:hsla(0,0%,100%,.9);
+}
+</style>

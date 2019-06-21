@@ -5,7 +5,7 @@
       errorColor="rgba(var(--vs-danger), 1)"
       :title="null"
       :subtitle="null"
-      nextButtonText="Devam et"
+      nextButtonText="İleri"
       backButtonText="Geri dön"
       finishButtonText="Siparişi Tamamla"
     >
