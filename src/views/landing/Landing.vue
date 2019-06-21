@@ -27,7 +27,7 @@
           <ul class="navbar-nav" id="primary-menu">
             <!-- navbar- nav -->
             <li class="nav-item active">
-              <a class="nav-link pl-0" href="/login">
+              <a class="nav-link pl-0" href="#">
                 {{ $t('landing.navbar.home') }}
                 <span class="sr-only">(current)</span>
               </a>

@@ -14,10 +14,12 @@
           <li>
             <vs-radio color="success" v-model="radios2" vs-value="evAdresi">
               <div class="pl-4">
-                <i>{{adres.addressName}}</i>  
+                <i>{{adres.addressName}}</i>
                 <br>
-                <b>{{adres.person}}</b> - {{adres.mobile}}
-                <br>{{adres.adress}}
+                <b>{{adres.person}}</b>
+                - {{adres.mobile}}
+                <br>
+                {{adres.adress}}
               </div>
             </vs-radio>
           </li>
@@ -87,24 +89,30 @@
               </div>
               <div class="vx-row mb-6">
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="İlçe / Semt" v-model="town">
-                    <vs-select-item
+                  <select
+                    class="form-control form-control-lg selecting selectExample w-full"
+                    label="Şehir"
+                    v-model="city"
+                  >
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
-                      v-for="(item,index) in towns"
-                    />
-                  </vs-select>
+                      v-for="(item,index) in cities"
+                    >{{item.name}}</option>
+                  </select>
                 </div>
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="Şehir" v-model="city">
-                    <vs-select-item
+                  <select
+                    class="form-control form-control-lg selecting selectExample w-full"
+                    label="İlçe / Semt"
+                    v-model="town"
+                  >
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
-                      v-for="(item,index) in cities"
-                    />
-                  </vs-select>
+                      v-for="(item,index) in towns"
+                    >{{item.name}}</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -168,24 +176,30 @@
               </div>
               <div class="vx-row mb-6">
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="İlçe / Semt" v-model="townF">
-                    <vs-select-item
+                  <select
+                    class="form-control form-control-lg selecting selectExample w-full"
+                    label="Şehir"
+                    v-model="cityF"
+                  >
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
-                      v-for="(item,index) in townsF"
-                    />
-                  </vs-select>
+                      v-for="(item,index) in citiesF"
+                    >{{item.name}}</option>
+                  </select>
                 </div>
                 <div class="vx-col w-1/2">
-                  <vs-select class="selectExample w-full" label="Şehir" v-model="cityF">
-                    <vs-select-item
+                  <select
+                    class="form-control form-control-lg selecting selectExample w-full"
+                    label="İlçe / Semt"
+                    v-model="townF"
+                  >
+                    <option
                       :key="index"
                       :value="item.id"
-                      :text="item.name"
-                      v-for="(item,index) in citiesF"
-                    />
-                  </vs-select>
+                      v-for="(item,index) in townsF"
+                    >{{item.name}}</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -203,12 +217,9 @@
 </template>
 
 <script>
-import {
-  required,
-  helpers
-} from "vuelidate/lib/validators";
+import { required, helpers } from "vuelidate/lib/validators";
 import PlaceService from "@/services/place.service";
-const mobileRegex = helpers.regex('mobile', /^[2-9]\d{2}-\d{3}-\d{4}$/);
+const mobileRegex = helpers.regex("mobile", /^[2-9]\d{2}-\d{3}-\d{4}$/);
 export default {
   data() {
     return {
@@ -246,7 +257,6 @@ export default {
   created: async function() {
     this.cities = await PlaceService.getCities();
     this.citiesF = await PlaceService.getCities();
-
   },
   methods: {
     changenewAdres() {}
@@ -254,12 +264,19 @@ export default {
   validations: {
     name: { required },
     surname: { required },
-    address: {required},
-    postCode: {required},
-    mobile: {mobileRegex},
-    town: {required},
-    city: {required}
+    address: { required },
+    postCode: { required },
+    mobile: { mobileRegex },
+    town: { required },
+    city: { required }
   }
 };
 </script>
+<style>
+.selecting {
+  font-size: 1rem;
+  color: #7f7c96;
+}
+</style>
+
 
