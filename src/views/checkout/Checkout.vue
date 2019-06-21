@@ -14,9 +14,14 @@
           <checkout-list></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Adres" class="mb-5" icon="feather icon-home">
+      <tab-content title="Kargo Adresi" class="mb-5" icon="feather icon-home" :before-change="validateStep2">
         <div>
-          <adres></adres>
+          <adres :isBilling=false></adres>
+        </div>
+      </tab-content>
+      <tab-content title="Fatura Adresi" class="mb-5" icon="feather icon-home" :before-change="validateStep3">
+        <div>
+          <adres :isBilling=true></adres>
         </div>
       </tab-content>
       <tab-content title="Ödeme" class="mb-5" icon="feather icon-home">
@@ -39,6 +44,12 @@ export default {
   methods: {
     validateStep1() {
       return this.$store.state.checkout.basketList.length !== 0
+    },
+    validateStep2: function() {
+      return !(this.$store.state.checkout.cargoAddress.constructor === Object && Object.entries(this.$store.state.checkout.cargoAddress).length === 0)
+    },
+    validateStep3: function() {
+      return !(this.$store.state.checkout.billingAddress.constructor === Object && Object.entries(this.$store.state.checkout.billingAddress).length === 0)
     }
   },
   components: {

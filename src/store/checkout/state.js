@@ -1,10 +1,15 @@
 const state = {
 	basketList: [],
-	adres: {
-		adress: "",
-		mobile: "",
-		townId: null
+	addressList: [],
+	cargoAddress: {
+		exist: {},
+		newAddr: {}
 	},
+	billingAddress: {
+		exist: {},
+		newAddr: {}
+	},
+	newAdres: false,
 	totalPriceNet: 0,
 	totalPrice: 0,
 	kdv: 0

@@ -76,7 +76,7 @@
                 href="#"
               >{{ $t('landing.navbar.login') }}</a>
               
-              <vs-popup :button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.loginPopup">
+              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.loginPopup">
                <div class="position-relative">
                  
                 <login :isPopup=true></login>
@@ -86,7 +86,7 @@
               
             </li>
             <li>
-              <vs-popup :button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.registerPopup">
+              <vs-popup class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.registerPopup">
                  <button class="position-relative btn btn-danger float-right" style="top:10px;right:10px;z-index:99" @click="closePopup">x</button>
                 <register :isPopup=true></register>
               </vs-popup>
@@ -1806,8 +1806,8 @@ export default {
 };
 </script>
 <style>
-.vs-radio .vs-radio--circle,
-.vs-radio .vs-radio--borde {
+.model-column .vs-radio .vs-radio--circle,
+.model-column .vs-radio .vs-radio--borde {
   display: none !important;
 }
 .vs-popup{
@@ -1817,5 +1817,8 @@ export default {
   width: 100% !important;
   padding:0 !important;
   margin:0 !important;
+}
+.vs-popup--close{
+  display: none !important;
 }
 </style>

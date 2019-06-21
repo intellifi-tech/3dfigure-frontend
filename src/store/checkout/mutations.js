@@ -55,6 +55,32 @@ const mutations = {
         state.totalPrice = totalPrice
         state.kdv = kdv
         state.totalPriceNet = totalPriceNet
+    },
+
+    UPDATE_CARGO_ADDRESS(state, address) {
+        state.cargoAddress.exist = address
+    },
+
+    UPDATE_BILLING_ADDRESS(state, address) {
+        state.billingAddress.exist = address
+    },
+
+    ADD_CARGO_ADDRESS(state, address) {
+        state.cargoAddress.newAddr = address
+        state.addressList.push(address)
+    },
+
+    ADD_BILLING_ADDRESS(state, address) {
+        state.billingAddress.newAddr = address
+        state.addressList.push(address)
+    },
+
+    UPDATE_IS_NEW_ADDRESS(state, isNew) {
+        state.newAdres = isNew
+    },
+
+    INIT_ADDRESS_LIST(state, adresList) {
+        state.addressList = adresList
     }
 }
 

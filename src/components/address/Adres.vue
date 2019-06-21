@@ -28,10 +28,10 @@
         </li>
       </ul>
 
-      <div class="adreslerim" v-if="newAdres">
-        <ul class="adreslerimList" v-for="adres in this.addressList" :key="adres.id">
+      <div class="adreslerim" v-show="newAdres">
+        <ul class="adreslerimList" v-for="adres in this.$store.state.checkout.addressList" :key="adres.id">
           <li>
-            <vs-radio color="success" v-model="radios2" :vs-value="adres.addressName">
+            <vs-radio color="success" v-model="radios2" :vs-value="adres" @change="updateAddress">
               <div class="pl-4">
                 <i>{{adres.addressName}}</i>
                 <br>
@@ -48,14 +48,16 @@
 
       <div class="mt-3 col-md-12">
         <div class="newAdres" v-show="!newAdres">
-          <vs-checkbox v-model="checkBox1">Teslimat ve Fatura adresimi aynı kullan.</vs-checkbox>
           <hr>
           <div class="row pl-4">
+            
+            <!-- teslimat adresi-->
+
             <div class="pt-4">
-              <h4 class="mb-3 font-bold">Teslimat Adresi</h4>
+              <h4 class="mb-3 font-bold">Fatura Adresi</h4>
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
-                  <vs-input class="w-full" label-placeholder="Adres Adı" v-model="addressName"/>
+                  <vs-input class="w-full" label-placeholder="Adres Adı" v-model="adres.addressName"/>
                 </div>
               </div>
               <div class="vx-row mb-2">
@@ -68,12 +70,12 @@
               </div>
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
-                  <vs-input type="tel" class="w-full" label-placeholder="Telefon" v-model="mobile"/>
+                  <vs-input type="tel" class="w-full" label-placeholder="Telefon" v-model="adres.mobile"/>
                 </div>
               </div>
               <div class="vx-row mb-6">
                 <div class="vx-col w-full">
-                  <vs-input type="text" class="w-full" label-placeholder="Adres" v-model="address"/>
+                  <vs-input type="text" class="w-full" label-placeholder="Adres" v-model="adres.address"/>
                 </div>
               </div>
               <div class="vx-row mb-6">
@@ -82,27 +84,27 @@
                     type="text"
                     class="w-full"
                     label-placeholder="Posta kodu"
-                    v-model="postCode"
+                    v-model="adres.postCode"
                   />
                 </div>
               </div>
-              <div class="vx-row mb-6" v-if="this.checkBox1">
+              <div class="vx-row mb-6" v-if="isBilling">
                 <div class="vx-col w-full">
                   <vs-input
                     type="text"
                     class="w-full"
                     label-placeholder="Vergi Dairesi"
-                    v-model="postCode"
+                    v-model="adres.taxAdmin"
                   />
                 </div>
               </div>
-              <div class="vx-row mb-6" v-if="this.checkBox1">
+              <div class="vx-row mb-6">
                 <div class="vx-col w-full">
                   <vs-input
                     type="text"
                     class="w-full"
                     label-placeholder="TCKN/Vergi No"
-                    v-model="postCode"
+                    v-model="adres.taxNo"
                   />
                 </div>
               </div>
@@ -124,7 +126,7 @@
                   <select
                     class="form-control form-control-lg selecting selectExample w-full"
                     label="İlçe / Semt"
-                    v-model="town"
+                    v-model="adres.townId"
                   >
                     <option
                       :key="index"
@@ -135,95 +137,9 @@
                 </div>
               </div>
             </div>
-
-            <!-- teslimat adresi-->
-
-            <div class="pt-4 pl-5" v-if="!this.checkBox1">
-              <h4 class="mb-3 font-bold">Fatura Adresi</h4>
-              <div class="vx-row mb-2">
-                <div class="vx-col w-full">
-                  <vs-input class="w-full" label-placeholder="Adres Adı" v-model="addressName"/>
-                </div>
-              </div>
-              <div class="vx-row mb-2">
-                <div class="vx-col w-1/2">
-                  <vs-input class="w-full" label-placeholder="Ad" v-model="name"/>
-                </div>
-                <div class="vx-col w-1/2">
-                  <vs-input class="w-full" label-placeholder="Soyad" v-model="surname"/>
-                </div>
-              </div>
-              <div class="vx-row mb-2">
-                <div class="vx-col w-full">
-                  <vs-input type="tel" class="w-full" label-placeholder="Telefon" v-model="mobile"/>
-                </div>
-              </div>
-              <div class="vx-row mb-6">
-                <div class="vx-col w-full">
-                  <vs-input type="text" class="w-full" label-placeholder="Adres" v-model="address"/>
-                </div>
-              </div>
-              <div class="vx-row mb-6">
-                <div class="vx-col w-full">
-                  <vs-input
-                    type="text"
-                    class="w-full"
-                    label-placeholder="Posta kodu"
-                    v-model="postCode"
-                  />
-                </div>
-              </div>
-              <div class="vx-row mb-6">
-                <div class="vx-col w-full">
-                  <vs-input
-                    type="text"
-                    class="w-full"
-                    label-placeholder="Vergi Dairesi"
-                    v-model="postCode"
-                  />
-                </div>
-              </div>
-              <div class="vx-row mb-6">
-                <div class="vx-col w-full">
-                  <vs-input
-                    type="text"
-                    class="w-full"
-                    label-placeholder="TCKN/Vergi No"
-                    v-model="postCode"
-                  />
-                </div>
-              </div>
-              <div class="vx-row mb-6">
-                <div class="vx-col w-1/2">
-                  <select
-                    class="form-control form-control-lg selecting selectExample w-full"
-                    label="Şehir"
-                    v-model="cityF"
-                  >
-                    <option
-                      :key="index"
-                      :value="item.id"
-                      v-for="(item,index) in citiesF"
-                    >{{item.name}}</option>
-                  </select>
-                </div>
-                <div class="vx-col w-1/2">
-                  <select
-                    class="form-control form-control-lg selecting selectExample w-full"
-                    label="İlçe / Semt"
-                    v-model="townF"
-                  >
-                    <option
-                      :key="index"
-                      :value="item.id"
-                      v-for="(item,index) in townsF"
-                    >{{item.name}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
             <!-- fatura adresi-->
           </div>
+          <vs-button @click="saveAddress">Kaydet</vs-button>
           <!--row yeni adres-->
         </div>
         <!--yeni adres section -->
@@ -231,65 +147,110 @@
       <!--adres page column-->
     </div>
     <!--row-->
-  </div>
+     </div>
   <!--container-->
 </template>
 
 <script>
-import { required, helpers } from "vuelidate/lib/validators";
+import {
+  required,
+  minLength,
+  maxLength,
+  numeric,
+  alpha
+} from "vuelidate/lib/validators";
 import PlaceService from "@/services/place.service";
 import AddressService from '@/services/address.service'
-const mobileRegex = helpers.regex("mobile", /^[2-9]\d{2}-\d{3}-\d{4}$/);
 export default {
   data() {
     return {
-      tabAdres: "",
-      tabNewAdres: "",
-      adres: true,
       newAdres: true,
-      checkBox1: false,
       radios2: "",
       name: "",
       surname: "",
-      mobile: "",
-      address: "",
-      addressName: "",
-      postCode: "",
-
-      town: null,
+      adres: {
+        taxAdmin: "",
+        taxNo: "",
+        person: "",
+        mobile: "",
+        address: "",
+        addressName: "",
+        postCode: "",
+        townId: -1,
+        userId: -1
+      },
       city: 1,
-      townF: null,
-      cityF: 1,
       cities: [],
-      citiesF: [],
       towns: [],
-      townsF: [],
       addressList: []
     };
   },
+  props: {
+    isBilling: {
+      default: false,
+      required: true
+    }
+  },
   watch: {
+    newAdres() {
+      this.$store.commit('checkout/UPDATE_IS_NEW_ADDRESS', this.newAdres)
+    },
     city: async function() {
       this.towns = await PlaceService.getTownsByCity(this.city);
     },
-    cityF: async function() {
-      this.townsF = await PlaceService.getTownsByCity(this.cityF);
+    name() {
+      this.adres.person = this.name + ' ' + this.surname
+    },
+    surname() {
+      this.adres.person = this.name + ' ' + this.surname
     }
   },
   created: async function() {
     this.cities = await PlaceService.getCities();
-    this.citiesF = await PlaceService.getCities();
-    this.addressList = await AddressService.getUserAddress();
+    this.$store.commit('checkout/INIT_ADDRESS_LIST', await AddressService.getUserAddress())
   },
   methods: {
-    changenewAdres() {}
+    saveAddress: async function() {
+      debugger
+      if (this.$v.$invalid) {
+        this.$vs.notify({
+          time: 4000,
+          title: "Error",
+          text: "Girişinizi kontrol ediniz",
+          color: "danger"
+        });
+      } else {
+        this.adres.userId = this.$store.state.member.id;
+        const res = await AddressService.saveUserAddress(this.adres)
+        if (this.isBilling) {
+          this.$store.commit('checkout/ADD_BILLING_ADDRESS', res)
+        } else {
+          this.$store.commit('checkout/ADD_CARGO_ADDRESS', res)
+        }
+        this.adres = {}
+        this.name = "",
+        this.surname = ""
+      }
+    },
+    updateAddress() {
+      if (this.isBilling) {
+        this.$store.commit('checkout/UPDATE_BILLING_ADDRESS', this.radios2)
+      } else {
+        this.$store.commit('checkout/UPDATE_CARGO_ADDRESS', this.radios2)
+      }
+    }
   },
   validations: {
-    name: { required },
-    surname: { required },
-    address: { required },
-    postCode: { required },
-    mobile: { mobileRegex },
-    town: { required },
+    name: { required, alpha },
+    surname: { required, alpha},
+    adres: {
+      taxNo: {required, minLength: minLength(11), maxLength: maxLength(11), numeric},
+      mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
+      address: { required },
+      addressName: { required },
+      postCode: { required },
+      townId: { required }, 
+    },
     city: { required }
   }
 };
@@ -300,5 +261,6 @@ export default {
   color: #7f7c96;
 }
 </style>
+
 
 
