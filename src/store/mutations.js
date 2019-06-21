@@ -8,7 +8,6 @@
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
 const mutations = {
 
 	// ////////////////////////////////////////////
@@ -37,7 +36,7 @@ const mutations = {
 		state.breakpoint = val;
 	},
 	UPDATE_PRIMARY_COLOR(state, val) {
-		state.themePrimaryColor = val;	
+		state.themePrimaryColor = val;
 	},
 	CURRENT_USER(state, val) {
 		state.member = val;
@@ -51,6 +50,32 @@ const mutations = {
 	UPDATE_STARRED_PAGE(state, payload) {
 		const index = state.navbarSearchAndPinList.data.findIndex((item) => item.index == payload.index)
 		state.navbarSearchAndPinList.data[index].highlightAction = payload.val;
+	},
+
+	UPDATE_LOGIN_POPUP(state, value) {
+		state.landing.loginPopup = value;
+	},
+
+	UPDATE_REGISTER_POPUP(state, value) {
+		state.landing.registerPopup = value;
+	},
+
+	DELETE_FIGURE_FROM_SELECTED(state, indexes) {
+		state.selectedFigures.avatarKey.splice(indexes.f, 1);
+		state.selectedFigures.imagePath.splice(indexes.m, 1);
+	},
+
+	ADD_FIGURE_SELECTED(state, value) {
+		state.selectedFigures.avatarKey.push(value.a);
+		state.selectedFigures.imagePath.push(value.s);
+	},
+
+	INIT_CONCEPT(state, value) {
+		state.conceptPage.conceptList = value
+	},
+
+	INIT_CONCEPT_PAGE(state, pages) {
+		state.conceptPage.totalPages = pages
 	}
 }
 

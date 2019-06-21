@@ -15,6 +15,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
+import i18n from '@/plugins/i18n.js'
 import {
 	TokenService
 } from '@/services/token.service'
@@ -42,6 +43,14 @@ const router = new Router({
 				// =============================================================================
 
 			],
+		},
+		{
+			path: '/api',
+			meta: {
+				api: true
+			},
+			component: () => import('./views/api/Api.vue'),
+			props: true
 		},
 
 		{
@@ -121,20 +130,27 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
 	const isPublic = to.matched.some(record => record.meta.public)
 	const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
+	const api = to.matched.some(record => record.meta.api)
 	const loggedIn = !!TokenService.getToken();
 
-	if (!isPublic && !loggedIn) {
-		return next({
-			path: '/login',
-			query: {
-				redirect: to.fullPath
-			} // Store the full path to redirect the user to after login
-		});
+	if (sessionStorage.getItem('lang') !== null && sessionStorage.getItem('lang') !== i18n.locale) {
+		i18n.locale = sessionStorage.getItem('lang');
 	}
+	if (!api) {
 
-	// Do not allow user to visit login page or register page if they are logged in
-	if (loggedIn && onlyWhenLoggedOut) {
-		return next('/main')
+		if (!isPublic && !loggedIn) {
+			return next({
+				path: '/login',
+				query: {
+					redirect: to.fullPath
+				} // Store the full path to redirect the user to after login
+			});
+		}
+
+		// Do not allow user to visit login page or register page if they are logged in
+		if (loggedIn && onlyWhenLoggedOut) {
+			return next('/main')
+		}
 	}
 
 	next();

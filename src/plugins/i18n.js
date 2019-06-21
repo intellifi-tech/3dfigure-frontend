@@ -142,7 +142,7 @@ const messages = {
     'TR': {
         landing: {
             navbar: {
-                home: 'Giriş',
+                home: 'Anasayfa',
                 howToUse: 'Nasıl Yapılır?',
                 concepts: 'Konseptler',
                 about: 'Hakkımızda',

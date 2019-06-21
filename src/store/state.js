@@ -35,6 +35,18 @@ const state = {
 		appToken: "",
 		avatarToken: "",
 		singleFigure: ""
+	},
+	landing: {
+		loginPopup: false,
+		registerPopup: false
+	},
+	selectedFigures: {
+		avatarKey: [],
+		imagePath: []
+	},
+	conceptPage: {
+		conceptList: {},
+		totalPages: -1
 	}
 }
 
