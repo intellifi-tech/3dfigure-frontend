@@ -42,12 +42,14 @@ export default {
     };
   },
   methods: {
+
     validateStep1: async function() {
       const res = this.$store.state.selectedFigures.avatarKey.length != 0;
+
       if (!res) {
         this.$vs.notify({
           title: "HATA",
-          text: "Fotoğraf yüklemeli ya da seçmelisiniz",
+          text: "Fotoğraf yüklemeli ya da seçmelisiniz!",
           color: "danger"
         });
         return res;
