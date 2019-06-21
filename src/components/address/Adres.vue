@@ -1,18 +1,37 @@
 <template>
   <div class="container-fluid border rounded-lg px-5 py-4">
-    <div class="row">
-      <vs-tabs alignment="fixed">
-        <vs-tab title="Adreslerim" v-model="tabAdres" @click="newAdres=true">
-          <div></div>
-        </vs-tab>
-        <vs-tab label="Yeni Adres Ekle" v-model="tabNewAdres" @click="newAdres=false">
-          <div></div>
-        </vs-tab>
-      </vs-tabs>
-      <div class="adreslerim" v-if="newAdres==!this.tabAdres">
-        <ul class="adreslerimList" v-for="adres in this.address" :key="adres.id">
+    <div class="">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="pills-home-tab"
+            data-toggle="pill"
+            href="#pills-home"
+            @click="newAdres=true"
+            role="tab"
+            aria-controls="pills-home"
+            aria-selected="true"
+          >Home</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="pills-profile-tab"
+            data-toggle="pill"
+            href="#pills-profile"
+            @click="newAdres=false"
+            role="tab"
+            aria-controls="pills-profile"
+            aria-selected="false"
+          >Profile</a>
+        </li>
+      </ul>
+
+      <div class="adreslerim" v-if="newAdres">
+        <ul class="adreslerimList" v-for="adres in this.addressList" :key="adres.id">
           <li>
-            <vs-radio color="success" v-model="radios2" vs-value="evAdresi">
+            <vs-radio color="success" v-model="radios2" :vs-value="adres.addressName">
               <div class="pl-4">
                 <i>{{adres.addressName}}</i>
                 <br>
@@ -219,6 +238,7 @@
 <script>
 import { required, helpers } from "vuelidate/lib/validators";
 import PlaceService from "@/services/place.service";
+import AddressService from '@/services/address.service'
 const mobileRegex = helpers.regex("mobile", /^[2-9]\d{2}-\d{3}-\d{4}$/);
 export default {
   data() {
@@ -243,7 +263,8 @@ export default {
       cities: [],
       citiesF: [],
       towns: [],
-      townsF: []
+      townsF: [],
+      addressList: []
     };
   },
   watch: {
@@ -257,6 +278,7 @@ export default {
   created: async function() {
     this.cities = await PlaceService.getCities();
     this.citiesF = await PlaceService.getCities();
+    this.addressList = await AddressService.getUserAddress();
   },
   methods: {
     changenewAdres() {}
