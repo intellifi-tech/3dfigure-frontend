@@ -4081,7 +4081,7 @@ text-align:left;
 
 /*preview sayfası fotoğraflarım alanı*/
 .preview-images{
-  max-height: 480px;
+  max-height: 441px;
 }
 
 /*scroll bar style*/
@@ -4105,4 +4105,7 @@ text-align:left;
 /*pagination ul*/
 .vs-pagination--ul{
   margin-bottom: 0 ;
+}
+.content-noti p{
+  color:#fff;
 }
