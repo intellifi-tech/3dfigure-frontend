@@ -29,7 +29,6 @@ const CheckoutService = {
             return res.data
 
         } catch (error) {
-            debugger
             return error.response.data
         }
     },

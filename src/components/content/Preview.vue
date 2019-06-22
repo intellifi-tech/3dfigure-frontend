@@ -108,6 +108,7 @@ export default {
       // Avatar SDK isteğinin sonucu
       var response = JSON.parse($event.currentTarget.response);
       if (response.code) {
+        this.$refs.upload.srcs[index].avatarKey = response.code;
         // Open loading page
         this.$vs.loading({
           text: "Fotoğraf, bulut sunucumuza yükleniyor..",
@@ -165,7 +166,6 @@ export default {
                     });
                   } else {
                     this.showAvatar(response.code);
-                    this.$refs.upload.srcs[index].avatarKey = response.code;
                     this.figure.avatarKey = response.code;
                     this.figure.figureName = response.code;
 

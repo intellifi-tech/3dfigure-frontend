@@ -14,10 +14,8 @@ const AddressService = {
     saveUserAddress: async function(adres) {
         try {
             const response = await ApiService.post("/addresses", adres)
-            debugger
             return response.data
         } catch (error) {
-            debugger
             return error.response.status
         }
     }
