@@ -53,17 +53,17 @@
               <div>
                 <h6 class="my-0">Net Toplam</h6>
               </div>
-              <span class="text-muted">${{totalPriceNet.toFixed(2)}}</span>
+              <span class="text-muted">${{this.$store.state.checkout.order.totalPriceNet.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
                 <h6 class="my-0">KDV(%18)</h6>
               </div>
-              <span class="text-muted">${{kdv.toFixed(2)}}</span>
+              <span class="text-muted">${{this.$store.state.checkout.order.kdv.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 d-flex justify-content-between">
               <span>Genel Toplam (USD)</span>
-              <strong>${{totalPrice.toFixed(2)}}</strong>
+              <strong>${{this.$store.state.checkout.order.totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>
           <div><vs-button color="success" type="filled" to="main">Alışverişe Devam Et</vs-button></div>

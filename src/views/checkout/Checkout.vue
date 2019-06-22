@@ -3,11 +3,12 @@
     <form-wizard
       color="rgba(var(--vs-primary), 1)"
       errorColor="rgba(var(--vs-danger), 1)"
-      :title="null"
-      :subtitle="null"
+      :title=null
+      :subtitle=null
       nextButtonText="Devam et"
       backButtonText="Geri dön"
       finishButtonText="Siparişi Tamamla"
+      @on-complete="finishShopping"
     >
       <tab-content title="Sepet" class="mb-5" icon="feather icon-home" :before-change="validateStep1">
         <div>
@@ -35,6 +36,7 @@
 import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import CheckoutList from "@/components/checkout/CheckoutList.vue";
+import CheckoutService from '@/services/checkout.service.js'
 import Adres from "@/components/address/Adres.vue";
 export default {
   data() {
@@ -46,10 +48,34 @@ export default {
       return this.$store.state.checkout.basketList.length !== 0
     },
     validateStep2: function() {
-      return !(this.$store.state.checkout.cargoAddress.constructor === Object && Object.entries(this.$store.state.checkout.cargoAddress).length === 0)
+      if (!this.$store.state.checkout.chooseAddress) {
+        this.$vs.notify({
+          time: 4000,
+          title: "Error",
+          text: "Lütfen Adres Seçin",
+          color: "danger"
+        });
+        return false
+      }
+      return this.$store.state.checkout.order.deliveryId != -1
     },
     validateStep3: function() {
-      return !(this.$store.state.checkout.billingAddress.constructor === Object && Object.entries(this.$store.state.checkout.billingAddress).length === 0)
+      if (!this.$store.state.checkout.chooseAddress) {
+        this.$vs.notify({
+          time: 4000,
+          title: "Error",
+          text: "Lütfen Adres Seçin",
+          color: "danger"
+        });
+        return false
+      }
+      return this.$store.state.checkout.order.billingId != -1
+    },
+    finishShopping: async function() {
+      this.$store.commit('checkout/FINISH_ORDER', this.$store.state.member.id)
+      await CheckoutService.sendOrder(this.$store.state.checkout.order)
+      this.$store.dispatch('checkout/createNewBasket')
+      this.$router.push("/main")
     }
   },
   components: {

@@ -29,6 +29,7 @@ const CheckoutService = {
             return res.data
 
         } catch (error) {
+            debugger
             return error.response.data
         }
     },
@@ -45,6 +46,15 @@ const CheckoutService = {
     deleteFromBasket: async function (ids) {
         try {
             const res = await ApiService.delete("/baskets/concept/" + ids.f + "/" + ids.c)
+            return res.data
+        } catch (error) {
+            error.response.data
+        }
+    },
+
+    sendOrder: async function (order) {
+        try {
+            const res = await ApiService.post("/orders", order)
             return res.data
         } catch (error) {
             error.response.data

@@ -8,7 +8,7 @@
             id="pills-home-tab"
             data-toggle="pill"
             href="#pills-home"
-            @click="newAdres=true"
+            @click="chooseAddress=true"
             role="tab"
             aria-controls="pills-home"
             aria-selected="true"
@@ -20,7 +20,7 @@
             id="pills-profile-tab"
             data-toggle="pill"
             href="#pills-profile"
-            @click="newAdres=false"
+            @click="chooseAddress=false"
             role="tab"
             aria-controls="pills-profile"
             aria-selected="false"
@@ -28,7 +28,7 @@
         </li>
       </ul>
 
-      <div class="adreslerim" v-show="newAdres">
+      <div class="adreslerim" v-show="chooseAddress">
         <ul class="adreslerimList" v-for="adres in this.$store.state.checkout.addressList" :key="adres.id">
           <li>
             <vs-radio color="success" v-model="radios2" :vs-value="adres" @change="updateAddress">
@@ -47,7 +47,7 @@
       <!--radio buttons-->
 
       <div class="mt-3 col-md-12">
-        <div class="newAdres" v-show="!newAdres">
+        <div class="newAdres" v-show="!chooseAddress">
           <hr>
           <div class="row pl-4">
             
@@ -164,7 +164,7 @@ import AddressService from '@/services/address.service'
 export default {
   data() {
     return {
-      newAdres: true,
+      chooseAddress: true,
       radios2: "",
       name: "",
       surname: "",
@@ -192,8 +192,8 @@ export default {
     }
   },
   watch: {
-    newAdres() {
-      this.$store.commit('checkout/UPDATE_IS_NEW_ADDRESS', this.newAdres)
+    chooseAddress() {
+      this.$store.commit('checkout/UPDATE_IS_NEW_ADDRESS', this.chooseAddress)
     },
     city: async function() {
       this.towns = await PlaceService.getTownsByCity(this.city);
@@ -211,12 +211,11 @@ export default {
   },
   methods: {
     saveAddress: async function() {
-      debugger
       if (this.$v.$invalid) {
         this.$vs.notify({
           time: 4000,
           title: "Error",
-          text: "Girişinizi kontrol ediniz",
+          text: "Eksik Bilgi Girdiniz",
           color: "danger"
         });
       } else {

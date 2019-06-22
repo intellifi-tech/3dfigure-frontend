@@ -15,9 +15,9 @@ const mutations = {
                 kdv += element.price * 1 * 0.18 * (element.figures.length)
             }
         });
-        state.totalPrice = totalPrice
-        state.kdv = kdv
-        state.totalPriceNet = totalPriceNet
+        state.order.totalPrice = totalPrice
+        state.order.kdv = kdv
+        state.order.totalPriceNet = totalPriceNet
     },
     SET_TOTAL_PRICE(state, totalPrice) {
         state.totalPrice = totalPrice
@@ -33,8 +33,6 @@ const mutations = {
         let totalPriceNet = 0
         let kdv = 0
 
-
-        debugger
         const cindex = state.basketList.findIndex(concept => concept.id == ids.c)
         const findex = state.basketList[cindex].figures.findIndex(figure => figure.id == ids.f);
         state.basketList[cindex].figures.splice(findex, 1)
@@ -52,35 +50,65 @@ const mutations = {
                 kdv += element.price * 1 * 0.18 * (element.figures.length)
             }
         });
-        state.totalPrice = totalPrice
-        state.kdv = kdv
-        state.totalPriceNet = totalPriceNet
+        state.order.totalPrice = totalPrice
+        state.order.kdv = kdv
+        state.order.totalPriceNet = totalPriceNet
     },
 
     UPDATE_CARGO_ADDRESS(state, address) {
-        state.cargoAddress.exist = address
+        state.cargoAddress = address
+        state.order.deliveryId = address.id
     },
 
     UPDATE_BILLING_ADDRESS(state, address) {
-        state.billingAddress.exist = address
+        state.billingAddress = address
+        state.order.billingId = address.id
     },
 
     ADD_CARGO_ADDRESS(state, address) {
-        state.cargoAddress.newAddr = address
         state.addressList.push(address)
     },
 
     ADD_BILLING_ADDRESS(state, address) {
-        state.billingAddress.newAddr = address
         state.addressList.push(address)
     },
 
-    UPDATE_IS_NEW_ADDRESS(state, isNew) {
-        state.newAdres = isNew
+    UPDATE_IS_NEW_ADDRESS(state, choose) {
+        state.chooseAddress = choose
     },
 
     INIT_ADDRESS_LIST(state, adresList) {
         state.addressList = adresList
+    },
+
+    INIT_BASKET_ID(state, basketId) {
+        state.order.basketId = basketId
+    },
+
+    FINISH_ORDER(state, userId) {
+        state.order.userId = userId
+        state.order.createdDate = new Date()
+        state.order.lastModificationDate = new Date()
+        state.order.orderCode = Math.random().toString(36).substr(2, 9).toUpperCase();
+    },
+
+    RESET_BASKET(state) {
+        state.basketList = []
+        state.cargoAddress = {}
+        state.billingAddress = {}
+        state.order = {
+            orderCode: "",
+            totalPriceNet: 0.0,
+            kdv: 0.0,
+            totalPrice: 0.0,
+            createdDate: null,
+            lastModificationDate: null,
+            deliveryId: -1,
+            billingId: -1,
+            basketId: -1,
+            userId: -1
+        }
+        state.addressList = []
     }
 }
 
