@@ -34,11 +34,7 @@
         <p>
           Figürünü oluşturmak istediğin fotoğrafı
           <code>Galerinden</code>
-<<<<<<< HEAD
-          seçebilir veya yeni fotoğraf yükleyebilirsin.
-=======
           seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.$store.state.member.totalFigure }}
->>>>>>> FIG-26
         </p>
       <hr>
         <div class="mt-0">
