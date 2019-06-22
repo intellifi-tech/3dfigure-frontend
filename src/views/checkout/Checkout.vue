@@ -75,6 +75,7 @@ export default {
       this.$store.commit('checkout/FINISH_ORDER', this.$store.state.member.id)
       await CheckoutService.sendOrder(this.$store.state.checkout.order)
       this.$store.dispatch('checkout/createNewBasket')
+      this.$store.dispatch('getCurrentUser')
       this.$router.push("/main")
     }
   },

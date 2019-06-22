@@ -23,7 +23,7 @@
         <p>
           Figürünü oluşturmak istediğin fotoğrafı
           <code>Galerinden</code>
-          seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.number.totalFigure}}
+          seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.$store.state.member.totalFigure }}
         </p>
 
         <div class="mt-4">
@@ -59,7 +59,6 @@ import ApiService from "@/services/api.service";
 import { TokenService } from "@/services/token.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
-import PricingService from "@/services/pricing.service";
 import AvatarSdkService from "@/services/avatarsdk.service";
 
 export default {
@@ -84,8 +83,7 @@ export default {
       },
       currentAvatar: null,
       limit: null,
-      userFigures: null,
-      number: {}
+      userFigures: null
     };
   },
   created() {
@@ -100,9 +98,8 @@ export default {
   methods: {
     updateGallery: async function() {},
     initialize: async function() {
-      this.number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
-      this.limit = this.number.totalFigure - this.userFigures.length;
+      this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
     },
     avatarUpload: async function($event, index) {
       // Avatar SDK isteğinin sonucu

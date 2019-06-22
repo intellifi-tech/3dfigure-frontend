@@ -15,6 +15,7 @@ const UserService = {
     // for first login update 
     setMember: async function (member) {
         try {
+            debugger
             const response = await ApiService.put("/users/up", member)
             return response.data
         } catch (error) {
