@@ -43,8 +43,8 @@ const actions = {
 	},
 
 	async updateFirstLogin({ commit }, member) {
-		await UserService.setMember(member)
-		commit('CURRENT_USER', member)
+		const update = await UserService.setMember(member)
+		commit('CURRENT_USER', update)
 	},
 
 	initConcept({ commit }, response) {

@@ -49,6 +49,15 @@ const CheckoutService = {
         } catch (error) {
             error.response.data
         }
+    },
+
+    sendOrder: async function (order) {
+        try {
+            const res = await ApiService.post("/orders", order)
+            return res.data
+        } catch (error) {
+            error.response.data
+        }
     }
 }
 

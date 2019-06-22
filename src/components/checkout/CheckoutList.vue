@@ -17,8 +17,8 @@
               <img :src='"assets/images/figures/"+figure.imagePath'>
             </div>
             <div class="col-lg-2 px-0" v-else>
-              <img :src='"assets/images/figures/"+getFigurePath(0)'>
-              <img :src='"assets/images/figures/"+getFigurePath(1)'>
+              <img :src='"assets/images/figures/"+getFigurePath(figure, 0)'>
+              <img :src='"assets/images/figures/"+getFigurePath(figure, 1)'>
             </div>
             <div class="border-black border-right col-lg-7 pl-5">
               <h3 class="card-title pb-3">{{concept.conceptName}}</h3>
@@ -53,17 +53,17 @@
               <div>
                 <h6 class="my-0">Net Toplam</h6>
               </div>
-              <span class="text-muted">${{totalPriceNet.toFixed(2)}}</span>
+              <span class="text-muted">${{this.$store.state.checkout.order.totalPriceNet.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
                 <h6 class="my-0">KDV(%18)</h6>
               </div>
-              <span class="text-muted">${{kdv.toFixed(2)}}</span>
+              <span class="text-muted">${{this.$store.state.checkout.order.kdv.toFixed(2)}}</span>
             </li>
             <li class="mb-2 py-3 d-flex justify-content-between">
               <span>Genel Toplam (USD)</span>
-              <strong>${{totalPrice.toFixed(2)}}</strong>
+              <strong>${{this.$store.state.checkout.order.totalPrice.toFixed(2)}}</strong>
             </li>
           </ul>
           <div><vs-button color="success" type="filled" to="main">Alışverişe Devam Et</vs-button></div>
@@ -98,8 +98,8 @@ export default {
     initPage: async function() {
       this.initBasketList()
     },
-    getFigurePath(index) {
-      return this.$store.state.selectedFigures.imagePath[index];
+    getFigurePath(figure, index) {
+      return atob(figure.imagePath).split(',')[index]
     }
   },
   computed: {
