@@ -226,6 +226,12 @@ export default {
         } else {
           this.$store.commit('checkout/ADD_CARGO_ADDRESS', res)
         }
+        this.$vs.notify({
+          time: 4000,
+          title: "Başarılı",
+          text: "Adres başarılı bir şekilde eklendi",
+          color: "info"
+        });
         this.adres = {}
         this.name = "",
         this.surname = ""
