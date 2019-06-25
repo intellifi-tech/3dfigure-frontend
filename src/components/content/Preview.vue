@@ -34,7 +34,7 @@
         <p>
           Figürünü oluşturmak istediğin fotoğrafı
           <code>Galerinden</code>
-          seçebilir veya yeni fotoğraf yükleyebilirsin.
+          seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.$store.state.member.totalFigure }}
         </p>
       <hr>
         <div class="mt-0">
@@ -70,7 +70,6 @@ import ApiService from "@/services/api.service";
 import { TokenService } from "@/services/token.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
-import PricingService from "@/services/pricing.service";
 import AvatarSdkService from "@/services/avatarsdk.service";
 
 export default {
@@ -95,8 +94,7 @@ export default {
       },
       currentAvatar: null,
       limit: null,
-      userFigures: null,
-      number: {}
+      userFigures: null
     };
   },
   created() {
@@ -111,14 +109,14 @@ export default {
   methods: {
     updateGallery: async function() {},
     initialize: async function() {
-      this.number = await PricingService.getUserPricing();
       this.userFigures = await FigureService.getUserFigures();
-      this.limit = this.number.totalFigure - this.userFigures.length;
+      this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
     },
     avatarUpload: async function($event, index) {
       // Avatar SDK isteğinin sonucu
       var response = JSON.parse($event.currentTarget.response);
       if (response.code) {
+        this.$refs.upload.srcs[index].avatarKey = response.code;
         // Open loading page
         this.$vs.loading({
           text: "Fotoğraf, bulut sunucumuza yükleniyor..",
@@ -169,7 +167,6 @@ export default {
                     });
                   } else {
                     this.showAvatar(response.code);
-                    this.$refs.upload.srcs[index].avatarKey = response.code;
                     this.figure.avatarKey = response.code;
                     this.figure.figureName = response.code;
 

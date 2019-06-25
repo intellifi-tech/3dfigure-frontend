@@ -107,7 +107,7 @@ export default {
       confirm: "",
       checkBox1: false,
       sexList: [{ text: "Male", value: "M" }, { text: "Female", value: "F" }],
-      sex: ""
+      sex: "M"
     };
   },
   props: {
@@ -136,6 +136,11 @@ export default {
       };
       var status = await LoginService.register(credential);
       if (status < 400) {
+        this.$vs.notify({
+          title: "Information",
+          text: "Aktivasyon Mailiniz Atılmıştır",
+          color: "info"
+        })
         this.openLogin();
       } else {
         this.$vs.notify({

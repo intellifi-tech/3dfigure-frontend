@@ -1871,8 +1871,8 @@ export default {
 };
 </script>
 <style>
-.vs-radio .vs-radio--circle,
-.vs-radio .vs-radio--borde {
+.model-column .vs-radio .vs-radio--circle,
+.model-column .vs-radio .vs-radio--borde {
   display: none !important;
 }
 .login-popup .vs-popup {
@@ -1882,5 +1882,8 @@ export default {
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
+}
+.vs-popup--close{
+  display: none !important;
 }
 </style>

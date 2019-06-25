@@ -57,7 +57,6 @@ export default {
       // this.$root.$emit('checkIsAdded')
       var res1 = await ConceptService.getAllConcepts(0, this.$store.state.selectedFigures.avatarKey.length == 2);
       this.$store.dispatch('initConcept', res1)
-
       return res;
     }
   },

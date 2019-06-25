@@ -1,6 +1,7 @@
 import ApiService from './api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
 import CheckoutService from '@/services/checkout.service'
+import store from '@/store/store.js'
 import {
     TokenService
 } from './token.service'
@@ -21,7 +22,7 @@ const LoginService = {
             TokenService.saveAvatarToken(res.data.access_token)
             const checkoutRes = await CheckoutService.isLastBasket()
             if (checkoutRes === 404) {
-                await CheckoutService.createCheckout()
+                store.dispatch('checkout/createNewBasket')
             }
 
             // NOTE: We haven't covered this yet in our ApiService 
@@ -30,7 +31,7 @@ const LoginService = {
 
             return response.status
         } catch (error) {
-            return error.response.status
+            return error
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },

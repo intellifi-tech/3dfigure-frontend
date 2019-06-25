@@ -16,9 +16,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import i18n from '@/plugins/i18n.js'
-import {
-	TokenService
-} from '@/services/token.service'
+import ApiService from '@/services/api.service'
 
 Vue.use(Router)
 
@@ -119,6 +117,16 @@ const router = new Router({
 				}
 			]
 		},
+		{
+			path: '/admin',
+			component: () => import('@/layouts/admin/Admin.vue'),
+			meta: {
+				public: false
+			},
+			children: [
+
+			]
+		},
 		// Redirect to 404 page, if no match found
 		{
 			path: '*',
@@ -131,7 +139,7 @@ router.beforeEach((to, from, next) => {
 	const isPublic = to.matched.some(record => record.meta.public)
 	const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
 	const api = to.matched.some(record => record.meta.api)
-	const loggedIn = !!TokenService.getToken();
+	const loggedIn = !!ApiService.getHeader()
 
 	if (sessionStorage.getItem('lang') !== null && sessionStorage.getItem('lang') !== i18n.locale) {
 		i18n.locale = sessionStorage.getItem('lang');
