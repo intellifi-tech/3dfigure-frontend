@@ -68,28 +68,93 @@
             <li class="nav-item">
               <a class="nav-link" href="#contact">{{ $t('landing.navbar.contact') }}</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
+              <div class="loginLink" v-if="!this.$store.state.member.firstName">
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
               <a
                 class="nav-link cursor-pointer"
                 @click="openLogin"
                 href="#"
               >{{ $t('landing.navbar.login') }}</a>
-              
-              <vs-popup :button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.loginPopup">
-               <div class="position-relative">
-                 
-                <login :isPopup=true></login>
-                <button class="position-absolute btn btn-danger" style="top:0px;right:0px;z-index:99999" @click="closePopup">x</button>
+
+              <vs-popup
+                :button-close-hidden="true"
+                class="holamundo login-popup"
+                :title="$t('login.login')"
+                :active.sync="this.$store.state.landing.loginPopup"
+              >
+                <div class="position-relative">
+                  <login :isPopup="true"></login>
+                  <button
+                    class="position-absolute btn btn-danger"
+                    style="top:0px;right:0px;z-index:99999"
+                    @click="closePopup"
+                  >x</button>
                 </div>
               </vs-popup>
-              
+              </div>
+              <!-- loginLink finish -->
+               <div class="the-navbar__user-meta flex" v-else>
+                <div class="text-right leading-tight sm:block">
+                  <p class="font-semibold h-4 nav-link">{{this.$store.state.member.firstName}}</p>
+                </div>
+                <vs-dropdown vs-custom-content vs-trigger-click>
+                  <div class="con-img ml-3">
+                    <img
+                      :src="require(`@/assets/images/portrait/small/avatar-s-1.png`)"
+                      alt
+                      width="40"
+                      height="40"
+                      class="rounded-full shadow-md cursor-pointer block"
+                    >
+                  </div>
+                  <vs-dropdown-menu>
+                    <ul style="min-width: 10rem">
+                      <li
+                        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+                        @click="$router.push('/main')"
+                      >
+                        <feather-icon icon="UserIcon" svgClasses="w-4 h-4"></feather-icon>
+                        <span class="ml-2">Profil</span>
+                      </li>
+                      <li
+                        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+                        @click="$router.push('/apps/email')"
+                      >
+                        <feather-icon icon="MailIcon" svgClasses="w-4 h-4"></feather-icon>
+                        <span class="ml-2">Destek</span>
+                      </li>
+                      <vs-divider class="m-1"></vs-divider>
+                      <li
+                        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+                        @click="logout()"
+                      >
+                        <feather-icon icon="LogOutIcon" svgClasses="w-4 h-4"></feather-icon>
+                        <span class="ml-2">Çıkış yap</span>
+                      </li>
+                    </ul>
+                  </vs-dropdown-menu>
+                </vs-dropdown>
+              </div>
+              <!--user meta finish -->
             </li>
             <li>
-              <vs-popup :button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.registerPopup">
-                 <button class="position-relative btn btn-danger float-right" style="top:10px;right:10px;z-index:99" @click="closePopup">x</button>
-                <register :isPopup=true></register>
+              <vs-popup
+                :button-close-hidden="true"
+                class="holamundo login-popup"
+                :title="$t('login.login')"
+                :active.sync="this.$store.state.landing.registerPopup"
+              >
+                <button
+                  class="position-relative btn btn-danger float-right"
+                  style="top:10px;right:10px;z-index:99"
+                  @click="closePopup"
+                >x</button>
+                <register :isPopup="true"></register>
               </vs-popup>
+            </li>
+            <li class="nav-item">
+             
             </li>
           </ul>
           <!-- /.navbar-nav -->
@@ -1753,7 +1818,7 @@
 </template>
 <script>
 import { ContactService } from "@/services/contact.service";
-import Register from '@/components/login/Register.vue'
+import Register from "@/components/login/Register.vue";
 import Login from "@/components/login/Login.vue";
 export default {
   components: {
@@ -1778,11 +1843,11 @@ export default {
   },
   methods: {
     changeLang() {
-      sessionStorage.setItem('lang', this.$i18n.locale)
+      sessionStorage.setItem("lang", this.$i18n.locale);
     },
     closePopup() {
-      this.$store.commit('UPDATE_LOGIN_POPUP', false)
-      this.$store.commit('UPDATE_REGISTER_POPUP', false)
+      this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_REGISTER_POPUP", false);
     },
     sendMail: async function() {
       ContactService.sendMail(this.contact);
@@ -1794,13 +1859,13 @@ export default {
       /*************************** */
     },
     openRegister() {
-      this.$store.commit('UPDATE_LOGIN_POPUP', false)
-      this.$store.commit('UPDATE_REGISTER_POPUP', true)
+      this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_REGISTER_POPUP", true);
       // this.$router.push("/register");
     },
     openLogin() {
-      this.$store.commit('UPDATE_REGISTER_POPUP', false)
-      this.$store.commit('UPDATE_LOGIN_POPUP', true)
+      this.$store.commit("UPDATE_REGISTER_POPUP", false);
+      this.$store.commit("UPDATE_LOGIN_POPUP", true);
     }
   }
 };
@@ -1810,12 +1875,12 @@ export default {
 .vs-radio .vs-radio--borde {
   display: none !important;
 }
-.vs-popup{
-  width:900px !important;
+.login-popup .vs-popup {
+  width: 900px !important;
 }
-.vs-popup--content{
+.vs-popup--content {
   width: 100% !important;
-  padding:0 !important;
-  margin:0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 </style>

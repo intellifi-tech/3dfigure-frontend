@@ -23,7 +23,7 @@
 
         <template v-if="breakpoint != 'md'">
           <!-- STARRED PAGES - FIRST 10 -->
-          <ul class="vx-navbar__starred-pages flex">
+         <!-- <ul class="vx-navbar__starred-pages flex">
             <li class="starred-page" v-for="page in starredPagesLimited" :key="page.url">
               <vx-tooltip :text="page.label" position="bottom" delay=".3s">
                 <feather-icon
@@ -34,10 +34,10 @@
                 ></feather-icon>
               </vx-tooltip>
             </li>
-          </ul>
+          </ul>-->
 
           <!-- STARRED PAGES MORE -->
-          <div class="vx-navbar__starred-pages--more-dropdown" v-if="starredPagesMore.length">
+          <!--<div class="vx-navbar__starred-pages--more-dropdown" v-if="starredPagesMore.length">
             <vs-dropdown vs-custom-content vs-trigger-click>
               <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" class="cursor-pointer p-2"></feather-icon>
               <vs-dropdown-menu>
@@ -79,12 +79,12 @@
                 background-overlay
               ></vx-auto-suggest>
             </div>
-          </div>
+          </div>-->
         </template>
 
         <vs-spacer></vs-spacer>
       <!-- NOTIFICATIONS -->
-        <vs-dropdown vs-custom-content vs-trigger-click>
+       <!-- <vs-dropdown vs-custom-content vs-trigger-click>
           <feather-icon
             icon="ShoppingCartIcon"
             class="cursor-pointer mx-6 mt-1"
@@ -128,9 +128,9 @@
             </VuePerfectScrollbar>
           </vs-dropdown-menu>
         </vs-dropdown>
-       
+       -->
         <!-- SEARCHBAR -->
-        <div
+       <!-- <div
           class="search-full-container w-full h-full absolute pin-l rounded-lg"
           :class="{'flex': showFullSearch}"
           v-show="showFullSearch"
@@ -156,11 +156,11 @@
           </div>
         </div>
         <feather-icon icon="SearchIcon" @click="showFullSearch = true" class="cursor-pointer"></feather-icon>
-
+          -->
         <!-- USER META -->
         <div class="the-navbar__user-meta flex items-center sm:ml-5 ml-2">
-          <div class="text-right leading-tight hidden sm:block">
-            <p class="font-semibold">{{memberName}}</p>
+          <div class="text-right leading-tight sm:block">
+            <p class="font-semibold h-4">{{memberName}}</p>
           </div>
           <vs-dropdown vs-custom-content vs-trigger-click>
             <div class="con-img ml-3">
@@ -173,22 +173,22 @@
               >
             </div>
             <vs-dropdown-menu>
-              <ul style="min-width: 9rem">
+              <ul style="min-width: 10rem">
                 <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
                   @click="$router.push('/pages/profile')"
                 >
                   <feather-icon icon="UserIcon" svgClasses="w-4 h-4"></feather-icon>
-                  <span class="ml-2">Profile</span>
+                  <span class="ml-2">Profil</span>
                 </li>
                 <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
                   @click="$router.push('/apps/email')"
                 >
                   <feather-icon icon="MailIcon" svgClasses="w-4 h-4"></feather-icon>
-                  <span class="ml-2">Inbox</span>
+                  <span class="ml-2">Destek</span>
                 </li>
-                <li
+               <!-- <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
                   @click="$router.push('/apps/todo')"
                 >
@@ -201,14 +201,14 @@
                 >
                   <feather-icon icon="MessageSquareIcon" svgClasses="w-4 h-4"></feather-icon>
                   <span class="ml-2">Chat</span>
-                </li>
+                </li>-->
                 <vs-divider class="m-1"></vs-divider>
                 <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
                   @click="logout()"
                 >
                   <feather-icon icon="LogOutIcon" svgClasses="w-4 h-4"></feather-icon>
-                  <span class="ml-2">Logout</span>
+                  <span class="ml-2">Çıkış yap</span>
                 </li>
               </ul>
             </vs-dropdown-menu>

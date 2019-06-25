@@ -47,7 +47,8 @@ const state = {
 	conceptPage: {
 		conceptList: {},
 		totalPages: -1
-	}
+	},
+	sidebarHowtoUse:false
 }
 
 export default state

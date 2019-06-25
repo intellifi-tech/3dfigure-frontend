@@ -76,6 +76,9 @@ const mutations = {
 
 	INIT_CONCEPT_PAGE(state, pages) {
 		state.conceptPage.totalPages = pages
+	},
+	OPEN_SIDEBAR_POPUP(state,value){
+		state.sidebarHowtoUse=value
 	}
 }
 
