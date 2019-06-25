@@ -9,17 +9,22 @@
     <div id="content-area" :class="[contentAreaClass, {'show-overlay': bodyOverlay}]">
       <div id="content-overlay"></div>
 
-      <div class="content-wrapper">
-        <!--<the-navbar :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />-->
+      <div class="content-wrapper contentLayout">
+        <the-navbar class="navbarCustom" :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
 
         <vs-popup
-          class="holamundo"
-          title="Merhaba, 3D"
-          :active.sync="this.$store.state.member.firstLogin"
-          :button-close-hidden="false"
+          class="holamundo sidebarPopup"
+          title="Merhaba, 3D Kullanıcı"
+          :active.sync="this.$store.state.member.firstLogin || this.$store.state.sidebarHowtoUse"
         >
           <div class="pt-0">
-            <form-wizard title="3D Figure" @on-complete="finish">
+            <form-wizard
+              title="3D Figure"
+              nextButtonText="Sonraki adım"
+              backButtonText="Önceki adım"
+              finishButtonText="BAŞLA!"
+              @on-complete="finish"
+            >
               <tab-content title="Fotoğraf Yükle" icon="feather icon-home">
                 <img src="assets/images/info/1.png" alt>
               </tab-content>
@@ -32,8 +37,8 @@
             </form-wizard>
           </div>
         </vs-popup>
-        <div class="router-view">
-          <div class="router-content mt-0">
+        <div class="router-view pt-4">
+          <div class="router-content mt-16">
             <!--:class="{'mt-0': navbarType == 'hidden'}"-->
             <transition :name="routerTransition">
               <div
@@ -111,7 +116,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      navbarType: themeConfig.navbarType || "floating",
+      navbarType: themeConfig.navbarType || "sticky",
       navbarColor: themeConfig.navbarColor || "#fff",
       footerType: themeConfig.footerType || "static",
       routerTransition: themeConfig.routerTransition || "none",
@@ -179,6 +184,7 @@ export default {
     },
     finish() {
       this.$store.state.member.firstLogin = false;
+      this.$store.commit("OPEN_SIDEBAR_POPUP", false);
       this.updateFirstLogin(this.$store.state.member);
     },
     updateNavbar(val) {
@@ -228,3 +234,8 @@ export default {
   }
 };
 </script>
+<style>
+.sidebarPopup .vs-popup--close {
+  display: none !important;
+}
+</style>

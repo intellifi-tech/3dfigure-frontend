@@ -1369,8 +1369,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     font-family: "Poppins", sans-serif; }
     .navbar-area .navbar-collapse .navbar-nav .nav-item {
       display: inline-block;
-      font-size: 16px;
-      line-height: 42px;
+      font-size: 15px;
+      line-height: 30px;
       font-weight: 400;
       padding: 15px 3px;
       position: relative; }
@@ -4108,4 +4108,27 @@ text-align:left;
 }
 .content-noti p{
   color:#fff;
+}
+@media (min-width: 1200px) {
+.navbar-sticky .vx-navbar-wrapper .vx-navbar {
+  width:calc(100% - 271px) ;
+    }
+}
+
+@media (max-width: 1199px) {
+  .navbar-sticky .vx-navbar-wrapper .vx-navbar {
+    width:calc(100% - 12px) !important;
+      }
+  }
+footer{
+  font-size:13px;
+}
+.sidebar-navbar button span{
+  background:#fff !important;
+}
+ .sidebar-navbar .vs-navbar--title, .sidebar-navbar .vs-con-items li{
+color:#fff !important;
+}
+.sidebar-navbar .vs-con-items li:hover{
+text-decoration: underline
 }
