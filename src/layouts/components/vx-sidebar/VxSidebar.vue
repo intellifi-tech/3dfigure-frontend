@@ -30,7 +30,7 @@
 					</div>
           
 					<div class="position-absolute bg-primary text-center w-100 " style="bottom:0px;left:0">
-						<vs-navbar collapse v-model="activeItem" class="nabarx sidebar-navbar">
+						<vs-navbar collapse class="nabarx sidebar-navbar">
  						    <div slot="title">
  						      <vs-navbar-title>
  						        Yardım

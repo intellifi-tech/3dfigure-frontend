@@ -45,13 +45,14 @@
         :key="index"
         class="img-upload main-upload"
       >
-        <button class="btn-x-file" @click="removeFile(index)">
+        <button class="btn-x-file" @click="removeFile(index)" v-if="!img.avatarKey">
           <i translate="no" class="material-icons notranslate">clear</i>
         </button>
         <button
           :class="{
               'on-progress':img.percent,
-              'ready-progress':img.percent >= 100
+              'ready-progress':img.percent >= 100,
+              'height-unset':img.avatarKey
             }"
           :style="{
               height: `${img.percent}%`
@@ -182,7 +183,8 @@ export default {
     percent: 0,
     viewActive: false,
     viewSrc: null,
-    clicked: -1
+    clicked: -1,
+    hideClass: false
   }),
   computed: {
     getFilesFilter() {
@@ -273,6 +275,7 @@ export default {
     },
     getFiles(e) {
       this.$emit("update:vsFile", e.target.value);
+      this.hideClass = false;
       let _this = this;
       function uploadImage(e) {
         let orientation = "h";
@@ -455,6 +458,9 @@ export default {
 };
 </script>
 <style>
+.height-unset{
+  height:unset !important;
+}
 .selected {
   border: 5px solid #2bff45;
 }

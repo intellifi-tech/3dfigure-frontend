@@ -28,7 +28,7 @@
          </div>
          <div class="col-xl-6 text-right">
              <span class="h6">Fotoğraf yükleme hakkınız: </span>
-             <h3 class="text-primary">{{this.limit}} / {{ this.number.totalFigure}}</h3>
+             <h3 class="text-primary">{{this.limit}} / {{ this.$store.state.member.totalFigure}}</h3>
          </div>
         </div>
         <p>
@@ -110,6 +110,7 @@ export default {
     updateGallery: async function() {},
     initialize: async function() {
       this.userFigures = await FigureService.getUserFigures();
+      debugger
       this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
     },
     avatarUpload: async function($event, index) {
@@ -165,7 +166,9 @@ export default {
                         "Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!",
                       color: "danger"
                     });
+                    this.$refs.upload.srcs.pop()
                   } else {
+                    this.$refs.upload.hideClass = true;
                     this.showAvatar(response.code);
                     this.figure.avatarKey = response.code;
                     this.figure.figureName = response.code;
