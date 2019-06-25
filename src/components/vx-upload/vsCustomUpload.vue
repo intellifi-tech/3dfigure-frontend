@@ -30,7 +30,7 @@
           @touchend="viewImage(img.imagePath,$event, img.avatarKey)"
           @click="viewImage(img.imagePath,$event, img.avatarKey)"
         >
-        <span>
+        <span class="select-span">
           <vs-icon icon-pack="fa fa-check" hidden></vs-icon>
         </span>
       </div>
@@ -38,11 +38,10 @@
       <!-- Burası upload edildikten sonra oluşturuluyor -->
       <div
         v-for="(img,index) in getFilesFilter"
-        :class="{
-            'fileError':img.error,
-            'removeItem':itemRemove.includes(index)
-          }"
+        :class="img.error ? 'fileError' : toogleClass(img.avatarKey)"
+
         :key="index"
+        
         class="img-upload main-upload"
       >
         <button class="btn-x-file" @click="removeFile(index)" v-if="!img.avatarKey">
@@ -55,7 +54,7 @@
               'height-unset':img.avatarKey
             }"
           :style="{
-              height: `${img.percent}%`
+              height:`${img.percent}%`
             }"
           class="btn-upload-file"
           @click="upload(index, true)"
@@ -65,7 +64,11 @@
             class="material-icons notranslate"
           >{{ img.percent >= 100?img.error?'report_problem':'cloud_done':'cloud_upload' }}</i>
           <span>{{ img.percent }} %</span>
+          
         </button>
+        <span class="select-span">
+          <vs-icon icon-pack="fa fa-check" hidden></vs-icon>
+        </span>
         <img
           v-if="img.src"
           :alt="img.avatarKey"
@@ -254,8 +257,8 @@ export default {
           if (this.$store.state.selectedFigures.avatarKey.length == 2) {
             this.$vs.notify({
               time: 4000,
-              title: "Error",
-              text: "Lorem ipsum dolor sit amet, consectetur",
+              title: "HATA",
+              text: "En fazla 2 fotoğraf seçebilirsiniz!",
               color: "danger"
             });
           } else {
@@ -464,13 +467,15 @@ export default {
 .selected {
   border: 5px solid #2bff45;
 }
-.selected .fa {
-  position: absolute;
-  color: #000000;
-  background-color: #99e622;
-  padding: 10px;
-  top: 0;
-  right: 0;
+
+.selected .select-span .fa {
+  z-index: 999;
+  position: absolute !important;
+  color: #000 !important;
+  background-color: #99e622 !important;
+  padding: 10px !important;
+  top: 0 !important;
+  right: 0 !important;
   display: block !important;
 }
 

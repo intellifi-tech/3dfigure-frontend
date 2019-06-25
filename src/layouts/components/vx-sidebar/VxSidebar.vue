@@ -200,10 +200,6 @@ export default {
     }
   },
   methods: {
-	  logout: function() {
-      LoginService.logout()
-      this.$router.push("/")
-    },
     sidebarMouseEntered() {
       if (this.reduce) this.$store.commit("UPDATE_SIDEBAR_ITEMS_MIN", false);
       this.isMouseEnter = true;
