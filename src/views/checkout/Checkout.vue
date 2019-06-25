@@ -3,15 +3,9 @@
     <form-wizard
       color="rgba(var(--vs-primary), 1)"
       errorColor="rgba(var(--vs-danger), 1)"
-<<<<<<< HEAD
-      :title="null"
-      :subtitle="null"
-      nextButtonText="İleri"
-=======
       :title=null
       :subtitle=null
-      nextButtonText="Devam et"
->>>>>>> FIG-26
+      nextButtonText="İleri"
       backButtonText="Geri dön"
       finishButtonText="Siparişi Tamamla"
       @on-complete="finishShopping"
