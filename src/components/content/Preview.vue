@@ -28,13 +28,13 @@
          </div>
          <div class="col-xl-6 text-right">
              <span class="h6">Fotoğraf yükleme hakkınız: </span>
-             <h3 class="text-primary">{{this.limit}} / {{ this.number.totalFigure}}</h3>
+             <h3 class="text-primary">{{this.limit}} / {{ this.$store.state.member.totalFigure}}</h3>
          </div>
         </div>
         <p>
           Figürünü oluşturmak istediğin fotoğrafı
           <code>Galerinden</code>
-          seçebilir veya yeni fotoğraf yükleyebilirsin. Fotoğraf yükleme hakkınız: {{this.limit}} / {{ this.$store.state.member.totalFigure }}
+          seçebilir veya yeni fotoğraf yükleyebilirsin.
         </p>
       <hr>
         <div class="mt-0">
@@ -175,6 +175,7 @@ export default {
         formData.append("imageName", this.figure.imagePath)*/
                     this.figure.userId = this.$store.state.member.id;
                     FigureService.saveUserFigure(this.figure);
+                    this.limit = this.limit - 1;
                   }
                 }, 6000);
               }, 6000);
