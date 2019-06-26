@@ -12,7 +12,7 @@
             role="tab"
             aria-controls="pills-home"
             aria-selected="true"
-          >Home</a>
+          >Adres Seç</a>
         </li>
         <li class="nav-item">
           <a
@@ -24,7 +24,7 @@
             role="tab"
             aria-controls="pills-profile"
             aria-selected="false"
-          >Profile</a>
+          >Adres Ekle</a>
         </li>
       </ul>
 
@@ -57,25 +57,25 @@
               <h4 class="mb-3 font-bold">Fatura Adresi</h4>
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
-                  <vs-input class="w-full" label-placeholder="Adres Adı" v-model="adres.addressName"/>
+                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.adres.addressName.$invalid}" label-placeholder="Adres Adı" v-model="adres.addressName"/>
                 </div>
               </div>
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
-                  <vs-input class="w-full" label-placeholder="Ad" v-model="name"/>
+                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.name.$invalid}" label-placeholder="Ad" v-model="name"/>
                 </div>
                 <div class="vx-col w-1/2">
-                  <vs-input class="w-full" label-placeholder="Soyad" v-model="surname"/>
+                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.surname.$invalid}" label-placeholder="Soyad" v-model="surname"/>
                 </div>
               </div>
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
-                  <vs-input type="tel" class="w-full" label-placeholder="Telefon" v-model="adres.mobile"/>
+                  <vs-input type="tel" class="w-full" :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}" label-placeholder="Telefon" v-model="adres.mobile"/>
                 </div>
               </div>
               <div class="vx-row mb-6">
                 <div class="vx-col w-full">
-                  <vs-input type="text" class="w-full" label-placeholder="Adres" v-model="adres.address"/>
+                  <vs-input type="text" class="w-full" :class="{'vs-input-danger':this.$v.adres.address.$invalid}" label-placeholder="Adres" v-model="adres.address"/>
                 </div>
               </div>
               <div class="vx-row mb-6">
@@ -83,6 +83,7 @@
                   <vs-input
                     type="text"
                     class="w-full"
+                    :class="{'vs-input-danger':this.$v.adres.postCode.$invalid}"
                     label-placeholder="Posta kodu"
                     v-model="adres.postCode"
                   />
@@ -104,6 +105,7 @@
                     type="text"
                     class="w-full"
                     label-placeholder="TCKN/Vergi No"
+                    :class="{'vs-input-danger':this.$v.adres.taxNo.$invalid}"
                     v-model="adres.taxNo"
                   />
                 </div>
@@ -127,6 +129,7 @@
                     class="form-control form-control-lg selecting selectExample w-full"
                     label="İlçe / Semt"
                     v-model="adres.townId"
+                    :class="{'form-control-danger': this.$v.adres.townId.$invalid}"
                   >
                     <option
                       :key="index"
@@ -232,6 +235,7 @@ export default {
           text: "Adres başarılı bir şekilde eklendi",
           color: "info"
         });
+        this.chooseAddress = true
         this.adres = {}
         this.name = "",
         this.surname = ""
@@ -251,7 +255,7 @@ export default {
     adres: {
       taxNo: {required, minLength: minLength(11), maxLength: maxLength(11), numeric},
       mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
-      address: { required },
+      address: { required, maxLength: maxLength(100), minLength: minLength(15) },
       addressName: { required },
       postCode: { required },
       townId: { required }, 
