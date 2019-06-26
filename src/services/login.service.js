@@ -60,6 +60,7 @@ const LoginService = {
         TokenService.removeToken()
         ApiService.removeHeader()
         TokenService.removeAvatarToken()
+        store.commit('LOGOUT')
 
         // NOTE: Again, we'll cover the 401 Interceptor a bit later. 
         //ApiService.unmount401Interceptor()

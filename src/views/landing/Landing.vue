@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="home">
     <!-- search Popup -->
     <div class="body-overlay" id="body-overlay"></div>
     <!--<div class="search-popup" id="search-popup">
@@ -15,7 +15,7 @@
     <!-- //. search Popup -->
 
     <!-- navbar area start -->
-    <nav class="navbar navbar-area navbar-expand-lg">
+    <nav class="navbar navbar-area navbar-expand-lg bg-white" :class="{'sticky': isVisible,'fixed-top':isVisible}">
       <div class="container nav-container">
         <div class="logo-wrapper navbar-brand col-7 col-lg-2 col-md-4">
           <a href="/" class="logo">
@@ -26,48 +26,33 @@
           <!-- navbar collapse start -->
           <ul class="navbar-nav" id="primary-menu">
             <!-- navbar- nav -->
-            <li class="nav-item active">
+            <li class="nav-item" :class="{'active':index == clicked}" @click="clicked = index" v-for="(value, index) in navbarList" :key=value :index=index>
+              <a class="nav-link" href="#"  v-scroll-to="'#'+value" >{{ $t('landing.navbar.'+value) }}</a>
+            </li>  
+            <!--<li class="nav-item">
               <a class="nav-link pl-0" href="#">
                 {{ $t('landing.navbar.home') }}
                 <span class="sr-only">(current)</span>
               </a>
-              <!--  <div class="dropdown-menu">
-                                <a href="index.html" class="dropdown-item">Home 01</a>
-                                <a href="index-2.html" class="dropdown-item">Home 02</a>
-                                <a href="index-3.html" class="dropdown-item">Home 03</a>
-                                <a href="index-4.html" class="dropdown-item">Home 04</a>
-              </div>-->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#how-to-use">{{ $t('landing.navbar.howToUse') }}</a>
+              <a class="nav-link" href="#" v-scroll-to="'#howToUse'">{{ $t('landing.navbar.howToUse') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#concepts">{{ $t('landing.navbar.concepts') }}</a>
+              <a class="nav-link" href="#" v-scroll-to="'#concepts'">{{ $t('landing.navbar.concepts') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">{{ $t('landing.navbar.about') }}</a>
+              <a class="nav-link" href="#" v-scroll-to="'#about'">{{ $t('landing.navbar.about') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#faq">{{ $t('landing.navbar.faq') }}</a>
+              <a class="nav-link" href="#" v-scroll-to="'#faq'">{{ $t('landing.navbar.faq') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#pricing">{{ $t('landing.navbar.pricing') }}</a>
-            </li>
-            <!-- <li class="nav-item">
-                            <a class="nav-link" href="#testimonial">Testimonial</a>
-            </li>-->
-            <!-- <li class="nav-item dropdown">
-                            <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">Blog
-                                <span class="sr-only">(current)</span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="blog.html" class="dropdown-item">Blog</a>
-                                <a href="blog-details.html" class="dropdown-item">Blog Details</a>
-                            </div>
-            </li>-->
+              <a class="nav-link" href="#" v-scroll-to="'#pricing'">{{ $t('landing.navbar.pricing') }}</a>
+            </li> 
             <li class="nav-item">
-              <a class="nav-link" href="#contact">{{ $t('landing.navbar.contact') }}</a>
-            </li>
+              <a class="nav-link" href="#" v-scroll-to="'#contact'">{{ $t('landing.navbar.contact') }}</a>
+            </li> -->
             <li class="nav-item" >
               <div class="loginLink" v-if="!this.$store.state.member.firstName">
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
@@ -78,7 +63,6 @@
               >{{ $t('landing.navbar.login') }}</a>
 
               <vs-popup
-                :button-close-hidden="true"
                 class="holamundo login-popup"
                 :title="$t('login.login')"
                 :active.sync="this.$store.state.landing.loginPopup"
@@ -140,7 +124,6 @@
             </li>
             <li>
               <vs-popup
-                :button-close-hidden="true"
                 class="holamundo login-popup"
                 :title="$t('login.login')"
                 :active.sync="this.$store.state.landing.registerPopup"
@@ -188,7 +171,7 @@
     <!-- navbar area end -->
 
     <!-- header area start -->
-    <div class="header-area" id="home">
+    <div class="header-area" >
       <div class="span-1">
         <img src="../../assets/images/landing/trinagle.png" alt="tringle">
       </div>
@@ -241,7 +224,7 @@
     <!-- header area end -->
 
     <!-- inline feature area start -->
-    <div class="inline-feature-area padding-top-120" id="how-to-use">
+    <div class="inline-feature-area padding-top-120" id="howToUse">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 pl-0">
@@ -923,10 +906,11 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <div class="product-carousel">
               <!-- single product item -->
-              <div class="single-product-item" v-for="n in 6" :key="n">
-                <div class="thumb">
+              <hooper :itemsToShow=4 :infiniteScroll=true :autoPlay="true" :playSpeed="4000">
+                <slide v-for="n in 6" :key="n">
+                  <div class="single-product-item">
+                  <div class="thumb">
                   <img src="assets/images/3dmodelornek1.png" alt="product image">
                 </div>
                 <div class="content">
@@ -938,9 +922,10 @@
                   </div>
                   <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
                 </div>
-              </div>
+                </div>
+                </slide>
+              </hooper>
               <!-- // single product item -->
-            </div>
           </div>
         </div>
       </div>
@@ -1115,8 +1100,9 @@
         </div>
       </div>
       <div class="customer-logos slider padding-bottom-30">
-        <div class="slide" v-for="n in 6" :key="n">
-          <a
+                      <hooper :itemsToShow=4 :infiniteScroll=true :autoPlay="true" :playSpeed="4000">
+                <slide v-for="n in 6" :key="n">
+                  <a
             href="assets/images/3dmodelornek1.png"
             data-toggle="lightbox"
             data-gallery="gallery"
@@ -1124,7 +1110,10 @@
           >
             <img src="assets/images/3dmodelornek1.png" class="img-fluid rounded">
           </a>
-        </div>
+                </slide>
+                
+              </hooper>
+       
       </div>
     </section>
 
@@ -1810,9 +1799,8 @@
       </div>
     </footer>
     <!-- footer area end -->
-
-    <div class="back-to-top base-color-2">
-      <i class="fas fa-rocket"></i>
+    <div class="back-to-top base-color-2" v-if="isVisible">
+      <i class="fas fa-rocket" v-scroll-to="'#body-overlay'"></i>
     </div>
   </div>
 </template>
@@ -1820,10 +1808,16 @@
 import { ContactService } from "@/services/contact.service";
 import Register from "@/components/login/Register.vue";
 import Login from "@/components/login/Login.vue";
+import { LoginService } from "@/services/login.service"
+import { Hooper, Slide } from 'hooper';
+import 'hooper/dist/hooper.css';
+
 export default {
   components: {
     Register,
-    Login
+    Login,
+    Hooper,
+    Slide
   },
   data() {
     return {
@@ -1833,6 +1827,9 @@ export default {
       sampleiframe: true,
       langs: ["TR", "EN"],
       checkBox1: false,
+      isVisible: false,
+      clicked: -1,
+      navbarList:['home', 'howToUse', 'concepts', 'about', 'faq', 'pricing', 'contact'],
       contact: {
         mail: "",
         nameSurname: "",
@@ -1841,7 +1838,21 @@ export default {
       }
     };
   },
+  created() {
+    document.body.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed() {
+    document.body.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
+    handleScroll() {
+      let scroll = document.body.scrollTop
+      this.isVisible = scroll > 10
+    },
+    logout: function() {
+      LoginService.logout()
+      this.$router.push("/")
+    },
     changeLang() {
       sessionStorage.setItem("lang", this.$i18n.locale);
     },
@@ -1886,4 +1897,17 @@ export default {
 .vs-popup--close{
   display: none !important;
 }
+.hooper{
+  height: auto;
+}
+nav{
+  transition: 0.5s;
+  }
+nav.sticky{
+  transition: 0.5s;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.1);
+  }
+  .back-to-top{
+    display:inherit;
+  }
 </style>

@@ -23,6 +23,8 @@ import VeeValidate from 'vee-validate'
 import i18n from '@/plugins/i18n'
 import ApiService from '@/services/api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
+import VueAuthenticate from 'vue-authenticate'
+import VueScrollTo from 'vue-scrollto'
 import {
   TokenService
 } from '@/services/token.service'
@@ -30,6 +32,8 @@ import {
 Vue.use(VeeValidate)
 Vue.use(Vuelidate)
 Vue.use(Vuesax)
+Vue.use(VueAuthenticate)
+Vue.use(VueScrollTo)
 
 // Theme Configurations
 import '../themeConfig.js'
@@ -63,11 +67,8 @@ require('./assets/css/bootstrap.min.css')
 require('./assets/css/fontawesome.min.css')
 require('./assets/css/flaticon.css')
 require('./assets/css/animate.css')
-require('./assets/css/owl.carousel.min.css')
-require('./assets/css/magnific-popup.css')
 require('./assets/css/style.css')
 require('./assets/css/responsive.css')
-require('./assets/css/slick.css')
 require('./assets/css/ekko-lightbox.min.css')
 
 

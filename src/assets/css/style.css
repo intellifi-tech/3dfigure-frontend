@@ -4086,10 +4086,12 @@ text-align:left;
 /*scroll bar style*/
 ::-webkit-scrollbar {
   width: 11px;
+  z-index: 2;
 }
 ::-webkit-scrollbar-track {
   background: #f1f1f1; 
   border-radius:10px;
+  z-index: 2;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
