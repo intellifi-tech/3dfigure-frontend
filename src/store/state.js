@@ -31,11 +31,6 @@ const state = {
 
 	themePrimaryColor: colors.primary,
 	member: {},
-	general: {
-		appToken: "",
-		avatarToken: "",
-		singleFigure: ""
-	},
 	landing: {
 		loginPopup: false,
 		registerPopup: false
@@ -48,7 +43,7 @@ const state = {
 		conceptList: {},
 		totalPages: -1
 	},
-	sidebarHowtoUse:false
+	sidebarHowtoUse: false
 }
 
 export default state

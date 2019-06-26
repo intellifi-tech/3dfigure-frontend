@@ -60,11 +60,21 @@ const mutations = {
 		state.landing.registerPopup = value;
 	},
 
+	/**
+	 * 
+	 * @param {*} state 
+	 * @param {f: avatarKeyIndex, m: sourceIndex} indexes 
+	 */
 	DELETE_FIGURE_FROM_SELECTED(state, indexes) {
 		state.selectedFigures.avatarKey.splice(indexes.f, 1);
 		state.selectedFigures.imagePath.splice(indexes.m, 1);
 	},
 
+	/**
+	 * 
+	 * @param {*} state 
+	 * @param {a: avatarKey, s: source} value 
+	 */
 	ADD_FIGURE_SELECTED(state, value) {
 		state.selectedFigures.avatarKey.push(value.a);
 		state.selectedFigures.imagePath.push(value.s);
@@ -79,6 +89,11 @@ const mutations = {
 	},
 	OPEN_SIDEBAR_POPUP(state,value){
 		state.sidebarHowtoUse=value
+	},
+	LOGOUT(state) {
+		state.selectedFigures = {}
+		state.conceptList = {}
+		state.member = {}
 	}
 }
 

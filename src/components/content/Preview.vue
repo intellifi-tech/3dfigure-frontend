@@ -110,7 +110,6 @@ export default {
     updateGallery: async function() {},
     initialize: async function() {
       this.userFigures = await FigureService.getUserFigures();
-      debugger
       this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
     },
     avatarUpload: async function($event, index) {

@@ -139,7 +139,7 @@ export default {
         this.$vs.notify({
           title: "Information",
           text: "Aktivasyon Mailiniz Atılmıştır",
-          color: "info"
+          color: "success"
         })
         this.openLogin();
       } else {
