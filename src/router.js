@@ -85,6 +85,11 @@ const router = new Router({
 					component: () => import('./views/order/Order.vue'),
 				},
 				{
+					path: '/profile',
+					name: 'profile',
+					component: () => import('./views/profile/Profile.vue'),
+				},
+				{
 					path: '/onay-bekleyenler',
 					name: 'onay-bekleyenler',
 					component: () => import('./views/OnayBekleyenler.vue'),
