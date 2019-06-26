@@ -222,7 +222,7 @@ export default {
       const isSelected = this.$store.state.selectedFigures.avatarKey.includes(index);
 
       return {
-        selected: isSelected
+        selectedimg: isSelected
       };
     },
     viewImage(src, evt, avatarKey) {
@@ -464,11 +464,11 @@ export default {
 .height-unset{
   height:unset !important;
 }
-.selected {
+.selectedimg {
   border: 5px solid #2bff45;
 }
 
-.selected .select-span .fa {
+.selectedimg .select-span .fa {
   z-index: 999;
   position: absolute !important;
   color: #000 !important;

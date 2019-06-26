@@ -112,7 +112,7 @@
                     <ul style="min-width: 10rem">
                       <li
                         class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-                        @click="$router.push('/main')"
+                        @click="$router.push('/profile')"
                       >
                         <feather-icon icon="UserIcon" svgClasses="w-4 h-4"></feather-icon>
                         <span class="ml-2">Profil</span>
