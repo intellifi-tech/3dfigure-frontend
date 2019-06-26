@@ -8,27 +8,32 @@
 import store from '@/store/store.js'
 const TokenService = {
     getToken() {
-        return store.state.api.javaToken
+        return sessionStorage.getItem('a')
+        //return store.state.api.javaToken
     },
 
     saveToken(accessToken) {
-        store.commit('api/SET_JAVA_TOKEN', accessToken)
+        sessionStorage.setItem('a', accessToken)
+        //store.commit('api/SET_JAVA_TOKEN', accessToken)
     },
 
     removeToken() {
-        store.commit('api/SET_JAVA_TOKEN', "")
+        sessionStorage.setItem('a', "")
     },
 
     getAvatarToken() {
-        return store.state.api.avatarToken
+        return sessionStorage.getItem('b')
+        //return store.state.api.avatarToken
     },
 
     saveAvatarToken(avatarToken) {
-        store.commit('api/SET_AVATAR_TOKEN', avatarToken)
+        sessionStorage.setItem('b', avatarToken)
+        //store.commit('api/SET_AVATAR_TOKEN', avatarToken)
     },
 
     removeAvatarToken() {
-        store.commit('api/SET_AVATAR_TOKEN', "")
+        sessionStorage.setItem('b', "")
+        //store.commit('api/SET_AVATAR_TOKEN', "")
     }
 }
 
