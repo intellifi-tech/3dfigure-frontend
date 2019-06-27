@@ -15,11 +15,21 @@ const UserService = {
     // for first login update 
     setMember: async function (member) {
         try {
-            const response = await ApiService.put("/users/up", member)
+            const response = await ApiService.put("/users", member)
             return response.data
         } catch (error) {
             return error.response.status
         }
+    },
+
+    updatePassword: async function (passwordDTO) {
+        try {
+            const response = await ApiService.post("/account/change-password", passwordDTO)
+            return response.data
+        } catch (error) {
+            return error
+        }
+
     }
 }
 

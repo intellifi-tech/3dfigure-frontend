@@ -97,15 +97,15 @@ export default {
       userFigures: null
     };
   },
-  created() {
+  mounted:async function() {
     // fetch the data when the view is created and the data is
     // already being observed
-    this.initialize();
+    await this.initialize();
   },
-  watch: {
+  /*watch: {
     // call again the method if the route changes
     $route: "initialize"
-  },
+  },*/
   methods: {
     updateGallery: async function() {},
     initialize: async function() {
