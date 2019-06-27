@@ -18,6 +18,15 @@ const AddressService = {
         } catch (error) {
             return error.response.status
         }
+    },
+
+    updateUserAddress: async function(adres) {
+        try {
+            const response = await ApiService.put("/addresses", adres)
+            return response.data
+        } catch (error) {
+            return error.response.status
+        }
     }
 }
 

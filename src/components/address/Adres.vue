@@ -38,7 +38,7 @@
                 <b>{{adres.person}}</b>
                 - {{adres.mobile}}
                 <br>
-                {{adres.adress}}
+                {{adres.address}}
               </div>
             </vs-radio>
           </li>
@@ -172,6 +172,7 @@ export default {
       name: "",
       surname: "",
       adres: {
+        id: -1,
         taxAdmin: "",
         taxNo: "",
         person: "",
@@ -257,7 +258,7 @@ export default {
       mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
       address: { required, maxLength: maxLength(100), minLength: minLength(15) },
       addressName: { required },
-      postCode: { required },
+      postCode: { required, numeric, maxLength: maxLength(5), minLength: minLength(5)},
       townId: { required }, 
     },
     city: { required }
