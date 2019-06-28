@@ -7,6 +7,19 @@
           <div class="md:w-1/2">
             <h3>Profil Bilgileri</h3>
             <vx-card class="shadow-md">
+                       <div class="vx-row mb-2">
+                <div class="vx-col w-full">
+                  <datepicker
+                    class="w-full"
+                    :disabled="isUpdated"
+                    v-model="member.birthDay"
+                    :disabled-dates="datePicker.disableD"
+                    :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
+                    :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
+                    placeholder="Doğum Tarihi"
+                  ></datepicker>
+                </div>
+              </div>
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
                   <vs-input
@@ -51,19 +64,7 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-2">
-                <div class="vx-col w-full">
-                  <datepicker
-                    class="w-full"
-                    :disabled="isUpdated"
-                    v-model="member.birthDay"
-                    :disabled-dates="datePicker.disableD"
-                    :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
-                    :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
-                    placeholder="Doğum Tarihi"
-                  ></datepicker>
-                </div>
-              </div>
+     
               <div class="vx-row">
                 <div class="vx-col w-1/2 text-left">
                   <vs-button
@@ -253,6 +254,19 @@
                   />
                 </div>
               </div>
+              <div class="vx-row mb-2">
+                <div class="vx-col w-full">
+                  <vs-input
+                    class="w-full"
+                    icon-after="true"
+                    icon="visibility"
+                    :type="'password'"
+                    :class="{'vs-input-danger':this.$v.passwordDTO.confirm.$invalid}"
+                    label-placeholder="Tekrar Yeni Şifre"
+                    v-model="passwordDTO.confirm"
+                  />
+                </div>
+              </div>
               <div class="vx-row">
                 <div class="vx-col w-1/2 text-left">
                   <vs-button color="success" @click="changePassword" type="relief">Güncelle</vs-button>
@@ -272,7 +286,8 @@ import {
   minLength,
   maxLength,
   numeric,
-  alpha
+  alpha,
+  sameAs
 } from "vuelidate/lib/validators";
 import AddressService from "@/services/address.service";
 import PlaceService from "@/services/place.service";
@@ -319,7 +334,8 @@ export default {
       },
       passwordDTO: {
         currentPassword: "",
-        newPassword: ""
+        newPassword: "",
+        confirm: ""
       },
       addresses: [],
       cities: [],
@@ -354,12 +370,15 @@ export default {
     addOrUpdateAddress: async function() {
       if (!this.$v.adres.$invalid) {
         if (this.adres.id == null) {
-          await AddressService.saveUserAddress(this.adres);
+          var res = await AddressService.saveUserAddress(this.adres);
+          this.addresses.push(res)
         } else {
           await AddressService.updateUserAddress(this.adres);
         }
 
         this.adres = { id: null };
+        this.name = "",
+        this.surname = ""
       } else {
         this.$vs.notify({
           text: "İşlem Başarısız",
@@ -388,8 +407,14 @@ export default {
       });
     },
     changePassword: async function() {
-      await UserService.updatePassword(this.passwordDTO);
-      this.passwordDTO = {};
+      if (!this.$v.passwordDTO.$invalid) {
+        await UserService.updatePassword(this.passwordDTO);
+        this.passwordDTO = {};
+      }
+      this.$vs.notify({
+        text: "Yeni Şifreler uyuşmuyor",
+        color: "danger"
+      });
     }
   },
   validations: {
@@ -400,7 +425,8 @@ export default {
         required,
         minLength: minLength(6),
         maxLength: maxLength(15)
-      }
+      },
+      confirm: {required, sameAsPassword: sameAs("password")}
     },
     adres: {
       taxNo: {

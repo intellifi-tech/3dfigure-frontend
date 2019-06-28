@@ -183,7 +183,7 @@ export default {
       this.routeTitle = title;
     },
     finish() {
-      this.$store.state.member.firstLogin = false;
+      this.$store.commit("FIRST_LOGIN_CLOSE", false);
       this.$store.commit("OPEN_SIDEBAR_POPUP", false);
       this.updateFirstLogin(this.$store.state.member);
     },

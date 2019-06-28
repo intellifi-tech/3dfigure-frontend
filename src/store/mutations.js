@@ -90,6 +90,9 @@ const mutations = {
 	OPEN_SIDEBAR_POPUP(state,value){
 		state.sidebarHowtoUse=value
 	},
+	FIRST_LOGIN_CLOSE(state, value) {
+		state.member.firstLogin = value
+	},
 	LOGOUT(state) {
 		state.selectedFigures = {}
 		state.conceptList = {}
