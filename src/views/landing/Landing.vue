@@ -1847,7 +1847,7 @@ export default {
   methods: {
     handleScroll() {
       let scroll = document.body.scrollTop
-      this.isVisible = scroll > 10
+      this.isVisible = scroll > 2
     },
     logout: function() {
       LoginService.logout()

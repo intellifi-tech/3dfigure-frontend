@@ -129,7 +129,63 @@ const router = new Router({
 				public: false
 			},
 			children: [
-
+				{
+					path: '/dashboard-admin',
+					name: 'dashboard-admin',
+					component: () => import('@/views/admin/Admin.vue')
+				},
+				{
+					path: '/concept-manage',
+					name: 'concept-manage',
+					component: () => import('@/views/concept-manage/ConceptManage.vue')
+				},
+				{
+					path: '/concept-categories',
+					name: 'concept-categories',
+					component: () => import('@/views/concept-categories/ConceptCategories.vue')
+				},
+				{
+					path: '/users',
+					name: 'users',
+					component: () => import('@/views/users/Users.vue')
+				},
+				{
+					path: '/pricing',
+					name: 'pricing',
+					component: () => import('@/views/pricing/Pricing.vue')
+				},
+				{
+					path: '/example-projects',
+					name: 'example-projects',
+					component: () => import('@/views/example-projects/ExampleProjects.vue')
+				},
+				{
+					path: '/3d-models',
+					name: '3d-models',
+					component: () => import('@/views/3d-models/3dModels.vue')
+				},
+				{
+					path: '/orders',
+					name: 'orders',
+					component: () => import('@/views/orders/Orders.vue')
+				},
+				{
+					path: '/user-action',
+					name: 'user-action',
+					component: () => import('@/views/user-action/UserAction.vue')
+				},
+				{
+					path: '/ticket-admin',
+					name: 'ticket-admin',
+					component: () => import('@/views/ticket-admin/TicketAdmin.vue')
+				},
+				{
+					path: '/email-admin',
+					name: 'email-admin',
+					component: () => import('@/views/email-admin/EmailAdmin.vue')
+				},
+				
+				
 			]
 		},
 		// Redirect to 404 page, if no match found
@@ -145,7 +201,6 @@ router.beforeEach((to, from, next) => {
 	const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
 	const api = to.matched.some(record => record.meta.api)
 	const loggedIn = !!ApiService.getHeader()
-
 	if (sessionStorage.getItem('lang') !== null && sessionStorage.getItem('lang') !== i18n.locale) {
 		i18n.locale = sessionStorage.getItem('lang');
 	}
