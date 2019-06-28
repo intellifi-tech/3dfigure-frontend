@@ -410,11 +410,12 @@ export default {
       if (!this.$v.passwordDTO.$invalid) {
         await UserService.updatePassword(this.passwordDTO);
         this.passwordDTO = {};
+      } else {
+        this.$vs.notify({
+          text: "Yeni Şifreler uyuşmuyor",
+          color: "danger"
+        });
       }
-      this.$vs.notify({
-        text: "Yeni Şifreler uyuşmuyor",
-        color: "danger"
-      });
     }
   },
   validations: {
@@ -426,7 +427,7 @@ export default {
         minLength: minLength(6),
         maxLength: maxLength(15)
       },
-      confirm: {required, sameAsPassword: sameAs("password")}
+      confirm: {required, sameAsPassword: sameAs("newPassword")}
     },
     adres: {
       taxNo: {
