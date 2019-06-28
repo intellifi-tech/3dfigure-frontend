@@ -55,7 +55,7 @@ const router = new Router({
 			// =============================================================================
 			// MAIN LAYOUT ROUTES
 			// =============================================================================
-			path: '/dashboard',
+			path: '',
 			component: () => import('./layouts/main/Main.vue'),
 			meta: {
 				public: false
@@ -75,7 +75,7 @@ const router = new Router({
 					component: () => import('./views/checkout/Checkout.vue'),
 				},
 				{
-					path: '/apps/email',
+					path: '/ticket',
 					name: 'email',
 					component: () => import('./views/email/Email.vue')
 				},
@@ -88,11 +88,6 @@ const router = new Router({
 					path: '/profile',
 					name: 'profile',
 					component: () => import('./views/profile/Profile.vue'),
-				},
-				{
-					path: '/onay-bekleyenler',
-					name: 'onay-bekleyenler',
-					component: () => import('./views/OnayBekleyenler.vue'),
 				}
 			],
 		},
@@ -100,7 +95,7 @@ const router = new Router({
 		// FULL PAGE LAYOUTS
 		// =============================================================================
 		{
-			path: '/pages',
+			path: '',
 			component: () => import('@/layouts/full-page/FullPage.vue'),
 			meta: {
 				public: true,
@@ -123,66 +118,61 @@ const router = new Router({
 			]
 		},
 		{
-			path: '/admin',
+			path: '',
 			component: () => import('@/layouts/admin/Admin.vue'),
 			meta: {
-				public: false
+				public: true
 			},
 			children: [
 				{
-					path: '/dashboard-admin',
+					path: '/admin/dashboard',
 					name: 'dashboard-admin',
 					component: () => import('@/views/admin/Admin.vue')
 				},
 				{
-					path: '/concept-manage',
+					path: '/admin/concept',
 					name: 'concept-manage',
-					component: () => import('@/views/concept-manage/ConceptManage.vue')
+					component: () => import('@/views/admin/concept-manage/ConceptManage.vue')
 				},
 				{
-					path: '/concept-categories',
+					path: '/admin/category',
 					name: 'concept-categories',
-					component: () => import('@/views/concept-categories/ConceptCategories.vue')
+					component: () => import('@/views/admin/concept-categories/ConceptCategories.vue')
 				},
 				{
-					path: '/users',
+					path: '/admin/users',
 					name: 'users',
-					component: () => import('@/views/users/Users.vue')
+					component: () => import('@/views/admin/users/Users.vue')
 				},
 				{
-					path: '/pricing',
+					path: '/admin/pricing',
 					name: 'pricing',
-					component: () => import('@/views/pricing/Pricing.vue')
+					component: () => import('@/views/admin/pricing/Pricing.vue')
 				},
 				{
-					path: '/example-projects',
+					path: '/admin/projects',
 					name: 'example-projects',
-					component: () => import('@/views/example-projects/ExampleProjects.vue')
+					component: () => import('@/views/admin/example-projects/ExampleProjects.vue')
 				},
 				{
-					path: '/3d-models',
+					path: '/admin/model',
 					name: '3d-models',
-					component: () => import('@/views/3d-models/3dModels.vue')
+					component: () => import('@/views/admin/3d-models/3dModels.vue')
 				},
 				{
-					path: '/orders',
+					path: '/admin/orders',
 					name: 'orders',
-					component: () => import('@/views/orders/Orders.vue')
+					component: () => import('@/views/admin/orders/Orders.vue')
 				},
 				{
-					path: '/user-action',
-					name: 'user-action',
-					component: () => import('@/views/user-action/UserAction.vue')
-				},
-				{
-					path: '/ticket-admin',
+					path: '/admin/ticket',
 					name: 'ticket-admin',
-					component: () => import('@/views/ticket-admin/TicketAdmin.vue')
+					component: () => import('@/views/admin/ticket-admin/TicketAdmin.vue')
 				},
 				{
-					path: '/email-admin',
+					path: '/admin/email',
 					name: 'email-admin',
-					component: () => import('@/views/email-admin/EmailAdmin.vue')
+					component: () => import('@/views/admin/email-admin/EmailAdmin.vue')
 				},
 				
 				

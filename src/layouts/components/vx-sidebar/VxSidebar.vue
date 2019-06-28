@@ -29,7 +29,7 @@
 						</template>-->
 					</div>
           
-					<div class="position-absolute bg-primary text-center w-100 " style="bottom:0px;left:0">
+					<div v-if="!isAdmin" class="position-absolute bg-primary text-center w-100 " style="bottom:0px;left:0">
 						<vs-navbar collapse class="nabarx sidebar-navbar">
  						    <div slot="title">
  						      <vs-navbar-title>
@@ -105,6 +105,10 @@ export default {
     sidebarItems: {
       type: Array,
       required: true
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false
     },
     title: {
       type: String
