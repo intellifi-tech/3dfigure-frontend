@@ -1,13 +1,3 @@
-<!-- =========================================================================================
-	File Name: StatisticsCard.vue
-	Description: Statistics card component
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
 <template>
 	<vx-card class="overflow-hidden">
 		<div slot="no-body">
@@ -27,9 +17,13 @@
 </template>
 
 <script>
+
 import VueApexCharts from 'vue-apexcharts'
 
 export default{
+	components: {
+		VueApexCharts,
+	},
 	props: {
 		icon: {
 			type: String,
@@ -79,9 +73,6 @@ export default{
 			rgb = rgb.split(",");
 			return "#" + ((1 << 24) + (Number(rgb[0]) << 16) + (Number(rgb[1]) << 8) + Number(rgb[2])).toString(16).slice(1);
 		},
-	},
-	components: {
-		VueApexCharts
 	},
 	created() {
 		if(this.type == 'area') {
