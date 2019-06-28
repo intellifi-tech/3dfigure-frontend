@@ -27,6 +27,15 @@ const AddressService = {
         } catch (error) {
             return error.response.status
         }
+    },
+
+    deleteUserAddress: async function(adresId) {
+        try {
+            const response = await ApiService.delete("/addresses/"+adresId)
+            return response.data
+        } catch (error) {
+            return error
+        }
     }
 }
 

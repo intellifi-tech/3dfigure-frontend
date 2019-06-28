@@ -84,7 +84,7 @@
 
         <vs-tab vs-label="Adreslerim" class="row pt-5">
           <div class="md:w-1/2">
-            <vs-table class="px-4" @selected="handleSelected" v-model="adres" :data="addresses">
+            <vs-table class="px-4" v-model="adres" :data="addresses">
               <template slot="header">
                 <h3>Adresler</h3>
               </template>
@@ -92,18 +92,19 @@
                 <vs-th>Kişi</vs-th>
                 <vs-th>Adres Adı</vs-th>
                 <vs-th>Telefon</vs-th>
-                <vs-th>Adres</vs-th>
+                <vs-th>Sil</vs-th>
               </template>
 
               <template slot-scope="{data}">
                 <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-                  <vs-td :data="data[indextr].person">{{data[indextr].person}}</vs-td>
+                  
+                  <vs-td class="max-ch" :data="data[indextr].person">{{data[indextr].person}}</vs-td>
 
                   <vs-td :data="data[indextr].addressName">{{data[indextr].addressName}}</vs-td>
 
                   <vs-td :data="data[indextr].mobile">{{data[indextr].mobile}}</vs-td>
 
-                  <vs-td :data="data[indextr].address">{{data[indextr].address}}</vs-td>
+                  <vs-td><vs-button color="danger" type="flat" icon="clear"  @click="deleteAddress(indextr, data[indextr])"></vs-button></vs-td>
                 </vs-tr>
               </template>
             </vs-table>
@@ -222,7 +223,7 @@
                   >{{this.adres.id != null ? 'Güncelle' : 'Ekle'}}</vs-button>
                 </div>
                 <div class="vx-col w-1/2 text-right">
-                  <vs-button type="relief" @click="clearAddress">Düzenle</vs-button>
+                  <vs-button type="relief" @click="clearAddress">Temizle</vs-button>
                 </div>
               </div>
             </vx-card>
@@ -356,6 +357,12 @@ export default {
     this.member.birthDay = this.$store.state.member.birthDay;
   },
   watch: {
+    adres() {
+      if (this.adres.person !== undefined) {
+        this.name = this.adres.person.split(" ")[0]
+        this.surname = this.adres.person.split(" ")[1] 
+      }
+    },
     city: async function() {
       this.towns = await PlaceService.getTownsByCity(this.city);
     },
@@ -367,6 +374,14 @@ export default {
     }
   },
   methods: {
+    deleteAddress: async function(index, adres) {
+      await AddressService.deleteUserAddress(adres.id)
+      this.addresses.splice(index, 1)
+      this.adres = {}
+      this.name = ""
+      this.surname = ""
+
+    },
     addOrUpdateAddress: async function() {
       if (!this.$v.adres.$invalid) {
         if (this.adres.id == null) {
@@ -396,15 +411,11 @@ export default {
       });
     },
     clearAddress() {
+      this.name = "",
+      this.surname = "",
       this.adres = {
         id: null
       };
-    },
-    handleSelected(tr) {
-      this.$vs.notify({
-        title: `Selected ${tr.username}`,
-        text: `Email: ${tr.email}`
-      });
     },
     changePassword: async function() {
       if (!this.$v.passwordDTO.$invalid) {
@@ -458,8 +469,14 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .vs-button-text {
   color: #fff !important;
+}
+.max-ch{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20ch;
 }
 </style>
