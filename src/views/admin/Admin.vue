@@ -1,80 +1,48 @@
 <template lang="html">
-	<statistics-card-line
-		icon="UsersIcon"
-		statistic="92.6k"
-		statisticTitle="Subscribers Gained"
-		:chartData="subscribersGainedChartData"
-		type='area' />
+<div>
+<div class="row">
+	<toplam-siparis/>
+    <toplam-satis/>
+    <toplam-musteri/>
+</div>
+<div class="row mt-5">
+    <registered-user/>
+    <siparis-sayisi/>
+    <sales/>
+    <uploaded-figures/>
+    <likes/>
+    <yas-araligi/>
+</div>
+ 
+</div>
 </template>
 
 <script>
-import StatisticsCardLine from '@/components/statistics-cards/StatisticsCardLine.vue'
+import ToplamSiparis from "@/components/statistics-cards/ToplamSiparis.vue";
+import ToplamSatis from "@/components/statistics-cards/ToplamSatis.vue";
+import ToplamMusteri from "@/components/statistics-cards/ToplamMusteri.vue";
+import RegisteredUser from "@/components/statistics-cards/RegisteredUser.vue";
+import SiparisSayisi from "@/components/statistics-cards/SiparisSayisi.vue";
+import Sales from "@/components/statistics-cards/Sales.vue";
+import UploadedFigures from "@/components/statistics-cards/UploadedFigures.vue";
+import Likes from "@/components/statistics-cards/Likes.vue";
+import YasAraligi from "@/components/statistics-cards/YasAraligi.vue";
 
 export default {
   components: {
-    StatisticsCardLine
+    ToplamSiparis,
+    ToplamSatis,
+    ToplamMusteri,
+    RegisteredUser,
+    SiparisSayisi,
+    Sales,
+    UploadedFigures,
+    Likes,
+    YasAraligi
   },
   data() {
     return {
-      subscribersGainedChartData: {
-          series: [{
-              name: 'Subscribers',
-              data: [28, 40, 36, 52, 38, 60, 55]
-          }],
-          chartOptions: {
-              grid: {
-                  show: false,
-                  padding: {
-                      left: 0,
-                      right: 0
-                  }
-              },
-              chart: {
-                  toolbar: {
-                      show: false,
-                  },
-                  sparkline: {
-                      enabled: true
-                  }
-              },
-              dataLabels: {
-                  enabled: false
-              },
-              stroke: {
-                  curve: 'smooth',
-                  width: 2.5
-              },
-              fill: {
-                  type: 'gradient',
-                  gradient: {
-                      shadeIntensity: 0.9,
-                      opacityFrom: 0.7,
-                      opacityTo: 0.5,
-                      stops: [0, 80, 100]
-                  }
-              },
-              xaxis: {
-                  type: 'numeric',
-                  lines: {
-                      show: false,
-                  },
-                  axisBorder: {
-                      show: false,
-                  },
-                  labels: { show: false }
-              },
-              yaxis: [{
-                  y: 0,
-                  offsetX: 0,
-                  offsetY: 0,
-                  padding: { left: 0, right: 0 },
-              }],
-              tooltip: {
-                  x: { show: false }
-              },
-          },
-      },
-    }
+    };
   }
-}
+};
 </script>

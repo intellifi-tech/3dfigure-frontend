@@ -1,80 +1,125 @@
 <template lang="html">
-	<statistics-card-line
-		icon="UsersIcon"
-		statistic="92.6k"
-		statisticTitle="Subscribers Gained"
-		:chartData="subscribersGainedChartData"
-		type='area' />
+  <div>
+    <vs-table
+      multiple
+      v-model="selected"
+      pagination
+      max-items="5"
+      search
+      :data="users">
+      <template slot="header">
+        <h3>
+          Kategoriler
+        </h3>
+      </template>
+      
+      <template slot="thead">
+  <vs-th sort-key="email">Konsept Adı</vs-th>
+  <vs-th sort-key="username">Kategori</vs-th>
+  <vs-th sort-key="website">Dil</vs-th>
+  <vs-th>Seçenekler</vs-th>
+</template>
+
+      <template slot-scope="{data}">
+  <vs-tr  :state="indextr == 1?'success':indextr == 2?'danger':indextr == 4?'dark':null" :data="tr" :key="indextr" v-for="(tr, indextr) in data">
+    <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
+
+    <vs-td :data="data[indextr].username">{{data[indextr].username}}</vs-td>
+
+    <vs-td :data="data[indextr].website">{{data[indextr].website}}</vs-td>
+
+    <vs-td>
+      <div class="flex items-center">
+        <div class="mr-2">
+          <vs-button class="px-3" color="primary" type="relief">Detay</vs-button>
+        </div>
+        <div>
+          <vs-button class="px-3" color="danger" type="relief">Sil</vs-button>
+        </div>
+      </div>
+    </vs-td>
+  </vs-tr>
+</template>
+    </vs-table>
+  </div>
 </template>
 
 <script>
-import StatisticsCardLine from '@/components/statistics-cards/StatisticsCardLine.vue'
-
 export default {
-  components: {
-    StatisticsCardLine
-  },
-  data() {
-    return {
-      subscribersGainedChartData: {
-          series: [{
-              name: 'Subscribers',
-              data: [28, 40, 36, 52, 38, 60, 55]
-          }],
-          chartOptions: {
-              grid: {
-                  show: false,
-                  padding: {
-                      left: 0,
-                      right: 0
-                  }
-              },
-              chart: {
-                  toolbar: {
-                      show: false,
-                  },
-                  sparkline: {
-                      enabled: true
-                  }
-              },
-              dataLabels: {
-                  enabled: false
-              },
-              stroke: {
-                  curve: 'smooth',
-                  width: 2.5
-              },
-              fill: {
-                  type: 'gradient',
-                  gradient: {
-                      shadeIntensity: 0.9,
-                      opacityFrom: 0.7,
-                      opacityTo: 0.5,
-                      stops: [0, 80, 100]
-                  }
-              },
-              xaxis: {
-                  type: 'numeric',
-                  lines: {
-                      show: false,
-                  },
-                  axisBorder: {
-                      show: false,
-                  },
-                  labels: { show: false }
-              },
-              yaxis: [{
-                  y: 0,
-                  offsetX: 0,
-                  offsetY: 0,
-                  padding: { left: 0, right: 0 },
-              }],
-              tooltip: {
-                  x: { show: false }
-              },
-          },
+  data: () => ({
+    selected: [],
+    users: [
+      {
+        id: 1,
+        name: "Leanne Graham",
+        username: "Bret",
+        email: "Sincere@april.biz",
+        website: "hildegard.org"
       },
-    }
-  }
-}
+      {
+        id: 2,
+        name: "Ervin Howell",
+        username: "Antonette",
+        email: "Shanna@melissa.tv",
+        website: "anastasia.net"
+      },
+      {
+        id: 3,
+        name: "Clementine Bauch",
+        username: "Samantha",
+        email: "Nathan@yesenia.net",
+        website: "ramiro.info"
+      },
+      {
+        id: 4,
+        name: "Patricia Lebsack",
+        username: "Karianne",
+        email: "Julianne.OConner@kory.org",
+        website: "kale.biz"
+      },
+      {
+        id: 5,
+        name: "Chelsey Dietrich",
+        username: "Kamren",
+        email: "Lucio_Hettinger@annie.ca",
+        website: "demarco.info"
+      },
+      {
+        id: 6,
+        name: "Mrs. Dennis Schulist",
+        username: "Leopoldo_Corkery",
+        email: "Karley_Dach@jasper.info",
+        website: "ola.org"
+      },
+      {
+        id: 7,
+        name: "Kurtis Weissnat",
+        username: "Elwyn.Skiles",
+        email: "Telly.Hoeger@billy.biz",
+        website: "elvis.io"
+      },
+      {
+        id: 8,
+        name: "Nicholas Runolfsdottir V",
+        username: "Maxime_Nienow",
+        email: "Sherwood@rosamond.me",
+        website: "jacynthe.com"
+      },
+      {
+        id: 9,
+        name: "Glenna Reichert",
+        username: "Delphine",
+        email: "Chaim_McDermott@dana.io",
+        website: "conrad.com"
+      },
+      {
+        id: 10,
+        name: "Clementina DuBuque",
+        username: "Moriah.Stanton",
+        email: "Rey.Padberg@karina.biz",
+        website: "ambrose.net"
+      }
+    ]
+  })
+};
 </script>

@@ -183,7 +183,7 @@
                 </li>
                 <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-                  @click="$router.push('/apps/email')"
+                  @click="$router.push('/ticket')"
                 >
                   <feather-icon icon="MailIcon" svgClasses="w-4 h-4"></feather-icon>
                   <span class="ml-2">Destek</span>

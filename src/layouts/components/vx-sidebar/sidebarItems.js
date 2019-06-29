@@ -41,7 +41,7 @@ export default [
 	
 	},
 	{
-		url: "/apps/email",
+		url: "/ticket",
 		name: "Ticket",
 		slug: "ticket",
 		icon: "FileIcon",

@@ -36,7 +36,7 @@ export default [
 		submenu: [
 			{
 				url: "/admin/concept",
-				name: "Konsept Düzenle",
+				name: "Konseptler",
 				slug: "concept-manage",
 			},
 			{
