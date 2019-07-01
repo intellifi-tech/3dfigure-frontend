@@ -1,6 +1,7 @@
 <template>
   <div class="layout--main" :class="[navbarClasses, footerClasses, {'app-page': isAppPage}]">
     <vx-sidebar
+      :isAdmin=true
       :sidebarItems="sidebarItems"
       :logo="require('@/assets/images/logo/logo.png')"
       parent=".layout--main"
@@ -12,31 +13,6 @@
       <div class="content-wrapper contentLayout">
         <the-navbar class="navbarCustom" :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
 
-        <vs-popup
-          class="holamundo sidebarPopup"
-          title="Merhaba, 3D Kullanıcı"
-          :active.sync="this.$store.state.member.firstLogin || this.$store.state.sidebarHowtoUse"
-        >
-          <div class="pt-0">
-            <form-wizard
-              title="3D Figure"
-              nextButtonText="Sonraki adım"
-              backButtonText="Önceki adım"
-              finishButtonText="BAŞLA!"
-              @on-complete="finish"
-            >
-              <tab-content title="Fotoğraf Yükle" icon="feather icon-home">
-                <img src="assets/images/info/1.png" alt>
-              </tab-content>
-              <tab-content title="Konsept Seç" icon="feather icon-home">
-                <img src="assets/images/info/2.png" alt>
-              </tab-content>
-              <tab-content title="Sipariş Süreci" icon="feather icon-home">
-                <img src="assets/images/info/3.png" alt>
-              </tab-content>
-            </form-wizard>
-          </div>
-        </vs-popup>
         <div class="router-view pt-4">
           <div class="router-content mt-16">
             <!--:class="{'mt-0': navbarType == 'hidden'}"-->
@@ -105,7 +81,7 @@
 </template>
 
 <script>
-import VxSidebar from "@/layouts/components/vx-sidebar/VxSidebarAdmin.vue";
+import VxSidebar from "@/layouts/components/vx-sidebar/VxSidebar.vue";
 import { FormWizard, TabContent } from "vue-form-wizard";
 import TheNavbar from "../components/TheNavbar.vue";
 import TheFooter from "../components/TheFooter.vue";
@@ -223,7 +199,7 @@ export default {
     } else {
       this.updateNavbarColor(this.navbarColor);
     }
-    await this.getCurrentUser();
+    //await this.getCurrentUser();
   },
   components: {
     VxSidebar,

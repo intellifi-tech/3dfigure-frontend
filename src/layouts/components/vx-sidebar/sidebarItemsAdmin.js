@@ -22,7 +22,7 @@
 
 export default [
 	{
-		url: "/dashboard-admin",
+		url: "/admin/dashboard",
 		name: "Dashboard",
 		slug: "dashboard",
 		icon: "HomeIcon",
@@ -35,68 +35,50 @@ export default [
 	
 		submenu: [
 			{
-				url: "/concept-categories",
-				name: "Kategoriler",
-				slug: "concept-categories",
+				url: "/admin/concept",
+				name: "Konseptler",
+				slug: "concept-manage",
 			},
 			{
-				url: "/concept-manage",
-				name: "Kategori Düzenle",
-				slug: "concept-manage",
+				url: "/admin/category",
+				name: "Kategoriler",
+				slug: "concept-categories",
 			}
 		]
 	},
 	{
-		url: "/users",
+		url: "/admin/users",
 		name: "Kullanıcılar",
 		slug: "users",
 		icon: "UsersIcon",
 	},
 	{
-		url: null,
-		name: "Katalog",
+		url: "/admin/catalog",
+		name: "Landing",
 		slug: "catalog",
 		icon: "LayersIcon",
-		
-		submenu: [
-			{
-				url: "/3d-models",
-				name: "3D Modeller",
-				slug: "3d-models",
-			},
-			{
-				url: "/example-projects",
-				name: "Örnek Çalışmalar",
-				slug: "example-projects",
-			},
-			{
-				url: "/pricing",
-				name: "Fiyatlandırma",
-				slug: "pricing",
-			}
-		]
 	},
 	
 	{
-		url: "/orders",
+		url: "/admin/orders",
 		name: "Siparişler",
 		slug: "orders",
 		icon: "ShoppingCartIcon",
 	},
 	{
-		url: "/user-action",
+		url: null,
 		name: "Kullanıcı Etkileşimi",
 		slug: "user-action",
 		icon: "BellIcon",
 
 		submenu: [
 			{
-				url: "/ticket-admin",
+				url: "/admin/ticket",
 				name: "Destek",
 				slug: "ticket-admin",
 			},
 			{
-				url: "/email-admin",
+				url: "/admin/email",
 				name: "Posta",
 				slug: "email-admin",
 			}
