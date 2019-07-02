@@ -10,6 +10,25 @@ const OrderService = {
             return error.response.status
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
+    },
+
+    getAllOrdersForAdmin: async function() {
+        try {
+            const response = await ApiService.get("/orders/admin")
+            return response.data
+        } catch (error) {
+            return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
+    updateOrder: async function(order) {
+        try {
+            const response = await ApiService.put("/orders", order)
+            return response.data
+        } catch (error) {
+            return error
+        }
     }
 }
 

@@ -26,25 +26,24 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3 my-3" v-for="n in 8" :key="n">
+      <div class="col-md-3 my-3" v-for="(concept, index) in concepts" :key="index">
         <vx-card class="shadow">
           <div slot="no-body">
             <iframe
               class="responsive card-img-top"
               style="height: 170px"
-              src="https://sketchfab.com/models/a560204fc01f484fb85d0e710fc055bf/embed"
+              :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed'"
               frameborder="0"
               allow="autoplay; fullscreen; vr"
               mozallowfullscreen="true"
               webkitallowfullscreen="true"
             ></iframe>
           </div>
-          <h5 class="mb-2">FGR3799</h5>
-          <p class="text-grey font-light h6 pb-3">Lorem Ipsum endüstrisinde kullanılan metindir.</p>
-          <h4>
-            $70
-            <span class="float-right text-grey h6">Tek Kişilik</span>
-          </h4>
+      <h5 class="mb-2">{{concept.conceptName}}</h5>
+      <p class="text-grey">{{concept.description}}</p>
+      <p class="text-grey">Fiyat: {{concept.price}}</p>
+      <p class="text-grey">{{concept.doubleConcept ? 'Çift Kişilik' : 'Tek Kişilik'}}</p>
+      <p class="text-grey">{{concept.isConceptsVisible ? 'Konsept Aktif' : 'Konsept Aktif Değil'}}</p>
           <div class="flex justify-between flex-wrap">
             <vs-button
               class="shadow-md w-full px-1 mt-3"
@@ -56,16 +55,36 @@
         </vx-card>
       </div>
     </div>
+    <div class="my-5">
+      <vs-pagination :total="totalPages" v-model="currentx"></vs-pagination>
+    </div>
   </div>
 </template>
 
 <script>
+import ConceptService from "@/services/concept.service";
+import CategoryService from "@/services/category.service";
+
 export default {
   data() {
     return {
       activeItem: 0,
-      search: ""
+      searchQuery: "",
+      concepts: [],
+      totalPages: 0,
+      currentx: 1
     };
+  },
+  created: async function() {
+    const response = await ConceptService.getAllConceptsAdmin(0)
+    this.concepts = response.content
+    this.totalPages = response.totalPages
+  },
+  watch: {
+    currentx: async function() {
+      const response = await ConceptService.getAllConceptsAdmin(this.currentx - 1)
+      this.concepts = response.content
+    }
   }
 };
 </script>

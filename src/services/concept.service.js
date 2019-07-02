@@ -20,14 +20,15 @@ const ConceptService = {
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
-    getConceptsInFigure: async function () {
+    getAllConceptsAdmin: async function (page) {
         try {
-            const response = await ApiService.get("/concepts/figure")
+            const response = await ApiService.get("/concepts/admin/?page=" + page + "&size=8")
             return response.data
         } catch (error) {
             return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
-    }
+    },
 }
 
 export default ConceptService
