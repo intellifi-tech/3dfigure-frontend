@@ -1,10 +1,10 @@
 <template lang="html">
 <div class="col-md-4">
 	<total-card
-		icon="ShoppingCartIcon"
+		:icon="isSales ? 'ShoppingBagIcon' : 'ShoppingCartIcon'"
 		icon-right
 		:statistic="totalOrder"
-		statisticTitle="Toplam Sipariş" />
+		:statisticTitle="isSales ? 'Toplam Satış' : 'Toplam Sipariş'" />
 	</div>
 </template>
 
@@ -15,8 +15,15 @@ export default {
   components: {
     TotalCard
   },
+  props: {
+    isSales: {
+      type: Boolean,
+      required: true
+    }
+  },
   created: async function() {
-      this.totalOrder = await DashboardService.getTotalOrder()
+    const data = await DashboardService.getTotalOrder().split("-")
+    this.totalOrder = this.isSales ? data[1] : data[0]
   },
   data() {
     return {
