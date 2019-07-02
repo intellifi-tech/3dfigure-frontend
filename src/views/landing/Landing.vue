@@ -65,15 +65,16 @@
               <vs-popup
                 class="holamundo login-popup"
                 :title="$t('login.login')"
+                @close="closePopup"
                 :active.sync="this.$store.state.landing.loginPopup"
               >
                 <div class="position-relative">
                   <login :isPopup="true"></login>
-                  <button
+                  <!--<button
                     class="position-absolute btn btn-danger"
                     style="top:0px;right:0px;z-index:99999"
                     @click="closePopup"
-                  >x</button>
+                  >x</button>-->
                 </div>
               </vs-popup>
               </div>
@@ -127,12 +128,13 @@
                 class="holamundo login-popup"
                 :title="$t('login.login')"
                 :active.sync="this.$store.state.landing.registerPopup"
+                @close="closePopup"
               >
-                <button
+                <!--<button
                   class="position-relative btn btn-danger float-right"
                   style="top:10px;right:10px;z-index:99"
                   @click="closePopup"
-                >x</button>
+                >x</button>-->
                 <register :isPopup="true"></register>
               </vs-popup>
             </li>
@@ -1894,9 +1896,9 @@ export default {
   padding: 0 !important;
   margin: 0 !important;
 }
-.vs-popup--close{
+/*.vs-popup--close{
   display: none !important;
-}
+}*/
 .hooper{
   height: auto;
 }

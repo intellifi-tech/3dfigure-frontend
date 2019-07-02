@@ -1,130 +1,124 @@
 <template lang="html">
   <div>
-      <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
-          <div class="w-full mr-0 pr-0">
-            <vs-button class="w-full" color="success"  type="filled" icon="add" >Yeni ekle</vs-button>
+    <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
+      <div class="w-full mr-0 pr-0">
+        <vs-button class="w-full" color="success" @click="newPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
           </div>
-        </div>
-    <vs-table
-      multiple
-      v-model="selected"
-      pagination
-      max-items="5"
-      search
-      :data="users">
-      <template slot="header">
-        <h3>
-          Kategoriler
-        </h3>
-      </template>
-      
-      <template slot="thead">
-  <vs-th sort-key="email">Konsept Adı</vs-th>
-  <vs-th sort-key="username">Kategori</vs-th>
-  <vs-th sort-key="website">Dil</vs-th>
-  <vs-th>Seçenekler</vs-th>
-</template>
-
-      <template slot-scope="{data}">
-  <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-    <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
-
-    <vs-td :data="data[indextr].username">{{data[indextr].username}}</vs-td>
-
-    <vs-td :data="data[indextr].website">{{data[indextr].website}}</vs-td>
-
-    <vs-td>
-      <div class="flex items-center">
-        <div class="mr-2">
-          <vs-button class="px-3" color="primary" type="relief">Düzenle</vs-button>
-        </div>
-        <div>
-          <vs-button class="px-3" color="danger" type="relief">Sil</vs-button>
-        </div>
       </div>
-    </vs-td>
-  </vs-tr>
-</template>
-    </vs-table>
-  </div>
+      <vs-table
+        v-model="selected"
+        pagination
+        max-items="10"
+        search
+        :data="categories">
+        <template slot="header">
+          <h3>
+            Kategoriler
+          </h3>
+        </template>
+      
+        <template slot="thead">
+          <vs-th sort-key="name">Kategori Adı</vs-th>
+          <vs-th sort-key="lang">Dil</vs-th>
+          <vs-th>Seçenekler</vs-th>
+        </template>
+
+        <template slot-scope="{data}">
+          <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
+            <vs-td :data="data[indextr].name">{{data[indextr].name}}</vs-td>
+
+            <vs-td :data="data[indextr].lang">{{data[indextr].lang}}</vs-td>
+
+            <vs-td>
+              <div class="flex items-center">
+                <div class="mr-2">
+                  <vs-button class="px-3" color="primary" type="relief" @click="updateCategory(data[indextr])">Düzenle</vs-button>
+                </div>
+                <div>
+                  <vs-button class="px-3" color="danger" type="relief" @click="deleteCategory(data[indextr], indextr)">Sil</vs-button>
+                </div>
+              </div>
+            </vs-td>
+          </vs-tr>
+        </template>
+      </vs-table>
+      <vs-popup :active.sync="updatePopup">
+        <div>
+          <vs-input label-placeholder="Kategory Adı" v-model="selected.name"/>
+          <select class="form-control" v-model="selected.lang">
+                <option
+                  :key="index"
+                  v-for="(item,index) in lang"
+                  :value="item.value"
+                >{{item.text}}</option>
+          </select>
+          <vs-button class="float-right" @click="updateCategory">Güncelle</vs-button>
+        </div>
+      </vs-popup>
+      <vs-popup :active.sync="newPopup">
+        <div>
+          <vs-input label-placeholder="Kategory Adı" v-model="newCategory.name"/>
+          <select class="form-control" v-model="newCategory.lang">
+                <option
+                  :key="index"
+                  v-for="(item,index) in lang"
+                  :value="item.value"
+                >{{item.text}}</option>
+          </select>
+          <vs-button class="float-right" @click="addCategory">Ekle</vs-button>
+        </div>
+      </vs-popup>
+    </div>
 </template>
 
 <script>
+import CategoryService from '@/services/category.service.js'
 export default {
   data: () => ({
-    selected: [],
-    users: [
-      {
-        id: 1,
-        name: "Leanne Graham",
-        username: "Bret",
-        email: "Sincere@april.biz",
-        website: "hildegard.org"
-      },
-      {
-        id: 2,
-        name: "Ervin Howell",
-        username: "Antonette",
-        email: "Shanna@melissa.tv",
-        website: "anastasia.net"
-      },
-      {
-        id: 3,
-        name: "Clementine Bauch",
-        username: "Samantha",
-        email: "Nathan@yesenia.net",
-        website: "ramiro.info"
-      },
-      {
-        id: 4,
-        name: "Patricia Lebsack",
-        username: "Karianne",
-        email: "Julianne.OConner@kory.org",
-        website: "kale.biz"
-      },
-      {
-        id: 5,
-        name: "Chelsey Dietrich",
-        username: "Kamren",
-        email: "Lucio_Hettinger@annie.ca",
-        website: "demarco.info"
-      },
-      {
-        id: 6,
-        name: "Mrs. Dennis Schulist",
-        username: "Leopoldo_Corkery",
-        email: "Karley_Dach@jasper.info",
-        website: "ola.org"
-      },
-      {
-        id: 7,
-        name: "Kurtis Weissnat",
-        username: "Elwyn.Skiles",
-        email: "Telly.Hoeger@billy.biz",
-        website: "elvis.io"
-      },
-      {
-        id: 8,
-        name: "Nicholas Runolfsdottir V",
-        username: "Maxime_Nienow",
-        email: "Sherwood@rosamond.me",
-        website: "jacynthe.com"
-      },
-      {
-        id: 9,
-        name: "Glenna Reichert",
-        username: "Delphine",
-        email: "Chaim_McDermott@dana.io",
-        website: "conrad.com"
-      },
-      {
-        id: 10,
-        name: "Clementina DuBuque",
-        username: "Moriah.Stanton",
-        email: "Rey.Padberg@karina.biz",
-        website: "ambrose.net"
+    selected: {},
+    newCategory: {},
+    categories: [],
+    lang: [{ text: "İngilizce", value: "EN" }, { text: "Türkçe", value: "TR" }],
+    updatePopup: false,
+    newPopup: false
+  }),
+  created: async function() {
+    this.categories = await CategoryService.getAllCategories()
+  },
+  methods: {
+    deleteCategory: function(category, index) {
+      var self = this
+      this.$vs.dialog({
+        type:'confirm',
+        color: 'danger',
+        title: `Confirm`,
+        text: `${category.name} silmek istiyor musunuz?`,
+        accept: async function() {
+          await CategoryService.deleteCategory(category.id)
+          self.categories.splice(index, 1)
+          self.$vs.notify({
+            color: 'success',
+            title:'Kategori silindi'
+          });
+        }
+      })
+    },
+    updateCategory: async function() {
+      this.updatePopup = !this.updatePopup
+      if (!this.updatePopup) {
+        await CategoryService.updateCategory(this.selected)
       }
-    ]
-  })
+    },
+    addCategory: async function() {
+      const res = await CategoryService.addCategory(this.newCategory)
+      this.$vs.notify({
+        color:'success',
+        title:'Kategori eklendi'
+      });
+      this.categories.push(res)
+      this.newCategory = {}
+      this.newPopup = false
+    }
+  }
 };
 </script>
