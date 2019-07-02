@@ -121,7 +121,7 @@ const router = new Router({
 			path: '',
 			component: () => import('@/layouts/admin/Admin.vue'),
 			meta: {
-				public: true
+				public: false
 			},
 			children: [
 				{

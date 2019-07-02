@@ -11,10 +11,9 @@
           <vue-apex-charts
             type="area"
             height="350"
-            :options="apexChatData.lineAreaChartSpline.chartOptions"
-            :series="apexChatData.lineAreaChartSpline.series"
+            :options="chartData.chartOptions"
+            :series="chartData.series"
           ></vue-apex-charts>
-          <template slot="codeContainer">{{ apexChatData.lineAreaChartSplineCode }}</template>
         </vx-card>
       </div>
     </div>
@@ -37,6 +36,10 @@ export default {
     },
     AreaLineChartSubtitle: {
       type: String
+    },
+    chartData: {
+      type: Object,
+      required: true
     }
   },
   components: {

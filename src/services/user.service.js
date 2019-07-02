@@ -30,6 +30,25 @@ const UserService = {
             return error
         }
 
+    },
+
+    getAllUsers: async function () {
+        try {
+            const response = await ApiService.get("/admin/users")
+            return response.data
+        } catch (error) {
+            return error
+        }
+
+    },
+
+    userDelete: async function(login) {
+        try {
+            const response = await ApiService.delete("/admin/users/"+ login)
+            return response.data
+        } catch (error) {
+            return error
+        }
     }
 }
 
