@@ -1,10 +1,12 @@
 <template lang="html">
   <div>
     <vs-table
-      v-model="selected"
       pagination
-      max-items="5"
+      max-items="2"
       search
+      :sst="true"
+      @change-page="handleChangePage"
+      @search="sscb"
       :data="users">
       <template slot="header">
         <h3>
@@ -13,8 +15,8 @@
       </template>
       <template slot="thead">
   <vs-th sort-key="email">Email</vs-th>
-  <vs-th sort-key="username">Adı Soyadı</vs-th>
-  <vs-th sort-key="website">Aktif mi</vs-th>
+  <vs-th sort-key="firstName">Adı Soyadı</vs-th>
+  <vs-th sort-key="activated">Aktif mi</vs-th>
   <vs-th>Seçenekler</vs-th>
 </template>
 
@@ -22,11 +24,14 @@
   <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
     <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
 
-    <vs-td :data="data[indextr].username">{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
+    <vs-td :data="data[indextr].firstName">{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
 
     <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td>
 
     <vs-td> <div class="flex items-center ">
+          <div>
+            <vs-button class="px-3"  color="primary" type="relief" @click="userDetail(data[indextr])">Detay</vs-button>
+          </div>
           <div>
             <vs-button class="px-3"  color="danger" type="relief" @click="userDelete(data[indextr], indextr)">Sil</vs-button>
           </div>
@@ -35,6 +40,15 @@
   </vs-tr>
 </template>
     </vs-table>
+    <vs-popup :active.sync="detailUserPopup">
+      <vs-card>
+      <div slot="header">
+        <h3>
+          {{this.user.login}}
+        </h3>
+      </div>
+      </vs-card>
+    </vs-popup>
   </div>
 </template>
 
@@ -43,7 +57,9 @@ import UserService from '@/services/user.service.js'
 export default {
   data: () => ({
     selected: {},
-    users: []
+    users: [],
+    user: {},
+    detailUserPopup: false
   }),
 
   created: async function() {
@@ -67,6 +83,16 @@ export default {
           });
         }
       })
+    },
+    userDetail(user) {
+      this.user = user
+      this.detailUserPopup = true
+    },
+    handleChangePage(page) {
+      debugger
+    },
+    sscb(searching) {
+      debugger
     }
   }
 };

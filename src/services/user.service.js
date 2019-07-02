@@ -44,7 +44,7 @@ const UserService = {
 
     userDelete: async function(login) {
         try {
-            const response = await ApiService.delete("/admin/users/"+ login)
+            const response = await ApiService.delete("/users/admin/"+ login)
             return response.data
         } catch (error) {
             return error
