@@ -1,83 +1,26 @@
 <template lang="html">
 <div class="col-md-4">
-	<statistics-card-line
+	<total-card
 		icon="ShoppingCartIcon"
 		icon-right
-		statistic="24"
-		statisticTitle="Toplam Sipariş"
-		:chartData="ordersChartData" />
+		:statistic="totalOrder"
+		statisticTitle="Toplam Sipariş" />
 	</div>
 </template>
 
 <script>
-import StatisticsCardLine from '@/components/statistics-cards/StatisticsCardLine.vue'
-
+import TotalCard from '@/components/statistics-cards/TotalCard.vue'
+import DashboardService from "@/services/admin/dashboard.service.js"
 export default {
   components: {
-    StatisticsCardLine
+    TotalCard
+  },
+  created: async function() {
+      this.totalOrder = await DashboardService.getTotalOrder()
   },
   data() {
     return {
-      ordersChartData: {
-          series: [{
-              name: 'Toplam Sipariş',
-              data:  [28, 40, 36, 52, 38, 60, 55]
-          }],
-          chartOptions: {
-              grid: {
-                  show: false,
-                  padding: {
-                      left: 0,
-                      right: 0
-                  }
-              },
-              chart: {
-                  type: 'line',
-                  dropShadow: {
-                      enabled: true,
-                      top: 5,
-                      left: 0,
-                      blur: 4,
-                      opacity: 0.10,
-                  },
-                  toolbar: {
-                      show: false,
-                  },
-                  sparkline: {
-                      enabled: true
-                  }
-              },
-              stroke: {
-                  width: 5,
-                  curve: 'smooth'
-              },
-              xaxis: {
-                  type: 'numeric',
-              },
-              colors: ['#7367F0'],
-              fill: {
-                  type: 'gradient',
-                  gradient: {
-                      shade: 'dark',
-                      gradientToColors: ['#7367F0'],
-                      shadeIntensity: 1,
-                      type: 'horizontal',
-                      opacityFrom: 1,
-                      opacityTo: 1,
-                      stops: [0, 100, 100, 100]
-                  },
-              },
-              markers: {
-                  size: 0,
-                  hover: {
-                      size: 5
-                  }
-              },
-              tooltip: {
-                  x: { show: false }
-              },
-          }
-      },
+        totalOrder: 0
     }
   }
 }

@@ -7,11 +7,11 @@
 </div>
 <div class="row mt-5">
     <registered-user/>
-    <siparis-sayisi/>
+    <!--<siparis-sayisi/>
     <sales/>
     <uploaded-figures/>
     <likes/>
-    <yas-araligi/>
+    <yas-araligi/>-->
 </div>
  
 </div>

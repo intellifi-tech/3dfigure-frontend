@@ -192,15 +192,6 @@ export default {
       }
     }
   },
-  created: async function() {
-    this.setSidebarWidth();
-    if (this.navbarColor == "#fff" && this.isThemeDark) {
-      this.updateNavbarColor("#10163a");
-    } else {
-      this.updateNavbarColor(this.navbarColor);
-    }
-    //await this.getCurrentUser();
-  },
   components: {
     VxSidebar,
     TheNavbar,
