@@ -8,8 +8,8 @@
           <vue-apex-charts
             type="pie"
             height="400"
-            :options="apexChatData.pieChart.chartOptions"
-            :series="apexChatData.pieChart.series"
+            :options="pieChart.chartOptions"
+            :series="pieChart.series"
           ></vue-apex-charts>
         </vx-card>
       </div>
@@ -19,7 +19,6 @@
 
 <script>
 import VueApexCharts from "vue-apexcharts";
-import apexChatData from "@/components/statistics-cards/apexChartData.js";
 
 export default {
   components: {
@@ -28,12 +27,10 @@ export default {
   props: {
     pieChartTitle: {
       type: String
+    },
+    pieChart: {
+      type: Object
     }
-  },
-  data() {
-    return {
-      apexChatData: apexChatData
-    };
   }
 };
 </script>

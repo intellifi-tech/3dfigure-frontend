@@ -10,9 +10,9 @@
     <siparis-sayisi :isSales="false" />
     <siparis-sayisi :isSales="true" />
     
-    <uploaded-figures/>
-    <!--<likes/>
-    <yas-araligi/>-->
+    <!--<uploaded-figures/>
+    <likes/>-->
+    <yas-araligi/>
 </div>
  
 </div>

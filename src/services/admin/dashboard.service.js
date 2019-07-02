@@ -31,7 +31,7 @@ const DashboardService = {
 
     getUsersMonthly: async function() {
         try {
-            const response = await ApiService.get("/admin/monthly/user")
+            const response = await ApiService.get("/admin/user/monthly")
             return response.data
         } catch (error) {
             return error
@@ -40,7 +40,16 @@ const DashboardService = {
 
     getOrdersMonthly: async function() {
         try {
-            const response = await ApiService.get("/admin/monthly/order")
+            const response = await ApiService.get("/admin/order/monthly")
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
+    
+    getAgeCategory: async function() {
+        try {
+            const response = await ApiService.get("/admin/user/age")
             return response.data
         } catch (error) {
             return error

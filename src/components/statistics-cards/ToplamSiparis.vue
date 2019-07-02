@@ -22,8 +22,8 @@ export default {
     }
   },
   created: async function() {
-    const data = await DashboardService.getTotalOrder().split("-")
-    this.totalOrder = this.isSales ? data[1] : data[0]
+    const data = await DashboardService.getTotalOrder()
+    this.totalOrder = this.isSales ? data.split("-")[1] : data.split("-")[0]
   },
   data() {
     return {
