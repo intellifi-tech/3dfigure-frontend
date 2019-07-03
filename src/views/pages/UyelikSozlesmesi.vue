@@ -3,15 +3,15 @@
 	<vx-card class="px-md-5">
 <vs-divider><h3>Üyelik Sözleşmesi</h3></vs-divider>
 
-<ol>
-<li><span style="font-weight: 400;"> &nbsp; </span><strong>Taraflar</strong></li>
-</ol>
+<ul>
+<li><strong>1.<span style="font-weight: 400;"> &nbsp; </span>Taraflar</strong></li>
+</ul>
 <p><strong>1.1 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;&Uuml;yeler, işbu &Uuml;yelik S&ouml;zleşmesi&rsquo;nin (aşağıda kısaca &ldquo;S&ouml;zleşme&rdquo; olarak anılacaktır) elektronik ortamda onaylanması ile Abbasağa Mah. Ihlamur Yıldız Cad. no:8/Z1 Beşiktaş / İstanbul adresinde faaliyet g&ouml;steren 3Durak Arge Tek. Bil. San. Tic. A.Ş.&rsquo;ne (&ldquo;Şirket&rdquo;) ait internet sitesine &uuml;ye olduklarını ve bu S&ouml;zleşme&rsquo;de yer alan koşullara uygun davranmakla y&uuml;k&uuml;ml&uuml; olduklarını bilmektedirler.</span></p>
 <p><strong>1.2 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;Şirket ve &Uuml;yeler ayrı ayrı &ldquo;Taraf&rdquo; birlikte ise &ldquo;Taraflar&rdquo; olarak anılacaklardır.</span></p>
 <p>&nbsp;</p>
-<ol start="2">
-<li><span style="font-weight: 400;"> &nbsp; </span><strong>Tanımlar</strong></li>
-</ol>
+<ul>
+<li><strong>2.<span style="font-weight: 400;"> &nbsp; </span>Tanımlar</strong></li>
+</ul>
 <p><strong>2.1 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><strong>&nbsp;Site:&nbsp; </strong><span style="font-weight: 400;">www.3dfigur.com&nbsp; adresinde yer alan internet sitesidir.</span></p>
 <p><strong>2.2 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><strong>&nbsp;&Uuml;r&uuml;n: </strong><span style="font-weight: 400;">&nbsp;&Uuml;yeler&rsquo;in &uuml;retimini talep ettikleri, Site &uuml;zerinden &ouml;zelliklerini se&ccedil;tikleri 3d Fig&uuml;r ve .jpeg formatında fotoğraf dosyalarıdır.</span></p>
 <p><strong>2.3 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><strong>&nbsp;Data Upload/Dosya Y&uuml;kleme </strong><span style="font-weight: 400;">: &Uuml;yeler&rsquo;in, &uuml;retiminin ger&ccedil;ekleşmesini talep ettikleri &Uuml;r&uuml;n&rsquo;&uuml; Site sistemine kaydetmesi işlemidir.</span></p>
@@ -19,14 +19,14 @@
 <p><strong>2.5 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><strong>&nbsp;&Uuml;r&uuml;n &Ouml;zeti: </strong><span style="font-weight: 400;">&nbsp;&Uuml;r&uuml;n&rsquo;&uuml;n &ouml;zelliklerinin belirtildiği basımdan &ouml;nceki halidir.</span></p>
 <p><strong>2.6 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><strong>&nbsp;&Uuml;ye(ler):&nbsp; </strong><span style="font-weight: 400;">İşbu S&ouml;zleşme kapsamında Site&rsquo;yi kullanan ve Site&rsquo;de sunulan hizmetlerden faydalanan bireysel &Uuml;yeler&rsquo;dir.</span></p>
 <p>&nbsp;</p>
-<ol start="3">
-<li><strong>S&ouml;zleşme&rsquo;nin Konusu</strong></li>
-</ol>
+<ul>
+<li><strong>3. &nbsp;&nbsp;S&ouml;zleşme&rsquo;nin Konusu</strong></li>
+</ul>
 <p><span style="font-weight: 400;">İşbu S&ouml;zleşme&rsquo;nin konusu; &Uuml;ye&rsquo;nin Site&rsquo;yi kullanımı ve Site &uuml;zerinden Şirket&rsquo;e g&ouml;ndereceği &Uuml;r&uuml;n&rsquo;&uuml;n &uuml;retiminin ger&ccedil;ekleştirilmesi hizmetinin elektronik ortamda satın alınması ve &Uuml;ye&rsquo;ye teslimi s&uuml;re&ccedil;lerine ilişkin olarak Taraflar&rsquo;ın hak ve y&uuml;k&uuml;ml&uuml;l&uuml;klerinin belirlenmesidir.&nbsp;</span></p>
 <p>&nbsp;</p>
-<ol start="4">
-<li><span style="font-weight: 400;"> &nbsp; </span><strong>&Uuml;yeler&rsquo;in Hak ve Y&uuml;k&uuml;ml&uuml;l&uuml;kleri</strong></li>
-</ol>
+<ul>
+<li><strong>4.<span style="font-weight: 400;"> &nbsp; </span>&Uuml;yeler&rsquo;in Hak ve Y&uuml;k&uuml;ml&uuml;l&uuml;kleri</strong></li>
+</ul>
 <p><strong>4.1 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;İşbu S&ouml;zleşme&rsquo;ye konu Site, işbu S&ouml;zleşme ve ilgili mevzuata uygun şekilde kullanılmak koşuluyla herkese a&ccedil;ıktır. Ancak Site&rsquo;nin kullanımı i&ccedil;in reşit olmak gerekir.</span></p>
 <p><strong>4.2 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;&Uuml;yeler, Site &uuml;zerinden hizmetten faydalanmaya imkan veren kullanıcı adı ve şifre de dahil olmak &uuml;zere t&uuml;m bilgilerin kullanım ve y&ouml;netiminden bizzat sorumludur. Kullanıcı adı ve şifre ile ger&ccedil;ekleştirilen her işlem bizzat &Uuml;ye tarafından ger&ccedil;ekleştirilmiş addedilecek ve bu bilgilerinin &Uuml;ye dışında bir kişi tarafından kullanılması, kaybolması veya el değiştirmesi nedeniyle &Uuml;ye ve/veya &uuml;&ccedil;&uuml;nc&uuml; kişilerin uğradığı zararlardan m&uuml;nhasıran &Uuml;ye sorumlu olacaktır.</span></p>
 <p><strong>4.3 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;&Uuml;ye, oluşturulmuş kullanıcı adı ve şifresi ile &uuml;yelik profillerini hi&ccedil;bir şart ve koşulda devredemez veya &uuml;&ccedil;&uuml;nc&uuml; kişilerce kullanımına izin veremez.</span></p>
@@ -34,18 +34,18 @@
 <p><strong>4.5 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;Site&rsquo;de bulunan yazılım, g&ouml;rsel ve tasarımların, yazıların, logoların, grafiklerin her t&uuml;rl&uuml; hakkı Şirket&rsquo;e aittir. Site&rsquo;nin tasarımında, i&ccedil;eriğinde ve veritabanı oluşturulmasında kullanılan bilgi ve/veya yazılımın kopyalanması ve/veya hizmetten faydalanmanın &ouml;tesinde kullanılması, Site dahilinde bulunan her t&uuml;rl&uuml; resim, metin, imge, dosya vb. verilerin kopyalanması, dağıtılması, işlenmesi ve sair şekillerde kullanılması kesinlikle yasaktır. Ayrıca &Uuml;yeler&rsquo;in (i) Site&rsquo;nin g&uuml;venliğini tehdit edebilecek, Site&rsquo;ye ait yazılımların &ccedil;alışmasını veya diğer &uuml;yelerin Site ve hizmetten faydalanmasını engelleyebilecek herhangi bir girişimde bulunması, (ii) Site&rsquo;ye bu sonu&ccedil;ları verecek şekilde orantısız y&uuml;k bindirmesi; Site&rsquo;de yayımlanmış ve/veya başkaları tarafından girilmiş bilgilere yetkisiz bir şekilde erişmesi, bu bilgileri kopyalaması, silmesi, değiştirmesi ya da bu y&ouml;nde denemeler yapması; (iii) Site&rsquo;nin genel g&uuml;venliğini tehdit edecek ve/veya Site, Şirket ve diğer &uuml;yelere zarar verebilecek eylemlerde bulunulması; (iv) Site&rsquo;nin ve kullanılan yazılımların &ccedil;alışmasını engelleyecek yazılımların kullanılması, kullanılmaya &ccedil;alışılması veya her t&uuml;rl&uuml; yazılım, donanımın ve sunucuların &ccedil;alışmasının aksatılması, bozulmasına yol a&ccedil;ılması, tersine m&uuml;hendislik yapılması, saldırılar d&uuml;zenlenmesi, meşgul edilmesi veya sair surette m&uuml;dahale edilmesi, Şirket sunucularına erişim sağlanmaya &ccedil;alışılması kesinlikle yasaktır. Site&rsquo;de yer alan hi&ccedil;bir unsur, bunlarla sınırlı olmamak &uuml;zere başka internet sitelerinde ve/veya başka bir mecrada yazılı, s&ouml;zl&uuml; mecrada ve/veya elektronik olarak herhangi bir şekilde yayımlanamaz ve/veya bunlara Şirket&rsquo;in onayı olmadan link verilemez.</span></p>
 <p><strong>4.6 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;Şirket, &Uuml;yeler'in Site &uuml;zerinde ger&ccedil;ekleştirdiği faaliyetler ve/veya işbu S&ouml;zleşme ve yasaya aykırı eylemleri neticesinde &uuml;&ccedil;&uuml;nc&uuml; kişilerin uğradıkları veya uğrayabilecekleri zararlardan doğrudan ve/veya dolaylı olarak hi&ccedil;bir şekilde sorumlu tutulamaz. &Uuml;&ccedil;&uuml;nc&uuml; kişilerden bu kapsamda gelecek her t&uuml;rl&uuml; talep ile &Uuml;ye&rsquo;nin S&ouml;zleşme&rsquo;de belirtilen y&uuml;k&uuml;ml&uuml;l&uuml;klerini yerine getirmemesinden kaynaklanan zararlar &Uuml;ye&rsquo;ye r&uuml;cu edilecektir.</span></p>
 <p><br /><br /></p>
-<ol start="5">
-<li><span style="font-weight: 400;"> &nbsp; </span><strong>Şirket Hak ve Y&uuml;k&uuml;ml&uuml;l&uuml;kleri</strong></li>
-</ol>
+<ul>
+<li><strong>5.<span style="font-weight: 400;"> &nbsp; </span>Şirket Hak ve Y&uuml;k&uuml;ml&uuml;l&uuml;kleri</strong></li>
+</ul>
 <p><strong>5.1 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;Şirket, işbu S&ouml;zleşme&rsquo;ye konu hizmeti S&ouml;zleşme&rsquo;de ve tabi olduğu kanun, y&ouml;netmelik ve sair mevzuat kapsamında belirtilen koşullar dahilinde yerine getirmeyi taahh&uuml;t eder.</span></p>
 <p><strong>5.2 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;&Uuml;ye, işbu S&ouml;zleşme&rsquo;ye konu &Uuml;r&uuml;n&rsquo;&uuml;n satın alınması esnasında Şirket&rsquo;e sağladığı bilgileri işbu S&ouml;zleşme&rsquo;ye konu hizmetten faydalanmak i&ccedil;in &ouml;zg&uuml;r iradesi ile girdiğini kabul eder. Site&rsquo;de toplanan kişisel bilgiler &uuml;yelik kaydı devam edene kadar s&uuml;re sınırı olmaksızın saklanacak ve bu bilgilere yetkili kişiler tarafından erişim sağlanabilecektir. Ancak &Uuml;ye bilgileri, &Uuml;ye&rsquo;nin onayı olmaksızın işbu S&ouml;zleşme ve eki niteliğindeki Gizlilik İlkeleri kapsamında belirtilen haller dışında işbu S&ouml;zleşme altındaki hizmet kapsamı haricinde kullanılmayacak, &uuml;&ccedil;&uuml;nc&uuml; kurum ve kişilerle paylaşılmayacaktır.</span></p>
 <p><strong>5.3 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;Şirket, teklif almak &uuml;zere paylaşılan &Uuml;ye bilgilerinin kaybı, değişimi, k&ouml;t&uuml;ye kullanılması ile bu bilgilere yetkisiz erişimi engellemek i&ccedil;in gerekli &ouml;nlemleri almaktadır. Ancak bu husus, Şirket&rsquo;in bilgi g&uuml;venliği ile ilgili olarak herhangi bir taahh&uuml;d&uuml; bulunduğu şeklinde yorumlanmayacaktır. Site&rsquo;nin kullanımına ilişkin risk, &Uuml;yeler&rsquo;e aittir.</span></p>
 <p><strong>5.4 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;Bazı durumlarda, Şirket &ccedil;erezler (Cookie) aracılığıyla kişisel olmayan veri toplayabilir. Bu bilgiler &Uuml;yeler&rsquo;i daha iyi anlamak ve Site&rsquo;nin kullanılabilirlik, performans ve etkinliğini artırmak i&ccedil;in kullanılır. &Uuml;ye, bilgilerinin bu şekilde kullanılmasına izin verdiğini kabul eder.</span></p>
 <p><strong>5.5 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;Şirket, &Uuml;ye tarafından sunulan bilgileri &Uuml;ye profili oluşturmak, istatistiksel &ccedil;alışmalar yapmak ve&nbsp; kendi pazarlama faaliyetleri ile ilgili olarak kullanma hakkına sahiptir. T&uuml;m bu durumlarda kişisel bilgiler işbu S&ouml;zleşme ve Gizlilik İlkeleri&rsquo;nde belirtilen koşullara uygun olarak g&uuml;venli bi&ccedil;imde işlenir ve saklanır.</span></p>
 <p><br /><br /></p>
-<ol start="6">
-<li><span style="font-weight: 400;"> &nbsp; </span><strong>Hizmet S&uuml;re&ccedil;leri</strong></li>
-</ol>
+<ul>
+<li><strong>6.<span style="font-weight: 400;"> &nbsp; </span>Hizmet S&uuml;re&ccedil;leri</strong></li>
+</ul>
 <p><strong>6.1 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;&Uuml;yeler, kendi oluşturduğu kullanıcı adı ve şifre ile Site&rsquo;ye erişim yaparak &uuml;retimini talep ettikleri &Uuml;r&uuml;n&rsquo;&uuml; Data Upload aracılığı ile sisteme kaydederler. &Uuml;r&uuml;n ISO 12647-2 / Amd.2007 standardı &ccedil;er&ccedil;evesinde basılır. &Uuml;yeler, &Uuml;r&uuml;n&rsquo;&uuml; Site i&ccedil;erisindeki&nbsp; </span><a href="https://yardim.kendimatbaam.com/hc/tr#btn_DataKontrolveGereksinimler"><span style="font-weight: 400;">yardım sayfasında</span> </a><span style="font-weight: 400;">&nbsp;yer alan koşullara uygun olarak hazırlamakla y&uuml;k&uuml;ml&uuml;d&uuml;rler.</span></p>
 <p><strong>6.1.1 </strong><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;Baskı i&ccedil;in iletilen metinlerde &ldquo;solid&rdquo; alanlarda CMYK renk modelleri değerlerinde Sapma ISO 12647-2 / Amd. 2007 standardına g&ouml;re maksimum DE 5 ile sınırlıdır. Kullanılan kağıt rengi ise, ISO 12647-2 / Amd. 2007 de tanımlanan standartlarla uygun olması kaydı ile ge&ccedil;erlidir. Baskıya girdikten sonra ilk tabakaya g&ouml;re maksimum DE +/- 4 baskı sırasında değişkenlik oluşabilir.</span></p>
 <p><strong>6.1.2 </strong><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;&ldquo;Nokta Alanı&rdquo; &Ouml;l&ccedil;&uuml;mlerinde CMYK %50 Tram B&ouml;lgelerde Tolerans ISO 12647-2 / Amd. 2007 standardına g&ouml;re +/- 4 Puandır. Baskıya girdikten sonra ilk tabakaya g&ouml;re maksimum +/- 4 baskı sırasında değişkenlik oluşabilir.</span></p>
@@ -55,17 +55,17 @@
 <p><strong>6.5 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;&Uuml;ye tarafından &ouml;deme işleminin ger&ccedil;ekleşmesini takip eden 2 g&uuml;n i&ccedil;erisinde &Uuml;r&uuml;n standart kontrol işleminden ge&ccedil;er. Standart kontrol kapsamında ger&ccedil;ekleştirilen kontrollere&nbsp; </span><a href="https://yardim.kendimatbaam.com/hc/tr/articles/201097278-Standart-D%C3%B6k%C3%BCman-kontrol%C3%BCne-neler-dahildir-"><span style="font-weight: 400;">buradan ulaşabilirsiniz.</span> </a><span style="font-weight: 400;">&nbsp;&Uuml;ye, s&ouml;z konusu standart kontrol işleminin baskı &ouml;ncesinde teknik ara&ccedil;larla ger&ccedil;ekleştirilen rutin bir kontrol olduğunu, Şirket&rsquo;in &Uuml;r&uuml;n&rsquo;&uuml;n kapsam ve i&ccedil;eriğine ilişkin herhangi bir sorumluluğu bulunmadığını kabul eder. Standart kontrol aşamasını takiben &Uuml;r&uuml;n&rsquo;&uuml;n basım aşamasına ge&ccedil;ilir. Şirket kontrol&uuml; uygun bulmaz ise siparişi iptal etme hakkına sahiptir.</span></p>
 <p><strong>6.6 </strong><span style="font-weight: 400;">&nbsp;&nbsp;</span><span style="font-weight: 400;">&nbsp;&Uuml;ye, standart kontrol işlemine ek olarak Şirket tarafından sunulan, bleed (Taşma), katlama &ccedil;izgileri, ebat ve ebat sapmaları, overprint (&uuml;ste baskı), sayfa sıralaması a&ccedil;ılarından herhangi bir eksikliğin veya hatanın olmadığının kontrol&uuml;ne&nbsp; ek kontrol hizmetinden de &uuml;creti mukabilinde faydalanabilecektir. Ek kontrol kapsamında ger&ccedil;ekleştirilen kontrollere </span><a href="https://yardim.kendimatbaam.com/hc/tr/articles/201177876-Detayl%C4%B1-D%C3%B6k%C3%BCman-Kontrol%C3%BC-se%C3%A7enegine-neler-dahildir-"><span style="font-weight: 400;">buradan ulaşabilirsiniz</span> </a><span style="font-weight: 400;">. S&ouml;z konusu ek kontrol kapsamında gerekli olması halinde &Uuml;r&uuml;n &uuml;zerinde ilgili revizyonlar yapılabilecektir. Profesyonel anlamda Şirket tarafından sağlanan bu kontrol hizmeti editoryal bir kontrol olup, hizmet kapsamında Şirket tarafından verilen onay hi&ccedil;bir şekilde i&ccedil;eriğe ve i&ccedil;eriğin doğruluk, tamlık veya ahlaka yahut yasalara uygunluğuna ilişkin bir onay olarak yorumlanmayacaktır.&nbsp;</span></p>
 <p><span style="font-weight: 400;">&nbsp;</span></p>
-<ol start="7">
+<ul start="7">
 <li><span style="font-weight: 400;">&Uuml;r&uuml;n basımı sipariş sırasında belirtilen s&uuml;re i&ccedil;erisinde tamamlanarak kargoya verilir. &Uuml;ye, Şirket&rsquo;in &Uuml;r&uuml;n&rsquo;&uuml; kargoya verdiği tarihte işbu S&ouml;zleşme&rsquo;den kaynaklanan hizmet y&uuml;k&uuml;ml&uuml;l&uuml;klerinin sona erdiğini kabul eder.</span></li>
-</ol>
+</ul>
 <p><span style="font-weight: 400;">&nbsp;</span></p>
-<ol start="8">
+<ul start="8">
 <li><span style="font-weight: 400;">&Uuml;ye tarafından iletilen i&ccedil;eriğin &ouml;zelliklerinin baskıya uyumlu olmaması, siparişin başarıyla tamamlanamaması veya &Uuml;r&uuml;n&rsquo;&uuml;n matbaaya hazırlanmasında ek bilgi ihtiyacı s&ouml;z konusu olması halinde Şirket &Uuml;ye ile e-mail yoluyla iletişime ge&ccedil;er. &Uuml;ye en kısa s&uuml;rede ilgili aksaklığı giderecektir. Aksi halde hizmetin tamamlanamamasından Şirket sorumlu olmaz.</span></li>
-</ol>
+</ul>
 <p><span style="font-weight: 400;">&nbsp;</span></p>
-<ol start="9">
+<ul start="9">
 <li><span style="font-weight: 400;">Şirket, &Uuml;ye tarafından Şirket&rsquo;e iletilen veya Site &uuml;zerinden kendileri tarafından y&uuml;klenen, değiştirilen veya sağlanan bilgi ve i&ccedil;eriklerin doğruluğunu araştırma, bu bilgi ve i&ccedil;eriklerin g&uuml;venli, doğru ve hukuka uygun olduğunu kontrol etmekle y&uuml;k&uuml;ml&uuml; ve sorumlu olmadığı gibi, s&ouml;z konusu bilgi ve i&ccedil;eriklerin yanlış veya hatalı olmasından dolayı ortaya &ccedil;ıkacak hi&ccedil;bir zarardan da sorumlu tutulamaz.</span></li>
-</ol>
+</ul>
 <p><span style="font-weight: 400;">&Uuml;ye&rsquo;nin siparişi &uuml;zerine basımı ger&ccedil;ekleştirilen &Uuml;r&uuml;n ise basım tarihinden itibaren 1 (bir) aylık s&uuml;re sonunda Şirket kayıtlarından silinecektir.</span></p>
 <p><br /><br /></p>
 	</vx-card>
