@@ -1,8 +1,17 @@
 <template lang="html">
   <div>
+
     <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
       <div class="w-full mr-0 pr-0">
         <vs-button class="w-full" color="success" @click="newPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+        <json-excel
+      class="vs-component vs-button w-full vs-button-success vs-button-filled includeIcon"
+      :data="categories"
+      :fields="json_fields"
+      worksheet="My Worksheet"
+      name="category.xls">
+      Download Excel
+    </json-excel>
           </div>
       </div>
       <vs-table
@@ -73,14 +82,22 @@
 
 <script>
 import CategoryService from '@/services/category.service.js'
+import JsonExcel from 'vue-json-excel'
 export default {
+  components: {
+    JsonExcel
+  },
   data: () => ({
     selected: {},
     newCategory: {},
     categories: [],
     lang: [{ text: "İngilizce", value: "EN" }, { text: "Türkçe", value: "TR" }],
     updatePopup: false,
-    newPopup: false
+    newPopup: false,
+    json_fields: {
+        'Kategori Adı': 'name',
+        'Dil': 'lang',
+      }
   }),
   created: async function() {
     this.categories = await CategoryService.getAllCategories()

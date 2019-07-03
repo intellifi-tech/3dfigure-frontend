@@ -17,7 +17,14 @@
       <div class="col-md-3">
         <div class="flex items-center float-right pt-3">
           <div class="mr-2">
-            <vs-button color="warning" type="relief">Export</vs-button>
+                    <json-excel
+      class="vs-component vs-button vs-button-warning vs-button-relief"
+      :fetch="exportConcept"
+      :fields="json_fields"
+      worksheet="My Worksheet"
+      name="concepts.xls">
+      Download Excel
+    </json-excel>
           </div>
           <div>
             <vs-button color="success" type="relief" @click="newPopup = true">Yeni ekle</vs-button>
@@ -93,8 +100,12 @@
 <script>
 import ConceptService from "@/services/concept.service";
 import CategoryService from "@/services/category.service";
+import JsonExcel from 'vue-json-excel'
 
 export default {
+  components: {
+    JsonExcel
+  },
   data() {
     return {
       searchQuery: "",
@@ -106,7 +117,18 @@ export default {
       currentx: 1,
       categories: [],
       updatePopup: false,
-      newPopup: false
+      newPopup: false,
+      json_fields: {
+        'Sketch ID': 'sketchId',
+        'Konsept Adı': 'conceptName',
+        'Sketch Tag': 'sketchTag',
+        'Görünür mü?': 'isConceptsVisible',
+        'Açıklama': 'description',
+        'Index': 'showIndex',
+        'Fiyat': 'price',
+        'Dil': 'lang',
+        'Çift Resimler İçin mi': 'doubleConcept'
+      }
     };
   },
   created: async function() {
@@ -126,6 +148,12 @@ export default {
     showDetail(concept) {
       this.selected = concept
       this.updatePopup = true
+    },
+
+    exportConcept: async function() {
+      const exported = await ConceptService.exportConcept()
+      debugger
+      return exported
     },
 
     updateConcept: async function() {

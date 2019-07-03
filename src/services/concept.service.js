@@ -45,6 +45,15 @@ const ConceptService = {
         } catch (error) {
             return error
         }
+    },
+
+    exportConcept: async function() {
+        try {
+            const response = await ApiService.get("/concepts/export")
+            return response.data.content
+        } catch (error) {
+            return error
+        }
     }
 }
 

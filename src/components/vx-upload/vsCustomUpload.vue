@@ -87,14 +87,14 @@
         :class="{
           'on-progress-all-upload':percent != 0,
           'is-ready-all-upload':percent >= 100,
-          'disabled-upload':$attrs.hasOwnProperty('disabled') || limit?(srcs.length - itemRemove.length) >= Number(limit):false
+          'disabled-upload':$attrs.hasOwnProperty('disabled') || !limit
         }"
         class="con-input-upload img-upload bg-primary shadow-primary text-white p-0"
       >
         <input
           ref="fileInput"
           v-bind="$attrs"
-          :disabled="$attrs.disabled || limit?(srcs.length - itemRemove.length) >= Number(limit):false"
+          :disabled="$attrs.disabled || !limit"
           type="file"
           @change="getFiles"
         >
@@ -266,11 +266,11 @@ export default {
       }
     },
     removeFile(index) {
+      
       this.itemRemove.push(index);
       this.$emit("on-delete", this.filesx[index]);
-      setTimeout(() => {
-        this.filesx[index].remove = true;
-      }, 301);
+      this.filesx.splice(index,1)
+      this.srcs.splice(index, 1)
     },
     getFiles(e) {
       this.$emit("update:vsFile", e.target.value);

@@ -111,6 +111,7 @@ export default {
     initialize: async function() {
       this.userFigures = await FigureService.getUserFigures();
       this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
+      debugger
     },
     avatarUpload: async function($event, index) {
       // Avatar SDK isteğinin sonucu
