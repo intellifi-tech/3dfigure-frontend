@@ -9,10 +9,9 @@
     <registered-user/>
     <siparis-sayisi :isSales="false" />
     <siparis-sayisi :isSales="true" />
-    
-    <!--<uploaded-figures/>
-    <likes/>-->
     <yas-araligi/>
+    <likes :isLiked="false"/>
+    <likes :isLiked="true"/>
 </div>
  
 </div>
@@ -23,7 +22,6 @@ import ToplamSiparis from "@/components/statistics-cards/ToplamSiparis.vue";
 import ToplamMusteri from "@/components/statistics-cards/ToplamMusteri.vue";
 import RegisteredUser from "@/components/statistics-cards/RegisteredUser.vue";
 import SiparisSayisi from "@/components/statistics-cards/SiparisSayisi.vue";
-import UploadedFigures from "@/components/statistics-cards/UploadedFigures.vue";
 import Likes from "@/components/statistics-cards/Likes.vue";
 import YasAraligi from "@/components/statistics-cards/YasAraligi.vue";
 
@@ -33,7 +31,6 @@ export default {
     ToplamMusteri,
     RegisteredUser,
     SiparisSayisi,
-    UploadedFigures,
     Likes,
     YasAraligi
   },

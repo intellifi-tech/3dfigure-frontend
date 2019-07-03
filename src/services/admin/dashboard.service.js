@@ -46,6 +46,16 @@ const DashboardService = {
             return error
         }
     },
+
+    getFiguresMonthly: async function() {
+        try {
+            const response = await ApiService.get("/admin/figure/monthly")
+            debugger
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
     
     getAgeCategory: async function() {
         try {

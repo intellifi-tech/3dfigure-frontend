@@ -92,7 +92,8 @@ export default {
         isProduct: false,
         isDoubled: false,
         userId: null,
-        isLiked: false
+        isLiked: false,
+        createdDate: null,
       },
       currentAvatar: null,
       limit: null,
@@ -179,6 +180,7 @@ export default {
         formData.append("avatarKey", this.figure.avatarKey)
         formData.append("imageName", this.figure.imagePath)*/
                     this.figure.userId = this.$store.state.member.id;
+                    this.figure.createdDate = new Date()
                     FigureService.saveUserFigure(this.figure);
                     this.limit = this.limit - 1;
                   }
