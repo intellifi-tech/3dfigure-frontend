@@ -3,7 +3,7 @@
 	<total-card
 		:icon="isSales ? 'ShoppingBagIcon' : 'ShoppingCartIcon'"
 		icon-right
-		:statistic="totalOrder"
+		:statistic="totalOrder.toFixed(0)"
 		:statisticTitle="isSales ? 'Toplam Satış' : 'Toplam Sipariş'" />
 	</div>
 </template>
@@ -23,7 +23,7 @@ export default {
   },
   created: async function() {
     const data = await DashboardService.getTotalOrder()
-    this.totalOrder = this.isSales ? data.split("-")[1] : data.split("-")[0]
+    this.totalOrder = this.isSales ? Number(data.split("-")[1]) : Number(data.split("-")[0])
   },
   data() {
     return {

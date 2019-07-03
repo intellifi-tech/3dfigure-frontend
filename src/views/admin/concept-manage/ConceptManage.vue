@@ -20,7 +20,7 @@
             <vs-button color="warning" type="relief">Export</vs-button>
           </div>
           <div>
-            <vs-button color="success" type="relief">Yeni ekle</vs-button>
+            <vs-button color="success" type="relief" @click="newPopup = true">Yeni ekle</vs-button>
           </div>
         </div>
       </div>
@@ -50,6 +50,7 @@
               type="gradient"
               color="#7367F0"
               gradient-color-secondary="#CE9FFC"
+              @click="showDetail(concept)"
             >Düzenle</vs-button>
           </div>
         </vx-card>
@@ -58,6 +59,34 @@
     <div class="my-5">
       <vs-pagination :total="totalPages" v-model="currentx"></vs-pagination>
     </div>
+      <vs-popup :active.sync="updatePopup">
+        <div>
+          <vs-input label-placeholder="Konsept Adı" v-model="selected.conceptName"/>
+          <select class="form-control" v-model="selected.categoryId">
+                <option
+                  :key="index"
+                  v-for="(item,index) in categories"
+                  :value="item.id"
+                >{{item.name}}</option>
+          </select>
+          <vs-button class="float-right" @click="updateConcept">Güncelle</vs-button>
+        </div>
+      </vs-popup>
+      <vs-popup :active.sync="newPopup">
+        <div>
+          <vs-input label-placeholder="Konspet Adı" v-model="newConcept.conceptName"/>
+          <select class="form-control" v-model="newConcept.categoryId">
+                <option
+                  :key="index"
+                  v-for="(item,index) in categories"
+                  :value="item.id"
+                >{{item.name}}</option>
+          </select>
+          <vs-button class="float-right" @click="addConcept">Ekle</vs-button>
+        </div>
+      </vs-popup>
+      
+     
   </div>
 </template>
 
@@ -68,22 +97,48 @@ import CategoryService from "@/services/category.service";
 export default {
   data() {
     return {
-      activeItem: 0,
       searchQuery: "",
       concepts: [],
+      selected: {},
+      newConcept: {},
+      detailConcept: {},
       totalPages: 0,
-      currentx: 1
+      currentx: 1,
+      categories: [],
+      updatePopup: false,
+      newPopup: false
     };
   },
   created: async function() {
     const response = await ConceptService.getAllConceptsAdmin(0)
     this.concepts = response.content
     this.totalPages = response.totalPages
+    this.categories = await CategoryService.getAllCategories()
   },
   watch: {
     currentx: async function() {
       const response = await ConceptService.getAllConceptsAdmin(this.currentx - 1)
       this.concepts = response.content
+    }
+  },
+
+  methods: {
+    showDetail(concept) {
+      this.selected = concept
+      this.updatePopup = true
+    },
+
+    updateConcept: async function() {
+      await ConceptService.updateConcept(this.selected)
+      this.selected = {}
+      this.updatePopup = false
+    },
+
+    addConcept: async function() {
+      const res = await ConceptService.createConcept(this.newConcept)
+      this.concepts.push(res)
+      this.newPopup = false
+      this.newConcept = {}
     }
   }
 };

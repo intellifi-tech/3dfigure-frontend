@@ -29,6 +29,23 @@ const ConceptService = {
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
+    createConcept: async function(concept) {
+        try {
+            const response = await ApiService.post("/concepts", concept)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
+
+    updateConcept: async function(concept) {
+        try {
+            const response = await ApiService.put("/concepts", concept)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    }
 }
 
 export default ConceptService

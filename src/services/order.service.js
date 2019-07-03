@@ -24,7 +24,17 @@ const OrderService = {
 
     updateOrder: async function(order) {
         try {
+            debugger
             const response = await ApiService.put("/orders", order)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
+
+    deleteOrder: async function(id) {
+        try {
+            const response = await ApiService.delete("/orders/"+id)
             return response.data
         } catch (error) {
             return error

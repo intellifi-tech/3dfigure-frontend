@@ -32,7 +32,7 @@
             <vs-td>
               <div class="flex items-center">
                 <div class="mr-2">
-                  <vs-button class="px-3" color="primary" type="relief" @click="updateCategory(data[indextr])">Düzenle</vs-button>
+                  <vs-button class="px-3" color="primary" type="relief" @click="updateCategory">Düzenle</vs-button>
                 </div>
                 <div>
                   <vs-button class="px-3" color="danger" type="relief" @click="deleteCategory(data[indextr], indextr)">Sil</vs-button>

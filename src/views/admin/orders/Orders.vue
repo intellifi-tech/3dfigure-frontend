@@ -33,7 +33,7 @@
     <vs-td>
       <div class="flex items-center">
         <div class="mr-2">
-          <vs-button class="px-3" color="primary" type="relief">Güncelle</vs-button>
+          <vs-button class="px-3" color="primary" type="relief" @click="updateOrder">Güncelle</vs-button>
         </div>
         <div>
           <vs-button class="px-3" color="danger" type="relief">Sil</vs-button>
@@ -43,6 +43,19 @@
   </vs-tr>
 </template>
     </vs-table>
+    <vs-popup :active.sync="updatePopup">
+        <div>
+          <vs-input label-placeholder="Konsept Adı" v-model="selected.orderCode"/>
+          <select class="form-control" v-model="selected.status">
+                <option
+                  :key="index"
+                  v-for="(item,index) in statusList"
+                  :value="item.status"
+                >{{item.text}}</option>
+          </select>
+          <vs-button class="float-right" @click="updateOrder">Güncelle</vs-button>
+        </div>
+      </vs-popup>
   </div>
 </template>
 
@@ -51,16 +64,40 @@ import OrderService from '@/services/order.service.js'
 
 export default {
   data: () => ({
-    selected: [],
-    orders: [
-      
-    ]
+    selected: {},
+    updatePopup: false,
+    newPopup: false,
+    orders: [],
+    statusList: [{text: 'Analiz', status: 'ANALYSIS'}, {text: 'Kabul', status: 'ACCEPT'}, {text: 'Red', status: 'REJECT'}, {text: 'Yapılıyor', status: 'BUILD'},
+    {text: 'Kargoda', status: 'CARGO'},{text: 'Tamamlandı', status: 'DONE'}]
   }),
   created: async function() {
     this.orders = await OrderService.getAllOrdersForAdmin()
   },
   methods: {
-    
+    updateOrder: async function() {
+      this.updatePopup = !this.updatePopup
+      if (!this.updatePopup) {
+        await OrderService.updateOrder(this.selected)
+      }
+    },
+    deleteOrder: function(order, index) {
+      var self = this
+      this.$vs.dialog({
+        type:'confirm',
+        color: 'danger',
+        title: `Confirm`,
+        text: `${order.orderCode} silmek istiyor musunuz?`,
+        accept: async function() {
+          await OrderService.deleteOrder(order.id)
+          self.orders.splice(index, 1)
+          self.$vs.notify({
+            color: 'success',
+            title:'Sipariş silindi'
+          });
+        }
+      })
+    },
   }
 };
 </script>

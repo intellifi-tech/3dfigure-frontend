@@ -21,10 +21,6 @@
         <img
           v-if="img.avatarKey"
           :alt="img.avatarKey"
-          :style="{
-              maxWidth:'100%',
-              maxHeight:'100%'
-            }"
           :key="index"
           :src="'assets/images/figures/'+img.imagePath"
           @touchend="viewImage(img.imagePath,$event, img.avatarKey)"
@@ -480,7 +476,9 @@ export default {
 }
 
 .con-img-upload .img-upload img{
-    max-width: 100%;
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
 }
 
 .con-img-upload .img-upload {
