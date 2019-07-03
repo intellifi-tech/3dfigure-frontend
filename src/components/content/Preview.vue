@@ -15,7 +15,9 @@
         </span>Bilgilendirme Panosu </h4>
         <p class="mb-3">
           Modelde bazı eksiklikler olabilir, hiç endişe etmeyin. Siz istediğiniz konsepti seçin. Geri kalan tüm düzenlemeleri biz tasarım aşamasında gerçekleştirmekteyiz. Sonrasında ise siparişinizi üretime almadan önce izin onayınıza sunacağız.
-
+        </p>
+        <p class="mb-3" v-if="!limit">
+          Limitiniz dolduysa uygulamamızı paylaşarak fotoğraf yükleme hakkına sahip olabilirsiniz.
         </p>
       </vx-card>
     </div>
