@@ -152,7 +152,6 @@ export default {
 
     exportConcept: async function() {
       const exported = await ConceptService.exportConcept()
-      debugger
       return exported
     },
 

@@ -24,7 +24,6 @@ const OrderService = {
 
     updateOrder: async function(order) {
         try {
-            debugger
             const response = await ApiService.put("/orders", order)
             return response.data
         } catch (error) {

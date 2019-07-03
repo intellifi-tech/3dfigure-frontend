@@ -29,7 +29,6 @@ export default {
       const value = !this.isLiked ? element.split("-")[1] : element.split("-")[2]
       d.splice(index, 1, value);
     });
-    debugger
     this.lineAreaChartSpline.series[0].data = d;
   },
   data() {
