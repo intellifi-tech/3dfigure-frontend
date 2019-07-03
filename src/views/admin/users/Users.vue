@@ -2,7 +2,7 @@
   <div>
     <vs-table
       pagination
-      max-items="2"
+      max-items="5"
       search
       :sst="true"
       @change-page="handleChangePage"

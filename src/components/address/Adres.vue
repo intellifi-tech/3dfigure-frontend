@@ -172,7 +172,7 @@ export default {
       name: "",
       surname: "",
       adres: {
-        id: -1,
+        id: null,
         taxAdmin: "",
         taxNo: "",
         person: "",
