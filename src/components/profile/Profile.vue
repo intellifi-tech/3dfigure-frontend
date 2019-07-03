@@ -7,19 +7,6 @@
           <div class="md:w-1/2">
             <h3>Profil Bilgileri</h3>
             <vx-card class="shadow-md">
-                       <div class="vx-row mb-2">
-                <div class="vx-col w-full">
-                  <datepicker
-                    class="w-full"
-                    :disabled="isUpdated"
-                    v-model="member.birthDay"
-                    :disabled-dates="datePicker.disableD"
-                    :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
-                    :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
-                    placeholder="Doğum Tarihi"
-                  ></datepicker>
-                </div>
-              </div>
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
                   <vs-input
@@ -38,10 +25,33 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-2">
+
+              <div class="vx-row mb-3">
                 <div class="vx-col w-full">
+                  <vs-input
+                    class="w-full"
+                    :readonly="isUpdated"
+                    type="email"
+                    label-placeholder="E-posta"
+                    v-model="member.login"
+                  />
+                </div>
+              </div>
+              <div class="vx-row mb-4">
+                <div class="vx-col w-1/2">
+                  <datepicker
+                    class="w-full"
+                    :disabled="isUpdated"
+                    v-model="member.birthDay"
+                    :disabled-dates="datePicker.disableD"
+                    :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
+                    :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
+                    placeholder="Doğum Tarihi"
+                  ></datepicker>
+                </div>
+                <div class="vx-col w-1/2">
                   <select
-                    class="register-sex form-control form-control-lg"
+                    class="select-input form-control-lg w-full"
                     :disabled="isUpdated"
                     v-model="member.sex"
                   >
@@ -53,18 +63,6 @@
                   </select>
                 </div>
               </div>
-              <div class="vx-row mb-2">
-                <div class="vx-col w-full">
-                  <vs-input
-                    class="w-full"
-                    :readonly="isUpdated"
-                    type="email"
-                    label-placeholder="Email"
-                    v-model="member.login"
-                  />
-                </div>
-              </div>
-     
               <div class="vx-row">
                 <div class="vx-col w-1/2 text-left">
                   <vs-button
@@ -97,14 +95,20 @@
 
               <template slot-scope="{data}">
                 <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-                  
                   <vs-td class="max-ch" :data="data[indextr].person">{{data[indextr].person}}</vs-td>
 
                   <vs-td :data="data[indextr].addressName">{{data[indextr].addressName}}</vs-td>
 
                   <vs-td :data="data[indextr].mobile">{{data[indextr].mobile}}</vs-td>
 
-                  <vs-td><vs-button color="danger" type="flat" icon="clear"  @click="deleteAddress(indextr, data[indextr])"></vs-button></vs-td>
+                  <vs-td>
+                    <vs-button
+                      color="danger"
+                      type="flat"
+                      icon="clear"
+                      @click="deleteAddress(indextr, data[indextr])"
+                    ></vs-button>
+                  </vs-td>
                 </vs-tr>
               </template>
             </vs-table>
@@ -176,7 +180,7 @@
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
                   <select
-                    class="form-control form-control-lg selecting selectExample w-full"
+                    class="select-input form-control-lg selecting selectExample w-full"
                     label="Şehir"
                     v-model="city"
                   >
@@ -189,7 +193,7 @@
                 </div>
                 <div class="vx-col w-1/2">
                   <select
-                    class="form-control form-control-lg selecting selectExample w-full"
+                    class="select-input form-control-lg selecting selectExample w-full"
                     label="İlçe / Semt"
                     v-model="adres.townId"
                     :class="{'form-control-danger': this.$v.adres.townId.$invalid}"
@@ -229,8 +233,9 @@
             </vx-card>
           </div>
         </vs-tab>
-        <vs-tab vs-label="Şifre Değiştir" class="row pt-5">
+        <vs-tab vs-label="Şifre Değiştir" class="row pt-5 pl-4">
           <div class="md:w-1/2">
+           <h3>Şifre Değiştir</h3>
             <vx-card class="shadow-md">
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
@@ -255,7 +260,7 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-2">
+              <div class="vx-row mb-4">
                 <div class="vx-col w-full">
                   <vs-input
                     class="w-full"
@@ -359,8 +364,8 @@ export default {
   watch: {
     adres() {
       if (this.adres.person !== undefined) {
-        this.name = this.adres.person.split(" ")[0]
-        this.surname = this.adres.person.split(" ")[1] 
+        this.name = this.adres.person.split(" ")[0];
+        this.surname = this.adres.person.split(" ")[1];
       }
     },
     city: async function() {
@@ -375,28 +380,26 @@ export default {
   },
   methods: {
     deleteAddress: async function(index, adres) {
-      await AddressService.deleteUserAddress(adres.id)
-      this.addresses.splice(index, 1)
-      this.adres = {}
-      this.name = ""
-      this.surname = ""
-
+      await AddressService.deleteUserAddress(adres.id);
+      this.addresses.splice(index, 1);
+      this.adres = {};
+      this.name = "";
+      this.surname = "";
     },
     addOrUpdateAddress: async function() {
       if (!this.$v.adres.$invalid) {
         if (this.adres.id == null) {
           var res = await AddressService.saveUserAddress(this.adres);
-          this.addresses.push(res)
+          this.addresses.push(res);
         } else {
           await AddressService.updateUserAddress(this.adres);
         }
 
         this.adres = { id: null };
-        this.name = "",
-        this.surname = ""
+        (this.name = ""), (this.surname = "");
       } else {
         this.$vs.notify({
-          text: "İşlem Başarısız",
+          text: "İşlem Başarısız!",
           color: "danger"
         });
       }
@@ -407,15 +410,15 @@ export default {
       await this.$store.dispatch("getCurrentUser");
       this.$router.push("/profile");
       this.$vs.notify({
-        text: "Güncelleme Başarılı"
+        text: "Güncelleme Başarılı!"
       });
     },
     clearAddress() {
-      this.name = "",
-      this.surname = "",
-      this.adres = {
-        id: null
-      };
+      (this.name = ""),
+        (this.surname = ""),
+        (this.adres = {
+          id: null
+        });
     },
     changePassword: async function() {
       if (!this.$v.passwordDTO.$invalid) {
@@ -423,7 +426,7 @@ export default {
         this.passwordDTO = {};
       } else {
         this.$vs.notify({
-          text: "Yeni Şifreler uyuşmuyor",
+          text: "Yeni Şifreler Uyuşmuyor!",
           color: "danger"
         });
       }
@@ -438,7 +441,7 @@ export default {
         minLength: minLength(6),
         maxLength: maxLength(15)
       },
-      confirm: {required, sameAsPassword: sameAs("newPassword")}
+      confirm: { required, sameAsPassword: sameAs("newPassword") }
     },
     adres: {
       taxNo: {
@@ -469,14 +472,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.vs-button-text {
-  color: #fff !important;
-}
-.max-ch{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 20ch;
-}
-</style>

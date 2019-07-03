@@ -10,3 +10,28 @@ export default {
   }
 };
 </script>
+<style>
+.vs-tabs .vs-button-text{
+  color:#fff !important;
+}
+.vdp-datepicker{
+  font-size:14px
+}
+.vdp-datepicker input{
+  width:100%
+}
+.vdp-datepicker .vdp-datepicker__calendar{
+   bottom: 0;
+   width:250px;
+}
+.vdp-datepicker .vdp-datepicker__calendar .cell{
+     height: 30px;
+    line-height: 30px;
+}
+.max-ch{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20ch;
+}
+</style>

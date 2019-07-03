@@ -49,7 +49,7 @@
                     v-for="(item,index) in sexList"
                   />
               </vs-select>-->
-              <select class="register-sex form-control form-control-lg" v-model="sex">
+              <select class="register-sex form-control-lg w-full" v-model="sex">
                 <option
                   :key="index"
                   v-for="(item,index) in sexList"
@@ -165,9 +165,3 @@ export default {
   }
 };
 </script>
-<style>
-.register-sex {
-  font-size: 1rem;
-  color: #7f7c96;
-}
-</style>
