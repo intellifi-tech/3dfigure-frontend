@@ -51,18 +51,22 @@ const router = new Router({
 			props: true
 		},
 		{
-			// =============================================================================
-			// LANDING LAYOUT ROUTES
-			// =============================================================================
 			path: '/uyelik-sozlesmesi',
 			component: () => import('./views/pages/UyelikSozlesmesi.vue'),
 			meta: {
 				public: true
 			},
 			children: [
-				// =============================================================================
-				// Theme Routes
-				// =============================================================================
+
+			],
+		},
+		{
+			path: '/kisisel-veri-kanunu',
+			component: () => import('./views/pages/KisiselVeriKanunu.vue'),
+			meta: {
+				public: true
+			},
+			children: [
 
 			],
 		},
