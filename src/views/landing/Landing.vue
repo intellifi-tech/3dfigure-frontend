@@ -1774,10 +1774,16 @@
       <div class="bg-secondary mb-5 pb-3 pt-4 w-full">
         <div class="container">
           <div class="row">
-            <div class="col-md-12 pl-md-4">
+            <div class="col-md-3 pl-md-4">
               <a class="flex hover:text-white" href="/uyelik-sozlesmesi">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
                  <h5 class="hover:underline pl-3 text-white">Üyelik Sözleşmesi</h5>
+             </a>     
+             </div>    
+              <div class="col-md-3">
+              <a class="flex hover:text-white" href="/kisisel-veri-kanunu">
+                 <i class="fas fa-file-alt text-2xl text-dark"></i>
+                 <h5 class="hover:underline pl-3 text-white">Kişisel Veri Kanunu</h5>
              </a>     
              </div>          
           </div>
