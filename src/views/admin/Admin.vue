@@ -9,9 +9,10 @@
     <registered-user/>
     <siparis-sayisi :isSales="false" />
     <siparis-sayisi :isSales="true" />
-    <yas-araligi/>
     <likes :isLiked="false"/>
     <likes :isLiked="true"/>
+    <yas-araligi/>
+ 
 </div>
  
 </div>

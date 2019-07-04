@@ -4137,3 +4137,6 @@ text-decoration: underline
   font-size: 1rem;
   color: #7f7c96;
 }
+.vs-tabs .vs-button-text,.vs-tabs .vs-button .vs-icon ,.vs-tabs .vs-pagination--buttons:hover .vs-icon{
+  color:#fff !important;
+}

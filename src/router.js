@@ -164,6 +164,11 @@ const router = new Router({
 					component: () => import('@/views/admin/users/Users.vue')
 				},
 				{
+					path: '/admin/user-detail',
+					name: 'user-detail',
+					component: () => import('@/views/admin/users/UserDetail.vue')
+				},
+				{
 					path: '/admin/pricing',
 					name: 'pricing',
 					component: () => import('@/views/admin/pricing/Pricing.vue')
@@ -193,6 +198,12 @@ const router = new Router({
 					name: 'email-admin',
 					component: () => import('@/views/admin/email-admin/EmailAdmin.vue')
 				},
+				{
+					path: '/admin/landing',
+					name: 'landing-admin',
+					component: () => import('@/views/admin/landing/Landing.vue')
+				},
+				
 				
 				
 			]

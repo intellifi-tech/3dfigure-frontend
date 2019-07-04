@@ -1,6 +1,8 @@
 <template lang="html">
 <div class="col-md-4">
 	<total-card
+     toLink="/admin/orders"
+    :btnColor="isSales ? 'success' : 'primary'"
 		:icon="isSales ? 'ShoppingBagIcon' : 'ShoppingCartIcon'"
 		icon-right
 		:statistic="totalOrder.toFixed(0)"
