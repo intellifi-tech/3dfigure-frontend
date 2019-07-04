@@ -2,7 +2,7 @@
   <vx-card class="overflow-hidden">
     <div slot="no-body">
       <div
-        class="p-6 pb-0"
+        class="p-6 pb-10"
         :class="{'flex justify-between flex-row-reverse items-center': iconRight}"
       >
         <feather-icon
@@ -16,16 +16,35 @@
           <span>{{ statisticTitle }}</span>
         </div>
       </div>
+      <vs-button class="w-100 rounded-0 text-right" :color="btnColor" :type="btnType">
+        <router-link :to="toLink" class="text-white">{{ btnText }}</router-link>
+      </vs-button>
     </div>
   </vx-card>
 </template>
 
 <script>
-
-
 export default {
-
+  data() {
+    return {};
+  },
   props: {
+    btnText: {
+      type: String,
+      default: "Detaylar"
+    },
+    toLink: {
+      type: String,
+      required: true
+    },
+    btnType: {
+      type: String,
+      default: "gradient"
+    },
+    btnColor: {
+      type: String,
+      default: "primary"
+    },
     icon: {
       type: String,
       required: true

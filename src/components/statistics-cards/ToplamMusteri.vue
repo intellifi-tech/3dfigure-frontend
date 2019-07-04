@@ -1,6 +1,8 @@
 <template lang="html">
 <div class="col-md-4">
 	<total-card
+    toLink="/admin/users"
+    btnColor="warning"
 		icon="UsersIcon"
 		icon-right
 		:statistic='customerCount'

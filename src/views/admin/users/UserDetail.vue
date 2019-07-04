@@ -3,122 +3,13 @@
   <div class="vx-col w-full mb-base">
     <div class="mt-6">
       <vs-tabs vs-alignment="fixed" class="shadow-none p-3">
-        <vs-tab vs-label="Profilim" class="pt-5" @click="isUpdated=true">
+        <vs-tab vs-label="Genel" class="row pt-5">
           <div class="md:w-1/2">
-            <h3>Profil Bilgileri</h3>
-            <vx-card class="shadow-md">
+            <vx-card class="shadow-md mx-2">
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
                   <vs-input
-                    class="w-full"
-                    :readonly="isUpdated"
-                    label-placeholder="Ad"
-                    v-model="member.firstName"
-                  />
-                </div>
-                <div class="vx-col w-1/2">
-                  <vs-input
-                    class="w-full"
-                    :readonly="isUpdated"
-                    label-placeholder="Soyad"
-                    v-model="member.lastName"
-                  />
-                </div>
-              </div>
-
-              <div class="vx-row mb-3">
-                <div class="vx-col w-full">
-                  <vs-input
-                    class="w-full"
-                    :readonly="isUpdated"
-                    type="email"
-                    label-placeholder="E-posta"
-                    v-model="member.login"
-                  />
-                </div>
-              </div>
-              <div class="vx-row mb-4">
-                <div class="vx-col w-1/2">
-                  <datepicker
-                    class="w-full"
-                    :disabled="isUpdated"
-                    v-model="member.birthDay"
-                    :disabled-dates="datePicker.disableD"
-                    :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
-                    :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
-                    placeholder="Doğum Tarihi"
-                  ></datepicker>
-                </div>
-                <div class="vx-col w-1/2">
-                  <select
-                    class="select-input form-control-lg w-full"
-                    :disabled="isUpdated"
-                    v-model="member.sex"
-                  >
-                    <option
-                      :key="index"
-                      v-for="(item,index) in sexList"
-                      :value="item.value"
-                    >{{item.text}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="vx-row">
-                <div class="vx-col w-1/2 text-left">
-                  <vs-button
-                    :disabled="isUpdated"
-                    color="success"
-                    @click="updateMember"
-                    type="relief"
-                  >Güncelle</vs-button>
-                </div>
-                <div class="vx-col w-1/2 text-right">
-                  <vs-button type="relief" @click="isUpdated = false">Düzenle</vs-button>
-                </div>
-              </div>
-            </vx-card>
-          </div>
-        </vs-tab>
-
-        <vs-tab vs-label="Adreslerim" class="row pt-5">
-          <div class="md:w-1/2">
-            <vs-table class="px-4" v-model="adres" :data="addresses">
-              <template slot="header">
-                <h3>Adresler</h3>
-              </template>
-              <template slot="thead">
-                <vs-th>Kişi</vs-th>
-                <vs-th>Adres Adı</vs-th>
-                <vs-th>Telefon</vs-th>
-                <vs-th>Sil</vs-th>
-              </template>
-
-              <template slot-scope="{data}">
-                <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-                  <vs-td class="max-ch" :data="data[indextr].person">{{data[indextr].person}}</vs-td>
-
-                  <vs-td :data="data[indextr].addressName">{{data[indextr].addressName}}</vs-td>
-
-                  <vs-td :data="data[indextr].mobile">{{data[indextr].mobile}}</vs-td>
-
-                  <vs-td>
-                    <vs-button
-                      color="danger"
-                      type="filled"
-                      icon="clear"
-                      @click="deleteAddress(indextr, data[indextr])"
-                    ></vs-button>
-                  </vs-td>
-                </vs-tr>
-              </template>
-            </vs-table>
-          </div>
-
-          <div class="md:w-1/2">
-            <vx-card class="shadow-md mx-4">
-              <div class="vx-row mb-2">
-                <div class="vx-col w-1/2">
-                  <vs-input
+                    disabled
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.name.$invalid}"
                     label-placeholder="Ad"
@@ -127,6 +18,7 @@
                 </div>
                 <div class="vx-col w-1/2">
                   <vs-input
+                    disabled
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.surname.$invalid}"
                     label-placeholder="Soyad"
@@ -137,6 +29,7 @@
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
                   <vs-input
+                    disabled
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.addressName.$invalid}"
                     label-placeholder="Adres Adı"
@@ -147,6 +40,7 @@
               <div class="vx-row mb-2">
                 <div class="vx-col w-full mb-2">
                   <vs-input
+                    disabled
                     type="text"
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.address.$invalid}"
@@ -158,6 +52,7 @@
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
                   <vs-input
+                    disabled
                     type="tel"
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}"
@@ -169,6 +64,7 @@
               <div class="vx-row mb-6">
                 <div class="vx-col w-full">
                   <vs-input
+                    disabled
                     type="text"
                     class="w-full"
                     label-placeholder="TCKN/Vergi No"
@@ -180,11 +76,13 @@
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
                   <select
+                    disabled
                     class="select-input form-control-lg selecting selectExample w-full"
                     label="Şehir"
                     v-model="city"
                   >
                     <option
+                      disabled
                       :key="index"
                       :value="item.id"
                       v-for="(item,index) in cities"
@@ -193,12 +91,14 @@
                 </div>
                 <div class="vx-col w-1/2">
                   <select
+                    disabled
                     class="select-input form-control-lg selecting selectExample w-full"
                     label="İlçe / Semt"
                     v-model="adres.townId"
                     :class="{'form-control-danger': this.$v.adres.townId.$invalid}"
                   >
                     <option
+                      disabled
                       :key="index"
                       :value="item.id"
                       v-for="(item,index) in towns"
@@ -210,6 +110,7 @@
               <div class="vx-row mb-6">
                 <div class="vx-col w-full">
                   <vs-input
+                    disabled
                     type="text"
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.postCode.$invalid}"
@@ -218,67 +119,143 @@
                   />
                 </div>
               </div>
-              <div class="vx-row">
-                <div class="vx-col w-1/2 text-left">
-                  <vs-button
-                    color="success"
-                    type="relief"
-                    @click="addOrUpdateAddress"
-                  >{{this.adres.id != null ? 'Güncelle' : 'Ekle'}}</vs-button>
-                </div>
-                <div class="vx-col w-1/2 text-right">
-                  <vs-button type="relief" @click="clearAddress">Temizle</vs-button>
-                </div>
-              </div>
             </vx-card>
           </div>
-        </vs-tab>
-        <vs-tab vs-label="Şifre Değiştir" class="row pt-5 pl-4">
           <div class="md:w-1/2">
-           <h3>Şifre Değiştir</h3>
-            <vx-card class="shadow-md">
-              <div class="vx-row mb-2">
-                <div class="vx-col w-full">
-                  <vs-input
-                    class="w-full"
-                    type="password"
-                    label-placeholder="Eski Şifre"
-                    v-model="passwordDTO.currentPassword"
-                  />
-                </div>
+            <vs-table class="px-4" v-model="adres" :data="addresses">
+              <template slot="header">
+                <h3>Adresler</h3>
+              </template>
+              <template slot="thead">
+                <vs-th>Kişi</vs-th>
+                <vs-th>Adres Adı</vs-th>
+                <vs-th>Telefon</vs-th>
+                <vs-th>İşlemler</vs-th>
+              </template>
+
+              <template slot-scope="{data}">
+                <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
+                  <vs-td class="max-ch" :data="data[indextr].person">{{data[indextr].person}}</vs-td>
+
+                  <vs-td :data="data[indextr].addressName">{{data[indextr].addressName}}</vs-td>
+
+                  <vs-td :data="data[indextr].mobile">{{data[indextr].mobile}}</vs-td>
+
+                  <vs-td>
+                    <vs-button color="primary" type="filled" @click="detailPopup=true">Detay</vs-button>
+                  </vs-td>
+                </vs-tr>
+              </template>
+            </vs-table>
+          </div>
+          <vs-popup :active.sync="detailPopup">
+            <div class="vx-row mb-2">
+              <div class="vx-col w-1/2">
+                <vs-input
+                  disabled
+                  class="w-full"
+                  :class="{'vs-input-danger':this.$v.name.$invalid}"
+                  label-placeholder="Ad"
+                  v-model="name"
+                />
               </div>
-              <div class="vx-row mb-2">
-                <div class="vx-col w-full">
-                  <vs-input
-                    class="w-full"
-                    icon-after="true"
-                    icon="visibility"
-                    :type="'password'"
-                    :class="{'vs-input-danger':this.$v.passwordDTO.newPassword.$invalid}"
-                    label-placeholder="Yeni Şifre"
-                    v-model="passwordDTO.newPassword"
-                  />
-                </div>
+              <div class="vx-col w-1/2">
+                <vs-input
+                  disabled
+                  class="w-full"
+                  :class="{'vs-input-danger':this.$v.surname.$invalid}"
+                  label-placeholder="Soyad"
+                  v-model="surname"
+                />
               </div>
-              <div class="vx-row mb-4">
-                <div class="vx-col w-full">
-                  <vs-input
-                    class="w-full"
-                    icon-after="true"
-                    icon="visibility"
-                    :type="'password'"
-                    :class="{'vs-input-danger':this.$v.passwordDTO.confirm.$invalid}"
-                    label-placeholder="Tekrar Yeni Şifre"
-                    v-model="passwordDTO.confirm"
-                  />
-                </div>
+            </div>
+            <div class="vx-row mb-2">
+              <div class="vx-col w-full">
+                <vs-input
+                  disabled
+                  class="w-full"
+                  :class="{'vs-input-danger':this.$v.adres.addressName.$invalid}"
+                  label-placeholder="Adres Adı"
+                  v-model="adres.addressName"
+                />
               </div>
-              <div class="vx-row">
-                <div class="vx-col w-1/2 text-left">
-                  <vs-button color="success" @click="changePassword" type="relief">Güncelle</vs-button>
-                </div>
+            </div>
+            <div class="vx-row mb-2">
+              <div class="vx-col w-full mb-2">
+                <vs-input
+                  disabled
+                  type="text"
+                  class="w-full"
+                  :class="{'vs-input-danger':this.$v.adres.address.$invalid}"
+                  label-placeholder="Adres"
+                  v-model="adres.address"
+                />
               </div>
-            </vx-card>
+            </div>
+            <div class="vx-row mb-2">
+              <div class="vx-col w-full">
+                <vs-input
+                  disabled
+                  type="tel"
+                  class="w-full"
+                  :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}"
+                  label-placeholder="Telefon"
+                  v-model="adres.mobile"
+                />
+              </div>
+            </div>
+          </vs-popup>
+        </vs-tab>
+        <vs-tab vs-label="Sipairiş Geçmişi" class="pt-5" @click="isUpdated=true">
+          <div class="w-100">
+            <div class="row">
+              <div class="col-md-3 my-3" v-for="(concept, index) in concepts" :key="index">
+                <vx-card class="shadow">
+                  <div slot="no-body">
+                    <iframe
+                      class="responsive card-img-top"
+                      style="height: 170px"
+                      :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed'"
+                      frameborder="0"
+                      allow="autoplay; fullscreen; vr"
+                      mozallowfullscreen="true"
+                      webkitallowfullscreen="true"
+                    ></iframe>
+                  </div>
+                  <h5 class="mb-2">{{concept.conceptName}}</h5>
+                  <p class="text-grey">{{concept.description}}</p>
+                  <p class="text-grey">Fiyat: {{concept.price}}</p>
+                  <p class="text-grey">{{concept.doubleConcept ? 'Çift Kişilik' : 'Tek Kişilik'}}</p>
+                  <p
+                    class="text-grey"
+                  >{{concept.isConceptsVisible ? 'Konsept Aktif' : 'Konsept Aktif Değil'}}</p>
+                  <div class="flex justify-between flex-wrap">
+                    <vs-button
+                      class="shadow-md w-full px-1 mt-3"
+                      type="gradient"
+                      color="#7367F0"
+                      gradient-color-secondary="#CE9FFC"
+                      @click="showDetail(concept)"
+                    >Detaylar</vs-button>
+                  </div>
+                </vx-card>
+              </div>
+            </div>
+            <div class="my-5">
+              <vs-pagination :total="totalPages" v-model="currentx"></vs-pagination>
+            </div>
+            <vs-popup :active.sync="updatePopup">
+              <div>
+                <vs-input label-placeholder="Konsept Adı" v-model="selected.conceptName" />
+                <select class="form-control" v-model="selected.categoryId">
+                  <option
+                    :key="index"
+                    v-for="(item,index) in categories"
+                    :value="item.id"
+                  >{{item.name}}</option>
+                </select>
+              </div>
+            </vs-popup>
           </div>
         </vs-tab>
       </vs-tabs>
@@ -300,9 +277,22 @@ import PlaceService from "@/services/place.service";
 import Datepicker from "vuejs-datepicker";
 import * as lang from "vuejs-datepicker/src/locale";
 import UserService from "@/services/user.service";
+import ConceptService from "@/services/concept.service";
+import CategoryService from "@/services/category.service";
 export default {
   data() {
     return {
+      searchQuery: "",
+      concepts: [],
+      selected: {},
+      newConcept: {},
+      detailConcept: {},
+      totalPages: 0,
+      currentx: 1,
+      categories: [],
+      updatePopup: false,
+      newPopup: false,
+      detailPopup: false,
       isUpdated: true,
       name: "",
       surname: "",
@@ -360,8 +350,16 @@ export default {
     this.member.login = this.$store.state.member.email;
     this.member.sex = this.$store.state.member.sex;
     this.member.birthDay = this.$store.state.member.birthDay;
+    const response = await ConceptService.getAllConceptsAdmin(0);
+    this.concepts = response.content;
+    this.totalPages = response.totalPages;
+    this.categories = await CategoryService.getAllCategories();
   },
   watch: {
+      currentx: async function() {
+      const response = await ConceptService.getAllConceptsAdmin(this.currentx - 1)
+      this.concepts = response.content
+    },
     adres() {
       if (this.adres.person !== undefined) {
         this.name = this.adres.person.split(" ")[0];
@@ -379,6 +377,10 @@ export default {
     }
   },
   methods: {
+      showDetail(concept) {
+      this.selected = concept
+      this.updatePopup = true
+    },
     deleteAddress: async function(index, adres) {
       await AddressService.deleteUserAddress(adres.id);
       this.addresses.splice(index, 1);

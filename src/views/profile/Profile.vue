@@ -11,9 +11,6 @@ export default {
 };
 </script>
 <style>
-.vs-tabs .vs-button-text{
-  color:#fff !important;
-}
 .vdp-datepicker{
   font-size:14px
 }

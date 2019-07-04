@@ -1,8 +1,6 @@
 <template>
   <div class="vx-col w-full mb-base pt-3">
-     <h3>
-          Konseptler
-        </h3>
+     <h3>Konseptler</h3>
     <div class="row">
       <div class="col-md-9">
         <div class="search-page__search-bar flex items-center pt-3">

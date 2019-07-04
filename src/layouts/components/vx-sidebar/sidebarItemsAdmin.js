@@ -53,6 +53,12 @@ export default [
 		icon: "UsersIcon",
 	},
 	{
+		url: "/admin/landing",
+		name: "Ön Sayfa",
+		slug: "landing",
+		icon: "LayoutIcon",
+	},
+	{
 		url: "/admin/catalog",
 		name: "Landing",
 		slug: "catalog",
