@@ -107,6 +107,7 @@ const messages = {
         },
         login: {
             login: 'Login and Create 3D Figure',
+            register:'Register and Create 3D Figure',
             user: 'Username',
             pass: 'Password',
             rem: 'Remember Me',
@@ -126,7 +127,7 @@ const messages = {
             email: 'E-mail',
             pass: 'Password',
             confirm: 'Confirm Password',
-            terms: 'I accept the terms & conditions',
+            terms: 'I accept the terms & conditions.',
             alert: {
                 title: 'Error',
                 message: 'There was an unwanted problem. Please try again later.'
@@ -242,6 +243,7 @@ const messages = {
         },
         login: {
             login: 'Giriş Yap ve 3D Figürünü Oluştur',
+            register: 'Kayıt Ol ve 3D Figürünü Oluştur',
             user: 'Kullanıcı Adı',
             pass: 'Parola',
             rem: 'Beni Hatırla',
@@ -261,7 +263,7 @@ const messages = {
             email: 'E-posta',
             pass: 'Parola',
             confirm: 'Parola Onayı',
-            terms: 'Kullanım şartlarını kabul ediyorum',
+            terms: 'Kullanım şartlarını kabul ediyorum.',
             alert: {
                 title: 'Hata Oluştu',
                 message: 'İstenmeyen bir sorun oluştu. Lütfen daha sonra tekrar deneyiniz.'
