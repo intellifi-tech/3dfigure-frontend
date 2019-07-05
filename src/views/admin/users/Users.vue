@@ -39,7 +39,7 @@
 
     <vs-td> <div class="flex items-center ">
           <div>
-            <vs-button class="px-3"  color="primary" type="relief" @click="userDetail(data[indextr])">Detay</vs-button>
+            <vs-button class="px-3"  color="primary" type="relief" @click="$router.push('/admin/user-detail?id='+data[indextr].id)">Detay</vs-button>
           </div>
           <div>
             <vs-button class="px-3"  color="danger" type="relief" @click="userDelete(data[indextr], indextr)">Sil</vs-button>
@@ -49,15 +49,6 @@
   </vs-tr>
 </template>
     </vs-table>
-    <vs-popup :active.sync="detailUserPopup">
-      <vs-card>
-      <div slot="header">
-        <h3>
-          {{this.user.login}}
-        </h3>
-      </div>
-      </vs-card>
-    </vs-popup>
   </div>
 </template>
 
