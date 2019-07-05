@@ -126,7 +126,7 @@
             <li>
               <vs-popup
                 class="holamundo login-popup"
-                :title="$t('login.login')"
+                :title="$t('login.register')"
                 :active.sync="this.$store.state.landing.registerPopup"
                 @close="closePopup"
               >
@@ -229,10 +229,11 @@
     <div class="inline-feature-area padding-top-120" id="howToUse">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 pl-0">
+          <div class="col-lg-12 col-lg-12 mx-4 mx-md-0 pl-md-0">
             <div class="how-to-use">
-              <ul id="ul-man-or-woman" class="row mb-5">
-                <p class="btn-switch">
+              <ul id="ul-man-or-woman" class="row items-center mb-5">
+                <h3 class="pr-3">Cinsiyet seç :</h3>
+                <p class="btn-switch mb-0">
                   <input
                     type="radio"
                     id="yes"
@@ -261,7 +262,7 @@
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
                 <div class="man-div model-column row" v-show="man">
-                  <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
+                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mb-md-0">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
@@ -277,7 +278,7 @@
                     </div>
                     <ul class="concepts-list">
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
                               id="mansampleFirst"
@@ -295,7 +296,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
                               id="mansampleSecond"
@@ -313,7 +314,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
                               id="mansampleThird"
@@ -331,7 +332,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
                               id="mansampleFourth"
@@ -374,7 +375,7 @@
                   </div>
 
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
-                    <div class="single-inline-feature-item">
+                    <div class="single-inline-feature-item pr-5 pr-md-3">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/man/man-true.jpg"
@@ -386,46 +387,46 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-7 pr-lg-0">
+                  <div class="col-lg-7 col-lg-7 mt-4 mt-md-0 pr-lg-0">
                     <ul id="man-list" class="falseList">
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0 ">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-1.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-3.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-2.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
                           </div>
                         </div>
@@ -433,14 +434,14 @@
 
                       <li>
                         <div class="card-group bg-light rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-4.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
                           </div>
                         </div>
@@ -452,7 +453,7 @@
 
                 <!-- woman div start -->
                 <div class="woman-div model-column row" v-show="!man">
-                  <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
+                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mb-md-0">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
@@ -468,7 +469,7 @@
                     </div>
                     <ul class="concepts-list">
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
                               id="womansampleFirst"
@@ -486,7 +487,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
                               id="womansampleSecond"
@@ -504,7 +505,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
                               id="womansampleThird"
@@ -522,7 +523,7 @@
                         </div>
                       </li>
                       <li>
-                        <div class="single-inline-feature-item">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
                               id="womansampleFourth"
@@ -564,7 +565,7 @@
                     </div>
                   </div>
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
-                    <div class="single-inline-feature-item">
+                    <div class="single-inline-feature-item pr-5 pr-md-3">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/woman/woman-true.jpg"
@@ -580,42 +581,42 @@
                     <ul id="woman-list" class="falseList">
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-1.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-3.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-2.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
                           </div>
                         </div>
@@ -623,14 +624,14 @@
 
                       <li>
                         <div class="card-group bg-light rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-4.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
                           </div>
                         </div>
@@ -1370,7 +1371,7 @@
                   >
                     <div
                       class="card-body"
-                    >Evet tabiki! Özellikle böyle ihtiyaçlara çözüm bulmak için bu websitesini sizlere hazırladık. Arakdaşınıza özel bir gününde en anlamlı hediyeyi hazırlayabilirsiniz.</div>
+                    >Evet tabiki! Özellikle böyle ihtiyaçlara çözüm bulmak için bu websitesini sizlere hazırladık. Arkadaşınıza özel bir gününde en anlamlı hediyeyi hazırlayabilirsiniz.</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1445,7 +1446,7 @@
                   >
                     <div
                       class="card-body"
-                    >Evet, gözlüklü bir fotoğraf yüklemesi yapılmamaktadır. Eğer gözlük olmazsa olmaz ise sipariş aşamasında gözlüklü oalcağını belirtirsiniz. Bu durumda talep ettiğiniz gözlük modeline en yakın modelleme yapılarak üretim sonrasında model üzerine gözlük montajı yapılmaktadır. Bununda ek bir ücreti olmaktadır.</div>
+                    >Evet, gözlüklü bir fotoğraf yüklemesi yapılmamaktadır. Eğer gözlük olmazsa olmaz ise sipariş aşamasında gözlüklü olacağını belirtirsiniz. Bu durumda talep ettiğiniz gözlük modeline en yakın modelleme yapılarak üretim sonrasında model üzerine gözlük montajı yapılmaktadır. Bununda ek bir ücreti olmaktadır.</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1579,7 +1580,7 @@
             </div>
           </div>
           <div class="col-lg-3">
-            <div class="card">
+            <div class="card mb-5 mb-lg-0">
               <div class="card-body">
                 <h5
                   class="card-title text-white text-uppercase text-center"
@@ -1716,7 +1717,7 @@
                         type="text"
                         id="name"
                         class="form-control"
-                        :value="contact.nameSurname"
+                        :value="contact.fullname"
                         v-bind:placeholder="$t('landing.contact.form.fullname')"
                       >
                     </div>
@@ -1851,8 +1852,8 @@ export default {
       clicked: -1,
       navbarList:['home', 'howToUse', 'concepts', 'about', 'faq', 'pricing', 'contact'],
       contact: {
+        fullname:"",
         mail: "",
-        nameSurname: "",
         subject: "",
         message: ""
       }
@@ -1909,16 +1910,26 @@ export default {
 .login-popup .vs-popup {
   width: 900px !important;
 }
-.vs-popup--content {
-  width: 100% !important;
-  padding: 0 !important;
+.login-popup .vs-popup--content {
+  width: 100%;
+  overflow-x:hidden;
+  padding:0 !important;
   margin: 0 !important;
+  border-bottom-left-radius:.5rem !important;
+  border-bottom-right-radius:.5rem !important;
+}
+.login-popup .vs-popup--header {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
 /*.vs-popup--close{
   display: none !important;
 }*/
 .hooper{
   height: auto;
+}
+.hooper-slide{
+  padding: 0 20px;
 }
 nav{
   transition: 0.5s;
@@ -1930,4 +1941,21 @@ nav.sticky{
   .back-to-top{
     display:inherit;
   }
+  ul.concepts-list li img {
+    cursor: pointer;
+}
+@media (max-width: 489px) {
+  .hooper-slide{
+     width: 100% !important;
+     padding: 0px 62px;
+
+   }
+  .hooper-slide .thumb img{
+       width: 250px !important;
+      height: 250px !important;
+      object-fit: cover !important;
+
+      }
+  }
+
 </style>
