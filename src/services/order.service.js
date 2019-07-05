@@ -12,6 +12,16 @@ const OrderService = {
         }
     },
 
+    getUsersAllOrders: async function (userId) {
+        try {
+            const response = await ApiService.get("/orders/admin/"+userId)
+            return response.data
+        } catch (error) {
+            return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
     getAllOrdersForAdmin: async function() {
         try {
             const response = await ApiService.get("/orders/admin")

@@ -49,6 +49,15 @@ const UserService = {
         } catch (error) {
             return error
         }
+    },
+
+    getUser: async function(userId) {
+        try {
+            const response = await ApiService.get("/users/admin/"+userId)
+            return response.data
+        } catch (error) {
+            return error
+        }
     }
 }
 
