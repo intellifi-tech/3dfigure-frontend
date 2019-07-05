@@ -111,53 +111,14 @@
         <vs-tab vs-label="Sipairiş Geçmişi" class="pt-5" @click="isUpdated=true">
           <div class="w-100">
             <div class="row">
-              <div class="col-md-3 my-3" v-for="(concept, index) in concepts" :key="index">
-                <vx-card class="shadow">
-                  <div slot="no-body">
-                    <iframe
-                      class="responsive card-img-top"
-                      style="height: 170px"
-                      :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed'"
-                      frameborder="0"
-                      allow="autoplay; fullscreen; vr"
-                      mozallowfullscreen="true"
-                      webkitallowfullscreen="true"
-                    ></iframe>
+              <div v-for="(order, index) in this.orderValues" :key="index">
+                <div v-for="concept in order.basketDTO.concepts" :key="concept.id">
+                  <div v-for="figure in concept.figures" :key="figure.id">
+                    <order-card :order="order" :conceptPrice="concept.price" :figure="figure" :ids="order.basketDTO.id + '-' + concept.id + '-' + figure.id"></order-card>
                   </div>
-                  <h5 class="mb-2">{{concept.conceptName}}</h5>
-                  <p class="text-grey">{{concept.description}}</p>
-                  <p class="text-grey">Fiyat: {{concept.price}}</p>
-                  <p class="text-grey">{{concept.doubleConcept ? 'Çift Kişilik' : 'Tek Kişilik'}}</p>
-                  <p
-                    class="text-grey"
-                  >{{concept.isConceptsVisible ? 'Konsept Aktif' : 'Konsept Aktif Değil'}}</p>
-                  <div class="flex justify-between flex-wrap">
-                    <vs-button
-                      class="shadow-md w-full px-1 mt-3"
-                      type="gradient"
-                      color="#7367F0"
-                      gradient-color-secondary="#CE9FFC"
-                      @click="showDetail(concept)"
-                    >Detaylar</vs-button>
-                  </div>
-                </vx-card>
               </div>
             </div>
-            <div class="my-5">
-              <vs-pagination :total="totalPages" v-model="currentx"></vs-pagination>
             </div>
-            <vs-popup :active.sync="updatePopup">
-              <div>
-                <vs-input label-placeholder="Konsept Adı" v-model="selected.conceptName" />
-                <select class="form-control" v-model="selected.categoryId">
-                  <option
-                    :key="index"
-                    v-for="(item,index) in categories"
-                    :value="item.id"
-                  >{{item.name}}</option>
-                </select>
-              </div>
-            </vs-popup>
           </div>
         </vs-tab>
       </vs-tabs>
@@ -166,25 +127,17 @@
 </template>
 
 <script>
-import {
-  required,
-  minLength,
-  maxLength,
-  numeric,
-  alpha,
-  sameAs
-} from "vuelidate/lib/validators";
 import AddressService from "@/services/address.service";
-import PlaceService from "@/services/place.service";
 import Datepicker from "vuejs-datepicker";
 import * as lang from "vuejs-datepicker/src/locale";
 import UserService from "@/services/user.service";
-import ConceptService from "@/services/concept.service";
-import CategoryService from "@/services/category.service";
+import OrderService from "@/services/order.service";
+import OrderCard from '@/components/orders/OrderCard.vue'
 export default {
   data() {
     return {
       searchQuery: "",
+      orderValues: [],
       concepts: [],
       selectedAdres: {},
       newConcept: {},
@@ -238,13 +191,13 @@ export default {
     };
   },
   components: {
-    Datepicker
+    Datepicker,
+    OrderCard
   },
   created: async function() {
     this.user = await UserService.getUser(this.$route.query.id);
-    this.addresses = await AddressService.getUserAddress(this.$route.query.id);
-    const response = await OrderService.getUsersAllOrders(this.$route.query.id);
-    this.orders = response.content;
+    this.addresses = await AddressService.getUserAddress2(this.$route.query.id);
+    this.orderValues = await OrderService.getUsersAllOrders(this.$route.query.id);
   }
 };
 </script>

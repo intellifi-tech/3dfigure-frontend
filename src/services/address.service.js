@@ -11,7 +11,7 @@ const AddressService = {
         }
     },
 
-    getUserAddress: async function(userId) {
+    getUserAddress2: async function(userId) {
         try {
             const response = await ApiService.get("/addresses/admin/"+userId)
             return response.data
