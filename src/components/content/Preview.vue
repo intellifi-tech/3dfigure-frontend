@@ -157,6 +157,20 @@ export default {
                 });
                 setTimeout(async () => {
                   this.$vs.loading.close();
+                  this.$vs.loading({
+                      text: "Biliyoruz merakla bekliyorsunuz..",
+                      clickEffect: true,
+                      textAfter: true
+                  });
+                  setTimeout(() => {
+                    this.$vs.loading.close();
+                    this.$vs.loading({
+                      text: "Bizde bu çalışmayı büyük bir özenle size özel hazırlıyoruz..",
+                      clickEffect: true,
+                      textAfter: true
+                    });
+                    setTimeout(() => {this.$vs.loading.close();}, 6000)
+                  }, 6000)
                   var res = await AvatarSdkService.getAvatarInformation(
                     response.code
                   );
