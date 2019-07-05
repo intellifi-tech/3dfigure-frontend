@@ -214,7 +214,7 @@
                   <div slot="no-body">
                     <iframe
                       class="responsive card-img-top"
-                      style="height: 170px"
+                      style="height: 225px"
                       :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed'"
                       frameborder="0"
                       allow="autoplay; fullscreen; vr"
