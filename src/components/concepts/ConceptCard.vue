@@ -74,6 +74,7 @@ export default {
       }
       await FigureService.addAndDeleteFromFigure(concept);
       this.isAdded = !this.isAdded;
+      this.$store.commit('CLEAR_FIGURE_FROM_SELECTED')
       this.$router.push("/checkout");
     },
     checkIsAdded: async function() {

@@ -70,6 +70,11 @@ const mutations = {
 		state.selectedFigures.imagePath.splice(indexes.m, 1);
 	},
 
+	CLEAR_FIGURE_FROM_SELECTED(state) {
+		state.selectedFigures.avatarKey = [];
+		state.selectedFigures.imagePath = [];
+	},
+
 	/**
 	 * 
 	 * @param {*} state 

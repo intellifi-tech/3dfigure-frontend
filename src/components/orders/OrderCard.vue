@@ -13,11 +13,11 @@
         ></iframe>
         
         <div class="flex overflow-x-auto pb-2" v-else-if="figure.isDoubled">
-          <img  :src='"assets/images/figures/"+getFigurePath(figure, 0)' class="order-image">
-          <img  :src='"assets/images/figures/"+getFigurePath(figure, 1)' class="order-image">
+          <img  :src='"/assets/images/figures/"+getFigurePath(figure, 0)' class="order-image">
+          <img  :src='"/assets/images/figures/"+getFigurePath(figure, 1)' class="order-image">
         </div>
-        <img v-else :src='"assets/images/figures/"+figure.imagePath' class="order-image mb-3">
-        <img src="@/assets/images/icon/wait.png" class="order-status-icon">
+        <img v-else :src='"/assets/images/figures/"+figure.imagePath' class="order-image mb-3">
+        <img :src="'/assets/images/icon/'+statusImage" class="order-status-icon">
       </div>
       <h5 class="mb-2">{{order.orderCode}}</h5>
       <p class="text-grey">${{order.cargoCode}}</p>
@@ -55,7 +55,8 @@ export default {
   data() {
     return {
       popupActive: false,
-      sketchName: ""
+      sketchName: "",
+      statusImage: ""
     };
   },
   props: {
@@ -77,6 +78,26 @@ export default {
   },
   created: async function() {
     this.sketchName = await OrderService.getSketchName(this.ids)
+    switch(this.order.status) {
+      case 'ANALYSIS':
+        this.statusImage = 'wait.png'
+        break;
+      case 'ACCEPT':
+        this.statusImage = 'accept.png'
+        break;
+      case 'BUILD':
+        this.statusImage = 'build.png'
+        break;
+      case 'CARGO':
+        this.statusImage = 'cargo.png'
+        break;
+      case 'REJECT':
+        this.statusImage = 'reject.png'
+        break;
+      case 'DONE':
+        this.statusImage = 'done.png'
+        break;
+    }
   },
   methods: {
     getFigurePath(figure, index) {
