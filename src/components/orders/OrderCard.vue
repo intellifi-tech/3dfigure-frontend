@@ -1,22 +1,23 @@
 <template>
-  <div class="vx-col w-full mb-base">
+  <div class="vx-col w-full mb-base ">
     <vx-card class="shadow">
       <div slot="no-body">
-
         <iframe v-if="sketchName"
-          class="responsive card-img-top"
-          style="height: 250px"
+          class="responsive card-img-top mb-2"
+          style="height: 225px"
           :src="'https://sketchfab.com/models/'+sketchName+'/embed'"
           frameborder="0"
           allow="autoplay; fullscreen; vr"
           mozallowfullscreen="true"
           webkitallowfullscreen="true"
         ></iframe>
-        <div v-else-if="figure.isDoubled">
-          <img  :src='"assets/images/figures/"+getFigurePath(figure, 0)' class="order-status-icon">
-          <img  :src='"assets/images/figures/"+getFigurePath(figure, 1)' class="order-status-icon">
+        
+        <div class="flex overflow-x-auto pb-2" v-else-if="figure.isDoubled">
+          <img  :src='"assets/images/figures/"+getFigurePath(figure, 0)' class="order-image">
+          <img  :src='"assets/images/figures/"+getFigurePath(figure, 1)' class="order-image">
         </div>
-        <img v-else :src='"assets/images/figures/"+figure.imagePath' class="order-status-icon">
+        <img v-else :src='"assets/images/figures/"+figure.imagePath' class="order-image mb-3">
+        <img src="@/assets/images/icon/wait.png" class="order-status-icon">
       </div>
       <h5 class="mb-2">{{order.orderCode}}</h5>
       <p class="text-grey">${{order.cargoCode}}</p>
@@ -31,11 +32,15 @@
       </div>
       <vs-popup class="popupDetail" :title="order.status" :active.sync="popupActive">
         <div class="row">
-          <div class="col-lg-6 p-4 p-lg-0" >
+          <div class="col-12 p-4" >
             <h3>Sipariş Bilgilendirmesi</h3>
             <hr class="w-3/4"/>
-            <p class="px-3 pb-5">{{order.information}}</p>
-            <h3 class="position-absolute" style="right: 15px;bottom: 0;"><span>Bu konseptin tutarı: </span>${{conceptPrice}}</h3>
+            <p class="px-3 pb-5">{{order.information}}Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı, sürekli 'buraya metin gelecek, buraya metin gelecek' yazmaya kıyasla daha dengeli bir harf dağılımı sağlayarak okunurluğu artırmasıdır.</p>
+             <vs-list>
+                 <vs-list-item title="Kargo Takip No" subtitle="FIG2346"></vs-list-item>
+                 <vs-list-item title="Teslim Adresi" subtitle="Ev Adresim"></vs-list-item>
+            </vs-list>
+            <div class="col-12"><p class="text-right">Tutar :<span class="h2 text-dark"> ${{conceptPrice}}</span></p></div>
           </div>
         </div>
       </vs-popup>
@@ -81,6 +86,12 @@ export default {
 };
 </script>
 <style>
+.vs-list--title{
+  font-size:1.3rem !important
+}
+.vs-list--subtitle{
+  font-size:1.1rem !important
+}
 @media only screen and (min-width:1024px){
   
 .popupDetail .vs-popup {

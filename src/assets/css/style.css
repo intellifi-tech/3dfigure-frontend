@@ -3829,7 +3829,7 @@ img.img-scale{
   position: absolute;
   top: -20px;
   right: -12px;
-  width: 60px;
+  width: 45px;
   z-index: 999;
 }
 
@@ -4085,6 +4085,7 @@ text-align:left;
 
 /*scroll bar style*/
 ::-webkit-scrollbar {
+  height: 7px;
   width: 11px;
   z-index: 2;
 }
@@ -4139,4 +4140,9 @@ text-decoration: underline
 }
 .vs-tabs .vs-button-text,.vs-tabs .vs-button .vs-icon ,.vs-tabs .vs-pagination--buttons:hover .vs-icon{
   color:#fff !important;
+}
+.order-image{
+  width: 100%;
+  height: 225px;
+  object-fit:cover;
 }
