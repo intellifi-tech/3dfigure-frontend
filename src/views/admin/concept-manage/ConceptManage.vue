@@ -23,7 +23,7 @@
       :fields="json_fields"
       worksheet="My Worksheet"
       name="concepts.xls">
-      Download Excel
+      Export
     </json-excel>
           </div>
           <div>
@@ -66,28 +66,109 @@
     <div class="my-5">
       <vs-pagination :total="totalPages" v-model="currentx"></vs-pagination>
     </div>
-      <vs-popup :active.sync="updatePopup">
-        <div>
-          <vs-input label-placeholder="Konsept Adı" v-model="selected.conceptName"/>
-          <select class="form-control" v-model="selected.categoryId">
+      <!-- Update Concept Popup -->
+      <vs-popup :active.sync="updatePopup" title="Konsept Düzenle">
+        <div class="vx-row">
+          <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
+            <iframe
+              class="responsive card-img-top"
+              style="height: 170px"
+              :src="'https://sketchfab.com/models/'+selected.sketchId+'/embed'"
+              frameborder="0"
+              allow="autoplay; fullscreen; vr"
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+            ></iframe>
+          </div>
+          <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
+       <vs-input class="mb-3 w-full" label-placeholder="Konsept Adı" :class="{'vs-input-danger':this.$v.selected.conceptName.$invalid}" v-model="selected.conceptName"/>
+          <vs-input class="mb-3 w-full" label-placeholder="Sketch Linki" :class="{'vs-input-danger':this.$v.selected.sketchId.$invalid}"  v-model="selected.sketchId"/>
+          
+          <vs-input class="mb-6 w-full" label-placeholder="Açıklama" v-model="selected.description"/>
+          <span class="vs-component isFocus is-label-placeholder">Kategori</span>
+          <select class="form-control mb-3" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryId">
                 <option
                   :key="index"
                   v-for="(item,index) in categories"
                   :value="item.id"
                 >{{item.name}}</option>
           </select>
+          <span class="vs-component isFocus is-label-placeholder">Görünürlük</span>
+          <select class="form-control mb-3" :class="{'vs-input-danger':this.$v.selected.isConceptsVisible.$invalid}" v-model="selected.isConceptsVisible">
+                <option
+                  :value="true"
+                >Evet</option>
+                <option
+                  :value="false"
+                >Hayır</option>
+          </select>
+          <span class="vs-component isFocus is-label-placeholder">Çift Resim Uygunluğu</span>
+          <select class="form-control mb-3" :class="{'vs-input-danger':this.$v.selected.doubleConcept.$invalid}" v-model="selected.doubleConcept">
+                <option
+                  :value="true"
+                >Evet</option>
+                <option
+                  :value="false"
+                >Hayır</option>
+          </select>
+          <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.selected.showIndex.$invalid}" label-placeholder="Görünürlük Indeksi" v-model="selected.showIndex"/>
+          <vs-input class="mb-2 w-full" :class="{'vs-input-danger':this.$v.selected.price.$invalid}" label-placeholder="Fiyat" v-model="selected.price"/>
+          <span class="vs-component isFocus is-label-placeholder">Dil</span>
+          <select class="form-control mb-4" v-model="selected.lang">
+                <option
+                  value="TR"
+                >TR</option>
+                <option
+                  value="EN"
+                >EN</option>
+          </select>
           <vs-button class="float-right" @click="updateConcept">Güncelle</vs-button>
+          </div>
         </div>
       </vs-popup>
-      <vs-popup :active.sync="newPopup">
+      <!-- New Concept Popup -->
+      <vs-popup :active.sync="newPopup"  title="Konsept Ekle">
         <div>
-          <vs-input label-placeholder="Konspet Adı" v-model="newConcept.conceptName"/>
-          <select class="form-control" v-model="newConcept.categoryId">
+          <vs-input class="mb-3 w-full" label-placeholder="Konsept Adı" :class="{'vs-input-danger':this.$v.newConcept.conceptName.$invalid}" v-model="newConcept.conceptName"/>
+          <vs-input class="mb-3 w-full" label-placeholder="Sketch Linki" :class="{'vs-input-danger':this.$v.newConcept.sketchId.$invalid}"  v-model="newConcept.sketchId"/>
+          
+          <vs-input class="mb-6 w-full" label-placeholder="Açıklama" v-model="newConcept.description"/>
+          <span class="vs-component isFocus is-label-placeholder">Kategori</span>
+          <select class="form-control mb-3"  multiple :class="{'vs-input-danger':this.$v.newConcept.categoryId.$invalid}"  v-model="newConcept.categoryId">
                 <option
                   :key="index"
                   v-for="(item,index) in categories"
                   :value="item.id"
                 >{{item.name}}</option>
+          </select>
+          <span class="vs-component isFocus is-label-placeholder">Görünürlük</span>
+          <select class="form-control mb-3" :class="{'vs-input-danger':this.$v.newConcept.isConceptsVisible.$invalid}" v-model="newConcept.isConceptsVisible">
+                <option
+                  :value="true"
+                >Evet</option>
+                <option
+                  :value="false"
+                >Hayır</option>
+          </select>
+          <span class="vs-component isFocus is-label-placeholder">Çift Resim Uygunluğu</span>
+          <select class="form-control mb-3" :class="{'vs-input-danger':this.$v.newConcept.doubleConcept.$invalid}" v-model="newConcept.doubleConcept">
+                <option
+                  :value="true"
+                >Evet</option>
+                <option
+                  :value="false"
+                >Hayır</option>
+          </select>
+          <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.newConcept.showIndex.$invalid}" label-placeholder="Görünürlük Indeksi" v-model="newConcept.showIndex"/>
+          <vs-input class="mb-2 w-full" :class="{'vs-input-danger':this.$v.newConcept.price.$invalid}" label-placeholder="Fiyat" v-model="newConcept.price"/>
+          <span class="vs-component isFocus is-label-placeholder">Dil</span>
+          <select class="form-control mb-4" v-model="newConcept.lang">
+                <option
+                  value="TR"
+                >TR</option>
+                <option
+                  value="EN"
+                >EN</option>
           </select>
           <vs-button class="float-right" @click="addConcept">Ekle</vs-button>
         </div>
@@ -101,6 +182,10 @@
 import ConceptService from "@/services/concept.service";
 import CategoryService from "@/services/category.service";
 import JsonExcel from 'vue-json-excel'
+import {
+  required,
+  numeric
+} from "vuelidate/lib/validators";
 
 export default {
   components: {
@@ -162,11 +247,45 @@ export default {
     },
 
     addConcept: async function() {
+      if (this.$v.newConcept.$invalid) {
+        this.$vs.notify({
+          title: "Color",
+          text: "Lorem ipsum dolor sit amet, consectetur",
+          color: "danger"
+        });
+        return
+      }
+      this.newConcept.sketchTag = this.newConcept.sketchId
       const res = await ConceptService.createConcept(this.newConcept)
       this.concepts.push(res)
       this.newPopup = false
       this.newConcept = {}
     }
+  },
+  validations: {
+    newConcept: {
+      price: {required, numeric},
+      sketchId: {required},
+      isConceptsVisible: {required},
+      description: {required},
+      showIndex: {required},
+      lang: {required},
+      doubleConcept: {required},
+      categoryId: {required},
+      conceptName: {required}
+    },
+    selected: {
+      price: {required, numeric},
+      sketchId: {required},
+      isConceptsVisible: {required},
+      description: {required},
+      showIndex: {required},
+      lang: {required},
+      doubleConcept: {required},
+      categoryId: {required},
+      conceptName: {required}
+    }
   }
+  
 };
 </script>
