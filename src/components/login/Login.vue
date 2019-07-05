@@ -42,14 +42,14 @@
                 <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
               </div>
 
-              <vs-button @click="login">{{$t('login.loginbtn')}}</vs-button>
+             
               <vs-button
                 v-if="!isPopup"
-                class="float-right"
                 type="border"
                 to="/register"
               >{{$t('login.reg')}}</vs-button>
-              <vs-button v-else class="float-right" @click="openRegister">{{$t('login.reg')}}</vs-button>
+              <vs-button type="border" v-else  @click="openRegister">{{$t('login.reg')}}</vs-button>
+               <vs-button class="float-right" @click="login">{{$t('login.loginbtn')}}</vs-button>
 
               <vs-divider position="center" class="my-8"></vs-divider>
 
@@ -103,8 +103,8 @@ export default {
       if (this.$v.$invalid) {
         this.$vs.notify({
           time: 4000,
-          title: "Error",
-          text: "Lorem ipsum dolor sit amet, consectetur",
+          title: "HATA!",
+          text: "Lütfen bilgileri kontrol ediniz!",
           color: "danger"
         });
         return;
@@ -121,8 +121,8 @@ export default {
       } else {
         this.$vs.notify({
           time: 4000,
-          title: "Error",
-          text: "Lorem ipsum dolor sit amet, consectetur",
+          title: "HATA!",
+          text: "Hesap bulunamadı.",
           color: "danger"
         });
       }

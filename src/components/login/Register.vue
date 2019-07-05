@@ -39,7 +39,7 @@
                 label-placeholder="Email"
                 :placeholder="$t('register.email')"
                 v-model="email"
-                class="w-full mb-6"
+                class="w-full mb-3"
               />
               <!--<vs-select class="w-full mb-6" v-model="sex">
                   <vs-select-item
@@ -49,7 +49,7 @@
                     v-for="(item,index) in sexList"
                   />
               </vs-select>-->
-              <select class="register-sex form-control-lg w-full" v-model="sex">
+              <select class="register-sex form-control-lg w-full select-input mb-2" v-model="sex">
                 <option
                   :key="index"
                   v-for="(item,index) in sexList"
@@ -72,14 +72,14 @@
               />
               <vs-checkbox v-model="checkBox1" class="pb-4 pt-2">{{$t('register.terms')}}</vs-checkbox>
 
-              <vs-button @click="register">{{$t('login.reg')}}</vs-button>
+              
               <vs-button
                 v-if="!isPopup"
-                class="float-right"
                 type="border"
                 to="/login"
               >{{$t('login.loginbtn')}}</vs-button>
-              <vs-button v-else class="float-right" @click="openLogin">{{$t('login.loginbtn')}}</vs-button>
+              <vs-button type="border" v-else @click="openLogin">{{$t('login.loginbtn')}}</vs-button>
+              <vs-button class="float-right" @click="register">{{$t('login.reg')}}</vs-button>
             </div>
           </div>
         </div>
