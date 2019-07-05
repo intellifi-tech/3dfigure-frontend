@@ -30,7 +30,7 @@
          </div>
          <div class="col-xl-6 text-right">
              <span class="h6">Fotoğraf yükleme hakkınız: </span>
-             <h3 class="text-primary">{{this.limit}} / {{ this.$store.state.member.totalFigure}}</h3>
+             <h3 class="text-primary">{{limit}} / {{ this.$store.state.member.totalFigure}}</h3>
          </div>
         </div>
         <p>

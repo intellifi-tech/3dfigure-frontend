@@ -1,12 +1,21 @@
 <template lang="html">
   <div>
+        <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
+      <div class="w-full mr-0 pr-0">
+        <json-excel
+      class="vs-component vs-button w-full vs-button-warning vs-button-filled includeIcon"
+      :data="users"
+      :fields="json_fields"
+      worksheet="My Worksheet"
+      name="user.xls">
+      Export User
+    </json-excel>
+          </div>
+      </div>
     <vs-table
       pagination
       max-items="5"
       search
-      :sst="true"
-      @change-page="handleChangePage"
-      @search="sscb"
       :data="users">
       <template slot="header">
         <h3>
@@ -16,7 +25,7 @@
       <template slot="thead">
   <vs-th sort-key="email">Email</vs-th>
   <vs-th sort-key="firstName">Adı Soyadı</vs-th>
-  <vs-th sort-key="activated">Aktif mi</vs-th>
+  <vs-th sort-key="activated">Aktif mi</vs-th> 
   <vs-th>Seçenekler</vs-th>
 </template>
 
@@ -26,7 +35,7 @@
 
     <vs-td :data="data[indextr].firstName">{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
 
-    <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td>
+    <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td> 
 
     <vs-td> <div class="flex items-center ">
           <div>
@@ -58,6 +67,16 @@ export default {
   data: () => ({
     selected: {},
     users: [],
+    json_fields: {
+      "Kullanıcı Adı": "login",
+      "İlk Adı": "firstName",
+      "Soyadı": "lastName",
+      "email": "email",
+      "Aktif mi": "activated",
+      "Cinsiyet": "sex",
+      "Kayıt Tarihi": "createdDate",
+      "Doğum Günü": "birthDay"
+    },
     user: {},
     detailUserPopup: false
   }),
@@ -87,12 +106,6 @@ export default {
     userDetail(user) {
       this.user = user
       this.detailUserPopup = true
-    },
-    handleChangePage(page) {
-      debugger
-    },
-    sscb(searching) {
-      debugger
     }
   }
 };

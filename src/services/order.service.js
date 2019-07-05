@@ -38,6 +38,15 @@ const OrderService = {
         } catch (error) {
             return error
         }
+    },
+
+    getSketchName: async function(ids) {
+        try {
+            const response = await ApiService.get("/orders/sketch/"+ids)
+            return response.data
+        } catch (error) {
+            return error
+        }
     }
 }
 

@@ -11,10 +11,10 @@
       />
     </div>
     <div class="vx-row pt-5">
-      <div v-for="order in this.orderValues" :key="order.showIndex">
-        <div v-for="figure in order.basketId.figures" :key="figure.id">
-          <div v-for="concept in figure.concepts" :key="concept.id">
-            <orders :order="concept" :price="order.totalPrice"></orders>
+      <div v-for="(order, index) in this.orderValues" :key="index">
+        <div v-for="concept in order.basketDTO.concepts" :key="concept.id">
+          <div v-for="figure in concept.figures" :key="figure.id">
+            <orders :order="order" :conceptPrice="concept.price" :figure="figure" :ids="order.basketDTO.id + '-' + concept.id + '-' + figure.id"></orders>
           </div>
         </div>
       </div>

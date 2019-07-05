@@ -1,5 +1,17 @@
 <template lang="html">
   <div>
+            <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
+      <div class="w-full mr-0 pr-0">
+        <json-excel
+      class="vs-component vs-button w-full vs-button-warning vs-button-filled includeIcon"
+      :data="orders"
+      :fields="json_fields"
+      worksheet="My Worksheet"
+      name="orders.xls">
+      Sipariş Excel
+    </json-excel>
+          </div>
+      </div>
     <vs-table
       v-model="selected"
       pagination
@@ -8,7 +20,7 @@
       :data="orders">
       <template slot="header">
         <h3>
-          Kategoriler
+          Siparişler
         </h3>
       </template>
       
@@ -21,7 +33,7 @@
 </template>
 
       <template slot-scope="{data}">
-  <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
+  <vs-tr :data="tr" :state="tr.status == 'DONE' ? 'success' : 'danger'" :key="indextr" v-for="(tr, indextr) in data">
     <vs-td :data="data[indextr].orderCode">{{data[indextr].orderCode}}</vs-td>
 
     <vs-td :data="data[indextr].status">{{data[indextr].status}}</vs-td>
@@ -67,6 +79,14 @@ export default {
     selected: {},
     updatePopup: false,
     newPopup: false,
+    json_orders: {
+      "Sipariş Kodu": "orderCode",
+      "Kargo Kodu": "cargoCode",
+      "Net Kazanç": "totalPriceNet",
+      "Kdv": "kdv",
+      "Brüt Kazanç": "totalPrice",
+      "Sipariş Tarihi": "createdDate"
+    },
     orders: [],
     statusList: [{text: 'Analiz', status: 'ANALYSIS'}, {text: 'Kabul', status: 'ACCEPT'}, {text: 'Red', status: 'REJECT'}, {text: 'Yapılıyor', status: 'BUILD'},
     {text: 'Kargoda', status: 'CARGO'},{text: 'Tamamlandı', status: 'DONE'}]

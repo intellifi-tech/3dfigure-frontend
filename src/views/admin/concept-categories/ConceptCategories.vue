@@ -5,7 +5,7 @@
       <div class="w-full mr-0 pr-0">
         <vs-button class="w-full" color="success" @click="newPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
         <json-excel
-      class="vs-component vs-button w-full vs-button-success vs-button-filled includeIcon"
+      class="vs-component vs-button w-full vs-button-warning vs-button-filled includeIcon"
       :data="categories"
       :fields="json_fields"
       worksheet="My Worksheet"

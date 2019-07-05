@@ -94,7 +94,8 @@ import {
   email,
   sameAs,
   minLength,
-  maxLength
+  maxLength,
+  alpha
 } from "vuelidate/lib/validators";
 import { LoginService } from "@/services/login.service";
 export default {
@@ -144,8 +145,8 @@ export default {
         this.openLogin();
       } else {
         this.$vs.notify({
-          title: "Color",
-          text: "Lorem ipsum dolor sit amet, consectetur",
+          title: "Hata",
+          text: "Kayıt olunamadı",
           color: "danger"
         });
       }
@@ -157,8 +158,8 @@ export default {
   },
   validations: {
     email: { required, email },
-    firstName: { required },
-    lastName: { required },
+    firstName: { required, minLength: minLength(6), alpha },
+    lastName: { required, minLength: minLength(6), alpha },
     sex: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(15) },
     confirm: { required, sameAsPassword: sameAs("password") }
