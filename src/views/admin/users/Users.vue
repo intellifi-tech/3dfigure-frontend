@@ -8,7 +8,7 @@
       :fields="json_fields"
       worksheet="My Worksheet"
       name="user.xls">
-      Export User
+      Export Excel
     </json-excel>
           </div>
       </div>
@@ -23,9 +23,9 @@
         </h3>
       </template>
       <template slot="thead">
-  <vs-th sort-key="email">Email</vs-th>
-  <vs-th sort-key="firstName">Adı Soyadı</vs-th>
-  <vs-th sort-key="activated">Aktif mi</vs-th> 
+  <vs-th sort-key="email">E-posta</vs-th>
+  <vs-th sort-key="firstName">Adı Soyad</vs-th>
+  <vs-th sort-key="activated">Durum</vs-th> 
   <vs-th>Seçenekler</vs-th>
 </template>
 
@@ -37,8 +37,9 @@
 
     <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td> 
 
-    <vs-td> <div class="flex items-center ">
-          <div>
+    <vs-td> 
+      <div class="flex items-center ">
+          <div class="pr-2">
             <vs-button class="px-3"  color="primary" type="relief" @click="userDetail(data[indextr])">Detay</vs-button>
           </div>
           <div>

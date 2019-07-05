@@ -8,7 +8,7 @@
       :fields="json_fields"
       worksheet="My Worksheet"
       name="orders.xls">
-      Sipariş Excel
+      Export Excel
     </json-excel>
           </div>
       </div>
