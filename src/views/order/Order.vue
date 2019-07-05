@@ -11,7 +11,7 @@
       />
     </div>
     <div class="vx-row pt-5">
-      <div v-for="(order, index) in this.orderValues" :key="index">
+      <div class="col-md-3" v-for="(order, index) in this.orderValues" :key="index">
         <div v-for="concept in order.basketDTO.concepts" :key="concept.id">
           <div v-for="figure in concept.figures" :key="figure.id">
             <orders :order="order" :conceptPrice="concept.price" :figure="figure" :ids="order.basketDTO.id + '-' + concept.id + '-' + figure.id"></orders>

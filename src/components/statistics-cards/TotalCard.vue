@@ -16,8 +16,8 @@
           <span>{{ statisticTitle }}</span>
         </div>
       </div>
-      <vs-button class="w-100 rounded-0 text-right" :color="btnColor" :type="btnType">
-        <router-link :to="toLink" class="text-white">{{ btnText }}</router-link>
+      <vs-button class="w-100 rounded-0 text-right" :color="btnColor" :type="btnType" :to="toLink" >
+        <span class="text-white">{{ btnText }}</span>
       </vs-button>
     </div>
   </vx-card>

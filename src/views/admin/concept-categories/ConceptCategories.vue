@@ -1,17 +1,22 @@
 <template lang="html">
   <div>
 
-    <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
-      <div class="w-full mr-0 pr-0">
-        <vs-button class="w-full" color="success" @click="newPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+    <div class="float-right flex items-center col-md-4 pt-3 ml-0 pr-0">
+      <div class="w-full mr-0 pr-0 flex">
+         <div class="w-1/2 mr-2">
         <json-excel
-      class="vs-component vs-button w-full vs-button-warning vs-button-filled includeIcon"
-      :data="categories"
-      :fields="json_fields"
-      worksheet="My Worksheet"
-      name="category.xls">
-      Download Excel
-    </json-excel>
+          class="vs-component vs-button w-full vs-button-warning vs-button-filled includeIcon"
+          :data="categories"
+          :fields="json_fields"
+          worksheet="My Worksheet"
+          name="category.xls">
+          Export Excel
+        </json-excel>
+    </div>
+        <div  class="w-1/2">
+            <vs-button class="w-full" color="success" @click="newPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+        </div>
+     
           </div>
       </div>
       <vs-table

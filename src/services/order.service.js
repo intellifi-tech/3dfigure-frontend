@@ -4,7 +4,7 @@ const OrderService = {
 
     getAllOrders: async function (page) {
         try {
-            const response = await ApiService.get("/orders/user?page=" + page + "&size=4")
+            const response = await ApiService.get("/orders/user?page=" + page + "&size=8")
             return response.data
         } catch (error) {
             return error.response.status
