@@ -55,10 +55,11 @@
   </vs-tr>
 </template>
     </vs-table>
-    <vs-popup :active.sync="updatePopup">
+    <vs-popup :active.sync="updatePopup" title="Sipariş Güncelle">
         <div>
-          <vs-input label-placeholder="Konsept Adı" v-model="selected.orderCode"/>
-          <select class="form-control" v-model="selected.status">
+          <vs-input class="mb-2" label-placeholder="Sipariş Kodu" v-model="selected.orderCode"/>
+          <p class=" mb-1 ml-1 text-sm">Sipariş Durumu</p>
+          <select class="form-control form-control-lg mb-4" v-model="selected.status">
                 <option
                   :key="index"
                   v-for="(item,index) in statusList"

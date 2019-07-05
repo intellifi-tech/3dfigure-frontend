@@ -56,10 +56,11 @@
           </vs-tr>
         </template>
       </vs-table>
-      <vs-popup :active.sync="updatePopup">
+      <vs-popup :active.sync="updatePopup" title="Kategori Güncelle">
         <div>
-          <vs-input label-placeholder="Kategory Adı" v-model="selected.name"/>
-          <select class="form-control" v-model="selected.lang">
+          <vs-input class="mb-2" label-placeholder="Kategori Adı" v-model="selected.name"/>
+             <p class=" mb-1 ml-1 text-sm">Kategori Dili</p>
+          <select class="form-control form-control-lg mb-4" v-model="selected.lang">
                 <option
                   :key="index"
                   v-for="(item,index) in lang"

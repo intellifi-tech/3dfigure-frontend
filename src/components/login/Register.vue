@@ -138,15 +138,15 @@ export default {
       var status = await LoginService.register(credential);
       if (status < 400) {
         this.$vs.notify({
-          title: "Information",
-          text: "Aktivasyon Mailiniz Atılmıştır",
-          color: "success"
+          title: "BAŞARILI!",
+          text: "Aktivasyon linki e-postanıza gönderilmiştir.",
+          color: "success",
         })
         this.openLogin();
       } else {
         this.$vs.notify({
-          title: "Hata",
-          text: "Kayıt olunamadı",
+          title: "HATA!",
+          text: "Kayıt başarısız.",
           color: "danger"
         });
       }
