@@ -4146,3 +4146,6 @@ text-decoration: underline
   height: 225px;
   object-fit:cover;
 }
+.con-text-validation .span-text-validation{
+  font-size:10px;
+}

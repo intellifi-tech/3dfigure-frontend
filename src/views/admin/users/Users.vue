@@ -38,7 +38,7 @@
     <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td> 
 
     <vs-td> <div class="flex items-center ">
-          <div>
+          <div class="pr-2">
             <vs-button class="px-3"  color="primary" type="relief" @click="$router.push('/admin/user-detail?id='+data[indextr].id)">Detay</vs-button>
 
           </div>

@@ -120,8 +120,8 @@ export default {
     register: async function() {
       if (this.$v.$invalid && !this.checkBox1) {
         this.$vs.notify({
-          title: "Color",
-          text: "Lorem ipsum dolor sit amet, consectetur",
+          title: "HATA!",
+          text: "Bilgileri kontrol ediniz!",
           color: "danger"
         });
         return;
