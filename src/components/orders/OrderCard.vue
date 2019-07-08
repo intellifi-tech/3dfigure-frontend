@@ -121,7 +121,7 @@ export default {
 }
 .popupDetail .vs-popup .vs-popup--content {
   overflow-x:hidden;
-  max-height: calc(100vh - 400px);
+  max-height: calc(100vh - 260px);
    }
 }
 </style>
