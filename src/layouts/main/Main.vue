@@ -14,12 +14,13 @@
 
         <vs-popup
           class="holamundo sidebarPopup"
-          title="Merhaba, 3D Kullanıcı"
+          title="3D Figür"
           :active.sync="this.$store.state.member.firstLogin || this.$store.state.sidebarHowtoUse"
         >
           <div class="pt-0">
             <form-wizard
-              title="3D Figure"
+              title="3D Figürünü Oluştur!"
+              subtitle=""
               nextButtonText="Sonraki adım"
               backButtonText="Önceki adım"
               finishButtonText="BAŞLA!"

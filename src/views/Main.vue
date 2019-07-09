@@ -8,6 +8,7 @@
       finishButtonText="Sepete Git"
       nextButtonText="Devam et"
       backButtonText="Geri dön"
+      class="yeniModelWizard"
     >
       <tab-content
         data-vv-scope="vs1"
