@@ -24,7 +24,7 @@
           />
         </div>
         <div class="col-md-6 pr-2">
-                  <vs-button class="w-full" color="success" @click="newPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+                  <vs-button class="w-full" color="success" @click="newModelPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
             </div>
       </div>
     </div>
@@ -53,7 +53,7 @@
               type="gradient"
               color="#7367F0"
               gradient-color-secondary="#CE9FFC"
-              @click="showDetail(concept)"
+              @click="updateModelPopup=true"
             >Düzenle</vs-button>
           </div>
         </vx-card>
@@ -63,75 +63,13 @@
       <vs-pagination :total="totalPages" v-model="currentx"></vs-pagination>
     </div>
               
-          </vs-tab>
-
-          <vs-tab vs-label="Konseptler">
-            <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
-                <div class="w-full mr-0 pr-0">
-                  <vs-button class="w-full" color="success" @click="newExamplePopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
-                 </div>
-             </div>
-            <vs-table
-      pagination
-      max-items="5"
-      search
-      :sst="true"
-      @change-page="handleChangePage"
-      @search="sscb"
-      :data="users">
-      <template slot="header">
-  <h3>Konseptler</h3>
-</template>
-      <template slot="thead">
-  <vs-th sort-key="email">Çalışma Görseli</vs-th>
-  <vs-th sort-key="firstName">Başlık</vs-th>
-  <vs-th sort-key="siralama">Sıralama</vs-th>
-  <vs-th sort-key="activated">Durum</vs-th>
-  <vs-th>Seçenekler</vs-th>
-</template>
-
-      <template slot-scope="{data}">
-  <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-    <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
-
-    <vs-td
-      :data="data[indextr].firstName"
-    >{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
-
-  <vs-td data="siralama">1</vs-td>
-
-    <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td>
-
-    <vs-td>
-      <div class="flex items-center">
-        <div class="pr-2">
-          <vs-button
-            class="px-3"
-            color="primary"
-            type="relief"
-            @click="updateExamplePopup=true"
-          >Güncelle</vs-button>
-        </div>
-        <div>
-          <vs-button
-            class="px-3"
-            color="danger"
-            type="relief"
-            @click="userDelete(data[indextr], indextr)"
-          >Sil</vs-button>
-        </div>
-      </div>
-    </vs-td>
-  </vs-tr>
-</template>
-    </vs-table>
-<vs-popup :active.sync="newExamplePopup" title="Örnek Çalışma Oluştur">
+<vs-popup :active.sync="newModelPopup" title="3D Model Ekle">
      <div class="vx-row mb-2">
               <div class="vx-col w-1/2">
                 <vs-input
                   type="text"
                   class="w-full"
-                  label-placeholder="Başlık"
+                  label-placeholder="Model Adı"
                   v-model="ornekBaslik"
                 />
               </div>
@@ -146,7 +84,17 @@
                 />
               </div>
             </div>
-           
+           <div class="vx-row mb-3">
+                  <div class="vx-col w-full">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="Sketch Url"
+                  v-model="ornekSira"
+                />
+                </div>
+            </div>
+
              <div class="vx-row mb-3">
                
               <div class="vx-col w-full">
@@ -163,7 +111,7 @@
             </div>
               <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                <h5 class="text-muted">Örnek Görsel</h5>
+                <h5 class="text-muted">3D Model Görsel</h5>
                 <hr class="w-3/4"/>
                     <input 
                     type="file"
@@ -173,24 +121,24 @@
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right">Oluştur</vs-button>
+                       <vs-button class="float-right">Ekle</vs-button>
               </div>
             </div>
     </vs-popup>
-    <vs-popup :active.sync="updateExamplePopup" title="Örnek Çalışma Güncelle">
-      <div class="vx-row mb-2">
+    <vs-popup :active.sync="updateModelPopup" title="3D Model Güncelle">
+         <div class="vx-row mb-2">
               <div class="vx-col w-1/2">
                 <vs-input
                   type="text"
                   class="w-full"
-                  label-placeholder="Başlık"
+                  label-placeholder="Model Adı"
                   v-model="ornekBaslik"
                 />
               </div>
            
             
               <div class="vx-col w-1/2">
-                 <vs-input
+                <vs-input
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
@@ -198,8 +146,19 @@
                 />
               </div>
             </div>
-           
+           <div class="vx-row mb-3">
+                  <div class="vx-col w-full">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="Sketch Url"
+                  v-model="ornekSira"
+                />
+                </div>
+            </div>
+
              <div class="vx-row mb-3">
+               
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
                 <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
@@ -209,20 +168,209 @@
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
+              
               </div>
             </div>
-             <div class="vx-row mb-2">
+              <div class="vx-row mb-4">
               <div class="vx-col w-full">
-                <h5 class="text-muted">Örnek Görsel</h5>
+                <h5 class="text-muted">3D Model Görsel</h5>
                 <hr class="w-3/4"/>
                     <input 
                     type="file"
                     />
               </div>
             </div>
+
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right">Oluştur</vs-button>
+                   <vs-button color="danger" class="float-left">Sil</vs-button>
+                       <vs-button class="float-right">Güncelle</vs-button>
+              </div>
+            </div>
+    </vs-popup>
+          </vs-tab>
+
+          <vs-tab vs-label="Konseptler">
+            <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
+                <div class="w-full mr-0 pr-0">
+                  <vs-button class="w-full" color="success" @click="newConceptPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+                 </div>
+             </div>
+            <vs-table
+      pagination
+      max-items="5"
+      search
+      :sst="true"
+      @change-page="handleChangePage"
+      @search="sscb"
+      :data="users">
+      <template slot="header">
+  <h3>Konseptler</h3>
+</template>
+      <template slot="thead">
+  <vs-th sort-key="konseptGorsel">Konsept Görseli</vs-th>
+  <vs-th sort-key="email">Konsept Adı</vs-th>
+  <vs-th sort-key="firstName">Fiyat</vs-th>
+  <vs-th sort-key="siralama">Sıralama</vs-th>
+  <vs-th sort-key="activated">Durum</vs-th>
+  <vs-th>Seçenekler</vs-th>
+</template>
+
+      <template slot-scope="{data}">
+  <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
+        <vs-td data="konseptGorsel">img</vs-td>
+    <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
+
+    <vs-td>$5</vs-td>
+
+  <vs-td data="siralama">1</vs-td>
+
+    <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td>
+
+    <vs-td>
+      <div class="flex items-center">
+        <div class="pr-2">
+          <vs-button
+            class="px-3"
+            color="primary"
+            type="relief"
+            @click="updateConceptPopup=true"
+          >Güncelle</vs-button>
+        </div>
+        <div>
+          <vs-button
+            class="px-3"
+            color="danger"
+            type="relief"
+            @click="conceptDelete(data[indextr], indextr)"
+          >Sil</vs-button>
+        </div>
+      </div>
+    </vs-td>
+  </vs-tr>
+</template>
+    </vs-table>
+<vs-popup :active.sync="newConceptPopup" title="Konsept Ekle">
+     <div class="vx-row mb-2">
+              <div class="vx-col w-1/2">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="Konsept Adı"
+                  v-model="ornekBaslik"
+                />
+              </div>
+           
+            
+              <div class="vx-col w-1/2">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="Fiyat"
+                  v-model="ornekSira"
+                />
+              </div>
+            </div>
+           <div class="vx-row mb-3">
+                  <div class="vx-col w-full">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="Sıralama"
+                  v-model="ornekSira"
+                />
+                </div>
+            </div>
+
+             <div class="vx-row mb-3">
+               
+              <div class="vx-col w-full">
+                <span class="text-sm pl-1">Durumu</span>
+                <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
+                <option
+                  :key="index"
+                  v-for="(item,index) in sexList"
+                  :value="item.value"
+                >{{item.text}}</option>
+              </select>
+              
+              </div>
+            </div>
+              <div class="vx-row mb-2">
+              <div class="vx-col w-full">
+                <h5 class="text-muted">Konsept Görsel</h5>
+                <hr class="w-3/4"/>
+                    <input 
+                    type="file"
+                    />
+              </div>
+            </div>
+
+             <div class="vx-row mb-2">
+              <div class="vx-col w-full">
+                       <vs-button class="float-right">Ekle</vs-button>
+              </div>
+            </div>
+    </vs-popup>
+    <vs-popup :active.sync="updateConceptPopup" title="Konsept Güncelle">
+         <div class="vx-row mb-2">
+              <div class="vx-col w-1/2">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="Konsept Adı"
+                  v-model="ornekBaslik"
+                />
+              </div>
+           
+            
+              <div class="vx-col w-1/2">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="Fiyat"
+                  v-model="ornekSira"
+                />
+              </div>
+            </div>
+           <div class="vx-row mb-3">
+                  <div class="vx-col w-full">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="Sıralama"
+                  v-model="ornekSira"
+                />
+                </div>
+            </div>
+
+             <div class="vx-row mb-3">
+               
+              <div class="vx-col w-full">
+                <span class="text-sm pl-1">Durumu</span>
+                <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
+                <option
+                  :key="index"
+                  v-for="(item,index) in sexList"
+                  :value="item.value"
+                >{{item.text}}</option>
+              </select>
+              
+              </div>
+            </div>
+              <div class="vx-row mb-2">
+              <div class="vx-col w-full">
+                <h5 class="text-muted">Konsept Görsel</h5>
+                <hr class="w-3/4"/>
+                    <input 
+                    type="file"
+                    />
+              </div>
+            </div>
+
+             <div class="vx-row mb-2">
+              <div class="vx-col w-full">
+                       <vs-button class="float-right">Ekle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -609,6 +757,10 @@ export default {
       updatePackagePopup: false,
       newExamplePopup:false,
       updateExamplePopup:false,
+      newConceptPopup:false,
+      updateConceptPopup:false,
+      newModelPopup:false,
+      updateModelPopup:false,
       json_fields: {
         "Sketch ID": "sketchId",
         "Konsept Adı": "conceptName",
@@ -651,7 +803,26 @@ watch: {
           self.users.splice(index, 1);
           self.$vs.notify({
             color: "success",
-            title: "Kullanıcı silindi."
+            title: "Silindi."
+          });
+        }
+      });
+    },
+     conceptDelete(user, index) {
+      var self = this;
+      this.$vs.dialog({
+        type: "confirm",
+        color: "danger",
+        acceptText:"Onayla",
+        cancelText:"Vazgeç",
+        title: 'Konsept Sil',
+        text: `${user.login} silmek istiyor musunuz?`,
+        accept: async function() {
+          await UserService.userDelete(user.login);
+          self.users.splice(index, 1);
+          self.$vs.notify({
+            color: "success",
+            title: "Silindi."
           });
         }
       });
