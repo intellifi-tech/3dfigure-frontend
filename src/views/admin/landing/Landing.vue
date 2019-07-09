@@ -29,31 +29,29 @@
       </div>
     </div>
     <div class="row pt-3">
-      <div class="col-md-3 my-3" v-for="(concept, index) in concepts" :key="index">
+      <div class="col-md-3 my-3" v-for="(concept, index) in d3figureList" :key="index">
         <vx-card class="shadow">
           <div slot="no-body">
             <iframe
               class="responsive card-img-top"
               style="height: 170px"
-              :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed'"
+              :src="'https://sketchfab.com/models/'+concept.title+'/embed'"
               frameborder="0"
               allow="autoplay; fullscreen; vr"
               mozallowfullscreen="true"
               webkitallowfullscreen="true"
             ></iframe>
           </div>
-      <h5 class="mb-2">{{concept.conceptName}}</h5>
-      <p class="text-grey">{{concept.description}}</p>
+      <h5 class="mb-2">{{concept.description}}</h5>
       <p class="text-grey">Fiyat: {{concept.price}}</p>
-      <p class="text-grey">{{concept.doubleConcept ? 'Çift Kişilik' : 'Tek Kişilik'}}</p>
-      <p class="text-grey">{{concept.isConceptsVisible ? 'Konsept Aktif' : 'Konsept Aktif Değil'}}</p>
+      <p class="text-grey">Gösterim Sırası: {{concept.showIndex}}</p>
           <div class="flex justify-between flex-wrap">
             <vs-button
               class="shadow-md w-full px-1 mt-3"
               type="gradient"
               color="#7367F0"
               gradient-color-secondary="#CE9FFC"
-              @click="updateModelPopup=true"
+              @click="openUpdatePackagePopup(data[indextr])"
             >Düzenle</vs-button>
           </div>
         </vx-card>
@@ -70,7 +68,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Model Adı"
-                  v-model="ornekBaslik"
+                  v-model="d3figure.description"
                 />
               </div>
            
@@ -80,7 +78,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="ornekSira"
+                  v-model="d3figure.showIndex"
                 />
               </div>
             </div>
@@ -90,7 +88,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sketch Url"
-                  v-model="ornekSira"
+                  v-model="d3figure.title"
                 />
                 </div>
             </div>
@@ -99,10 +97,10 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="d3figure.active">
                 <option
                   :key="index"
-                  v-for="(item,index) in sexList"
+                  v-for="(item,index) in activeList"
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
@@ -113,15 +111,14 @@
               <div class="vx-col w-full">
                 <h5 class="text-muted">3D Model Görsel</h5>
                 <hr class="w-3/4"/>
-                    <input 
-                    type="file"
-                    />
+                <input type="file" ref="fileAddFigure" v-on:change="handleFileUpload('fileAddFigure')" 
+                accept="image/*" class="input-file" />
               </div>
             </div>
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right">Ekle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(d3figure)">Ekle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -132,7 +129,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Model Adı"
-                  v-model="ornekBaslik"
+                  v-model="d3figure.description"
                 />
               </div>
            
@@ -142,7 +139,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="ornekSira"
+                  v-model="d3figure.showIndex"
                 />
               </div>
             </div>
@@ -152,7 +149,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sketch Url"
-                  v-model="ornekSira"
+                  v-model="d3figure.title"
                 />
                 </div>
             </div>
@@ -161,10 +158,10 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="d3figure.active">
                 <option
                   :key="index"
-                  v-for="(item,index) in sexList"
+                  v-for="(item,index) in activeList"
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
@@ -175,16 +172,15 @@
               <div class="vx-col w-full">
                 <h5 class="text-muted">3D Model Görsel</h5>
                 <hr class="w-3/4"/>
-                    <input 
-                    type="file"
-                    />
+                <input type="file" ref="fileUpdateFigure" v-on:change="handleFileUpload('fileUpdateFigure')" 
+                accept="image/*" class="input-file" />
               </div>
             </div>
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
                    <vs-button color="danger" class="float-left">Sil</vs-button>
-                       <vs-button class="float-right">Güncelle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(d3figure)">Güncelle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -200,32 +196,29 @@
       pagination
       max-items="5"
       search
-      :sst="true"
-      @change-page="handleChangePage"
-      @search="sscb"
-      :data="users">
+      :data="conceptList">
       <template slot="header">
   <h3>Konseptler</h3>
 </template>
       <template slot="thead">
-  <vs-th sort-key="konseptGorsel">Konsept Görseli</vs-th>
-  <vs-th sort-key="email">Konsept Adı</vs-th>
-  <vs-th sort-key="firstName">Fiyat</vs-th>
-  <vs-th sort-key="siralama">Sıralama</vs-th>
-  <vs-th sort-key="activated">Durum</vs-th>
+  <vs-th sort-key="imagePath">Konsept Görseli</vs-th>
+  <vs-th sort-key="title">Konsept Adı</vs-th>
+  <vs-th sort-key="price">Fiyat</vs-th>
+  <vs-th sort-key="showIndex">Sıralama</vs-th>
+  <vs-th sort-key="active">Durum</vs-th>
   <vs-th>Seçenekler</vs-th>
 </template>
 
       <template slot-scope="{data}">
   <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-        <vs-td data="konseptGorsel">img</vs-td>
-    <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
+        <vs-td :data="data[indextr].imagePath">{{data[indextr].imagePath}}</vs-td>
+    <vs-td :data="data[indextr].title">{{data[indextr].title}}</vs-td>
 
-    <vs-td>$5</vs-td>
+    <vs-td :data="data[indextr].price">{{data[indextr].price}}</vs-td>
 
-  <vs-td data="siralama">1</vs-td>
+  <vs-td :data="data[indextr].showIndex">{{data[indextr].showIndex}}</vs-td>
 
-    <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td>
+    <vs-td :data="data[indextr].active">{{data[indextr].active}}</vs-td>
 
     <vs-td>
       <div class="flex items-center">
@@ -234,7 +227,7 @@
             class="px-3"
             color="primary"
             type="relief"
-            @click="updateConceptPopup=true"
+            @click="openUpdatePackagePopup(data[indextr])"
           >Güncelle</vs-button>
         </div>
         <div>
@@ -257,7 +250,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Konsept Adı"
-                  v-model="ornekBaslik"
+                  v-model="concept.title"
                 />
               </div>
            
@@ -267,7 +260,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Fiyat"
-                  v-model="ornekSira"
+                  v-model="concept.price"
                 />
               </div>
             </div>
@@ -277,7 +270,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="ornekSira"
+                  v-model="concept.showIndex"
                 />
                 </div>
             </div>
@@ -286,10 +279,10 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="concept.active">
                 <option
                   :key="index"
-                  v-for="(item,index) in sexList"
+                  v-for="(item,index) in activeList"
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
@@ -300,15 +293,14 @@
               <div class="vx-col w-full">
                 <h5 class="text-muted">Konsept Görsel</h5>
                 <hr class="w-3/4"/>
-                    <input 
-                    type="file"
-                    />
+                    <input type="file" ref="fileAddConcept" v-on:change="handleFileUpload('fileAddConcept')"
+                accept="image/*" class="input-file" />
               </div>
             </div>
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right">Ekle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(concept)">Ekle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -319,7 +311,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Konsept Adı"
-                  v-model="ornekBaslik"
+                  v-model="concept.title"
                 />
               </div>
            
@@ -329,7 +321,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Fiyat"
-                  v-model="ornekSira"
+                  v-model="concept.price"
                 />
               </div>
             </div>
@@ -339,7 +331,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="ornekSira"
+                  v-model="concept.showIndex"
                 />
                 </div>
             </div>
@@ -348,10 +340,10 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="concept.active">
                 <option
                   :key="index"
-                  v-for="(item,index) in sexList"
+                  v-for="(item,index) in activeList"
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
@@ -362,15 +354,14 @@
               <div class="vx-col w-full">
                 <h5 class="text-muted">Konsept Görsel</h5>
                 <hr class="w-3/4"/>
-                    <input 
-                    type="file"
-                    />
+                    <input type="file" ref="fileUpdateConcept" v-on:change="handleFileUpload('fileUpdateConcept')" 
+                accept="image/*" class="input-file" />
               </div>
             </div>
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right">Ekle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(concept)">Ekle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -386,32 +377,29 @@
       pagination
       max-items="5"
       search
-      :sst="true"
-      @change-page="handleChangePage"
-      @search="sscb"
-      :data="users">
+      :data="exampleProcessList">
       <template slot="header">
   <h3>Örnek Çalışmalar</h3>
 </template>
       <template slot="thead">
   <vs-th sort-key="email">Çalışma Görseli</vs-th>
-  <vs-th sort-key="firstName">Başlık</vs-th>
-  <vs-th sort-key="siralama">Sıralama</vs-th>
-  <vs-th sort-key="activated">Durum</vs-th>
+  <vs-th sort-key="title">Başlık</vs-th>
+  <vs-th sort-key="showIndex">Sıralama</vs-th>
+  <vs-th sort-key="active">Durum</vs-th>
   <vs-th>Seçenekler</vs-th>
 </template>
 
       <template slot-scope="{data}">
   <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-    <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
+    <vs-td :data="data[indextr].imagePath"><img :src="data[indextr].imagePath"/></vs-td>
 
     <vs-td
-      :data="data[indextr].firstName"
-    >{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
+      :data="data[indextr].title"
+    >{{data[indextr].title}}</vs-td>
 
-  <vs-td data="siralama">1</vs-td>
+  <vs-td :data="data[indextr].showIndex">{{data[indextr].showIndex}}</vs-td>
 
-    <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td>
+    <vs-td :data="data[indextr].active">{{data[indextr].active}}</vs-td>
 
     <vs-td>
       <div class="flex items-center">
@@ -420,7 +408,7 @@
             class="px-3"
             color="primary"
             type="relief"
-            @click="updateExamplePopup=true"
+            @click="openUpdatePackagePopup(data[indextr])"
           >Güncelle</vs-button>
         </div>
         <div>
@@ -443,7 +431,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Başlık"
-                  v-model="ornekBaslik"
+                  v-model="exampleProcess.title"
                 />
               </div>
            
@@ -453,7 +441,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="ornekSira"
+                  v-model="exampleProcess.showIndex"
                 />
               </div>
             </div>
@@ -462,10 +450,10 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="exampleProcess.active">
                 <option
                   :key="index"
-                  v-for="(item,index) in sexList"
+                  v-for="(item,index) in activeList"
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
@@ -476,15 +464,14 @@
               <div class="vx-col w-full">
                 <h5 class="text-muted">Örnek Görsel</h5>
                 <hr class="w-3/4"/>
-                    <input 
-                    type="file"
-                    />
+                    <input type="file" ref="fileAddExample" v-on:change="handleFileUpload('fileAddExample')"
+                accept="image/*" class="input-file" />
               </div>
             </div>
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right">Oluştur</vs-button>
+                       <vs-button class="float-right" @click="submitFile(exampleProcess)">Oluştur</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -495,7 +482,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Başlık"
-                  v-model="ornekBaslik"
+                  v-model="exampleProcess.title"
                 />
               </div>
            
@@ -505,7 +492,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="ornekSira"
+                  v-model="exampleProcess.showIndex"
                 />
               </div>
             </div>
@@ -513,10 +500,10 @@
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="ornekDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="exampleProcess.active">
                 <option
                   :key="index"
-                  v-for="(item,index) in sexList"
+                  v-for="(item,index) in activeList"
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
@@ -526,14 +513,13 @@
               <div class="vx-col w-full">
                 <h5 class="text-muted">Örnek Görsel</h5>
                 <hr class="w-3/4"/>
-                    <input 
-                    type="file"
-                    />
+                   <input type="file" ref="fileUpdateExample" v-on:change="handleFileUpload('fileUpdateExample')"
+                accept="image/*" class="input-file" />
               </div>
             </div>
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right">Oluştur</vs-button>
+                       <vs-button class="float-right" @click="submitFile(exampleProcess)">Oluştur</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -548,32 +534,29 @@
       pagination
       max-items="5"
       search
-      :sst="true"
-      @change-page="handleChangePage"
-      @search="sscb"
-      :data="users">
+      :data="paketler">
       <template slot="header">
         <h3>
           Paketler
         </h3>
       </template>
       <template slot="thead">
-  <vs-th sort-key="email">Paket Adı</vs-th>
-  <vs-th sort-key="firstName">Fiyat</vs-th>
-  <vs-th sort-key="surname">Özellikler</vs-th>
-  <vs-th sort-key="activated">Durum</vs-th>
+  <vs-th sort-key="title">Paket Adı</vs-th>
+  <vs-th sort-key="price">Fiyat</vs-th>
+  <vs-th sort-key="description">Özellikler</vs-th>
+  <vs-th sort-key="active">Durum</vs-th>
   <vs-th>Seçenekler</vs-th>
 </template>
 
       <template slot-scope="{data}">
   <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-    <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
+    <vs-td :data="data[indextr].title">{{data[indextr].title}}</vs-td>
 
     <vs-td
-      :data="data[indextr].firstName"
-    >{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
-<vs-td data="surname">Özellk1,Özellk2</vs-td>
-    <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td>
+      :data="data[indextr].price"
+    >{{data[indextr].price}}</vs-td>
+<vs-td data="description">{{data[indextr].description}}</vs-td>
+    <vs-td :data="data[indextr].active">{{data[indextr].active}}</vs-td>
 
     <vs-td>
       <div class="flex items-center">
@@ -582,7 +565,7 @@
             class="px-3"
             color="primary"
             type="relief"
-            @click="updatePackagePopup=true"
+            @click="openUpdatePackagePopup(data[indextr])"
           >Güncelle</vs-button>
         </div>
         <div>
@@ -605,7 +588,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Paket Adı"
-                  v-model="paketAdi"
+                  v-model="paket.paketAdi"
                 />
               </div>
            
@@ -615,7 +598,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Fiyatı"
-                  v-model="paketFiyat"
+                  v-model="paket.paketFiyat"
                 />
               </div>
             </div>
@@ -626,7 +609,7 @@
                   class="w-full"
                   label-placeholder="Özellikler"
                   description-text="Özelliklerin arasına virgül eklenerek yazılmalıdır."
-                  v-model="paketOzellikler"
+                  v-model="paket.paketOzellikler"
                 />
               </div>
             </div>
@@ -636,26 +619,27 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="paketSira"
+                  v-model="paket.paketSira"
                 />
               </div>
             </div>
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="paketDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="paket.paketDurum">
                 <option
                   :key="index"
-                  v-for="(item,index) in sexList"
+                  v-for="(item,index) in activeList"
                   :value="item.value"
                 >{{item.text}}</option>
+              
               </select>
               </div>
             </div>
            
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right">Oluştur</vs-button>
+                       <vs-button class="float-right" @click="saveLanding(paket)">Oluştur</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -666,7 +650,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Paket Adı"
-                  v-model="paketAdi"
+                  v-model="paket.paketAdi"
                 />
               </div>
            
@@ -676,7 +660,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Fiyatı"
-                  v-model="paketFiyat"
+                  v-model="paket.paketFiyat"
                 />
               </div>
             </div>
@@ -687,7 +671,7 @@
                   class="w-full"
                   label-placeholder="Özellikler"
                   description-text="Özelliklerin arasına virgül eklenerek yazılmalıdır."
-                  v-model="paketOzellikler"
+                  v-model="paket.paketOzellikler"
                 />
               </div>
             </div>
@@ -698,7 +682,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="paketSira"
+                  v-model="paket.paketSira"
                 />
               </div>
             </div>
@@ -706,10 +690,10 @@
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="paketDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="paket.paketDurum">
                 <option
                   :key="index"
-                  v-for="(item,index) in sexList"
+                  v-for="(item,index) in activeList"
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
@@ -718,7 +702,7 @@
             </div>
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" >Güncelle</vs-button>
+                       <vs-button class="float-right" @click="saveLanding(paket)" >Güncelle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -730,29 +714,64 @@
 
 <script>
 import ConceptService from "@/services/concept.service";
-import CategoryService from "@/services/category.service";
-import UserService from "@/services/user.service.js";
+import LandingService from "@/services/admin/landing.service.js";
+
 export default {
   data() {
     return {
-      ornekBaslik:"",
-      ornekSira:1,
-      ornekDurum:true,
-      paketAdi:"",
-      paketSira:"",
-      paketFiyat:"",
-      paketOzellikler:[],
-      paketDurum:true,
-      concepts: [],
-      newConcept: {},
-      detailConcept: {},
+      d3figure: {
+        title: "",
+        showIndex: "",
+        price: "",
+        description: "",
+        active: true,
+        landingStatus: 'FIRST',
+        sex: "",
+        imagePath: "",
+        divActive: true
+      },
+      d3figureList: [],
+      paket: {
+        title: "",
+        showIndex: "",
+        price: "",
+        description: "",
+        active: true,
+        landingStatus: 'FOURTH',
+        sex: "",
+        imagePath: "",
+        divActive: true
+      },
+      paketler: [],
+      activeList: [{text: "Aktif", value: true}, {text: "Aktif Değil", value: false}],
+      exampleProcess: {
+        title: "",
+        showIndex: "",
+        price: "",
+        description: "",
+        active: true,
+        landingStatus: 'THIRD',
+        sex: "",
+        imagePath: "",
+        divActive: true
+      },
+      exampleProcessList: [],
+      concept: {
+        title: "",
+        showIndex: "",
+        price: "",
+        description: "",
+        active: true,
+        landingStatus: 'SECOND',
+        sex: "",
+        imagePath: "",
+        divActive: true
+      },
+      conceptList: [],
       totalPages: 0,
       currentx: 1,
+      file: {},
       searchQuery:"",
-      selected: {},
-      categories: [],
-      users: [],
-      user: {},
       newPackagePopup: false,
       updatePackagePopup: false,
       newExamplePopup:false,
@@ -766,30 +785,107 @@ export default {
         "Konsept Adı": "conceptName",
         "Sketch Tag": "sketchTag",
         "Görünür mü?": "isConceptsVisible",
-        Açıklama: "description",
-        Index: "showIndex",
-        Fiyat: "price",
-        Dil: "lang",
+        "Açıklama": "description",
+        "Index": "showIndex",
+        "Fiyat": "price",
+        "Dil": "lang",
         "Çift Resimler İçin mi": "doubleConcept"
       }
     };
   },
 
   created: async function() {
-    this.users = await UserService.getAllUsers(); 
-    const response = await ConceptService.getAllConceptsAdmin(0)
-    this.concepts = response.content
-    this.totalPages = response.totalPages
-    this.categories = await CategoryService.getAllCategories()
+    const list = await LandingService.getAll()
+    this.d3figureList = list.filter(f => f.landingStatus == 'FIRST')
+    this.conceptList = list.filter(f => f.landingStatus == 'SECOND')
+    this.exampleProcessList = list.filter(f => f.landingStatus == 'THIRD')
+    this.paketler = list.filter(f => f.landingStatus == 'FOURTH')
   },
-watch: {
+  watch: {
     currentx: async function() {
       const response = await ConceptService.getAllConceptsAdmin(this.currentx - 1)
       this.concepts = response.content
     }
   },
   methods: {
-    userDelete(user, index) {
+    handleFileUpload(refName) {
+      switch(refName) {
+        case 'fileAddFigure':
+          this.file = this.$refs.fileAddFigure.files[0];
+          break;
+        case 'fileUpdateFigure':
+          this.file = this.$refs.fileUpdateFigure.files[0];
+          break;
+        case 'fileAddConcept':
+          this.file = this.$refs.fileAddConcept.files[0];
+          break;
+        case 'fileUpdateConcept':
+          this.file = this.$refs.fileUpdateConcept.files[0];
+          break;
+        case 'fileAddExample':
+          this.file = this.$refs.fileAddExample.files[0];
+          break;
+        case 'fileUpdateExample':
+          this.file = this.$refs.fileUpdateExample.files[0];
+          break;
+      }
+    },
+    submitFile: async function(data) {
+      let formData = new FormData();
+      formData.append('landing', this.file);
+      formData.append('status', data.landingStatus)
+      const path = await LandingService.uploadImage(formData)
+      data.imagePath = path
+      await this.saveLanding(data)
+    },
+    openUpdatePackagePopup(data) {
+      switch (data.landingStatus) {
+        case 'FIRST':
+          this.newModelPopup = true
+          this.d3figure = data
+          break;
+        case 'SECOND':
+          this.newConceptPopup = true
+          this.concept = data
+          break;
+        case 'THIRD':
+          this.newExamplePopup = true
+          this.exampleProcess = data
+          break;
+        case 'FOURTH':
+          this.updatePackagePopup = true
+          this.paket = data
+          break;
+        default:
+          break;
+      }
+    },
+    saveLanding: async function(data) {
+      const res = await LandingService.save(data)
+      switch(data.landingStatus) {
+        case 'FIRST':
+          this.d3figureList.push(res)
+          this.d3figure = {active: true, landingStatus: 'FIRST'}
+          break;
+        case 'SECOND':
+          this.conceptList.push(res)
+          this.concept =  {active: true, landingStatus: 'SECOND'}
+          break;
+        case 'THIRD':
+          this.exampleProcessList.push(res)
+          this.exampleProcess =  {active: true, landingStatus: 'THIRD'}
+          break;
+        case 'FOURTH':
+          this.paketler.push(res)
+          this.paket = {active: true, landingStatus: 'FOURTH'}
+          break;
+      }
+    },
+    updateLanding: async function(data) {
+        await LandingService.update(data)
+        this.paket =  {active: true, landingStatus: 'FIRST'}
+    },
+    userDelete(data, index) {
       var self = this;
       this.$vs.dialog({
         type: "confirm",
@@ -797,10 +893,23 @@ watch: {
         acceptText:"Onayla",
         cancelText:"Vazgeç",
         title: 'Paketi Sil',
-        text: `${user.login} silmek istiyor musunuz?`,
+        text: `${data.title} silmek istiyor musunuz?`,
         accept: async function() {
-          await UserService.userDelete(user.login);
-          self.users.splice(index, 1);
+          await LandingService.delete(data.id);
+          switch(data.landingStatus) {
+            case 'FIRST':
+              self.d3figureList.splice(index, 1);
+              break;
+          case 'SECOND':
+              self.conceptList.splice(index, 1);
+              break;
+          case 'THIRD':
+              self.exampleProcessList.splice(index, 1);
+              break;
+          case 'FOURTH':
+              self.paketler.splice(index, 1);
+              break;
+          }
           self.$vs.notify({
             color: "success",
             title: "Silindi."
@@ -808,31 +917,6 @@ watch: {
         }
       });
     },
-     conceptDelete(user, index) {
-      var self = this;
-      this.$vs.dialog({
-        type: "confirm",
-        color: "danger",
-        acceptText:"Onayla",
-        cancelText:"Vazgeç",
-        title: 'Konsept Sil',
-        text: `${user.login} silmek istiyor musunuz?`,
-        accept: async function() {
-          await UserService.userDelete(user.login);
-          self.users.splice(index, 1);
-          self.$vs.notify({
-            color: "success",
-            title: "Silindi."
-          });
-        }
-      });
-    },
-    handleChangePage(page) {
-      debugger;
-    },
-    sscb(searching) {
-      debugger;
-    }
   }
 };
 </script>

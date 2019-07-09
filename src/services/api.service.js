@@ -31,6 +31,12 @@ const ApiService = {
         return axios.post(resource, data)
     },
 
+    imagePost(resource, data) {
+        return axios.post(resource, data, 
+            {headers: {'Content-Type': 'multipart/form-data'}}
+        )
+    },
+
     put(resource, data) {
         return axios.put(resource, data)
     },
