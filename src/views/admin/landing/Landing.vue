@@ -361,7 +361,7 @@
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="submitFile(concept)">Ekle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(concept)">Güncelle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -519,7 +519,7 @@
             </div>
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="submitFile(exampleProcess)">Oluştur</vs-button>
+                       <vs-button class="float-right" @click="submitFile(exampleProcess)">Güncelle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -841,15 +841,15 @@ export default {
     openUpdatePackagePopup(data) {
       switch (data.landingStatus) {
         case 'FIRST':
-          this.newModelPopup = true
+          this.updateModelPopup = true
           this.d3figure = data
           break;
         case 'SECOND':
-          this.newConceptPopup = true
+          this.updateConceptPopup = true
           this.concept = data
           break;
         case 'THIRD':
-          this.newExamplePopup = true
+          this.updateExamplePopup = true
           this.exampleProcess = data
           break;
         case 'FOURTH':
