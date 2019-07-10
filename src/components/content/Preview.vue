@@ -83,7 +83,7 @@
       </div>
              <div class="vx-row mb-1">
               <div class="vx-col w-full">
-                       <vs-button color="success" class="float-right" @click="submitFile(d3figure)">Davet et</vs-button>
+                       <vs-button color="success" class="float-right" @click="mailSend">Davet et</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -95,6 +95,7 @@
 import Unity from "@/components/unity/Unity.vue";
 import ApiService from "@/services/api.service";
 import { TokenService } from "@/services/token.service";
+import MailService from "@/services/mail.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
 import AvatarSdkService from "@/services/avatarsdk.service";
@@ -144,6 +145,11 @@ export default {
     initialize: async function() {
       this.userFigures = await FigureService.getUserFigures();
       this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
+    },
+    mailSend: function() {
+      MailService.sendMail(this.inviteMail)
+      this.inviteMail = ""
+      this.openInvitePopup = false
     },
     avatarUpload: async function($event, index) {
       // Avatar SDK isteğinin sonucu
