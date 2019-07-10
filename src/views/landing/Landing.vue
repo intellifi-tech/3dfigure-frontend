@@ -277,71 +277,17 @@
                       </div>
                     </div>
                     <ul class="concepts-list">
-                      <li>
+                      <li v-for="(model, index) in menModel" :key="index">
                         <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
-                              id="mansampleFirst"
+                              :id="model.description"
                               v-model="iframeModelID"
-                              vs-value="91102961ad1040748145a4c341899840"
+                              :vs-value="model.title"
                             >
-                              <label for="mansampleFirst">
+                              <label :for="model.description">
                                 <img
-                                  src="assets/images/portre/man/man-0.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item pr-5 pr-md-3">
-                          <div class="content">
-                            <vs-radio
-                              id="mansampleSecond"
-                              v-model="iframeModelID"
-                              vs-value="97c994795c1d4ddbb3ef57af8da88276"
-                            >
-                              <label for="mansampleSecond" class>
-                                <img
-                                  src="assets/images/portre/man/man-1.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item pr-5 pr-md-3">
-                          <div class="content">
-                            <vs-radio
-                              id="mansampleThird"
-                              v-model="iframeModelID"
-                              vs-value="75e5ded5f8c54e5a9a63f3a778abb080"
-                            >
-                              <label for="mansampleThird" class>
-                                <img
-                                  src="assets/images/portre/man/man-2.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item pr-5 pr-md-3">
-                          <div class="content">
-                            <vs-radio
-                              id="mansampleFourth"
-                              v-model="iframeModelID"
-                              vs-value="d187f4d9406b4a07a5b0443b48ddb59c"
-                            >
-                              <label for="mansampleFourth" class>
-                                <img
-                                  src="assets/images/portre/man/boy-children.jpg"
+                                  :src="'assets/images/models/'+model.imagePath"
                                   class="img-style img-fluid mb-4 rounded"
                                 >
                               </label>
@@ -468,71 +414,17 @@
                       </div>
                     </div>
                     <ul class="concepts-list">
-                      <li>
+                      <li v-for="(model, index) in womenModel" :key="index">
                         <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
-                              id="womansampleFirst"
+                              :id="model.description"
                               v-model="iframeModelID2"
-                              vs-value="ebe0accf659d43068cd774141a5731cb"
+                              :vs-value="model.title"
                             >
-                              <label for="womansampleFirst" class>
+                              <label :for="model.description">
                                 <img
-                                  src="assets/images/portre/woman/woman-0.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item pr-5 pr-md-3">
-                          <div class="content">
-                            <vs-radio
-                              id="womansampleSecond"
-                              v-model="iframeModelID2"
-                              vs-value="4571b5cb637e464e838f82f12f3293fa"
-                            >
-                              <label for="womansampleSecond" class>
-                                <img
-                                  src="assets/images/portre/woman/woman-1.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item pr-5 pr-md-3">
-                          <div class="content">
-                            <vs-radio
-                              id="womansampleThird"
-                              v-model="iframeModelID2"
-                              vs-value="e51684e803b84f68bdae50e209741bdf"
-                            >
-                              <label for="womansampleThird" class>
-                                <img
-                                  src="assets/images/portre/woman/woman-2.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item pr-5 pr-md-3">
-                          <div class="content">
-                            <vs-radio
-                              id="womansampleFourth"
-                              v-model="iframeModelID2"
-                              vs-value="94bbe2f5ca6347189bcb6dd3d76922be"
-                            >
-                              <label for="womansampleFourth" class>
-                                <img
-                                  src="assets/images/portre/woman/girl-children.jpg"
+                                  :src="'assets/images/models/'+model.imagePath"
                                   class="img-style img-fluid mb-4 rounded"
                                 >
                               </label>
@@ -911,17 +803,17 @@
           <div class="col-lg-12">
               <!-- single product item -->
               <hooper :itemsToShow=4 :infiniteScroll=true :autoPlay="true" :playSpeed="4000">
-                <slide v-for="n in 6" :key="n">
+                <slide v-for="(n, index) in conceptList" :key="index">
                   <div class="single-product-item">
                   <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
+                  <img :src="'assets/images/models/'+n.imagePath" alt="product image">
                 </div>
                 <div class="content">
                   <h4 class="title">
-                    <a href="#">{{$t('landing.concepts.list.title')}}</a>
+                    <a href="#">{{n.title}}</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">{{$t('landing.concepts.list.price')}}</span>
+                    <span class="price">{{n.price}}</span>
                   </div>
                   <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
                 </div>
@@ -1104,14 +996,14 @@
       </div>
       <div class="customer-logos slider padding-bottom-30">
                       <hooper :itemsToShow=4 :infiniteScroll=true :autoPlay="true" :playSpeed="4000">
-                <slide v-for="n in 6" :key="n">
+                <slide v-for="(n, index) in exampleList" :key="index">
                   <a
-            href="assets/images/3dmodelornek1.png"
+            :href="'assets/images/models/'+n.imagePath"
             data-toggle="lightbox"
             data-gallery="gallery"
             class="col-md-4"
           >
-            <img src="assets/images/3dmodelornek1.png" class="img-fluid rounded">
+            <img :src="'assets/images/models/' + n.imagePath" class="img-fluid rounded">
           </a>
                 </slide>
                 
@@ -1522,97 +1414,27 @@
               </div>
             </div>
           </center>
-          <div class="col-lg-3">
+          <div class="col-lg-3" v-for="(p, index) in packageList" :key=index>
             <div class="card mb-5 mb-lg-0">
               <div class="card-body">
                 <h5
                   class="card-title text-white text-uppercase text-center"
-                >{{$t('landing.pricing.tableFirst.title')}}</h5>
+                >{{p.title}}</h5>
                 <h6 class="card-price text-white text-center">
-                  $10
+                  ${{p.price}}
                   <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
                 </h6>
                 <hr>
                 <ul class="fa-ul mb-24 pb-24 text-white">
-                  <li>
+                  <li v-for="(des, index2) in p.description.split(',')" :key="index2">
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
-                    </span>fbx + texture
-                  </li>
-                  <li>
-                    <span class="fa-li">
-                      <i class="fas fa-check"></i>
-                    </span>ply + texture
+                    </span>{{des}}
                   </li>
                 </ul>
                 <a
                   href="#"
                   class="btn btn-block text-uppercase border-none"
-                >{{$t('landing.pricing.buynow')}}</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card mb-5 mb-lg-0">
-              <div class="card-body">
-                <h5
-                  class="card-title text-white text-uppercase text-center"
-                >{{$t('landing.pricing.tableSecond.title')}}</h5>
-                <h6 class="card-price text-white text-center">
-                  $25
-                  <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
-                </h6>
-                <hr>
-                <ul class="fa-ul mb-24 pb-24 text-white">
-                  <li>
-                    <span class="fa-li">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    fbx, obj, wrl
-                  </li>
-                  <li>&nbsp;</li>
-                </ul>
-                <a
-                  href="#"
-                  class="btn btn-block border-none text-uppercase"
-                >{{$t('landing.pricing.buynow')}}</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card mb-5 mb-lg-0">
-              <div class="card-body">
-                <h5
-                  class="card-title text-white text-uppercase text-center"
-                >{{$t('landing.pricing.tableThird.title')}}</h5>
-                <h6 class="card-price text-white text-center">
-                  $100
-                  <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
-                </h6>
-                <hr>
-                <ul class="fa-ul mb-24 pb-24 text-white">
-                  <li>
-                    <span class="fa-li">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    {{$t('landing.pricing.tableThird.listFirst')}}
-                  </li>
-                  <li>
-                    <span class="fa-li">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    {{$t('landing.pricing.tableThird.listSecond')}} +
-                    <span
-                      class="underline h4"
-                    >
-                      $
-                      <strong>15</strong>
-                    </span>
-                  </li>
-                </ul>
-                <a
-                  href="#"
-                  class="btn btn-block border-none text-uppercase"
                 >{{$t('landing.pricing.buynow')}}</a>
               </div>
             </div>
@@ -1643,6 +1465,8 @@
               </div>
             </div>
           </div>
+        
+
         </div>
       </div>
     </section>
@@ -1830,6 +1654,7 @@ import { ContactService } from "@/services/contact.service";
 import Register from "@/components/login/Register.vue";
 import Login from "@/components/login/Login.vue";
 import { LoginService } from "@/services/login.service"
+import LandingService from "@/services/admin/landing.service"
 import { Hooper, Slide } from 'hooper';
 import 'hooper/dist/hooper.css';
 
@@ -1847,6 +1672,11 @@ export default {
       man: true,
       sampleiframe: true,
       langs: ["TR", "EN"],
+      menModel: [],
+      womenModel: [],
+      conceptList: [],
+      exampleList: [],
+      packageList: [],
       checkBox1: false,
       isVisible: false,
       clicked: -1,
@@ -1859,8 +1689,16 @@ export default {
       }
     };
   },
-  created() {
+  created: async function() {
     document.body.addEventListener('scroll', this.handleScroll);
+    const res = await LandingService.getFirst()
+    let halfWayThough = Math.floor(res.length / 2)
+    this.menModel = res.slice(0, halfWayThough);
+    this.womenModel = res.slice(halfWayThough, res.length);
+
+    this.conceptList = await LandingService.getSecond()
+    this.exampleList = await LandingService.getThird()
+    this.packageList = await LandingService.getFourth()
   },
   destroyed() {
     document.body.removeEventListener('scroll', this.handleScroll);

@@ -235,7 +235,7 @@
             class="px-3"
             color="danger"
             type="relief"
-            @click="conceptDelete(data[indextr], indextr)"
+            @click="userDelete(data[indextr], indextr)"
           >Sil</vs-button>
         </div>
       </div>
@@ -588,7 +588,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Paket Adı"
-                  v-model="paket.paketAdi"
+                  v-model="paket.title"
                 />
               </div>
            
@@ -598,7 +598,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Fiyatı"
-                  v-model="paket.paketFiyat"
+                  v-model="paket.price"
                 />
               </div>
             </div>
@@ -609,7 +609,7 @@
                   class="w-full"
                   label-placeholder="Özellikler"
                   description-text="Özelliklerin arasına virgül eklenerek yazılmalıdır."
-                  v-model="paket.paketOzellikler"
+                  v-model="paket.description"
                 />
               </div>
             </div>
@@ -619,14 +619,14 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="paket.paketSira"
+                  v-model="paket.showIndex"
                 />
               </div>
             </div>
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="paket.paketDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="paket.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -650,7 +650,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Paket Adı"
-                  v-model="paket.paketAdi"
+                  v-model="paket.title"
                 />
               </div>
            
@@ -660,7 +660,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Fiyatı"
-                  v-model="paket.paketFiyat"
+                  v-model="paket.price"
                 />
               </div>
             </div>
@@ -671,7 +671,7 @@
                   class="w-full"
                   label-placeholder="Özellikler"
                   description-text="Özelliklerin arasına virgül eklenerek yazılmalıdır."
-                  v-model="paket.paketOzellikler"
+                  v-model="paket.description"
                 />
               </div>
             </div>
@@ -682,7 +682,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="paket.paketSira"
+                  v-model="paket.showIndex"
                 />
               </div>
             </div>
@@ -690,7 +690,7 @@
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="paket.paketDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="paket.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"

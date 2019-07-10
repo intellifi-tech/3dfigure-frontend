@@ -99,7 +99,8 @@ const mutations = {
 		state.member.firstLogin = value
 	},
 	LOGOUT(state) {
-		state.selectedFigures = {}
+		state.selectedFigures.avatarKey = []
+		state.selectedFigures.imagePath = []
 		state.conceptList = {}
 		state.member = {}
 	}
