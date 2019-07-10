@@ -2,8 +2,8 @@
   <!-- FORM WITH LABEL PLACEHOLDER -->
   <div class="vx-col w-full mb-base">
     <div class="mt-6">
-      <vs-tabs vs-alignment="fixed" class="shadow-none p-3">
-        <vs-tab vs-label="Profilim" class="pt-5" @click="isUpdated=true">
+      <vs-tabs vs-alignment="fixed" class="shadow-none p-3 profil-tabs">
+        <vs-tab vs-label="Profilim" class="pt-5" @click="isUpdated=true" v-on:click="first=true">
           <div class="md:w-1/2">
             <h3>Profil Bilgileri</h3>
             <vx-card class="shadow-md">
@@ -80,7 +80,7 @@
           </div>
         </vs-tab>
 
-        <vs-tab vs-label="Adreslerim" class="row pt-5">
+        <vs-tab vs-label="Adreslerim" class="row pt-5" v-on:click="first=true">
           <div class="md:w-1/2">
             <vs-table class="px-4" v-model="adres" :data="addresses">
               <template slot="header">
@@ -120,7 +120,7 @@
                 <div class="vx-col w-1/2">
                   <vs-input
                     class="w-full"
-                    :class="{'vs-input-danger':this.$v.name.$invalid}"
+                    :class="{'vs-input-danger':this.$v.name.$invalid && !first }"
                     label-placeholder="Ad"
                     v-model="name"
                   />
@@ -128,7 +128,7 @@
                 <div class="vx-col w-1/2">
                   <vs-input
                     class="w-full"
-                    :class="{'vs-input-danger':this.$v.surname.$invalid}"
+                    :class="{'vs-input-danger':this.$v.surname.$invalid && !first}"
                     label-placeholder="Soyad"
                     v-model="surname"
                   />
@@ -138,7 +138,7 @@
                 <div class="vx-col w-full">
                   <vs-input
                     class="w-full"
-                    :class="{'vs-input-danger':this.$v.adres.addressName.$invalid}"
+                    :class="{'vs-input-danger':this.$v.adres.addressName.$invalid && !first}"
                     label-placeholder="Adres Adı"
                     v-model="adres.addressName"
                   />
@@ -149,7 +149,7 @@
                   <vs-input
                     type="text"
                     class="w-full"
-                    :class="{'vs-input-danger':this.$v.adres.address.$invalid}"
+                    :class="{'vs-input-danger':this.$v.adres.address.$invalid && !first}"
                     label-placeholder="Adres"
                     v-model="adres.address"
                   />
@@ -160,7 +160,7 @@
                   <vs-input
                     type="tel"
                     class="w-full"
-                    :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}"
+                    :class="{'vs-input-danger':this.$v.adres.mobile.$invalid && !first}"
                     label-placeholder="Telefon"
                     v-model="adres.mobile"
                   />
@@ -172,7 +172,7 @@
                     type="text"
                     class="w-full"
                     label-placeholder="TCKN/Vergi No"
-                    :class="{'vs-input-danger':this.$v.adres.taxNo.$invalid}"
+                    :class="{'vs-input-danger':this.$v.adres.taxNo.$invalid && !first}"
                     v-model="adres.taxNo"
                   />
                 </div>
@@ -196,7 +196,7 @@
                     class="select-input form-control-lg selecting selectExample w-full"
                     label="İlçe / Semt"
                     v-model="adres.townId"
-                    :class="{'form-control-danger': this.$v.adres.townId.$invalid}"
+                    :class="{'form-control-danger': this.$v.adres.townId.$invalid && !first}"
                   >
                     <option
                       :key="index"
@@ -212,7 +212,7 @@
                   <vs-input
                     type="text"
                     class="w-full"
-                    :class="{'vs-input-danger':this.$v.adres.postCode.$invalid}"
+                    :class="{'vs-input-danger':this.$v.adres.postCode.$invalid && !first}"
                     label-placeholder="Posta kodu"
                     v-model="adres.postCode"
                   />
@@ -233,7 +233,7 @@
             </vx-card>
           </div>
         </vs-tab>
-        <vs-tab vs-label="Şifre Değiştir" class="row pt-5 pl-4">
+        <vs-tab vs-label="Şifre Değiştir" class="row pt-5 pl-4" v-on:click="first=true">
           <div class="md:w-1/2">
            <h3>Şifre Değiştir</h3>
             <vx-card class="shadow-md">
@@ -254,7 +254,7 @@
                     icon-after="true"
                     icon="visibility"
                     :type="'password'"
-                    :class="{'vs-input-danger':this.$v.passwordDTO.newPassword.$invalid}"
+                    :class="{'vs-input-danger':this.$v.passwordDTO.newPassword.$invalid && !first}"
                     label-placeholder="Yeni Şifre"
                     v-model="passwordDTO.newPassword"
                   />
@@ -267,7 +267,7 @@
                     icon-after="true"
                     icon="visibility"
                     :type="'password'"
-                    :class="{'vs-input-danger':this.$v.passwordDTO.confirm.$invalid}"
+                    :class="{'vs-input-danger':this.$v.passwordDTO.confirm.$invalid && !first}"
                     label-placeholder="Tekrar Yeni Şifre"
                     v-model="passwordDTO.confirm"
                   />
@@ -343,6 +343,7 @@ export default {
         newPassword: "",
         confirm: ""
       },
+      first: true,
       addresses: [],
       cities: [],
       towns: [],
@@ -387,10 +388,12 @@ export default {
       this.surname = "";
     },
     addOrUpdateAddress: async function() {
+    
       if (!this.$v.adres.$invalid) {
         if (this.adres.id == null) {
           var res = await AddressService.saveUserAddress(this.adres);
           this.addresses.push(res);
+          this.first=true;
         } else {
           await AddressService.updateUserAddress(this.adres);
         }
@@ -398,8 +401,10 @@ export default {
         this.adres = { id: null };
         (this.name = ""), (this.surname = "");
       } else {
+         this.first=false;
         this.$vs.notify({
-          text: "İşlem Başarısız!",
+          title:"HATA!",
+          text: "Lütfen bilgileri kontrol ediniz.",
           color: "danger"
         });
       }
@@ -414,6 +419,7 @@ export default {
       });
     },
     clearAddress() {
+      this.first=true,
       (this.name = ""),
         (this.surname = ""),
         (this.adres = {
@@ -421,6 +427,7 @@ export default {
         });
     },
     changePassword: async function() {
+        this.first=false;
       if (!this.$v.passwordDTO.$invalid) {
         await UserService.updatePassword(this.passwordDTO);
         this.passwordDTO = {};
@@ -472,3 +479,9 @@ export default {
   }
 };
 </script>
+<style>
+.profil-tabs .vs-input-danger input,.profil-tabs .vs-select-danger select{
+  border:1px solid rgba(var(--vs-danger),1)!important;
+}
+</style>
+

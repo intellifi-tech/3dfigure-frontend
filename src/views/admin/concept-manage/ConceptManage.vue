@@ -66,8 +66,8 @@
     </div>
       <!-- Update Concept Popup -->
       <vs-popup :active.sync="updatePopup" title="Konsept Düzenle">
-        <div class="vx-row">
-          <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
+        <div class="container">
+          <div class="vx-col w-full mx-auto self-center mb-4">
             <iframe
               class="responsive card-img-top"
               style="height: 170px"
@@ -78,13 +78,13 @@
               webkitallowfullscreen="true"
             ></iframe>
           </div>
-          <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
-       <vs-input class="mb-3 w-full" label-placeholder="Konsept Adı" :class="{'vs-input-danger':this.$v.selected.conceptName.$invalid}" v-model="selected.conceptName"/>
-          <vs-input class="mb-3 w-full" label-placeholder="Sketch Linki" :class="{'vs-input-danger':this.$v.selected.sketchId.$invalid}"  v-model="selected.sketchId"/>
+          <div class="vx-col mx-auto self-center">
+         <vs-input class="mb-4 w-full" label-placeholder="Konsept Adı" :class="{'vs-input-danger':this.$v.selected.conceptName.$invalid}" v-model="selected.conceptName"/>
+          <vs-input class="mb-4 w-full" label-placeholder="Sketch Linki" :class="{'vs-input-danger':this.$v.selected.sketchId.$invalid}"  v-model="selected.sketchId"/>
           
-          <vs-input class="mb-6 w-full" label-placeholder="Açıklama" v-model="selected.description"/>
+          <vs-input class="mb-3 w-full" label-placeholder="Açıklama" v-model="selected.description"/>
           <span class="vs-component isFocus is-label-placeholder">Kategori</span>
-          <select class="form-control mb-3" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryId">
+          <select class="form-control mb-3 w-full" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryId">
                 <option
                   :key="index"
                   v-for="(item,index) in categories"
@@ -101,7 +101,7 @@
                 >Hayır</option>
           </select>
           <span class="vs-component isFocus is-label-placeholder">Çift Resim Uygunluğu</span>
-          <select class="form-control mb-3" :class="{'vs-input-danger':this.$v.selected.doubleConcept.$invalid}" v-model="selected.doubleConcept">
+          <select class="form-control mb-4" :class="{'vs-input-danger':this.$v.selected.doubleConcept.$invalid}" v-model="selected.doubleConcept">
                 <option
                   :value="true"
                 >Evet</option>
@@ -111,7 +111,7 @@
           </select>
           <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.selected.showIndex.$invalid}" label-placeholder="Görünürlük Indeksi" v-model="selected.showIndex"/>
           <vs-input class="mb-2 w-full" :class="{'vs-input-danger':this.$v.selected.price.$invalid}" label-placeholder="Fiyat" v-model="selected.price"/>
-          <span class="vs-component isFocus is-label-placeholder">Dil</span>
+          <span class="vs-component isFocus is-label-placeholder pl-2 text-sm">Dil</span>
           <select class="form-control mb-4" v-model="selected.lang">
                 <option
                   value="TR"
