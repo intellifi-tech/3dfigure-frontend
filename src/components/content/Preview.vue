@@ -169,8 +169,8 @@ export default {
                       clickEffect: true,
                       textAfter: true
                     });
-                    setTimeout(() => {this.$vs.loading.close();}, 6000)
-                  }, 6000)
+                    setTimeout(() => {this.$vs.loading.close();}, 8000)
+                  }, 8000)
                   var res = await AvatarSdkService.getAvatarInformation(
                     response.code
                   );
