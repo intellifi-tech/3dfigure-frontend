@@ -232,7 +232,6 @@
           <div class="col-lg-12 col-lg-12 mx-4 mx-md-0 pl-md-0">
             <div class="how-to-use">
               <ul id="ul-man-or-woman" class="row items-center mb-5">
-                <h3 class="pr-3">Cinsiyet seç :</h3>
                 <p class="btn-switch mb-0">
                   <input
                     type="radio"
@@ -1403,7 +1402,7 @@
 
     <!--pricing tables start-->
 
-    <section id="pricing" class="pricing padding-bottom-100 padding-top-50">
+    <section hidden id="pricing" class="pricing padding-bottom-100 padding-top-50">
       <div class="container">
         <div class="row">
           <center class="col-12">
@@ -1521,7 +1520,7 @@
                   </div>
                   <div class="content">
                     <span class="details">
-                      <a href="mailto:info@3dfigur.com">info@3dfigur.com</a>
+                      <a href="mailto:order@3dfigur.com">order@3dfigur.com</a>
                     </span>
                   </div>
                 </li>
@@ -1680,7 +1679,7 @@ export default {
       checkBox1: false,
       isVisible: false,
       clicked: -1,
-      navbarList:['home', 'howToUse', 'concepts', 'about', 'faq', 'pricing', 'contact'],
+      navbarList:['home', 'howToUse', 'concepts', 'about', 'faq', 'contact'],
       contact: {
         fullname:"",
         mail: "",

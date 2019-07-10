@@ -13,8 +13,11 @@
         <span class="align-text-bottom  mr-2">
            <vs-icon class="" icon="info" size="small" bg="blue" color="white" round></vs-icon>
         </span>Bilgilendirme Panosu </h4>
+        <p>
+           Modelde bazı eksiklikler olabilir, hiç <b>endişe etmeyin!</b><br>
+        </p>
         <p class="mb-3">
-          Modelde bazı eksiklikler olabilir, hiç endişe etmeyin. Siz istediğiniz konsepti seçin. Geri kalan tüm düzenlemeleri biz tasarım aşamasında gerçekleştirmekteyiz. Sonrasında ise siparişinizi üretime almadan önce izin onayınıza sunacağız.
+          Siz istediğiniz <b>konsepti</b> seçin. Geri kalan tüm düzenlemeler, alanında uzman tasarımcılarımız tarafından düzenlenecektir.
         </p>
         <p class="mb-3" v-if="!limit">
           Limitiniz dolduysa uygulamamızı paylaşarak fotoğraf yükleme hakkına sahip olabilirsiniz.
@@ -25,18 +28,17 @@
     <div class="col-lg-6 mb-3">
       <vx-card class="fotograflarim-card">
         <div class="mb-4 row">
-         <div class="col-xl-6">
-             <h4 class="pb-4">Fotoğraflarım </h4>
+         <div class="col-xl-4 pt-2">
+            <h4 class="pb-4"> Fotoğraflarım</h4>
          </div>
-         <div class="col-xl-6 text-right">
-             <span class="h6">Fotoğraf yükleme hakkınız: </span>
-             <h3 class="text-primary">{{limit}} / {{ this.$store.state.member.totalFigure}}</h3>
+         <div class="col-xl-8 text-md-right pt-2">
+            <span class="h6">Fotoğraf yükleme hakkınız: </span>
+            <h3 class="text-primary h3"> {{limit}} / {{ this.$store.state.member.totalFigure}}</h3>
          </div>
+            <a @click="openInvitePopup=true" class="cursor-pointer position-absolute" style="top:4px;right:4px;"><vs-icon icon="help" size="small" color="#007bff" ></vs-icon></a>
         </div>
         <p>
-          Figürünü oluşturmak istediğin fotoğrafı
-          <code>Galerinden</code>
-          seçebilir veya yeni fotoğraf yükleyebilirsin.
+          En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline" @click="openPopupHowtoUse">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
         </p>
       <hr>
         <div class="mt-0">
@@ -62,6 +64,29 @@
       </vx-card>
     </div>
     <!--fotoğraflar card column -->
+     
+<vs-popup :active.sync="openInvitePopup" title="Arkadaşını Davet Et">
+     <div class="vx-row mb-4">
+             <div class="vx-col w-full mb-3">
+                <span>Fotoğraf yükleme hakkınız bittiğinde <b>3 arkadaşınızın</b> e-posta adresine davet yollayarak <b>5 yükleme hakkı</b> daha kazanabilirsiniz.</span>
+                <br><br>
+                <span>Ayrıca sipariş verdikten sonra tüm haklarınız <b>yenilenir.</b></span>
+              </div>
+              <div class="vx-col w-full">
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="E-posta"
+                  v-model="inviteMail"
+                />
+              </div>
+      </div>
+             <div class="vx-row mb-1">
+              <div class="vx-col w-full">
+                       <vs-button color="success" class="float-right" @click="submitFile(d3figure)">Davet et</vs-button>
+              </div>
+            </div>
+    </vs-popup>
   </div>
   <!--preview row-->
 </template>
@@ -77,6 +102,8 @@ import AvatarSdkService from "@/services/avatarsdk.service";
 export default {
   data() {
     return {
+      openInvitePopup:false,
+      inviteMail:"",
       actionUrl: `${ApiService.getBaseURL()}\\images\\upload`,
       avatarsdk: process.env.VUE_APP_AVATAR_SDK_AVATAR_API,
       authHeader: {
@@ -110,6 +137,9 @@ export default {
     $route: "initialize"
   },*/
   methods: {
+     openPopupHowtoUse() {
+      this.$store.commit("OPEN_SIDEBAR_POPUP", true);
+    },
     updateGallery: async function() {},
     initialize: async function() {
       this.userFigures = await FigureService.getUserFigures();
@@ -169,14 +199,14 @@ export default {
                       clickEffect: true,
                       textAfter: true
                     });
-                    setTimeout(() => {this.$vs.loading.close();}, 6000)
-                  }, 6000)
+                    setTimeout(() => {this.$vs.loading.close();}, 8000)
+                  }, 8000)
                   var res = await AvatarSdkService.getAvatarInformation(
                     response.code
                   );
                   if (res.data.status === "Failed") {
                     this.$vs.notify({
-                      title: "HATA",
+                      title: "HATA!",
                       time: 30000,
                       text:
                         "Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!",
@@ -204,7 +234,7 @@ export default {
         }, 6000);
       } else {
         this.$vs.notify({
-          title: "HATA",
+          title: "HATA!",
           text: "Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!",
           color: "danger"
         });

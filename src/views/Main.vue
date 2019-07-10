@@ -8,6 +8,8 @@
       finishButtonText="Sepete Git"
       nextButtonText="Devam et"
       backButtonText="Geri dön"
+      class="yeniModelWizard"
+      @on-complete="finishOrder"
     >
       <tab-content
         data-vv-scope="vs1"
@@ -42,6 +44,9 @@ export default {
     };
   },
   methods: {
+      finishOrder: async function() {
+      this.$router.push("/checkout")
+    },
 
     validateStep1: async function() {
       const res = this.$store.state.selectedFigures.avatarKey.length != 0;

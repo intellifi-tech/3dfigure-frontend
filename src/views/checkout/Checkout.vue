@@ -51,8 +51,8 @@ export default {
       if (!this.$store.state.checkout.chooseAddress) {
         this.$vs.notify({
           time: 4000,
-          title: "Error",
-          text: "Lütfen Adres Seçin",
+          title: "HATA!",
+          text: "Lütfen Adres seçiniz!",
           color: "danger"
         });
         return false
@@ -63,8 +63,8 @@ export default {
       if (!this.$store.state.checkout.chooseAddress) {
         this.$vs.notify({
           time: 4000,
-          title: "Error",
-          text: "Lütfen Adres Seçin",
+          title: "HATA!",
+          text: "Lütfen Adres seçiniz!",
           color: "danger"
         });
         return false

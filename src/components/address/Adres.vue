@@ -54,7 +54,7 @@
             <!-- teslimat adresi-->
 
             <div class="pt-4">
-              <h4 class="mb-3 font-bold">Fatura Adresi</h4>
+              <h4 class="mb-3 font-bold">Yeni Adres</h4>
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
                   <vs-input class="w-full" :class="{'vs-input-danger':this.$v.adres.addressName.$invalid}" label-placeholder="Adres Adı" v-model="adres.addressName"/>
@@ -218,8 +218,8 @@ export default {
       if (this.$v.$invalid) {
         this.$vs.notify({
           time: 4000,
-          title: "Error",
-          text: "Eksik Bilgi Girdiniz",
+          title: "HATA!",
+          text: "Bilgileri kontrol ediniz.",
           color: "danger"
         });
       } else {
@@ -232,8 +232,8 @@ export default {
         }
         this.$vs.notify({
           time: 4000,
-          title: "Başarılı",
-          text: "Adres başarılı bir şekilde eklendi",
+          title: "Başarılı!",
+          text: "Adres başarılı bir şekilde eklendi.",
           color: "info"
         });
         this.chooseAddress = true
