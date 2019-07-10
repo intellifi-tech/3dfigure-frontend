@@ -12,7 +12,7 @@
     >
       <tab-content title="Sepet" class="mb-5" icon="feather icon-home" :before-change="validateStep1">
         <div>
-          <checkout-list></checkout-list>
+          <checkout-list @valid="dummyFunc"></checkout-list>
         </div>
       </tab-content>
       <tab-content title="Kargo Adresi" class="mb-5" icon="feather icon-home" :before-change="validateStep2">
@@ -41,11 +41,26 @@ import Adres from "@/components/address/Adres.vue";
 export default {
   data() {
     return {
+      counterDanger: false,
+      counterDanger2: false
     };
   },
   methods: {
     validateStep1() {
-      return this.$store.state.checkout.basketList.length !== 0
+      if(this.counterDanger)
+      {
+          this.$vs.notify({
+          time: 4000,
+          title: "HATA!",
+          text: "Lütfen notları kontrol ediniz!",
+          color: "danger"
+        });
+      }
+      return (this.$store.state.checkout.basketList.length !== 0) && !this.counterDanger 
+
+    },
+    dummyFunc(counterDanger) {
+      this.counterDanger = counterDanger
     },
     validateStep2: function() {
       if (!this.$store.state.checkout.chooseAddress) {

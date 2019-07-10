@@ -55,22 +55,44 @@
               </div>
               <span class="text-muted">${{this.$store.state.checkout.order.totalPriceNet.toFixed(2)}}</span>
             </li>
+            <!-- <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">İndirim Tutarı</h6>
+              </div>
+              <span class="text-muted">$2.5</span>
+            </li>-->
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
                 <h6 class="my-0">KDV(%18)</h6>
               </div>
               <span class="text-muted">${{this.$store.state.checkout.order.kdv.toFixed(2)}}</span>
             </li>
-            <li class="mb-2 py-3 d-flex justify-content-between">
+            <li class="py-3 d-flex justify-content-between">
               <span>Genel Toplam (USD)</span>
               <strong>${{this.$store.state.checkout.order.totalPrice.toFixed(2)}}</strong>
+            </li>
+            <hr>
+             <li class="py-3 justify-content-between">
+              <h6 class="font-sans text-secondary">Görüş ve Öneri :</h6>
+              <vs-textarea 
+               class="mt-3 w-full sepet-textarea"
+               v-model="areaFeedback"
+               counter="200" 
+               :counter-danger.sync="counterDanger"
+              ></vs-textarea>
+            </li>
+             <li class="mb-2 justify-content-between">
+              <h6 class="font-sans text-secondary">Sipariş Notu :</h6>
+              <vs-textarea 
+                class="mt-3 w-full sepet-textarea"
+                v-model="areaOrderNote"
+                counter="200" 
+                :counter-danger.sync="counterDanger2"
+              ></vs-textarea>
             </li>
           </ul>
           <div><vs-button color="success" type="filled" to="main">Alışverişe Devam Et</vs-button></div>
         </div>
-
-        
-
         <!--card checkout -->
       </div>
       <!--col totals -->
@@ -85,10 +107,22 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
+      counterDanger: false,
+      counterDanger2: false,
+      areaFeedback:"",
+      areaOrderNote:"",
     };
   },
   created: async function() {
     await this.initPage()
+  },
+  watch: {
+    counterDanger() {
+      this.$emit('valid', this.counterDanger || this.counterDanger2)
+    },
+    counterDanger2() {
+      this.$emit('valid', this.counterDanger || this.counterDanger2)
+    }
   },
   methods: {
     ...mapActions('checkout', ['initBasketList', 'deleteFromBasketList']),
@@ -104,9 +138,12 @@ export default {
   },
   computed: {
     ...mapGetters('checkout', ['basketList', 'totalPrice', 'totalPriceNet', 'kdv'])
-  }
+  },
 };
 </script>
 
 <style>
+.sepet-textarea .vs-textarea{
+  max-height:150px;
+}
 </style>

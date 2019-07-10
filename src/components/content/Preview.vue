@@ -180,7 +180,7 @@ export default {
             setTimeout(() => {
               this.$vs.loading.close();
               this.$vs.loading({
-                text: "Biraz bekletiyoruz ama bir de heykel traşları düşünün..",
+                text: "Biraz bekletiyoruz ama bir de heykeltraşları düşünün..",
                 clickEffect: true,
                 textAfter: true
               });
