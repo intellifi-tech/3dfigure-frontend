@@ -415,6 +415,7 @@ export default {
       await this.$store.dispatch("getCurrentUser");
       this.$router.push("/profile");
       this.$vs.notify({
+        color:"success",
         text: "Güncelleme Başarılı!"
       });
     },

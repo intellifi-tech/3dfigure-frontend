@@ -37,12 +37,8 @@
              Kayıtlı adres bulunmuyor.
            <a 
             href="#new-address" 
-            id="new-address"
             @click="chooseAddress=false"
-            aria-controls="new-address"
-            aria-selected="false"
-            data-toggle="pill"
-            role="tab" >Yeni Adres Ekle!</a>
+            >Yeni Adres Ekle!</a>
       </div>
         <ul class="adreslerimList" v-for="adres in this.$store.state.checkout.addressList" :key="adres.id">
           <li>

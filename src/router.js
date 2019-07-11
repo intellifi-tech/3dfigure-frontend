@@ -61,6 +61,16 @@ const router = new Router({
 			],
 		},
 		{
+			path: '/siparis-iptal-ve-iade-sartlari',
+			component: () => import('./views/pages/SiparisIptalveIade.vue'),
+			meta: {
+				public: true
+			},
+			children: [
+
+			],
+		},
+		{
 			path: '/kisisel-veri-kanunu',
 			component: () => import('./views/pages/KisiselVeriKanunu.vue'),
 			meta: {
