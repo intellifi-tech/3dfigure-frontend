@@ -85,6 +85,14 @@ const mutations = {
         state.order.basketId = basketId
     },
 
+    UPDATE_FEEDBACK(state, value) {
+        state.order.feedback = value
+    },
+
+    UPDATE_ORDER_NOTE(state, value) {
+        state.order.orderNote = value
+    },
+
     FINISH_ORDER(state, userId) {
         state.order.userId = userId
         state.order.createdDate = new Date()

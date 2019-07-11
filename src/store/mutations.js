@@ -98,6 +98,9 @@ const mutations = {
 	FIRST_LOGIN_CLOSE(state, value) {
 		state.member.firstLogin = value
 	},
+	UPDATE_SEND_FRIEND(state, value) {
+		state.member.sendFriend = value
+	},
 	LOGOUT(state) {
 		state.selectedFigures.avatarKey = []
 		state.selectedFigures.imagePath = []

@@ -146,10 +146,12 @@ export default {
       this.userFigures = await FigureService.getUserFigures();
       this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
     },
-    mailSend: function() {
-      MailService.sendMail(this.inviteMail)
+    mailSend: async function() {
+      await MailService.sendMail(this.inviteMail)
       this.inviteMail = ""
       this.openInvitePopup = false
+      this.$store.commit("UPDATE_SEND_FRIEND", this.$store.state.member.sendFriend - 1)
+      this.$store.dispatch("updateFirstLogin", this.$store.state.member)
     },
     avatarUpload: async function($event, index) {
       // Avatar SDK isteğinin sonucu
