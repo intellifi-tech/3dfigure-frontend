@@ -468,7 +468,7 @@ export default {
   z-index: 999;
   position: absolute !important;
   color: #000 !important;
-  background-color: #99e622 !important;
+  background-color: #2bff45 !important;
   padding: 10px !important;
   top: 0 !important;
   right: 0 !important;

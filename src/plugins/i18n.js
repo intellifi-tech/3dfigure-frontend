@@ -108,7 +108,7 @@ const messages = {
         login: {
             login: 'Login and Create 3D Figure',
             register:'Register and Create 3D Figure',
-            user: 'Username',
+            user: 'E-mail',
             pass: 'Password',
             rem: 'Remember Me',
             forgot: 'Forgot Password',
@@ -244,7 +244,7 @@ const messages = {
         login: {
             login: 'Giriş Yap ve 3D Figürünü Oluştur',
             register: 'Kayıt Ol ve 3D Figürünü Oluştur',
-            user: 'Kullanıcı Adı',
+            user: 'E-posta',
             pass: 'Parola',
             rem: 'Beni Hatırla',
             forgot: 'Parolamı Unuttum',

@@ -1,34 +1,49 @@
 <template>
   <div class="container-fluid border rounded-lg px-5 py-4">
     <div class="">
-      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <ul class="nav nav-pills mb-3" role="tablist">
         <li class="nav-item">
           <a
-            class="nav-link active"
-            id="pills-home-tab"
+            class="nav-link"
+            id="address"
             data-toggle="pill"
-            href="#pills-home"
+            href="#address"
             @click="chooseAddress=true"
+            :class="{'active': chooseAddress}"
             role="tab"
-            aria-controls="pills-home"
+            aria-controls="address"
             aria-selected="true"
           >Adres Seç</a>
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            id="pills-profile-tab"
+            id="new-address"
             data-toggle="pill"
-            href="#pills-profile"
+            href="#new-address"
             @click="chooseAddress=false"
+            :class="{'active': !chooseAddress}"
             role="tab"
-            aria-controls="pills-profile"
+            aria-controls="new-address"
             aria-selected="false"
           >Adres Ekle</a>
         </li>
       </ul>
 
-      <div class="adreslerim" v-show="chooseAddress">
+      <div class="mt-3 col-md-12">
+         <div class="adreslerim" v-show="chooseAddress">
+         <hr>
+          <div class="col-12 vx-card py-3 px-5 mt-5" v-if="this.$store.state.checkout.addressList === null || this.$store.state.checkout.addressList.length === 0">
+             Kayıtlı adres bulunmuyor.
+           <a 
+            href="#new-address" 
+            id="new-address"
+            @click="chooseAddress=false"
+            aria-controls="new-address"
+            aria-selected="false"
+            data-toggle="pill"
+            role="tab" >Yeni Adres Ekle!</a>
+      </div>
         <ul class="adreslerimList" v-for="adres in this.$store.state.checkout.addressList" :key="adres.id">
           <li>
             <vs-radio color="success" v-model="radios2" :vs-value="adres" @change="updateAddress">
@@ -44,15 +59,11 @@
           </li>
         </ul>
       </div>
-      <!--radio buttons-->
+      <!--adreslerim list radio buttons finish-->
 
-      <div class="mt-3 col-md-12">
         <div class="newAdres" v-show="!chooseAddress">
           <hr>
           <div class="row pl-4">
-            
-            <!-- teslimat adresi-->
-
             <div class="pt-4">
               <h4 class="mb-3 font-bold">Yeni Adres</h4>
               <div class="vx-row mb-2">

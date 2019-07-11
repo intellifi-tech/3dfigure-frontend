@@ -10,7 +10,7 @@
       finishButtonText="Siparişi Tamamla"
       @on-complete="finishShopping"
     >
-      <tab-content title="Sepet" class="mb-5" icon="feather icon-home" :before-change="validateStep1">
+      <tab-content title="Sepet" class="mb-5" icon="feather icon-shopping-cart" :before-change="validateStep1">
         <div>
           <checkout-list @valid="dummyFunc"></checkout-list>
         </div>
@@ -20,12 +20,12 @@
           <adres :isBilling=false></adres>
         </div>
       </tab-content>
-      <tab-content title="Fatura Adresi" class="mb-5" icon="feather icon-home" :before-change="validateStep3">
+      <tab-content title="Fatura Adresi" class="mb-5" icon="feather icon-file-text" :before-change="validateStep3">
         <div>
           <adres :isBilling=true></adres>
         </div>
       </tab-content>
-      <tab-content title="Ödeme" class="mb-5" icon="feather icon-home">
+      <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
         <div></div>
       </tab-content>
     </form-wizard>
