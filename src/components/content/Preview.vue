@@ -77,13 +77,13 @@
                   type="text"
                   class="w-full"
                   label-placeholder="E-posta"
-                  v-model="inviteMail"
+                  v-model="inviteMail.mail"
                 />
               </div>
       </div>
              <div class="vx-row mb-1">
               <div class="vx-col w-full">
-                       <vs-button color="success" class="float-right" @click="submitFile(d3figure)">Davet et</vs-button>
+                       <vs-button color="success" class="float-right" @click="mailSend">Davet et</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -95,6 +95,7 @@
 import Unity from "@/components/unity/Unity.vue";
 import ApiService from "@/services/api.service";
 import { TokenService } from "@/services/token.service";
+import MailService from "@/services/mail.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
 import AvatarSdkService from "@/services/avatarsdk.service";
@@ -103,7 +104,9 @@ export default {
   data() {
     return {
       openInvitePopup:false,
-      inviteMail:"",
+      inviteMail: {
+        mail: ""
+      },
       actionUrl: `${ApiService.getBaseURL()}\\images\\upload`,
       avatarsdk: process.env.VUE_APP_AVATAR_SDK_AVATAR_API,
       authHeader: {
@@ -144,6 +147,31 @@ export default {
     initialize: async function() {
       this.userFigures = await FigureService.getUserFigures();
       this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
+    },
+    mailSend: async function() {
+      if (this.$store.state.member.sendFriend != 0) {
+
+      
+      await MailService.sendMail(this.inviteMail)
+      this.inviteMail.mail = ""
+      this.openInvitePopup = false
+      this.$store.commit("UPDATE_SEND_FRIEND", this.$store.state.member.sendFriend - 1)
+        if (this.$store.state.member.sendFriend == 0) {
+          this.$store.commit("UPDATE_TOTAL_FIGURE", this.$store.state.member.totalFigure + this.$store.state.member.totalFigure)
+        }
+      this.$store.dispatch("updateFirstLogin", this.$store.state.member)
+      this.$vs.notify({
+          title: "Başarılı!",
+          text: "Mail gönderilmiştir",
+          color: "success"
+        });
+      } else {
+        this.$vs.notify({
+          title: "HATA!",
+          text: "Mail gönderme hakkınız dolmuştur",
+          color: "danger"
+        });
+      }
     },
     avatarUpload: async function($event, index) {
       // Avatar SDK isteğinin sonucu

@@ -16,7 +16,9 @@ const state = {
 		deliveryId: -1,
 		billingId: -1,
 		basketId: -1,
-		userId: -1
+		userId: -1,
+		orderNote: "",
+		feedback: ""
 	}
 }
 

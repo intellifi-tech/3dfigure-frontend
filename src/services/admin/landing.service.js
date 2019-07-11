@@ -61,11 +61,19 @@ const LandingService = {
        }
    },
 
+   searchModel: async function (text) {
+        try {
+            const response = await ApiService.get("/landing/search/"+text)
+            return response.data
+        } catch (error) {
+            return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
    save: async function (data) {
     try {
-        debugger
         const response = await ApiService.post("/landing", data)
-        debugger
         return response.data
     } catch (error) {
         return error.response.status
@@ -85,7 +93,7 @@ const LandingService = {
 
     delete: async function (id) {
         try {
-            const response = await ApiService.delete("/landing", id)
+            const response = await ApiService.delete("/landing/" + id)
             return response.data
         } catch (error) {
             return error.response.status

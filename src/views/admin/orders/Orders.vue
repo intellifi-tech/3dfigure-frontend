@@ -17,6 +17,8 @@
       pagination
       max-items="5"
       search
+      :sst="true"
+      @search="handleSearch"
       :data="orders">
       <template slot="header">
         <h3>
@@ -58,6 +60,7 @@
     <vs-popup :active.sync="updatePopup" title="Sipariş Güncelle">
         <div>
           <vs-input class="mb-2" label-placeholder="Sipariş Kodu" v-model="selected.orderCode"/>
+          <vs-input class="mb-2" v-if="selected.status == 'CARGO'" label-placeholder="Kargo Kodu" v-model="selected.cargoCode"/>
           <p class=" mb-1 ml-1 text-sm">Sipariş Durumu</p>
           <select class="form-control form-control-lg mb-4" v-model="selected.status">
                 <option

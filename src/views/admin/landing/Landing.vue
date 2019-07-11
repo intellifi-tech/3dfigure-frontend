@@ -24,7 +24,7 @@
           />
         </div>
         <div class="col-md-6 pr-2">
-                  <vs-button class="w-full" color="success" @click="newModelPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+                  <vs-button class="w-full" color="success" @click="openNewPackagePopup(d3figure)" type="filled" icon="add" >Yeni ekle</vs-button>
             </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
               type="gradient"
               color="#7367F0"
               gradient-color-secondary="#CE9FFC"
-              @click="openUpdatePackagePopup(data[indextr])"
+              @click="openUpdatePackagePopup(concept)"
             >Düzenle</vs-button>
           </div>
         </vx-card>
@@ -179,7 +179,7 @@
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                   <vs-button color="danger" class="float-left">Sil</vs-button>
+                   <vs-button color="danger" class="float-left" @click="userDelete(d3figure.id)">Sil</vs-button>
                        <vs-button class="float-right" @click="submitFile(d3figure)">Güncelle</vs-button>
               </div>
             </div>
@@ -189,7 +189,7 @@
           <vs-tab vs-label="Konseptler">
             <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
                 <div class="w-full mr-0 pr-0">
-                  <vs-button class="w-full" color="success" @click="newConceptPopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+                  <vs-button class="w-full" color="success" @click="openNewPackagePopup(concept)" type="filled" icon="add" >Yeni ekle</vs-button>
                  </div>
              </div>
             <vs-table
@@ -235,7 +235,7 @@
             class="px-3"
             color="danger"
             type="relief"
-            @click="conceptDelete(data[indextr], indextr)"
+            @click="userDelete(data[indextr], indextr)"
           >Sil</vs-button>
         </div>
       </div>
@@ -370,7 +370,7 @@
           <vs-tab vs-label="Örnek Çalışmalar">
             <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
                 <div class="w-full mr-0 pr-0">
-                  <vs-button class="w-full" color="success" @click="newExamplePopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+                  <vs-button class="w-full" color="success" @click="openNewPackagePopup(exampleProcess)" type="filled" icon="add" >Yeni ekle</vs-button>
                  </div>
              </div>
             <vs-table
@@ -391,7 +391,7 @@
 
       <template slot-scope="{data}">
   <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-    <vs-td :data="data[indextr].imagePath"><img :src="data[indextr].imagePath"/></vs-td>
+    <vs-td :data="data[indextr].imagePath">{{data[indextr].imagePath}}</vs-td>
 
     <vs-td
       :data="data[indextr].title"
@@ -527,7 +527,7 @@
           <vs-tab vs-label="Fiyatlandırma">
               <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
                 <div class="w-full mr-0 pr-0">
-                  <vs-button class="w-full" color="success" @click="newPackagePopup=true" type="filled" icon="add" >Yeni ekle</vs-button>
+                  <vs-button class="w-full" color="success" @click="openNewPackagePopup(paket)" type="filled" icon="add" >Yeni ekle</vs-button>
                  </div>
              </div>
              <vs-table
@@ -588,7 +588,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Paket Adı"
-                  v-model="paket.paketAdi"
+                  v-model="paket.title"
                 />
               </div>
            
@@ -598,7 +598,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Fiyatı"
-                  v-model="paket.paketFiyat"
+                  v-model="paket.price"
                 />
               </div>
             </div>
@@ -609,7 +609,7 @@
                   class="w-full"
                   label-placeholder="Özellikler"
                   description-text="Özelliklerin arasına virgül eklenerek yazılmalıdır."
-                  v-model="paket.paketOzellikler"
+                  v-model="paket.description"
                 />
               </div>
             </div>
@@ -619,14 +619,14 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="paket.paketSira"
+                  v-model="paket.showIndex"
                 />
               </div>
             </div>
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="paket.paketDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="paket.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -650,7 +650,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Paket Adı"
-                  v-model="paket.paketAdi"
+                  v-model="paket.title"
                 />
               </div>
            
@@ -660,7 +660,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Fiyatı"
-                  v-model="paket.paketFiyat"
+                  v-model="paket.price"
                 />
               </div>
             </div>
@@ -671,7 +671,7 @@
                   class="w-full"
                   label-placeholder="Özellikler"
                   description-text="Özelliklerin arasına virgül eklenerek yazılmalıdır."
-                  v-model="paket.paketOzellikler"
+                  v-model="paket.description"
                 />
               </div>
             </div>
@@ -682,7 +682,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sıralama"
-                  v-model="paket.paketSira"
+                  v-model="paket.showIndex"
                 />
               </div>
             </div>
@@ -690,7 +690,7 @@
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="paket.paketDurum">
+                <select class="form-control-lg w-full select-input mb-2" v-model="paket.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -779,18 +779,7 @@ export default {
       newConceptPopup:false,
       updateConceptPopup:false,
       newModelPopup:false,
-      updateModelPopup:false,
-      json_fields: {
-        "Sketch ID": "sketchId",
-        "Konsept Adı": "conceptName",
-        "Sketch Tag": "sketchTag",
-        "Görünür mü?": "isConceptsVisible",
-        "Açıklama": "description",
-        "Index": "showIndex",
-        "Fiyat": "price",
-        "Dil": "lang",
-        "Çift Resimler İçin mi": "doubleConcept"
-      }
+      updateModelPopup:false
     };
   },
 
@@ -805,9 +794,18 @@ export default {
     currentx: async function() {
       const response = await ConceptService.getAllConceptsAdmin(this.currentx - 1)
       this.concepts = response.content
+    },
+    searchQuery: async function() {
+      if (this.searchQuery.length == 0) {
+        const list = await LandingService.getAll()
+        this.d3figureList = list.filter(f => f.landingStatus == 'FIRST')
+      }
     }
   },
   methods: {
+    searchModel: async function() {
+      this.d3figureList = await LandingService.searchModel(this.searchQuery)
+    },
     handleFileUpload(refName) {
       switch(refName) {
         case 'fileAddFigure':
@@ -860,30 +858,56 @@ export default {
           break;
       }
     },
+    openNewPackagePopup(data) {
+      switch (data.landingStatus) {
+        case 'FIRST':
+          this.updateModelPopup = true
+          this.d3figure = {active: true, landingStatus: 'FIRST'}
+          break;
+        case 'SECOND':
+          this.updateConceptPopup = true
+          this.concept = {active: true, landingStatus: 'SECOND'}
+          break;
+        case 'THIRD':
+          this.updateExamplePopup = true
+          this.exampleProcess = {active: true, landingStatus: 'THIRD'}
+          break;
+        case 'FOURTH':
+          this.updatePackagePopup = true
+          this.paket = {active: true, landingStatus: 'FOURTH'}
+          break;
+        default:
+          break;
+      }
+    },
     saveLanding: async function(data) {
       const res = await LandingService.save(data)
       switch(data.landingStatus) {
         case 'FIRST':
           this.d3figureList.push(res)
           this.d3figure = {active: true, landingStatus: 'FIRST'}
+          this.newModelPopup = false
+          this.updateModelPopup = false
           break;
         case 'SECOND':
           this.conceptList.push(res)
           this.concept =  {active: true, landingStatus: 'SECOND'}
+          this.newConceptPopup = false
+          this.updateConceptPopup = false
           break;
         case 'THIRD':
           this.exampleProcessList.push(res)
           this.exampleProcess =  {active: true, landingStatus: 'THIRD'}
+          this.newExamplePopup = false
+          this.updateExamplePopup = false
           break;
         case 'FOURTH':
           this.paketler.push(res)
           this.paket = {active: true, landingStatus: 'FOURTH'}
+          this.newPackagePopup = false
+          this.updatePackagePopup = false
           break;
       }
-    },
-    updateLanding: async function(data) {
-        await LandingService.update(data)
-        this.paket =  {active: true, landingStatus: 'FIRST'}
     },
     userDelete(data, index) {
       var self = this;

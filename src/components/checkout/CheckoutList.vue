@@ -55,12 +55,12 @@
               </div>
               <span class="text-muted">${{this.$store.state.checkout.order.totalPriceNet.toFixed(2)}}</span>
             </li>
-            <!-- <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
+             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="discountActive">
               <div>
                 <h6 class="my-0">İndirim Tutarı</h6>
               </div>
               <span class="text-muted">$2.5</span>
-            </li>-->
+            </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
                 <h6 class="my-0">KDV(%18)</h6>
@@ -72,6 +72,20 @@
               <strong>${{this.$store.state.checkout.order.totalPrice.toFixed(2)}}</strong>
             </li>
             <hr>
+             <li class="py-3 justify-content-between">
+              <h6 class="font-sans text-secondary">İndirim Kodu :</h6>
+              <div>
+              <vs-input 
+               class="mt-3 w-full sepet-textarea float-left"
+               v-model="discountCode"
+              ></vs-input>
+              <vs-button
+               class="mt-3 w-full sepet-textarea float-right"
+               @click="addDiscount"
+              >Kodu Aktifleştir</vs-button>
+              </div>
+
+             </li>
              <li class="py-3 justify-content-between">
               <h6 class="font-sans text-secondary">Görüş ve Öneri :</h6>
               <vs-textarea 
@@ -104,6 +118,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import DiscountService from '@/services/discount.service.js'
 export default {
   data() {
     return {
@@ -111,6 +126,9 @@ export default {
       counterDanger2: false,
       areaFeedback:"",
       areaOrderNote:"",
+      discountCode: "",
+      discountActive: false,
+      discountRate: 0
     };
   },
   created: async function() {
@@ -122,6 +140,12 @@ export default {
     },
     counterDanger2() {
       this.$emit('valid', this.counterDanger || this.counterDanger2)
+    },
+    areaFeedback() {
+      this.$store.commit("checkout/UPDATE_FEEDBACK", this.areaFeedback)
+    },
+    areaOrderNote() {
+      this.$store.commit("checkout/UPDATE_ORDER_NOTE", this.areaOrderNote)
     }
   },
   methods: {
