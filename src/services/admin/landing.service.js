@@ -61,6 +61,16 @@ const LandingService = {
        }
    },
 
+   searchModel: async function (text) {
+        try {
+            const response = await ApiService.get("/landing/search/"+text)
+            return response.data
+        } catch (error) {
+            return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
    save: async function (data) {
     try {
         const response = await ApiService.post("/landing", data)

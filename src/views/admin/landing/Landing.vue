@@ -794,9 +794,18 @@ export default {
     currentx: async function() {
       const response = await ConceptService.getAllConceptsAdmin(this.currentx - 1)
       this.concepts = response.content
+    },
+    searchQuery: async function() {
+      if (this.searchQuery.length == 0) {
+        const list = await LandingService.getAll()
+        this.d3figureList = list.filter(f => f.landingStatus == 'FIRST')
+      }
     }
   },
   methods: {
+    searchModel: async function() {
+      this.d3figureList = await LandingService.searchModel(this.searchQuery)
+    },
     handleFileUpload(refName) {
       switch(refName) {
         case 'fileAddFigure':
