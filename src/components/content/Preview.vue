@@ -77,7 +77,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="E-posta"
-                  v-model="inviteMail"
+                  v-model="inviteMail.mail"
                 />
               </div>
       </div>
@@ -104,7 +104,9 @@ export default {
   data() {
     return {
       openInvitePopup:false,
-      inviteMail:"",
+      inviteMail: {
+        mail: ""
+      },
       actionUrl: `${ApiService.getBaseURL()}\\images\\upload`,
       avatarsdk: process.env.VUE_APP_AVATAR_SDK_AVATAR_API,
       authHeader: {
@@ -147,11 +149,24 @@ export default {
       this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
     },
     mailSend: async function() {
+      if (this.$store.state.member.sendFriend != 0) {
+
+      
       await MailService.sendMail(this.inviteMail)
-      this.inviteMail = ""
+      this.inviteMail.mail = ""
       this.openInvitePopup = false
       this.$store.commit("UPDATE_SEND_FRIEND", this.$store.state.member.sendFriend - 1)
+        if (this.$store.state.member.sendFriend == 0) {
+          this.$store.commit("UPDATE_SEND_FRIEND", this.$store.state.member.totalFigure + this.$store.state.member.totalFigure)
+        }
       this.$store.dispatch("updateFirstLogin", this.$store.state.member)
+      } else {
+        this.$vs.notify({
+          title: "HATA!",
+          text: "Mail gönderme hakkınız dolmuştur",
+          color: "danger"
+        });
+      }
     },
     avatarUpload: async function($event, index) {
       // Avatar SDK isteğinin sonucu

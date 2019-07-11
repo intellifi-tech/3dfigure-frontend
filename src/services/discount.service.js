@@ -4,7 +4,7 @@ const DiscountService = {
 
    getRate: async function (code) {
        try {
-           const response = await ApiService.get("/mailing/" + code)
+           const response = await ApiService.get("/discounts/" + code)
            return response.data
        } catch (error) {
            return error.response.status

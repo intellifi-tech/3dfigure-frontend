@@ -2,9 +2,10 @@ import ApiService from './api.service'
 
 const MailService = {
 
-   sendMail: async function (mailTo) {
+   sendMail: async function (mail) {
        try {
-           const response = await ApiService.post("/mailing", mailTo)
+           debugger
+           const response = await ApiService.post("/mailing", mail)
            return response.data
        } catch (error) {
            return error.response.status
