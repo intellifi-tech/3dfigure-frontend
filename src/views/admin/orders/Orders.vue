@@ -17,6 +17,8 @@
       pagination
       max-items="5"
       search
+      :sst="true"
+      @search="handleSearch"
       :data="orders">
       <template slot="header">
         <h3>

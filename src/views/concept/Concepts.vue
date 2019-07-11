@@ -19,6 +19,7 @@
         class="w-full input-rounded-full no-icon-border"
         icon="icon-search"
         icon-pack="feather"
+        @keyup.enter="searchConcept"
       />
     </div>
 
@@ -57,7 +58,19 @@ export default {
   created: async function() {
     this.categories = await CategoryService.getAllCategories();
   },
+  methods: {
+    searchConcept: async function() {
+      const res = await ConceptService.searchConcept(this.$store.state.selectedFigures.avatarKey.length == 2, this.searchQuery)
+      this.$store.dispatch("initConcept", res);
+    }
+  },
   watch: {
+    searchQuery: async function() {
+      if (this.searchQuery.length == 0) {
+        const res = await ConceptService.getAllConcepts(0, this.$store.state.selectedFigures.avatarKey.length == 2);
+        this.$store.dispatch("initConcept", res);
+      }
+    },
     currentx: async function() {
       var res = {};
       if (this.tags.length === 0) {
@@ -94,7 +107,6 @@ export default {
       }
     }
   },
-  methods: {},
   components: {
     Unity,
     Concept

@@ -157,9 +157,14 @@ export default {
       this.openInvitePopup = false
       this.$store.commit("UPDATE_SEND_FRIEND", this.$store.state.member.sendFriend - 1)
         if (this.$store.state.member.sendFriend == 0) {
-          this.$store.commit("UPDATE_SEND_FRIEND", this.$store.state.member.totalFigure + this.$store.state.member.totalFigure)
+          this.$store.commit("UPDATE_TOTAL_FIGURE", this.$store.state.member.totalFigure + this.$store.state.member.totalFigure)
         }
       this.$store.dispatch("updateFirstLogin", this.$store.state.member)
+      this.$vs.notify({
+          title: "Başarılı!",
+          text: "Mail gönderilmiştir",
+          color: "success"
+        });
       } else {
         this.$vs.notify({
           title: "HATA!",

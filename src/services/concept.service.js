@@ -11,6 +11,24 @@ const ConceptService = {
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
+    searchConcept: async function (isDouble, text) {
+        try {
+            const response = await ApiService.get("/concepts/search/" + isDouble + "/"+text)
+            return response.data
+        } catch (error) {
+            return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+    searchConceptAdmin: async function(text) {
+        try {
+            const response = await ApiService.get("/concepts/search/"+text)
+            return response.data
+        } catch (error) {
+            return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
     getAllConceptsByCategory: async function (ids, page, isDouble) {
         try {
             const response = await ApiService.get("/concepts/cat/" + ids + "/" + isDouble + "?page=" + page + "&size=8")

@@ -30,6 +30,11 @@
           type="gradient"
         >Detayı gör</vs-button>
       </div>
+      <div v-if="isAdmin">
+        <a :href="'https://api.avatarsdk.com/avatars/'+avatarKey+'/mesh/'" target="_black">Mesh</a>
+        <a :href="'https://api.avatarsdk.com/avatars/'+avatarKey+'/texture/'" target="_black">Texture</a>
+        <a :href="'https://api.avatarsdk.com/avatars/'+avatarKey+'/thumbnail/'" target="_black">thumbnail</a>
+      </div>
       <vs-popup class="popupDetail" :title="order.status" :active.sync="popupActive">
         <div class="row">
           <div class="col-12 p-4" >
@@ -73,6 +78,10 @@ export default {
     },
     ids: {
       type: String,
+      required: true
+    },
+    isAdmin: {
+      type: Boolean,
       required: true
     }
   },

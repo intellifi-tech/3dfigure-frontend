@@ -9,6 +9,7 @@
             class="w-full input-rounded-full no-icon-border"
             icon="icon-search"
             icon-pack="feather"
+            @keyup.enter="searchConcept"
           />
         </div>
       </div>
@@ -224,6 +225,13 @@ export default {
     currentx: async function() {
       const response = await ConceptService.getAllConceptsAdmin(this.currentx - 1)
       this.concepts = response.content
+    },
+    searchQuery: async function() {
+      if (this.searchQuery.length == 0) {
+        const response = await ConceptService.getAllConceptsAdmin(0)
+        this.concepts = response.content
+        this.totalPages = response.totalPages
+      }
     }
   },
 
@@ -231,6 +239,12 @@ export default {
     showDetail(concept) {
       this.selected = concept
       this.updatePopup = true
+    },
+
+    searchConcept: async function() {
+      const response = await ConceptService.searchConceptAdmin(this.searchQuery)
+      this.concepts = response.content
+      this.totalPages = response.totalPages
     },
 
     exportConcept: async function() {

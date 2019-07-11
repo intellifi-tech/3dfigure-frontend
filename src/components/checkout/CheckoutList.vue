@@ -159,7 +159,7 @@ export default {
         this.$vs.notify({
           time: 4000,
           title: "HATA!",
-          text: "Lütfen notları kontrol ediniz!",
+          text: "Geçersiz indirim kodu!",
           color: "danger"
         });
       } else if (!this.discountActive) {
