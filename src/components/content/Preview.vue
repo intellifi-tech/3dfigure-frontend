@@ -27,7 +27,7 @@
     <!--unity card column-->
     <div class="col-lg-6 mb-3">
       <vx-card class="fotograflarim-card">
-        <div class="mb-4 row">
+        <div class="row">
          <div class="col-xl-4 pt-2">
             <h4 class="pb-4"> Fotoğraflarım</h4>
          </div>

@@ -10,11 +10,11 @@
         icon-pack="feather"
       />
     </div>
-    <div class="vx-row pt-5">
-      <div class="col-md-3" v-for="(order, index) in this.orderValues" :key="index">
-        <div v-for="concept in order.basketDTO.concepts" :key="concept.id">
-          <div v-for="figure in concept.figures" :key="figure.id">
-            <orders :order="order" :conceptPrice="concept.price" :figure="figure" :ids="order.basketDTO.id + '-' + concept.id + '-' + figure.id"></orders>
+    <div class="pt-5">
+      <div class="orderValues flex" v-for="(order, index) in this.orderValues" :key="index">
+        <div class="concepts col-md-3" v-for="concept in order.basketDTO.concepts" :key="concept.id">
+          <div class="figures" v-for="figure in concept.figures" :key="figure.id">
+            <orders class="orderCard" :order="order" :conceptPrice="concept.price" :figure="figure" :ids="order.basketDTO.id + '-' + concept.id + '-' + figure.id"></orders>
           </div>
         </div>
       </div>

@@ -129,6 +129,21 @@ export default {
     outBasket: async function(figureId, conceptId) {
       this.deleteFromBasketList({f: figureId, c: conceptId})
     },
+    addDiscount: async function() {
+      const res = await DiscountService.getRate()
+      if (!res) {
+        this.$vs.notify({
+          time: 4000,
+          title: "HATA!",
+          text: "İndirim kodu geçersiz!",
+          color: "danger"
+        });
+      } else if (!this.discountActive) {
+        this.discountRate = res
+        this.discountActive = true
+        this.$store.commit("checkout/SET_TOTAL_PRICE", this.$store.state.checkout.order.totalPrice * ((100-res) / 100))
+      }
+    },
     initPage: async function() {
       this.initBasketList()
     },
