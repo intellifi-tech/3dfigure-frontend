@@ -106,7 +106,7 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-6">
+              <div class="vx-row mb-6" v-if="isBilling">
                 <div class="vx-col w-full">
                   <vs-input
                     type="text"
@@ -257,10 +257,12 @@ export default {
       }
     }
   },
-  validations: {
-    name: { required, alpha },
-    surname: { required, alpha},
-    adres: {
+  validations() {
+    if (this.isBilling) {
+      return {
+      name: { required, alpha },
+      surname: { required, alpha},
+      adres: {
       taxNo: {required, minLength: minLength(11), maxLength: maxLength(11), numeric},
       mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
       address: { required, maxLength: maxLength(100), minLength: minLength(15) },
@@ -269,6 +271,21 @@ export default {
       townId: { required }, 
     },
     city: { required }
+      }
+    } else {
+            return {
+      name: { required, alpha },
+      surname: { required, alpha},
+      adres: {
+      mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
+      address: { required, maxLength: maxLength(100), minLength: minLength(15) },
+      addressName: { required },
+      postCode: { required, numeric, maxLength: maxLength(5), minLength: minLength(5)},
+      townId: { required }, 
+    },
+    city: { required }
+      }
+    }
   }
 };
 </script>

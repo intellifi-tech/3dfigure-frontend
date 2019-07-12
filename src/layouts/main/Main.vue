@@ -219,6 +219,7 @@ export default {
   },
   created: async function() {
     await this.getCurrentUser();
+    this.$cookie.set('gender', this.$store.state.member.sex == 'M' ? 'male' : 'female')
   },
   components: {
     VxSidebar,

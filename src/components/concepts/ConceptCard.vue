@@ -78,7 +78,7 @@ export default {
         isProduct: false,
         isDoubled: true,
         userId: this.$store.state.member.id,
-        isLiked: false
+        rating: 0
       })
       } else {
         concept.avatarKey = this.$store.state.selectedFigures.avatarKey[0]

@@ -25,6 +25,7 @@ import ApiService from '@/services/api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
 import VueAuthenticate from 'vue-authenticate'
 import VueScrollTo from 'vue-scrollto'
+import VueCookie from 'vue-cookie'
 import {
   TokenService
 } from '@/services/token.service'
@@ -34,6 +35,7 @@ Vue.use(Vuelidate)
 Vue.use(Vuesax)
 Vue.use(VueAuthenticate)
 Vue.use(VueScrollTo)
+Vue.use(VueCookie);
 
 // Theme Configurations
 import '../themeConfig.js'
