@@ -32,16 +32,6 @@ const CheckoutService = {
             return error.response.data
         }
     },
-    addToBasket: async function (avatarCode) {
-        try {
-            const res = await ApiService.put("/baskets/added", {
-                avatarKey: avatarCode
-            })
-            return res.data
-        } catch (error) {
-            return error.response.status
-        }
-    },
     deleteFromBasket: async function (ids) {
         try {
             const res = await ApiService.delete("/baskets/concept/" + ids.f + "/" + ids.c)

@@ -10,7 +10,7 @@
         <div v-for="concept in this.$store.state.checkout.basketList" :key="concept.id">
           <div
             class="row vx-card shadow-md px-4 py-4 mb-5"
-            v-for="figure in concept.figures"
+            v-for="figure in concept.figures.filter(f => f.userId == $store.state.member.id)"
             :key="figure.id"
           >
             <div class="col-lg-2 px-0" v-if="!concept.doubleConcept">

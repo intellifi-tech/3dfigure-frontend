@@ -330,13 +330,7 @@ export default {
         formatList: { en: "MMM d yyyy", tr: "d MMM yyyy" }
       },
       member: {
-        id: 0,
-        firstName: "",
-        lastName: "",
-        login: "",
-        email: "",
-        sex: "",
-        birthDay: null
+
       },
       passwordDTO: {
         currentPassword: "",
@@ -355,12 +349,7 @@ export default {
     this.cities = await PlaceService.getCities();
     this.addresses = await AddressService.getUserAddress();
     this.adres.userId = this.$store.state.member.id;
-    this.member.id = this.$store.state.member.id;
-    this.member.firstName = this.$store.state.member.firstName;
-    this.member.lastName = this.$store.state.member.lastName;
-    this.member.login = this.$store.state.member.email;
-    this.member.sex = this.$store.state.member.sex;
-    this.member.birthDay = this.$store.state.member.birthDay;
+    this.member = this.$store.state.member;
   },
   watch: {
     adres() {
