@@ -13,10 +13,10 @@
             v-for="figure in concept.figures.filter(f => f.userId == $store.state.member.id)"
             :key="figure.id"
           >
-            <div class="col-lg-2 px-0" v-if="!concept.doubleConcept">
+            <div class="col-lg-2 px-0 checkout-figures" v-if="!concept.doubleConcept">
               <img :src='"assets/images/figures/"+figure.imagePath'>
             </div>
-            <div class="col-lg-2 px-0" v-else>
+            <div class="col-lg-2 px-0 overflow-x-auto flex checkout-figures" v-else>
               <img :src='"assets/images/figures/"+getFigurePath(figure, 0)'>
               <img :src='"assets/images/figures/"+getFigurePath(figure, 1)'>
             </div>
@@ -159,7 +159,7 @@ export default {
         this.$vs.notify({
           time: 4000,
           title: "HATA!",
-          text: "Geçersiz indirim kodu!",
+          text: "İndirim kodu geçersiz!",
           color: "danger"
         });
       } else if (!this.discountActive) {
@@ -184,5 +184,11 @@ export default {
 <style>
 .sepet-textarea .vs-textarea{
   max-height:150px;
+}
+.checkout-figures img{
+  width:100%;
+  height:130px;
+  object-fit:cover;
+  padding-bottom:5px;
 }
 </style>

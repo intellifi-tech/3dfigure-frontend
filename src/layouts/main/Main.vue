@@ -26,13 +26,13 @@
               finishButtonText="BAŞLA!"
               @on-complete="finish"
             >
-              <tab-content title="Fotoğraf Yükle" icon="feather icon-home">
+              <tab-content title="Fotoğraf Yükle" icon="feather icon-upload">
                 <img src="assets/images/info/1.png" alt>
               </tab-content>
-              <tab-content title="Konsept Seç" icon="feather icon-home">
+              <tab-content title="Konsept Seç" icon="feather icon-check-square">
                 <img src="assets/images/info/2.png" alt>
               </tab-content>
-              <tab-content title="Sipariş Süreci" icon="feather icon-home">
+              <tab-content title="Sipariş Süreci" icon="feather icon-truck">
                 <img src="assets/images/info/3.png" alt>
               </tab-content>
             </form-wizard>

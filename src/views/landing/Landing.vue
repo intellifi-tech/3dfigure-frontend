@@ -1598,16 +1598,22 @@
       <div class="bg-secondary mb-5 pb-3 pt-4 w-full">
         <div class="container">
           <div class="row">
-            <div class="col-md-3 pl-md-4">
+            <div class="col-md-4 col-xl-3 pl-md-4 py-1 py-md-0">
               <a class="flex hover:text-white" href="/uyelik-sozlesmesi">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
-                 <h5 class="hover:underline pl-3 text-white">Üyelik Sözleşmesi</h5>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">Üyelik Sözleşmesi</h6>
              </a>     
              </div>    
-              <div class="col-md-3">
+            <div class="col-md-4 col-xl-3 py-1 py-md-0">
               <a class="flex hover:text-white" href="/kisisel-veri-kanunu">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
-                 <h5 class="hover:underline pl-3 text-white">Kişisel Veri Kanunu</h5>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">Kişisel Veri Kanunu</h6>
+             </a>     
+             </div> 
+             <div class="col-md-4 col-xl-3 py-1 py-md-0">
+              <a class="flex hover:text-white" href="/siparis-iptal-ve-iade-sartlari">
+                 <i class="fas fa-file-alt text-2xl text-dark"></i>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">Sipariş İptal ve İade Şartları</h6>
              </a>     
              </div>          
           </div>

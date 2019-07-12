@@ -14,14 +14,14 @@
       <tab-content
         data-vv-scope="vs1"
         title="3D Figür Oluştur"
-        icon="feather icon-home"
+        icon="feather icon-edit"
         :before-change="validateStep1"
       >
         <div>
           <preview></preview>
         </div>
       </tab-content>
-      <tab-content title="Konsept Seç" class="mb-5" icon="feather icon-home">
+      <tab-content title="Konsept Seç" class="mb-5" icon="feather icon-check-square">
         <div>
           <concepts></concepts>
         </div>
