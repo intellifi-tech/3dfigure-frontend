@@ -26,7 +26,7 @@ export default {
     data.forEach(element => {
       const index = element.split("-")[0] - 1;
       
-      const value = !this.isLiked ? element.split("-")[1] : element.split("-")[2]
+      const value = !this.isLiked ? element.split("-")[1] : Number(element.split("-")[2])
       d.splice(index, 1, value);
     });
     this.lineAreaChartSpline.series[0].data = d;
@@ -35,7 +35,7 @@ export default {
     return {
       lineAreaChartSpline: {
 		series: [{
-				name: 'Aylık Sipariş Sayısı',
+				name: !this.isLiked ? 'Yüklenen Aylık Figür' : 'Aylık Beğenilen Figür',
 				data: [11, 32, 45, 32, 34, 52, 41, 23, 44, 22, 122, 32]
 		}],
 		chartOptions: {
