@@ -55,7 +55,11 @@
 
 <script>
 import UserService from '@/services/user.service.js'
+import JsonExcel from 'vue-json-excel'
 export default {
+  components: {
+    JsonExcel
+  },
   data: () => ({
     selected: {},
     users: [],

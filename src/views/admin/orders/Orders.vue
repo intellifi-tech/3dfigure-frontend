@@ -77,8 +77,11 @@
 
 <script>
 import OrderService from '@/services/order.service.js'
-
+import JsonExcel from 'vue-json-excel'
 export default {
+  components: {
+    JsonExcel
+  },
   data: () => ({
     selected: {},
     updatePopup: false,
