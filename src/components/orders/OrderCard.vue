@@ -20,7 +20,7 @@
         <img :src="'/assets/images/icon/'+statusImage" class="order-status-icon">
       </div>
       <h5 class="mb-2">{{order.orderCode}}</h5>
-      <p class="text-grey">${{order.cargoCode}}</p>
+      <p class="text-grey">{{order.cargoCode}}</p>
       <div class="flex justify-between flex-wrap">
         <vs-button
           class="mt-4"
@@ -31,19 +31,19 @@
         >Detayı gör</vs-button>
       </div>
       <div v-if="isAdmin">
-        <a :href="'https://api.avatarsdk.com/avatars/'+avatarKey+'/mesh/'" target="_black">Mesh</a>
-        <a :href="'https://api.avatarsdk.com/avatars/'+avatarKey+'/texture/'" target="_black">Texture</a>
-        <a :href="'https://api.avatarsdk.com/avatars/'+avatarKey+'/thumbnail/'" target="_black">thumbnail</a>
+        <button  @click="downloadAvatar(figure.avatarKey, 'mesh')" target="_black">Mesh</button>
+        <button @click="downloadAvatar(figure.avatarKey, 'texture')" target="_black">Texture</button>
+        <button @click="downloadAvatar(figure.avatarKey, 'thumbnail')" target="_black">thumbnail</button>
       </div>
       <vs-popup class="popupDetail" :title="order.status" :active.sync="popupActive">
         <div class="row">
           <div class="col-12 p-4" >
             <h3>Sipariş Bilgilendirmesi</h3>
             <hr class="w-3/4"/>
-            <p class="px-3 pb-5">{{order.information}}Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı, sürekli 'buraya metin gelecek, buraya metin gelecek' yazmaya kıyasla daha dengeli bir harf dağılımı sağlayarak okunurluğu artırmasıdır.</p>
+            <p class="px-3 pb-5">{{order.information}}</p>
              <vs-list>
-                 <vs-list-item title="Kargo Takip No" subtitle="FIG2346"></vs-list-item>
-                 <vs-list-item title="Teslim Adresi" subtitle="Ev Adresim"></vs-list-item>
+                 <vs-list-item title="Kargo Takip No" :subtitle="order.cargoCode"></vs-list-item>
+                 <vs-list-item title="Teslim Adresi" :subtitle="address.addressName"></vs-list-item>
             </vs-list>
             <div class="col-12"><p class="text-right">Tutar :<span class="h2 text-dark"> ${{conceptPrice}}</span></p></div>
           </div>
@@ -56,12 +56,15 @@
 
 <script>
 import OrderService from '@/services/order.service.js'
+import AvatarSdkService from "@/services/avatarsdk.service";
+import AddressService from "@/services/address.service"
 export default {
   data() {
     return {
       popupActive: false,
       sketchName: "",
-      statusImage: ""
+      statusImage: "",
+      address: {}
     };
   },
   props: {
@@ -87,6 +90,10 @@ export default {
   },
   created: async function() {
     this.sketchName = await OrderService.getSketchName(this.ids)
+    const res = await AddressService.getAddress(this.order.deliveryId)
+    if (res.status < 400) {
+      this.address = res.data
+    }
     switch(this.order.status) {
       case 'ANALYSIS':
         this.statusImage = 'wait.png'
@@ -111,6 +118,17 @@ export default {
   methods: {
     getFigurePath(figure, index) {
       return atob(figure.imagePath).split(',')[index]
+    },
+    downloadAvatar(avatarKey, type) {
+      AvatarSdkService.getAvatarDownloadable(avatarKey, type).then(res => this.downloadFile(res, type == 'mesh' ? 'application/zip' : 'image/jpeg'))
+    },
+    downloadFile(data, type) {
+      const blob = new Blob([data], {type: type});
+      const url = window.URL.createObjectURL(blob);
+      const pwa = window.open(url);
+      if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
+        alert('Please disable your Pop-up blocker and try again.');
+      }
     }
   }
 };
