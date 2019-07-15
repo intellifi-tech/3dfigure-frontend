@@ -11,17 +11,17 @@ export default {
 };
 </script>
 <style>
-.vdp-datepicker{
+.profil-tabs .vdp-datepicker{
   font-size:14px
 }
-.vdp-datepicker input{
+.profil-tabs .vdp-datepicker input{
   width:100%
 }
-.vdp-datepicker .vdp-datepicker__calendar{
+.profil-tabs .vdp-datepicker .vdp-datepicker__calendar{
    bottom: 0;
    width:250px;
 }
-.vdp-datepicker .vdp-datepicker__calendar .cell{
+.profil-tabs .vdp-datepicker .vdp-datepicker__calendar .cell{
      height: 30px;
     line-height: 30px;
 }

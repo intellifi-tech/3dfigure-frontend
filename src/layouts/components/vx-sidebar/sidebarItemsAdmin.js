@@ -43,6 +43,11 @@ export default [
 				url: "/admin/category",
 				name: "Kategoriler",
 				slug: "concept-categories",
+			},
+			{
+				url: "/admin/coupon",
+				name: "Kuponlar",
+				slug: "concept-coupon",
 			}
 		]
 	},
