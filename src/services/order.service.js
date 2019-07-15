@@ -11,6 +11,15 @@ const OrderService = {
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
+    searchOrder: async function(text) {
+        try {
+            const response = await ApiService.get("/orders/search/"+text.toUpperCase())
+            return response.data
+        } catch (error) {
+            return error.response
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
 
     getUsersAllOrders: async function (userId) {
         try {

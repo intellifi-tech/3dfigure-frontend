@@ -370,7 +370,15 @@ export default {
   },
   methods: {
     deleteAddress: async function(index, adres) {
-      await AddressService.deleteUserAddress(adres.id);
+      var res = await AddressService.deleteUserAddress(adres.id);
+      if (res.status >= 400) {
+        this.$vs.notify({
+          title:"HATA!",
+          text: "Bu adres bir sipariş ile kayıtlı olduğundan dolayı silinemez.",
+          color: "danger"
+        });
+        return;
+      }
       this.addresses.splice(index, 1);
       this.adres = {};
       this.name = "";
@@ -403,6 +411,7 @@ export default {
       await UserService.setMember(this.member);
       await this.$store.dispatch("getCurrentUser");
       this.$router.push("/profile");
+      this.isUpdated = true;
       this.$vs.notify({
         color:"success",
         text: "Güncelleme Başarılı!"
@@ -421,7 +430,12 @@ export default {
       if (!this.$v.passwordDTO.$invalid) {
         await UserService.updatePassword(this.passwordDTO);
         this.passwordDTO = {};
-      } else {
+      } else if (this.$v.passwordDTO.newPassword.$invalid)
+        this.$vs.notify({
+          text: "Şifrenizi en az 6 karakter girmelisiniz",
+          color: "danger"
+        });
+      else {
         this.$vs.notify({
           text: "Yeni Şifreler Uyuşmuyor!",
           color: "danger"
@@ -469,9 +483,4 @@ export default {
   }
 };
 </script>
-<style>
-.profil-tabs .vs-input-danger input,.profil-tabs .vs-select-danger select{
-  border:1px solid rgba(var(--vs-danger),1)!important;
-}
-</style>
 
