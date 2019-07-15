@@ -169,6 +169,11 @@ const router = new Router({
 					component: () => import('@/views/admin/concept-categories/ConceptCategories.vue')
 				},
 				{
+					path: '/admin/coupon',
+					name: 'concept-coupon',
+					component: () => import('@/views/admin/concept-coupon/ConceptCoupon.vue')
+				},
+				{
 					path: '/admin/users',
 					name: 'users',
 					component: () => import('@/views/admin/users/Users.vue')
