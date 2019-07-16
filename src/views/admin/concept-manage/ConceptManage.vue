@@ -242,7 +242,7 @@ export default {
     },
 
     searchConcept: async function() {
-      const response;
+      var response;
       if (this.searchQuery.length == 0) {
         response = await ConceptService.getAllConceptsAdmin(0)
       } else {
