@@ -35,7 +35,7 @@
 
     <vs-td :data="data[indextr].firstName">{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
 
-    <vs-td :data="data[indextr].activated">{{data[indextr].activated}}</vs-td> 
+    <vs-td :data="data[indextr].activated">{{data[indextr].activated ? 'Aktif' : 'Pasif'}}</vs-td> 
 
     <vs-td> <div class="flex items-center ">
           <div class="pr-2">

@@ -118,7 +118,7 @@
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="submitFile(d3figure)">Ekle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(d3figure, 'add')">Ekle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -180,7 +180,7 @@
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
                    <vs-button color="danger" class="float-left" @click="userDelete(d3figure.id)">Sil</vs-button>
-                       <vs-button class="float-right" @click="submitFile(d3figure)">Güncelle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(d3figure, 'update')">Güncelle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -300,7 +300,7 @@
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="submitFile(concept)">Ekle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(concept, 'add')">Ekle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -361,7 +361,7 @@
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="submitFile(concept)">Güncelle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(concept, 'update')">Güncelle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -471,7 +471,7 @@
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="submitFile(exampleProcess)">Oluştur</vs-button>
+                       <vs-button class="float-right" @click="submitFile(exampleProcess, 'add')">Oluştur</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -519,7 +519,7 @@
             </div>
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="submitFile(exampleProcess)">Güncelle</vs-button>
+                       <vs-button class="float-right" @click="submitFile(exampleProcess, 'update')">Güncelle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -639,7 +639,7 @@
            
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="saveLanding(paket)">Oluştur</vs-button>
+                       <vs-button class="float-right" @click="saveLanding(paket, 'add')">Oluştur</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -702,7 +702,7 @@
             </div>
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                       <vs-button class="float-right" @click="saveLanding(paket)" >Güncelle</vs-button>
+                       <vs-button class="float-right" @click="saveLanding(paket, 'update')" >Güncelle</vs-button>
               </div>
             </div>
     </vs-popup>
@@ -715,7 +715,9 @@
 <script>
 import ConceptService from "@/services/concept.service";
 import LandingService from "@/services/admin/landing.service.js";
-
+import {
+  required
+} from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -802,6 +804,17 @@ export default {
       }
     }
   },
+  validations: {
+    d3figure: {
+      imagePath: {required}
+    },
+    concept: {
+      imagePath: {required}
+    },
+    exampleProcess: {
+      imagePath: {required}
+    }
+  },
   methods: {
     searchModel: async function() {
       this.d3figureList = await LandingService.searchModel(this.searchQuery)
@@ -828,13 +841,21 @@ export default {
           break;
       }
     },
-    submitFile: async function(data) {
+    submitFile: async function(data, type) {
+      if (Object.entries(this.file).length === 0 && this.file.constructor === Object) {
+         this.$vs.notify({
+            color: "danger",
+            title: "Resim Yüklemelisiniz"
+          });
+          return
+      }
       let formData = new FormData();
       formData.append('landing', this.file);
       formData.append('status', data.landingStatus)
       const path = await LandingService.uploadImage(formData)
+      this.file = {}
       data.imagePath = path
-      await this.saveLanding(data)
+      await this.saveLanding(data, type)
     },
     openUpdatePackagePopup(data) {
       switch (data.landingStatus) {
@@ -861,48 +882,56 @@ export default {
     openNewPackagePopup(data) {
       switch (data.landingStatus) {
         case 'FIRST':
-          this.updateModelPopup = true
+          this.newModelPopup = true
           this.d3figure = {active: true, landingStatus: 'FIRST'}
           break;
         case 'SECOND':
-          this.updateConceptPopup = true
+          this.newConceptPopup = true
           this.concept = {active: true, landingStatus: 'SECOND'}
           break;
         case 'THIRD':
-          this.updateExamplePopup = true
+          this.newExamplePopup = true
           this.exampleProcess = {active: true, landingStatus: 'THIRD'}
           break;
         case 'FOURTH':
-          this.updatePackagePopup = true
+          this.newPackagePopup = true
           this.paket = {active: true, landingStatus: 'FOURTH'}
           break;
         default:
           break;
       }
     },
-    saveLanding: async function(data) {
+    saveLanding: async function(data, type) {
       const res = await LandingService.save(data)
       switch(data.landingStatus) {
         case 'FIRST':
-          this.d3figureList.push(res)
+          if (type == 'add') {
+            this.d3figureList.push(res)
+          }
           this.d3figure = {active: true, landingStatus: 'FIRST'}
           this.newModelPopup = false
           this.updateModelPopup = false
           break;
         case 'SECOND':
-          this.conceptList.push(res)
+          if (type == 'add') {
+            this.conceptList.push(res)
+          }
           this.concept =  {active: true, landingStatus: 'SECOND'}
           this.newConceptPopup = false
           this.updateConceptPopup = false
           break;
         case 'THIRD':
-          this.exampleProcessList.push(res)
+          if (type == 'add') {
+            this.exampleProcessList.push(res)
+          }
           this.exampleProcess =  {active: true, landingStatus: 'THIRD'}
           this.newExamplePopup = false
           this.updateExamplePopup = false
           break;
         case 'FOURTH':
-          this.paketler.push(res)
+          if (type == 'add') {
+            this.paketler.push(res)
+          }
           this.paket = {active: true, landingStatus: 'FOURTH'}
           this.newPackagePopup = false
           this.updatePackagePopup = false

@@ -11,6 +11,10 @@ const AvatarSdkService = {
 
     getAvatarInformation: async function(avatarKey) {
         return axios.get(process.env.VUE_APP_AVATAR_SDK_AVATAR_API + '/' + avatarKey, { headers: { Authorization: `Bearer ${TokenService.getAvatarToken()}` } })
+    },
+
+    getAvatarDownloadable: async function(avatarKey, type) {
+        return axios.get(process.env.VUE_APP_AVATAR_SDK_AVATAR_API + '/' + avatarKey + '/' + type + '/', { headers: { Authorization: `Bearer ${TokenService.getAvatarToken()}` }, responseType: 'arraybuffer' })
     }
 }
 

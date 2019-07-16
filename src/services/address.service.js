@@ -11,6 +11,15 @@ const AddressService = {
         }
     },
 
+    getAddress: async function(id) {
+        try {
+            const response = await ApiService.get("/addresses/"+id)
+            return response
+        } catch (error) {
+            return error.response
+        }
+    },
+
     getUserAddress2: async function(userId) {
         try {
             const response = await ApiService.get("/addresses/admin/"+userId)

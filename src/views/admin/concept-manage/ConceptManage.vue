@@ -183,7 +183,8 @@ import CategoryService from "@/services/category.service";
 import JsonExcel from 'vue-json-excel'
 import {
   required,
-  numeric
+  numeric,
+  minLength
 } from "vuelidate/lib/validators";
 
 export default {
@@ -266,8 +267,8 @@ export default {
     addConcept: async function() {
       if (this.$v.newConcept.$invalid) {
         this.$vs.notify({
-          title: "Color",
-          text: "Lorem ipsum dolor sit amet, consectetur",
+          title: "HATA!!",
+          text: "Lütfen zorunlu bilgileri giriniz",
           color: "danger"
         });
         return
@@ -284,23 +285,23 @@ export default {
       price: {required, numeric},
       sketchId: {required},
       isConceptsVisible: {required},
-      description: {required},
+      description: {required, minLength: minLength(48)},
       showIndex: {required},
       lang: {required},
       doubleConcept: {required},
       categoryId: {required},
-      conceptName: {required}
+      conceptName: {required, minLength: minLength(48)}
     },
     selected: {
       price: {required, numeric},
       sketchId: {required},
       isConceptsVisible: {required},
-      description: {required},
+      description: {required, minLength: minLength(48)},
       showIndex: {required},
       lang: {required},
       doubleConcept: {required},
       categoryId: {required},
-      conceptName: {required}
+      conceptName: {required, minLength: minLength(48)}
     }
   }
   
