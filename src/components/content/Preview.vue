@@ -76,18 +76,21 @@
                 <vs-input
                   type="text"
                   class="w-full"
+                  :class="{'vs-input-danger': this.$v.inviteMail.first.$invalid && openInvitePopup}"
                   label-placeholder="1.E-posta"
                   v-model="inviteMail.first"
                 />
                 <vs-input
                   type="text"
                   class="w-full"
+                  :class="{'vs-input-danger': this.$v.inviteMail.first.$invalid && openInvitePopup}"
                   label-placeholder="2.E-posta"
                   v-model="inviteMail.second"
                 />
                 <vs-input
                   type="text"
                   class="w-full"
+                  :class="{'vs-input-danger': this.$v.inviteMail.first.$invalid && openInvitePopup}"
                   label-placeholder="3.E-posta"
                   v-model="inviteMail.third"
                 />

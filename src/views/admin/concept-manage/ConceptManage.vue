@@ -45,8 +45,8 @@
               webkitallowfullscreen="true"
             ></iframe>
           </div>
-      <h5 class="mb-2">{{concept.conceptName}}</h5>
-      <p class="text-grey">{{concept.description}}</p>
+      <h5 class="mb-2">{{concept.conceptName.substring(0, 10)}}</h5>
+      <p class="text-grey">{{concept.description.substring(0, 20)}}</p>
       <p class="text-grey">Fiyat: {{concept.price}}</p>
       <p class="text-grey">{{concept.doubleConcept ? 'Çift Kişilik' : 'Tek Kişilik'}}</p>
       <p class="text-grey">{{concept.isConceptsVisible ? 'Konsept Aktif' : 'Konsept Aktif Değil'}}</p>
