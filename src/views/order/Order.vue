@@ -8,6 +8,7 @@
         class="w-full input-rounded-full no-icon-border"
         icon="icon-search"
         icon-pack="feather"
+        @keyup="searchOrder"
       />
     </div>
     <div class="pt-5">
@@ -32,7 +33,7 @@ import OrderService from "@/services/order.service";
 export default {
   data() {
     return {
-      searchQuery: null,
+      searchQuery: "",
       currentx: 1,
       orderValues: null,
       totalPages: 0
@@ -43,13 +44,19 @@ export default {
     this.orderValues = res.content;
     this.totalPages = res.totalPages;
   },
+  methods: {
+    searchOrder: async function() {
+      var res = await OrderService.searchOrder(this.searchQuery);
+      this.orderValues = res.content;
+      this.totalPages = res.totalPages;
+    }
+  },
   watch: {
     currentx: async function() {
       var res = await OrderService.getAllOrders(this.currentx - 1);
       this.orderValues = res.content;
     }
   },
-  methods: {},
   components: {
     Orders
   }

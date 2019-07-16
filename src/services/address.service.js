@@ -41,9 +41,9 @@ const AddressService = {
     deleteUserAddress: async function(adresId) {
         try {
             const response = await ApiService.delete("/addresses/"+adresId)
-            return response.data
+            return response
         } catch (error) {
-            return error
+            return error.response
         }
     }
 }

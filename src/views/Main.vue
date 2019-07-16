@@ -44,7 +44,7 @@ export default {
     };
   },
   methods: {
-      finishOrder: async function() {
+    finishOrder: async function() {
       this.$router.push("/checkout")
     },
 

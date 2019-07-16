@@ -165,7 +165,7 @@
           <vs-dropdown vs-custom-content vs-trigger-click>
             <div class="con-img ml-3">
               <img
-                :src="require(`@/assets/images/portrait/small/${activeUserInfo.img}`)"
+                :src="require(`@/assets/images/portrait/small/${activeMemberImg}`)"
                 alt
                 width="40"
                 height="40"
@@ -301,6 +301,12 @@ export default {
     },
     activeUserInfo() {
       return this.$store.state.AppActiveUser;
+    },
+    activeMemberImg() {
+      if (this.$store.state.member.sex == 'F') {
+        return 'avatar-s-8.png';
+      }
+      return 'avatar-s-11.png';
     },
     sidebarWidth() {
       return this.$store.state.sidebarWidth;

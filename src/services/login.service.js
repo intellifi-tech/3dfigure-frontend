@@ -42,12 +42,40 @@ const LoginService = {
     register: async function (credential) {
         try {
             const response = await ApiService.post("/register", credential)
-            return response.status
+            return response
+        } catch (error) {
+            return error.response
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+
+    },
+
+    activateUser: async function (key) {
+        try {
+            const response = await ApiService.get("/activate?key=" + key)
+            return response.data
         } catch (error) {
             return error.response.status
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
+    },
 
+    rememberPasswordInit: async function(mail) {
+        try {
+            const response = await ApiService.post("/account/reset-password/init", mail)
+            return response.data
+        } catch (error) {
+            return error.response
+        }
+    },
+
+    rememberPasswordFinish: async function(keyPassword) {
+        try {
+            const response = await ApiService.post("/account/reset-password/finish", keyPassword)
+            return response.data
+        } catch (error) {
+            return error.response
+        }
     },
 
     /**

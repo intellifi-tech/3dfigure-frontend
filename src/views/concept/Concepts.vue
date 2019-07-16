@@ -19,7 +19,7 @@
         class="w-full input-rounded-full no-icon-border"
         icon="icon-search"
         icon-pack="feather"
-        @keyup.enter="searchConcept"
+        @keyup="searchConcept"
       />
     </div>
 

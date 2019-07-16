@@ -69,7 +69,7 @@
                 :active.sync="this.$store.state.landing.loginPopup"
               >
                 <div class="position-relative">
-                  <login :isPopup="true"></login>
+                  <login ref="login" :isPopup="true"></login>
                   <!--<button
                     class="position-absolute btn btn-danger"
                     style="top:0px;right:0px;z-index:99999"
@@ -127,6 +127,7 @@
               <vs-popup
                 class="holamundo login-popup"
                 :title="$t('login.register')"
+                ref="register"
                 :active.sync="this.$store.state.landing.registerPopup"
                 @close="closePopup"
               >
@@ -1723,6 +1724,15 @@ export default {
     closePopup() {
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
+      this.$refs.login.username = ""
+      this.$refs.login.password = ""
+      this.$refs.login.remember= false
+      this.$refs.register.firstName = "",
+      this.$refs.register.lastName = "",
+      this.$refs.register.email = "",
+      this.$refs.register.password = "",
+      this.$refs.register.confirm = "",
+      this.$refs.register.checkBox1 = false
     },
     sendMail: async function() {
       ContactService.sendMail(this.contact);

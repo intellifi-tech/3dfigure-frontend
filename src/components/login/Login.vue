@@ -25,6 +25,7 @@
                 icon="icon icon-user"
                 icon-pack="feather"
                 :label-placeholder="$t('login.user')"
+                :class="{'vs-input-danger':this.$v.username.$invalid && !first}"
                 v-model="username"
                 class="w-full mb-6 no-icon-border"
               />
@@ -32,6 +33,7 @@
                 type="password"
                 icon="icon icon-lock"
                 icon-pack="feather"
+                :class="{'vs-input-danger':this.$v.password.$invalid && !first}"
                 :label-placeholder="$t('login.pass')"
                 v-model="password"
                 class="w-full mb-4 no-icon-border"
@@ -39,7 +41,7 @@
               />
               <div class="flex flex-wrap justify-between py-3">
                 <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
-                <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
+                <router-link to="/forgot-password"><span class="text-sm">{{$t('login.forgot')}}</span></router-link>
               </div>
 
              
@@ -90,7 +92,8 @@ export default {
     return {
       username: "",
       password: "",
-      remember: false
+      remember: false,
+      first: true
     };
   },
   props: {
@@ -107,6 +110,7 @@ export default {
           text: "Lütfen bilgileri kontrol ediniz!",
           color: "danger"
         });
+        this.first = false
         return;
       }
       var credential = {
@@ -122,7 +126,7 @@ export default {
         this.$vs.notify({
           time: 4000,
           title: "HATA!",
-          text: "Hesap bulunamadı.",
+          text: "Lütfen giriş bilgilerinizi kontrol eder misiniz",
           color: "danger"
         });
       }
@@ -130,6 +134,10 @@ export default {
     openRegister() {
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", true);
+      this.username = ""
+      this.password = ""
+      this.remember = false
+      this.first = true
       // this.$router.push("/register");
     }
   },
