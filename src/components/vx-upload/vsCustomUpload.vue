@@ -434,7 +434,7 @@ export default {
       let headers = null;
 
       if (forAvatar) {
-        formData.append("pipeline", "head_1.1");
+        formData.append("pipeline", "head_1.2");
         formData.append("name", "avatar");
         formData.append("pipeline_subtype", "base/legacy");
         xhr.open("POST", this.avatarsdk);
