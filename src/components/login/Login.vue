@@ -41,8 +41,7 @@
               />
               <div class="flex flex-wrap justify-between py-3">
                 <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
-                <a href="" class="mb-3">Şifremi Unuttum</a>
-                <!-- <router-link to="/pages/forgot-password">{{$t('login.forgot')}}</router-link> -->
+                <router-link to="/forgot-password"><span class="text-sm">{{$t('login.forgot')}}</span></router-link>
               </div>
 
              

@@ -143,7 +143,12 @@ const router = new Router({
 					path: '/register',
 					name: 'pageRegister',
 					component: () => import('@/views/login/Register.vue')
-				}
+				},
+				{
+					path: '/forgot-password',
+					name: 'pagePassword',
+					component: () => import('@/views/login/ForgotPassword.vue'),
+				},
 			]
 		},
 		{
