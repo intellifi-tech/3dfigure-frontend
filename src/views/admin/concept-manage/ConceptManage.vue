@@ -242,7 +242,12 @@ export default {
     },
 
     searchConcept: async function() {
-      const response = await ConceptService.searchConceptAdmin(this.searchQuery)
+      const response;
+      if (this.searchQuery.length == 0) {
+        response = await ConceptService.getAllConceptsAdmin(0)
+      } else {
+        response = await ConceptService.searchConceptAdmin(this.searchQuery)
+      }
       this.concepts = response.content
       this.totalPages = response.totalPages
     },
