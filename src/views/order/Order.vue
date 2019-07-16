@@ -46,9 +46,16 @@ export default {
   },
   methods: {
     searchOrder: async function() {
-      var res = await OrderService.searchOrder(this.searchQuery);
-      this.orderValues = res.content;
-      this.totalPages = res.totalPages;
+      var res; 
+      if (this.searchQuery.length == 0) {
+          res = await OrderService.getAllOrders(0);
+          this.orderValues = res.content;
+          this.totalPages = res.totalPages;
+      } else {
+        res = await OrderService.searchOrder(this.searchQuery);
+        this.orderValues = res.content;
+        this.totalPages = res.totalPages;
+      }
     }
   },
   watch: {

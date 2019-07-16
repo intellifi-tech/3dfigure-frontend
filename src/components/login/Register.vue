@@ -103,9 +103,11 @@ import {
   sameAs,
   minLength,
   maxLength,
-  alpha
+  alpha,
+  helpers
 } from "vuelidate/lib/validators";
 import { LoginService } from "@/services/login.service";
+const turkish = helpers.regex('alpha', /^[a-zA-Z]*$/)
 export default {
   data() {
     return {
@@ -156,7 +158,8 @@ export default {
         this.$vs.dialog({
           color:'success',
           title: "Başarılı",
-          text: 'Aktivasyon linki e-postanıza gönderilmiştir. Mailin ulaşması biraz zaman alabilir'
+          text: 'Aktivasyon linki e-postanıza gönderilmiştir. Mailin ulaşması biraz zaman alabilir.',
+          acceptText: "Anladım"
         })
         this.openLogin();
       } else {
@@ -189,7 +192,7 @@ export default {
   },
   validations: {
     email: { required, email },
-    firstName: { required, minLength: minLength(2), alpha },
+    firstName: { required, minLength: minLength(2), alpha, turkish },
     lastName: { required, minLength: minLength(2), alpha },
     sex: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(15) },

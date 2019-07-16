@@ -43,7 +43,7 @@ const router = new Router({
 			],
 		},
 		{
-			path: '/api',
+			path: '/activation',
 			meta: {
 				api: true
 			},
@@ -148,6 +148,9 @@ const router = new Router({
 					path: '/forgot-password',
 					name: 'pagePassword',
 					component: () => import('@/views/login/ForgotPassword.vue'),
+					meta: {
+						api: true
+					}
 				},
 			]
 		},
