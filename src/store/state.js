@@ -33,7 +33,8 @@ const state = {
 	member: {},
 	landing: {
 		loginPopup: false,
-		registerPopup: false
+		registerPopup: false,
+		forgotPopup:false
 	},
 	selectedFigures: {
 		avatarKey: [],

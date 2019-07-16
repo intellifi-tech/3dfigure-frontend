@@ -1,14 +1,3 @@
-<!-- =========================================================================================
-	File Name: Login.vue
-	Description: Login Page
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
     <vx-card>
       <div slot="no-body" class="full-page-bg-color">
@@ -41,7 +30,7 @@
               />
               <div class="flex flex-wrap justify-between py-3">
                 <vs-checkbox v-model="remember" class="mb-3">{{$t('login.rem')}}</vs-checkbox>
-                <router-link to="/forgot-password"><span class="text-sm">{{$t('login.forgot')}}</span></router-link>
+                <a @click="openForgot" class="cursor-pointer"><span class="text-sm">{{$t('login.forgot')}}</span></a>
               </div>
 
              
@@ -133,7 +122,18 @@ export default {
     },
     openRegister() {
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_FORGOT_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", true);
+      this.username = ""
+      this.password = ""
+      this.remember = false
+      this.first = true
+      // this.$router.push("/register");
+    },
+     openForgot() {
+      this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_FORGOT_POPUP", true);
+      this.$store.commit("UPDATE_REGISTER_POPUP", false);
       this.username = ""
       this.password = ""
       this.remember = false

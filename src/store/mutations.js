@@ -55,9 +55,11 @@ const mutations = {
 	UPDATE_LOGIN_POPUP(state, value) {
 		state.landing.loginPopup = value;
 	},
-
 	UPDATE_REGISTER_POPUP(state, value) {
 		state.landing.registerPopup = value;
+	},
+	UPDATE_FORGOT_POPUP(state, value) {
+		state.landing.forgotPopup = value;
 	},
 
 	/**

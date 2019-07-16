@@ -104,7 +104,7 @@
                       </li>
                       <li
                         class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-                        @click="$router.push('/apps/email')"
+                        @click="$router.push('/ticket')"
                       >
                         <feather-icon icon="MailIcon" svgClasses="w-4 h-4"></feather-icon>
                         <span class="ml-2">Destek</span>
@@ -137,6 +137,22 @@
                   @click="closePopup"
                 >x</button>-->
                 <register :isPopup="true"></register>
+              </vs-popup>
+            </li>
+            <li>
+              <vs-popup
+                class="holamundo login-popup"
+                :title="$t('login.forgot')"
+                ref="forgot-password"
+                :active.sync="this.$store.state.landing.forgotPopup"
+                @close="closePopup"
+              >
+                <!--<button
+                  class="position-relative btn btn-danger float-right"
+                  style="top:10px;right:10px;z-index:99"
+                  @click="closePopup"
+                >x</button>-->
+                <forgot-password :isPopup="true"></forgot-password>
               </vs-popup>
             </li>
             <li class="nav-item">
@@ -1659,6 +1675,7 @@
 import { ContactService } from "@/services/contact.service";
 import Register from "@/components/login/Register.vue";
 import Login from "@/components/login/Login.vue";
+import ForgotPassword from "@/components/login/ForgotPassword.vue";
 import { LoginService } from "@/services/login.service"
 import LandingService from "@/services/admin/landing.service"
 import { Hooper, Slide } from 'hooper';
@@ -1666,6 +1683,7 @@ import 'hooper/dist/hooper.css';
 
 export default {
   components: {
+    ForgotPassword,
     Register,
     Login,
     Hooper,
@@ -1732,6 +1750,7 @@ export default {
     closePopup() {
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
+      this.$store.commit("UPDATE_FORGOT_POPUP", false);
       this.$refs.login.username = ""
       this.$refs.login.password = ""
       this.$refs.login.remember= false
@@ -1753,12 +1772,19 @@ export default {
     },
     openRegister() {
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_FORGOT_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", true);
       // this.$router.push("/register");
     },
     openLogin() {
+      this.$store.commit("UPDATE_FORGOT_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
       this.$store.commit("UPDATE_LOGIN_POPUP", true);
+    },
+    openForgot() {
+      this.$store.commit("UPDATE_FORGOT_POPUP", true);
+      this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_REGISTER_POPUP", false);
     }
   }
 };
