@@ -24,12 +24,14 @@
             <div class="clearfix">
               <vs-input
                 label-placeholder="FirstName"
+                :class="{'vs-input-danger':this.$v.firstName.$invalid && !first}"
                 :placeholder="$t('register.first')"
                 v-model="firstName"
                 class="w-full mb-6"
               />
               <vs-input
                 label-placeholder="LastName"
+                :class="{'vs-input-danger':this.$v.lastName.$invalid && !first}"
                 :placeholder="$t('register.last')"
                 v-model="lastName"
                 class="w-full mb-6"
@@ -37,6 +39,7 @@
               <vs-input
                 type="email"
                 label-placeholder="Email"
+                :class="{'vs-input-danger':this.$v.email.$invalid && !first}"
                 :placeholder="$t('register.email')"
                 v-model="email"
                 class="w-full mb-3"
@@ -49,15 +52,19 @@
                     v-for="(item,index) in sexList"
                   />
               </vs-select>-->
-              <select class="register-sex form-control-lg w-full select-input mb-2" v-model="sex">
+              <div :class="{'vs-select-danger': this.$v.sex.$invalid && !first}">
+              <select class="register-sex form-control-lg w-full select-input mb-2 "
+                 v-model="sex">
                 <option
                   :key="index"
                   v-for="(item,index) in sexList"
                   :value="item.value"
                 >{{item.text}}</option>
               </select>
+              </div>
               <vs-input
                 type="password"
+                :class="{'vs-input-danger':this.$v.password.$invalid && !first}"
                 label-placeholder="Password"
                 :placeholder="$t('register.pass')"
                 v-model="password"
@@ -65,6 +72,7 @@
               />
               <vs-input
                 type="password"
+                :class="{'vs-input-danger':this.$v.confirm.$invalid && !first}"
                 label-placeholder="Confirm Password"
                 :placeholder="$t('register.confirm')"
                 v-model="confirm"
@@ -108,7 +116,8 @@ export default {
       confirm: "",
       checkBox1: false,
       sexList: [{ text: "Male", value: "M" }, { text: "Female", value: "F" }],
-      sex: "M"
+      sex: "M",
+      first: true
     };
   },
   props: {
@@ -118,12 +127,13 @@ export default {
   },
   methods: {
     register: async function() {
-      if (this.$v.$invalid && !this.checkBox1) {
+      if (this.$v.$invalid || !this.checkBox1) {
         this.$vs.notify({
           title: "HATA!",
           text: "Bilgileri kontrol ediniz!",
           color: "danger"
         });
+        this.first = false
         return;
       }
       var credential = {
@@ -135,31 +145,52 @@ export default {
         sex: this.sex,
         langKey: "en"
       };
-      var status = await LoginService.register(credential);
-      if (status < 400) {
-        this.$vs.notify({
+      var res = await LoginService.register(credential);
+      debugger
+      if (res.status < 400) {
+        /*this.$vs.notify({
           title: "BAŞARILI!",
-          text: "Aktivasyon linki e-postanıza gönderilmiştir.",
+          text: "Aktivasyon linki e-postanıza gönderilmiştir. Mailin ulaşması biraz zaman alabilir",
           color: "success",
+        })*/
+        this.$vs.dialog({
+          color:'success',
+          title: "Başarılı",
+          text: 'Aktivasyon linki e-postanıza gönderilmiştir. Mailin ulaşması biraz zaman alabilir'
         })
         this.openLogin();
       } else {
+        if (res.data.errorKey === "userexists") {
+          this.$vs.notify({
+          title: "HATA!",
+          text: "Bu mail kayıtlı",
+          color: "danger"
+        });
+        } else {
         this.$vs.notify({
           title: "HATA!",
           text: "Kayıt başarısız.",
           color: "danger"
         });
+        }
       }
     },
     openLogin() {
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
       this.$store.commit("UPDATE_LOGIN_POPUP", true);
+      this.firstName = "",
+      this.lastName = "",
+      this.email = "",
+      this.password = "",
+      this.confirm = "",
+      this.checkBox1 = false,
+      this.first = true
     }
   },
   validations: {
     email: { required, email },
-    firstName: { required, minLength: minLength(6), alpha },
-    lastName: { required, minLength: minLength(6), alpha },
+    firstName: { required, minLength: minLength(2), alpha },
+    lastName: { required, minLength: minLength(2), alpha },
     sex: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(15) },
     confirm: { required, sameAsPassword: sameAs("password") }

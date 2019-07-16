@@ -4149,3 +4149,6 @@ text-decoration: underline
 .con-text-validation .span-text-validation{
   font-size:10px;
 }
+.vs-input-danger input, .vs-select-danger select{
+  border:1px solid rgba(var(--vs-danger),1)!important;
+}

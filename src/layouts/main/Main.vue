@@ -19,6 +19,7 @@
         >
           <div class="pt-0">
             <form-wizard
+              ref="wizard"
               title="3D Figürünü Oluştur!"
               subtitle=""
               nextButtonText="Sonraki adım"
@@ -186,6 +187,7 @@ export default {
     finish() {
       this.$store.commit("FIRST_LOGIN_CLOSE", false);
       this.$store.commit("OPEN_SIDEBAR_POPUP", false);
+      this.$refs.wizard.reset();
       this.updateFirstLogin(this.$store.state.member);
     },
     updateNavbar(val) {

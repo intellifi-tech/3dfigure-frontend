@@ -65,7 +65,7 @@
     </div>
     <!--fotoğraflar card column -->
      
-<vs-popup :active.sync="openInvitePopup" title="Arkadaşını Davet Et">
+<vs-popup @close="closePopup" :active.sync="openInvitePopup" title="Arkadaşını Davet Et">
      <div class="vx-row mb-4">
              <div class="vx-col w-full mb-3">
                 <span>Fotoğraf yükleme hakkınız bittiğinde <b>3 arkadaşınızın</b> e-posta adresine davet yollayarak <b>5 yükleme hakkı</b> daha kazanabilirsiniz.</span>
@@ -76,8 +76,20 @@
                 <vs-input
                   type="text"
                   class="w-full"
-                  label-placeholder="E-posta"
-                  v-model="inviteMail.mail"
+                  label-placeholder="1.E-posta"
+                  v-model="inviteMail.first"
+                />
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="2.E-posta"
+                  v-model="inviteMail.second"
+                />
+                <vs-input
+                  type="text"
+                  class="w-full"
+                  label-placeholder="3.E-posta"
+                  v-model="inviteMail.third"
                 />
               </div>
       </div>
@@ -99,13 +111,19 @@ import MailService from "@/services/mail.service";
 import VsCustomUpload from "@/components/vx-upload/vsCustomUpload";
 import FigureService from "@/services/figure.service";
 import AvatarSdkService from "@/services/avatarsdk.service";
-
+import {
+  required,
+  email,
+  sameAs
+} from "vuelidate/lib/validators";
 export default {
   data() {
     return {
       openInvitePopup:false,
       inviteMail: {
-        mail: ""
+        first: "",
+        second: "",
+        third: ""
       },
       actionUrl: `${ApiService.getBaseURL()}\\images\\upload`,
       avatarsdk: process.env.VUE_APP_AVATAR_SDK_AVATAR_API,
@@ -140,6 +158,11 @@ export default {
     $route: "initialize"
   },*/
   methods: {
+    closePopup() {
+      this.inviteMail.first = ""
+      this.inviteMail.second = ""
+      this.inviteMail.third = ""
+    },
      openPopupHowtoUse() {
       this.$store.commit("OPEN_SIDEBAR_POPUP", true);
     },
@@ -149,22 +172,30 @@ export default {
       this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
     },
     mailSend: async function() {
-      if (this.$store.state.member.sendFriend != 0) {
+      if (this.$store.state.member.sendFriend != 0 && !this.$v.inviteMail.$invalid) {
 
       
-      await MailService.sendMail(this.inviteMail)
-      this.inviteMail.mail = ""
+      this.inviteMail.forEach(element => {
+        MailService.sendMail(element)
+      });
+      this.inviteMail.first = ""
+      this.inviteMail.second = ""
+      this.inviteMail.third = ""
       this.openInvitePopup = false
-      this.$store.commit("UPDATE_SEND_FRIEND", this.$store.state.member.sendFriend - 1)
-        if (this.$store.state.member.sendFriend == 0) {
-          this.$store.commit("UPDATE_TOTAL_FIGURE", this.$store.state.member.totalFigure + this.$store.state.member.totalFigure)
-        }
+      this.$store.commit("UPDATE_SEND_FRIEND", 0)
+      this.$store.commit("UPDATE_TOTAL_FIGURE", this.$store.state.member.totalFigure + 3)
       this.$store.dispatch("updateFirstLogin", this.$store.state.member)
       this.$vs.notify({
           title: "Başarılı!",
           text: "Mail gönderilmiştir",
           color: "success"
         });
+      } else if (this.$v.inviteMail.$invalid) {
+          this.$vs.notify({
+            title: "HATA!",
+            text: "Eklediğiniz mailleri kontrol ediniz",
+            color: "danger"
+          });
       } else {
         this.$vs.notify({
           title: "HATA!",
@@ -273,6 +304,13 @@ export default {
     },
     showAvatar(code) {
       this.$refs.unity.sendAvatar(code);
+    }
+  },
+  validations: {
+    inviteMail: {
+      first: {required, email},
+      second: {required, email, sameAsPassword: !sameAs('first')},
+      third: {required, email, sameAsPassword: !sameAs('first') && !sameAs('second')}
     }
   },
   components: {

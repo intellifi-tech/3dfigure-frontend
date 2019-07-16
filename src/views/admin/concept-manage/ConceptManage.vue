@@ -9,7 +9,7 @@
             class="w-full input-rounded-full no-icon-border"
             icon="icon-search"
             icon-pack="feather"
-            @keyup.enter="searchConcept"
+            @keyup="searchConcept"
           />
         </div>
       </div>
@@ -85,7 +85,7 @@
           
           <vs-input class="mb-3 w-full" label-placeholder="Açıklama" v-model="selected.description"/>
           <span class="vs-component isFocus is-label-placeholder">Kategori</span>
-          <select class="form-control mb-3 w-full" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryId">
+          <select class="form-control mb-3 w-full" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryIds">
                 <option
                   :key="index"
                   v-for="(item,index) in categories"
