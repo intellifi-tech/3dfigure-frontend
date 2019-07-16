@@ -187,19 +187,19 @@ export default {
       this.$store.dispatch("updateFirstLogin", this.$store.state.member)
       this.$vs.notify({
           title: "Başarılı!",
-          text: "Mail gönderilmiştir",
+          text: "Davet gönderildi.",
           color: "success"
         });
       } else if (this.$v.inviteMail.$invalid) {
           this.$vs.notify({
             title: "HATA!",
-            text: "Eklediğiniz mailleri kontrol ediniz",
+            text: "Girilen e-postaları kontrol ediniz.",
             color: "danger"
           });
       } else {
         this.$vs.notify({
           title: "HATA!",
-          text: "Mail gönderme hakkınız dolmuştur",
+          text: "Davet gönderme hakkınız dolmuştur.",
           color: "danger"
         });
       }

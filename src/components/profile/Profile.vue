@@ -241,7 +241,7 @@
                 <div class="vx-col w-full">
                   <vs-input
                     class="w-full"
-                    type="password"
+                    :type="showPsw ? 'text' : 'password'"
                     label-placeholder="Eski Şifre"
                     v-model="passwordDTO.currentPassword"
                   />
@@ -252,8 +252,7 @@
                   <vs-input
                     class="w-full"
                     icon-after="true"
-                    icon="visibility"
-                    :type="'password'"
+                    :type="showPsw ? 'text' : 'password'"
                     :class="{'vs-input-danger':this.$v.passwordDTO.newPassword.$invalid && !first}"
                     label-placeholder="Yeni Şifre"
                     v-model="passwordDTO.newPassword"
@@ -265,17 +264,20 @@
                   <vs-input
                     class="w-full"
                     icon-after="true"
-                    icon="visibility"
-                    :type="'password'"
+                    :type="showPsw ? 'text' : 'password'"
                     :class="{'vs-input-danger':this.$v.passwordDTO.confirm.$invalid && !first}"
                     label-placeholder="Tekrar Yeni Şifre"
                     v-model="passwordDTO.confirm"
                   />
+                  
                 </div>
               </div>
               <div class="vx-row">
                 <div class="vx-col w-1/2 text-left">
                   <vs-button color="success" @click="changePassword" type="relief">Güncelle</vs-button>
+                </div>
+                <div class="vx-col w-1/2 text-right">
+                <vs-button class="float-right" icon="visibility" color="primary" @click="showFunc" type="relief">{{showPsw ? 'Gizle' : 'Göster'}}</vs-button>
                 </div>
               </div>
             </vx-card>
@@ -303,6 +305,7 @@ import UserService from "@/services/user.service";
 export default {
   data() {
     return {
+      showPsw:false,
       isUpdated: true,
       name: "",
       surname: "",
@@ -369,6 +372,12 @@ export default {
     }
   },
   methods: {
+  showFunc(){
+    if(this.showPsw)
+      this.showPsw=false;
+      else
+      this.showPsw=true;
+  },
     deleteAddress: async function(index, adres) {
       var res = await AddressService.deleteUserAddress(adres.id);
       if (res.status >= 400) {

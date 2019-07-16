@@ -86,7 +86,7 @@
                 <vs-dropdown vs-custom-content vs-trigger-click>
                   <div class="con-img ml-3">
                     <img
-                      :src="require(`@/assets/images/portrait/small/avatar-s-1.png`)"
+                      :src="require(`@/assets/images/avatar/${activeMemberImg}`)"
                       alt
                       width="40"
                       height="40"
@@ -1694,6 +1694,14 @@ export default {
         message: ""
       }
     };
+  },
+  computed: {
+    activeMemberImg() {
+      if (this.$store.state.member.sex == 'F') {
+        return 'female-avatar.png';
+      }
+      return 'male-avatar.png';
+    },
   },
   created: async function() {
     document.body.addEventListener('scroll', this.handleScroll);

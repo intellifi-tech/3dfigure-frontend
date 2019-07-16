@@ -132,7 +132,7 @@ export default {
       if (this.$v.$invalid || !this.checkBox1) {
         this.$vs.notify({
           title: "HATA!",
-          text: "Bilgileri kontrol ediniz!",
+          text: "Lütfen bilgilerinizi kontrol ediniz.",
           color: "danger"
         });
         this.first = false
@@ -157,8 +157,8 @@ export default {
         })*/
         this.$vs.dialog({
           color:'success',
-          title: "Başarılı",
-          text: 'Aktivasyon linki e-postanıza gönderilmiştir. Mailin ulaşması biraz zaman alabilir.',
+          title: "Başarılı!",
+          text: 'Aktivasyon linki e-postanıza gönderilmiştir. E-postanın ulaşması biraz zaman alabilir.',
           acceptText: "Anladım"
         })
         this.openLogin();
@@ -166,7 +166,7 @@ export default {
         if (res.data.errorKey === "userexists") {
           this.$vs.notify({
           title: "HATA!",
-          text: "Bu mail kayıtlı",
+          text: "Bu e-posta zaten kayıtlıdır.",
           color: "danger"
         });
         } else {

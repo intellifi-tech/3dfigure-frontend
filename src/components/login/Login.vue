@@ -107,7 +107,7 @@ export default {
         this.$vs.notify({
           time: 4000,
           title: "HATA!",
-          text: "Lütfen bilgileri kontrol ediniz!",
+          text: "Lütfen giriş bilgilerinizi kontrol ediniz.",
           color: "danger"
         });
         this.first = false
@@ -126,7 +126,7 @@ export default {
         this.$vs.notify({
           time: 4000,
           title: "HATA!",
-          text: "Lütfen giriş bilgilerinizi kontrol eder misiniz",
+          text: "Lütfen giriş bilgilerinizi kontrol ediniz.",
           color: "danger"
         });
       }
