@@ -82,7 +82,7 @@ export default {
   },
 
   methods: {
-    userDelete(user, index) {
+    userDelete(user) {
       var self = this
       this.$vs.dialog({
         type:'confirm',

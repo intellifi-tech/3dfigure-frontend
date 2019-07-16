@@ -5,7 +5,7 @@
          <div class="w-1/2 mr-2">
         <json-excel
           class="vs-component vs-button w-full vs-button-warning vs-button-filled includeIcon"
-          :data="categories"
+          :data="coupons"
           :fields="json_fields"
           worksheet="My Worksheet"
           name="category.xls">
@@ -23,7 +23,7 @@
         pagination
         max-items="10"
         search
-        :data="categories">
+        :data="coupons">
         <template slot="header">
           <h3>
             Kuponlar
@@ -42,16 +42,16 @@
 
         <template slot-scope="{data}">
           <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-            <vs-td data=""></vs-td>
-            <vs-td data=""></vs-td>
-            <vs-td data=""></vs-td>
-            <vs-td data=""></vs-td>
-            <vs-td data=""></vs-td>
-            <vs-td data=""></vs-td>
+            <vs-td data="">{{tr.discountName}}</vs-td>
+            <vs-td data="">{{tr.code}}</vs-td>
+            <vs-td data="">{{tr.startDate}}</vs-td>
+            <vs-td data="">{{tr.finishDate}}</vs-td>
+            <vs-td data="">{{tr.rate}}</vs-td>
+            <vs-td data="">{{tr.active}}</vs-td>
             <vs-td>
               <div class="flex items-center">
                 <div class="mr-2">
-                  <vs-button class="px-3" color="primary" type="relief" @click="updateCategory">Düzenle</vs-button>
+                  <vs-button class="px-3" color="primary" type="relief" @click="updateCategory(data[indextr])">Düzenle</vs-button>
                 </div>
                 <div>
                   <vs-button class="px-3" color="danger" type="relief" @click="deleteCategory(data[indextr], indextr)">Sil</vs-button>
@@ -78,7 +78,7 @@
                     class="w-full"
                     :disabled="isUpdated"
                     v-model="coupon.startDate"
-                    :disabled-dates="datePicker.disableD"
+                    :disabled-dates="datePicker.startDateDisable"
                     :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
                     :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
                     placeholder="Başlangıç Tarihi"
@@ -90,7 +90,7 @@
                     class="w-full"
                     :disabled="isUpdated"
                     v-model="coupon.finishDate"
-                    :disabled-dates="datePicker.disableD"
+                    :disabled-dates="datePicker.startDateDisable"
                     :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
                     :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
                     placeholder="Bitiş Tarihi"
@@ -128,7 +128,7 @@
                     class="w-full"
                     :disabled="isUpdated"
                     v-model="coupon.startDate"
-                    :disabled-dates="datePicker.disableD"
+                    :disabled-dates="datePicker.startDateDisable"
                     :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
                     :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
                     placeholder="Başlangıç Tarihi"
@@ -140,7 +140,7 @@
                     class="w-full"
                     :disabled="isUpdated"
                     v-model="coupon.finishDate"
-                    :disabled-dates="datePicker.disableD"
+                    :disabled-dates="datePicker.startDateDisable"
                     :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
                     :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
                     placeholder="Bitiş Tarihi"
@@ -165,7 +165,7 @@
 </template>
 
 <script>
-import CategoryService from '@/services/category.service.js'
+import DiscountService from '@/services/discount.service.js'
 import JsonExcel from 'vue-json-excel'
 import Datepicker from "vuejs-datepicker";
 import * as lang from "vuejs-datepicker/src/locale";
@@ -177,9 +177,9 @@ export default {
   data: () => ({
       isUpdated: false,
       datePicker: {
-        disableD: {
+        startDateDisable: {
           customPredictor: function(date) {
-            if (date > new Date()) {
+            if (date < new Date()) {
               return true;
             }
           }
@@ -189,8 +189,8 @@ export default {
       },
     selected: {},
     newCategory: {},
-    categories: [],
-    lang: [{ text: "İngilizce", value: "EN" }, { text: "Türkçe", value: "TR" }],
+    coupons: [],
+    lang: [{ text: "Aktif", value: true }, { text: "Aktif Değil", value: false }],
     updatePopup: false,
     newPopup: false,
     coupon:{
@@ -206,19 +206,19 @@ export default {
       }
   }),
   created: async function() {
-    this.categories = await CategoryService.getAllCategories()
+    this.coupons = await DiscountService.getAllDiscounts()
   },
   methods: {
-    deleteCategory: function(category, index) {
+    deleteCategory: function(discount, index) {
       var self = this
       this.$vs.dialog({
         type:'confirm',
         color: 'danger',
         title: `Onayla`,
-        text: `${category.name} silmek istiyor musunuz?`,
+        text: `Bu kuponu silmek istiyor musunuz?`,
         accept: async function() {
-          await CategoryService.deleteCategory(category.id)
-          self.categories.splice(index, 1)
+          await DiscountService.deleteDiscount(discount.id)
+          self.coupons.splice(index, 1)
           self.$vs.notify({
             color: 'success',
             title:'Kupon silindi.'
@@ -226,20 +226,25 @@ export default {
         }
       })
     },
-    updateCategory: async function() {
+    updateCategory: async function(coupon) {
       this.updatePopup = !this.updatePopup
+      this.coupon = coupon
       if (!this.updatePopup) {
-        await CategoryService.updateCategory(this.selected)
+        await DiscountService.updateDiscount(this.coupon)
       }
     },
-    addCategory: async function() {
-      const res = await CategoryService.addCategory(this.newCategory)
+    updateCoupon: async function() {
+      await DiscountService.updateDiscount(this.coupon)
+      this.updatePopup = !this.updatePopup
+    },
+    addCoupon: async function() {
+      const res = await DiscountService.saveDiscount(this.coupon)
       this.$vs.notify({
         color:'success',
         title:'Kupon eklendi.'
       });
-      this.categories.push(res)
-      this.newCategory = {}
+      this.coupons.push(res)
+      this.coupon = {}
       this.newPopup = false
     },
 
