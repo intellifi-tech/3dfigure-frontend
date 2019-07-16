@@ -43,7 +43,7 @@
 
           </div>
           <div>
-            <vs-button class="px-3"  color="danger" type="relief" @click="userDelete(data[indextr], indextr)">Sil</vs-button>
+            <vs-button class="px-3"  color="danger" type="relief" @click="userDelete(data[indextr])">Değiştir</vs-button>
           </div>
         </div></vs-td>
      
@@ -88,13 +88,13 @@ export default {
         type:'confirm',
         color: 'danger',
         title: `Confirm`,
-        text: `${user.login} silmek istiyor musunuz?`,
+        text: `${user.login} güncellemek istiyor musunuz?`,
         accept: async function() {
-          await UserService.userDelete(user.login)
-          self.users.splice(index, 1)
+          user.activated = !user.activated
+          await UserService.setMember(user)
           self.$vs.notify({
             color: 'success',
-            title:'Kullanıcı silindi'
+            title:'Kullanıcı güncellendi'
           });
         }
       })
