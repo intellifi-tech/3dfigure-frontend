@@ -47,7 +47,7 @@
             <vs-td data="">{{tr.startDate}}</vs-td>
             <vs-td data="">{{tr.finishDate}}</vs-td>
             <vs-td data="">{{tr.rate}}</vs-td>
-            <vs-td data="">{{tr.active}}</vs-td>
+            <vs-td data="">{{tr.active ? 'Aktif':'Pasif'}}</vs-td>
             <vs-td>
               <div class="flex items-center">
                 <div class="mr-2">
@@ -190,7 +190,7 @@ export default {
     selected: {},
     newCategory: {},
     coupons: [],
-    lang: [{ text: "Aktif", value: true }, { text: "Aktif Değil", value: false }],
+    lang: [{ text: "Aktif", value: true }, { text: "Pasif", value: false }],
     updatePopup: false,
     newPopup: false,
     coupon:{
@@ -214,7 +214,9 @@ export default {
       this.$vs.dialog({
         type:'confirm',
         color: 'danger',
-        title: `Onayla`,
+        title: `Kupon Sil`,
+        acceptText:'Onayla',
+        cancelText:'Vazgeç',
         text: `Bu kuponu silmek istiyor musunuz?`,
         accept: async function() {
           await DiscountService.deleteDiscount(discount.id)

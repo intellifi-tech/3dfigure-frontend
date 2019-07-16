@@ -49,7 +49,7 @@
       <p class="text-grey">{{concept.description.substring(0, 20)}}</p>
       <p class="text-grey">Fiyat: {{concept.price}}</p>
       <p class="text-grey">{{concept.doubleConcept ? 'Çift Kişilik' : 'Tek Kişilik'}}</p>
-      <p class="text-grey">{{concept.isConceptsVisible ? 'Konsept Aktif' : 'Konsept Aktif Değil'}}</p>
+      <p class="text-grey">{{concept.isConceptsVisible ? 'Konsept Aktif' : 'Konsept Pasif'}}</p>
           <div class="flex justify-between flex-wrap">
             <vs-button
               class="shadow-md w-full px-1 mt-3"
@@ -83,9 +83,9 @@
          <vs-input class="mb-4 w-full" label-placeholder="Konsept Adı" :class="{'vs-input-danger':this.$v.selected.conceptName.$invalid}" v-model="selected.conceptName"/>
           <vs-input class="mb-4 w-full" label-placeholder="Sketch Linki" :class="{'vs-input-danger':this.$v.selected.sketchId.$invalid}"  v-model="selected.sketchId"/>
           
-          <vs-input class="mb-3 w-full" label-placeholder="Açıklama" v-model="selected.description"/>
+          <vs-input class="mb-4 w-full" label-placeholder="Açıklama" v-model="selected.description"/>
           <span class="vs-component isFocus is-label-placeholder">Kategori</span>
-          <select class="form-control mb-3 w-full" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryIds">
+          <select class="form-control mb-4 w-full" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryIds">
                 <option
                   :key="index"
                   v-for="(item,index) in categories"
@@ -93,7 +93,7 @@
                 >{{item.name}}</option>
           </select>
           <span class="vs-component isFocus is-label-placeholder">Görünürlük</span>
-          <select class="form-control mb-3" :class="{'vs-input-danger':this.$v.selected.isConceptsVisible.$invalid}" v-model="selected.isConceptsVisible">
+          <select class="form-control mb-4" :class="{'vs-input-danger':this.$v.selected.isConceptsVisible.$invalid}" v-model="selected.isConceptsVisible">
                 <option
                   :value="true"
                 >Evet</option>
@@ -110,7 +110,7 @@
                   :value="false"
                 >Hayır</option>
           </select>
-          <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.selected.showIndex.$invalid}" label-placeholder="Görünürlük Indeksi" v-model="selected.showIndex"/>
+          <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.selected.showIndex.$invalid}" label-placeholder="Sıralama" v-model="selected.showIndex"/>
           <vs-input class="mb-2 w-full" :class="{'vs-input-danger':this.$v.selected.price.$invalid}" label-placeholder="Fiyat" v-model="selected.price"/>
           <span class="vs-component isFocus is-label-placeholder pl-2 text-sm">Dil</span>
           <select class="form-control mb-4" v-model="selected.lang">
@@ -128,12 +128,12 @@
       <!-- New Concept Popup -->
       <vs-popup :active.sync="newPopup"  title="Konsept Ekle">
         <div>
-          <vs-input class="mb-3 w-full" label-placeholder="Konsept Adı" :class="{'vs-input-danger':this.$v.newConcept.conceptName.$invalid}" v-model="newConcept.conceptName"/>
-          <vs-input class="mb-3 w-full" label-placeholder="Sketch Linki" :class="{'vs-input-danger':this.$v.newConcept.sketchId.$invalid}"  v-model="newConcept.sketchId"/>
+          <vs-input class="mb-4 w-full" label-placeholder="Konsept Adı" :class="{'vs-input-danger':this.$v.newConcept.conceptName.$invalid}" v-model="newConcept.conceptName"/>
+          <vs-input class="mb-4 w-full" label-placeholder="Sketch Linki" :class="{'vs-input-danger':this.$v.newConcept.sketchId.$invalid}"  v-model="newConcept.sketchId"/>
           
           <vs-input class="mb-6 w-full" label-placeholder="Açıklama" v-model="newConcept.description"/>
           <span class="vs-component isFocus is-label-placeholder">Kategori</span>
-          <select class="form-control mb-3"  multiple :class="{'vs-input-danger':this.$v.newConcept.categoryId.$invalid}"  v-model="newConcept.categoryId">
+          <select class="form-control mb-4"  multiple :class="{'vs-input-danger':this.$v.newConcept.categoryId.$invalid}"  v-model="newConcept.categoryId">
                 <option
                   :key="index"
                   v-for="(item,index) in categories"
@@ -141,7 +141,7 @@
                 >{{item.name}}</option>
           </select>
           <span class="vs-component isFocus is-label-placeholder">Görünürlük</span>
-          <select class="form-control mb-3" :class="{'vs-input-danger':this.$v.newConcept.isConceptsVisible.$invalid}" v-model="newConcept.isConceptsVisible">
+          <select class="form-control mb-4" :class="{'vs-input-danger':this.$v.newConcept.isConceptsVisible.$invalid}" v-model="newConcept.isConceptsVisible">
                 <option
                   :value="true"
                 >Evet</option>
@@ -150,7 +150,7 @@
                 >Hayır</option>
           </select>
           <span class="vs-component isFocus is-label-placeholder">Çift Resim Uygunluğu</span>
-          <select class="form-control mb-3" :class="{'vs-input-danger':this.$v.newConcept.doubleConcept.$invalid}" v-model="newConcept.doubleConcept">
+          <select class="form-control mb-4" :class="{'vs-input-danger':this.$v.newConcept.doubleConcept.$invalid}" v-model="newConcept.doubleConcept">
                 <option
                   :value="true"
                 >Evet</option>
@@ -158,7 +158,7 @@
                   :value="false"
                 >Hayır</option>
           </select>
-          <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.newConcept.showIndex.$invalid}" label-placeholder="Görünürlük Indeksi" v-model="newConcept.showIndex"/>
+          <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.newConcept.showIndex.$invalid}" label-placeholder="Sıralama" v-model="newConcept.showIndex"/>
           <vs-input class="mb-2 w-full" :class="{'vs-input-danger':this.$v.newConcept.price.$invalid}" label-placeholder="Fiyat" v-model="newConcept.price"/>
           <span class="vs-component isFocus is-label-placeholder">Dil</span>
           <select class="form-control mb-4" v-model="newConcept.lang">
@@ -268,7 +268,7 @@ export default {
       if (this.$v.newConcept.$invalid) {
         this.$vs.notify({
           title: "HATA!!",
-          text: "Lütfen zorunlu bilgileri giriniz",
+          text: "Lütfen zorunlu bilgileri giriniz.",
           color: "danger"
         });
         return
