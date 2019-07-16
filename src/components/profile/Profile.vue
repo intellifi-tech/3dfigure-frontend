@@ -441,7 +441,7 @@ export default {
         this.passwordDTO = {};
       } else if (this.$v.passwordDTO.newPassword.$invalid)
         this.$vs.notify({
-          text: "Şifrenizi en az 6 karakter girmelisiniz",
+          text: "Şifrenizi en az 6 karakter girmelisiniz.",
           color: "danger"
         });
       else {

@@ -43,7 +43,7 @@
 
           </div>
           <div>
-            <vs-button class="px-3"  color="danger" type="relief" @click="userDelete(data[indextr])">Değiştir</vs-button>
+            <vs-button class="px-3"  :color="data[indextr].activated ? 'success':'danger'"  @click="userDelete(data[indextr])">{{data[indextr].activated ? 'Aktif' : 'Pasif'}}</vs-button>
           </div>
         </div></vs-td>
      
@@ -86,15 +86,17 @@ export default {
       var self = this
       this.$vs.dialog({
         type:'confirm',
-        color: 'danger',
-        title: `Confirm`,
+        color: 'primary',
+        title: `Kullanıcı Durumu`,
+        acceptText:'Onayla',
+        cancelText:'Vazgeç',
         text: `${user.login} güncellemek istiyor musunuz?`,
         accept: async function() {
           user.activated = !user.activated
           await UserService.setMember(user)
           self.$vs.notify({
             color: 'success',
-            title:'Kullanıcı güncellendi'
+            title:'Kullanıcı güncellendi.'
           });
         }
       })

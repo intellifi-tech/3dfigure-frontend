@@ -218,7 +218,7 @@
 
   <vs-td :data="data[indextr].showIndex">{{data[indextr].showIndex}}</vs-td>
 
-    <vs-td :data="data[indextr].active">{{data[indextr].active}}</vs-td>
+    <vs-td :data="data[indextr].active">{{data[indextr].active ? 'Aktif':'Pasif'}}</vs-td>
 
     <vs-td>
       <div class="flex items-center">
@@ -399,7 +399,7 @@
 
   <vs-td :data="data[indextr].showIndex">{{data[indextr].showIndex}}</vs-td>
 
-    <vs-td :data="data[indextr].active">{{data[indextr].active}}</vs-td>
+    <vs-td :data="data[indextr].active">{{data[indextr].active ? 'Aktif':'Pasif'}}</vs-td>
 
     <vs-td>
       <div class="flex items-center">
@@ -556,7 +556,7 @@
       :data="data[indextr].price"
     >{{data[indextr].price}}</vs-td>
 <vs-td data="description">{{data[indextr].description}}</vs-td>
-    <vs-td :data="data[indextr].active">{{data[indextr].active}}</vs-td>
+    <vs-td :data="data[indextr].active">{{data[indextr].active ? 'Aktif':'Pasif'}}</vs-td>
 
     <vs-td>
       <div class="flex items-center">
@@ -745,7 +745,7 @@ export default {
         divActive: true
       },
       paketler: [],
-      activeList: [{text: "Aktif", value: true}, {text: "Aktif Değil", value: false}],
+      activeList: [{text: "Aktif", value: true}, {text: "Pasif", value: false}],
       exampleProcess: {
         title: "",
         showIndex: "",
@@ -845,7 +845,7 @@ export default {
       if (Object.entries(this.file).length === 0 && this.file.constructor === Object) {
          this.$vs.notify({
             color: "danger",
-            title: "Resim Yüklemelisiniz"
+            title: "Resim Yüklemelisiniz!"
           });
           return
       }
@@ -945,7 +945,7 @@ export default {
         color: "danger",
         acceptText:"Onayla",
         cancelText:"Vazgeç",
-        title: 'Paketi Sil',
+        title: 'Sil',
         text: `${data.title} silmek istiyor musunuz?`,
         accept: async function() {
           await LandingService.delete(data.id);

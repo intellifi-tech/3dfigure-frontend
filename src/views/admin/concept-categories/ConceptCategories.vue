@@ -115,14 +115,16 @@ export default {
       this.$vs.dialog({
         type:'confirm',
         color: 'danger',
-        title: `Confirm`,
+        title: `Kategori Sil`,
+        acceptText:'Onayla',
+        cancelText:'Vazgeç',
         text: `${category.name} silmek istiyor musunuz?`,
         accept: async function() {
           await CategoryService.deleteCategory(category.id)
           self.categories.splice(index, 1)
           self.$vs.notify({
             color: 'success',
-            title:'Kategori silindi'
+            title:'Kategori silindi.'
           });
         }
       })
@@ -137,7 +139,7 @@ export default {
       const res = await CategoryService.addCategory(this.newCategory)
       this.$vs.notify({
         color:'success',
-        title:'Kategori eklendi'
+        title:'Kategori eklendi.'
       });
       this.categories.push(res)
       this.newCategory = {}
