@@ -171,10 +171,17 @@
                 </li>
                 <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-                  @click="$router.push('/ticket')"
+                  @click="$router.push('/admin/ticket')"
+                >
+                  <feather-icon icon="MessageSquareIcon" svgClasses="w-4 h-4"></feather-icon>
+                  <span class="ml-2">Destek</span>
+                </li>
+                  <li
+                  class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+                  @click="$router.push('/admin/email')"
                 >
                   <feather-icon icon="MailIcon" svgClasses="w-4 h-4"></feather-icon>
-                  <span class="ml-2">Destek</span>
+                  <span class="ml-2">Posta</span>
                 </li>
                <!-- <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"

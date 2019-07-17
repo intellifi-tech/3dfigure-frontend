@@ -23,17 +23,38 @@
       <p class="text-grey">{{order.cargoCode}}</p>
       <div class="flex justify-between flex-wrap">
         <vs-button
-          class="mt-4"
+          class="mt-4 w-full"
           color="#7367F0"
           @click="popupActive=true"
           gradient-color-secondary="#CE9FFC"
           type="gradient"
         >Detayı gör</vs-button>
       </div>
-      <div v-if="isAdmin">
-        <button  @click="downloadAvatar(figure.avatarKey, 'mesh')" target="_black">Mesh</button>
-        <button @click="downloadAvatar(figure.avatarKey, 'texture')" target="_black">Texture</button>
-        <button @click="downloadAvatar(figure.avatarKey, 'thumbnail')" target="_black">thumbnail</button>
+      <div v-if="isAdmin" class="flex">
+        <div class="w-1/3 pr-1">
+        <vs-button 
+           class="mt-4 w-full px-0" 
+           color="dark"
+           type="relief"
+           size="small"
+           @click="downloadAvatar(figure.avatarKey, 'mesh')" target="_blank">Mesh</vs-button>
+          </div>
+          <div class="w-1/3 pr-1">
+         <vs-button 
+           class="mt-4 w-full px-0"
+           color="success"
+           type="relief"
+           size="small"
+           @click="downloadAvatar(figure.avatarKey, 'texture')" target="_blank">Texture</vs-button>
+           </div>
+           <div class="w-1/3">
+         <vs-button 
+           class="mt-4 w-full px-0"
+           color="warning"
+           type="relief"
+           size="small"
+           @click="downloadAvatar(figure.avatarKey, 'thumbnail')" target="_blank">Thumbnail</vs-button>
+           </div>
       </div>
       <vs-popup class="popupDetail" :title="order.status" :active.sync="popupActive">
         <div class="row">
@@ -42,7 +63,8 @@
             <hr class="w-3/4"/>
             <p class="px-3 pb-5">{{order.information}}</p>
              <vs-list>
-                 <vs-list-item title="Kargo Takip No" :subtitle="order.cargoCode"></vs-list-item>
+                 <vs-list-item title="Sipariş No" :subtitle="order.orderCode"></vs-list-item>
+                 <vs-list-item title="Kargo Takip No" :subtitle="!order.cargoCode ? 'Mevcut değil.': order.cargoCode "></vs-list-item>
                  <vs-list-item title="Teslim Adresi" :subtitle="address.addressName"></vs-list-item>
             </vs-list>
             <div class="col-12"><p class="text-right">Tutar :<span class="h2 text-dark"> ${{conceptPrice}}</span></p></div>
@@ -52,8 +74,6 @@
     </vx-card>
   </div>
 </template>
-
-
 <script>
 import OrderService from '@/services/order.service.js'
 import AvatarSdkService from "@/services/avatarsdk.service";
@@ -127,7 +147,7 @@ export default {
       const url = window.URL.createObjectURL(blob);
       const pwa = window.open(url);
       if (!pwa || pwa.closed || typeof pwa.closed === 'undefined') {
-        alert('Please disable your Pop-up blocker and try again.');
+        alert('Lütfen Pop-up engelleyicinizi(AdBlocker vb.) devre dışı bırakın ve tekrar deneyin.');
       }
     }
   }

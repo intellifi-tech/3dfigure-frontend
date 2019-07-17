@@ -1,15 +1,3 @@
-<!-- =========================================================================================
-	File Name: TheFooter.vue
-	Description: Footer component
-	Component Name: TheFooter
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
 	<footer class="the-footer flex-wrap justify-between" :class="classes">
 		<span>© 2019 3D Figür. Tüm hakları saklıdır. <!--<a href="https://intellifi.tech" target="_blank" rel="nofollow">IntelliFi</a>--></span>

@@ -11,7 +11,7 @@
       <div id="content-overlay"></div>
 
       <div class="content-wrapper contentLayout">
-        <the-navbar class="navbarCustom" :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
+        <the-navbar-admin class="navbarCustom" :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
 
         <div class="router-view pt-4">
           <div class="router-content mt-16">
@@ -83,7 +83,7 @@
 <script>
 import VxSidebar from "@/layouts/components/vx-sidebar/VxSidebar.vue";
 import { FormWizard, TabContent } from "vue-form-wizard";
-import TheNavbar from "../components/TheNavbar.vue";
+import TheNavbarAdmin from "../components/TheNavbarAdmin.vue";
 import TheFooter from "../components/TheFooter.vue";
 import themeConfig from "@/../themeConfig.js";
 import sidebarItems from "@/layouts/components/vx-sidebar/sidebarItemsAdmin.js";
@@ -194,7 +194,7 @@ export default {
   },
   components: {
     VxSidebar,
-    TheNavbar,
+    TheNavbarAdmin,
     TheFooter,
     FormWizard,
     TabContent

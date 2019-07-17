@@ -27,7 +27,7 @@
       <template slot="thead">
   <vs-th sort-key="orderCode">Sipariş Kodu</vs-th>
   <vs-th sort-key="status">Sipariş Durumu</vs-th>
-  <vs-th sort-key="totalPriceNet">Kazanç</vs-th>
+  <vs-th sort-key="totalPriceNet">Tutar</vs-th>
   <vs-th sort-key="userLogin">Sipariş Sahibi</vs-th>
   <vs-th>Seçenekler</vs-th>
 </template>
@@ -38,7 +38,7 @@
 
     <vs-td :data="data[indextr].status">{{data[indextr].status}}</vs-td>
 
-    <vs-td :data="data[indextr].totalPriceNet">{{data[indextr].totalPriceNet}}</vs-td>
+    <vs-td :data="data[indextr].totalPriceNet">${{data[indextr].totalPriceNet}}</vs-td>
 
     <vs-td :data="data[indextr].userLogin">{{data[indextr].userLogin}}</vs-td>
 
@@ -57,8 +57,8 @@
     </vs-table>
     <vs-popup :active.sync="updatePopup" title="Sipariş Güncelle">
         <div>
-          <vs-input class="mb-2 w-full" label-placeholder="Sipariş Kodu" disabled v-model="selected.orderCode"/>
-          <vs-input class="mb-2" v-if="selected.status == 'CARGO'" label-placeholder="Kargo Kodu" v-model="selected.cargoCode"/>
+          <vs-input class="mb-4 w-full" label-placeholder="Sipariş Kodu" disabled v-model="selected.orderCode"/>
+          <vs-input class="mb-2 w-full" v-if="selected.status == 'CARGO'" label-placeholder="Kargo Kodu" v-model="selected.cargoCode"/>
           <p class=" mb-1 ml-1 text-sm">Sipariş Durumu</p>
           <select class="w-full form-control-lg select-input mb-4" v-model="selected.status">
                 <option
