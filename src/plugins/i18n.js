@@ -130,7 +130,7 @@ const messages = {
             email: 'E-mail',
             pass: 'Password',
             confirm: 'Confirm Password',
-            terms: 'I accept the terms & conditions.',
+            terms: 'I accept the <a href="/uyelik-sozlesmesi" target="_blank" class="underline hover:text-primary"> terms & conditions.</a>',
             alert: {
                 title: 'Error',
                 message: 'There was an unwanted problem. Please try again later.'
@@ -269,7 +269,7 @@ const messages = {
             email: 'E-posta',
             pass: 'Parola',
             confirm: 'Parola Onayı',
-            terms: 'Kullanım şartlarını kabul ediyorum.',
+            terms: '<a href="/uyelik-sozlesmesi" target="_blank" class="underline hover:text-primary">Kullanım şartlarını </a> kabul ediyorum.',
             alert: {
                 title: 'Hata Oluştu',
                 message: 'İstenmeyen bir sorun oluştu. Lütfen daha sonra tekrar deneyiniz.'

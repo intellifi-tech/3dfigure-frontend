@@ -22,9 +22,9 @@
             <img src="assets/images/logo/logo.png" alt="logo">
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="cgency">
+        <div class="collapse navbar-collapse pl-3" id="cgency">
           <!-- navbar collapse start -->
-          <ul class="navbar-nav" id="primary-menu">
+          <ul class="navbar-nav lg:items-center" id="primary-menu">
             <!-- navbar- nav -->
             <li class="nav-item" :class="{'active':index == clicked}" @click="clicked = index" v-for="(value, index) in navbarList" :key=value :index=index>
               <a class="nav-link" href="#"  v-scroll-to="'#'+value" >{{ $t('landing.navbar.'+value) }}</a>
@@ -53,14 +53,13 @@
             <li class="nav-item">
               <a class="nav-link" href="#" v-scroll-to="'#contact'">{{ $t('landing.navbar.contact') }}</a>
             </li> -->
-            <li class="nav-item" >
+            <li class="nav-item pr-3 py-2 py-sm-0">
               <div class="loginLink" v-if="!this.$store.state.member.firstName">
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
               <a
-                class="nav-link cursor-pointer"
+                class="nav-link font-bold my-1 px-2 text-white btn vs-button-filled vs-button-primary"
                 @click="openLogin"
-                href="#"
-              >{{ $t('landing.navbar.login') }}</a>
+              ><i class="fas fa-sign-in-alt"></i> {{ $t('landing.navbar.login') }}</a>
 
               <vs-popup
                 class="holamundo login-popup"
@@ -176,7 +175,7 @@
           </button>
         </div>
         <!-- navbar collapse end -->
-        <div class="nav-right-content">
+        <!--<div class="nav-right-content">
           <ul>
             <li>
               <select v-model="$i18n.locale" id="select-lang" @change="changeLang">
@@ -184,7 +183,7 @@
               </select>
             </li>
           </ul>
-        </div>
+        </div>-->
       </div>
     </nav>
     <!-- navbar area end -->
@@ -256,7 +255,6 @@
                     name="switchFirst"
                     class="btn-switch__radio btn-switch__radio_yes"
                     v-on:change="change"
-                    checked
                   >
                   <input
                     type="radio"
@@ -264,6 +262,7 @@
                     name="switchFirst"
                     class="btn-switch__radio btn-switch__radio_no"
                     v-on:change="change"
+                    checked
                   >
                   <label for="yes" class="btn-switch__label btn-switch__label_yes">
                     <span class="btn-switch__txt">{{$t('landing.howtouse.man.radioText')}}</span>
@@ -277,7 +276,7 @@
               <!-- how to selfie start-->
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
-                <div class="man-div model-column row" v-show="man">
+                <div class="man-div model-column row" v-show="!man">
                   <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mb-md-0">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
@@ -414,7 +413,7 @@
                 <!--man div finish-->
 
                 <!-- woman div start -->
-                <div class="woman-div model-column row" v-show="!man">
+                <div class="woman-div model-column row" v-show="man">
                   <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mb-md-0">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
@@ -829,7 +828,7 @@
                     <a href="#">{{n.title}}</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">{{n.price}}</span>
+                    <span class="price">${{n.price}}</span>
                   </div>
                   <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
                 </div>
