@@ -104,4 +104,4 @@ yarn-error.log
 # End of https://www.gitignore.io/api/node,vuejs
 
 public/assets/images/figures
-#public/assets/images/models
+public/assets/images/models
