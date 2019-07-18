@@ -3,6 +3,31 @@
     <view-upload v-if="viewActive" :src="viewSrc"/>
 
     <div class="con-img-upload overflow-y-auto preview-images" ref="savedImg">
+            <!-- photo upload input start-->
+      <div
+        :class="{
+          'on-progress-all-upload':percent != 0,
+          'is-ready-all-upload':percent >= 100,
+          'disabled-upload':$attrs.hasOwnProperty('disabled') || !limit
+        }"
+        class="con-input-upload img-upload bg-primary shadow-primary text-white p-0"
+      >
+        <input
+          ref="fileInput"
+          v-bind="$attrs"
+          :disabled="$attrs.disabled || !limit"
+          type="file"
+          @change="getFiles"
+        >
+        <span class="text-input text-5xl">
+          +
+          <!--{{ text }}-->
+        </span>
+        <span :style="{
+            width:`${percent}%`
+          }" class="input-progress"></span>
+      </div>
+      <!--photo upload input end-->
       <!-- Burası adamın önceden yüklediği resimlerin olduğu yer db'den çekiliyor -->
       <div class="main-upload img-upload">
         <img :class="{'selectedimg': constantImage}"
@@ -83,31 +108,6 @@
           <span>{{ img.name }}</span>
         </h4>
       </div>
-      <!-- photo upload input start-->
-      <div
-        :class="{
-          'on-progress-all-upload':percent != 0,
-          'is-ready-all-upload':percent >= 100,
-          'disabled-upload':$attrs.hasOwnProperty('disabled') || !limit
-        }"
-        class="con-input-upload img-upload bg-primary shadow-primary text-white p-0"
-      >
-        <input
-          ref="fileInput"
-          v-bind="$attrs"
-          :disabled="$attrs.disabled || !limit"
-          type="file"
-          @change="getFiles"
-        >
-        <span class="text-input text-5xl">
-          +
-          <!--{{ text }}-->
-        </span>
-        <span :style="{
-            width:`${percent}%`
-          }" class="input-progress"></span>
-      </div>
-      <!--photo upload input end-->
     </div>
   </div>
 </template>

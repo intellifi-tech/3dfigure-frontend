@@ -82,6 +82,8 @@
               <vs-button
                class="mt-3 w-full sepet-textarea float-right"
                @click="addDiscount"
+               icon="done"
+               color="success"
               >Kodu Aktifleştir</vs-button>
               </div>
 
@@ -98,7 +100,7 @@
           </ul>
           <div><!--<vs-button color="success" type="filled" @click="$router.push('/main', exact)">Alışverişe Devam Et</vs-button>-->
             <router-link to="main"  exact>
-              <vs-button color="success" type="filled">Alışverişe Devam Et</vs-button>
+              <vs-button color="primary" type="filled" icon="add" class="w-full">Yeni Model Oluştur</vs-button>
             </router-link>
           </div>
         </div>

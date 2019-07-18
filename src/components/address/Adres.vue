@@ -76,8 +76,10 @@
                 </div>
               </div>
               <div class="vx-row mb-2">
-                <div class="vx-col w-full">
-                  <vs-input type="tel" class="w-full" :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}" label-placeholder="Telefon" v-model="adres.mobile"/>
+                <div class="vx-col w-full flex">
+                  <vue-country-code defaultCountry='TR' class="selectCountry border-grey shadow-none h-12 " @onSelect="changeDialCode" style="margin-top: 17px;">
+                  </vue-country-code>
+                  <vs-input type="tel" class="w-full pl-1" :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}" label-placeholder="Telefon" v-model="adres.mobile"/>
                 </div>
               </div>
               <div class="vx-row mb-6">
@@ -149,7 +151,7 @@
             </div>
             <!-- fatura adresi-->
           </div>
-          <vs-button @click="saveAddress">Kaydet</vs-button>
+          <vs-button @click="saveAddress" color="success" type="filled" class="ml-2" icon="done">Kaydet</vs-button>
           <!--row yeni adres-->
         </div>
         <!--yeni adres section -->
@@ -168,10 +170,15 @@ import {
   maxLength,
   numeric
 } from "vuelidate/lib/validators";
+import "vue-country-code/dist/vue-country-code.css";
 import turkish from "@/plugins/turkish_regex.js"
 import PlaceService from "@/services/place.service";
 import AddressService from '@/services/address.service'
+import VueCountryCode from "vue-country-code";
 export default {
+  components: {
+    VueCountryCode
+  },
   data() {
     return {
       chooseAddress: true,
@@ -190,6 +197,7 @@ export default {
         townId: -1,
         userId: -1
       },
+      dialCode: "",
       city: 1,
       cities: [],
       towns: [],
@@ -221,6 +229,9 @@ export default {
     this.$store.commit('checkout/INIT_ADDRESS_LIST', await AddressService.getUserAddress())
   },
   methods: {
+    changeDialCode({dialCode}) {
+      this.dialCode = dialCode
+    },
     saveAddress: async function() {
       if (this.$v.$invalid) {
         this.$vs.notify({
@@ -231,6 +242,8 @@ export default {
         });
       } else {
         this.adres.userId = this.$store.state.member.id;
+        const temp = this.adres.mobile
+        this.adres.mobile = this.dialCode + temp
         const res = await AddressService.saveUserAddress(this.adres)
         if (this.isBilling) {
           this.$store.commit('checkout/ADD_BILLING_ADDRESS', res)

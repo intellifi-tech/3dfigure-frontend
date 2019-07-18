@@ -68,7 +68,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Model Adı"
-                  v-model="d3figure.description"
+                  v-model="d3figure.title"
                 />
               </div>
            
@@ -88,7 +88,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sketch Url"
-                  v-model="d3figure.title"
+                  v-model="d3figure.description"
                 />
                 </div>
             </div>
@@ -129,7 +129,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Model Adı"
-                  v-model="d3figure.description"
+                  v-model="d3figure.title"
                 />
               </div>
            
@@ -149,7 +149,7 @@
                   type="text"
                   class="w-full"
                   label-placeholder="Sketch Url"
-                  v-model="d3figure.title"
+                  v-model="d3figure.description"
                 />
                 </div>
             </div>
@@ -952,15 +952,19 @@ export default {
           await LandingService.delete(data.id);
           switch(data.landingStatus) {
             case 'FIRST':
+              self.updateModelPopup = false
               self.d3figureList.splice(index, 1);
               break;
           case 'SECOND':
+            self.updateConceptPopup = false
               self.conceptList.splice(index, 1);
               break;
           case 'THIRD':
+            this.updateExamplePopup = false
               self.exampleProcessList.splice(index, 1);
               break;
           case 'FOURTH':
+            this.updatePackagePopup = false
               self.paketler.splice(index, 1);
               break;
           }

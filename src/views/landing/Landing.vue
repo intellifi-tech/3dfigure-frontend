@@ -296,11 +296,11 @@
                         <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
-                              :id="model.description"
+                              :id="model.title"
                               v-model="iframeModelID"
-                              :vs-value="model.title"
+                              :vs-value="model.description"
                             >
-                              <label :for="model.description">
+                              <label :for="model.title">
                                 <img
                                   :src="'assets/images/models/'+model.imagePath"
                                   class="img-style img-fluid mb-4 rounded"
@@ -433,11 +433,11 @@
                         <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
-                              :id="model.description"
+                              :id="model.title"
                               v-model="iframeModelID2"
-                              :vs-value="model.title"
+                              :vs-value="model.description"
                             >
-                              <label :for="model.description">
+                              <label :for="model.title">
                                 <img
                                   :src="'assets/images/models/'+model.imagePath"
                                   class="img-style img-fluid mb-4 rounded"
