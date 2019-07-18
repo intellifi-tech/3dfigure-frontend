@@ -73,8 +73,7 @@ export default {
       "Kayıt Tarihi": "createdDate",
       "Doğum Günü": "birthDay"
     },
-    user: {},
-    detailUserPopup: false
+    user: {}
   }),
 
   created: async function() {
@@ -100,10 +99,6 @@ export default {
           });
         }
       })
-    },
-    userDetail(user) {
-      this.user = user
-      this.detailUserPopup = true
     }
   }
 };

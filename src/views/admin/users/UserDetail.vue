@@ -136,6 +136,7 @@ import OrderCard from '@/components/orders/OrderCard.vue'
 export default {
   data() {
     return {
+      auth: [{text: 'Admin', value: 'ROLE_ADMIN'}, {text: 'User', value: 'ROLE_USER'}, {text: 'Business User', value: 'ROLE_BUSINESS'}],
       searchQuery: "",
       orderValues: [],
       concepts: [],
