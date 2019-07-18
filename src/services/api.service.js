@@ -31,6 +31,12 @@ const ApiService = {
         return axios.post(resource, data)
     },
 
+    sendMail(resource, data) {
+        return axios.post(resource, data,
+            {headers: {'Content-Type': 'text/plain'}}
+        )
+    },
+
     imagePost(resource, data) {
         return axios.post(resource, data, 
             {headers: {'Content-Type': 'multipart/form-data'}}

@@ -87,16 +87,19 @@ export default {
       return this.$store.state.checkout.order.billingId != -1
     },
     finishShopping: async function() {
+      var self = this
       this.$store.commit('checkout/FINISH_ORDER', this.$store.state.member.id)
-      await CheckoutService.sendOrder(this.$store.state.checkout.order)
+      const res = await CheckoutService.sendOrder(this.$store.state.checkout.order)
       this.$store.dispatch('checkout/createNewBasket')
       this.$store.dispatch('getCurrentUser')
-      this.$router.push("/main")
-      this.$vs.notify({
-          time: 6000,
+      this.$vs.dialog({
           title: "Başarılı",
-          text: "Siparişiniz alınmıştır teşekkürler :)",
-          color: "success"
+          text: `Siparişiniz alınmıştır ve 5 tane daha figür ekleme hakkı elde ettiniz. Sipariş kodunuz - ${res.orderCode} `,
+          color: "success",
+          acceptText: "Anladım",
+          accept: function() {
+            self.$router.push("/main")
+          }
       });
     }
   },

@@ -147,8 +147,8 @@ export default {
     getFigurePath(figure, index) {
       return atob(figure.imagePath).split(',')[index]
     },
-    downloadAvatar(avatarKey, type) {
-      AvatarSdkService.getAvatarDownloadable(avatarKey, type).then(res => this.downloadFile(res, type == 'mesh' ? 'application/zip' : 'image/jpeg'))
+    downloadAvatar: function(avatarKey, type) {
+      AvatarSdkService.getAvatarDownloadable(avatarKey, type).then(res => this.downloadFile(res.data, type === 'mesh' ? 'application/zip' : 'image/jpeg'))
     },
     downloadFile(data, type) {
       const blob = new Blob([data], {type: type});

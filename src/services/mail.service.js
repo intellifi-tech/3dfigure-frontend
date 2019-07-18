@@ -4,8 +4,7 @@ const MailService = {
 
    sendMail: async function (mail) {
        try {
-           debugger
-           const response = await ApiService.post("/mailing", mail)
+           const response = await ApiService.sendMail("/mailing", mail)
            return response.data
        } catch (error) {
            return error.response.status

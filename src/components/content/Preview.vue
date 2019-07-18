@@ -176,9 +176,7 @@ export default {
     },
     mailSend: async function() {
       if (this.$store.state.member.sendFriend != 0 && !this.$v.inviteMail.$invalid) {
-
-      
-      this.inviteMail.forEach(element => {
+      Object.values(this.inviteMail).forEach(element => {
         MailService.sendMail(element)
       });
       this.inviteMail.first = ""

@@ -147,7 +147,6 @@ export default {
         langKey: "en"
       };
       var res = await LoginService.register(credential);
-      debugger
       if (res.status < 400) {
         /*this.$vs.notify({
           title: "BAŞARILI!",
