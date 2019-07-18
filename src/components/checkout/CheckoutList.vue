@@ -86,15 +86,6 @@
               </div>
 
              </li>
-             <li class="py-3 justify-content-between">
-              <h6 class="font-sans text-secondary">Görüş ve Öneri :</h6>
-              <vs-textarea 
-               class="mt-3 w-full sepet-textarea"
-               v-model="areaFeedback"
-               counter="200" 
-               :counter-danger.sync="counterDanger"
-              ></vs-textarea>
-            </li>
              <li class="mb-2 justify-content-between">
               <h6 class="font-sans text-secondary">Sipariş Notu :</h6>
               <vs-textarea 
@@ -105,7 +96,11 @@
               ></vs-textarea>
             </li>
           </ul>
-          <div><vs-button color="success" type="filled" to="main">Alışverişe Devam Et</vs-button></div>
+          <div><!--<vs-button color="success" type="filled" @click="$router.push('/main', exact)">Alışverişe Devam Et</vs-button>-->
+            <router-link to="main"  exact>
+              <vs-button color="success" type="filled">Alışverişe Devam Et</vs-button>
+            </router-link>
+          </div>
         </div>
         <!--card checkout -->
       </div>
@@ -157,7 +152,7 @@ export default {
       const res = await DiscountService.getRate()
       if (!res) {
         this.$vs.notify({
-          time: 4000,
+          time: 6000,
           title: "HATA!",
           text: "İndirim kodu geçersiz!",
           color: "danger"

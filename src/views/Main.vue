@@ -53,6 +53,7 @@ export default {
 
       if (!res) {
         this.$vs.notify({
+          time: 6000,
           title: "HATA",
           text: "Fotoğraf yüklemeli ya da seçmelisiniz!",
           color: "danger"

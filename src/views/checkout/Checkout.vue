@@ -50,7 +50,7 @@ export default {
       if(this.counterDanger)
       {
           this.$vs.notify({
-          time: 4000,
+          time: 6000,
           title: "HATA!",
           text: "Lütfen notları kontrol ediniz!",
           color: "danger"
@@ -65,7 +65,7 @@ export default {
     validateStep2: function() {
       if (!this.$store.state.checkout.chooseAddress) {
         this.$vs.notify({
-          time: 4000,
+          time: 6000,
           title: "HATA!",
           text: "Lütfen Adres seçiniz!",
           color: "danger"
@@ -77,7 +77,7 @@ export default {
     validateStep3: function() {
       if (!this.$store.state.checkout.chooseAddress) {
         this.$vs.notify({
-          time: 4000,
+          time: 6000,
           title: "HATA!",
           text: "Lütfen Adres seçiniz!",
           color: "danger"
@@ -92,6 +92,12 @@ export default {
       this.$store.dispatch('checkout/createNewBasket')
       this.$store.dispatch('getCurrentUser')
       this.$router.push("/main")
+      this.$vs.notify({
+          time: 6000,
+          title: "Başarılı",
+          text: "Siparişiniz alınmıştır teşekkürler :)",
+          color: "success"
+      });
     }
   },
   components: {

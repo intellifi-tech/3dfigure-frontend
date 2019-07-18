@@ -166,9 +166,9 @@ import {
   required,
   minLength,
   maxLength,
-  numeric,
-  alpha
+  numeric
 } from "vuelidate/lib/validators";
+import turkish from "@/plugins/turkish_regex.js"
 import PlaceService from "@/services/place.service";
 import AddressService from '@/services/address.service'
 export default {
@@ -224,7 +224,7 @@ export default {
     saveAddress: async function() {
       if (this.$v.$invalid) {
         this.$vs.notify({
-          time: 4000,
+          time: 6000,
           title: "HATA!",
           text: "Bilgileri kontrol ediniz.",
           color: "danger"
@@ -238,7 +238,7 @@ export default {
           this.$store.commit('checkout/ADD_CARGO_ADDRESS', res)
         }
         this.$vs.notify({
-          time: 4000,
+          time: 6000,
           title: "Başarılı!",
           text: "Adres başarılı bir şekilde eklendi.",
           color: "info"
@@ -260,8 +260,8 @@ export default {
   validations() {
     if (this.isBilling) {
       return {
-      name: { required, alpha },
-      surname: { required, alpha},
+      name: { required, turkish },
+      surname: { required, turkish},
       adres: {
       taxNo: {required, minLength: minLength(11), maxLength: maxLength(11), numeric},
       mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
@@ -274,8 +274,8 @@ export default {
       }
     } else {
             return {
-      name: { required, alpha },
-      surname: { required, alpha},
+      name: { required, turkish },
+      surname: { required, turkish},
       adres: {
       mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
       address: { required, maxLength: maxLength(100), minLength: minLength(15) },

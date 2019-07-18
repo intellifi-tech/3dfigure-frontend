@@ -94,7 +94,7 @@ export default {
     login: async function() {
       if (this.$v.$invalid) {
         this.$vs.notify({
-          time: 4000,
+          time: 6000,
           title: "HATA!",
           text: "Lütfen giriş bilgilerinizi kontrol ediniz.",
           color: "danger"
@@ -113,7 +113,7 @@ export default {
         this.$router.push("/main");
       } else {
         this.$vs.notify({
-          time: 4000,
+          time: 6000,
           title: "HATA!",
           text: "Lütfen giriş bilgilerinizi kontrol ediniz.",
           color: "danger"

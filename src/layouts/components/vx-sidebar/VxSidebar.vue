@@ -33,7 +33,7 @@
 						<vs-navbar collapse class="nabarx sidebar-navbar">
  						    <div slot="title">
  						      <vs-navbar-title>
- 						        Yardım
+ 						        Bilgilendirme
  						      </vs-navbar-title>
  						    </div>
  						    <vs-navbar-item index="0">

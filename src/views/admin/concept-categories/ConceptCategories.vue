@@ -138,6 +138,7 @@ export default {
     addCategory: async function() {
       const res = await CategoryService.addCategory(this.newCategory)
       this.$vs.notify({
+        time: 6000,
         color:'success',
         title:'Kategori eklendi.'
       });

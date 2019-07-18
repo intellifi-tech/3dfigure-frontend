@@ -189,18 +189,21 @@ export default {
       this.$store.commit("UPDATE_TOTAL_FIGURE", this.$store.state.member.totalFigure + 3)
       this.$store.dispatch("updateFirstLogin", this.$store.state.member)
       this.$vs.notify({
+          time: 6000,
           title: "Başarılı!",
           text: "Davet gönderildi.",
           color: "success"
         });
       } else if (this.$v.inviteMail.$invalid) {
           this.$vs.notify({
+            time: 6000,
             title: "HATA!",
             text: "Girilen e-postaları kontrol ediniz.",
             color: "danger"
           });
       } else {
         this.$vs.notify({
+          time: 6000,
           title: "HATA!",
           text: "Davet gönderme hakkınız dolmuştur.",
           color: "danger"
@@ -296,6 +299,7 @@ export default {
         }, 6000);
       } else {
         this.$vs.notify({
+          time: 6000,
           title: "HATA!",
           text: "Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!",
           color: "danger"

@@ -267,6 +267,7 @@ export default {
     addConcept: async function() {
       if (this.$v.newConcept.$invalid) {
         this.$vs.notify({
+          time: 6000,
           title: "HATA!!",
           text: "Lütfen zorunlu bilgileri giriniz.",
           color: "danger"

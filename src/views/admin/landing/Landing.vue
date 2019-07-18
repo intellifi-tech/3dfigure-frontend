@@ -179,7 +179,7 @@
 
              <div class="vx-row mb-2">
               <div class="vx-col w-full">
-                   <vs-button color="danger" class="float-left" @click="userDelete(d3figure.id)">Sil</vs-button>
+                   <vs-button color="danger" class="float-left" @click="userDelete(d3figure)">Sil</vs-button>
                        <vs-button class="float-right" @click="submitFile(d3figure, 'update')">Güncelle</vs-button>
               </div>
             </div>
@@ -844,6 +844,7 @@ export default {
     submitFile: async function(data, type) {
       if (Object.entries(this.file).length === 0 && this.file.constructor === Object) {
          this.$vs.notify({
+           time: 6000,
             color: "danger",
             title: "Resim Yüklemelisiniz!"
           });

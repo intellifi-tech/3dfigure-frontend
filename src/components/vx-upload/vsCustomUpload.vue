@@ -261,7 +261,7 @@ export default {
         else {
           if (this.$store.state.selectedFigures.avatarKey.length == 2) {
             this.$vs.notify({
-              time: 4000,
+              time: 6000,
               title: "HATA",
               text: "En fazla 2 fotoğraf seçebilirsiniz!",
               color: "danger"

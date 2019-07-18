@@ -102,12 +102,10 @@ import {
   email,
   sameAs,
   minLength,
-  maxLength,
-  alpha,
-  helpers
+  maxLength
 } from "vuelidate/lib/validators";
+import turkish from '@/plugins/turkish_regex.js'
 import { LoginService } from "@/services/login.service";
-const turkish = helpers.regex('alpha', /^[a-zA-Z]*$/)
 export default {
   data() {
     return {
@@ -117,7 +115,7 @@ export default {
       password: "",
       confirm: "",
       checkBox1: false,
-      sexList: [{ text: "Male", value: "M" }, { text: "Female", value: "F" }],
+      sexList: [{ text: "Erkek", value: "M" }, { text: "Kadın", value: "F" }],
       sex: "M",
       first: true
     };
@@ -131,6 +129,7 @@ export default {
     register: async function() {
       if (this.$v.$invalid || !this.checkBox1) {
         this.$vs.notify({
+          time: 6000,
           title: "HATA!",
           text: "Lütfen bilgilerinizi kontrol ediniz.",
           color: "danger"
@@ -165,12 +164,14 @@ export default {
       } else {
         if (res.data.errorKey === "userexists") {
           this.$vs.notify({
+          time: 6000,
           title: "HATA!",
           text: "Bu e-posta zaten kayıtlıdır.",
           color: "danger"
         });
         } else {
         this.$vs.notify({
+          time: 6000,
           title: "HATA!",
           text: "Kayıt başarısız.",
           color: "danger"
@@ -192,8 +193,8 @@ export default {
   },
   validations: {
     email: { required, email },
-    firstName: { required, minLength: minLength(2), alpha, turkish },
-    lastName: { required, minLength: minLength(2), alpha },
+    firstName: { required, minLength: minLength(2), turkish },
+    lastName: { required, minLength: minLength(2), turkish },
     sex: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(15) },
     confirm: { required, sameAsPassword: sameAs("password") }

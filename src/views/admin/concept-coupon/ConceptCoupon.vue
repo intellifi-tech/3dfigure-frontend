@@ -242,6 +242,7 @@ export default {
     addCoupon: async function() {
       const res = await DiscountService.saveDiscount(this.coupon)
       this.$vs.notify({
+        time: 6000,
         color:'success',
         title:'Kupon eklendi.'
       });

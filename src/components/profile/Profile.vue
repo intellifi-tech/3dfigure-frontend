@@ -294,9 +294,9 @@ import {
   minLength,
   maxLength,
   numeric,
-  alpha,
   sameAs
 } from "vuelidate/lib/validators";
+import turkish from "@/plugins/turkish_regex.js"
 import AddressService from "@/services/address.service";
 import PlaceService from "@/services/place.service";
 import Datepicker from "vuejs-datepicker";
@@ -382,6 +382,7 @@ export default {
       var res = await AddressService.deleteUserAddress(adres.id);
       if (res.status >= 400) {
         this.$vs.notify({
+          time: 6000,
           title:"HATA!",
           text: "Bu adres bir sipariş ile kayıtlı olduğundan dolayı silinemez.",
           color: "danger"
@@ -409,6 +410,7 @@ export default {
       } else {
          this.first=false;
         this.$vs.notify({
+          time: 6000,
           title:"HATA!",
           text: "Lütfen bilgileri kontrol ediniz.",
           color: "danger"
@@ -422,6 +424,7 @@ export default {
       this.$router.push("/profile");
       this.isUpdated = true;
       this.$vs.notify({
+        time: 6000,
         color:"success",
         text: "Güncelleme Başarılı!"
       });
@@ -441,11 +444,13 @@ export default {
         this.passwordDTO = {};
       } else if (this.$v.passwordDTO.newPassword.$invalid)
         this.$vs.notify({
+          time: 6000,
           text: "Şifrenizi en az 6 karakter girmelisiniz.",
           color: "danger"
         });
       else {
         this.$vs.notify({
+          time: 6000,
           text: "Yeni Şifreler Uyuşmuyor!",
           color: "danger"
         });
@@ -453,8 +458,8 @@ export default {
     }
   },
   validations: {
-    name: { required, alpha },
-    surname: { required, alpha },
+    name: { required, turkish },
+    surname: { required, turkish },
     passwordDTO: {
       newPassword: {
         required,

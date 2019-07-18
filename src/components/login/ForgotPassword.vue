@@ -39,6 +39,12 @@ export default {
     };
   },
 
+props: {
+  isPopup: {
+    default:false,
+    type: Boolean
+  }
+},
   methods: {
     newPassword: async function() {
       this.dto.key = this.$route.query.key;

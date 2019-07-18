@@ -56,7 +56,7 @@
            @click="downloadAvatar(figure.avatarKey, 'thumbnail')" target="_blank">Thumbnail</vs-button>
            </div>
       </div>
-      <vs-popup class="popupDetail" :title="order.status" :active.sync="popupActive">
+      <vs-popup class="popupDetail" :title="title[order.status]" :active.sync="popupActive">
         <div class="row">
           <div class="col-12 p-4" >
             <h3>Sipariş Bilgilendirmesi</h3>
@@ -84,7 +84,15 @@ export default {
       popupActive: false,
       sketchName: "",
       statusImage: "",
-      address: {}
+      address: {},
+      title: {
+        'ANALYSIS': 'Analiz ediliyor',
+        'ACCEPT': 'Kabul edildi',
+        'REJECT': 'Reddedildi',
+        'BUILD': 'Yapım Aşamasında',
+        'CARGO': 'Kargoda',
+        'DONE': 'Tamamlandı'
+      }
     };
   },
   props: {
