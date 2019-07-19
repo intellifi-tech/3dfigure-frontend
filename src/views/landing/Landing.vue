@@ -1761,7 +1761,13 @@ export default {
       this.$refs.register.checkBox1 = false
     },
     sendMail: async function() {
-      ContactService.sendMail(this.contact);
+      await ContactService.sendMail(this.contact);
+      this.$vs.notify({
+          time: 6000,
+          title: "Başarılı",
+          text: "Teşekkür ederiz :)",
+          color: "success"
+      })
     },
     change() {
       this.man = !this.man;

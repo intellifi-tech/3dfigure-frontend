@@ -52,6 +52,7 @@
                     class="mr-4 px-8"
                     icon="icon icon-facebook"
                     icon-pack="feather"
+                    @click="faceLogin"
                   ></vs-button>
                   <vs-button
                     color="#00aaff"
@@ -91,6 +92,17 @@ export default {
     }
   },
   methods: {
+    faceLogin: function () {
+      const this_ = this
+      this.$auth.authenticate('facebook').then(function () {
+        let token = this_.$auth.getToken()
+        this_.$http.get('https://graph.facebook.com/v3.0/me?fields=id,name,email', {
+          params: { access_token: token }
+        }).then(function (response) {
+          this_.profile = JSON.stringify(response)
+        })
+      })
+    },
     login: async function() {
       if (this.$v.$invalid) {
         this.$vs.notify({

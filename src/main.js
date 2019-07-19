@@ -26,6 +26,8 @@ import AvatarSdkService from '@/services/avatarsdk.service'
 import VueAuthenticate from 'vue-authenticate'
 import VueScrollTo from 'vue-scrollto'
 import VueCookie from 'vue-cookie'
+import VueAxios from 'vue-axios'
+import axios from 'axios';
 import {
   TokenService
 } from '@/services/token.service'
@@ -33,7 +35,19 @@ import {
 Vue.use(VeeValidate)
 Vue.use(Vuelidate)
 Vue.use(Vuesax)
-Vue.use(VueAuthenticate)
+Vue.use(VueAxios, axios)
+Vue.use(VueAuthenticate, {
+  baseUrl: 'http://localhost:8081',
+  providers: {
+    facebook: {
+      clientId: '455703481829848', //your Facebook App ID e.g. 12345667890
+      redirectUri: 'http://localhost:8081', // Your client app URL
+      responseType: 'token',
+      authorizationEndpoint: 'https://www.facebook.com/v3.0/dialog/oauth',
+    },
+    twitter: {}
+  }
+})
 Vue.use(VueScrollTo)
 Vue.use(VueCookie);
 
