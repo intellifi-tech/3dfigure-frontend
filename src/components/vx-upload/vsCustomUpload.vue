@@ -62,7 +62,7 @@
         v-for="(img,index) in getFilesFilter"
         :class="img.error ? 'fileError' : toogleClass(img.avatarKey)"
 
-        :key="index"
+        :key="img.avatarKey"
         
         class="img-upload main-upload"
       >
@@ -199,7 +199,6 @@ export default {
       let files = this.srcs.filter(item => {
         return !item.remove;
       });
-
       return files;
     },
     postFiles() {
@@ -422,6 +421,7 @@ export default {
             self.upload(index, false);
           } else {
             self.$emit("on-server-success", e, index);
+            self.viewImage(self.srcs[index].src, e, self.srcs[index].avatarKey)
           }
         }
       };
