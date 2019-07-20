@@ -62,7 +62,7 @@ const LoginService = {
 
     rememberPasswordInit: async function(mail) {
         try {
-            const response = await ApiService.post("/account/reset-password/init", mail)
+            const response = await ApiService.sendMail("/account/reset-password/init", mail)
             return response.data
         } catch (error) {
             return error.response

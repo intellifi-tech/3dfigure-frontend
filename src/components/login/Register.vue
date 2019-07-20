@@ -10,11 +10,11 @@
 
 
 <template>
-  <vx-card>
+  <vx-card class="register-card">
     <div slot="no-body" class="full-page-bg-color">
       <div class="vx-row">
         <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
-          <img src="/assets/images/obj/artboard.png" alt="register" class="mx-auto">
+          <img src="/assets/images/obj/artboard.png" alt="register" class="w-3/5 mx-auto">
         </div>
         <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center bg-white">
           <div class="p-8">
@@ -156,7 +156,7 @@ export default {
         this.$vs.dialog({
           color:'success',
           title: "Başarılı!",
-          text: 'Aktivasyon linki e-postanıza gönderilmiştir. E-postanın ulaşması biraz zaman alabilir.',
+          text: 'Aktivasyon linki e-postanıza gönderilmiştir.  E-postanın ulaşması biraz zaman alabilir.',
           acceptText: "Anladım"
         })
         this.openLogin();
@@ -203,5 +203,8 @@ export default {
 <style>
 .checkbox-reg .vs-checkbox--input{
   width: 20px;
+}
+.register-card .con-vs-dialog .vs-dialog .vs-dialog-text{
+  font-size: .92rem;
 }
 </style>
