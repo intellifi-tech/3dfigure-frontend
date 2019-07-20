@@ -105,6 +105,18 @@ const messages = {
             copyright: '2019 3D Figure. All Rights Reserved.',
             company: 'IntelliFi'
         },
+        forgot:{
+            title:'Reset Password',
+            btn:'Reset Password',
+            email:{
+                subtitle:'Please enter your email address, and we will send you an email with a link to reset your password.',
+                placeholder:'E-mail',
+            },
+            reset:{
+                subtitle:'Enter your new password',
+                placeholder:'New Password',
+            },
+        },
         login: {
             login: 'Login and Create 3D Figure',
             register:'Register and Create 3D Figure',
@@ -112,9 +124,6 @@ const messages = {
             pass: 'Password',
             rem: 'Remember Me',
             forgot: 'Forgot Password',
-            forgotsubtitle:'Enter your new password',
-            forgotbtn:'Reset Password',
-            forgotplaceholder:'New Password',
             reg: 'Register',
             loginbtn:"Login",
             sos: 'Login With',
@@ -244,6 +253,18 @@ const messages = {
             copyright: '2019 3D Figür. Tüm hakları saklıdır.',
             company: 'IntelliFi'
         },
+        forgot:{
+            title:'Parola Sıfırlama',
+            btn:'Parolayı Sıfırla',
+            email:{
+                subtitle:'Lütfen e-posta adresinizi girin, parolanızı sıfırlamak için kullanacağınız bağlantıyı içeren bir e-posta göndereceğiz.',
+                placeholder:'E-posta',
+            },
+            reset:{
+                subtitle:'Yeni parolanızı giriniz',
+                placeholder:'Yeni Parola',
+            },
+        },
         login: {
             login: 'Giriş Yap ve 3D Figürünü Oluştur',
             register: 'Kayıt Ol ve 3D Figürünü Oluştur',
@@ -251,9 +272,6 @@ const messages = {
             pass: 'Parola',
             rem: 'Beni Hatırla',
             forgot: 'Parolamı Unuttum',
-            forgotsubtitle:'Yeni Parolanızı giriniz',
-            forgotbtn:'Parola Sıfırla',
-            forgotplaceholder:'Yeni Parola',
             loginbtn:"Giriş Yap",
             reg: 'Kayıt Ol',
             sos: 'İle Giriş Yap',
