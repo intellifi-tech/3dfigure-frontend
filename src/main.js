@@ -37,11 +37,11 @@ Vue.use(Vuelidate)
 Vue.use(Vuesax)
 Vue.use(VueAxios, axios)
 Vue.use(VueAuthenticate, {
-  baseUrl: 'http://localhost:8081',
+  baseUrl: 'http://3dfigur.com',
   providers: {
     facebook: {
-      clientId: '455703481829848', //your Facebook App ID e.g. 12345667890
-      redirectUri: 'http://localhost:8081', // Your client app URL
+      clientId: process.env.VUE_APP_FACEBOOK_TOKEN, //your Facebook App ID e.g. 12345667890
+      redirectUri: 'http://3dfigur.com', // Your client app URL
       responseType: 'token',
       authorizationEndpoint: 'https://www.facebook.com/v3.0/dialog/oauth',
     },
