@@ -99,7 +99,9 @@ export default {
         this_.$http.get('https://graph.facebook.com/v3.0/me?fields=id,name,email', {
           params: { access_token: token }
         }).then(function (response) {
+          debugger
           this_.profile = JSON.stringify(response)
+          this_.$router.push("/main")
         })
       })
     },
@@ -156,6 +158,9 @@ export default {
   validations: {
     username: { required, email },
     password: { required, minLength: minLength(5), maxLength: maxLength(15) }
+  },
+  destroyed() {
+    this.$store.commit("UPDATE_LOGIN_POPUP", false);
   }
 };
 </script>
