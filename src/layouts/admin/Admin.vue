@@ -198,7 +198,10 @@ export default {
     TheFooter,
     FormWizard,
     TabContent
-  }
+  },
+   created: async function() {
+   await this.$store.dispatch('getCurrentUser');
+   }
 };
 </script>
 <style>

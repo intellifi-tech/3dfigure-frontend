@@ -1721,6 +1721,7 @@ export default {
     },
   },
   created: async function() {
+    await this.$store.dispatch('getCurrentUser');
     document.body.addEventListener('scroll', this.handleScroll);
     const res = await LandingService.getFirst()
     let halfWayThough = Math.floor(res.length / 2)
