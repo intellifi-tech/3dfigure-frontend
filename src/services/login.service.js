@@ -17,9 +17,9 @@ const LoginService = {
         try {
             const response = await ApiService.post("/authenticate", credential)
             const res = await AvatarSdkService.setToken()
-            TokenService.saveToken(response.data.id_token)
+            TokenService.saveToken(response.data.id_token, credential.rememberMe)
             ApiService.setHeader()
-            TokenService.saveAvatarToken(res.data.access_token)
+            TokenService.saveAvatarToken(res.data.access_token, credential.rememberMe)
             const checkoutRes = await CheckoutService.isLastBasket()
             if (checkoutRes === 404) {
                 store.dispatch('checkout/createNewBasket')

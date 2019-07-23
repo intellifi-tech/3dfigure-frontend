@@ -172,7 +172,10 @@ export default {
     updateGallery: async function() {},
     initialize: async function() {
       this.userFigures = await FigureService.getUserFigures();
-      this.limit = this.$store.state.member.totalFigure - this.userFigures.length;
+      var a = this.$store.state.member.totalFigure
+      var b = this.userFigures.length
+      debugger
+      this.limit = a - b;
     },
     mailSend: async function() {
       if (this.$store.state.member.sendFriend != 0 && !this.$v.inviteMail.$invalid) {
@@ -258,7 +261,7 @@ export default {
                   setTimeout(() => {
                     this.$vs.loading.close();
                     this.$vs.loading({
-                      text: "Bizde bu çalışmayı büyük bir özenle size özel hazırlıyoruz..",
+                      text: "Biz de bu çalışmayı büyük bir özenle size özel hazırlıyoruz..",
                       clickEffect: true,
                       textAfter: true
                     });

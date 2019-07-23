@@ -1720,7 +1720,7 @@ export default {
       return 'male-avatar.png';
     },
   },
-  created: async function() {
+  beforeCreate: async function() {
     await this.$store.dispatch('getCurrentUser');
     document.body.addEventListener('scroll', this.handleScroll);
     const res = await LandingService.getFirst()

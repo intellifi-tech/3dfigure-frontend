@@ -4,35 +4,35 @@
  * Current implementation stores to localStorage. Local Storage should always be
  * accessed through this instace.
  **/
-
-import store from '@/store/store.js'
 const TokenService = {
     getToken() {
-        return sessionStorage.getItem('a')
+        return localStorage.getItem('a') == null || localStorage.getItem('a') == "" ? sessionStorage.getItem('a') : localStorage.getItem('a')
         //return store.state.api.javaToken
     },
 
-    saveToken(accessToken) {
-        sessionStorage.setItem('a', accessToken)
+    saveToken(accessToken, rememberMe) {
+        !rememberMe ? sessionStorage.setItem('a', accessToken) : localStorage.setItem('a', accessToken)
         //store.commit('api/SET_JAVA_TOKEN', accessToken)
     },
 
     removeToken() {
         sessionStorage.setItem('a', "")
+        localStorage.setItem('a', "")
     },
 
     getAvatarToken() {
-        return sessionStorage.getItem('b')
+        return localStorage.getItem('b') == null || localStorage.getItem('b') == "" ? sessionStorage.getItem('b') : localStorage.getItem('b')
         //return store.state.api.avatarToken
     },
 
-    saveAvatarToken(avatarToken) {
-        sessionStorage.setItem('b', avatarToken)
+    saveAvatarToken(avatarToken, rememberMe) {
+        !rememberMe ? sessionStorage.setItem('b', avatarToken) : localStorage.setItem('b', avatarToken)
         //store.commit('api/SET_AVATAR_TOKEN', avatarToken)
     },
 
     removeAvatarToken() {
         sessionStorage.setItem('b', "")
+        localStorage.setItem('b', "")
         //store.commit('api/SET_AVATAR_TOKEN', "")
     }
 }
