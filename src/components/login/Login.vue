@@ -100,7 +100,6 @@ export default {
         this_.$http.get('https://graph.facebook.com/v3.0/me?fields=id,name,email', {
           params: { access_token: token }
         }).then(function (response) {
-          debugger
           this_.profile = JSON.stringify(response)
           this_.$router.push("/main")
         })

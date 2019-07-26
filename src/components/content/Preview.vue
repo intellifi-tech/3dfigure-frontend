@@ -174,7 +174,6 @@ export default {
       this.userFigures = await FigureService.getUserFigures();
       var a = this.$store.state.member.totalFigure
       var b = this.userFigures.length
-      debugger
       this.limit = a - b;
     },
     mailSend: async function() {
