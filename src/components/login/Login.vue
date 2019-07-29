@@ -61,7 +61,7 @@
                     icon="icon icon-twitter"
                     icon-pack="feather"
                   ></vs-button>
-                  <v-facebook-login app-id="455703481829848"></v-facebook-login>
+                  <v-facebook-login app-id="455703481829848" @login="logged"></v-facebook-login>
                 </div>
               </div>
             </div>
@@ -99,6 +99,14 @@ export default {
     }
   },
   methods: {
+    logged(response) {
+      if (!response.authResponse && response.status == "unknown") {
+        //error
+        return
+      }
+
+      debugger
+    },
     faceLogin: function () {
       const this_ = this
       this.$auth.authenticate('facebook').then(function () {
