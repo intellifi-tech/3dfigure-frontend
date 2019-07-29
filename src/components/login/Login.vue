@@ -61,7 +61,7 @@
                     icon="icon icon-twitter"
                     icon-pack="feather"
                   ></vs-button>
-                  <v-facebook-login app-id="455703481829848" @login="logged" :login-options="face"></v-facebook-login>
+                  <!-- <v-facebook-login app-id="455703481829848" @login="logged" :login-options="face"></v-facebook-login> -->
                 </div>
               </div>
             </div>
@@ -79,12 +79,9 @@ import {
   maxLength
 } from "vuelidate/lib/validators";
 import { LoginService } from "@/services/login.service";
-import VFacebookLogin from 'vue-facebook-login-component'
+
 
 export default {
-  components: {
-    VFacebookLogin
-  },
   data() {
     return {
       face: {
