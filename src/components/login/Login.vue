@@ -61,7 +61,7 @@
                     icon="icon icon-twitter"
                     icon-pack="feather"
                   ></vs-button>
-                  <v-facebook-login app-id="455703481829848" @login="logged"></v-facebook-login>
+                  <v-facebook-login app-id="455703481829848" @login="logged" :login-options="face"></v-facebook-login>
                 </div>
               </div>
             </div>
@@ -87,6 +87,10 @@ export default {
   },
   data() {
     return {
+      face: {
+        scope: 'email', 
+        return_scopes: true
+      },
       username: "",
       password: "",
       remember: false,
