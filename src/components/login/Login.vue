@@ -105,7 +105,7 @@ export default {
   methods: {
     logged: async function(response) {
       if (response.status === "connected ") {
-        const response2 = await fetch("https://graph.facebook.com/me?fields=id,name,email&access_token="+response.accessToken);
+        const response2 = await fetch("https://graph.facebook.com/me?fields=id,name,email&access_token="+response.authResponse.accessToken);
         console.log(response2)
         return
       }
