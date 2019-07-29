@@ -104,12 +104,15 @@ export default {
   },
   methods: {
     logged(response) {
-      if (!response.authResponse && response.status == "unknown") {
-        //error
+      if (response.status === "connected ") {
+        window.FB.api('/me', function(response) {
+
+          console.log('Good to see you, ' + response.name + '.' + ' Email: ' + response.email + ' Facebook ID: ' + response.id);
+        });
         return
       }
 
-      debugger
+      //error
     },
     faceLogin: function () {
       const this_ = this
