@@ -103,12 +103,10 @@ export default {
     }
   },
   methods: {
-    logged(response) {
+    logged: async function(response) {
       if (response.status === "connected ") {
-        window.FB.api('/me', function(response2) {
-
-          console.log('Good to see you, ' + response2.name + '.' + ' Email: ' + response2.email + ' Facebook ID: ' + response2.id);
-        });
+        const response = await fetch("https://graph.facebook.com/me?fields=id,name,email&access_token="+response.accessToken);
+        debugger
         return
       }
 
