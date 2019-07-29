@@ -61,6 +61,7 @@
                     icon="icon icon-twitter"
                     icon-pack="feather"
                   ></vs-button>
+                  <v-facebook-login app-id="455703481829848"></v-facebook-login>
                 </div>
               </div>
             </div>
@@ -78,7 +79,12 @@ import {
   maxLength
 } from "vuelidate/lib/validators";
 import { LoginService } from "@/services/login.service";
+import VFacebookLogin from 'vue-facebook-login-component'
+
 export default {
+  components: {
+    VFacebookLogin
+  },
   data() {
     return {
       username: "",
@@ -97,12 +103,17 @@ export default {
       const this_ = this
       this.$auth.authenticate('facebook').then(function () {
         let token = this_.$auth.getToken()
+        debugger
         this_.$http.get('https://graph.facebook.com/v3.0/me?fields=id,name,email', {
           params: { access_token: token }
         }).then(function (response) {
+          debugger
           this_.profile = JSON.stringify(response)
           this_.$router.push("/main")
-        })
+        }).catch(function(error) {
+          debugger
+          console.log(error);
+        });
       })
     },
     login: async function() {
