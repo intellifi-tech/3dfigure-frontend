@@ -1,6 +1,6 @@
 <template>
   <unity
-    src="assets/utils/unity/build28_just_pre.json"
+    src="assets/utils/unity/build30_just_pre.json"
     class="w-100 responsive"
     height="350"
     unityLoader="assets/utils/unity/UnityLoader.js"
