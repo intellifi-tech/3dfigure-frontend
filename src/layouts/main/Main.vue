@@ -219,8 +219,8 @@ export default {
       }
     }
   },
-  beforeCreate: function() {
-    this.$store.dispatch("getCurrentUser");
+  beforeCreate: async function() {
+    await this.$store.dispatch("getCurrentUser");
     this.$cookie.set('gender', this.$store.state.member.sex == 'M' ? 'male' : 'female')
   },
   components: {
