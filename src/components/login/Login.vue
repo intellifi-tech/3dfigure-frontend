@@ -111,7 +111,10 @@ export default {
         if (response2.status == 200) {
           var credential = {
             mail: response2.data.email,
-            id: response2.data.id
+            id: response2.data.id,
+            firstName: response2.data.first_name,
+            lastName: response2.data.last_name,
+            gender: response2.data.gender
           }
           var status = await LoginService.socialLogin(credential);
           if (status == 200) {
