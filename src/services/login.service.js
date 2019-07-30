@@ -36,6 +36,29 @@ const LoginService = {
         }
     },
 
+    socialLogin: async function(credential) {
+        try {
+            const response = await ApiService.post("/social-login", credential)
+            const res = await AvatarSdkService.setToken()
+            TokenService.saveToken(response.data.id_token, false)
+            ApiService.setHeader()
+            TokenService.saveAvatarToken(res.data.access_token, false)
+            const checkoutRes = await CheckoutService.isLastBasket()
+            if (checkoutRes === 404) {
+                store.dispatch('checkout/createNewBasket')
+            }
+
+            // NOTE: We haven't covered this yet in our ApiService 
+            //       but don't worry about this just yet - I'll come back to it later
+            //ApiService.mount401Interceptor();
+
+            return response.status
+        } catch (error) {
+            return error.response
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
     /**
      * Refresh the access token.
      **/
