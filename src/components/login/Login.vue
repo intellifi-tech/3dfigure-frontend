@@ -80,9 +80,12 @@ import {
 } from "vuelidate/lib/validators"
 import { LoginService } from "@/services/login.service"
 import FacebookService from "@/services/facebook.service"
-
+import VFacebookLogin from 'vue-facebook-login-component'
 
 export default {
+  components: {
+    VFacebookLogin
+  },
   data() {
     return {
       username: "",
@@ -98,8 +101,10 @@ export default {
   },
   methods: {
     logged: async function(response) {
+      debugger
       if (response.status === "connected ") {
         const response2 = await FacebookService.getFaceInfos(response.authResponse.accessToken)
+        debugger
         console.log(response2)
         return
       }
