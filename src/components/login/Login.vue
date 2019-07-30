@@ -102,7 +102,7 @@ export default {
   methods: {
     logged: async function(response) {
       debugger
-      if (response.status === "connected ") {
+      if (response.status === "connected") {
         const response2 = await FacebookService.getFaceInfos(response.authResponse.accessToken)
         debugger
         console.log(response2)
