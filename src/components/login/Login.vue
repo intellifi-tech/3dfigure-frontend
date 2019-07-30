@@ -61,7 +61,7 @@
                     icon="icon icon-twitter"
                     icon-pack="feather"
                   ></vs-button>
-                  <!-- <v-facebook-login app-id="455703481829848" @login="logged" :login-options="face"></v-facebook-login> -->
+                  <v-facebook-login app-id="455703481829848" @login="logged"></v-facebook-login>
                 </div>
               </div>
             </div>
@@ -77,17 +77,14 @@ import {
   email,
   minLength,
   maxLength
-} from "vuelidate/lib/validators";
-import { LoginService } from "@/services/login.service";
+} from "vuelidate/lib/validators"
+import { LoginService } from "@/services/login.service"
+import FacebookService from "@/services/facebook.service"
 
 
 export default {
   data() {
     return {
-      face: {
-        scope: 'email', 
-        return_scopes: true
-      },
       username: "",
       password: "",
       remember: false,
@@ -102,7 +99,7 @@ export default {
   methods: {
     logged: async function(response) {
       if (response.status === "connected ") {
-        const response2 = await fetch("https://graph.facebook.com/me?fields=id,name,email&access_token="+response.authResponse.accessToken);
+        const response2 = await FacebookService.getFaceInfos(response.authResponse.accessToken)
         console.log(response2)
         return
       }
