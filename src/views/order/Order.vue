@@ -13,8 +13,8 @@
     </div>
     <div class="pt-5">
       <div class="orderValues flex" v-for="(order, index) in this.orderValues" :key="index">
-        <div class="concepts col-md-3" v-for="concept in order.basketDTO.concepts" :key="concept.id">
-          <div class="figures" v-for="figure in concept.figures" :key="figure.id">
+        <div class="concepts col-md-3 d-lg-flex px-0" v-for="concept in order.basketDTO.concepts" :key="concept.id">
+          <div class="figures col-md-12" v-for="figure in concept.figures" :key="figure.id">
             <orders class="orderCard" :isAdmin="false" :order="order" :conceptPrice="concept.price" :figure="figure" :ids="order.basketDTO.id + '-' + concept.id + '-' + figure.id"></orders>
           </div>
         </div>

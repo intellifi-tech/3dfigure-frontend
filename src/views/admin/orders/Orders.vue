@@ -48,7 +48,7 @@
           <vs-button class="px-3" color="primary" type="relief" @click="updateOrder">Güncelle</vs-button>
         </div>
         <div>
-          <vs-button class="px-3" color="danger" type="relief">Sil</vs-button>
+          <vs-button class="px-3" color="success" type="relief"  @click="$router.push('/admin/order-detail?id='+data[indextr].id)">Detay</vs-button>
         </div>
       </div>
     </vs-td>
