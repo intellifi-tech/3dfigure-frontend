@@ -66,6 +66,14 @@ const OrderService = {
         } catch (error) {
             return error
         }
+    },
+        getOrderDetail: async function(id) {
+        try {
+            const response = await ApiService.get("/orders/"+id)
+            return response.data
+        } catch (error) {
+            return error
+        }
     }
 }
 

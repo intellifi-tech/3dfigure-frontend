@@ -222,6 +222,11 @@ const router = new Router({
 					component: () => import('@/views/admin/orders/Orders.vue')
 				},
 				{
+					path: '/admin/order-detail',
+					name: 'order-detail',
+					component: () => import('@/views/admin/orders/OrderDetail.vue')
+				},
+				{
 					path: '/admin/ticket',
 					name: 'ticket-admin',
 					component: () => import('@/views/admin/ticket-admin/TicketAdmin.vue')

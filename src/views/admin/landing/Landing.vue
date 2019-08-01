@@ -42,9 +42,9 @@
               webkitallowfullscreen="true"
             ></iframe>
           </div>
-      <h5 class="mb-2">{{concept.description}}</h5>
-      <p class="text-grey">Fiyat: {{concept.price}}</p>
+      <h5 class="mb-2">{{concept.title.substring(0, 10)}}</h5>
       <p class="text-grey">Gösterim Sırası: {{concept.showIndex}}</p>
+       <p class="text-grey">Durum: {{!concept.isConceptsVisible ? 'Aktif' : 'Pasif'}}</p>
           <div class="flex justify-between flex-wrap">
             <vs-button
               class="shadow-md w-full px-1 mt-3"

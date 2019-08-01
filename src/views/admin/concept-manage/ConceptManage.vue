@@ -49,7 +49,7 @@
       <p class="text-grey">{{concept.description.substring(0, 20)}}</p>
       <p class="text-grey">Fiyat: {{concept.price}}</p>
       <p class="text-grey">{{concept.doubleConcept ? 'Çift Kişilik' : 'Tek Kişilik'}}</p>
-      <p class="text-grey">{{concept.isConceptsVisible ? 'Konsept Aktif' : 'Konsept Pasif'}}</p>
+      <p class="text-grey">Durum: <b>{{concept.isConceptsVisible ? 'Aktif' : 'Pasif'}}</b></p>
           <div class="flex justify-between flex-wrap">
             <vs-button
               class="shadow-md w-full px-1 mt-3"
@@ -184,7 +184,8 @@ import JsonExcel from 'vue-json-excel'
 import {
   required,
   numeric,
-  minLength
+  minLength,
+  maxLength
 } from "vuelidate/lib/validators";
 
 export default {
@@ -286,23 +287,23 @@ export default {
       price: {required, numeric},
       sketchId: {required},
       isConceptsVisible: {required},
-      description: {required, minLength: minLength(48)},
+      description: {required, maxLength: maxLength(48)},
       showIndex: {required},
       lang: {required},
       doubleConcept: {required},
       categoryId: {required},
-      conceptName: {required, minLength: minLength(48)}
+      conceptName: {required, maxLength: maxLength(48)}
     },
     selected: {
       price: {required, numeric},
       sketchId: {required},
       isConceptsVisible: {required},
-      description: {required, minLength: minLength(48)},
+      description: {required, maxLength: maxLength(48)},
       showIndex: {required},
       lang: {required},
       doubleConcept: {required},
       categoryId: {required},
-      conceptName: {required, minLength: minLength(48)}
+      conceptName: {required, maxLength: maxLength(48)}
     }
   }
   
