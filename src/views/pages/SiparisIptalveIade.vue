@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-8 m-auto py-4 px-3 py-md-5">
+  <div class="col-md-8 m-auto py-4 px-3 py-md-5" id="body-overlay">
     <div class="mx-auto text-center mb-5">
       <a href="/">
         <img src="assets/images/logo/logo.png" alt="logo" class="w-1/3" />
@@ -68,5 +68,30 @@ Abbasağa Mah. Ihlamur Yıldız Cad. No:8-Z1 Beşiktaş / İstanbul</i><br>
       </p>
       <p>&nbsp;</p>
     </vx-card>
+    <div class="back-to-top base-color-2 d-block" v-if="isVisible">
+      <i class="fas fa-rocket" v-scroll-to="'#body-overlay'"></i>
+    </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      isVisible: false,
+      value1: ""
+    };
+  },
+  created: async function() {
+    document.body.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed() {
+    document.body.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      let scroll = document.body.scrollTop
+      this.isVisible = scroll > 150
+    },
+  }
+};
+</script>
