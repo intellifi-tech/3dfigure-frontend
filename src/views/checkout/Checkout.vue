@@ -26,7 +26,9 @@
         </div>
       </tab-content>
       <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
-        <div></div>
+        <div>
+          <VueCardPayment></VueCardPayment>
+        </div>
       </tab-content>
     </form-wizard>
   </div>
