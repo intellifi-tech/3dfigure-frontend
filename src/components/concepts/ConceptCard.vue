@@ -105,12 +105,6 @@ export default {
 };
 </script>
 <style>
-.max-ch{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 20ch;
-}
 .conceptDetail .vs-popup--content{
   overflow-x:hidden;
 }

@@ -111,9 +111,9 @@
         <vs-tab vs-label="Sipairiş Geçmişi" class="pt-5" @click="isUpdated=true">
           <div class="w-100">
             <div class="row">
-              <div class="col-md-3" v-for="(order, index) in this.orderValues" :key="index">
-                <div v-for="concept in order.basketDTO.concepts" :key="concept.id">
-                  <div v-for="figure in concept.figures" :key="figure.id">
+              <div class="w-full flex" v-for="(order, index) in this.orderValues" :key="index">
+                <div class="col-md-3 d-lg-flex px-0 " v-for="concept in order.basketDTO.concepts" :key="concept.id">
+                  <div class="col-md-12" v-for="figure in concept.figures" :key="figure.id">
                     <order-card :isAdmin="true" :order="order" :conceptPrice="concept.price" :figure="figure" :ids="order.basketDTO.id + '-' + concept.id + '-' + figure.id"></order-card>
                   </div>
               </div>

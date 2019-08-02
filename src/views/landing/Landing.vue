@@ -1614,31 +1614,49 @@
       <div class="bg-secondary mb-5 pb-3 pt-4 w-full">
         <div class="container">
           <div class="row">
-            <div class="col-md-4 col-xl-3 pl-md-4 py-1 py-md-0">
+            <div class="col-md-3 col-xl-3 pl-md-4 py-1 py-md-0">
               <a class="flex hover:text-white" href="/uyelik-sozlesmesi">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
                  <h6 class="hover:underline pl-3 mt-1 text-white">Üyelik Sözleşmesi</h6>
              </a>     
              </div>    
-            <div class="col-md-4 col-xl-3 py-1 py-md-0">
+            <div class="col-md-3 col-xl-3 py-1 py-md-0">
               <a class="flex hover:text-white" href="/kisisel-veri-kanunu">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
                  <h6 class="hover:underline pl-3 mt-1 text-white">Kişisel Veri Kanunu</h6>
              </a>     
              </div> 
-             <div class="col-md-4 col-xl-3 py-1 py-md-0">
+             <div class="col-md-3 col-xl-3 py-1 py-md-0">
               <a class="flex hover:text-white" href="/siparis-iptal-ve-iade-sartlari">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
                  <h6 class="hover:underline pl-3 mt-1 text-white">Sipariş İptal ve İade Şartları</h6>
              </a>     
-             </div>          
+             </div>
+              <div class="col-md-3 col-xl-3 py-1 py-md-0">
+              <a class="flex hover:text-white" href="/mesafeli-satis-sozlesmesi">
+                 <i class="fas fa-file-alt text-2xl text-dark"></i>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">Mesafeli Satış Sözleşmesi</h6>
+             </a>     
+             </div>             
           </div>
         </div>
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="footer-inner text-center">
+          <div class="col-lg-6">
+            <div class="footer-inner text-left">
+              <div class="copyright-text">
+                &copy; {{$t('footer.copyright')}}
+                <a
+                  href="https://intellifi.tech"
+                  target="_blank"
+                  rel="nofollow"
+                >{{$t('footer.company')}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="footer-inner pt-3 pt-sm-0 text-center text-sm-right">
               <ul class="social-icon">
                 <li>
                   <a href="https://www.instagram.com/3dfigur/" target="_blank">
@@ -1650,15 +1668,13 @@
                     <i class="fab fa-facebook-f"></i>
                   </a>
                 </li>
+                 <li>
+                  <img src="assets/images/card/master_card.jpg"/>
+                </li>
+                 <li>
+                   <img src="assets/images/card/visa_card.jpg"/>
+                </li>
               </ul>
-              <div class="copyright-text margin-top-30">
-                &copy; {{$t('footer.copyright')}}
-                <a
-                  href="https://intellifi.tech"
-                  target="_blank"
-                  rel="nofollow"
-                >{{$t('footer.company')}}</a>
-              </div>
             </div>
           </div>
         </div>
