@@ -1,13 +1,25 @@
 const state = {
 	basketList: [],
-	adres: {
-		adress: "",
-		mobile: "",
-		townId: null
+	addressList: [],
+	cargoAddress: {
 	},
-	totalPriceNet: 0,
-	totalPrice: 0,
-	kdv: 0
+	billingAddress: {
+	},
+	chooseAddress: true,
+	order: {
+		orderCode: "",
+		totalPriceNet: 0.0,
+		kdv: 0.0,
+		totalPrice: 0.0,
+		createdDate: null,
+		lastModificationDate: null,
+		deliveryId: -1,
+		billingId: -1,
+		basketId: -1,
+		userId: -1,
+		orderNote: "",
+		feedback: ""
+	}
 }
 
 export default state

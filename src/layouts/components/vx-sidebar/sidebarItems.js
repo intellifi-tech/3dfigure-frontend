@@ -31,20 +31,20 @@ export default [
 		url: "/order",
 		name: "Figür Geçmişi",
 		slug: "figurgecmisi",
-		icon: "FileIcon",
+		icon: "GridIcon",
 	},
 	{
 		url: "/checkout",
 		name: "Sepetim",
 		slug: "checkout",
-		icon: "FileIcon",
+		icon: "ShoppingCartIcon",
 	
 	},
 	{
-		url: "/apps/email",
+		url: "/ticket",
 		name: "Ticket",
 		slug: "ticket",
-		icon: "FileIcon",
+		icon: "MailIcon",
 	
 	}
 	

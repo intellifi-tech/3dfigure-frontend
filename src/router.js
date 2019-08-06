@@ -15,9 +15,8 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import {
-	TokenService
-} from '@/services/token.service'
+import i18n from '@/plugins/i18n.js'
+import ApiService from '@/services/api.service'
 
 Vue.use(Router)
 
@@ -44,19 +43,58 @@ const router = new Router({
 			],
 		},
 		{
-			path: '/api',
+			path: '/activation',
 			meta: {
 				api: true
 			},
 			component: () => import('./views/api/Api.vue'),
 			props: true
 		},
+		{
+			path: '/uyelik-sozlesmesi',
+			component: () => import('./views/pages/UyelikSozlesmesi.vue'),
+			meta: {
+				public: true
+			},
+			children: [
 
+			],
+		},
+		{
+			path: '/mesafeli-satis-sozlesmesi',
+			component: () => import('./views/pages/MesafeliSatisSozlesmesi.vue'),
+			meta: {
+				public: true
+			},
+			children: [
+
+			],
+		},
+		{
+			path: '/siparis-iptal-ve-iade-sartlari',
+			component: () => import('./views/pages/SiparisIptalveIade.vue'),
+			meta: {
+				public: true
+			},
+			children: [
+
+			],
+		},
+		{
+			path: '/kisisel-veri-kanunu',
+			component: () => import('./views/pages/KisiselVeriKanunu.vue'),
+			meta: {
+				public: true
+			},
+			children: [
+
+			],
+		},
 		{
 			// =============================================================================
 			// MAIN LAYOUT ROUTES
 			// =============================================================================
-			path: '/dashboard',
+			path: '',
 			component: () => import('./layouts/main/Main.vue'),
 			meta: {
 				public: false
@@ -76,7 +114,7 @@ const router = new Router({
 					component: () => import('./views/checkout/Checkout.vue'),
 				},
 				{
-					path: '/apps/email',
+					path: '/ticket',
 					name: 'email',
 					component: () => import('./views/email/Email.vue')
 				},
@@ -86,9 +124,9 @@ const router = new Router({
 					component: () => import('./views/order/Order.vue'),
 				},
 				{
-					path: '/onay-bekleyenler',
-					name: 'onay-bekleyenler',
-					component: () => import('./views/OnayBekleyenler.vue'),
+					path: '/profile',
+					name: 'profile',
+					component: () => import('./views/profile/Profile.vue'),
 				}
 			],
 		},
@@ -96,7 +134,7 @@ const router = new Router({
 		// FULL PAGE LAYOUTS
 		// =============================================================================
 		{
-			path: '/pages',
+			path: '',
 			component: () => import('@/layouts/full-page/FullPage.vue'),
 			meta: {
 				public: true,
@@ -115,7 +153,97 @@ const router = new Router({
 					path: '/register',
 					name: 'pageRegister',
 					component: () => import('@/views/login/Register.vue')
-				}
+				},
+				{
+					path: '/forgot-password',
+					name: 'pagePassword',
+					component: () => import('@/views/login/ForgotPassword.vue'),
+					meta: {
+						api: true
+					}
+				},
+			]
+		},
+		{
+			path: '',
+			component: () => import('@/layouts/admin/Admin.vue'),
+			meta: {
+				public: false
+			},
+			children: [
+				{
+					path: '/admin/dashboard',
+					name: 'dashboard-admin',
+					component: () => import('@/views/admin/Admin.vue')
+				},
+				{
+					path: '/admin/concept',
+					name: 'concept-manage',
+					component: () => import('@/views/admin/concept-manage/ConceptManage.vue')
+				},
+				{
+					path: '/admin/category',
+					name: 'concept-categories',
+					component: () => import('@/views/admin/concept-categories/ConceptCategories.vue')
+				},
+				{
+					path: '/admin/coupon',
+					name: 'concept-coupon',
+					component: () => import('@/views/admin/concept-coupon/ConceptCoupon.vue')
+				},
+				{
+					path: '/admin/users',
+					name: 'users',
+					component: () => import('@/views/admin/users/Users.vue')
+				},
+				{
+					path: '/admin/user-detail',
+					name: 'user-detail',
+					component: () => import('@/views/admin/users/UserDetail.vue')
+				},
+				{
+					path: '/admin/pricing',
+					name: 'pricing',
+					component: () => import('@/views/admin/pricing/Pricing.vue')
+				},
+				{
+					path: '/admin/projects',
+					name: 'example-projects',
+					component: () => import('@/views/admin/example-projects/ExampleProjects.vue')
+				},
+				{
+					path: '/admin/model',
+					name: '3d-models',
+					component: () => import('@/views/admin/3d-models/3dModels.vue')
+				},
+				{
+					path: '/admin/orders',
+					name: 'orders',
+					component: () => import('@/views/admin/orders/Orders.vue')
+				},
+				{
+					path: '/admin/order-detail',
+					name: 'order-detail',
+					component: () => import('@/views/admin/orders/OrderDetail.vue')
+				},
+				{
+					path: '/admin/ticket',
+					name: 'ticket-admin',
+					component: () => import('@/views/admin/ticket-admin/TicketAdmin.vue')
+				},
+				{
+					path: '/admin/email',
+					name: 'email-admin',
+					component: () => import('@/views/admin/email-admin/EmailAdmin.vue')
+				},
+				{
+					path: '/admin/landing',
+					name: 'landing-admin',
+					component: () => import('@/views/admin/landing/Landing.vue')
+				},
+				
+				
+				
 			]
 		},
 		// Redirect to 404 page, if no match found
@@ -130,8 +258,10 @@ router.beforeEach((to, from, next) => {
 	const isPublic = to.matched.some(record => record.meta.public)
 	const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
 	const api = to.matched.some(record => record.meta.api)
-	const loggedIn = !!TokenService.getToken();
-
+	const loggedIn = !!ApiService.getHeader()
+	if (sessionStorage.getItem('lang') !== null && sessionStorage.getItem('lang') !== i18n.locale) {
+		i18n.locale = sessionStorage.getItem('lang');
+	}
 	if (!api) {
 
 		if (!isPublic && !loggedIn) {

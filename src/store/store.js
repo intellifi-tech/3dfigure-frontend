@@ -20,6 +20,7 @@ import actions from "./actions"
 
 import moduleEmail from './email/moduleEmail.js'
 import moduleCheckout from './checkout/moduleCheckout.js'
+import moduleApi from './api/moduleApi.js'
 
 
 export default new Vuex.Store({
@@ -29,7 +30,8 @@ export default new Vuex.Store({
   actions,
   modules: {
     email: moduleEmail,
-    checkout: moduleCheckout
+    checkout: moduleCheckout,
+    api: moduleApi
 	},
 	strict: process.env.NODE_ENV !== 'production'
 })

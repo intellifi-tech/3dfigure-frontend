@@ -3,24 +3,32 @@
     <form-wizard
       color="rgba(var(--vs-primary), 1)"
       errorColor="rgba(var(--vs-danger), 1)"
-      :title="null"
-      :subtitle="null"
-      nextButtonText="Devam et"
+      :title=null
+      :subtitle=null
+      nextButtonText="İleri"
       backButtonText="Geri dön"
       finishButtonText="Siparişi Tamamla"
+      @on-complete="finishShopping"
     >
-      <tab-content title="Sepet" class="mb-5" icon="feather icon-home" :before-change="validateStep1">
+      <tab-content title="Sepet" class="mb-5" icon="feather icon-shopping-cart" :before-change="validateStep1">
         <div>
-          <checkout-list></checkout-list>
+          <checkout-list @valid="dummyFunc"></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Adres" class="mb-5" icon="feather icon-home">
+      <tab-content title="Kargo Adresi" class="mb-5" icon="feather icon-home" :before-change="validateStep2">
         <div>
-          <adres></adres>
+          <adres :isBilling=false></adres>
         </div>
       </tab-content>
-      <tab-content title="Ödeme" class="mb-5" icon="feather icon-home">
-        <div></div>
+      <tab-content title="Fatura Adresi" class="mb-5" icon="feather icon-file-text" :before-change="validateStep3">
+        <div>
+          <adres :isBilling=true></adres>
+        </div>
+      </tab-content>
+      <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
+        <div>
+          <VueCardPayment></VueCardPayment>
+        </div>
       </tab-content>
     </form-wizard>
   </div>
@@ -30,15 +38,71 @@
 import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import CheckoutList from "@/components/checkout/CheckoutList.vue";
+import CheckoutService from '@/services/checkout.service.js'
 import Adres from "@/components/address/Adres.vue";
 export default {
   data() {
     return {
+      counterDanger: false,
+      counterDanger2: false
     };
   },
   methods: {
     validateStep1() {
-      return this.$store.state.checkout.basketList.length !== 0
+      if(this.counterDanger)
+      {
+          this.$vs.notify({
+          time: 6000,
+          title: "HATA!",
+          text: "Lütfen notları kontrol ediniz!",
+          color: "danger"
+        });
+      }
+      return (this.$store.state.checkout.basketList.length !== 0) && !this.counterDanger 
+
+    },
+    dummyFunc(counterDanger) {
+      this.counterDanger = counterDanger
+    },
+    validateStep2: function() {
+      if (!this.$store.state.checkout.chooseAddress) {
+        this.$vs.notify({
+          time: 6000,
+          title: "HATA!",
+          text: "Lütfen Adres seçiniz!",
+          color: "danger"
+        });
+        return false
+      }
+      return this.$store.state.checkout.order.deliveryId != -1
+    },
+    validateStep3: function() {
+      if (!this.$store.state.checkout.chooseAddress) {
+        this.$vs.notify({
+          time: 6000,
+          title: "HATA!",
+          text: "Lütfen Adres seçiniz!",
+          color: "danger"
+        });
+        return false
+      }
+      return this.$store.state.checkout.order.billingId != -1
+    },
+    finishShopping: async function() {
+      var self = this
+      this.$store.commit('checkout/FINISH_ORDER', this.$store.state.member.id)
+      const res = await CheckoutService.sendOrder(this.$store.state.checkout.order)
+      this.$store.dispatch('checkout/createNewBasket')
+      this.$store.dispatch('getCurrentUser')
+      this.$vs.dialog({
+          title: "Başarılı",
+          text: `Siparişiniz alınmıştır ve 5 tane daha figür ekleme hakkı elde ettiniz. Sipariş kodunuz - ${res.orderCode} `,
+          color: "success",
+          acceptText: "Anladım",
+          accept: function() {
+            self.$router.push("/main")
+          }
+      });
     }
   },
   components: {

@@ -1,18 +1,17 @@
 <template>
-  <div></div>
+<div></div>
 </template>
 
 <script>
-import ActivationService from "@/services/activation.service";
+import LoginService from "@/services/login.service";
 export default {
   created: async function() {
-      debugger
-    var res = await ActivationService.activateUser(this.$route.query.key);
-    if (res < 400) {
-      this.$router.push("/login");
-    }
+      var res = await LoginService.activateUser(this.$route.query.key);
+      if (res < 400) {
+        this.$router.push("/login");
+      }
   }
-};
+}
 </script>
 
 <style>

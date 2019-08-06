@@ -15,10 +15,48 @@ const UserService = {
     // for first login update 
     setMember: async function (member) {
         try {
-            const response = await ApiService.put("/users/up", member)
+            const response = await ApiService.put("/users", member)
             return response.data
         } catch (error) {
             return error.response.status
+        }
+    },
+
+    updatePassword: async function (passwordDTO) {
+        try {
+            const response = await ApiService.post("/account/change-password", passwordDTO)
+            return response.data
+        } catch (error) {
+            return error
+        }
+
+    },
+
+    getAllUsers: async function () {
+        try {
+            const response = await ApiService.get("/admin/users")
+            return response.data
+        } catch (error) {
+            return error
+        }
+
+    },
+
+    userDelete: async function(login) {
+        try {
+            const response = await ApiService.delete("/users/admin/"+ login)
+            return response.data
+        } catch (error) {
+            return error
+        }
+    },
+
+    getUser: async function(userId) {
+        try {
+            const response = await ApiService.get("/users/admin/"+userId)
+            return response.data
+        } catch (error) {
+            return error
         }
     }
 }

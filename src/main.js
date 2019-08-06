@@ -23,13 +23,38 @@ import VeeValidate from 'vee-validate'
 import i18n from '@/plugins/i18n'
 import ApiService from '@/services/api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
+import VueAuthenticate from 'vue-authenticate'
+import VueScrollTo from 'vue-scrollto'
+import VueCookie from 'vue-cookie'
+import VueAxios from 'vue-axios'
+import axios from 'axios';
+import VueCardPayment from 'vue-card-payment'
+// You need a specific loader for CSS files like https://github.com/webpack/css-loader
+import 'vue-card-payment/dist/vue-card-payment.css'
 import {
   TokenService
 } from '@/services/token.service'
 
+
+Vue.use(VueCardPayment)
 Vue.use(VeeValidate)
 Vue.use(Vuelidate)
 Vue.use(Vuesax)
+Vue.use(VueAxios, axios)
+Vue.use(VueAuthenticate, {
+  baseUrl: 'http://3dfigur.com',
+  providers: {
+    facebook: {
+      clientId: process.env.VUE_APP_FACEBOOK_TOKEN, //your Facebook App ID e.g. 12345667890
+      redirectUri: 'http://3dfigur.com', // Your client app URL
+      responseType: 'token',
+      authorizationEndpoint: 'https://www.facebook.com/v3.0/dialog/oauth',
+    },
+    twitter: {}
+  }
+})
+Vue.use(VueScrollTo)
+Vue.use(VueCookie);
 
 // Theme Configurations
 import '../themeConfig.js'
@@ -63,11 +88,8 @@ require('./assets/css/bootstrap.min.css')
 require('./assets/css/fontawesome.min.css')
 require('./assets/css/flaticon.css')
 require('./assets/css/animate.css')
-require('./assets/css/owl.carousel.min.css')
-require('./assets/css/magnific-popup.css')
 require('./assets/css/style.css')
 require('./assets/css/responsive.css')
-require('./assets/css/slick.css')
 require('./assets/css/ekko-lightbox.min.css')
 
 

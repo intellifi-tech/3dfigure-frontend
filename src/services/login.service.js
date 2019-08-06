@@ -1,6 +1,7 @@
 import ApiService from './api.service'
 import AvatarSdkService from '@/services/avatarsdk.service'
 import CheckoutService from '@/services/checkout.service'
+import store from '@/store/store.js'
 import {
     TokenService
 } from './token.service'
@@ -16,12 +17,12 @@ const LoginService = {
         try {
             const response = await ApiService.post("/authenticate", credential)
             const res = await AvatarSdkService.setToken()
-            TokenService.saveToken(response.data.id_token)
+            TokenService.saveToken(response.data.id_token, credential.rememberMe)
             ApiService.setHeader()
-            TokenService.saveAvatarToken(res.data.access_token)
+            TokenService.saveAvatarToken(res.data.access_token, credential.rememberMe)
             const checkoutRes = await CheckoutService.isLastBasket()
-            if (!checkoutRes.last) {
-                await CheckoutService.createCheckout()
+            if (checkoutRes === 404) {
+                store.dispatch('checkout/createNewBasket')
             }
 
             // NOTE: We haven't covered this yet in our ApiService 
@@ -30,7 +31,30 @@ const LoginService = {
 
             return response.status
         } catch (error) {
-            return error.response.status
+            return error
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
+    socialLogin: async function(credential) {
+        try {
+            const response = await ApiService.post("/social-login", credential)
+            const res = await AvatarSdkService.setToken()
+            TokenService.saveToken(response.data.id_token, false)
+            ApiService.setHeader()
+            TokenService.saveAvatarToken(res.data.access_token, false)
+            const checkoutRes = await CheckoutService.isLastBasket()
+            if (checkoutRes === 404) {
+                store.dispatch('checkout/createNewBasket')
+            }
+
+            // NOTE: We haven't covered this yet in our ApiService 
+            //       but don't worry about this just yet - I'll come back to it later
+            //ApiService.mount401Interceptor();
+
+            return response.status
+        } catch (error) {
+            return error.response
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
@@ -41,12 +65,40 @@ const LoginService = {
     register: async function (credential) {
         try {
             const response = await ApiService.post("/register", credential)
-            return response.status
+            return response
+        } catch (error) {
+            return error.response
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+
+    },
+
+    activateUser: async function (key) {
+        try {
+            const response = await ApiService.get("/activate?key=" + key)
+            return response.data
         } catch (error) {
             return error.response.status
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
+    },
 
+    rememberPasswordInit: async function(mail) {
+        try {
+            const response = await ApiService.sendMail("/account/reset-password/init", mail)
+            return response.data
+        } catch (error) {
+            return error.response
+        }
+    },
+
+    rememberPasswordFinish: async function(keyPassword) {
+        try {
+            const response = await ApiService.post("/account/reset-password/finish", keyPassword)
+            return response.data
+        } catch (error) {
+            return error.response
+        }
     },
 
     /**
@@ -59,6 +111,7 @@ const LoginService = {
         TokenService.removeToken()
         ApiService.removeHeader()
         TokenService.removeAvatarToken()
+        store.commit('LOGOUT')
 
         // NOTE: Again, we'll cover the 401 Interceptor a bit later. 
         //ApiService.unmount401Interceptor()

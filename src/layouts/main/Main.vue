@@ -9,31 +9,38 @@
     <div id="content-area" :class="[contentAreaClass, {'show-overlay': bodyOverlay}]">
       <div id="content-overlay"></div>
 
-      <div class="content-wrapper">
-        <!--<the-navbar :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />-->
+      <div class="content-wrapper contentLayout">
+        <the-navbar class="navbarCustom" :memberName="member.firstName" :navbarColor="navbarColor" :class="[{'text-white': isNavbarDark && !isThemeDark}, {'text-base': !isNavbarDark && isThemeDark}]" />
 
         <vs-popup
-          class="holamundo"
-          title="Merhaba, 3D"
-          :active.sync="this.$store.state.member.firstLogin"
-          :button-close-hidden="false"
+          class="holamundo sidebarPopup"
+          title="3D Figür"
+          :active.sync="this.$store.state.member.firstLogin || this.$store.state.sidebarHowtoUse"
         >
           <div class="pt-0">
-            <form-wizard title="3D Figure" @on-complete="finish">
-              <tab-content title="Fotoğraf Yükle" icon="feather icon-home">
+            <form-wizard
+              ref="wizard"
+              title="3D Figürünü Oluştur!"
+              subtitle=""
+              nextButtonText="Sonraki adım"
+              backButtonText="Önceki adım"
+              finishButtonText="BAŞLA!"
+              @on-complete="finish"
+            >
+              <tab-content title="Fotoğraf Yükle" icon="feather icon-upload">
                 <img src="assets/images/info/1.png" alt>
               </tab-content>
-              <tab-content title="Konsept Seç" icon="feather icon-home">
+              <tab-content title="Konsept Seç" icon="feather icon-check-square">
                 <img src="assets/images/info/2.png" alt>
               </tab-content>
-              <tab-content title="Sipariş Süreci" icon="feather icon-home">
+              <tab-content title="Sipariş Süreci" icon="feather icon-truck">
                 <img src="assets/images/info/3.png" alt>
               </tab-content>
             </form-wizard>
           </div>
         </vs-popup>
-        <div class="router-view">
-          <div class="router-content mt-0">
+        <div class="router-view pt-4">
+          <div class="router-content mt-16">
             <!--:class="{'mt-0': navbarType == 'hidden'}"-->
             <transition :name="routerTransition">
               <div
@@ -111,7 +118,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      navbarType: themeConfig.navbarType || "floating",
+      navbarType: themeConfig.navbarType || "sticky",
       navbarColor: themeConfig.navbarColor || "#fff",
       footerType: themeConfig.footerType || "static",
       routerTransition: themeConfig.routerTransition || "none",
@@ -178,7 +185,9 @@ export default {
       this.routeTitle = title;
     },
     finish() {
-      this.$store.state.member.firstLogin = false;
+      this.$store.commit("FIRST_LOGIN_CLOSE", false);
+      this.$store.commit("OPEN_SIDEBAR_POPUP", false);
+      this.$refs.wizard.reset();
       this.updateFirstLogin(this.$store.state.member);
     },
     updateNavbar(val) {
@@ -210,14 +219,9 @@ export default {
       }
     }
   },
-  created: async function() {
-    this.setSidebarWidth();
-    if (this.navbarColor == "#fff" && this.isThemeDark) {
-      this.updateNavbarColor("#10163a");
-    } else {
-      this.updateNavbarColor(this.navbarColor);
-    }
-    await this.getCurrentUser();
+  beforeCreate: async function() {
+    await this.$store.dispatch("getCurrentUser");
+    this.$cookie.set('gender', this.$store.state.member.sex == 'M' ? 'male' : 'female')
   },
   components: {
     VxSidebar,
@@ -228,3 +232,8 @@ export default {
   }
 };
 </script>
+<style>
+.sidebarPopup .vs-popup--close {
+  display: none !important;
+}
+</style>

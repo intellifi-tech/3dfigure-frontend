@@ -8,7 +8,6 @@
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-
 const mutations = {
 
 	// ////////////////////////////////////////////
@@ -56,9 +55,62 @@ const mutations = {
 	UPDATE_LOGIN_POPUP(state, value) {
 		state.landing.loginPopup = value;
 	},
-
 	UPDATE_REGISTER_POPUP(state, value) {
 		state.landing.registerPopup = value;
+	},
+	UPDATE_FORGOT_POPUP(state, value) {
+		state.landing.forgotPopup = value;
+	},
+
+	/**
+	 * 
+	 * @param {*} state 
+	 * @param {f: avatarKeyIndex, m: sourceIndex} indexes 
+	 */
+	DELETE_FIGURE_FROM_SELECTED(state, indexes) {
+		state.selectedFigures.avatarKey.splice(indexes.f, 1);
+		state.selectedFigures.imagePath.splice(indexes.m, 1);
+	},
+
+	CLEAR_FIGURE_FROM_SELECTED(state) {
+		state.selectedFigures.avatarKey = [];
+		state.selectedFigures.imagePath = [];
+	},
+
+	/**
+	 * 
+	 * @param {*} state 
+	 * @param {a: avatarKey, s: source} value 
+	 */
+	ADD_FIGURE_SELECTED(state, value) {
+		state.selectedFigures.avatarKey.push(value.a);
+		state.selectedFigures.imagePath.push(value.s);
+	},
+
+	INIT_CONCEPT(state, value) {
+		state.conceptPage.conceptList = value
+	},
+
+	INIT_CONCEPT_PAGE(state, pages) {
+		state.conceptPage.totalPages = pages
+	},
+	OPEN_SIDEBAR_POPUP(state,value){
+		state.sidebarHowtoUse=value
+	},
+	FIRST_LOGIN_CLOSE(state, value) {
+		state.member.firstLogin = value
+	},
+	UPDATE_SEND_FRIEND(state, value) {
+		state.member.sendFriend = value
+	},
+	UPDATE_TOTAL_FIGURE(state, value) {
+		state.member.totalFigure = value
+	},
+	LOGOUT(state) {
+		state.selectedFigures.avatarKey = []
+		state.selectedFigures.imagePath = []
+		state.conceptList = {}
+		state.member = {}
 	}
 }
 

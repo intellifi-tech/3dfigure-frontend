@@ -6,43 +6,34 @@
  **/
 const TokenService = {
     getToken() {
-        return sessionStorage.getItem(process.env.VUE_APP_TOKEN_KEY)
+        return localStorage.getItem('a') == null || localStorage.getItem('a') == "" ? sessionStorage.getItem('a') : localStorage.getItem('a')
+        //return store.state.api.javaToken
     },
 
-    saveToken(accessToken) {
-        sessionStorage.setItem(process.env.VUE_APP_TOKEN_KEY, accessToken)
+    saveToken(accessToken, rememberMe) {
+        !rememberMe ? sessionStorage.setItem('a', accessToken) : localStorage.setItem('a', accessToken)
+        //store.commit('api/SET_JAVA_TOKEN', accessToken)
     },
 
     removeToken() {
-        sessionStorage.removeItem(process.env.VUE_APP_TOKEN_KEY)
-    },
-
-    saveAvatarId(index, avatarKey) {
-        sessionStorage.setItem('avatar'.concat(index), avatarKey)
-    },
-
-    getAvatarId(index) {
-        return sessionStorage.getItem('avatar'.concat(index))
+        sessionStorage.setItem('a', "")
+        localStorage.setItem('a', "")
     },
 
     getAvatarToken() {
-        return sessionStorage.getItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
+        return localStorage.getItem('b') == null || localStorage.getItem('b') == "" ? sessionStorage.getItem('b') : localStorage.getItem('b')
+        //return store.state.api.avatarToken
     },
 
-    saveAvatarToken(avatarToken) {
-        sessionStorage.setItem(process.env.VUE_APP_AVATAR_TOKEN_KEY, avatarToken)
+    saveAvatarToken(avatarToken, rememberMe) {
+        !rememberMe ? sessionStorage.setItem('b', avatarToken) : localStorage.setItem('b', avatarToken)
+        //store.commit('api/SET_AVATAR_TOKEN', avatarToken)
     },
 
     removeAvatarToken() {
-        sessionStorage.removeItem(process.env.VUE_APP_AVATAR_TOKEN_KEY)
-    },
-
-    addClickedPhoto(avatarToken) {
-        sessionStorage.setItem("clicked", avatarToken)
-    },
-
-    getClickedPhoto() {
-        return sessionStorage.getItem("clicked")
+        sessionStorage.setItem('b', "")
+        localStorage.setItem('b', "")
+        //store.commit('api/SET_AVATAR_TOKEN', "")
     }
 }
 

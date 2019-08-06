@@ -5,7 +5,7 @@ const CheckoutService = {
     getUserCheckout: async function () {
         try {
             const response = await ApiService.get("/baskets/user")
-            return response.data.figures
+            return response.data
         } catch (error) {
             return error.response.status
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
@@ -32,20 +32,18 @@ const CheckoutService = {
             return error.response.data
         }
     },
-    addToBasket: async function (avatarCode) {
-        try {
-            const res = await ApiService.put("/baskets/added", {
-                avatarKey: avatarCode
-            })
-            return res.data
-        } catch (error) {
-            return error.response.status
-        }
-    },
     deleteFromBasket: async function (ids) {
         try {
-            debugger
             const res = await ApiService.delete("/baskets/concept/" + ids.f + "/" + ids.c)
+            return res.data
+        } catch (error) {
+            error.response.data
+        }
+    },
+
+    sendOrder: async function (order) {
+        try {
+            const res = await ApiService.post("/orders", order)
             return res.data
         } catch (error) {
             error.response.data

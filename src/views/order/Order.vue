@@ -8,13 +8,14 @@
         class="w-full input-rounded-full no-icon-border"
         icon="icon-search"
         icon-pack="feather"
+        @keyup="searchOrder"
       />
     </div>
-    <div class="vx-row pt-5">
-      <div v-for="order in this.orderValues" :key="order.showIndex">
-        <div v-for="figure in order.basketId.figures" :key="figure.id">
-          <div v-for="concept in figure.concepts" :key="concept.id">
-            <orders :order="concept" :price="order.totalPrice"></orders>
+    <div class="pt-5">
+      <div class="orderValues flex" v-for="(order, index) in this.orderValues" :key="index">
+        <div class="concepts col-md-3 d-lg-flex px-0" v-for="concept in order.basketDTO.concepts" :key="concept.id">
+          <div class="figures col-md-12" v-for="figure in concept.figures" :key="figure.id">
+            <orders class="orderCard" :isAdmin="false" :order="order" :conceptPrice="concept.price" :figure="figure" :ids="order.basketDTO.id + '-' + concept.id + '-' + figure.id"></orders>
           </div>
         </div>
       </div>
@@ -32,7 +33,7 @@ import OrderService from "@/services/order.service";
 export default {
   data() {
     return {
-      searchQuery: null,
+      searchQuery: "",
       currentx: 1,
       orderValues: null,
       totalPages: 0
@@ -43,13 +44,26 @@ export default {
     this.orderValues = res.content;
     this.totalPages = res.totalPages;
   },
+  methods: {
+    searchOrder: async function() {
+      var res; 
+      if (this.searchQuery.length == 0) {
+          res = await OrderService.getAllOrders(0);
+          this.orderValues = res.content;
+          this.totalPages = res.totalPages;
+      } else {
+        res = await OrderService.searchOrder(this.searchQuery);
+        this.orderValues = res.content;
+        this.totalPages = res.totalPages;
+      }
+    }
+  },
   watch: {
     currentx: async function() {
       var res = await OrderService.getAllOrders(this.currentx - 1);
       this.orderValues = res.content;
     }
   },
-  methods: {},
   components: {
     Orders
   }

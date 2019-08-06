@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="home">
     <!-- search Popup -->
     <div class="body-overlay" id="body-overlay"></div>
     <!--<div class="search-popup" id="search-popup">
@@ -15,81 +15,147 @@
     <!-- //. search Popup -->
 
     <!-- navbar area start -->
-    <nav class="navbar navbar-area navbar-expand-lg">
+    <nav class="navbar navbar-area navbar-expand-lg bg-white" :class="{'sticky': isVisible,'fixed-top':isVisible}">
       <div class="container nav-container">
         <div class="logo-wrapper navbar-brand col-7 col-lg-2 col-md-4">
           <a href="/" class="logo">
             <img src="assets/images/logo/logo.png" alt="logo">
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="cgency">
+        <div class="collapse navbar-collapse pl-3" id="cgency">
           <!-- navbar collapse start -->
-          <ul class="navbar-nav" id="primary-menu">
+          <ul class="navbar-nav lg:items-center" id="primary-menu">
             <!-- navbar- nav -->
-            <li class="nav-item active">
-              <a class="nav-link pl-0" href="#home">
+            <li class="nav-item" :class="{'active':index == clicked}" @click="clicked = index" v-for="(value, index) in navbarList" :key=value :index=index>
+              <a class="nav-link" href="#"  v-scroll-to="'#'+value" >{{ $t('landing.navbar.'+value) }}</a>
+            </li>  
+            <!--<li class="nav-item">
+              <a class="nav-link pl-0" href="#">
                 {{ $t('landing.navbar.home') }}
                 <span class="sr-only">(current)</span>
               </a>
-              <!--  <div class="dropdown-menu">
-                                <a href="index.html" class="dropdown-item">Home 01</a>
-                                <a href="index-2.html" class="dropdown-item">Home 02</a>
-                                <a href="index-3.html" class="dropdown-item">Home 03</a>
-                                <a href="index-4.html" class="dropdown-item">Home 04</a>
-              </div>-->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#how-to-use">{{ $t('landing.navbar.howToUse') }}</a>
+              <a class="nav-link" href="#" v-scroll-to="'#howToUse'">{{ $t('landing.navbar.howToUse') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#concepts">{{ $t('landing.navbar.concepts') }}</a>
+              <a class="nav-link" href="#" v-scroll-to="'#concepts'">{{ $t('landing.navbar.concepts') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">{{ $t('landing.navbar.about') }}</a>
+              <a class="nav-link" href="#" v-scroll-to="'#about'">{{ $t('landing.navbar.about') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#faq">{{ $t('landing.navbar.faq') }}</a>
+              <a class="nav-link" href="#" v-scroll-to="'#faq'">{{ $t('landing.navbar.faq') }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#pricing">{{ $t('landing.navbar.pricing') }}</a>
-            </li>
-            <!-- <li class="nav-item">
-                            <a class="nav-link" href="#testimonial">Testimonial</a>
-            </li>-->
-            <!-- <li class="nav-item dropdown">
-                            <a class="nav-link pl-0 dropdown-toggle" data-toggle="dropdown" href="#">Blog
-                                <span class="sr-only">(current)</span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="blog.html" class="dropdown-item">Blog</a>
-                                <a href="blog-details.html" class="dropdown-item">Blog Details</a>
-                            </div>
-            </li>-->
+              <a class="nav-link" href="#" v-scroll-to="'#pricing'">{{ $t('landing.navbar.pricing') }}</a>
+            </li> 
             <li class="nav-item">
-              <a class="nav-link" href="#contact">{{ $t('landing.navbar.contact') }}</a>
-            </li>
-            <li class="nav-item">
+              <a class="nav-link" href="#" v-scroll-to="'#contact'">{{ $t('landing.navbar.contact') }}</a>
+            </li> -->
+            <li class="nav-item pr-3 py-2 py-sm-0">
+              <div class="loginLink" v-if="!this.$store.state.member.firstName">
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
               <a
-                class="nav-link cursor-pointer"
+                class="nav-link font-bold my-1 px-2 text-white btn vs-button-filled vs-button-primary"
                 @click="openLogin"
-                href="#"
-              >{{ $t('landing.navbar.login') }}</a>
-              
-              <vs-popup button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.loginPopup">
-               <div class="position-relative">
-                 
-                <login :isPopup=true></login>
-                <button class="position-absolute btn btn-danger" style="top:0px;right:0px;z-index:99999" @click="closePopup">x</button>
+              ><i class="fas fa-sign-in-alt"></i> {{ $t('landing.navbar.login') }}</a>
+
+              <vs-popup
+                class="holamundo login-popup"
+                :title="$t('login.login')"
+                @close="closePopup"
+                :active.sync="this.$store.state.landing.loginPopup"
+              >
+                <div class="position-relative">
+                  <login ref="login" :isPopup="true"></login>
+                  <!--<button
+                    class="position-absolute btn btn-danger"
+                    style="top:0px;right:0px;z-index:99999"
+                    @click="closePopup"
+                  >x</button>-->
                 </div>
               </vs-popup>
-              
+              </div>
+              <!-- loginLink finish -->
+               <div class="the-navbar__user-meta flex" v-else>
+                <div class="text-right leading-tight sm:block">
+                  <p class="font-semibold h-4 nav-link">{{this.$store.state.member.firstName}}</p>
+                </div>
+                <vs-dropdown vs-custom-content vs-trigger-click>
+                  <div class="con-img ml-3">
+                    <img
+                      :src="require(`@/assets/images/avatar/${activeMemberImg}`)"
+                      alt
+                      width="40"
+                      height="40"
+                      class="rounded-full shadow-md cursor-pointer block"
+                    >
+                  </div>
+                  <vs-dropdown-menu>
+                    <ul style="min-width: 10rem">
+                      <li
+                        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+                        @click="$router.push('/profile')"
+                      >
+                        <feather-icon icon="UserIcon" svgClasses="w-4 h-4"></feather-icon>
+                        <span class="ml-2">Profil</span>
+                      </li>
+                      <li
+                        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+                        @click="$router.push('/ticket')"
+                      >
+                        <feather-icon icon="MailIcon" svgClasses="w-4 h-4"></feather-icon>
+                        <span class="ml-2">Destek</span>
+                      </li>
+                      <vs-divider class="m-1"></vs-divider>
+                      <li
+                        class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
+                        @click="logout()"
+                      >
+                        <feather-icon icon="LogOutIcon" svgClasses="w-4 h-4"></feather-icon>
+                        <span class="ml-2">Çıkış yap</span>
+                      </li>
+                    </ul>
+                  </vs-dropdown-menu>
+                </vs-dropdown>
+              </div>
+              <!--user meta finish -->
             </li>
             <li>
-              <vs-popup button-close-hidden=true class="holamundo" :title="$t('login.login')" :active.sync="this.$store.state.landing.registerPopup">
-                 <button class="position-relative btn btn-danger float-right" style="top:10px;right:10px;z-index:99" @click="closePopup">x</button>
-                <register :isPopup=true></register>
+              <vs-popup
+                class="holamundo login-popup"
+                :title="$t('login.register')"
+                ref="register"
+                :active.sync="this.$store.state.landing.registerPopup"
+                @close="closePopup"
+              >
+                <!--<button
+                  class="position-relative btn btn-danger float-right"
+                  style="top:10px;right:10px;z-index:99"
+                  @click="closePopup"
+                >x</button>-->
+                <register :isPopup="true"></register>
               </vs-popup>
+            </li>
+            <li>
+              <vs-popup
+                class="holamundo login-popup"
+                :title="$t('login.forgot')"
+                ref="forgot-password"
+                :active.sync="this.$store.state.landing.forgotPopup"
+                @close="closePopup"
+              >
+                <!--<button
+                  class="position-relative btn btn-danger float-right"
+                  style="top:10px;right:10px;z-index:99"
+                  @click="closePopup"
+                >x</button>-->
+                <forgot-password :isPopup="true"></forgot-password>
+              </vs-popup>
+            </li>
+            <li class="nav-item">
+             
             </li>
           </ul>
           <!-- /.navbar-nav -->
@@ -109,21 +175,21 @@
           </button>
         </div>
         <!-- navbar collapse end -->
-        <div class="nav-right-content">
+        <!--<div class="nav-right-content">
           <ul>
             <li>
-              <select v-model="$i18n.locale" id="select-lang">
+              <select v-model="$i18n.locale" id="select-lang" @change="changeLang">
                 <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
               </select>
             </li>
           </ul>
-        </div>
+        </div>-->
       </div>
     </nav>
     <!-- navbar area end -->
 
     <!-- header area start -->
-    <div class="header-area" id="home">
+    <div class="header-area" >
       <div class="span-1">
         <img src="../../assets/images/landing/trinagle.png" alt="tringle">
       </div>
@@ -149,7 +215,7 @@
                 </h1>
                 <div class="btn-wrapper">
                   <a
-                    @click="popupActivo=true"
+                    @click="openLogin"
                     class="boxed-btn btn-rounded reverse-color text-white cursor-pointer"
                   >
                     <i class="fas fa-shopping-cart"></i>
@@ -176,20 +242,19 @@
     <!-- header area end -->
 
     <!-- inline feature area start -->
-    <div class="inline-feature-area padding-top-120" id="how-to-use">
+    <div class="inline-feature-area padding-top-120" id="howToUse">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 pl-0">
+          <div class="col-lg-12 col-lg-12 mx-4 mx-md-0 pl-md-0">
             <div class="how-to-use">
-              <ul id="ul-man-or-woman" class="row mb-5">
-                <p class="btn-switch">
+              <ul id="ul-man-or-woman" class="row items-center mb-5">
+                <p class="btn-switch mb-0">
                   <input
                     type="radio"
                     id="yes"
                     name="switchFirst"
                     class="btn-switch__radio btn-switch__radio_yes"
                     v-on:change="change"
-                    checked
                   >
                   <input
                     type="radio"
@@ -197,6 +262,7 @@
                     name="switchFirst"
                     class="btn-switch__radio btn-switch__radio_no"
                     v-on:change="change"
+                    checked
                   >
                   <label for="yes" class="btn-switch__label btn-switch__label_yes">
                     <span class="btn-switch__txt">{{$t('landing.howtouse.man.radioText')}}</span>
@@ -210,8 +276,8 @@
               <!-- how to selfie start-->
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
-                <div class="man-div model-column row" v-show="man">
-                  <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
+                <div class="man-div model-column row" v-show="!man">
+                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mb-md-0">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
@@ -226,71 +292,17 @@
                       </div>
                     </div>
                     <ul class="concepts-list">
-                      <li>
-                        <div class="single-inline-feature-item">
+                      <li v-for="(model, index) in menModel" :key="index">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
-                              id="mansampleFirst"
+                              :id="model.title"
                               v-model="iframeModelID"
-                              vs-value="91102961ad1040748145a4c341899840"
+                              :vs-value="model.description"
                             >
-                              <label for="mansampleFirst">
+                              <label :for="model.title">
                                 <img
-                                  src="assets/images/portre/man/man-0.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item">
-                          <div class="content">
-                            <vs-radio
-                              id="mansampleSecond"
-                              v-model="iframeModelID"
-                              vs-value="97c994795c1d4ddbb3ef57af8da88276"
-                            >
-                              <label for="mansampleSecond" class>
-                                <img
-                                  src="assets/images/portre/man/man-1.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item">
-                          <div class="content">
-                            <vs-radio
-                              id="mansampleThird"
-                              v-model="iframeModelID"
-                              vs-value="75e5ded5f8c54e5a9a63f3a778abb080"
-                            >
-                              <label for="mansampleThird" class>
-                                <img
-                                  src="assets/images/portre/man/man-2.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item">
-                          <div class="content">
-                            <vs-radio
-                              id="mansampleFourth"
-                              v-model="iframeModelID"
-                              vs-value="d187f4d9406b4a07a5b0443b48ddb59c"
-                            >
-                              <label for="mansampleFourth" class>
-                                <img
-                                  src="assets/images/portre/man/boy-children.jpg"
+                                  :src="'assets/images/models/'+model.imagePath"
                                   class="img-style img-fluid mb-4 rounded"
                                 >
                               </label>
@@ -301,7 +313,7 @@
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a @click="popupActivo=true" class="cursor-pointer">
+                            <a @click="openLogin" class="cursor-pointer">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
@@ -324,7 +336,7 @@
                   </div>
 
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
-                    <div class="single-inline-feature-item">
+                    <div class="single-inline-feature-item pr-5 pr-md-3">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/man/man-true.jpg"
@@ -336,46 +348,46 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-7 pr-lg-0">
+                  <div class="col-lg-7 col-lg-7 mt-4 mt-md-0 pr-lg-0">
                     <ul id="man-list" class="falseList">
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0 ">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-1.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3 px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-3.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-2.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
                           </div>
                         </div>
@@ -383,14 +395,14 @@
 
                       <li>
                         <div class="card-group bg-light rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/man/man-false-4.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
                           </div>
                         </div>
@@ -401,8 +413,8 @@
                 <!--man div finish-->
 
                 <!-- woman div start -->
-                <div class="woman-div model-column row" v-show="!man">
-                  <div class="inline-feaure-wrap justify-content-center mt-5 rounded-lg">
+                <div class="woman-div model-column row" v-show="man">
+                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mb-md-0">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
@@ -417,71 +429,17 @@
                       </div>
                     </div>
                     <ul class="concepts-list">
-                      <li>
-                        <div class="single-inline-feature-item">
+                      <li v-for="(model, index) in womenModel" :key="index">
+                        <div class="single-inline-feature-item pr-5 pr-md-3">
                           <div class="content">
                             <vs-radio
-                              id="womansampleFirst"
+                              :id="model.title"
                               v-model="iframeModelID2"
-                              vs-value="ebe0accf659d43068cd774141a5731cb"
+                              :vs-value="model.description"
                             >
-                              <label for="womansampleFirst" class>
+                              <label :for="model.title">
                                 <img
-                                  src="assets/images/portre/woman/woman-0.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item">
-                          <div class="content">
-                            <vs-radio
-                              id="womansampleSecond"
-                              v-model="iframeModelID2"
-                              vs-value="4571b5cb637e464e838f82f12f3293fa"
-                            >
-                              <label for="womansampleSecond" class>
-                                <img
-                                  src="assets/images/portre/woman/woman-1.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item">
-                          <div class="content">
-                            <vs-radio
-                              id="womansampleThird"
-                              v-model="iframeModelID2"
-                              vs-value="e51684e803b84f68bdae50e209741bdf"
-                            >
-                              <label for="womansampleThird" class>
-                                <img
-                                  src="assets/images/portre/woman/woman-2.jpg"
-                                  class="img-style img-fluid mb-4 rounded"
-                                >
-                              </label>
-                            </vs-radio>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="single-inline-feature-item">
-                          <div class="content">
-                            <vs-radio
-                              id="womansampleFourth"
-                              v-model="iframeModelID2"
-                              vs-value="94bbe2f5ca6347189bcb6dd3d76922be"
-                            >
-                              <label for="womansampleFourth" class>
-                                <img
-                                  src="assets/images/portre/woman/girl-children.jpg"
+                                  :src="'assets/images/models/'+model.imagePath"
                                   class="img-style img-fluid mb-4 rounded"
                                 >
                               </label>
@@ -492,7 +450,7 @@
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a @click="popupActivo=true">
+                            <a @click="openLogin">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
@@ -514,7 +472,7 @@
                     </div>
                   </div>
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
-                    <div class="single-inline-feature-item">
+                    <div class="single-inline-feature-item pr-5 pr-md-3">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/woman/woman-true.jpg"
@@ -530,42 +488,42 @@
                     <ul id="woman-list" class="falseList">
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-1.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseFirst')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-3.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseSecond')}}</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-2.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseThird')}}</p>
                           </div>
                         </div>
@@ -573,14 +531,14 @@
 
                       <li>
                         <div class="card-group bg-light rounded-lg">
-                          <div class="portre col-3 px-0">
+                          <div class="portre col-12 col-md-3  px-0">
                             <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
                             <img
                               src="assets/images/portre/woman/woman-false-4.jpg"
                               class="rounded-l-lg img-scale"
                             >
                           </div>
-                          <div class="content col-9 pt-3">
+                          <div class="content col-12 col-md-9 pt-3">
                             <p class="text-base">{{$t('landing.howtouse.falseFourth')}}</p>
                           </div>
                         </div>
@@ -858,24 +816,26 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <div class="product-carousel">
               <!-- single product item -->
-              <div class="single-product-item" v-for="n in 6" :key="n">
-                <div class="thumb">
-                  <img src="assets/images/3dmodelornek1.png" alt="product image">
+              <hooper :itemsToShow=4 :infiniteScroll=true :autoPlay="true" :playSpeed="4000">
+                <slide v-for="(n, index) in conceptList" :key="index">
+                  <div class="single-product-item">
+                  <div class="thumb">
+                  <img :src="'assets/images/models/'+n.imagePath" alt="product image">
                 </div>
                 <div class="content">
                   <h4 class="title">
-                    <a href="#">{{$t('landing.concepts.list.title')}}</a>
+                    <a href="#">{{n.title}}</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">{{$t('landing.concepts.list.price')}}</span>
+                    <span class="price">${{n.price}}</span>
                   </div>
                   <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
                 </div>
-              </div>
+                </div>
+                </slide>
+              </hooper>
               <!-- // single product item -->
-            </div>
           </div>
         </div>
       </div>
@@ -1050,16 +1010,20 @@
         </div>
       </div>
       <div class="customer-logos slider padding-bottom-30">
-        <div class="slide" v-for="n in 6" :key="n">
-          <a
-            href="assets/images/3dmodelornek1.png"
+                      <hooper :itemsToShow=4 :infiniteScroll=true :autoPlay="true" :playSpeed="4000">
+                <slide v-for="(n, index) in exampleList" :key="index">
+                  <a
+            :href="'assets/images/models/'+n.imagePath"
             data-toggle="lightbox"
             data-gallery="gallery"
             class="col-md-4"
           >
-            <img src="assets/images/3dmodelornek1.png" class="img-fluid rounded">
+            <img :src="'assets/images/models/' + n.imagePath" class="img-fluid rounded">
           </a>
-        </div>
+                </slide>
+                
+              </hooper>
+       
       </div>
     </section>
 
@@ -1314,7 +1278,7 @@
                   >
                     <div
                       class="card-body"
-                    >Evet tabiki! Özellikle böyle ihtiyaçlara çözüm bulmak için bu websitesini sizlere hazırladık. Arakdaşınıza özel bir gününde en anlamlı hediyeyi hazırlayabilirsiniz.</div>
+                    >Evet tabiki! Özellikle böyle ihtiyaçlara çözüm bulmak için bu websitesini sizlere hazırladık. Arkadaşınıza özel bir gününde en anlamlı hediyeyi hazırlayabilirsiniz.</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1389,7 +1353,7 @@
                   >
                     <div
                       class="card-body"
-                    >Evet, gözlüklü bir fotoğraf yüklemesi yapılmamaktadır. Eğer gözlük olmazsa olmaz ise sipariş aşamasında gözlüklü oalcağını belirtirsiniz. Bu durumda talep ettiğiniz gözlük modeline en yakın modelleme yapılarak üretim sonrasında model üzerine gözlük montajı yapılmaktadır. Bununda ek bir ücreti olmaktadır.</div>
+                    >Evet, gözlüklü bir fotoğraf yüklemesi yapılmamaktadır. Eğer gözlük olmazsa olmaz ise sipariş aşamasında gözlüklü olacağını belirtirsiniz. Bu durumda talep ettiğiniz gözlük modeline en yakın modelleme yapılarak üretim sonrasında model üzerine gözlük montajı yapılmaktadır. Bununda ek bir ücreti olmaktadır.</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1454,7 +1418,7 @@
 
     <!--pricing tables start-->
 
-    <section id="pricing" class="pricing padding-bottom-100 padding-top-50">
+    <section hidden id="pricing" class="pricing padding-bottom-100 padding-top-50">
       <div class="container">
         <div class="row">
           <center class="col-12">
@@ -1465,97 +1429,27 @@
               </div>
             </div>
           </center>
-          <div class="col-lg-3">
+          <div class="col-lg-3" v-for="(p, index) in packageList" :key=index>
             <div class="card mb-5 mb-lg-0">
               <div class="card-body">
                 <h5
                   class="card-title text-white text-uppercase text-center"
-                >{{$t('landing.pricing.tableFirst.title')}}</h5>
+                >{{p.title}}</h5>
                 <h6 class="card-price text-white text-center">
-                  $10
+                  ${{p.price}}
                   <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
                 </h6>
                 <hr>
                 <ul class="fa-ul mb-24 pb-24 text-white">
-                  <li>
+                  <li v-for="(des, index2) in p.description.split(',')" :key="index2">
                     <span class="fa-li">
                       <i class="fas fa-check"></i>
-                    </span>fbx + texture
-                  </li>
-                  <li>
-                    <span class="fa-li">
-                      <i class="fas fa-check"></i>
-                    </span>ply + texture
+                    </span>{{des}}
                   </li>
                 </ul>
                 <a
                   href="#"
                   class="btn btn-block text-uppercase border-none"
-                >{{$t('landing.pricing.buynow')}}</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card mb-5 mb-lg-0">
-              <div class="card-body">
-                <h5
-                  class="card-title text-white text-uppercase text-center"
-                >{{$t('landing.pricing.tableSecond.title')}}</h5>
-                <h6 class="card-price text-white text-center">
-                  $25
-                  <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
-                </h6>
-                <hr>
-                <ul class="fa-ul mb-24 pb-24 text-white">
-                  <li>
-                    <span class="fa-li">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    fbx, obj, wrl
-                  </li>
-                  <li>&nbsp;</li>
-                </ul>
-                <a
-                  href="#"
-                  class="btn btn-block border-none text-uppercase"
-                >{{$t('landing.pricing.buynow')}}</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="card-body">
-                <h5
-                  class="card-title text-white text-uppercase text-center"
-                >{{$t('landing.pricing.tableThird.title')}}</h5>
-                <h6 class="card-price text-white text-center">
-                  $100
-                  <span class="period">+ {{$t('landing.pricing.kdv')}}</span>
-                </h6>
-                <hr>
-                <ul class="fa-ul mb-24 pb-24 text-white">
-                  <li>
-                    <span class="fa-li">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    {{$t('landing.pricing.tableThird.listFirst')}}
-                  </li>
-                  <li>
-                    <span class="fa-li">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    {{$t('landing.pricing.tableThird.listSecond')}} +
-                    <span
-                      class="underline h4"
-                    >
-                      $
-                      <strong>15</strong>
-                    </span>
-                  </li>
-                </ul>
-                <a
-                  href="#"
-                  class="btn btn-block border-none text-uppercase"
                 >{{$t('landing.pricing.buynow')}}</a>
               </div>
             </div>
@@ -1586,6 +1480,8 @@
               </div>
             </div>
           </div>
+        
+
         </div>
       </div>
     </section>
@@ -1640,7 +1536,7 @@
                   </div>
                   <div class="content">
                     <span class="details">
-                      <a href="mailto:info@3dfigur.com">info@3dfigur.com</a>
+                      <a href="mailto:order@3dfigur.com">order@3dfigur.com</a>
                     </span>
                   </div>
                 </li>
@@ -1660,7 +1556,7 @@
                         type="text"
                         id="name"
                         class="form-control"
-                        :value="contact.nameSurname"
+                        :value="contact.fullname"
                         v-bind:placeholder="$t('landing.contact.form.fullname')"
                       >
                     </div>
@@ -1714,11 +1610,53 @@
     <!-- contact area end -->
 
     <!-- footer area start -->
-    <footer class="footer-area padding-20">
+    <footer class="footer-area pb-4">
+      <div class="bg-secondary mb-5 pb-3 pt-4 w-full">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-xl-3 pl-md-4 py-1 py-md-0">
+              <a class="flex hover:text-white" href="/uyelik-sozlesmesi">
+                 <i class="fas fa-file-alt text-2xl text-dark"></i>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">Üyelik Sözleşmesi</h6>
+             </a>     
+             </div>    
+            <div class="col-md-3 col-xl-3 py-1 py-md-0">
+              <a class="flex hover:text-white" href="/kisisel-veri-kanunu">
+                 <i class="fas fa-file-alt text-2xl text-dark"></i>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">Kişisel Veri Kanunu</h6>
+             </a>     
+             </div> 
+             <div class="col-md-3 col-xl-3 py-1 py-md-0">
+              <a class="flex hover:text-white" href="/siparis-iptal-ve-iade-sartlari">
+                 <i class="fas fa-file-alt text-2xl text-dark"></i>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">Sipariş İptal ve İade Şartları</h6>
+             </a>     
+             </div>
+              <div class="col-md-3 col-xl-3 py-1 py-md-0">
+              <a class="flex hover:text-white" href="/mesafeli-satis-sozlesmesi">
+                 <i class="fas fa-file-alt text-2xl text-dark"></i>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">Mesafeli Satış Sözleşmesi</h6>
+             </a>     
+             </div>             
+          </div>
+        </div>
+      </div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="footer-inner text-center">
+          <div class="col-lg-6">
+            <div class="footer-inner text-left">
+              <div class="copyright-text">
+                &copy; {{$t('footer.copyright')}}
+                <a
+                  href="https://intellifi.tech"
+                  target="_blank"
+                  rel="nofollow"
+                >{{$t('footer.company')}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="footer-inner pt-3 pt-sm-0 text-center text-sm-right">
               <ul class="social-icon">
                 <li>
                   <a href="https://www.instagram.com/3dfigur/" target="_blank">
@@ -1730,35 +1668,41 @@
                     <i class="fab fa-facebook-f"></i>
                   </a>
                 </li>
+                 <li>
+                  <img src="assets/images/card/master_card.jpg"/>
+                </li>
+                 <li>
+                   <img src="assets/images/card/visa_card.jpg"/>
+                </li>
               </ul>
-              <div class="copyright-text margin-top-30">
-                &copy; {{$t('footer.copyright')}}
-                <a
-                  href="https://intellifi.tech"
-                  target="_blank"
-                  rel="nofollow"
-                >{{$t('footer.company')}}</a>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </footer>
     <!-- footer area end -->
-
-    <div class="back-to-top base-color-2">
-      <i class="fas fa-rocket"></i>
+    <div class="back-to-top base-color-2" v-if="isVisible">
+      <i class="fas fa-rocket" v-scroll-to="'#body-overlay'"></i>
     </div>
   </div>
 </template>
 <script>
 import { ContactService } from "@/services/contact.service";
-import Register from '@/components/login/Register.vue'
+import Register from "@/components/login/Register.vue";
 import Login from "@/components/login/Login.vue";
+import ForgotPassword from "@/components/login/ForgotPassword.vue";
+import { LoginService } from "@/services/login.service"
+import LandingService from "@/services/admin/landing.service"
+import { Hooper, Slide } from 'hooper';
+import 'hooper/dist/hooper.css';
+
 export default {
   components: {
+    ForgotPassword,
     Register,
-    Login
+    Login,
+    Hooper,
+    Slide
   },
   data() {
     return {
@@ -1767,23 +1711,80 @@ export default {
       man: true,
       sampleiframe: true,
       langs: ["TR", "EN"],
+      menModel: [],
+      womenModel: [],
+      conceptList: [],
+      exampleList: [],
+      packageList: [],
       checkBox1: false,
-      activated: false,
+      isVisible: false,
+      clicked: -1,
+      navbarList:['home', 'howToUse', 'concepts', 'about', 'faq', 'contact'],
       contact: {
+        fullname:"",
         mail: "",
-        nameSurname: "",
         subject: "",
         message: ""
       }
     };
   },
+  computed: {
+    activeMemberImg() {
+      if (this.$store.state.member.sex == 'F') {
+        return 'female-avatar.png';
+      }
+      return 'male-avatar.png';
+    },
+  },
+  beforeCreate: async function() {
+    await this.$store.dispatch('getCurrentUser');
+    document.body.addEventListener('scroll', this.handleScroll);
+    const res = await LandingService.getFirst()
+    let halfWayThough = Math.floor(res.length / 2)
+    this.menModel = res.slice(0, halfWayThough);
+    this.womenModel = res.slice(halfWayThough, res.length);
+
+    this.conceptList = await LandingService.getSecond()
+    this.exampleList = await LandingService.getThird()
+    this.packageList = await LandingService.getFourth()
+  },
+  destroyed() {
+    document.body.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
+    handleScroll() {
+      let scroll = document.body.scrollTop
+      this.isVisible = scroll > 2
+    },
+    logout: function() {
+      LoginService.logout()
+      this.$router.push("/")
+    },
+    changeLang() {
+      sessionStorage.setItem("lang", this.$i18n.locale);
+    },
     closePopup() {
-      this.$store.commit('UPDATE_LOGIN_POPUP', false)
-      this.$store.commit('UPDATE_REGISTER_POPUP', false)
+      this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_REGISTER_POPUP", false);
+      this.$store.commit("UPDATE_FORGOT_POPUP", false);
+      this.$refs.login.username = ""
+      this.$refs.login.password = ""
+      this.$refs.login.remember= false
+      this.$refs.register.firstName = "",
+      this.$refs.register.lastName = "",
+      this.$refs.register.email = "",
+      this.$refs.register.password = "",
+      this.$refs.register.confirm = "",
+      this.$refs.register.checkBox1 = false
     },
     sendMail: async function() {
-      ContactService.sendMail(this.contact);
+      await ContactService.sendMail(this.contact);
+      this.$vs.notify({
+          time: 6000,
+          title: "Başarılı",
+          text: "Teşekkür ederiz :)",
+          color: "success"
+      })
     },
     change() {
       this.man = !this.man;
@@ -1792,28 +1793,78 @@ export default {
       /*************************** */
     },
     openRegister() {
-      this.$store.commit('UPDATE_LOGIN_POPUP', false)
-      this.$store.commit('UPDATE_REGISTER_POPUP', true)
+      this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_FORGOT_POPUP", false);
+      this.$store.commit("UPDATE_REGISTER_POPUP", true);
       // this.$router.push("/register");
     },
     openLogin() {
-      this.$store.commit('UPDATE_REGISTER_POPUP', false)
-      this.$store.commit('UPDATE_LOGIN_POPUP', true)
+      this.$store.commit("UPDATE_FORGOT_POPUP", false);
+      this.$store.commit("UPDATE_REGISTER_POPUP", false);
+      this.$store.commit("UPDATE_LOGIN_POPUP", true);
+    },
+    openForgot() {
+      this.$store.commit("UPDATE_FORGOT_POPUP", true);
+      this.$store.commit("UPDATE_LOGIN_POPUP", false);
+      this.$store.commit("UPDATE_REGISTER_POPUP", false);
     }
   }
 };
 </script>
 <style>
-.vs-radio .vs-radio--circle,
-.vs-radio .vs-radio--borde {
+.model-column .vs-radio .vs-radio--circle,
+.model-column .vs-radio .vs-radio--borde {
   display: none !important;
 }
-.vs-popup{
-  width:900px !important;
+.login-popup .vs-popup {
+  width: 900px !important;
 }
-.vs-popup--content{
-  width: 100% !important;
+.login-popup .vs-popup--content {
+  width: 100%;
+  overflow-x:hidden;
   padding:0 !important;
-  margin:0 !important;
+  margin: 0 !important;
+  border-bottom-left-radius:.5rem !important;
+  border-bottom-right-radius:.5rem !important;
 }
+.login-popup .vs-popup--header {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+/*.vs-popup--close{
+  display: none !important;
+}*/
+.hooper{
+  height: auto;
+}
+.hooper-slide{
+  padding: 0 20px;
+}
+nav{
+  transition: 0.5s;
+  }
+nav.sticky{
+  transition: 0.5s;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.1);
+  }
+  .back-to-top{
+    display:inherit;
+  }
+  ul.concepts-list li img {
+    cursor: pointer;
+}
+@media (max-width: 489px) {
+  .hooper-slide{
+     width: 100% !important;
+     padding: 0px 62px;
+
+   }
+  .hooper-slide .thumb img{
+       width: 250px !important;
+      height: 250px !important;
+      object-fit: cover !important;
+
+      }
+  }
+
 </style>

@@ -105,9 +105,22 @@ const messages = {
             copyright: '2019 3D Figure. All Rights Reserved.',
             company: 'IntelliFi'
         },
+        forgot:{
+            title:'Reset Password',
+            btn:'Reset Password',
+            email:{
+                subtitle:'Please enter your email address, and we will send you an email with a link to reset your password.',
+                placeholder:'E-mail',
+            },
+            reset:{
+                subtitle:'Enter your new password',
+                placeholder:'New Password',
+            },
+        },
         login: {
             login: 'Login and Create 3D Figure',
-            user: 'Username',
+            register:'Register and Create 3D Figure',
+            user: 'E-mail',
             pass: 'Password',
             rem: 'Remember Me',
             forgot: 'Forgot Password',
@@ -126,7 +139,7 @@ const messages = {
             email: 'E-mail',
             pass: 'Password',
             confirm: 'Confirm Password',
-            terms: 'I accept the terms & conditions',
+            terms: 'I accept the <a href="/uyelik-sozlesmesi" target="_blank" class="underline hover:text-primary"> terms & conditions.</a>',
             alert: {
                 title: 'Error',
                 message: 'There was an unwanted problem. Please try again later.'
@@ -142,7 +155,7 @@ const messages = {
     'TR': {
         landing: {
             navbar: {
-                home: 'Giriş',
+                home: 'Anasayfa',
                 howToUse: 'Nasıl Yapılır?',
                 concepts: 'Konseptler',
                 about: 'Hakkımızda',
@@ -240,9 +253,22 @@ const messages = {
             copyright: '2019 3D Figür. Tüm hakları saklıdır.',
             company: 'IntelliFi'
         },
+        forgot:{
+            title:'Parola Sıfırlama',
+            btn:'Parolayı Sıfırla',
+            email:{
+                subtitle:'Lütfen e-posta adresinizi girin, parolanızı sıfırlamak için kullanacağınız bağlantıyı içeren bir e-posta göndereceğiz.',
+                placeholder:'E-posta',
+            },
+            reset:{
+                subtitle:'Yeni parolanızı giriniz',
+                placeholder:'Yeni Parola',
+            },
+        },
         login: {
             login: 'Giriş Yap ve 3D Figürünü Oluştur',
-            user: 'Kullanıcı Adı',
+            register: 'Kayıt Ol ve 3D Figürünü Oluştur',
+            user: 'E-posta',
             pass: 'Parola',
             rem: 'Beni Hatırla',
             forgot: 'Parolamı Unuttum',
@@ -261,7 +287,7 @@ const messages = {
             email: 'E-posta',
             pass: 'Parola',
             confirm: 'Parola Onayı',
-            terms: 'Kullanım şartlarını kabul ediyorum',
+            terms: '<a href="/uyelik-sozlesmesi" target="_blank" class="underline hover:text-primary">Kullanım şartlarını </a> kabul ediyorum.',
             alert: {
                 title: 'Hata Oluştu',
                 message: 'İstenmeyen bir sorun oluştu. Lütfen daha sonra tekrar deneyiniz.'
