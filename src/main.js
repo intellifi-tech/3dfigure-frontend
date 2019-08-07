@@ -28,15 +28,10 @@ import VueScrollTo from 'vue-scrollto'
 import VueCookie from 'vue-cookie'
 import VueAxios from 'vue-axios'
 import axios from 'axios';
-import VueCardPayment from 'vue-card-payment'
-// You need a specific loader for CSS files like https://github.com/webpack/css-loader
-import 'vue-card-payment/dist/vue-card-payment.css'
 import {
   TokenService
 } from '@/services/token.service'
 
-
-Vue.use(VueCardPayment)
 Vue.use(VeeValidate)
 Vue.use(Vuelidate)
 Vue.use(Vuesax)
