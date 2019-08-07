@@ -247,8 +247,31 @@
         <div class="row">
           <div class="col-lg-12 col-lg-12 mx-4 mx-md-0 pl-md-0">
             <div class="how-to-use">
-              <ul id="ul-man-or-woman" class="row items-center mb-5">
-                <p class="btn-switch mb-0">
+
+                <div id="div-man-or-woman" class="option-group">
+                  <div class="option-container">
+
+                    <input class="option-input" id="option-1" type="radio" name="options" v-on:change="change" checked/>
+                    <input class="option-input" id="option-2" type="radio" name="options" v-on:change="change"/>
+
+                    <label class="option" for="option-1">
+                      <span class="option__indicator"></span>
+                      <span class="option__label">
+                        ♀<sub>{{$t('landing.howtouse.woman.radioText')}}</sub>
+                      </span>
+                    </label>
+
+                    <label class="option" for="option-2">
+                      <span class="option__indicator"></span>
+                      <span class="option__label">
+                        ♂<sub>{{$t('landing.howtouse.man.radioText')}}</sub>
+                      </span>
+                    </label>
+
+                  </div>
+                </div>
+             <!-- <ul id="ul-man-or-woman" class="row items-center mb-5">
+                <p class="btn-switch mb-0 w-1/6">
                   <input
                     type="radio"
                     id="yes"
@@ -271,13 +294,13 @@
                     <span class="btn-switch__txt">{{$t('landing.howtouse.woman.radioText')}}</span>
                   </label>
                 </p>
-              </ul>
+              </ul>-->
 
               <!-- how to selfie start-->
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
-                <div class="man-div model-column row" v-show="!man">
-                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mb-md-0">
+                <div class="man-div model-column row m-auto" v-show="!man">
+                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
@@ -293,7 +316,7 @@
                     </div>
                     <ul class="concepts-list">
                       <li v-for="(model, index) in menModel" :key="index">
-                        <div class="single-inline-feature-item pr-5 pr-md-3">
+                        <div class="single-inline-feature-item">
                           <div class="content">
                             <vs-radio
                               :id="model.title"
@@ -324,8 +347,9 @@
                         </div>
                       </li>
                     </ul>
-                    <div class="row justify-content-center">
-                      <div class="col-lg-4">
+                  </div>
+                  <div class="w-full justify-content-center">
+                      <div class="col-lg-4 mx-auto">
                         <div class="section-title text-center">
                           <!-- section title -->
                           <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
@@ -333,8 +357,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
                     <div class="single-inline-feature-item pr-5 pr-md-3">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
@@ -413,8 +435,8 @@
                 <!--man div finish-->
 
                 <!-- woman div start -->
-                <div class="woman-div model-column row" v-show="man">
-                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mb-md-0">
+                <div class="woman-div model-column row m-auto" v-show="man">
+                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
@@ -430,7 +452,7 @@
                     </div>
                     <ul class="concepts-list">
                       <li v-for="(model, index) in womenModel" :key="index">
-                        <div class="single-inline-feature-item pr-5 pr-md-3">
+                        <div class="single-inline-feature-item">
                           <div class="content">
                             <vs-radio
                               :id="model.title"
@@ -461,8 +483,9 @@
                         </div>
                       </li>
                     </ul>
-                    <div class="row justify-content-center">
-                      <div class="col-lg-4">
+                  </div>
+                  <div class="w-full justify-content-center">
+                      <div class="col-lg-4 mx-auto">
                         <div class="section-title text-center">
                           <!-- section title -->
                           <h2 class="title">{{$t('landing.howtouse.header')}}</h2>
@@ -470,9 +493,8 @@
                         </div>
                       </div>
                     </div>
-                  </div>
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
-                    <div class="single-inline-feature-item pr-5 pr-md-3">
+                    <div class="single-inline-feature-item">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/woman/woman-true.jpg"
@@ -1695,7 +1717,7 @@ import { LoginService } from "@/services/login.service"
 import LandingService from "@/services/admin/landing.service"
 import { Hooper, Slide } from 'hooper';
 import 'hooper/dist/hooper.css';
-
+import '@/assets/css/manormowan.less';
 export default {
   components: {
     ForgotPassword,

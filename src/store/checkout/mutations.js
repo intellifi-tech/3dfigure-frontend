@@ -117,6 +117,14 @@ const mutations = {
             userId: -1
         }
         state.addressList = []
+    },
+
+    ADD_CARD(state, card) {
+        state.order.cardDTO.holderName = card.name
+        state.order.cardDTO.cardNo = card.number
+        state.order.cardDTO.cvc = card.cvv
+        state.order.cardDTO.expireMonth = card.month
+        state.order.cardDTO.expireYear = card.year
     }
 }
 

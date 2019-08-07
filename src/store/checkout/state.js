@@ -18,7 +18,14 @@ const state = {
 		basketId: -1,
 		userId: -1,
 		orderNote: "",
-		feedback: ""
+		feedback: "",
+		cardDTO: {
+			holderName: "",
+			cardNo: "",
+			cvc: "",
+			expireMonth: "",
+			expireYear: ""
+		}
 	}
 }
 

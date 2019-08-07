@@ -26,11 +26,17 @@
         </div>
       </tab-content>
       <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
-        <div>
-          <VueCardPayment></VueCardPayment>
+        <div class="text-center">
+          <!--<VueCardPayment @card-submit="payment"></VueCardPayment>-->
+          <iframe :src=htmlFormContent height="1000" width="1000" class="border-none pt-5"></iframe>
+          
+          
         </div>
       </tab-content>
     </form-wizard>
+    <vs-popup :active.sync="threedpayment">
+      <div v-html="html3dContent"></div>
+      </vs-popup>
   </div>
 </template>
 
@@ -40,14 +46,35 @@ import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import CheckoutList from "@/components/checkout/CheckoutList.vue";
 import CheckoutService from '@/services/checkout.service.js'
 import Adres from "@/components/address/Adres.vue";
+import VueCardPayment from "@/components/card/VueCardPayment"
+import PaymentService from "@/services/payment.service.js"
 export default {
   data() {
     return {
       counterDanger: false,
-      counterDanger2: false
+      counterDanger2: false,
+      html3dContent: "",
+      threedpayment: false,
+      htmlFormContent: "",
+      div: `<div id="iyzipay-checkout-form" class="responsive"></div>`
     };
   },
   methods: {
+    payment: async function(cardData) {
+
+      this.$store.commit("checkout/ADD_CARD", cardData)
+      //await this.finishShopping()
+
+      const response = await PaymentService.pay(this.$store.state.checkout.order)
+      if (response.status == 200) {
+        if (response.data.status == 'success') {
+          this.html3dContent = response.data.htmlContent
+          this.threedpayment = true
+        }
+      }
+
+
+    },
     validateStep1() {
       if(this.counterDanger)
       {
@@ -76,7 +103,7 @@ export default {
       }
       return this.$store.state.checkout.order.deliveryId != -1
     },
-    validateStep3: function() {
+    validateStep3: async function() {
       if (!this.$store.state.checkout.chooseAddress) {
         this.$vs.notify({
           time: 6000,
@@ -86,6 +113,10 @@ export default {
         });
         return false
       }
+
+      const res = await PaymentService.iyzicoForm(this.$store.state.checkout.order)
+      //this.htmlFormContent = res.data.paymentPageUrl + '&iframe=true'
+      this.htmlFormContent = res.data.paymentPageUrl + '&iframe=true'
       return this.$store.state.checkout.order.billingId != -1
     },
     finishShopping: async function() {
@@ -109,7 +140,8 @@ export default {
     CheckoutList,
     Adres,
     FormWizard,
-    TabContent
+    TabContent,
+    VueCardPayment
   }
 };
 </script>
