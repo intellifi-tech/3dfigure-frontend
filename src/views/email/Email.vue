@@ -19,24 +19,23 @@
 						<email-sidebar :emailTags="emailTags" @closeSidebar="toggleEmailSidebar" :mailFilter="mailFilter"></email-sidebar>
 					</vs-sidebar>
 
-					<div :class="{'sidebar-spacer': clickNotClose}" class="app-fixed-height border border-solid border-grey-light border-r-0 border-t-0 border-b-0">
+					<div :class="{'sidebar-spacer': clickNotClose}" class="ticket-heightCustom app-fixed-height border border-solid border-grey-light border-r-0 border-t-0 border-b-0">
 
 						<!-- SEARCH BAR -->
 						<div class="flex border items-center app-search-container">
 							<feather-icon class="md:inline-flex lg:hidden ml-4 mr-4 cursor-pointer" icon="MenuIcon" @click.stop="toggleEmailSidebar(true)"></feather-icon>
-							<vs-input icon="icon-search" size="large" icon-pack="feather" placeholder="Search Mail" v-model="searchQuery" class="input-no-border w-full no-icon-border" />
+							<vs-input icon="icon-search" size="large" icon-pack="feather" placeholder="Talep Ara" v-model="searchQuery" class="input-no-border w-full no-icon-border" />
 						</div>
 
 						<!-- EMAIL ACTION BAR -->
-						<div class="email__actions flex flex-wrap justify-between p-4 border border-r-0 border-l-0 border-solid border-grey-light">
+						<!--<div class="email__actions flex flex-wrap justify-between p-4 border border-r-0 border-l-0 border-solid border-grey-light">
 							<div>
-								<vs-checkbox v-model="selectAllCheckBox" icon-pack="feather" :icon="selectAllIcon" class="select-all-chexkbox ml-0">Select All</vs-checkbox>
+								<vs-checkbox v-model="selectAllCheckBox" icon-pack="feather" :icon="selectAllIcon" class="select-all-chexkbox ml-0">Tümünü seç</vs-checkbox>
 							</div>
-
-						</div>
+						</div>-->
 
 						<!-- EMAILS LIST -->
-						<VuePerfectScrollbar class="email-content-scroll-area" :settings="settings" ref="mailListPS">
+						<VuePerfectScrollbar class="email-content-scroll-area ticket-content-custom" :settings="settings" ref="mailListPS">
 							<transition-group name="list-enter-up" class="email__mails" tag="ul" appear>
 								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in mails" :key="String(mailFilter) + String(mail.id)" @click.stop="updateOpenMail(mail.id)" :style="{transitionDelay: (index * 0.1) + 's'}">
 									<mail-item :mail="mail" :isMailOpen="isMailOpen(mail.id)" :isSelected="isMailSelected(mail.id)" @addToSelected="addToSelectedMails" @removeSelected="removeSelectedMail"></mail-item>
@@ -232,4 +231,12 @@ export default{
 
 <style lang="scss">
 @import "@/assets/scss/vuesax/apps/email.scss";
+</style>
+<style scoped>
+.ticket-heightCustom{
+	height:calc(100vh - 12.1rem);
+}
+.ticket-content-custom{
+	height: calc(100% - 45px) !important;
+}
 </style>

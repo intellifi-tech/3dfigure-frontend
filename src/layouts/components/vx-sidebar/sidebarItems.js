@@ -42,7 +42,7 @@ export default [
 	},
 	{
 		url: "/ticket",
-		name: "Ticket",
+		name: "Destek",
 		slug: "ticket",
 		icon: "MailIcon",
 	

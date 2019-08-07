@@ -21,12 +21,11 @@
 							<h3 v-else>(no subject)</h3>
 						</div>
 					</div>
-					
 				</div>
 
 				<VuePerfectScrollbar class="scroll-area md:px-8 pt-4 px-6" :settings="settings">
 				<!-- LABEL ROW -->
-				<div class="vx-row">
+				<!--<div class="vx-row">
 					<div class="vx-col w-full">
 						<div class="email__labels--single flex ml-10 items-center mt-2">
 							<transition-group name="list" tag="div" class="flex">
@@ -37,7 +36,7 @@
 							</transition-group>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<!-- /LABEL ROW -->
 				<br>
 
@@ -70,9 +69,9 @@
 
 														<vs-dropdown-menu style="z-index: 40001">
 															<div class="p-2">
-																<p class="text-sm mb-1">From: <span class="font-semibold"> {{ threadMail.sender }} </span></p>
-																<p class="text-sm mb-1">To: <span class="font-semibold"> {{ threadMail.to }} </span></p>
-																<p class="text-sm mb-1">Date: <span class="font-semibold"> {{ threadMail.time }} {{ threadMail.time | date(true) }} </span></p>
+																<p class="text-sm mb-1">Kimden: <span class="font-semibold"> {{ threadMail.sender }} </span></p>
+																<p class="text-sm mb-1">Kime: <span class="font-semibold"> {{ threadMail.to }} </span></p>
+																<p class="text-sm mb-1">Tarih: <span class="font-semibold"> {{ threadMail.time }} {{ threadMail.time | date(true) }} </span></p>
 																<p class="text-sm mb-1" v-if="threadMail.cc.length">cc: <span class="font-semibold"> {{ threadMail.cc }} </span></p>
 															</div>
 														</vs-dropdown-menu>
@@ -112,7 +111,16 @@
 							</vx-card>
 						</div>
 					</div>
-
+					<div class="vx-row ">
+						<div class="vx-col w-full pb-10">
+							<vx-card>
+								<div class="vx-row">
+									<div class="vx-col w-full flex justify-between">
+							<vs-button color="dark" type="line" icon="reply">Yanıtla</vs-button>									</div>
+								</div>
+							</vx-card>
+						</div>
+					</div>
 					<!-- LATEST MESSAGE -->
 					<div class="vx-row">
 						<div class="vx-col w-full">
@@ -132,9 +140,9 @@
 
 													<vs-dropdown-menu style="z-index: 40001">
 														<div class="p-2">
-															<p class="text-sm mb-1">From: <span class="font-semibold"> {{ currentMail.sender }} </span></p>
-															<p class="text-sm mb-1">To: <span class="font-semibold"> {{ currentMail.to }} </span></p>
-															<p class="text-sm mb-1">Date: <span class="font-semibold"> {{ currentMail.time }} {{ currentMail.time }} </span></p>
+															<p class="text-sm mb-1">Kimden: <span class="font-semibold"> {{ currentMail.sender }} </span></p>
+															<p class="text-sm mb-1">Kime: <span class="font-semibold"> {{ currentMail.to }} </span></p>
+															<p class="text-sm mb-1">Tarih: <span class="font-semibold"> {{ currentMail.time }} {{ currentMail.time }} </span></p>
 															<p class="text-sm mb-1" v-if="currentMail.cc.length">cc: <span class="font-semibold"> {{ currentMail.cc }} </span></p>
 														</div>
 													</vs-dropdown-menu>
@@ -159,7 +167,7 @@
 								<div class="vx-row" v-if="currentMail.attachments.length">
 									<div class="vx-col w-full border-b border-l-0 border-r-0 border-t-0 border-grey-light border-solid mb-6 flex">
 										<feather-icon icon="PaperclipIcon"></feather-icon>
-										<span class="block py-4">ATTACHMENTS</span>
+										<span class="block py-4">Ekler</span>
 									</div>
 									<div class="flex">
 										<div class="mail__attachment" v-for="(attachment, index) in currentMail.attachments" :key="index">
@@ -171,18 +179,7 @@
 							</vx-card>
 						</div>
 					</div>
-					<div class="vx-row" style="margin-top: 2.2rem">
-						<div class="vx-col w-full pb-10">
-							<vx-card>
-								<div class="vx-row">
-									<div class="vx-col w-full flex justify-between">
-										<span class="text-lg">Click here to <span class="text-primary font-semibold cursor-pointer">Reply</span> or <span class="text-primary font-semibold cursor-pointer">Forward</span></span>
-										<feather-icon icon="PaperclipIcon"></feather-icon>
-									</div>
-								</div>
-							</vx-card>
-						</div>
-					</div>
+					
 				</div>
 				</VuePerfectScrollbar>
 			</div>
