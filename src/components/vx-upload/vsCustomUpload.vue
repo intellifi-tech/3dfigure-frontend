@@ -495,6 +495,9 @@ export default {
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
+.preview-images .btn-upload-file:after{
+  border:1px solid #fff !important;
+}
 .height-unset{
   height:unset !important;
 }
