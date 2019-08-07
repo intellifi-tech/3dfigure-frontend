@@ -24,7 +24,7 @@
 
 				<div class="mail-item__meta flex items-center">
 					<div class="email__labels hidden sm:flex items-center">
-						<div class="h-3 w-3 rounded-full mr-2" :class="'bg-' + labelColor(label)" v-for="(label, index) in mail.labels" :key="index"></div>
+						<!--<div class="h-3 w-3 rounded-full mr-2" :class="'bg-' + labelColor(label)" v-for="(label, index) in mail.labels" :key="index"></div>-->
 					</div>
 					<span>{{ mail.time }}</span>
 				</div>
@@ -35,8 +35,8 @@
 		<!-- MAIL ROW 2 : MSG & ACTIONS -->
 		<div class="flex w-full">
 			<div class="flex items-center ml-1">
-				<vs-checkbox v-model="isSelectedMail" @click.stop.prevent="toggleIsSelected" class="vs-checkbox-small ml-0 mr-1"></vs-checkbox>
-				<feather-icon icon="StarIcon" class="cursor-pointer" :svgClasses="[{'text-warning fill-current stroke-current': mail.isStarred}, 'w-5', 'h-5']" @click.stop="toggleIsStarred"></feather-icon>
+				<!--<vs-checkbox v-model="isSelectedMail" @click.stop.prevent="toggleIsSelected" class="vs-checkbox-small ml-0 mr-1"></vs-checkbox>-->
+				<!--<feather-icon icon="StarIcon" class="cursor-pointer" :svgClasses="[{'text-warning fill-current stroke-current': mail.isStarred}, 'w-5', 'h-5']" @click.stop="toggleIsStarred"></feather-icon>-->
 			</div>
 			<div class="mail__message truncate ml-3">
 				<span>{{ mail.message }}</span>
