@@ -32,10 +32,13 @@
             <h4 class="pb-4"> Fotoğraflarım</h4>
          </div>
          <div class="col-xl-8 text-md-right pt-2">
-            <span class="h6">Fotoğraf yükleme hakkınız: </span>
-            <h3 class="text-primary h3"> {{limit}} / {{ this.$store.state.member.totalFigure}}</h3>
+            <h6>Fotoğraf yükleme hakkınız: </h6>
+            <div class="alignright flex">
+            <span class="text-primary h3 pr-2"> {{limit}} / {{ this.$store.state.member.totalFigure}}</span>
+            <vs-button @click="openInvitePopup=true" class="btnDavet" color="#007bff" type="filled" icon="add" size="small" radius></vs-button>
+            </div>
+          
          </div>
-            <a @click="openInvitePopup=true" class="cursor-pointer position-absolute" style="top:4px;right:4px;"><vs-icon icon="help" size="small" color="#007bff" ></vs-icon></a>
         </div>
         <p>
           En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline" @click="openPopupHowtoUse">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
@@ -336,5 +339,9 @@ export default {
 }
 .con-vs-loading{
  background:hsla(0,0%,100%,.9);
+}
+.btnDavet i{
+  font-weight:bold;
+  font-size:1rem !important;
 }
 </style>

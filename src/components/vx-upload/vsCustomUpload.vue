@@ -52,9 +52,10 @@
           @touchend="viewImage(img.imagePath,$event, img.avatarKey)"
           @click="viewImage(img.imagePath,$event, img.avatarKey)"
         >
-        <span class="select-span">
-          <vs-icon icon-pack="fa fa-check" hidden></vs-icon>
-        </span>
+        <div class="select-div">
+           <vs-checkbox class="chboxSelect"  color="success" v-model="checkboxValues" :vs-value="img" @click="checkboxSelect(img.imagePath, img.avatarKey)"></vs-checkbox>
+          <!--<vs-icon icon-pack="fa fa-check" hidden></vs-icon>-->
+        </div>
       </div>
       <!-- <transition-group v-for="(img,index) in getFilesFilter" :key="index" name="upload"> -->
       <!-- Burası upload edildikten sonra oluşturuluyor -->
@@ -88,9 +89,10 @@
           <span>{{ img.percent }} %</span>
           
         </button>
-        <span class="select-span">
-          <vs-icon icon-pack="fa fa-check" hidden></vs-icon>
-        </span>
+        <div class="select-div" >
+           <vs-checkbox v-if="img.avatarKey" class="chboxSelect"  color="success" v-model="checkboxValues" :vs-value="img" @click="checkboxSelect(img.imagePath, img.avatarKey)"></vs-checkbox>
+          <!--<vs-icon icon-pack="fa fa-check" hidden></vs-icon>-->
+        </div>
         <img
           v-if="img.src"
           :alt="img.avatarKey"
@@ -174,6 +176,8 @@ export default {
     }
   },
   data: () => ({
+    chboxActive:false,
+    checkboxValues:[],
     inputValue: null,
     selectedTags: [],
     type: null,
@@ -219,12 +223,18 @@ export default {
           this.percent = 0;
         }, 1000);
       }
-    }
+    },
+    checkboxValues(){
+      if(this.checkboxValues.length>2)
+      {
+        this.checkboxValues.pop();
+      }
+
+    },
   },
   methods: {
     toogleClass(index) {
       const isSelected = this.$store.state.selectedFigures.avatarKey.includes(index);
-
       return {
         selectedimg: isSelected
       };
@@ -254,6 +264,10 @@ export default {
           }
         }
       } else {
+        this.$emit('show-avatar', avatarKey)
+      }
+    },
+    checkboxSelect(src, avatarKey){
         const findex = this.$store.state.selectedFigures.avatarKey.findIndex(t => t == avatarKey);
         const mindex = this.$store.state.selectedFigures.imagePath.findIndex(t => t == src);
         if (findex >= 0) this.$store.commit('DELETE_FIGURE_FROM_SELECTED', {f: findex, m: mindex});
@@ -269,9 +283,6 @@ export default {
             this.$store.commit('ADD_FIGURE_SELECTED', {a: avatarKey, s: src});
           }
         }
-
-        this.$emit('show-avatar', avatarKey)
-      }
     },
     removeFile(index) {
       
@@ -466,24 +477,39 @@ export default {
 };
 </script>
 <style>
+.preview-images .btn-x-file{
+  background:#fff !important;
+}
+.preview-images .btn-x-file i{
+  background:#fff !important;
+  color:#ff0404 !important;
+  text-shadow:none !important;
+}
+.preview-images .btn-upload-file{
+    background: #3bba00cc;
+    background: -webkit-linear-gradient(to top, #fff, #3bba00e6);
+    background: linear-gradient(to top, #fff, #3bba00e6);
+}
+.preview-images .btn-x-file:hover~ .btn-upload-file {
+  opacity:0 !important;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
 .height-unset{
   height:unset !important;
 }
 .selectedimg {
-  border: 5px solid #2bff45;
+  border: 6px solid rgba(var(--vs-success),1) !important;
 }
-
-.selectedimg .select-span .fa {
+.select-div .chboxSelect{
   z-index: 999;
   position: absolute !important;
-  color: #000 !important;
-  background-color: #2bff45 !important;
-  padding: 10px !important;
   top: 0 !important;
   right: 0 !important;
   display: block !important;
+  margin:0;
+  padding: 4px 0;
 }
-
 .con-img-upload .img-upload img{
     width: 170px;
     height: 170px;
