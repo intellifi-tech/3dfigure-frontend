@@ -1,14 +1,3 @@
-<!-- =========================================================================================
-	File Name: EmailView.vue
-	Description: Email Application - Single Email View (Inbox)
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
 	<div>
 		<vs-sidebar click-not-close parent="#email-app-container" :hidden-background="true" class="full-vs-sidebar email-view-sidebar" v-model="isSidebarActive" position-right>
@@ -121,7 +110,7 @@
 							</vx-card>
 						</div>
 					</div>
-					<!-- LATEST MESSAGE -->
+					<!-- TODO bu row CHAT CARD COMPONENTE DONUSTURULECEK -- LATEST MESSAGE -->
 					<div class="vx-row">
 						<div class="vx-col w-full">
 							<vx-card class="px-4">

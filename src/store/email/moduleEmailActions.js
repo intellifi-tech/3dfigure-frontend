@@ -23,6 +23,7 @@ export default {
 		commit('MOVE_MAILS_TO', payload);
 	},
 	updateMailUnread({ commit }, payload) {
+		//TODO UNREAD GUNCELLEMESI BURADA YAPILACAK
 		commit('UPDATE_MAIL_UNREAD', payload);
 	},
 	addLabelToMails({ commit }, payload) {

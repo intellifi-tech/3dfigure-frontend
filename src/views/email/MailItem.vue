@@ -1,13 +1,3 @@
-<!-- =========================================================================================
-	File Name: MailItem.vue
-	Description: Mail Item - Displays mail item
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
 <template>
 	<div class="mail__mail-item sm:px-4 px-2 py-6" :class="{'mail__opened-mail': !mail.unread}">
 
