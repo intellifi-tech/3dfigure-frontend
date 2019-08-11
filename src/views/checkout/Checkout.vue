@@ -103,6 +103,12 @@ export default {
         return true
       }
       // buraya iyzico uyarı bas
+      this.$vs.notify({
+          time: 6000,
+          title: "HATA!",
+          text: `${res.data.errorMessage}`,
+          color: "danger"
+        });
       return false
     }
   },
