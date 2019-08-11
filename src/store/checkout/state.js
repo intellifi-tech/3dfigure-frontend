@@ -7,6 +7,7 @@ const state = {
 	},
 	chooseAddress: true,
 	order: {
+		id: null,
 		orderCode: "",
 		totalPriceNet: 0.0,
 		kdv: 0.0,
@@ -18,7 +19,9 @@ const state = {
 		basketId: -1,
 		userId: -1,
 		orderNote: "",
+		status: "NOT_PAYMENT",
 		feedback: "",
+		language: "",
 		cardDTO: {
 			holderName: "",
 			cardNo: "",

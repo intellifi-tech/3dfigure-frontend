@@ -154,7 +154,7 @@ export default {
       userFigures: null
     };
   },
-  mounted:async function() {
+  created: async function() {
     // fetch the data when the view is created and the data is
     // already being observed
     await this.initialize();

@@ -7,7 +7,7 @@ const actions = {
     async initBasketList({ commit }) {
         const res = await CheckoutService.getUserCheckout();
         commit('SET_CHECKOUT_LIST', res.concepts)
-        commit('INIT_BASKET_ID', res.id)
+        commit('INIT_BASKET_ID', {basketId: res.id, orderId: res.ordersId})
     },
     async deleteFromBasketList({ commit }, ids) {
         await CheckoutService.deleteFromBasket(ids);
@@ -15,8 +15,10 @@ const actions = {
     },
 
     async createNewBasket({commit}) {
-        await CheckoutService.createCheckout()
-        commit('RESET_BASKET')
+        const res = await CheckoutService.createCheckout()
+        if (res.status == 200) {
+            commit('RESET_BASKET')
+        }
     }
 }
 
