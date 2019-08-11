@@ -81,8 +81,9 @@ const mutations = {
         state.addressList = adresList
     },
 
-    INIT_BASKET_ID(state, basketId) {
-        state.order.basketId = basketId
+    INIT_BASKET_ID(state, basket) {
+        state.order.basketId = basket.basketId
+        state.order.id = basket.orderId
     },
 
     UPDATE_FEEDBACK(state, value) {
@@ -93,8 +94,9 @@ const mutations = {
         state.order.orderNote = value
     },
 
-    FINISH_ORDER(state, userId) {
-        state.order.userId = userId
+    FINISH_ORDER(state, value) {
+        state.order.userId = value.userId
+        state.order.language = value.lang
         state.order.createdDate = new Date()
         state.order.lastModificationDate = new Date()
         state.order.orderCode = Math.random().toString(36).substr(2, 9).toUpperCase();

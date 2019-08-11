@@ -26,10 +26,10 @@ const CheckoutService = {
                 last: true
             }
             const res = await ApiService.post("/baskets", credential)
-            return res.data
+            return res
 
         } catch (error) {
-            return error.response.data
+            return error.response
         }
     },
     deleteFromBasket: async function (ids) {
@@ -44,6 +44,15 @@ const CheckoutService = {
     sendOrder: async function (order) {
         try {
             const res = await ApiService.post("/orders", order)
+            return res.data
+        } catch (error) {
+            error.response.data
+        }
+    },
+
+    sendOrderUpdate: async function (order) {
+        try {
+            const res = await ApiService.put("/orders", order)
             return res.data
         } catch (error) {
             error.response.data
