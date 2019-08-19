@@ -13,6 +13,7 @@ import emails from '@/views/email/mails'
 
 export default {
 	//TODO DB DATALARI BURADA OLACAK
+	tickets: [],
 	mails: emails,
 	mail_filter: 'inbox',
 	mailTags: [

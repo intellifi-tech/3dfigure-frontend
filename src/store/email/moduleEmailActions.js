@@ -7,7 +7,7 @@
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-
+import TicketService from "@/services/ticket.service"
 
 export default {
 	setMailSearchQuery({ commit }, query){
@@ -32,4 +32,10 @@ export default {
 	updateMailLabels({ commit }, payload) {
 		commit('UPDATE_MAIL_LABELS', payload);
 	},
+	setUserTickets: async function({ commit }) {
+		const res = await TicketService.getAllTickets();
+		if (res.status < 400) {
+			commit('SET_USER_TICKETS', res.data);
+		}
+	}
 }

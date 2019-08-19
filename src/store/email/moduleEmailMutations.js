@@ -54,4 +54,7 @@ export default {
 		const mailIndex = state.mails.findIndex((mail) => mail.id == payload.mailId);
 		state.mails[mailIndex].labels = payload.value;
 	},
+	SET_USER_TICKETS(state, payload) {
+		state.tickets = payload;
+	}
 }

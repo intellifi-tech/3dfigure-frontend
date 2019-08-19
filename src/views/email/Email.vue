@@ -26,8 +26,8 @@
 						<!-- EMAILS LIST -->
 						<VuePerfectScrollbar class="email-content-scroll-area ticket-content-custom" :settings="settings" ref="mailListPS">
 							<transition-group name="list-enter-up" class="email__mails" tag="ul" appear>
-								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in mails" :key="String(mailFilter) + String(mail.id)" @click.stop="updateOpenMail(mail.id)" :style="{transitionDelay: (index * 0.1) + 's'}">
-									<mail-item :mail="mail" :isMailOpen="isMailOpen(mail.id)" :isSelected="isMailSelected(mail.id)" @addToSelected="addToSelectedMails" @removeSelected="removeSelectedMail"></mail-item>
+								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in tickets" :key="index" @click.stop="updateOpenMail(mail.id)" :style="{transitionDelay: (index * 0.1) + 's'}">
+									<mail-item :mail="mail"></mail-item>
 								</li>
 							</transition-group>
 						</VuePerfectScrollbar>
@@ -43,7 +43,7 @@
 						@previousMail = "previousMail"
 						@nextMail = "nextMail"
 						@moveTo = "moveCurrentTo"
-						@closeSidebar = "closeMailViewSidebar">						
+						@closeSidebar = "closeMailViewSidebar">
 					</email-view>
 			</div>
 		</div>
@@ -107,6 +107,9 @@ export default{
 		},
 		mails() {
 			return this.$store.getters['email/filteredMails'];
+		},
+		tickets() {
+			return this.$store.getters['email/getTickets'];
 		},
 		isMailOpen() {
 			return (mailId) => mailId == this.openMailId;
@@ -207,11 +210,12 @@ export default{
 		EmailView,
 		VuePerfectScrollbar
 	},
-	created() {
+	created: async function() {
 		this.$nextTick(() => {
 			window.addEventListener('resize', this.handleWindowResize);
 		})
 		this.setSidebarWidth();
+		this.$store.dispatch('email/setUserTickets');
 	},
 	beforeDestroy: function () {
 		window.removeEventListener('resize', this.handleWindowResize)

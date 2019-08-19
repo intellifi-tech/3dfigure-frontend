@@ -1,13 +1,13 @@
 <template>
-	<div class="mail__mail-item sm:px-4 px-2 py-6" :class="{'mail__opened-mail': !mail.unread}">
+<!-- :class="{'mail__opened-mail': !mail.unread}" -->
+	<div class="mail__mail-item sm:px-4 px-2 py-6" >
 
 		<!-- MAIL ROW 1 : META -->
 		<div class="flex w-full">
-			<vs-avatar class="sender__avatar flex-no-shrink mr-3 border-2 border-solid border-white" :src="require(`@/assets/images/portrait/small/${mail.img}`)" size="40px"></vs-avatar>
 			
 			<div class="flex w-full justify-between items-start">
 				<div class="mail__details">
-					<h5 class="mb-1" :class="{'font-semibold': mail.unread}">{{ mail.sender_name }}</h5>
+					<!-- <h5 class="mb-1" :class="{'font-semibold': mail.unread}">{{ mail.sender_name }}</h5> -->
 					<span v-if="mail.subject">{{ mail.subject }}</span>
 					<span v-else>(no subject)</span>
 				</div>
@@ -16,7 +16,7 @@
 					<div class="email__labels hidden sm:flex items-center">
 						<!--<div class="h-3 w-3 rounded-full mr-2" :class="'bg-' + labelColor(label)" v-for="(label, index) in mail.labels" :key="index"></div>-->
 					</div>
-					<span>{{ mail.time }}</span>
+					<span>{{ mail.lastModifiedDate }}</span>
 				</div>
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 				<!--<feather-icon icon="StarIcon" class="cursor-pointer" :svgClasses="[{'text-warning fill-current stroke-current': mail.isStarred}, 'w-5', 'h-5']" @click.stop="toggleIsStarred"></feather-icon>-->
 			</div>
 			<div class="mail__message truncate ml-3">
-				<span>{{ mail.message }}</span>
+				<span>{{ mail.status }}</span>
 			</div>
 		</div>
 		<!-- /MAIL ROW 2 -->
@@ -41,14 +41,13 @@ export default{
 	props: {
 		mail: {
 			type: Object,
-			required: true,
+			required: true
 		},
 		isMailOpen: {
-			type: Boolean,
+			type: Boolean
 		},
 		isSelected: {
-			type: Boolean,
-			required: true,
+			type: Boolean
 		}
 	},
 	data() {
