@@ -1050,7 +1050,7 @@
     </section>
 
     <!-- testimonial area start -->
-    <section class="testimonial-area testimonial-bg padding-top-110 padding-bottom-120" id="about">
+    <section class="testimonial-area testimonial-bg padding-top-110" id="about" style="padding-bottom: 125px;">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">

@@ -76,18 +76,22 @@
                 </div>
               </div>
               <div class="vx-row mb-2">
-                <div class="vx-col w-full flex">
-                  <vue-country-code defaultCountry='TR' class="selectCountry border-grey shadow-none h-12 " @onSelect="changeDialCode" style="margin-top: 17px;">
+                
+                <div class="vx-col w-full">
+                  <span class="h6 text-sm font-light">Telefon</span>
+                  <div class="flex pt-2">
+                  <vue-country-code defaultCountry='TR' class="selectCountry border-grey shadow-none h-12" @onSelect="changeDialCode" >
                   </vue-country-code>
-                  <vs-input type="tel" class="w-full pl-1" :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}" label-placeholder="Telefon" v-model="adres.mobile"/>
+                  <vs-input type="tel" class="w-full pl-1" :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}" placeholder="(555) 000 0000" v-model="adres.mobile"/>
+                  </div>
                 </div>
               </div>
-              <div class="vx-row mb-6">
+              <div class="vx-row mb-2">
                 <div class="vx-col w-full">
                   <vs-input type="text" class="w-full" :class="{'vs-input-danger':this.$v.adres.address.$invalid}" label-placeholder="Adres" v-model="adres.address"/>
                 </div>
               </div>
-              <div class="vx-row mb-6">
+              <div class="vx-row mb-2">
                 <div class="vx-col w-full">
                   <vs-input
                     type="text"
@@ -98,7 +102,7 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-6" v-if="isBilling">
+              <div class="vx-row mb-2" v-if="isBilling">
                 <div class="vx-col w-full">
                   <vs-input
                     type="text"
@@ -108,7 +112,7 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-6" v-if="isBilling">
+              <div class="vx-row mb-2" v-if="isBilling">
                 <div class="vx-col w-full">
                   <vs-input
                     type="text"
@@ -119,10 +123,10 @@
                   />
                 </div>
               </div>
-              <div class="vx-row mb-6">
+              <div class="vx-row mb-6 mt-4">
                 <div class="vx-col w-1/2">
                   <select
-                    class="form-control form-control-lg selecting selectExample w-full"
+                    class="form-control-lg selecting selectExample w-full focus:shadow-md"
                     label="Şehir"
                     v-model="city"
                   >
@@ -135,7 +139,7 @@
                 </div>
                 <div class="vx-col w-1/2">
                   <select
-                    class="form-control form-control-lg selecting selectExample w-full"
+                    class="form-control-lg selecting selectExample w-full focus:shadow-md"
                     label="İlçe / Semt"
                     v-model="adres.townId"
                     :class="{'form-control-danger': this.$v.adres.townId.$invalid}"
@@ -172,6 +176,7 @@ import {
 } from "vuelidate/lib/validators";
 import "vue-country-code/dist/vue-country-code.css";
 import turkish from "@/plugins/turkish_regex.js"
+import phone from "@/plugins/phone_regex.js"
 import PlaceService from "@/services/place.service";
 import AddressService from '@/services/address.service'
 import VueCountryCode from "vue-country-code";
@@ -277,7 +282,7 @@ export default {
       surname: { required, turkish},
       adres: {
       taxNo: {required, minLength: minLength(11), maxLength: maxLength(11), numeric},
-      mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
+      mobile: {required,  phone},
       address: { required, maxLength: maxLength(100), minLength: minLength(15) },
       addressName: { required },
       postCode: { required, numeric, maxLength: maxLength(5), minLength: minLength(5)},
@@ -290,7 +295,7 @@ export default {
       name: { required, turkish },
       surname: { required, turkish},
       adres: {
-      mobile: {required, minLength: minLength(10), maxLength: maxLength(12), numeric},
+      mobile: {required,  phone},
       address: { required, maxLength: maxLength(100), minLength: minLength(15) },
       addressName: { required },
       postCode: { required, numeric, maxLength: maxLength(5), minLength: minLength(5)},

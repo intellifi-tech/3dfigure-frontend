@@ -60,7 +60,7 @@
           <vs-input class="mb-4 w-full" label-placeholder="Sipariş Kodu" disabled v-model="selected.orderCode"/>
           <vs-input class="mb-2 w-full" v-if="selected.status == 'CARGO'" label-placeholder="Kargo Kodu" v-model="selected.cargoCode"/>
           <p class=" mb-1 ml-1 text-sm">Sipariş Durumu</p>
-          <select class="w-full form-control-lg select-input mb-4" v-model="selected.status">
+          <select class="w-full form-control-lg select-input mb-4 focus:shadow-md" v-model="selected.status">
                 <option
                   :key="index"
                   v-for="(item,index) in statusList"

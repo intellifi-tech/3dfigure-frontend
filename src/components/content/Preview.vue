@@ -41,7 +41,7 @@
          </div>
         </div>
         <p>
-          En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline" @click="openPopupHowtoUse">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
+          En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline" style="color:#007bff;" @click="openPopupHowtoUse">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
         </p>
       <hr>
         <div class="mt-0">
@@ -71,7 +71,7 @@
 <vs-popup @close="closePopup" :active.sync="openInvitePopup" title="Arkadaşını Davet Et">
      <div class="vx-row mb-4">
              <div class="vx-col w-full mb-3">
-                <span>Fotoğraf yükleme hakkınız bittiğinde <b>3 arkadaşınızın</b> e-posta adresine davet yollayarak <b>5 yükleme hakkı</b> daha kazanabilirsiniz.</span>
+                <span>Fotoğraf yükleme hakkınız bittiğinde <b>3 arkadaşınızın</b> e-posta adresine davet yollayarak <b>3 yükleme hakkı</b> daha kazanabilirsiniz.</span>
                 <br><br>
                 <span>Ayrıca sipariş verdikten sonra tüm haklarınız <b>yenilenir.</b></span>
               </div>
@@ -186,7 +186,7 @@ export default {
       this.limit = a - b;
     },
     mailSend: async function() {
-      if (this.$store.state.member.sendFriend != 0 && !this.$v.inviteMail.$invalid) {
+    /*this.$store.state.member.sendFriend != 0 &&*/  if ( !this.$v.inviteMail.$invalid) {
       Object.values(this.inviteMail).forEach(element => {
         MailService.sendMail(element)
       });
@@ -324,9 +324,9 @@ export default {
   },
   validations: {
     inviteMail: {
-      first: {required, email},
-      second: {required, email, sameAsPassword: !sameAs('first')},
-      third: {required, email, sameAsPassword: !sameAs('first') && !sameAs('second')}
+      first: {required,},
+      second: {required, sameAsPassword: not(sameAs("first"))},
+      third: {required, email}
     }
   },
   components: {

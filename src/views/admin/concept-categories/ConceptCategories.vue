@@ -60,7 +60,7 @@
         <div>
           <vs-input class="mb-2 w-full" label-placeholder="Kategori Adı" v-model="selected.name"/>
              <p class=" mb-1 ml-1 text-sm">Kategori Dili</p>
-          <select class="form-control-lg w-full select-input mb-4" v-model="selected.lang">
+          <select class="form-control-lg w-full select-input mb-4 focus:shadow-md" v-model="selected.lang">
                 <option
                   :key="index"
                   v-for="(item,index) in lang"
@@ -74,7 +74,7 @@
         <div>
           <vs-input class="mb-3 w-full" label-placeholder="Kategory Adı" v-model="newCategory.name"/>
             <p class=" mb-1 ml-1 text-sm">Kategori Dili</p>
-          <select class="form-control-lg w-full select-input mb-4" v-model="newCategory.lang">
+          <select class="form-control-lg w-full select-input mb-4 focus:shadow-md" v-model="newCategory.lang">
                 <option
                   :key="index"
                   v-for="(item,index) in lang"

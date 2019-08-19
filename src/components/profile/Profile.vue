@@ -51,7 +51,7 @@
                 </div>
                 <div class="vx-col w-1/2">
                   <select
-                    class="select-input form-control-lg w-full"
+                    class="select-input form-control-lg w-full focus:shadow-md"
                     :disabled="isUpdated"
                     v-model="member.sex"
                   >
@@ -180,7 +180,7 @@
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
                   <select
-                    class="select-input form-control-lg selecting selectExample w-full"
+                    class="select-input form-control-lg selecting selectExample w-full focus:shadow-md"
                     label="Şehir"
                     v-model="city"
                   >
@@ -193,7 +193,7 @@
                 </div>
                 <div class="vx-col w-1/2">
                   <select
-                    class="select-input form-control-lg selecting selectExample w-full"
+                    class="select-input form-control-lg selecting selectExample w-full focus:shadow-md"
                     label="İlçe / Semt"
                     v-model="adres.townId"
                     :class="{'form-control-danger': this.$v.adres.townId.$invalid && !first}"
