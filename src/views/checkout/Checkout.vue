@@ -7,8 +7,6 @@
       :subtitle=null
       nextButtonText="İleri"
       backButtonText="Geri dön"
-      finishButtonText="Siparişi Tamamla"
-      @on-complete="finishShopping"
     >
       <tab-content title="Sepet" class="mb-5" icon="feather icon-shopping-cart" :before-change="validateStep1">
         <div>
@@ -28,15 +26,12 @@
       <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
         <div class="text-center">
           <!--<VueCardPayment @card-submit="payment"></VueCardPayment>-->
-          <iframe :src=htmlFormContent height="1000" width="1000" class="border-none pt-5"></iframe>
+          <p>Ödeme sayfasına yönlendiriliyorsunuz</p>
           
           
         </div>
       </tab-content>
     </form-wizard>
-    <vs-popup :active.sync="threedpayment">
-      <div v-html="html3dContent"></div>
-      </vs-popup>
   </div>
 </template>
 
@@ -48,33 +43,15 @@ import CheckoutService from '@/services/checkout.service.js'
 import Adres from "@/components/address/Adres.vue";
 import VueCardPayment from "@/components/card/VueCardPayment"
 import PaymentService from "@/services/payment.service.js"
+import i18n from '@/plugins/i18n.js'
 export default {
   data() {
     return {
       counterDanger: false,
-      counterDanger2: false,
-      html3dContent: "",
-      threedpayment: false,
-      htmlFormContent: "",
-      div: `<div id="iyzipay-checkout-form" class="responsive"></div>`
+      counterDanger2: false
     };
   },
   methods: {
-    payment: async function(cardData) {
-
-      this.$store.commit("checkout/ADD_CARD", cardData)
-      //await this.finishShopping()
-
-      const response = await PaymentService.pay(this.$store.state.checkout.order)
-      if (response.status == 200) {
-        if (response.data.status == 'success') {
-          this.html3dContent = response.data.htmlContent
-          this.threedpayment = true
-        }
-      }
-
-
-    },
     validateStep1() {
       if(this.counterDanger)
       {
@@ -104,7 +81,7 @@ export default {
       return this.$store.state.checkout.order.deliveryId != -1
     },
     validateStep3: async function() {
-      if (!this.$store.state.checkout.chooseAddress) {
+      if (!this.$store.state.checkout.billingAddress.id) {
         this.$vs.notify({
           time: 6000,
           title: "HATA!",
@@ -114,26 +91,19 @@ export default {
         return false
       }
 
+      this.$store.commit('checkout/FINISH_ORDER', {userId: this.$store.state.member.id, lang: sessionStorage.getItem('lang') == null ? i18n.locale : sessionStorage.getItem('lang')})
+      !this.$store.state.checkout.order.id 
+        ? await CheckoutService.sendOrder(this.$store.state.checkout.order) 
+        : await CheckoutService.sendOrderUpdate(this.$store.state.checkout.order)
+
+      
       const res = await PaymentService.iyzicoForm(this.$store.state.checkout.order)
-      //this.htmlFormContent = res.data.paymentPageUrl + '&iframe=true'
-      this.htmlFormContent = res.data.paymentPageUrl + '&iframe=true'
-      return this.$store.state.checkout.order.billingId != -1
-    },
-    finishShopping: async function() {
-      var self = this
-      this.$store.commit('checkout/FINISH_ORDER', this.$store.state.member.id)
-      const res = await CheckoutService.sendOrder(this.$store.state.checkout.order)
-      this.$store.dispatch('checkout/createNewBasket')
-      this.$store.dispatch('getCurrentUser')
-      this.$vs.dialog({
-          title: "Başarılı",
-          text: `Siparişiniz alınmıştır ve 5 tane daha figür ekleme hakkı elde ettiniz. Sipariş kodunuz - ${res.orderCode} `,
-          color: "success",
-          acceptText: "Anladım",
-          accept: function() {
-            self.$router.push("/main")
-          }
-      });
+      if (res.data.status === "success") {
+        window.location = res.data.paymentPageUrl
+        return true
+      }
+      // buraya iyzico uyarı bas
+      return false
     }
   },
   components: {
