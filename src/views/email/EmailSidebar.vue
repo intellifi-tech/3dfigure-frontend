@@ -32,14 +32,10 @@
 
 				<div class="flex justify-between items-center cursor-pointer" :class="{'text-primary': mailFilter == 'inbox'}" @click="updateFilter('inbox')">
 					<div class="flex items-center mb-2">
-						<feather-icon icon="MailIcon" :svgClasses="[{'text-primary stroke-current': mailFilter == 'inbox'}, 'h-6 w-6']"></feather-icon>
-						<span class="text-lg ml-3">Yanıtlandı</span>
+						<feather-icon icon="ClockIcon" :svgClasses="[{'text-primary stroke-current': mailFilter == 'inbox'}, 'h-6 w-6']"></feather-icon>
+						<span class="text-lg ml-3">İşleniyor</span>
 					</div>
 					<vs-chip color="primary" v-if="unreadMails('inboxed') > 0">{{ unreadMails('inboxed') }}</vs-chip>
-				</div>
-				<div class="flex items-center mt-4 mb-2 cursor-pointer" :class="{'text-primary': mailFilter == 'sent'}" @click="updateFilter('sent')">
-					<feather-icon icon="SendIcon" :svgClasses="[{'text-primary stroke-current': mailFilter == 'sent'}, 'h-6 w-6']"></feather-icon>
-					<span class="text-lg ml-3">Müşteri Yanıtı</span>
 				</div>
 				<div class="flex justify-between items-center mt-4 cursor-pointer" :class="{'text-primary': mailFilter == 'draft'}" @click="updateFilter('draft')">
 					<div class="flex items-center mb-2">
