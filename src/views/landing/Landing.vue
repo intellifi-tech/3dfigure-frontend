@@ -850,7 +850,7 @@
                     <a href="#">{{n.title}}</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">${{n.price}}</span>
+                    <span class="price">₺{{n.price}}</span>
                   </div>
                   <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
                 </div>
@@ -895,8 +895,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
+                    <span class="price">₺34</span>
+                    <del>₺55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -918,8 +918,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
+                    <span class="price">₺34</span>
+                    <del>₺55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -941,8 +941,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
+                    <span class="price">₺34</span>
+                    <del>₺55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -964,8 +964,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
+                    <span class="price">₺34</span>
+                    <del>₺55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -987,8 +987,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
+                    <span class="price">₺34</span>
+                    <del>₺55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -1010,8 +1010,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">$34</span>
-                    <del>$55</del>
+                    <span class="price">₺34</span>
+                    <del>₺55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>

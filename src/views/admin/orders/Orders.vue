@@ -38,7 +38,7 @@
 
     <vs-td :data="data[indextr].status">{{data[indextr].status}}</vs-td>
 
-    <vs-td :data="data[indextr].totalPriceNet">${{data[indextr].totalPriceNet}}</vs-td>
+    <vs-td :data="data[indextr].totalPriceNet">₺{{data[indextr].totalPriceNet}}</vs-td>
 
     <vs-td :data="data[indextr].userLogin">{{data[indextr].userLogin}}</vs-td>
 
@@ -84,7 +84,7 @@ export default {
     selected: {},
     updatePopup: false,
     newPopup: false,
-    json_orders: {
+    json_fields: {
       "Sipariş Kodu": "orderCode",
       "Kargo Kodu": "cargoCode",
       "Net Kazanç": "totalPriceNet",

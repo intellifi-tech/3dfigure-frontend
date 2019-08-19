@@ -34,7 +34,7 @@
          <div class="col-xl-8 text-md-right pt-2">
             <h6>Fotoğraf yükleme hakkınız: </h6>
             <div class="alignright flex">
-            <span class="text-primary h3 pr-2"> {{limit}} / {{ this.$store.state.member.totalFigure}}</span>
+            <span class="text-primary h3 pr-2"> {{showLimit}} / {{ this.$store.state.member.totalFigure}}</span>
             <vs-button @click="openInvitePopup=true" class="btnDavet" color="#007bff" type="filled" icon="add" size="small" radius></vs-button>
             </div>
           
@@ -163,6 +163,12 @@ export default {
     // call again the method if the route changes
     $route: "initialize"
   },*/
+  computed: {
+    showLimit: async function() {
+      this.userFigures = await FigureService.getUserFigures();
+      return this.$store.state.member.totalFigure - this.userFigures.length
+    }
+  },
   methods: {
     closePopup() {
       this.inviteMail.first = ""

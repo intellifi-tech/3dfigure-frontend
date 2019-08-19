@@ -14,7 +14,7 @@
       </div>
       <h5 class="mb-2 max-ch">{{concept.conceptName}}</h5>
       <p class="text-grey max-ch">{{concept.description}}</p>
-      <p class="text-grey">${{concept.price}}</p>
+      <p class="text-grey">₺{{concept.price}}</p>
       <div class="flex justify-between flex-wrap">
         <vs-button
           v-if="!this.isAdded"

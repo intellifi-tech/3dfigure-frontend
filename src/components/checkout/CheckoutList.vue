@@ -29,7 +29,7 @@
               <span class="col-lg-12 pl-0">{{concept.description}}</span>
             </div>
             <div class="col-lg-3 pt-3 text-center">
-              <h4>${{concept.price}}</h4>
+              <h4>₺{{concept.price}}</h4>
               <feather-icon icon="checkIcon" class="m-0 cursor-pointer"></feather-icon>
               <!--<h6 class="mt-4 text-success" icon-pack="feather" icon="icon-check">Kargo Ücretsiz</h6>-->
               <input
@@ -53,23 +53,23 @@
               <div>
                 <h6 class="my-0">Net Toplam</h6>
               </div>
-              <span class="text-muted">${{this.$store.state.checkout.order.totalPriceNet.toFixed(2)}}</span>
+              <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet.toFixed(2)}}</span>
             </li>
              <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="discountActive">
               <div>
                 <h6 class="my-0">İndirim Tutarı</h6>
               </div>
-              <span class="text-muted">$2.5</span>
+              <span class="text-muted">₺2.5</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
                 <h6 class="my-0">KDV(%18)</h6>
               </div>
-              <span class="text-muted">${{this.$store.state.checkout.order.kdv.toFixed(2)}}</span>
+              <span class="text-muted">₺{{this.$store.state.checkout.order.kdv.toFixed(2)}}</span>
             </li>
             <li class="py-3 d-flex justify-content-between">
               <span>Genel Toplam (USD)</span>
-              <strong>${{this.$store.state.checkout.order.totalPrice.toFixed(2)}}</strong>
+              <strong>₺{{this.$store.state.checkout.order.totalPrice.toFixed(2)}}</strong>
             </li>
             <hr>
              <li class="py-3 justify-content-between">

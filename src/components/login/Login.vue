@@ -1,6 +1,6 @@
 <template>
-  <vx-card>
-    <div slot="no-body" class="full-page-bg-color">
+  <vs-card>
+    <div class="full-page-bg-color">
       <div class="vx-row">
         <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
           <img src="/assets/images/obj/artboard.png" alt="login" class="w-3/5 mx-auto" />
@@ -49,27 +49,16 @@
             <div class="social-login mb-4 flex flex-wrap justify-between">
               <span>{{$t('login.sos')}}</span>
               <div class="social-login-buttons flex">
-                <vs-button
-                  color="#1551b1"
-                  class="mr-4 px-8"
-                  icon="icon icon-facebook"
-                  icon-pack="feather"
-                  @click="faceLogin"
-                ></vs-button>
-                <vs-button
-                  color="#00aaff"
-                  class="px-8"
-                  icon="icon icon-twitter"
-                  icon-pack="feather"
-                ></vs-button>
+
                 <v-facebook-login app-id="455703481829848" @login="logged"></v-facebook-login>
+                <GoogleLogin :params="params" :renderParams="renderParams"></GoogleLogin>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </vx-card>
+  </vs-card>
 </template>
 
 <script>
@@ -81,14 +70,25 @@ import {
 } from "vuelidate/lib/validators";
 import { LoginService } from "@/services/login.service";
 import FacebookService from "@/services/facebook.service";
+ import GoogleLogin from 'vue-google-login';
 import VFacebookLogin from "vue-facebook-login-component";
 
 export default {
   components: {
-    VFacebookLogin
+    VFacebookLogin,
+    GoogleLogin
   },
   data() {
     return {
+      params: {
+                    client_id: "xxxxxx"
+                },
+                // only needed if you want to render the button with the google ui
+                renderParams: {
+                    width: 250,
+                    height: 50,
+                    longtitle: true
+                },
       username: "",
       password: "",
       remember: false,
