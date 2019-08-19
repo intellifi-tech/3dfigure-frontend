@@ -1,14 +1,3 @@
-<!-- =========================================================================================
-	File Name: EmailSidebar.vue
-	Description: Email Application Sidebar(Filter) (Inbox)
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
 	<div class="email__email-sidebar h-full">
 		<div class="m-6 clearfix">

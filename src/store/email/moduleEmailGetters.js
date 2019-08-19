@@ -11,6 +11,7 @@
 
 export default {
 	filteredMails: state => state.mails.filter((mail) => {
+		//TODO TICKET STATUSE GORE FILTER YAPILACAK
 		if (state.mail_filter == 'inbox') return mail.mailType == "inboxed" && ( mail.sender_name.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.sender.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.subject.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.message.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) );
 		if (state.mail_filter == 'sent') return mail.mailType == "sent" && ( mail.sender_name.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.sender.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.subject.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.message.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) );
 		if (state.mail_filter == 'draft') return mail.mailType == "drafted" && ( mail.sender_name.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.sender.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.subject.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) || mail.message.toLowerCase().includes(state.mailSearchQuery.toLowerCase()) );

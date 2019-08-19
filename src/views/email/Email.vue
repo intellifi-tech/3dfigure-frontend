@@ -1,14 +1,3 @@
-<!-- =========================================================================================
-	File Name: Email.vue
-	Description: Email Application (Inbox)
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
 	<div id="email-app">
 
@@ -132,6 +121,7 @@ export default{
 	},
 	methods: {
 		updateOpenMail(mailId) {
+			//TODO TICKET CHAT BILGILERINI AL
 			this.openMailId = mailId;
 			const payload = {mails: [mailId], unread: false};
 			this.$store.dispatch('email/updateMailUnread', payload);
