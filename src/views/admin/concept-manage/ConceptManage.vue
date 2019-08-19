@@ -85,7 +85,7 @@
           
           <vs-input class="mb-4 w-full" label-placeholder="Açıklama" v-model="selected.description"/>
           <span class="vs-component isFocus is-label-placeholder">Kategori</span>
-          <select class="form-control mb-4 w-full" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryIds">
+          <select class="form-control mb-4 w-full focus:shadow-md" multiple :class="{'vs-input-danger':this.$v.selected.categoryId.$invalid}"  v-model="selected.categoryIds">
                 <option
                   :key="index"
                   v-for="(item,index) in categories"
@@ -93,7 +93,7 @@
                 >{{item.name}}</option>
           </select>
           <span class="vs-component isFocus is-label-placeholder">Görünürlük</span>
-          <select class="form-control mb-4" :class="{'vs-input-danger':this.$v.selected.isConceptsVisible.$invalid}" v-model="selected.isConceptsVisible">
+          <select class="form-control mb-4 focus:shadow-md" :class="{'vs-input-danger':this.$v.selected.isConceptsVisible.$invalid}" v-model="selected.isConceptsVisible">
                 <option
                   :value="true"
                 >Evet</option>
@@ -102,7 +102,7 @@
                 >Hayır</option>
           </select>
           <span class="vs-component isFocus is-label-placeholder">Çift Resim Uygunluğu</span>
-          <select class="form-control mb-4" :class="{'vs-input-danger':this.$v.selected.doubleConcept.$invalid}" v-model="selected.doubleConcept">
+          <select class="form-control mb-4 focus:shadow-md" :class="{'vs-input-danger':this.$v.selected.doubleConcept.$invalid}" v-model="selected.doubleConcept">
                 <option
                   :value="true"
                 >Evet</option>
@@ -113,7 +113,7 @@
           <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.selected.showIndex.$invalid}" label-placeholder="Sıralama" v-model="selected.showIndex"/>
           <vs-input class="mb-2 w-full" :class="{'vs-input-danger':this.$v.selected.price.$invalid}" label-placeholder="Fiyat" v-model="selected.price"/>
           <span class="vs-component isFocus is-label-placeholder pl-2 text-sm">Dil</span>
-          <select class="form-control mb-4" v-model="selected.lang">
+          <select class="form-control mb-4 focus:shadow-md " v-model="selected.lang">
                 <option
                   value="TR"
                 >TR</option>
@@ -133,7 +133,7 @@
           
           <vs-input class="mb-6 w-full" label-placeholder="Açıklama" v-model="newConcept.description"/>
           <span class="vs-component isFocus is-label-placeholder">Kategori</span>
-          <select class="form-control mb-4"  multiple :class="{'vs-input-danger':this.$v.newConcept.categoryId.$invalid}"  v-model="newConcept.categoryId">
+          <select class="form-control mb-4 focus:shadow-md"  multiple :class="{'vs-input-danger':this.$v.newConcept.categoryId.$invalid}"  v-model="newConcept.categoryId">
                 <option
                   :key="index"
                   v-for="(item,index) in categories"
@@ -141,7 +141,7 @@
                 >{{item.name}}</option>
           </select>
           <span class="vs-component isFocus is-label-placeholder">Görünürlük</span>
-          <select class="form-control mb-4" :class="{'vs-input-danger':this.$v.newConcept.isConceptsVisible.$invalid}" v-model="newConcept.isConceptsVisible">
+          <select class="form-control mb-4 focus:shadow-md" :class="{'vs-input-danger':this.$v.newConcept.isConceptsVisible.$invalid}" v-model="newConcept.isConceptsVisible">
                 <option
                   :value="true"
                 >Evet</option>
@@ -150,7 +150,7 @@
                 >Hayır</option>
           </select>
           <span class="vs-component isFocus is-label-placeholder">Çift Resim Uygunluğu</span>
-          <select class="form-control mb-4" :class="{'vs-input-danger':this.$v.newConcept.doubleConcept.$invalid}" v-model="newConcept.doubleConcept">
+          <select class="form-control mb-4 focus:shadow-md" :class="{'vs-input-danger':this.$v.newConcept.doubleConcept.$invalid}" v-model="newConcept.doubleConcept">
                 <option
                   :value="true"
                 >Evet</option>
@@ -161,7 +161,7 @@
           <vs-input class="mb-6 w-full" :class="{'vs-input-danger':this.$v.newConcept.showIndex.$invalid}" label-placeholder="Sıralama" v-model="newConcept.showIndex"/>
           <vs-input class="mb-2 w-full" :class="{'vs-input-danger':this.$v.newConcept.price.$invalid}" label-placeholder="Fiyat" v-model="newConcept.price"/>
           <span class="vs-component isFocus is-label-placeholder">Dil</span>
-          <select class="form-control mb-4" v-model="newConcept.lang">
+          <select class="form-control mb-4 focus:shadow-md" v-model="newConcept.lang">
                 <option
                   value="TR"
                 >TR</option>

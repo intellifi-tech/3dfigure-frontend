@@ -101,7 +101,7 @@
               </div>
 
             <p class=" mb-1 ml-1 text-sm">Durumu</p>
-          <select class="w-full form-control-lg select-input mb-4" v-model="coupon.active">
+          <select class="w-full form-control-lg select-input mb-4 focus:shadow-md" v-model="coupon.active">
                 <option
                   :key="index"
                   v-for="(item,index) in lang"
@@ -151,7 +151,7 @@
               </div>
 
             <p class=" mb-1 ml-1 text-sm">Durumu</p>
-          <select class="w-full form-control-lg select-input mb-4" v-model="coupon.active">
+          <select class="w-full form-control-lg select-input mb-4 focus:shadow-md" v-model="coupon.active">
                 <option
                   :key="index"
                   v-for="(item,index) in lang"

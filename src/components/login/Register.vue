@@ -53,7 +53,7 @@
                   />
               </vs-select>-->
               <div :class="{'vs-select-danger': this.$v.sex.$invalid && !first}">
-              <select class="register-sex form-control-lg w-full select-input mb-2 "
+              <select class="register-sex form-control-lg w-full select-input mb-2 focus:shadow-md"
                  v-model="sex">
                 <option
                   :key="index"

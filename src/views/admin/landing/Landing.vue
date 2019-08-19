@@ -97,7 +97,7 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="d3figure.active">
+                <select class="form-control-lg w-full select-input mb-2 focus:shadow-md" v-model="d3figure.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -158,7 +158,7 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="d3figure.active">
+                <select class="form-control-lg w-full select-input mb-2 focus:shadow-md" v-model="d3figure.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -279,7 +279,7 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="concept.active">
+                <select class="form-control-lg w-full select-input mb-2 focus:shadow-md" v-model="concept.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -340,7 +340,7 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="concept.active">
+                <select class="form-control-lg w-full select-input mb-2 focus:shadow-md" v-model="concept.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -450,7 +450,7 @@
                
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="exampleProcess.active">
+                <select class="form-control-lg w-full select-input mb-2 focus:shadow-md" v-model="exampleProcess.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -500,7 +500,7 @@
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="exampleProcess.active">
+                <select class="form-control-lg w-full select-input mb-2 focus:shadow-md" v-model="exampleProcess.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -626,7 +626,7 @@
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="paket.active">
+                <select class="form-control-lg w-full select-input mb-2 focus:shadow-md" v-model="paket.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
@@ -690,7 +690,7 @@
              <div class="vx-row mb-3">
               <div class="vx-col w-full">
                 <span class="text-sm pl-1">Durumu</span>
-                <select class="form-control-lg w-full select-input mb-2" v-model="paket.active">
+                <select class="form-control-lg w-full select-input mb-2 focus:shadow-md" v-model="paket.active">
                 <option
                   :key="index"
                   v-for="(item,index) in activeList"
