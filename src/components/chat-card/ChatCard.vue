@@ -1,10 +1,8 @@
 <template>
             <div class="chat-cards">
-                <!-- TODO bu row CHAT CARD COMPONENTE DONUSTURULECEK -- LATEST MESSAGE -->
                  <div class="vx-row">
 						<div class="vx-col w-full pb-24">
-							<vx-card class="px-4">
-
+							<vx-card class="bg-img px-4 text-black">
 								<!-- MAIL META ROW -->
 								<div class="vx-row w-full border-b border-l-0 border-r-0 border-t-0 border-grey-light border-solid flex justify-between flex items-center">
 									<div class="vx-col sm:w-4/5 w-full flex flex-wrap items-center mb-2">
@@ -13,24 +11,10 @@
 											<h4 class="mb-1">{{ currentMail.sender_name }}</h4>
 											<div class="flex items-center">
 												<span class="text-sm">{{ currentMail.sender }}</span>
-
-												<vs-dropdown vs-custom-content vs-trigger-click class="inline-flex">
-													<feather-icon icon="ChevronDownIcon" style="width:1rem; height:1rem" class="cursor-pointer"></feather-icon>
-
-													<vs-dropdown-menu style="z-index: 40001">
-														<div class="p-2">
-															<p class="text-sm mb-1">Kimden: <span class="font-semibold"> {{ currentMail.sender }} </span></p>
-															<p class="text-sm mb-1">Kime: <span class="font-semibold"> {{ currentMail.to }} </span></p>
-															<p class="text-sm mb-1">Tarih: <span class="font-semibold"> {{ currentMail.time }} {{ currentMail.time }} </span></p>
-															<p class="text-sm mb-1" v-if="currentMail.cc.length">cc: <span class="font-semibold"> {{ currentMail.cc }} </span></p>
-														</div>
-													</vs-dropdown-menu>
-												</vs-dropdown>
 											</div>
 										</div>
 									</div>
 									<div class="vx-col sm:w-1/5 w-full flex sm:flex-col items-center sm:justify-end mb-2">
-											<span class="flex sm:mr-0 mr-2 self-end whitespace-no-wrap">{{ currentMail.time }}</span>
 										<span class="flex self-end sm:mt-2 mt-0 whitespace-no-wrap">{{ currentMail.time }}</span>
 									</div>
 								</div>
@@ -71,7 +55,7 @@ export default {
 	},
 	data() {
 		return {
-
+			mailMessage:"",
 		}
 	},
 	watch: {
@@ -88,5 +72,7 @@ export default {
 </script>
 
 <style>
-
+.chat-cards p{
+	color:#000;
+}
 </style>
