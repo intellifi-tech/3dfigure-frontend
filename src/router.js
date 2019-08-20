@@ -229,12 +229,12 @@ const router = new Router({
 				{
 					path: '/admin/ticket',
 					name: 'ticket-admin',
-					component: () => import('@/views/admin/ticket-admin/TicketAdmin.vue')
+					component: () => import('@/views/email/Email.vue')
 				},
 				{
 					path: '/admin/email',
 					name: 'email-admin',
-					component: () => import('@/views/admin/email-admin/EmailAdmin.vue')
+					component: () => import('@/views/email/Email.vue')
 				},
 				{
 					path: '/admin/landing',

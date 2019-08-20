@@ -46,7 +46,7 @@
 				<div class="flex justify-between items-center cursor-pointer" :class="{'text-primary': mailFilter == status}" @click="updateFilter(status)">
 					<div class="flex items-center mb-2">
 						<feather-icon :icon="status == 'OPEN' ? 'ClockIcon' : status == 'IN_PROGRESS' ? 'Edit2Icon' : 'CheckSquareIcon'" :svgClasses="[{'text-primary stroke-current': mailFilter == status}, 'h-6 w-6']"></feather-icon>
-						<span class="text-lg ml-3">{{status}}</span>
+						<span class="text-lg ml-3">{{status == 'OPEN' ? 'AÇIK' : status == 'IN_PROGRESS' ? 'İŞLENİYOR' : 'KAPALI'}}</span>
 					</div>
 					<!-- <vs-chip color="primary" v-if="unreadMails('inboxed') > 0">{{ unreadMails('inboxed') }}</vs-chip> -->
 				</div>
