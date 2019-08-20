@@ -12,6 +12,26 @@ const TicketService = {
         }
     },
 
+    getAllUsersTickets: async function () {
+        try {
+            const response = await ApiService.get("/tickets/user")
+            return response
+        } catch (error) {
+            return error.response
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
+    getAllTicketChats: async function(ticketId) {
+        try {
+            const response = await ApiService.get("/chats/" + ticketId)
+            return response
+        } catch (error) {
+            return error.response
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
     deleteCategory: async function(id) {
         try {
             const response = await ApiService.delete("/categories/" + id)

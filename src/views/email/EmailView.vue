@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<vs-sidebar click-not-close parent="#email-app-container" :hidden-background="true" class="full-vs-sidebar email-view-sidebar" v-model="isSidebarActive" position-right>
-			<div class="mail-sidebar-content px-0 sm:py-6 pt-2 h-full" v-if="currentMail">
+			<div class="mail-sidebar-content px-0 sm:py-6 pt-2 h-full" v-if="openMail">
 				<div class="flex flex-wrap items-center email-header justify-between md:px-8 px-6 sm:pb-2">
 					<div class="flex mb-4">
 						<div class="flex items-center">
 							<feather-icon icon="ArrowLeftIcon" @click="$emit('closeSidebar')" class="cursor-pointer mr-4" svg-classes="w-6 h-6"></feather-icon>
-							<h3 v-if="currentMail.subject">{{ currentMail.subject }}</h3>
+							<h3 v-if="openMail.subject">{{ openMail.subject }}</h3>
 							<h3 v-else>(no subject)</h3>
 						</div>
 					</div>
@@ -28,12 +28,6 @@
 				</div>-->
 				<!-- /LABEL ROW -->
 				<br>
-
-				<div class="vx-row" v-if="currentMail.replies.length && !showThread">
-					<div class="vx-col w-full">
-						<span class="text-primary font-medium ml-10 cursor-pointer" @click="showThread = true">{{ currentMail.replies.length }} Earlier Messages</span>
-					</div>
-				</div>
 				<div v-if="isSidebarActive">
 
 					<div class="vx-row ">
@@ -47,10 +41,11 @@
 						</div>
 					</div>
 
+<div  v-for="(chat, index) in ticketChatList" :key="index">
 					<chat-card
-					:currentMail=currentMail
+					:currentMail=chat
 					></chat-card>
-					
+</div>
 				</div>
 				</VuePerfectScrollbar>
 			</div>
@@ -60,6 +55,7 @@
 
 <script>
 import ChatCard from '@/components/chat-card/ChatCard.vue'
+import TicketService from "@/services/ticket.service"
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 
 export default{
@@ -68,7 +64,7 @@ export default{
 			type: Array,
 			required: true,
 		},
-		openMailId: {
+		openMail: {
 			required: true,
 			validator: prop => typeof prop === 'number' || prop === null
 		},
@@ -79,12 +75,19 @@ export default{
 	},
 	data() {
 		return {
+			ticketChatList: [],
 			showThread: false,
 			settings: {
 				maxScrollbarLength: 60,
 				wheelSpeed: 0.30,
 			},
 		}
+	},
+	created: async function() {
+			const res = await TicketService.getAllTicketChats();
+			if (res.status < 400) {
+				this.ticketChatList = res.data;
+			}
 	},
 	watch: {
 		isSidebarActive(value) {
@@ -97,8 +100,8 @@ export default{
 		},
 	},
 	computed: {
-		currentMail() {
-			return this.$store.getters['email/getMail'](this.openMailId)
+		currentMail: function() {
+			return this.$store.getters['email/getMail'](this.openMail.id)
 		},
 		labelColor() {
 			return (label) => {
@@ -110,11 +113,11 @@ export default{
 		},
 		currentMailLabels: {
 			get() {
-				return this.$store.getters['email/getMail'](this.openMailId).labels;
+				return this.$store.getters['email/getMail'](this.openMail.id).labels;
 			},
 			set(value) {
 				if(Array.isArray(value)){
-					const payload = { mailId: this.openMailId, value: value }
+					const payload = { mailId: this.openMail.id, value: value }
 					this.$store.dispatch('email/updateMailLabels', payload)
 				}
 			}
@@ -122,7 +125,7 @@ export default{
 	},
 	methods: {
 		toggleIsStarred() {
-			const payload = {mailId: this.openMailId, value : !this.currentMail.isStarred}
+			const payload = {mailId: this.openMail.id, value : !this.currentMail.isStarred}
 			this.$store.dispatch('email/toggleIsMailStarred', payload)
 		},
 		moveTo(to) {
@@ -135,7 +138,7 @@ export default{
 		ChatCard
 	},
 	updated() {
-		if(this.currentMail.unread && this.isSidebarActive) this.$store.dispatch('email/updateMailUnread', {mails: [this.openMailId], unread: false});
+		if(this.currentMail.unread && this.isSidebarActive) this.$store.dispatch('email/updateMailUnread', {mails: [this.openMail.id], unread: false});
 	},
 }
 </script>

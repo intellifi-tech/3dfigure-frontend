@@ -33,7 +33,7 @@ export default {
 		commit('UPDATE_MAIL_LABELS', payload);
 	},
 	setUserTickets: async function({ commit }) {
-		const res = await TicketService.getAllTickets();
+		const res = await TicketService.getAllUsersTickets();
 		if (res.status < 400) {
 			commit('SET_USER_TICKETS', res.data);
 		}

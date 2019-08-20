@@ -26,7 +26,7 @@
 						<!-- EMAILS LIST -->
 						<VuePerfectScrollbar class="email-content-scroll-area ticket-content-custom" :settings="settings" ref="mailListPS">
 							<transition-group name="list-enter-up" class="email__mails" tag="ul" appear>
-								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in tickets" :key="index" @click.stop="updateOpenMail(mail.id)" :style="{transitionDelay: (index * 0.1) + 's'}">
+								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in tickets" :key="String(mail.id)" @click.stop="updateOpenMail(mail)" :style="{transitionDelay: (index * 0.1) + 's'}">
 									<mail-item :mail="mail"></mail-item>
 								</li>
 							</transition-group>
@@ -36,7 +36,7 @@
 					<!-- EMAIL VIEW SIDEBAR -->
 					<email-view
 						:emailTags = "emailTags"
-						:openMailId = "openMailId"
+						:openMail = "openMail"
 						:isSidebarActive = "isSidebarActive"
 						@markUnread = "updateSingleMarkUnread"
 						@removeMail = "removeOpenMail"
@@ -60,6 +60,7 @@ export default{
 	data() {
 		return {
 			openMailId: null,
+			openMail: {},
 			selectedMails: [],
 			isSidebarActive: false,
 			showThread: false,
@@ -123,10 +124,11 @@ export default{
 		},
 	},
 	methods: {
-		updateOpenMail(mailId) {
+		updateOpenMail(mail) {
 			//TODO TICKET CHAT BILGILERINI AL
-			this.openMailId = mailId;
-			const payload = {mails: [mailId], unread: false};
+			this.openMailId = mail.id;
+			this.openMail = mail;
+			const payload = {mails: [mail.id], unread: false};
 			this.$store.dispatch('email/updateMailUnread', payload);
 			this.isSidebarActive = true;
 		},
