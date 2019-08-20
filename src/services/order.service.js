@@ -11,6 +11,15 @@ const OrderService = {
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
+    getAllOrdersForTicket: async function () {
+        try {
+            const response = await ApiService.get("/orders/user/ticket")
+            return response.data
+        } catch (error) {
+            return error.response.status
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
     searchOrder: async function(text) {
         try {
             const response = await ApiService.get("/orders/search/"+text.toUpperCase())
@@ -67,7 +76,7 @@ const OrderService = {
             return error
         }
     },
-        getOrderDetail: async function(id) {
+    getOrderDetail: async function(id) {
         try {
             const response = await ApiService.get("/orders/"+id)
             return response.data

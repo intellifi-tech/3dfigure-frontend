@@ -56,5 +56,8 @@ export default {
 	},
 	SET_USER_TICKETS(state, payload) {
 		state.tickets = payload;
+	},
+	ADD_USER_TICKET(state, ticket) {
+		state.tickets.push(ticket);
 	}
 }

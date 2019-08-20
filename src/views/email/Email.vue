@@ -128,8 +128,8 @@ export default{
 			//TODO TICKET CHAT BILGILERINI AL
 			this.openMailId = mail.id;
 			this.openMail = mail;
-			const payload = {mails: [mail.id], unread: false};
-			this.$store.dispatch('email/updateMailUnread', payload);
+			//const payload = {mails: [mail.id], unread: false};
+			//this.$store.dispatch('email/updateMailUnread', payload);
 			this.isSidebarActive = true;
 		},
 		addToSelectedMails(mailId) {

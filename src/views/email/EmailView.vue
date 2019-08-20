@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<vs-sidebar click-not-close parent="#email-app-container" :hidden-background="true" class="full-vs-sidebar email-view-sidebar" v-model="isSidebarActive" position-right>
-			<div class="mail-sidebar-content px-0 sm:py-6 pt-2 h-full" v-if="openMail">
+			<div class="mail-sidebar-content px-0 sm:py-6 pt-2 h-full" v-if="openMail.id">
 				<div class="flex flex-wrap items-center email-header justify-between md:px-8 px-6 sm:pb-4">
 					<div class="w-flex w-1/2">
 						<div class="flex items-center">
@@ -40,33 +40,29 @@
 				<!-- /LABEL ROW -->
 				<br>
 				<div v-if="isSidebarActive">
-
-					<chat-card
-					:currentMail=chat
-					></chat-card>
-					
+					<div v-for="(chat, index) in ticketChatList" :key="index">
+						<chat-card
+						:currentMail=chat
+						></chat-card>
+					</div>
 					<!-- reply ticket -->
-					<vs-prompt
-						class="email-compose"
-						vs-title="Talep Yanıtla"
-						vs-accept-text= "Gönder"
-						vs-cancel-text="İptal"
-						@vs-cancel="clearFields"
-						@vs-accept="sendMail"
-						@vs-close="clearFields"
-						:vs-is-valid="validateForm"
-						:vs-active.sync="replyPrompt">
-							<VuePerfectScrollbar class="scroll-area p-4" :settings="settings">
-								<form @submit.prevent>
-									<vs-input v-validate="'required|email'" name="mailTo" label-placeholder="Kime" v-model="mailTo" class="w-full mb-6" :danger="!validateForm && mailTo != ''" val-icon-danger="clear" :success="validateForm" val-icon-success="done" :color="validateForm ? 'success' : 'danger'" />
-									<vs-input name="mailSubject" label-placeholder="Konu" v-model="mailSubject" class="w-full mb-6" />
-									<vs-input name="mailCC" label-placeholder="CC" v-model="mailCC" class="w-full mb-6" />
-									<vs-input name="mailBCC" label-placeholder="BCC" v-model="mailBCC" class="w-full mb-6" />
-									<quill-editor v-model="mailMessage" :options="editorOption"></quill-editor>
-									<vs-upload multiple text="Dosya ekle" :show-upload-button="false" />
-								</form>
-							</VuePerfectScrollbar>
-					</vs-prompt>
+		<vs-prompt
+			class="email-compose"
+			vs-title="Mesaj Yaz"
+			vs-accept-text= "Gönder"
+			vs-cancel-text="İptal"
+			@vs-cancel="clearFields"
+			@vs-accept="sendChat"
+			@vs-close="clearFields"
+			:vs-is-valid="validateForm"
+			:vs-active.sync="replyPrompt">
+				<VuePerfectScrollbar class="scroll-area p-4" :settings="settings">
+					<form @submit.prevent>
+						<quill-editor v-model="chat.text" :options="editorOption"></quill-editor>
+						<!--<vs-upload ref="addTicketFiles" v-on:change="handleFileUpload" multiple text="Dosya ekle" :show-upload-button="false" />-->
+					</form>
+				</VuePerfectScrollbar>
+		</vs-prompt>
 					
 				</div>
 				</VuePerfectScrollbar>
@@ -86,6 +82,13 @@ import { quillEditor } from 'vue-quill-editor'
 export default{
 	data() {
 		return {
+			chat: {
+				text: '',
+				sendingDate: new Date(),
+				ticketId: -1,
+				userId: -1
+			},
+				ticketChatList: [],
 				showThread: false,
 				replyPrompt:false,
 				mailTo: '',
@@ -112,30 +115,22 @@ export default{
 		},
 		openMail: {
 			required: true,
-			validator: prop => typeof prop === 'number' || prop === null
+			type: Object
 		},
 		isSidebarActive: {
 			type: Boolean,
 			required: true
 		},
 	},
-	data() {
-		return {
-			ticketChatList: [],
-			showThread: false,
-			settings: {
-				maxScrollbarLength: 60,
-				wheelSpeed: 0.30,
-			},
-		}
-	},
-	created: async function() {
-			const res = await TicketService.getAllTicketChats();
-			if (res.status < 400) {
-				this.ticketChatList = res.data;
-			}
-	},
 	watch: {
+		openMail: async function() {
+			if (this.openMail.id) {
+				const res = await TicketService.getAllTicketChats(this.openMail.id);
+				if (res.status < 400) {
+					this.ticketChatList = res.data;
+				}
+			}
+		},
 		isSidebarActive(value) {
 			if(!value) {
 				this.$emit('closeSidebar');
@@ -150,7 +145,7 @@ export default{
 			return this.$store.getters['email/getMail'](this.openMail.id)
 		},
 		validateForm() {
-			return this.mailTo != '';
+			return this.chat.text != '';
 		},
 		labelColor() {
 			return (label) => {
@@ -189,15 +184,17 @@ export default{
 			this.mailBCC = '';
 			this.mailMessage = '';
 		},
-		sendMail() {},
+		sendChat: async function() {
+			this.chat.ticketId = this.openMail.id;
+			this.chat.userId = this.$store.state.member.id;
+			const resChat = await TicketService.saveChat(this.chat);
+			this.ticketChatList.push(resChat.data);
+		},
 	},
 	components: {
 		quillEditor,
 		VuePerfectScrollbar,
 		ChatCard
-	},
-	updated() {
-		if(this.currentMail.unread && this.isSidebarActive) this.$store.dispatch('email/updateMailUnread', {mails: [this.openMail.id], unread: false});
-	},
+	}
 }
 </script>

@@ -26,5 +26,5 @@ export default {
 	unreadMails: state => (mailType) => state.mails.filter((mail) => mail.mailType == mailType && mail.unread).length,
 	NumdraftMails: state => state.mails.filter((mail) => mail.mailType == 'drafted').length,
 	getMail: state => (mailId) => state.mails.filter((mail) => mail.id == mailId)[0],
-	getTickets: state => state.tickets
+	getTickets: state => state.tickets.filter(ticket => ticket.status == state.mail_filter)
 }

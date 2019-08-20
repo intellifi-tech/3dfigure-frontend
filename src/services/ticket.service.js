@@ -22,13 +22,41 @@ const TicketService = {
         }
     },
 
-    getAllTicketChats: async function(ticketId) {
+    saveTicketImages: async function (files) {
         try {
-            const response = await ApiService.get("/chats/" + ticketId)
+            const response = await ApiService.post("/images/ticket", files)
             return response
         } catch (error) {
             return error.response
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
+    getAllTicketChats: async function(ticketId) {
+        try {
+            const response = await ApiService.get("/chats/ticket/" + ticketId)
+            return response
+        } catch (error) {
+            return error.response
+            // throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
+
+    saveTicket: async function(ticket) {
+        try {
+            const response = await ApiService.post("/tickets", ticket)
+            return response
+        } catch (error) {
+            return error.response
+        }
+    },
+
+    saveChat: async function(chat) {
+        try {
+            const response = await ApiService.post("/chats", chat)
+            return response
+        } catch (error) {
+            return error.response
         }
     },
 
