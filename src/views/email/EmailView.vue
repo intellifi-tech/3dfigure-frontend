@@ -10,6 +10,37 @@
 							<h3 v-else>(no subject)</h3>
 						</div>
 					</div>
+					<div v-if="getAuth=='ROLE_ADMIN'">
+						<div class="email__actions--single flex items-baseline">
+							<!-- MOVE TO DROPDOWN -->
+							<vs-dropdown class="flex cursor-pointer hover:text-primary" vs-custom-content vs-trigger-click>
+								<span>Durum</span>
+								<feather-icon icon="MailIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
+								<vs-dropdown-menu>
+									<ul class="my-2">
+										<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(status, index) in ticketStatusList" :key="index" @click="updateStatus(status)" >
+											<feather-icon :icon="status == 'OPEN' ? 'ClockIcon' : status == 'IN_PROGRESS' ? 'Edit2Icon' : 'CheckSquareIcon'" svg-classes="h-5 w-5" />
+											<span class="ml-3">{{status == 'OPEN' ? 'AÇIK' : status == 'IN_PROGRESS' ? 'İŞLENİYOR' : 'KAPALI'}}</span>
+										</li>
+									</ul>
+								</vs-dropdown-menu>
+							</vs-dropdown>
+
+							<vs-dropdown class="flex cursor-pointer hover:text-primary pl-4 " vs-custom-content vs-trigger-click>
+								<span>Konu</span>
+								<feather-icon icon="TagIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
+								<vs-dropdown-menu>
+									<ul class="my-2">
+										<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(tag, index) in ticketTypeList" :key="index" @click="updateType(tag)" >
+											<div class="ml-1 h-4 w-4 rounded-full mr-4" :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
+											<span class="ml-3">{{tag == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</span>
+										</li>
+										
+									</ul>
+								</vs-dropdown-menu>
+							</vs-dropdown>
+							</div>
+					</div>
 					<div class="w-1/5">
 						<div class="vx-row">
 							<div class="vx-col w-full">
@@ -40,7 +71,7 @@
 				<!-- /LABEL ROW -->
 				<br>
 				<div v-if="isSidebarActive">
-					<div v-for="(chat, index) in ticketChatList" :key="index">
+					<div v-for="(chat, index) in ticketChatList.slice().reverse()" :key="index">
 						<chat-card
 						:currentMail=chat
 						></chat-card>
@@ -82,6 +113,8 @@ import { quillEditor } from 'vue-quill-editor'
 export default{
 	data() {
 		return {
+			ticketTypeList: ['SALES', 'TECHNICAL'],
+			ticketStatusList: ['OPEN', 'IN_PROGRESS', 'CLOSE'],
 			chat: {
 				text: '',
 				sendingDate: new Date(),
@@ -141,6 +174,9 @@ export default{
 		},
 	},
 	computed: {
+		getAuth() {
+			return this.$store.state.member.authorities[0];
+		},
 		currentMail: function() {
 			return this.$store.getters['email/getMail'](this.openMail.id)
 		},
@@ -168,6 +204,21 @@ export default{
 		}
 	},
 	methods: {
+		updateFilter(filterName) {
+			this.$store.dispatch('email/updateMailFilter', filterName);
+			this.$emit('closeSidebar', false);
+		},
+		updateStatus: async function(status) {
+			this.openMail.status = status;
+			await TicketService.updateTicket(this.openMail);
+			this.updateFilter(status);
+		},
+		updateType: async function(type) {
+			this.openMail.type = type;
+			await TicketService.updateTicket(this.openMail);
+			this.updateFilter(type);
+			
+		},
 		toggleIsStarred() {
 			const payload = {mailId: this.openMail.id, value : !this.currentMail.isStarred}
 			this.$store.dispatch('email/toggleIsMailStarred', payload)

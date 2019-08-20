@@ -7,15 +7,15 @@
 								<div class="vx-row w-full border-b border-l-0 border-r-0 border-t-0 border-grey-light border-solid flex justify-between flex items-center">
 									<div class="vx-col sm:w-4/5 w-full flex flex-wrap items-center mb-2">
 										<!-- <vs-avatar class="sender__avatar--single flex-no-shrink mr-3 border-2 border-solid border-white" :src="require(`@/assets/images/portrait/small/${currentMail.img}`)" size="65px"></vs-avatar> -->
-										<!--<div class="flex flex-col my-2">
-											<h4 class="mb-1">{{ currentMail.sender_name }}</h4>
-											<div class="flex items-center">
+										<div class="flex flex-col my-2">
+											<h5 class="mb-1" :class="{'text-primary': currentMail.userId != getUser}">{{ currentMail.firstName + ' ' + currentMail.lastName }}</h5>
+											<!--<div class="flex items-center">
 												<span class="text-sm">{{ currentMail.sender }}</span>
-											</div>
-										</div>-->
+											</div>-->
+										</div>
 									</div>
 									<div class="vx-col sm:w-1/5 w-full flex sm:flex-col items-center sm:justify-end mb-2">
-										<span class="flex self-end sm:mt-2 mt-0 whitespace-no-wrap">{{ currentMail.sendingDate }}</span>
+										<span class="flex self-end sm:mt-2 mt-0 whitespace-no-wrap">{{ getDate }}</span>
 									</div>
 								</div>
 
@@ -56,6 +56,25 @@ export default {
 	computed: {
 		getUser() {
 			return this.$store.state.member.id;
+		},
+		getDate() {
+			function addZero(i) {
+			  if (i < 10) {
+			    i = "0" + i;
+			  }
+			  return i;
+			}
+			
+  			 var weekday = new Array(7);
+  			 weekday[0] = "Pazar";
+  			 weekday[1] = "Pazartesi";
+  			 weekday[2] = "Salı";
+  			 weekday[3] = "Çarşamba";
+  			 weekday[4] = "Perşembe";
+  			 weekday[5] = "Cuma";
+  			 weekday[6] = "Cumartesi";
+			var date = new Date(this.currentMail.sendingDate)
+			return weekday[date.getDay()] + '  ' + addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ' - ' + date.getDate() + '.' + addZero((date.getMonth()+1)) + '.' + (date.getFullYear())
 		}
 	}
 }

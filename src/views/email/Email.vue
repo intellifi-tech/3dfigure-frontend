@@ -11,10 +11,10 @@
 					<div :class="{'sidebar-spacer': clickNotClose}" class="ticket-heightCustom app-fixed-height border border-solid border-grey-light border-r-0 border-t-0 border-b-0">
 
 						<!-- SEARCH BAR -->
-						<div class="flex border items-center app-search-container">
+						<!--<div class="flex border items-center app-search-container">
 							<feather-icon class="md:inline-flex lg:hidden ml-4 mr-4 cursor-pointer" icon="MenuIcon" @click.stop="toggleEmailSidebar(true)"></feather-icon>
 							<vs-input icon="icon-search" size="large" icon-pack="feather" placeholder="Talep Ara" v-model="searchQuery" class="input-no-border w-full no-icon-border" />
-						</div>
+						</div>-->
 
 						<!-- EMAIL ACTION BAR -->
 						<!--<div class="email__actions flex flex-wrap justify-between p-4 border border-r-0 border-l-0 border-solid border-grey-light">

@@ -69,9 +69,9 @@ const TicketService = {
         }
     },
 
-    updateCategory: async function(data) {
+    updateTicket: async function(data) {
         try {
-            const response = await ApiService.put("/categories", data)
+            const response = await ApiService.put("/tickets", data)
             return response.data
         } catch (error) {
             return error
