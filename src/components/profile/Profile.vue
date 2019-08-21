@@ -10,6 +10,7 @@
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
                   <vs-input
+                    :class="{'vs-input-danger':this.$v.member.firstName.$invalid && !first}"
                     class="w-full"
                     :readonly="isUpdated"
                     label-placeholder="Ad"
@@ -18,6 +19,7 @@
                 </div>
                 <div class="vx-col w-1/2">
                   <vs-input
+                    :class="{'vs-input-danger':this.$v.member.lastName.$invalid && !first}"
                     class="w-full"
                     :readonly="isUpdated"
                     label-placeholder="Soyad"
@@ -26,9 +28,10 @@
                 </div>
               </div>
 
-              <div class="vx-row mb-3">
+              <div class="vx-row mb-2">
                 <div class="vx-col w-full">
                   <vs-input
+                    :class="{'vs-input-danger':this.$v.member.login.$invalid && !first}"
                     class="w-full"
                     :readonly="isUpdated"
                     type="email"
@@ -38,8 +41,21 @@
                 </div>
               </div>
               <div class="vx-row mb-4">
+                <div class="vx-col w-full">
+                  <vs-input
+                    :class="{'vs-input-danger':this.$v.member.tcno.$invalid && !first}"
+                    class="w-full"
+                    :readonly="isUpdated"
+                    type="text"
+                    label-placeholder="T.C No"
+                    v-model="member.tcno"
+                  />
+                </div>
+              </div>
+              <div class="vx-row mb-4">
                 <div class="vx-col w-1/2">
                   <datepicker
+                    :class="{'vs-input-danger':this.$v.member.birthDay.$invalid && !first}"
                     class="w-full"
                     :disabled="isUpdated"
                     v-model="member.birthDay"
@@ -294,6 +310,7 @@ import {
   minLength,
   maxLength,
   numeric,
+  email,
   sameAs
 } from "vuelidate/lib/validators";
 import turkish from "@/plugins/turkish_regex.js"
@@ -418,6 +435,7 @@ export default {
       }
     },
     updateMember: async function() {
+      if (!this.$v.member.$invalid) {
       this.member.email = this.member.login;
       await UserService.setMember(this.member);
       await this.$store.dispatch("getCurrentUser");
@@ -428,6 +446,15 @@ export default {
         color:"success",
         text: "Güncelleme Başarılı!"
       });
+      }else {
+         this.first=false;
+        this.$vs.notify({
+          time: 6000,
+          title:"HATA!",
+          text: "Lütfen bilgileri kontrol ediniz.",
+          color: "danger"
+        });
+      }
     },
     clearAddress() {
       this.first=true,
@@ -458,6 +485,13 @@ export default {
     }
   },
   validations: {
+    member:{
+      firstName:{required,turkish},
+      lastName:{required,turkish},
+      login:{required,email},
+      tcno:{required,numeric, minLength: minLength(11),    maxLength: maxLength(11)},
+      birthDay:{required}
+    },
     name: { required, turkish },
     surname: { required, turkish },
     passwordDTO: {

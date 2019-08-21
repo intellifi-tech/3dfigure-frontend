@@ -23,24 +23,21 @@
             </div>
             <div class="clearfix">
               <vs-input
-                label-placeholder="FirstName"
                 :class="{'vs-input-danger':this.$v.firstName.$invalid && !first}"
-                :placeholder="$t('register.first')"
+                :label-placeholder="$t('register.first')"
                 v-model="firstName"
                 class="w-full mb-6"
               />
               <vs-input
-                label-placeholder="LastName"
                 :class="{'vs-input-danger':this.$v.lastName.$invalid && !first}"
-                :placeholder="$t('register.last')"
+                :label-placeholder="$t('register.last')"
                 v-model="lastName"
                 class="w-full mb-6"
               />
               <vs-input
                 type="email"
-                label-placeholder="Email"
                 :class="{'vs-input-danger':this.$v.email.$invalid && !first}"
-                :placeholder="$t('register.email')"
+                :label-placeholder="$t('register.email')"
                 v-model="email"
                 class="w-full mb-3"
               />
@@ -63,18 +60,22 @@
               </select>
               </div>
               <vs-input
+                :class="{'vs-input-danger':this.$v.tcno.$invalid && !first}"
+                :label-placeholder="$t('register.tcno')"
+                v-model="tcno"
+                class="w-full mb-6"
+              />
+              <vs-input
                 type="password"
                 :class="{'vs-input-danger':this.$v.password.$invalid && !first}"
-                label-placeholder="Password"
-                :placeholder="$t('register.pass')"
+                :label-placeholder="$t('register.pass')"
                 v-model="password"
                 class="w-full mb-6"
               />
               <vs-input
                 type="password"
                 :class="{'vs-input-danger':this.$v.confirm.$invalid && !first}"
-                label-placeholder="Confirm Password"
-                :placeholder="$t('register.confirm')"
+                :label-placeholder="$t('register.confirm')"
                 v-model="confirm"
                 class="w-full mb-6"
               />
@@ -100,6 +101,7 @@
 import {
   required,
   email,
+  numeric,
   sameAs,
   minLength,
   maxLength
@@ -112,6 +114,7 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
+      tcno:"",
       password: "",
       confirm: "",
       checkBox1: false,
@@ -142,6 +145,7 @@ export default {
         lastName: this.lastName,
         email: this.email,
         login: this.email,
+        tcno: this.tcno,
         password: this.password,
         sex: this.sex,
         langKey: "en"
@@ -184,6 +188,7 @@ export default {
       this.firstName = "",
       this.lastName = "",
       this.email = "",
+      this.tcno="",
       this.password = "",
       this.confirm = "",
       this.checkBox1 = false,
@@ -194,6 +199,7 @@ export default {
     email: { required, email },
     firstName: { required, minLength: minLength(2), turkish },
     lastName: { required, minLength: minLength(2), turkish },
+    tcno: { required,numeric, minLength: minLength(11),maxLength: maxLength(11) },
     sex: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(15) },
     confirm: { required, sameAsPassword: sameAs("password") }
