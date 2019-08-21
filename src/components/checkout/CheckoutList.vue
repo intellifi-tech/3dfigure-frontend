@@ -68,7 +68,7 @@
               <span class="text-muted">₺{{this.$store.state.checkout.order.kdv.toFixed(2)}}</span>
             </li>
             <li class="py-3 d-flex justify-content-between">
-              <span>Genel Toplam (USD)</span>
+              <span>Genel Toplam (TL)</span>
               <strong>₺{{this.$store.state.checkout.order.totalPrice.toFixed(2)}}</strong>
             </li>
             <hr>

@@ -46,10 +46,9 @@
               <div class="pl-4">
                 <i>{{adres.addressName}}</i>
                 <br>
-                <b>{{adres.person}}</b>
-                - {{adres.mobile}}
+                <b>{{adres.person}}</b> - {{adres.mobile}}
                 <br>
-                {{adres.address}}
+                {{adres.address}} - <span class="font-medium">{{adres.townName}} / {{adres.cityName}}</span>
               </div>
             </vs-radio>
           </li>

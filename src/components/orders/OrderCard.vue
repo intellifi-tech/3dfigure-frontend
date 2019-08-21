@@ -60,12 +60,17 @@
         <div class="row">
           <div class="col-12 p-4" >
             <h3>Sipariş Bilgilendirmesi</h3>
-            <hr class="w-3/4"/>
+            <hr class="w-2/3"/>
             <p class="px-3 pb-5">{{order.information}}</p>
              <vs-list>
                  <vs-list-item title="Sipariş No" :subtitle="order.orderCode"></vs-list-item>
                  <vs-list-item title="Kargo Takip No" :subtitle="!order.cargoCode ? 'Mevcut değil.': order.cargoCode "></vs-list-item>
-                 <vs-list-item title="Teslim Adresi" :subtitle="address.addressName"></vs-list-item>
+                 <vs-list-item title="Teslim Adresi" class="border-none"></vs-list-item>
+                 <div class="pl-2">
+                 <div><b class="text-uppercase text-black">{{address.addressName}}</b></div>
+                 <div class="w-2/3"><p>{{address.address}} </p></div>
+                 <div class="w-2/3"><p>{{address.townName}} / {{address.cityName}}</p></div>
+                 </div>
             </vs-list>
             <div class="col-12"><p class="text-right">Tutar :<span class="h2 text-dark"> ${{conceptPrice}}</span></p></div>
           </div>
