@@ -51,7 +51,7 @@
               <div class="social-login-buttons flex">
 
                 <v-facebook-login class="cursor-pointer" app-id="455703481829848" @login="logged"></v-facebook-login>
-                <GoogleLogin :params="params" :renderParams="renderParams"></GoogleLogin>
+                <!--<GoogleLogin :params="params" :renderParams="renderParams"></GoogleLogin>-->
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@ import {
 } from "vuelidate/lib/validators";
 import { LoginService } from "@/services/login.service";
 import FacebookService from "@/services/facebook.service";
- import GoogleLogin from 'vue-google-login';
+import GoogleLogin from 'vue-google-login';
 import VFacebookLogin from "vue-facebook-login-component";
 
 export default {
