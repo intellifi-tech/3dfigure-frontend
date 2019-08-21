@@ -513,6 +513,10 @@ export default {
   margin:0;
   padding: 4px 0;
 }
+.select-div .chboxSelect span.vs-checkbox{
+    border: 2px solid #fff !important;
+    outline: 1px solid #000 !important;
+}
 .con-img-upload .img-upload img{
     width: 170px;
     height: 170px;
