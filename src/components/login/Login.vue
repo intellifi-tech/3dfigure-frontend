@@ -1,6 +1,6 @@
 <template>
-  <vs-card>
-    <div class="full-page-bg-color">
+  <vx-card>
+    <div slot="no-body" class="full-page-bg-color">
       <div class="vx-row">
         <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
           <img src="/assets/images/obj/artboard.png" alt="login" class="w-3/5 mx-auto" />
@@ -50,7 +50,7 @@
               <span>{{$t('login.sos')}}</span>
               <div class="social-login-buttons flex">
 
-                <v-facebook-login app-id="455703481829848" @login="logged"></v-facebook-login>
+                <v-facebook-login class="cursor-pointer" app-id="455703481829848" @login="logged"></v-facebook-login>
                 <GoogleLogin :params="params" :renderParams="renderParams"></GoogleLogin>
               </div>
             </div>
@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-  </vs-card>
+  </vx-card>
 </template>
 
 <script>
