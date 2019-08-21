@@ -102,12 +102,10 @@ export default {
   },
   methods: {
     logged: async function(response) {
-      debugger;
       if (response.status === "connected") {
         const response2 = await FacebookService.getFaceInfos(
           response.authResponse.accessToken
         );
-        debugger;
         if (response2.status == 200) {
           var credential = {
             mail: response2.data.email,
@@ -139,18 +137,15 @@ export default {
       const this_ = this;
       this.$auth.authenticate("facebook").then(function() {
         let token = this_.$auth.getToken();
-        debugger;
         this_.$http
           .get("https://graph.facebook.com/v3.0/me?fields=id,name,email", {
             params: { access_token: token }
           })
           .then(function(response) {
-            debugger;
             this_.profile = JSON.stringify(response);
             this_.$router.push("/main");
           })
           .catch(function(error) {
-            debugger;
             console.log(error);
           });
       });

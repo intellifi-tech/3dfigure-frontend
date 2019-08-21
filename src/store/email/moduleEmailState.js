@@ -12,8 +12,10 @@
 import emails from '@/views/email/mails'
 
 export default {
+	//TODO DB DATALARI BURADA OLACAK
+	tickets: [],
 	mails: emails,
-	mail_filter: 'inbox',
+	mail_filter: 'OPEN',
 	mailTags: [
 		{ text: 'Personal', value : 'personal', color:"success"},
 		{ text: 'Company', value: 'company', color:"primary"},

@@ -1,24 +1,55 @@
-<!-- =========================================================================================
-	File Name: EmailView.vue
-	Description: Email Application - Single Email View (Inbox)
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
 	<div>
 		<vs-sidebar click-not-close parent="#email-app-container" :hidden-background="true" class="full-vs-sidebar email-view-sidebar" v-model="isSidebarActive" position-right>
-			<div class="mail-sidebar-content px-0 sm:py-6 pt-2 h-full" v-if="currentMail">
-				<div class="flex flex-wrap items-center email-header justify-between md:px-8 px-6 sm:pb-2">
-					<div class="flex mb-4">
+			<div class="mail-sidebar-content px-0 sm:py-6 pt-2 h-full" v-if="openMail.id">
+				<div class="flex flex-wrap items-center email-header justify-between md:px-8 px-6 sm:pb-4">
+					<div class="w-flex w-1/2">
 						<div class="flex items-center">
 							<feather-icon icon="ArrowLeftIcon" @click="$emit('closeSidebar')" class="cursor-pointer mr-4" svg-classes="w-6 h-6"></feather-icon>
-							<h3 v-if="currentMail.subject">{{ currentMail.subject }}</h3>
+							<h3 v-if="openMail.subject">{{ openMail.subject }}</h3>
 							<h3 v-else>(no subject)</h3>
+						</div>
+					</div>
+					<div v-if="getAuth=='ROLE_ADMIN'">
+						<div class="email__actions--single flex items-baseline">
+							<!-- MOVE TO DROPDOWN -->
+							<vs-dropdown class="flex cursor-pointer hover:text-primary" vs-custom-content vs-trigger-click>
+								<span>Durum</span>
+								<feather-icon icon="MailIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
+								<vs-dropdown-menu>
+									<ul class="my-2">
+										<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(status, index) in ticketStatusList" :key="index" @click="updateStatus(status)" >
+											<feather-icon :icon="status == 'OPEN' ? 'ClockIcon' : status == 'IN_PROGRESS' ? 'Edit2Icon' : 'CheckSquareIcon'" svg-classes="h-5 w-5" />
+											<span class="ml-3">{{status == 'OPEN' ? 'AÇIK' : status == 'IN_PROGRESS' ? 'İŞLENİYOR' : 'KAPALI'}}</span>
+										</li>
+									</ul>
+								</vs-dropdown-menu>
+							</vs-dropdown>
+
+							<vs-dropdown class="flex cursor-pointer hover:text-primary pl-4 " vs-custom-content vs-trigger-click>
+								<span>Konu</span>
+								<feather-icon icon="TagIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
+								<vs-dropdown-menu>
+									<ul class="my-2">
+										<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(tag, index) in ticketTypeList" :key="index" @click="updateType(tag)" >
+											<div class="ml-1 h-4 w-4 rounded-full mr-4" :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
+											<span class="ml-3">{{tag == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</span>
+										</li>
+										
+									</ul>
+								</vs-dropdown-menu>
+							</vs-dropdown>
+							</div>
+					</div>
+					<div class="w-1/5">
+						<div class="vx-row">
+							<div class="vx-col w-full">
+									<div class="vx-row">
+										<div class="vx-col w-full flex justify-between">
+											<vs-button @click="replyPrompt=true" class="w-full" color="success" type="filled" icon="reply" size="large">Yanıtla</vs-button>
+										</div>
+									</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -39,146 +70,30 @@
 				</div>-->
 				<!-- /LABEL ROW -->
 				<br>
-
-				<div class="vx-row" v-if="currentMail.replies.length && !showThread">
-					<div class="vx-col w-full">
-						<span class="text-primary font-medium ml-10 cursor-pointer" @click="showThread = true">{{ currentMail.replies.length }} Earlier Messages</span>
-					</div>
-				</div>
 				<div v-if="isSidebarActive">
-
-					<!-- ALL MESSAGES - THREAD -->
-					<div class="vx-row" v-for="threadMail in currentMail.replies.slice().reverse()" :key="threadMail.id" v-if="showThread">
-						<div class="vx-col w-full">
-							<vx-card class="px-4 mb-10">
-
-								<!-- MAIL META ROW -->
-								<div class="vx-row">
-									<div class="vx-col w-full border-b border-l-0 border-r-0 border-t-0 border-grey-light border-solid flex justify-between flex items-center">
-										<div class="flex items-center">
-											<div>
-												<vs-avatar class="sender__avatar--single flex-no-shrink mr-3 border-2 border-solid border-white" :src="require(`@/assets/images/portrait/small/${threadMail.img}`)" size="65px"></vs-avatar>
-											</div>
-											<div class="flex flex-col">
-												<h4 class="mb-1">{{ threadMail.sender_name }}</h4>
-												<div class="flex items-center">
-													<span class="text-sm">{{ threadMail.sender }}</span>
-
-													<vs-dropdown vs-custom-content vs-trigger-click>
-														<feather-icon icon="ChevronDownIcon" style="width:1rem; height:1rem" class="cursor-pointer"></feather-icon>
-
-														<vs-dropdown-menu style="z-index: 40001">
-															<div class="p-2">
-																<p class="text-sm mb-1">Kimden: <span class="font-semibold"> {{ threadMail.sender }} </span></p>
-																<p class="text-sm mb-1">Kime: <span class="font-semibold"> {{ threadMail.to }} </span></p>
-																<p class="text-sm mb-1">Tarih: <span class="font-semibold"> {{ threadMail.time }} {{ threadMail.time | date(true) }} </span></p>
-																<p class="text-sm mb-1" v-if="threadMail.cc.length">cc: <span class="font-semibold"> {{ threadMail.cc }} </span></p>
-															</div>
-														</vs-dropdown-menu>
-													</vs-dropdown>
-												</div>
-											</div>
-										</div>
-										<div class="flex flex-col justify-end">
-											<span class="text-right">{{ threadMail.time | date(true) }}</span>
-											<div class="flex justify-end mt-2">
-												<span class="text-right">{{ threadMail.time }}</span>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- MAIL CONTENT -->
-								<div class="vx-row">
-									<div class="vx-col w-full">
-										<div class="mail__content break-words mt-8 mb-4" v-html="threadMail.message"></div>
-									</div>
-								</div>
-
-								<!-- MAIL ATTACHMENTS -->
-								<div class="vx-row" v-if="threadMail.attachments.length">
-									<div class="vx-col w-full border-b border-l-0 border-r-0 border-t-0 border-grey-light border-solid mb-6 flex">
-										<feather-icon icon="PaperclipIcon"></feather-icon>
-										<span class="block py-4">ATTACHMENTS</span>
-									</div>
-									<div class="flex">
-										<div class="mail__attachment" v-for="(attachment, index) in threadMail.attachments" :key="index">
-											<vs-chip color="primary" class="px-4 py-2 mr-3">{{ attachment }}</vs-chip>
-										</div>
-									</div>
-
-								</div>
-							</vx-card>
-						</div>
+					<div v-for="(chat, index) in ticketChatList.slice().reverse()" :key="index">
+						<chat-card
+						:currentMail=chat
+						></chat-card>
 					</div>
-					<div class="vx-row ">
-						<div class="vx-col w-full pb-10">
-							<vx-card>
-								<div class="vx-row">
-									<div class="vx-col w-full flex justify-between">
-							<vs-button color="dark" type="line" icon="reply">Yanıtla</vs-button>									</div>
-								</div>
-							</vx-card>
-						</div>
-					</div>
-					<!-- LATEST MESSAGE -->
-					<div class="vx-row">
-						<div class="vx-col w-full">
-							<vx-card class="px-4">
-
-								<!-- MAIL META ROW -->
-								<div class="vx-row w-full border-b border-l-0 border-r-0 border-t-0 border-grey-light border-solid flex justify-between flex items-center">
-									<div class="vx-col sm:w-4/5 w-full flex flex-wrap items-center mb-2">
-										<vs-avatar class="sender__avatar--single flex-no-shrink mr-3 border-2 border-solid border-white" :src="require(`@/assets/images/portrait/small/${currentMail.img}`)" size="65px"></vs-avatar>
-										<div class="flex flex-col my-2">
-											<h4 class="mb-1">{{ currentMail.sender_name }}</h4>
-											<div class="flex items-center">
-												<span class="text-sm">{{ currentMail.sender }}</span>
-
-												<vs-dropdown vs-custom-content vs-trigger-click class="inline-flex">
-													<feather-icon icon="ChevronDownIcon" style="width:1rem; height:1rem" class="cursor-pointer"></feather-icon>
-
-													<vs-dropdown-menu style="z-index: 40001">
-														<div class="p-2">
-															<p class="text-sm mb-1">Kimden: <span class="font-semibold"> {{ currentMail.sender }} </span></p>
-															<p class="text-sm mb-1">Kime: <span class="font-semibold"> {{ currentMail.to }} </span></p>
-															<p class="text-sm mb-1">Tarih: <span class="font-semibold"> {{ currentMail.time }} {{ currentMail.time }} </span></p>
-															<p class="text-sm mb-1" v-if="currentMail.cc.length">cc: <span class="font-semibold"> {{ currentMail.cc }} </span></p>
-														</div>
-													</vs-dropdown-menu>
-												</vs-dropdown>
-											</div>
-										</div>
-									</div>
-									<div class="vx-col sm:w-1/5 w-full flex sm:flex-col items-center sm:justify-end mb-2">
-											<span class="flex sm:mr-0 mr-2 self-end whitespace-no-wrap">{{ currentMail.time }}</span>
-										<span class="flex self-end sm:mt-2 mt-0 whitespace-no-wrap">{{ currentMail.time }}</span>
-									</div>
-								</div>
-
-								<!-- MAIL CONTENT -->
-								<div class="vx-row">
-									<div class="vx-col w-full">
-										<div class="mail__content break-words mt-8 mb-4" v-html="currentMail.message"></div>
-									</div>
-								</div>
-
-								<!-- MAIL ATTACHMENTS -->
-								<div class="vx-row" v-if="currentMail.attachments.length">
-									<div class="vx-col w-full border-b border-l-0 border-r-0 border-t-0 border-grey-light border-solid mb-6 flex">
-										<feather-icon icon="PaperclipIcon"></feather-icon>
-										<span class="block py-4">Ekler</span>
-									</div>
-									<div class="flex">
-										<div class="mail__attachment" v-for="(attachment, index) in currentMail.attachments" :key="index">
-											<vs-chip color="primary" class="px-4 py-2 mr-3">{{ attachment }}</vs-chip>
-										</div>
-									</div>
-
-								</div>
-							</vx-card>
-						</div>
-					</div>
+					<!-- reply ticket -->
+		<vs-prompt
+			class="email-compose"
+			vs-title="Mesaj Yaz"
+			vs-accept-text= "Gönder"
+			vs-cancel-text="İptal"
+			@vs-cancel="clearFields"
+			@vs-accept="sendChat"
+			@vs-close="clearFields"
+			:vs-is-valid="validateForm"
+			:vs-active.sync="replyPrompt">
+				<VuePerfectScrollbar class="scroll-area p-4" :settings="settings">
+					<form @submit.prevent>
+						<quill-editor v-model="chat.text" :options="editorOption"></quill-editor>
+						<!--<vs-upload ref="addTicketFiles" v-on:change="handleFileUpload" multiple text="Dosya ekle" :show-upload-button="false" />-->
+					</form>
+				</VuePerfectScrollbar>
+		</vs-prompt>
 					
 				</div>
 				</VuePerfectScrollbar>
@@ -188,33 +103,67 @@
 </template>
 
 <script>
+import ChatCard from '@/components/chat-card/ChatCard.vue'
+import TicketService from "@/services/ticket.service"
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import { quillEditor } from 'vue-quill-editor'
 
 export default{
+	data() {
+		return {
+			ticketTypeList: ['SALES', 'TECHNICAL'],
+			ticketStatusList: ['OPEN', 'IN_PROGRESS', 'CLOSE'],
+			chat: {
+				text: '',
+				sendingDate: new Date(),
+				ticketId: -1,
+				userId: -1
+			},
+				ticketChatList: [],
+				showThread: false,
+				replyPrompt:false,
+				mailTo: '',
+				mailSubject: '',
+				mailCC: '',
+				mailBCC: '',
+				mailMessage: '',
+				settings: {
+					maxScrollbarLength: 60,
+					wheelSpeed: 0.30,
+			},
+			editorOption: {
+				modules: {
+					toolbar: [['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code-block'], [{ 'header': 1 }, { 'header': 2 }], [{ 'list': 'ordered'}, { 'list': 'bullet' }], [{ 'font': [] }],],
+				},
+				placeholder: 'İleti'
+			},
+		}
+	},
 	props: {
 		emailTags: {
 			type: Array,
 			required: true,
 		},
-		openMailId: {
+		openMail: {
 			required: true,
-			validator: prop => typeof prop === 'number' || prop === null
+			type: Object
 		},
 		isSidebarActive: {
 			type: Boolean,
 			required: true
 		},
 	},
-	data() {
-		return {
-			showThread: false,
-			settings: {
-				maxScrollbarLength: 60,
-				wheelSpeed: 0.30,
-			},
-		}
-	},
 	watch: {
+		openMail: async function() {
+			if (this.openMail.id) {
+				const res = await TicketService.getAllTicketChats(this.openMail.id);
+				if (res.status < 400) {
+					this.ticketChatList = res.data;
+				}
+			}
+		},
 		isSidebarActive(value) {
 			if(!value) {
 				this.$emit('closeSidebar');
@@ -225,8 +174,14 @@ export default{
 		},
 	},
 	computed: {
-		currentMail() {
-			return this.$store.getters['email/getMail'](this.openMailId)
+		getAuth() {
+			return this.$store.state.member.authorities[0];
+		},
+		currentMail: function() {
+			return this.$store.getters['email/getMail'](this.openMail.id)
+		},
+		validateForm() {
+			return this.chat.text != '';
 		},
 		labelColor() {
 			return (label) => {
@@ -238,31 +193,59 @@ export default{
 		},
 		currentMailLabels: {
 			get() {
-				return this.$store.getters['email/getMail'](this.openMailId).labels;
+				return this.$store.getters['email/getMail'](this.openMail.id).labels;
 			},
 			set(value) {
 				if(Array.isArray(value)){
-					const payload = { mailId: this.openMailId, value: value }
+					const payload = { mailId: this.openMail.id, value: value }
 					this.$store.dispatch('email/updateMailLabels', payload)
 				}
 			}
 		}
 	},
 	methods: {
+		updateFilter(filterName) {
+			this.$store.dispatch('email/updateMailFilter', filterName);
+			this.$emit('closeSidebar', false);
+		},
+		updateStatus: async function(status) {
+			this.openMail.status = status;
+			await TicketService.updateTicket(this.openMail);
+			this.updateFilter(status);
+		},
+		updateType: async function(type) {
+			this.openMail.type = type;
+			await TicketService.updateTicket(this.openMail);
+			this.updateFilter(type);
+			
+		},
 		toggleIsStarred() {
-			const payload = {mailId: this.openMailId, value : !this.currentMail.isStarred}
+			const payload = {mailId: this.openMail.id, value : !this.currentMail.isStarred}
 			this.$store.dispatch('email/toggleIsMailStarred', payload)
 		},
 		moveTo(to) {
 			this.$emit('closeSidebar')
 			this.$emit('moveTo', to)
-		}
+		},
+		// reply ticket methods
+		clearFields() {
+			this.mailTo = '';
+			this.mailSubject = '';
+			this.mailCC = '';
+			this.mailBCC = '';
+			this.mailMessage = '';
+		},
+		sendChat: async function() {
+			this.chat.ticketId = this.openMail.id;
+			this.chat.userId = this.$store.state.member.id;
+			const resChat = await TicketService.saveChat(this.chat);
+			this.ticketChatList.push(resChat.data);
+		},
 	},
 	components: {
-		VuePerfectScrollbar
-	},
-	updated() {
-		if(this.currentMail.unread && this.isSidebarActive) this.$store.dispatch('email/updateMailUnread', {mails: [this.openMailId], unread: false});
-	},
+		quillEditor,
+		VuePerfectScrollbar,
+		ChatCard
+	}
 }
 </script>

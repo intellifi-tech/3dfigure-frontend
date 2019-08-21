@@ -115,7 +115,7 @@ const router = new Router({
 				},
 				{
 					path: '/ticket',
-					name: 'email',
+					name: 'ticket',
 					component: () => import('./views/email/Email.vue')
 				},
 				{
@@ -165,10 +165,10 @@ const router = new Router({
 			]
 		},
 		{
-			path: '',
+			path: '/admin',
 			component: () => import('@/layouts/admin/Admin.vue'),
 			meta: {
-				public: false
+				public: false,
 			},
 			children: [
 				{
@@ -229,13 +229,13 @@ const router = new Router({
 				{
 					path: '/admin/ticket',
 					name: 'ticket-admin',
-					component: () => import('@/views/admin/ticket-admin/TicketAdmin.vue')
-				},
+					component: () => import('@/views/email/Email.vue')
+				},/*
 				{
 					path: '/admin/email',
 					name: 'email-admin',
-					component: () => import('@/views/admin/email-admin/EmailAdmin.vue')
-				},
+					component: () => import('@/views/email/Email.vue')
+				},*/
 				{
 					path: '/admin/landing',
 					name: 'landing-admin',

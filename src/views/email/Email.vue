@@ -1,14 +1,3 @@
-<!-- =========================================================================================
-	File Name: Email.vue
-	Description: Email Application (Inbox)
-	----------------------------------------------------------------------------------------
-	Item Name: Vuesax Admin - VueJS Dashboard Admin Template
-	Version: 1.1
-	Author: Pixinvent
-	Author URL: hhttp://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
 	<div id="email-app">
 
@@ -22,10 +11,10 @@
 					<div :class="{'sidebar-spacer': clickNotClose}" class="ticket-heightCustom app-fixed-height border border-solid border-grey-light border-r-0 border-t-0 border-b-0">
 
 						<!-- SEARCH BAR -->
-						<div class="flex border items-center app-search-container">
+						<!--<div class="flex border items-center app-search-container">
 							<feather-icon class="md:inline-flex lg:hidden ml-4 mr-4 cursor-pointer" icon="MenuIcon" @click.stop="toggleEmailSidebar(true)"></feather-icon>
 							<vs-input icon="icon-search" size="large" icon-pack="feather" placeholder="Talep Ara" v-model="searchQuery" class="input-no-border w-full no-icon-border" />
-						</div>
+						</div>-->
 
 						<!-- EMAIL ACTION BAR -->
 						<!--<div class="email__actions flex flex-wrap justify-between p-4 border border-r-0 border-l-0 border-solid border-grey-light">
@@ -37,8 +26,8 @@
 						<!-- EMAILS LIST -->
 						<VuePerfectScrollbar class="email-content-scroll-area ticket-content-custom" :settings="settings" ref="mailListPS">
 							<transition-group name="list-enter-up" class="email__mails" tag="ul" appear>
-								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in mails" :key="String(mailFilter) + String(mail.id)" @click.stop="updateOpenMail(mail.id)" :style="{transitionDelay: (index * 0.1) + 's'}">
-									<mail-item :mail="mail" :isMailOpen="isMailOpen(mail.id)" :isSelected="isMailSelected(mail.id)" @addToSelected="addToSelectedMails" @removeSelected="removeSelectedMail"></mail-item>
+								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in tickets" :key="String(mail.id)" @click.stop="updateOpenMail(mail)" :style="{transitionDelay: (index * 0.1) + 's'}">
+									<mail-item :mail="mail"></mail-item>
 								</li>
 							</transition-group>
 						</VuePerfectScrollbar>
@@ -47,14 +36,14 @@
 					<!-- EMAIL VIEW SIDEBAR -->
 					<email-view
 						:emailTags = "emailTags"
-						:openMailId = "openMailId"
+						:openMail = "openMail"
 						:isSidebarActive = "isSidebarActive"
 						@markUnread = "updateSingleMarkUnread"
 						@removeMail = "removeOpenMail"
 						@previousMail = "previousMail"
 						@nextMail = "nextMail"
 						@moveTo = "moveCurrentTo"
-						@closeSidebar = "closeMailViewSidebar">						
+						@closeSidebar = "closeMailViewSidebar">
 					</email-view>
 			</div>
 		</div>
@@ -71,6 +60,7 @@ export default{
 	data() {
 		return {
 			openMailId: null,
+			openMail: {},
 			selectedMails: [],
 			isSidebarActive: false,
 			showThread: false,
@@ -119,6 +109,9 @@ export default{
 		mails() {
 			return this.$store.getters['email/filteredMails'];
 		},
+		tickets() {
+			return this.$store.getters['email/getTickets'];
+		},
 		isMailOpen() {
 			return (mailId) => mailId == this.openMailId;
 		},
@@ -131,10 +124,12 @@ export default{
 		},
 	},
 	methods: {
-		updateOpenMail(mailId) {
-			this.openMailId = mailId;
-			const payload = {mails: [mailId], unread: false};
-			this.$store.dispatch('email/updateMailUnread', payload);
+		updateOpenMail(mail) {
+			//TODO TICKET CHAT BILGILERINI AL
+			this.openMailId = mail.id;
+			this.openMail = mail;
+			//const payload = {mails: [mail.id], unread: false};
+			//this.$store.dispatch('email/updateMailUnread', payload);
 			this.isSidebarActive = true;
 		},
 		addToSelectedMails(mailId) {
@@ -217,11 +212,12 @@ export default{
 		EmailView,
 		VuePerfectScrollbar
 	},
-	created() {
+	created: async function() {
 		this.$nextTick(() => {
 			window.addEventListener('resize', this.handleWindowResize);
 		})
 		this.setSidebarWidth();
+		this.$store.dispatch('email/setUserTickets');
 	},
 	beforeDestroy: function () {
 		window.removeEventListener('resize', this.handleWindowResize)

@@ -7,7 +7,7 @@
   Author: Pixinvent
   Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-
+import TicketService from "@/services/ticket.service"
 
 export default {
 	setMailSearchQuery({ commit }, query){
@@ -23,6 +23,7 @@ export default {
 		commit('MOVE_MAILS_TO', payload);
 	},
 	updateMailUnread({ commit }, payload) {
+		//TODO UNREAD GUNCELLEMESI BURADA YAPILACAK
 		commit('UPDATE_MAIL_UNREAD', payload);
 	},
 	addLabelToMails({ commit }, payload) {
@@ -31,4 +32,10 @@ export default {
 	updateMailLabels({ commit }, payload) {
 		commit('UPDATE_MAIL_LABELS', payload);
 	},
+	setUserTickets: async function({ commit }) {
+		const res = await TicketService.getAllUsersTickets();
+		if (res.status < 400) {
+			commit('SET_USER_TICKETS', res.data);
+		}
+	}
 }

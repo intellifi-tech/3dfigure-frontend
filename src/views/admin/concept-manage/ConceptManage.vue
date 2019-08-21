@@ -184,7 +184,6 @@ import JsonExcel from 'vue-json-excel'
 import {
   required,
   numeric,
-  minLength,
   maxLength
 } from "vuelidate/lib/validators";
 

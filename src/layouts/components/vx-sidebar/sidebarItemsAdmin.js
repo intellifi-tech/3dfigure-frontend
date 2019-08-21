@@ -88,11 +88,11 @@ export default [
 				name: "Destek",
 				slug: "ticket-admin",
 			},
-			{
+			/*{
 				url: "/admin/email",
 				name: "Posta",
 				slug: "email-admin",
-			}
+			}*/
 		]
 	}	
 ]
