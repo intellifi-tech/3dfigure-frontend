@@ -120,7 +120,9 @@ import AvatarSdkService from "@/services/avatarsdk.service";
 import {
   required,
   email,
-  sameAs
+  sameAs,
+  not,
+  and
 } from "vuelidate/lib/validators";
 export default {
   data() {
@@ -158,14 +160,14 @@ export default {
     // fetch the data when the view is created and the data is
     // already being observed
     await this.initialize();
+    this.userFigures = await FigureService.getUserFigures();
   },
   /*watch: {
     // call again the method if the route changes
     $route: "initialize"
   },*/
   computed: {
-    showLimit: async function() {
-      this.userFigures = await FigureService.getUserFigures();
+    showLimit: function() {
       return this.$store.state.member.totalFigure - this.userFigures.length
     }
   },
@@ -324,9 +326,9 @@ export default {
   },
   validations: {
     inviteMail: {
-      first: {required,},
-      second: {required, sameAsPassword: not(sameAs("first"))},
-      third: {required, email}
+      first: {required, email},
+      second: {required, email, sameAsPassword: not(sameAs("first"))},
+      third: {required, email, sameAsPassword: and(not(sameAs("first")), not(sameAs("second")))}
     }
   },
   components: {
