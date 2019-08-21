@@ -35,7 +35,7 @@
             <h6>Fotoğraf yükleme hakkınız: </h6>
             <div class="alignright flex">
             <span class="text-primary h3 pr-2"> {{showLimit}} / {{ this.$store.state.member.totalFigure}}</span>
-            <vs-button @click="openInvitePopup=true" class="btnDavet" color="#007bff" type="filled" icon="add" size="small" radius></vs-button>
+            <vs-button @click="openInvitePopup=true" class="btnDavet" color="success" type="filled" icon="add" size="small" radius></vs-button>
             </div>
           
          </div>
@@ -86,14 +86,14 @@
                 <vs-input
                   type="text"
                   class="w-full"
-                  :class="{'vs-input-danger': this.$v.inviteMail.first.$invalid && openInvitePopup}"
+                  :class="{'vs-input-danger': this.$v.inviteMail.second.$invalid && openInvitePopup}"
                   label-placeholder="2.E-posta"
                   v-model="inviteMail.second"
                 />
                 <vs-input
                   type="text"
                   class="w-full"
-                  :class="{'vs-input-danger': this.$v.inviteMail.first.$invalid && openInvitePopup}"
+                  :class="{'vs-input-danger': this.$v.inviteMail.third.$invalid && openInvitePopup}"
                   label-placeholder="3.E-posta"
                   v-model="inviteMail.third"
                 />
