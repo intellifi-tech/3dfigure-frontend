@@ -164,7 +164,27 @@ export default{
 			this.$emit('closeSidebar', false);
 		},
 		saveTicket: async function() {
-			let formData = new FormData();
+			const resTicket = await TicketService.saveTicket(this.ticket);
+			if (resTicket.status < 400) {
+				this.chat.ticketId = resTicket.data.id;
+				this.chat.userId = this.$store.state.member.id;
+				const resChat = await TicketService.saveChat(this.chat);
+				if (resChat.status < 400 && this.file) {
+					let formData = new FormData();
+					formData.append('tickets', this.file);
+					formData.append('ticketId', resTicket.data.id);
+					const res = await TicketService.saveTicketImages(formData);
+					if (res.status >= 400) {
+						this.$vs.notify({
+          					time: 6000,
+          					title: "Başarısız!",
+          					text: "Ticket açıldı fakat dosya yüklenemedi",
+          					color: "danger"
+        				});
+					}
+				}
+			}
+			/*let formData = new FormData();
 			formData.append('tickets', this.file);
 			if (this.file) {
 				const res = await TicketService.saveTicketImages(formData);
@@ -191,7 +211,7 @@ export default{
 					this.chat.userId = this.$store.state.member.id;
 					await TicketService.saveChat(this.chat);
 				}
-			}
+			}*/
 		},
 		// compose mail methods
 		clearFields() {
