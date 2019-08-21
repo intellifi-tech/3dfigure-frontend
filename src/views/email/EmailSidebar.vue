@@ -35,8 +35,8 @@
 						</select>
 						<vs-input label-placeholder="Konu" v-model="ticket.subject" class="w-full mb-6" />
 						<quill-editor v-model="chat.text" :options="editorOption"></quill-editor>
-						<input type="file" multiple ref="addTicketFiles" v-on:change="handleFileUpload"
-                			accept="*/*" class="input-file" />
+						<!--<input type="file" multiple ref="addTicketFiles" v-on:change="handleFileUpload"
+                			accept="*/*" class="input-file" />-->
 						<!--<vs-upload ref="addTicketFiles" v-on:change="handleFileUpload" multiple text="Dosya ekle" :show-upload-button="false" />-->
 					</form>
 				</VuePerfectScrollbar>
