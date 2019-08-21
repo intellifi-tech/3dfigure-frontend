@@ -1821,6 +1821,10 @@ export default {
       // this.$router.push("/register");
     },
     openLogin() {
+      var isLogin = this.$store.state.member.firstName
+      if(isLogin!=null && isLogin!=" "){
+         this.$router.push("/main")
+      }
       this.$store.commit("UPDATE_FORGOT_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
       this.$store.commit("UPDATE_LOGIN_POPUP", true);
