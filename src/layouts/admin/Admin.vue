@@ -200,7 +200,7 @@ export default {
     TabContent
   },
    beforeCreate: async function() {
-debugger
+
    await this.$store.dispatch('getCurrentUser');
    
    }

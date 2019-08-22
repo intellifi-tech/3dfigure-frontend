@@ -120,7 +120,7 @@ const router = new Router({
 					name: 'ticket',
 					component: () => import('./views/email/Email.vue'),
 					beforeEnter: async (to, from, next) => {
-						debugger
+						
 						await store.dispatch("getCurrentUser")
 						next()
                     }
@@ -240,7 +240,7 @@ const router = new Router({
 					name: 'ticket-admin',
 					component: () => import('@/views/email/Email.vue'),
 					beforeEnter: async (to, from, next) => {
-						debugger
+						
 						await store.dispatch("getCurrentUser")
 						next()
                     }

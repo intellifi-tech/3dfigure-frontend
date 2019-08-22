@@ -6,7 +6,7 @@
 					<div class="w-flex w-1/2">
 						<div class="flex items-center">
 							<feather-icon icon="ArrowLeftIcon" @click="$emit('closeSidebar')" class="cursor-pointer mr-4" svg-classes="w-6 h-6"></feather-icon>
-							<h3 v-if="openMail.subject">{{ openMail.subject }}</h3>
+							<h3 v-if="openMail.subject" class="text-uppercase">{{ openMail.subject }}</h3>
 							<h3 v-else>(no subject)</h3>
 						</div>
 					</div>
@@ -35,7 +35,6 @@
 											<div class="ml-1 h-4 w-4 rounded-full mr-4" :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
 											<span class="ml-3">{{tag == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</span>
 										</li>
-										
 									</ul>
 								</vs-dropdown-menu>
 							</vs-dropdown>
@@ -56,19 +55,22 @@
 
 				<VuePerfectScrollbar class="scroll-area md:px-8 pt-4 px-6" :settings="settings">
 				<!-- LABEL ROW -->
-				<!--<div class="vx-row">
+				<div class="vx-row">
 					<div class="vx-col w-full">
-						<div class="email__labels--single flex ml-10 items-center mt-2">
-							<transition-group name="list" tag="div" class="flex">
-								<div v-for="label in currentMail.labels" :key="label" class="open-mail-label flex items-center mr-4">
-									<div class="h-3 w-3 rounded-full mr-1" :class="'bg-' + labelColor(label)"></div>
-									<span class="text-sm">{{ label }}</span>
-								</div>
-							</transition-group>
+						<div class="email__labels--single flex justify-between ml-4 border-black border-bottom items-center mt-2">
+							<div class="mail__message truncate pt-2">
+								<span class="font-light h6">İlgili Sipariş Kodu : </span><span class="h6 text-black ">{{ openMail.orderCode}}</span>
+							</div>
+							<div class="flex items-baseline pt-3">
+								<h6>{{openMail.status == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</h6>
+								<div class="mx-3 h-4 w-4 rounded-full " :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
+							</div>
 						</div>
 					</div>
-				</div>-->
+				</div>
 				<!-- /LABEL ROW -->
+				<br>
+
 				<br>
 				<div v-if="isSidebarActive">
 					<div v-for="(chat, index) in ticketChatList.slice().reverse()" :key="index">

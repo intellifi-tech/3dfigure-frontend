@@ -217,7 +217,7 @@ export default{
 			window.addEventListener('resize', this.handleWindowResize);
 		})
 		this.setSidebarWidth();
-		debugger
+		
 		if(this.$store.state.member.authorities[0]=="ROLE_ADMIN"){
 			
 			await this.$store.dispatch('email/setAdminTickets');

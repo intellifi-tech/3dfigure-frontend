@@ -67,7 +67,7 @@
 			</div>
 			<vs-divider></vs-divider>
 			<div class="email__labels px-6 py-4" v-if="userAuth=='ROLE_ADMIN'">
-				<h5 class="mb-8">Konular</h5>
+				<h5 class="mb-8">Departmanlar</h5>
 				<div class="email__lables-list">
 					<div class="email__label flex items-center mb-4 cursor-pointer" :class="{'text-primary': mailFilter == tag}" v-for="(tag, index) in ticketTypeList" :key="index" @click="updateFilter(tag)">
 						<div class="ml-1 h-4 w-4 rounded-full mr-4" :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
@@ -101,7 +101,7 @@ export default{
 	created: async function() {
 		const res = await OrderService.getAllOrdersForTicket();
 		this.orderList = res.content;
-		debugger
+		
 		this.userAuth= this.$store.state.member.authorities[0];
 	},
 	data() {
@@ -155,7 +155,7 @@ export default{
 			return this.$store.getters['email/NumdraftMails'];
 		},
 		/*getAuth() {
-			debugger
+			
 			return this.$store.state.member.authorities[0];
 		}*/
 	},

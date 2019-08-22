@@ -8,7 +8,7 @@
 			<div class="flex w-full justify-between items-start">
 				<div class="mail__details">
 					<!-- <h5 class="mb-1" :class="{'font-semibold': mail.unread}">{{ mail.sender_name }}</h5> -->
-					<span v-if="mail.subject" class="text-dark font-medium">{{ mail.subject }}</span>
+					<span v-if="mail.subject" class="text-dark font-medium text-uppercase">{{ mail.subject }}</span>
 					<span v-else>(no subject)</span>
 				</div>
 

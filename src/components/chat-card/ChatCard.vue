@@ -8,7 +8,7 @@
 									<div class="vx-col sm:w-4/5 w-full flex flex-wrap items-center mb-2">
 										<!-- <vs-avatar class="sender__avatar--single flex-no-shrink mr-3 border-2 border-solid border-white" :src="require(`@/assets/images/portrait/small/${currentMail.img}`)" size="65px"></vs-avatar> -->
 										<div class="flex flex-col my-2">
-											<h5 class="mb-1" :class="{'text-primary': currentMail.userId != getUser}">{{ currentMail.firstName + ' ' + currentMail.lastName }}</h5>
+											<h5 class="mb-1 text-uppercase" :class="{'text-primary': currentMail.userId != getUser}">{{ currentMail.firstName + ' ' + currentMail.lastName }}</h5>
 											<!--<div class="flex items-center">
 												<span class="text-sm">{{ currentMail.sender }}</span>
 											</div>-->
