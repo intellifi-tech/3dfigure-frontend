@@ -37,5 +37,11 @@ export default {
 		if (res.status < 400) {
 			commit('SET_USER_TICKETS', res.data);
 		}
+	},
+	setAdminTickets: async function({ commit }) {
+		const res = await TicketService.getAllTickets();
+		if (res.status < 400) {
+			commit('SET_USER_TICKETS', res.data);
+		}
 	}
 }

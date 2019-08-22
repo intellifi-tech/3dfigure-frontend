@@ -199,8 +199,10 @@ export default {
     FormWizard,
     TabContent
   },
-   created: async function() {
+   beforeCreate: async function() {
+debugger
    await this.$store.dispatch('getCurrentUser');
+   
    }
 };
 </script>

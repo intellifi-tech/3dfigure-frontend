@@ -320,7 +320,16 @@ export default {
   methods: {
     logout: function() {
       LoginService.logout()
+      this.$vs.loading({
+          text: "Yükleniyor...",
+          clickEffect: true,
+          textAfter: true
+        });
+        setTimeout(() => {
+          this.$vs.loading.close();}, 5000)
       this.$router.push("/")
+      location.reload()
+      
     },
     showSidebar() {
       this.$store.commit("TOGGLE_IS_SIDEBAR_ACTIVE", true);

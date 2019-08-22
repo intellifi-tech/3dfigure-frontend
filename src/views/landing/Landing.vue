@@ -1780,7 +1780,15 @@ export default {
     },
     logout: function() {
       LoginService.logout()
+      this.$vs.loading({
+          text: "Yükleniyor...",
+          clickEffect: true,
+          textAfter: true
+        });
+        setTimeout(() => {
+          this.$vs.loading.close();}, 5000)
       this.$router.push("/")
+      location.reload()
     },
     changeLang() {
       sessionStorage.setItem("lang", this.$i18n.locale);

@@ -221,6 +221,7 @@ export default {
   },
   beforeCreate: async function() {
     await this.$store.dispatch("getCurrentUser");
+    debugger
     this.$cookie.set('gender', this.$store.state.member.sex == 'M' ? 'male' : 'female')
   },
   components: {

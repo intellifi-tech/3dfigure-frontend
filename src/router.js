@@ -17,6 +17,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import i18n from '@/plugins/i18n.js'
 import ApiService from '@/services/api.service'
+import UserService from '@/services/user.service'
+import store from '@/store/store.js';
 
 Vue.use(Router)
 
@@ -116,7 +118,12 @@ const router = new Router({
 				{
 					path: '/ticket',
 					name: 'ticket',
-					component: () => import('./views/email/Email.vue')
+					component: () => import('./views/email/Email.vue'),
+					beforeEnter: async (to, from, next) => {
+						debugger
+						await store.dispatch("getCurrentUser")
+						next()
+                    }
 				},
 				{
 					path: '/order',
@@ -169,6 +176,8 @@ const router = new Router({
 			component: () => import('@/layouts/admin/Admin.vue'),
 			meta: {
 				public: false,
+				admin: true
+				
 			},
 			children: [
 				{
@@ -229,7 +238,12 @@ const router = new Router({
 				{
 					path: '/admin/ticket',
 					name: 'ticket-admin',
-					component: () => import('@/views/email/Email.vue')
+					component: () => import('@/views/email/Email.vue'),
+					beforeEnter: async (to, from, next) => {
+						debugger
+						await store.dispatch("getCurrentUser")
+						next()
+                    }
 				},/*
 				{
 					path: '/admin/email',
@@ -254,7 +268,8 @@ const router = new Router({
 	],
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+	const isAdmin = to.matched.some(record => record.meta.admin)
 	const isPublic = to.matched.some(record => record.meta.public)
 	const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
 	const api = to.matched.some(record => record.meta.api)
@@ -263,6 +278,13 @@ router.beforeEach((to, from, next) => {
 		i18n.locale = sessionStorage.getItem('lang');
 	}
 	if (!api) {
+
+		if (isAdmin) {
+			const res = await UserService.getMember();
+			if (res.status >= 400 || res.authorities[0] != 'ROLE_ADMIN') {
+				return next('/main')
+			}
+		}
 
 		if (!isPublic && !loggedIn) {
 			return next({

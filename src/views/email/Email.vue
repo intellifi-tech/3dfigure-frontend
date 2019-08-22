@@ -9,10 +9,10 @@
 					</vs-sidebar>
 
 					<div :class="{'sidebar-spacer': clickNotClose}" class="ticket-heightCustom app-fixed-height border border-solid border-grey-light border-r-0 border-t-0 border-b-0">
-
+						<feather-icon class="md:inline-flex lg:hidden cursor-pointer bg-primary-gradient rounded-br-full text-white pb-4 pl-3 pr-4 pt-3" icon="MenuIcon" @click.stop="toggleEmailSidebar(true)"></feather-icon>
 						<!-- SEARCH BAR -->
 						<!--<div class="flex border items-center app-search-container">
-							<feather-icon class="md:inline-flex lg:hidden ml-4 mr-4 cursor-pointer" icon="MenuIcon" @click.stop="toggleEmailSidebar(true)"></feather-icon>
+							
 							<vs-input icon="icon-search" size="large" icon-pack="feather" placeholder="Talep Ara" v-model="searchQuery" class="input-no-border w-full no-icon-border" />
 						</div>-->
 
@@ -217,7 +217,15 @@ export default{
 			window.addEventListener('resize', this.handleWindowResize);
 		})
 		this.setSidebarWidth();
-		this.$store.dispatch('email/setUserTickets');
+		debugger
+		if(this.$store.state.member.authorities[0]=="ROLE_ADMIN"){
+			
+			await this.$store.dispatch('email/setAdminTickets');
+
+		}else{
+			await this.$store.dispatch('email/setUserTickets');
+		}
+		
 	},
 	beforeDestroy: function () {
 		window.removeEventListener('resize', this.handleWindowResize)

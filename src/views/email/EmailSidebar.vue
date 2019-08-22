@@ -1,6 +1,6 @@
 <template>
 	<div class="email__email-sidebar h-full mt-5">
-		<div class="mx-6 clearfix" v-if="getAuth!='ROLE_ADMIN'">
+		<div class="mx-6 clearfix" v-if="userAuth!='ROLE_ADMIN'">
 			<vs-button size="large" class="bg-primary-gradient w-full px-4" icon-pack="feather" icon="icon-edit" @click="activePrompt = true">Yeni Talep</vs-button>
 		</div>
 
@@ -17,8 +17,8 @@
 			:vs-active.sync="activePrompt">
 				<VuePerfectScrollbar class="scroll-area p-4" :settings="settings">
 					<form @submit.prevent>
-						<span class="h6 text-sm font-light">İlgili Sipariş</span>
-						<select v-model="ticket.ordersId" class="w-full mb-6 form-control-lg selecting selectExample" >
+						<span class="h6 text-sm font-light">İlgili Sipariş Kodu</span>
+						<select v-model="ticket.ordersId" class="w-full mb-6 form-control-lg selecting selectExample select-input" >
 							<option
                       			:key="item.id"
                       			:value="item.id"
@@ -26,7 +26,7 @@
                     		>{{item.orderCode}}</option>
 						</select>
 						<span class="h6 text-sm font-light">Destek Alanı</span>
-						<select v-model="ticket.type" class="w-full mb-6 form-control-lg selecting selectExample" >
+						<select v-model="ticket.type" class="w-full mb-6 form-control-lg selecting selectExample select-input" >
 							<option
                       			:key="index"
                       			:value="item"
@@ -66,7 +66,7 @@
 				
 			</div>
 			<vs-divider></vs-divider>
-			<div class="email__labels px-6 py-4" v-if="getAuth=='ROLE_ADMIN'">
+			<div class="email__labels px-6 py-4" v-if="userAuth=='ROLE_ADMIN'">
 				<h5 class="mb-8">Konular</h5>
 				<div class="email__lables-list">
 					<div class="email__label flex items-center mb-4 cursor-pointer" :class="{'text-primary': mailFilter == tag}" v-for="(tag, index) in ticketTypeList" :key="index" @click="updateFilter(tag)">
@@ -101,6 +101,8 @@ export default{
 	created: async function() {
 		const res = await OrderService.getAllOrdersForTicket();
 		this.orderList = res.content;
+		debugger
+		this.userAuth= this.$store.state.member.authorities[0];
 	},
 	data() {
 		return {
@@ -139,12 +141,10 @@ export default{
 				maxScrollbarLength: 60,
 				wheelSpeed: 0.30,
 			},
+			userAuth:"",
 		}
 	},
 	computed: {
-		getAuth() {
-			return this.$store.state.member.authorities[0];
-		},
 		validateForm() {
 			return this.ticket.subject != '';
 		},
@@ -154,6 +154,10 @@ export default{
 		draftMails() {
 			return this.$store.getters['email/NumdraftMails'];
 		},
+		/*getAuth() {
+			debugger
+			return this.$store.state.member.authorities[0];
+		}*/
 	},
 	methods: {
 		handleFileUpload() {
