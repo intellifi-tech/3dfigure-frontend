@@ -1546,7 +1546,7 @@
                   </div>
                   <div class="content">
                     <span class="details">
-                      <a href="https://api.whatsapp.com/send?phone=905541591525">+90 554 159 1525</a>
+                      <a href="https://api.whatsapp.com/send?phone=905541591525" target="_blank">+90 554 159 1525</a>
                     </span>
                   </div>
                 </li>

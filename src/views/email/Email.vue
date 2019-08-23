@@ -26,7 +26,7 @@
 						<!-- EMAILS LIST -->
 						<VuePerfectScrollbar class="email-content-scroll-area ticket-content-custom" :settings="settings" ref="mailListPS">
 							<transition-group name="list-enter-up" class="email__mails" tag="ul" appear>
-								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in tickets" :key="String(mail.id)" @click.stop="updateOpenMail(mail)" :style="{transitionDelay: (index * 0.1) + 's'}">
+								<li class="cursor-pointer email__mail-item" v-for="(mail, index) in tickets.slice().reverse()" :key="String(mail.id)" @click.stop="updateOpenMail(mail)" :style="{transitionDelay: (index * 0.1) + 's'}">
 									<mail-item :mail="mail"></mail-item>
 								</li>
 							</transition-group>

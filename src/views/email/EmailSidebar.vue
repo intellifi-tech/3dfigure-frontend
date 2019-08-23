@@ -169,10 +169,13 @@ export default{
 		},
 		saveTicket: async function() {
 			const resTicket = await TicketService.saveTicket(this.ticket);
+			
 			if (resTicket.status < 400) {
 				this.chat.ticketId = resTicket.data.id;
 				this.chat.userId = this.$store.state.member.id;
 				const resChat = await TicketService.saveChat(this.chat);
+				await this.$store.dispatch('email/setUserTickets');
+
 				if (resChat.status < 400 && this.file) {
 					let formData = new FormData();
 					formData.append('tickets', this.file);

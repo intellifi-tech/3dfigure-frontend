@@ -5,7 +5,7 @@
 							<vx-card class="px-4 text-black" :class="{'bg-img': currentMail.userId != getUser}">
 								<!-- MAIL META ROW -->
 								<div class="vx-row w-full border-b border-l-0 border-r-0 border-t-0 border-grey-light border-solid flex justify-between flex items-center">
-									<div class="vx-col sm:w-4/5 w-full flex flex-wrap items-center mb-2">
+									<div class="vx-col sm:w-1/2 flex flex-wrap items-center mb-2">
 										<!-- <vs-avatar class="sender__avatar--single flex-no-shrink mr-3 border-2 border-solid border-white" :src="require(`@/assets/images/portrait/small/${currentMail.img}`)" size="65px"></vs-avatar> -->
 										<div class="flex flex-col my-2">
 											<h5 class="mb-1 text-uppercase" :class="{'text-primary': currentMail.userId != getUser}">{{ currentMail.firstName + ' ' + currentMail.lastName }}</h5>
@@ -14,8 +14,8 @@
 											</div>-->
 										</div>
 									</div>
-									<div class="vx-col sm:w-1/5 w-full flex sm:flex-col items-center sm:justify-end mb-2">
-										<span class="flex self-end sm:mt-2 mt-0 whitespace-no-wrap">{{ getDate }}</span>
+									<div class="vx-col sm:w-1/ flex sm:flex-col items-center sm:justify-end mb-2">
+										<span class="flex self-end sm:mt-2 mt-0 ">{{ getDate }}</span>
 									</div>
 								</div>
 

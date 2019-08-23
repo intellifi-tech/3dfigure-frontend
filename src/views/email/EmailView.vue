@@ -2,52 +2,54 @@
 	<div>
 		<vs-sidebar click-not-close parent="#email-app-container" :hidden-background="true" class="full-vs-sidebar email-view-sidebar" v-model="isSidebarActive" position-right>
 			<div class="mail-sidebar-content px-0 sm:py-6 pt-2 h-full" v-if="openMail.id">
-				<div class="flex flex-wrap items-center email-header justify-between md:px-8 px-6 sm:pb-4">
-					<div class="w-flex w-1/2">
+				<div class="flex flex-wrap items-center email-header justify-between md:px-8 px-6 pb-3">
+					<div class="w-flex">
 						<div class="flex items-center">
 							<feather-icon icon="ArrowLeftIcon" @click="$emit('closeSidebar')" class="cursor-pointer mr-4" svg-classes="w-6 h-6"></feather-icon>
-							<h3 v-if="openMail.subject" class="text-uppercase">{{ openMail.subject }}</h3>
+							<h3 v-if="openMail.subject" class="text-uppercase text-2xl">{{ openMail.subject }}</h3>
 							<h3 v-else>(no subject)</h3>
 						</div>
 					</div>
-					<div v-if="getAuth=='ROLE_ADMIN'">
-						<div class="email__actions--single flex items-baseline">
-							<!-- MOVE TO DROPDOWN -->
-							<vs-dropdown class="flex cursor-pointer hover:text-primary" vs-custom-content vs-trigger-click>
-								<span>Durum</span>
-								<feather-icon icon="MailIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
-								<vs-dropdown-menu>
-									<ul class="my-2">
-										<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(status, index) in ticketStatusList" :key="index" @click="updateStatus(status)" >
-											<feather-icon :icon="status == 'OPEN' ? 'ClockIcon' : status == 'IN_PROGRESS' ? 'Edit2Icon' : 'CheckSquareIcon'" svg-classes="h-5 w-5" />
-											<span class="ml-3">{{status == 'OPEN' ? 'AÇIK' : status == 'IN_PROGRESS' ? 'İŞLENİYOR' : 'KAPALI'}}</span>
-										</li>
-									</ul>
-								</vs-dropdown-menu>
-							</vs-dropdown>
+					<div class="col-12 col-md-auto d-md-flex items-baseline md:my-0 px-0 sm:my-4">
+						<div v-if="getAuth=='ROLE_ADMIN'" class="py-3 pr-3">
+							<div class="email__actions--single flex items-baseline justify-center">
+								<!-- MOVE TO DROPDOWN -->
+								<vs-dropdown class="flex cursor-pointer hover:text-primary" vs-custom-content vs-trigger-click>
+									<span>Durum</span>
+									<feather-icon icon="MailIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
+									<vs-dropdown-menu>
+										<ul class="my-2">
+											<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(status, index) in ticketStatusList" :key="index" @click="updateStatus(status)" >
+												<feather-icon :icon="status == 'OPEN' ? 'ClockIcon' : status == 'IN_PROGRESS' ? 'Edit2Icon' : 'CheckSquareIcon'" svg-classes="h-5 w-5" />
+												<span class="ml-3">{{status == 'OPEN' ? 'AÇIK' : status == 'IN_PROGRESS' ? 'İŞLENİYOR' : 'KAPALI'}}</span>
+											</li>
+										</ul>
+									</vs-dropdown-menu>
+								</vs-dropdown>
 
-							<vs-dropdown class="flex cursor-pointer hover:text-primary pl-4 " vs-custom-content vs-trigger-click>
-								<span>Konu</span>
-								<feather-icon icon="TagIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
-								<vs-dropdown-menu>
-									<ul class="my-2">
-										<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(tag, index) in ticketTypeList" :key="index" @click="updateType(tag)" >
-											<div class="ml-1 h-4 w-4 rounded-full mr-4" :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
-											<span class="ml-3">{{tag == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</span>
-										</li>
-									</ul>
-								</vs-dropdown-menu>
-							</vs-dropdown>
-							</div>
-					</div>
-					<div class="w-1/5">
-						<div class="vx-row">
-							<div class="vx-col w-full">
-									<div class="vx-row">
-										<div class="vx-col w-full flex justify-between">
-											<vs-button @click="replyPrompt=true" class="w-full" color="success" type="filled" icon="reply" size="large">Yanıtla</vs-button>
+								<vs-dropdown class="flex cursor-pointer hover:text-primary pl-4 " vs-custom-content vs-trigger-click>
+									<span>Konu</span>
+									<feather-icon icon="TagIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
+									<vs-dropdown-menu>
+										<ul class="my-2">
+											<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(tag, index) in ticketTypeList" :key="index" @click="updateType(tag)" >
+												<div class="ml-1 h-4 w-4 rounded-full mr-4" :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
+												<span class="ml-3">{{tag == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</span>
+											</li>
+										</ul>
+									</vs-dropdown-menu>
+								</vs-dropdown>
+								</div>
+						</div>
+						<div class="">
+							<div class="vx-row">
+								<div class="vx-col w-full">
+										<div class="vx-row">
+											<div class="vx-col w-full flex justify-between">
+												<vs-button @click="replyPrompt=true" class="w-full" color="success" type="filled" icon="reply" size="large">Yanıtla</vs-button>
+											</div>
 										</div>
-									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -57,13 +59,13 @@
 				<!-- LABEL ROW -->
 				<div class="vx-row">
 					<div class="vx-col w-full">
-						<div class="email__labels--single flex justify-between ml-4 border-black border-bottom items-center mt-2">
+						<div class="email__labels--single flex justify-between mx-4 border-black border-bottom items-center mt-2">
 							<div class="mail__message truncate pt-2">
 								<span class="font-light h6">İlgili Sipariş Kodu : </span><span class="h6 text-black ">{{ openMail.orderCode}}</span>
 							</div>
 							<div class="flex items-baseline pt-3">
-								<h6>{{openMail.status == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</h6>
-								<div class="mx-3 h-4 w-4 rounded-full " :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
+								<h6>{{openMail.type == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</h6>
+								<div class="mx-3 h-4 w-4 rounded-full " :class="openMail.type == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
 							</div>
 						</div>
 					</div>

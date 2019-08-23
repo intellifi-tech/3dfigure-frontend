@@ -60,12 +60,6 @@
               </select>
               </div>
               <vs-input
-                :class="{'vs-input-danger':this.$v.tcno.$invalid && !first}"
-                :label-placeholder="$t('register.tcno')"
-                v-model="tcno"
-                class="w-full mb-6"
-              />
-              <vs-input
                 type="password"
                 :class="{'vs-input-danger':this.$v.password.$invalid && !first}"
                 :label-placeholder="$t('register.pass')"
@@ -114,7 +108,6 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
-      tcno:"",
       password: "",
       confirm: "",
       checkBox1: false,
@@ -145,7 +138,6 @@ export default {
         lastName: this.lastName,
         email: this.email,
         login: this.email,
-        tcno: this.tcno,
         password: this.password,
         sex: this.sex,
         langKey: "en"
@@ -188,7 +180,6 @@ export default {
       this.firstName = "",
       this.lastName = "",
       this.email = "",
-      this.tcno="",
       this.password = "",
       this.confirm = "",
       this.checkBox1 = false,
@@ -199,7 +190,6 @@ export default {
     email: { required, email },
     firstName: { required, minLength: minLength(2), turkish },
     lastName: { required, minLength: minLength(2), turkish },
-    tcno: { required,numeric, minLength: minLength(11),maxLength: maxLength(11) },
     sex: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(15) },
     confirm: { required, sameAsPassword: sameAs("password") }
