@@ -27,7 +27,7 @@
         <div class="text-center">
           <!--<VueCardPayment @card-submit="payment"></VueCardPayment>-->
           <p>Ödeme sayfasına yönlendiriliyorsunuz</p>
-          
+          <iframe :src=iframe height="1000" width="1000" class="border-none pt-5"></iframe>
           
         </div>
       </tab-content>
@@ -48,7 +48,8 @@ export default {
   data() {
     return {
       counterDanger: false,
-      counterDanger2: false
+      counterDanger2: false,
+      iframe: ""
     };
   },
   methods: {
@@ -108,20 +109,22 @@ export default {
         ? await CheckoutService.sendOrder(this.$store.state.checkout.order) 
         : await CheckoutService.sendOrderUpdate(this.$store.state.checkout.order)
 
-      
+
       const res = await PaymentService.iyzicoForm(this.$store.state.checkout.order)
-      if (res.data.status === "success") {
+      /*if (res.data.status === "success") {
         window.location = res.data.paymentPageUrl
         return true
-      }
+      }*/
       // buraya iyzico uyarı bas
-      this.$vs.notify({
+      this.iframe = res.data.paymentPageUrl + '&iframe=true'
+
+      /*this.$vs.notify({
           time: 6000,
           title: "HATA!",
           text: `${res.data.errorMessage}`,
           color: "danger"
-        });
-      return false
+        });*/
+      return true
     }
   },
   components: {
