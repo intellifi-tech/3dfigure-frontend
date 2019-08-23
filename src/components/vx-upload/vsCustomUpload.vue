@@ -53,7 +53,7 @@
           @click="viewImage(img.imagePath,$event, img.avatarKey)"
         >
         <div class="select-div">
-           <vs-checkbox class="chboxSelect"  color="success" v-model="checkboxValues" :vs-value="img" @click="checkboxSelect(img.imagePath, img.avatarKey)"></vs-checkbox>
+           <vs-checkbox class="chboxSelect"  color="success" v-model="checkboxValues" :vs-value="img.avatarKey" @click="checkboxSelect(img.imagePath, img.avatarKey)"></vs-checkbox>
           <!--<vs-icon icon-pack="fa fa-check" hidden></vs-icon>-->
         </div>
       </div>
@@ -90,7 +90,7 @@
           
         </button>
         <div class="select-div" >
-           <vs-checkbox v-if="img.avatarKey" class="chboxSelect"  color="success" v-model="checkboxValues" :vs-value="img" @click="checkboxSelect(img.imagePath, img.avatarKey)"></vs-checkbox>
+           <vs-checkbox v-if="img.avatarKey" class="chboxSelect"  color="success" v-model="checkboxValues" :vs-value="img.avatarKey" @click="checkboxSelect(img.imagePath, img.avatarKey)"></vs-checkbox>
           <!--<vs-icon icon-pack="fa fa-check" hidden></vs-icon>-->
         </div>
         <img
@@ -231,6 +231,10 @@ export default {
       }
 
     },
+  },
+  mounted() {
+    var self = this;
+    this.$store.state.selectedFigures.avatarKey.forEach(function(key){self.checkboxValues.push(key)})
   },
   methods: {
     toogleClass(index) {

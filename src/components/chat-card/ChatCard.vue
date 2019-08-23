@@ -51,7 +51,7 @@ export default {
 	props: {
         currentMail:{
             type:Object
-        }
+		}
 	},
 	computed: {
 		getUser() {

@@ -168,6 +168,7 @@ export default {
   },*/
   computed: {
     showLimit: function() {
+      if (this.userFigures.length != null)
       return this.$store.state.member.totalFigure - this.userFigures.length
     }
   },

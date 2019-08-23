@@ -95,7 +95,6 @@
 import {
   required,
   email,
-  numeric,
   sameAs,
   minLength,
   maxLength

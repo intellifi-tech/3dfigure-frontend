@@ -18,7 +18,7 @@ export default {
 	},
 	TOGGLE_IS_MAIL_STARRED(state, payload) {
 		state.mails.forEach((mail) => {
-			if(mail.id == payload.mailId) {
+			if (mail.id == payload.mailId) {
 				mail.isStarred = payload.value
 			}
 		})
@@ -43,9 +43,9 @@ export default {
 
 			const index = state.mails[mailIndex].labels.indexOf(payload.label)
 
-			if(index == -1) {
+			if (index == -1) {
 				state.mails[mailIndex].labels.push(payload.label)
-			}else{
+			} else {
 				state.mails[mailIndex].labels.splice(index, 1);
 			}
 		})
@@ -59,5 +59,11 @@ export default {
 	},
 	ADD_USER_TICKET(state, ticket) {
 		state.tickets.push(ticket);
+	},
+	ADD_IS_NOT_READ_LIST(state, id) {
+		state.isNotReadList.push(id)
+	},
+	REMOVE_IS_NOT_READ_LIST(state, id) {
+		state.isNotReadList.splice(id, 1)
 	}
 }

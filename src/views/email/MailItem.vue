@@ -17,6 +17,7 @@
 						<!--<div class="h-3 w-3 rounded-full mr-2" :class="'bg-' + labelColor(label)" v-for="(label, index) in mail.labels" :key="index"></div>-->
 					</div>
 					<span>{{  getDate }}</span>
+					<span>{{isNotRead}}</span>
 				</div>
 			</div>
 		</div>
@@ -37,6 +38,7 @@
 </template>
 
 <script>
+import TicketService from "@/services/ticket.service"
 export default{
 	props: {
 		mail: {
@@ -49,6 +51,19 @@ export default{
 		isSelected: {
 			type: Boolean
 		}
+	},
+	created: async function() {
+		if (this.mail.id) {
+				const res = await TicketService.getAllTicketChats(this.mail.id);
+				if (res.status < 400) {
+					const lastChat = res.data.slice().reverse()[0]
+					if (lastChat.userId) {
+					if ((this.$store.state.member.id != lastChat.userId) && this.mail.status != 'CLOSE') {
+						this.$store.commit('email/ADD_IS_NOT_READ_LIST', lastChat.ticketId);
+					}
+					}
+				}
+			}
 	},
 	data() {
 		return {
@@ -89,6 +104,9 @@ export default{
 				}).color
 			}
 		},
+		isNotRead() {
+			return this.$store.state.email.isNotReadList.includes(this.mail.id);
+		},
 	},
 	methods: {
 		toggleIsStarred() {
@@ -98,7 +116,8 @@ export default{
 		toggleIsSelected() {
 			if(!this.isSelectedMail) this.$emit('addToSelected', this.mail.id)
 			else this.$emit('removeSelected', this.mail.id)
-		}
+		},
+
 	}
 }
 </script>

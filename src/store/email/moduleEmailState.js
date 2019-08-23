@@ -23,4 +23,5 @@ export default {
 		{ text: 'Private', value: 'private', color:"danger"},
 	],
 	mailSearchQuery: '',
+	isNotReadList: []
 }

@@ -174,6 +174,7 @@ export default{
 				this.chat.ticketId = resTicket.data.id;
 				this.chat.userId = this.$store.state.member.id;
 				const resChat = await TicketService.saveChat(this.chat);
+				this.$store.commit('email/REMOVE_IS_NOT_READ_LIST');
 				await this.$store.dispatch('email/setUserTickets');
 
 				if (resChat.status < 400 && this.file) {
