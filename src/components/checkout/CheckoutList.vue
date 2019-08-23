@@ -53,7 +53,7 @@
               <div>
                 <h6 class="my-0">Net Toplam</h6>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet.toFixed(2)}}</span>
+              <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet}}</span>
             </li>
              <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="discountActive">
               <div>
@@ -65,11 +65,11 @@
               <div>
                 <h6 class="my-0">KDV(%18)</h6>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.order.kdv.toFixed(2)}}</span>
+              <span class="text-muted">₺{{this.$store.state.checkout.order.kdv}}</span>
             </li>
             <li class="py-3 d-flex justify-content-between">
               <span>Genel Toplam (TL)</span>
-              <strong>₺{{this.$store.state.checkout.order.totalPrice.toFixed(2)}}</strong>
+              <strong>₺{{this.$store.state.checkout.order.totalPrice}}</strong>
             </li>
             <hr>
              <li class="py-3 justify-content-between">

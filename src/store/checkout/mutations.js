@@ -15,9 +15,9 @@ const mutations = {
                 kdv += element.price * 1 * 0.18 * (element.figures.length)
             }
         });
-        state.order.totalPrice = totalPrice
-        state.order.kdv = kdv
-        state.order.totalPriceNet = totalPriceNet
+        state.order.totalPrice = totalPrice.toFixed(2)
+        state.order.kdv = kdv.toFixed(2)
+        state.order.totalPriceNet = totalPriceNet.toFixed(2)
     },
     SET_TOTAL_PRICE(state, totalPrice) {
         state.totalPrice = totalPrice
@@ -50,9 +50,9 @@ const mutations = {
                 kdv += element.price * 1 * 0.18 * (element.figures.length)
             }
         });
-        state.order.totalPrice = totalPrice
-        state.order.kdv = kdv
-        state.order.totalPriceNet = totalPriceNet
+        state.order.totalPrice = totalPrice.toFixed(2)
+        state.order.kdv = kdv.toFixed(2)
+        state.order.totalPriceNet = totalPriceNet.toFixed(2)
     },
 
     UPDATE_CARGO_ADDRESS(state, address) {
