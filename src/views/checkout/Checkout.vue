@@ -25,7 +25,7 @@
       </tab-content>
       <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
         <div class="text-center">
-          <VueCardPayment @card-submit="payment"></VueCardPayment>
+          <VueCardPayment @card-submit="finishShopping"></VueCardPayment>
           <!--<p>Ödeme sayfasına yönlendiriliyorsunuz</p>
           <iframe :src=iframe height="1000" width="1000" class="border-none pt-5"></iframe>-->
         </div>
@@ -52,6 +52,39 @@ export default {
     };
   },
   methods: {
+    finishShopping: async function() {
+      var self = this
+      const paymentRes = await PaymentService.iyzicoForm(this.$store.state.checkout.order)
+
+      if (!paymentRes.data.status) {
+          this.$vs.notify({
+            time: 6000,
+            title: "HATA!",
+            text: `${paymentRes.data.errorMessage}`,
+            color: "danger"
+          });
+      }
+
+      var iyziResult = {
+        userId: this.$store.state.member.id,
+        paymentId: paymentRes.data.paymentId,
+        paymentTransactionId: paymentRes.data.paymentTransactionId
+      }
+
+      this.$store.commit('checkout/FINISH_ORDER', iyziResult)
+      const res = await CheckoutService.sendOrder(this.$store.state.checkout.order)
+      this.$store.dispatch('checkout/createNewBasket')
+      this.$store.dispatch('getCurrentUser')
+      this.$vs.dialog({
+          title: "Başarılı",
+          text: `Siparişiniz alınmıştır ve 5 tane daha figür ekleme hakkı elde ettiniz. Sipariş kodunuz - ${res.orderCode} `,
+          color: "success",
+          acceptText: "Anladım",
+          accept: function() {
+            self.$router.push("/main")
+          }
+      });
+    },
     validateStep1() {
       if(this.counterDanger)
       {

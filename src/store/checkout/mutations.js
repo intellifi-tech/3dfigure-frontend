@@ -95,6 +95,8 @@ const mutations = {
     },
 
     FINISH_ORDER(state, value) {
+        state.order.paymentId = value.paymentId
+        state.order.paymentTransactionId = value.paymentTransactionId
         state.order.userId = value.userId
         state.order.language = value.lang
         state.order.createdDate = new Date()
