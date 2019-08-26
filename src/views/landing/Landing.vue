@@ -838,26 +838,43 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-              <!-- single product item -->
-              <hooper :itemsToShow=4 :infiniteScroll=true :autoPlay="true" :playSpeed="4000">
-                <slide v-for="(n, index) in conceptList" :key="index">
-                  <div class="single-product-item">
-                  <div class="thumb">
-                  <img :src="'assets/images/models/'+n.imagePath" alt="product image">
-                </div>
-                <div class="content">
-                  <h4 class="title">
-                    <a href="#">{{n.title}}</a>
-                  </h4>
-                  <div class="price-wrap">
-                    <span class="price">₺{{n.price}}</span>
+              <!-- main slides -->
+              <hooper :itemsToShow="4" :infiniteScroll="true" :autoPlay="true" :playSpeed="4000">
+                <template v-if="conceptList && conceptList .length">
+                 <slide v-for="(n, index) in conceptList" :key="index" class="py-3">
+                   <div class="single-product-item">
+                    <div class="thumb">
+                      <img :src="'assets/images/models/'+n.imagePath" alt="product image">
+                    </div>
+                    <div class="content">
+                      <h4 class="title">
+                        <a href="#">{{n.title}}</a>
+                      </h4>
+                      <div class="price-wrap">
+                        <span class="price">₺{{n.price}}</span>
+                      </div>
+                      <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
+                    </div>
                   </div>
-                  <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
-                </div>
-                </div>
-                </slide>
+                 </slide>
+                </template>
+                   <!-- placeholder slides -->
+                   <template v-else>
+                     <slide v-for="(n, indx) in 4" :key="indx" :index="indx" class="py-3">
+                       <div class="single-product-item">
+                          <div class="thumb pt-3">
+                              <img src="assets/images/logo/logo.png" alt="product image"/>
+                          </div>
+                          <div class="content">
+                            <h5>
+                              <a>Konsept Bulunamadı</a>
+                            </h5>
+                          </div>
+                        </div>
+                    </slide>
+                   </template>
               </hooper>
-              <!-- // single product item -->
+              <!-- // concept items -->
           </div>
         </div>
       </div>
@@ -1032,20 +1049,36 @@
         </div>
       </div>
       <div class="customer-logos slider padding-bottom-30">
-                      <hooper :itemsToShow=4 :infiniteScroll=true :autoPlay="true" :playSpeed="4000">
+              <!-- main slides -->
+              <hooper :itemsToShow="4" :infiniteScroll="true" :autoPlay="true" :playSpeed="4000">
+                <template v-if="exampleList && exampleList .length">
                 <slide v-for="(n, index) in exampleList" :key="index">
                   <a
-            :href="'assets/images/models/'+n.imagePath"
-            data-toggle="lightbox"
-            data-gallery="gallery"
-            class="col-md-4"
-          >
-            <img :src="'assets/images/models/' + n.imagePath" class="img-fluid rounded">
-          </a>
+                   :href="'assets/images/models/'+n.imagePath"
+                   data-toggle="lightbox"
+                   data-gallery="gallery"
+                   class="col-md-4"
+                 >
+                <img :src="'assets/images/models/' + n.imagePath" class="img-fluid rounded">
+                 </a>
                 </slide>
-                
+                </template>
+                   <!-- placeholder slides -->
+                   <template v-else>
+                     <slide v-for="(n, indx) in 4" :key="indx" :index="indx" class="py-3">
+                       <div class="single-product-item">
+                          <div class="thumb pt-3">
+                              <img src="assets/images/logo/logo.png" alt="product image"/>
+                          </div>
+                          <div class="content">
+                            <h5>
+                              <a>Örnek Bulunamadı</a>
+                            </h5>
+                          </div>
+                        </div>
+                    </slide>
+                   </template>
               </hooper>
-       
       </div>
     </section>
 
@@ -1063,7 +1096,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="single-testimonial-item rounded-lg">
-              <div class="author-meta mb-4 col-3">
+              <div class="author-meta col-8 col-md-4 col-lg-3 mb-4">
                 <div class>
                   <img src="assets/images/logo/logo.png" alt="testimonial image">
                 </div>
@@ -1709,12 +1742,12 @@
   </div>
 </template>
 <script>
-import { ContactService } from "@/services/contact.service";
-import Register from "@/components/login/Register.vue";
 import Login from "@/components/login/Login.vue";
+import Register from "@/components/login/Register.vue";
+import { LoginService } from "@/services/login.service";
+import LandingService from "@/services/admin/landing.service";
+import { ContactService } from "@/services/contact.service";
 import ForgotPassword from "@/components/login/ForgotPassword.vue";
-import { LoginService } from "@/services/login.service"
-import LandingService from "@/services/admin/landing.service"
 import { Hooper, Slide } from 'hooper';
 import 'hooper/dist/hooper.css';
 import '@/assets/css/manormowan.less';
