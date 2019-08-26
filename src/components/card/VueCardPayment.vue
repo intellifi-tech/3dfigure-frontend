@@ -3,10 +3,10 @@
       background: systemSettings.showBank ? visual.backgroundGradient : ''
     }">
     <form @submit.prevent="onBtn" :class="systemSettings.showBank ? bankInfo.backgroundLightness : ''">
-      <div class="bankLogo">
+      <!--<div class="bankLogo">
         <img v-if="systemSettings.showBank" :src="getImage(bankInfo.bankLogo)"/>
-        <!-- <img src="~/card-info/dist/banks-logos/ru-tinkoff.svg"/> -->
-      </div>
+         <img src="~/card-info/dist/banks-logos/ru-tinkoff.svg"/> -->
+     <!-- </div>-->
       <div class="row">
         <label for="cardnumber">{{systemSettings.labels.cardNumber}}</label>
         <input type="phone"
@@ -15,7 +15,7 @@
           @keydown="isNumber"
         />
       </div>
-      <div class="row">
+      <div class="row justify-between">
         <div class="part">
           <label for="cc-exp-month">{{systemSettings.labels.month}}</label>
           <input type="number" :placeholder="systemSettings.placeholders.month"
@@ -23,9 +23,6 @@
             v-model="card.month" name="cc-exp-month"
             autocomplete="cc-exp" @keydown="isNumber" @blur="trailingZero"
             />
-        </div>
-        <div class="part sepLine">
-          <span></span>
         </div>
         <div class="part">
           <label for="cc-exp">{{systemSettings.labels.year}}</label>
@@ -47,11 +44,15 @@
         <input type="text" :placeholder="systemSettings.placeholders.cardHolder"
           name="ccname" v-model="card.name" autocomplete="cc-name" @keydown="onlyLetters"
           />
-        <img v-if="systemSettings.showPaymentSystem" :src="getImage(bankInfo.brandLogo)" class="brandLogo right"/>
+        
       </div>
       <div class="submit">
-        <button type="submit">{{systemSettings.labels.button}}</button>
+        <button type="submit" class="my-4">{{systemSettings.labels.button}}</button>
       </div>
+      <div class="logoDiv">
+        <img v-if="systemSettings.showPaymentSystem" :src="getImage(bankInfo.brandLogo)" class="brandLogo py-1 right"/>
+      </div>
+       
     </form>
   </div>
 </template>
@@ -81,18 +82,18 @@ LogosRawSvg.keys().forEach(function (key) {
 
 const defaults = {
   labels: {
-    cardNumber: 'Card number',
-    month: 'Month',
-    year: 'Year',
-    cardHolder: 'Cardholder name',
-    button: 'pay'
+    cardNumber: 'Kart Numarası',
+    month: 'Ay',
+    year: 'Yıl',
+    cardHolder: 'Kart Sahibi',
+    button: 'Ödeme Yap'
   },
 
   placeholders: {
     cardNumber: '0000 0000 0000 0000',
     month: '00',
     year: '00',
-    cardHolder: 'JOHN DOE',
+    cardHolder: 'AD SOYAD',
     cvv: '000'
   },
 
@@ -284,7 +285,7 @@ export default {
 <style scoped>
   .cardWrap {
     width: 420px;
-    height: 280px;
+    height: 220px;
     position: relative;
     margin: 0 auto;
     padding: 15px 35px;
@@ -446,8 +447,7 @@ export default {
   }
 
   .brandLogo {
-    height: 40px;
-    margin: 12px 0 0;
+    height: 35px;
   }
 
   .dark input:not([type=radio]):not([type=checkbox]) {

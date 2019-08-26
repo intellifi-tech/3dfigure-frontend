@@ -25,10 +25,9 @@
       </tab-content>
       <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
         <div class="text-center">
-          <!--<VueCardPayment @card-submit="payment"></VueCardPayment>-->
-          <p>Ödeme sayfasına yönlendiriliyorsunuz</p>
-          <iframe :src=iframe height="1000" width="1000" class="border-none pt-5"></iframe>
-          
+          <VueCardPayment @card-submit="payment"></VueCardPayment>
+          <!--<p>Ödeme sayfasına yönlendiriliyorsunuz</p>
+          <iframe :src=iframe height="1000" width="1000" class="border-none pt-5"></iframe>-->
         </div>
       </tab-content>
     </form-wizard>
