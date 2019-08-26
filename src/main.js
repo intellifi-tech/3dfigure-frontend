@@ -106,6 +106,8 @@ if (TokenService.getToken()) {
 
 Vue.config.productionTip = false
 
+sessionStorage.setItem('lang', i18n.locale)
+
 new Vue({
   router,
   store,

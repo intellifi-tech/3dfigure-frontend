@@ -21,7 +21,9 @@ const state = {
 		orderNote: "",
 		status: "NOT_PAYMENT",
 		feedback: "",
-		language: "",
+		language: sessionStorage.getItem("lang"),
+		paymentId: "",
+		paymentTransactionId: "",
 		cardDTO: {
 			holderName: "",
 			cardNo: "",

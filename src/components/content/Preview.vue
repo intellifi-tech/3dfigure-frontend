@@ -47,7 +47,7 @@
         <div class="mt-0">
           <vs-custom-upload
             :single-upload="true"
-            :limit="limit"
+            :limit="showLimit"
             class="uploadBtn"
             text="Fotoğraf Yükle"
             :server="actionUrl"

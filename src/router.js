@@ -275,7 +275,7 @@ router.beforeEach(async (to, from, next) => {
 	const api = to.matched.some(record => record.meta.api)
 	const loggedIn = !!ApiService.getHeader()
 	if (sessionStorage.getItem('lang') !== null && sessionStorage.getItem('lang') !== i18n.locale) {
-		i18n.locale = sessionStorage.getItem('lang');
+		sessionStorage.setItem('lang', i18n.locale)
 	}
 	if (!api) {
 

@@ -98,10 +98,14 @@ const mutations = {
         state.order.paymentId = value.paymentId
         state.order.paymentTransactionId = value.paymentTransactionId
         state.order.userId = value.userId
-        state.order.language = value.lang
+        state.order.status = 'ANALYSIS'
         state.order.createdDate = new Date()
         state.order.lastModificationDate = new Date()
         state.order.orderCode = Math.random().toString(36).substr(2, 9).toUpperCase();
+    },
+
+    SET_ORDER_LANG(state) {
+        state.order.language = sessionStorage.getItem('lang')
     },
 
     RESET_BASKET(state) {

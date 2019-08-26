@@ -52,17 +52,20 @@ export default {
     };
   },
   methods: {
-    finishShopping: async function() {
+    finishShopping: async function(card) {
       var self = this
+      this.$store.commit("checkout/SET_ORDER_LANG")
+      this.$store.commit("checkout/ADD_CARD", card)
       const paymentRes = await PaymentService.iyzicoForm(this.$store.state.checkout.order)
 
-      if (!paymentRes.data.status) {
+      if (paymentRes.status == 500 || paymentRes.data.status == 'failure') {
           this.$vs.notify({
             time: 6000,
             title: "HATA!",
             text: `${paymentRes.data.errorMessage}`,
             color: "danger"
           });
+          return;
       }
 
       var iyziResult = {
@@ -126,7 +129,8 @@ export default {
       return this.$store.state.checkout.order.deliveryId != -1
     },
     validateStep3: async function() {
-      if (!this.$store.state.checkout.billingAddress.id) {
+        
+      if (!this.$store.state.checkout.chooseAddress) {
         this.$vs.notify({
           time: 6000,
           title: "HATA!",
@@ -135,28 +139,8 @@ export default {
         });
         return false
       }
-
-      this.$store.commit('checkout/FINISH_ORDER', {userId: this.$store.state.member.id, lang: sessionStorage.getItem('lang') == null ? i18n.locale : sessionStorage.getItem('lang')})
-      !this.$store.state.checkout.order.id 
-        ? await CheckoutService.sendOrder(this.$store.state.checkout.order) 
-        : await CheckoutService.sendOrderUpdate(this.$store.state.checkout.order)
-
-
-      const res = await PaymentService.iyzicoForm(this.$store.state.checkout.order)
-      /*if (res.data.status === "success") {
-        window.location = res.data.paymentPageUrl
-        return true
-      }*/
-      // buraya iyzico uyarı bas
-      this.iframe = res.data.paymentPageUrl + '&iframe=true'
-
-      /*this.$vs.notify({
-          time: 6000,
-          title: "HATA!",
-          text: `${res.data.errorMessage}`,
-          color: "danger"
-        });*/
-      return true
+      return this.$store.state.checkout.order.billingId != -1
+    
     }
   },
   components: {
