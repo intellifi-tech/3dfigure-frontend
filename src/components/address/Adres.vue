@@ -33,7 +33,7 @@
       <div class="mt-3 col-md-12">
          <div class="adreslerim" v-show="chooseAddress">
          <hr>
-          <div class="col-12 vx-card py-3 px-5 mt-5" v-if="this.$store.state.checkout.addressList === null || this.$store.state.checkout.addressList.length === 0">
+          <div class="col-12 vx-card py-3 px-5 mt-5 mb-4" v-if="this.$store.state.checkout.addressList === null || this.$store.state.checkout.addressList.length === 0">
              Kayıtlı adres bulunmuyor.
            <a 
             href="#new-address" 
@@ -124,24 +124,25 @@
               </div>
               <div class="vx-row mb-6 mt-4">
                 <div class="vx-col w-1/2">
+                <span class="text-xs text-grey">Şehir</span>
                   <select
                     class="form-control-lg selecting selectExample w-full focus:shadow-md"
-                    label="Şehir"
                     v-model="city"
+                    :class="{'border-danger': this.$v.city.$invalid}"
                   >
                     <option
                       :key="index"
-                      :value="item.id"
+                      :value="item"
                       v-for="(item,index) in cities"
                     >{{item.name}}</option>
                   </select>
                 </div>
                 <div class="vx-col w-1/2">
+                <span class="text-xs text-grey">İlçe/Semt</span>
                   <select
                     class="form-control-lg selecting selectExample w-full focus:shadow-md"
-                    label="İlçe / Semt"
                     v-model="adres.townId"
-                    :class="{'form-control-danger': this.$v.adres.townId.$invalid}"
+                    :class="{'border-danger': this.$v.adres.townId.$invalid}"
                   >
                     <option
                       :key="index"
@@ -199,7 +200,9 @@ export default {
         addressName: "",
         postCode: "",
         townId: -1,
-        userId: -1
+        userId: -1,
+        townName:"",
+        cityName:"",
       },
       dialCode: "",
       city: 1,
@@ -219,7 +222,7 @@ export default {
       this.$store.commit('checkout/UPDATE_IS_NEW_ADDRESS', this.chooseAddress)
     },
     city: async function() {
-      this.towns = await PlaceService.getTownsByCity(this.city);
+      this.towns = await PlaceService.getTownsByCity(this.city.id);
     },
     name() {
       this.adres.person = this.name + ' ' + this.surname
@@ -237,6 +240,7 @@ export default {
       this.dialCode = dialCode
     },
     saveAddress: async function() {
+
       if (this.$v.$invalid) {
         this.$vs.notify({
           time: 6000,
@@ -245,10 +249,15 @@ export default {
           color: "danger"
         });
       } else {
+
         this.adres.userId = this.$store.state.member.id;
+
         const temp = this.adres.mobile
         this.adres.mobile = this.dialCode + temp
+
         const res = await AddressService.saveUserAddress(this.adres)
+        res.cityName = this.city.name;
+
         if (this.isBilling) {
           this.$store.commit('checkout/ADD_BILLING_ADDRESS', res)
         } else {
@@ -258,7 +267,7 @@ export default {
           time: 6000,
           title: "Başarılı!",
           text: "Adres başarılı bir şekilde eklendi.",
-          color: "info"
+          color: "success"
         });
         this.chooseAddress = true
         this.adres = {}

@@ -41,7 +41,7 @@
             <h3>{{concept.conceptName}}</h3>
             <hr class="w-3/4"/>
             <p class="px-3 pb-4">{{concept.description}}</p>
-            <div class="col-12"><p class="text-right">Fiyat :<span class="h2 text-dark"> ${{concept.price}}</span></p></div>
+            <div class="col-12"><p class="text-right">Fiyat :<span class="h2 text-dark"> ₺{{concept.price}}</span></p></div>
           </div>
         </div>
       </vs-popup>

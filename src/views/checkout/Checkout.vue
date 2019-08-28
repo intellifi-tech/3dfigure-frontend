@@ -98,19 +98,7 @@ export default {
           color: "danger"
         });
       }
-      if (!this.$store.state.member.tcno) {
-        const self = this;
-        this.$vs.dialog({
-          color:'danger',
-          title: "Hata",
-          text: 'Ödeme yapabilmeniz için kimlik numaranızı girmelisiniz',
-          acceptText: "Anladım",
-          accept: function() {
-            self.$router.push("/profile")
-          }
-        })
-      }
-      return (this.$store.state.checkout.basketList.length !== 0) && !this.counterDanger && !!this.$store.state.member.tcno
+      return (this.$store.state.checkout.basketList.length !== 0) && !this.counterDanger 
 
     },
     dummyFunc(counterDanger) {

@@ -853,7 +853,7 @@
                       <div class="price-wrap">
                         <span class="price">₺{{n.price}}</span>
                       </div>
-                      <a href="#" class="boxed-bt">{{$t('landing.concepts.list.buynow')}}</a>
+                      <a @click="toMain" class="boxed-bt cursor-pointer">{{$t('landing.concepts.list.buynow')}}</a>
                     </div>
                   </div>
                  </slide>
@@ -1807,6 +1807,9 @@ export default {
     document.body.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+     toMain: function() {
+        this.$router.push("/main")
+     },
     handleScroll() {
       let scroll = document.body.scrollTop
       this.isVisible = scroll > 2
@@ -1842,12 +1845,12 @@ export default {
     },
     sendMail: async function() {
       await ContactService.sendMail(this.contact);
-      this.$vs.notify({
+      /*this.$vs.notify({
           time: 6000,
           title: "Başarılı",
           text: "Teşekkür ederiz :)",
           color: "success"
-      })
+      })*/
     },
     change() {
       this.man = !this.man;
