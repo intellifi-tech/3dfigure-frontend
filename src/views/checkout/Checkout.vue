@@ -13,14 +13,14 @@
           <checkout-list @valid="dummyFunc"></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Kargo Adresi" class="mb-5" icon="feather icon-home" :before-change="validateStep2">
-        <div>
-          <adres :isBilling=false></adres>
-        </div>
-      </tab-content>
       <tab-content title="Fatura Adresi" class="mb-5" icon="feather icon-file-text" :before-change="validateStep3">
         <div>
           <adres :isBilling=true></adres>
+        </div>
+      </tab-content>
+      <tab-content title="Kargo Adresi" class="mb-5" icon="feather icon-home" :before-change="validateStep2">
+        <div>
+          <adres :isBilling=false></adres>
         </div>
       </tab-content>
       <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
