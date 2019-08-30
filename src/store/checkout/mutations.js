@@ -94,14 +94,12 @@ const mutations = {
         state.order.orderNote = value
     },
 
-    FINISH_ORDER(state, value) {
-        state.order.paymentId = value.paymentId
-        state.order.paymentTransactionId = value.paymentTransactionId
-        state.order.userId = value.userId
-        state.order.status = 'ANALYSIS'
+    FINISH_ORDER(state, userId) {
+        state.order.userId = userId
+        state.order.status = 'NOT_PAYMENT'
         state.order.createdDate = new Date()
         state.order.lastModificationDate = new Date()
-        state.order.orderCode = Math.random().toString(36).substr(2, 9).toUpperCase();
+        state.order.orderCode = Math.random().toString(36).substr(2, 9).toUpperCase()
     },
 
     SET_ORDER_LANG(state) {

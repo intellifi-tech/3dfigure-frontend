@@ -7,6 +7,7 @@
       :subtitle=null
       nextButtonText="İleri"
       backButtonText="Geri dön"
+      finishButtonText=""
     >
       <tab-content title="Sepet" class="mb-5" icon="feather icon-shopping-cart" :before-change="validateStep1">
         <div>
@@ -28,6 +29,7 @@
           <VueCardPayment @card-submit="finishShopping"></VueCardPayment>
           <!--<p>Ödeme sayfasına yönlendiriliyorsunuz</p>
           <iframe :src=iframe height="1000" width="1000" class="border-none pt-5"></iframe>-->
+          <div v-html=iframe> </div>
         </div>
       </tab-content>
     </form-wizard>
@@ -48,17 +50,39 @@ export default {
     return {
       counterDanger: false,
       counterDanger2: false,
-      iframe: ""
+      iframe: "",
     };
+  },
+  updated() {
+    var c = document.querySelector('#figure')
+    if (c) {
+      c.click();
+    }
   },
   methods: {
     finishShopping: async function(card) {
       var self = this
+      this.$store.commit('checkout/FINISH_ORDER', this.$store.state.member.id)
+      if (!this.$store.state.checkout.order.id) {
+        await CheckoutService.sendOrder(this.$store.state.checkout.order) 
+      } else {
+        await CheckoutService.sendOrderUpdate(this.$store.state.checkout.order) 
+      }
+
       this.$store.commit("checkout/SET_ORDER_LANG")
       this.$store.commit("checkout/ADD_CARD", card)
-      const paymentRes = await PaymentService.iyzicoForm(this.$store.state.checkout.order)
-
-      if (paymentRes.status == 500 || paymentRes.data.status == 'failure') {
+      const paymentRes = await PaymentService.pay(this.$store.state.checkout.order)
+      debugger
+      if (paymentRes.status >= 400) {
+          this.$vs.notify({
+            time: 6000,
+            title: "HATA!",
+            text: "Bir hata oluştu",
+            color: "danger"
+          });
+          return
+      }
+      if (paymentRes.data.status == 'failure') {
           this.$vs.notify({
             time: 6000,
             title: "HATA!",
@@ -67,26 +91,10 @@ export default {
           });
           return;
       }
-
-      var iyziResult = {
-        userId: this.$store.state.member.id,
-        paymentId: paymentRes.data.paymentId,
-        paymentTransactionId: paymentRes.data.paymentTransactionId
-      }
-
-      this.$store.commit('checkout/FINISH_ORDER', iyziResult)
-      const res = await CheckoutService.sendOrder(this.$store.state.checkout.order)
-      this.$store.dispatch('checkout/createNewBasket')
-      this.$store.dispatch('getCurrentUser')
-      this.$vs.dialog({
-          title: "Başarılı",
-          text: `Siparişiniz alınmıştır ve 5 tane daha figür ekleme hakkı elde ettiniz. Sipariş kodunuz - ${res.orderCode} `,
-          color: "success",
-          acceptText: "Anladım",
-          accept: function() {
-            self.$router.push("/main")
-          }
-      });
+      this.iframe = paymentRes.data.htmlContent
+      this.iframe = this.iframe.replace('name="submitBtn"', 'name="submitBtn" id="figure" style="display:none !important;"')
+      
+      return;
     },
     validateStep1() {
       if(this.counterDanger)
@@ -105,7 +113,7 @@ export default {
       this.counterDanger = counterDanger
     },
     validateStep2: function() {
-      if (!this.$store.state.checkout.chooseAddress) {
+      if (this.$store.state.checkout.order.deliveryId == -1) {
         this.$vs.notify({
           time: 6000,
           title: "HATA!",
@@ -118,7 +126,7 @@ export default {
     },
     validateStep3: async function() {
         
-      if (!this.$store.state.checkout.chooseAddress) {
+      if (this.$store.state.checkout.order.billingId == -1) {
         this.$vs.notify({
           time: 6000,
           title: "HATA!",
