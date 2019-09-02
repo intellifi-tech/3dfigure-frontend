@@ -300,7 +300,7 @@
               <div class="how-to-selfie inline-feaure-wrap bg-transparent shadow-none">
                 <!-- man div start -->
                 <div class="man-div model-column row m-auto" v-show="!man">
-                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5">
+                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mx-auto w-full">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
@@ -436,7 +436,7 @@
 
                 <!-- woman div start -->
                 <div class="woman-div model-column row m-auto" v-show="man">
-                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5">
+                  <div class="inline-feaure-wrap justify-content-center rounded-lg mb-5 mx-auto w-full">
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
@@ -472,7 +472,7 @@
                       <li>
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
-                            <a @click="openLogin">
+                            <a @click="openLogin" class="cursor-pointer">
                               <img
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
