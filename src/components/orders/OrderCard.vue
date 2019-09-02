@@ -72,7 +72,7 @@
                  <div class="w-2/3"><p>{{address.townName}} / {{address.cityName}}</p></div>
                  </div>
             </vs-list>
-            <div class="col-12"><p class="text-right">Tutar :<span class="h2 text-dark"> ${{conceptPrice}}</span></p></div>
+            <div class="col-12"><p class="text-right">Tutar :<span class="h2 text-dark"> ₺{{conceptPrice}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></span></p></div>
           </div>
         </div>
       </vs-popup>

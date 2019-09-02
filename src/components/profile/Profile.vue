@@ -12,7 +12,7 @@
                   <vs-input
                     :class="{'vs-input-danger':this.$v.member.firstName.$invalid && !first}"
                     class="w-full"
-                    :readonly="isUpdated"
+                    :disabled="isUpdated"
                     label-placeholder="Ad"
                     v-model="member.firstName"
                   />
@@ -21,7 +21,7 @@
                   <vs-input
                     :class="{'vs-input-danger':this.$v.member.lastName.$invalid && !first}"
                     class="w-full"
-                    :readonly="isUpdated"
+                    :disabled="isUpdated"
                     label-placeholder="Soyad"
                     v-model="member.lastName"
                   />
@@ -33,19 +33,19 @@
                   <vs-input
                     :class="{'vs-input-danger':this.$v.member.login.$invalid && !first}"
                     class="w-full"
-                    :readonly="isUpdated"
+                    :disabled="isUpdated"
                     type="email"
                     label-placeholder="E-posta"
                     v-model="member.login"
                   />
                 </div>
               </div>
-              <div class="vx-row mb-4">
+              <div class="vx-row mb-2">
                 <div class="vx-col w-full">
                   <vs-input
                     :class="{'vs-input-danger':this.$v.member.tcno.$invalid && !first}"
                     class="w-full"
-                    :readonly="isUpdated"
+                    :disabled="isUpdated"
                     type="text"
                     label-placeholder="T.C No"
                     v-model="member.tcno"
@@ -54,21 +54,25 @@
               </div>
               <div class="vx-row mb-4">
                 <div class="vx-col w-1/2">
+                <span class="text-xs font-light">Doğum Tarihi</span>
                   <datepicker
-                    :class="{'vs-input-danger':this.$v.member.birthDay.$invalid && !first}"
+                    :class="{'vs-input-danger':this.$v.member.birthDay.$invalid && !first, 'bg-light-secondary' : this.isUpdated}" 
                     class="w-full"
                     :disabled="isUpdated"
                     v-model="member.birthDay"
                     :disabled-dates="datePicker.disableD"
                     :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
                     :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
-                    placeholder="Doğum Tarihi"
+                    placeholder="gg.aa.yyyy"
                   ></datepicker>
                 </div>
+                
                 <div class="vx-col w-1/2">
+                <span class="text-xs font-light">Cinsiyet</span>
                   <select
                     class="select-input form-control-lg w-full focus:shadow-md"
                     :disabled="isUpdated"
+                    :class="{'bg-light-secondary' : this.isUpdated}"
                     v-model="member.sex"
                   >
                     <option
@@ -362,7 +366,7 @@ export default {
       cities: [],
       towns: [],
       city: 1,
-      sexList: [{ text: "Male", value: "M" }, { text: "Female", value: "F" }]
+      sexList: [{ text: "Erkek", value: "M" }, { text: "Kadın", value: "F" }]
     };
   },
   created: async function() {

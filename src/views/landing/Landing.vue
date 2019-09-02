@@ -847,11 +847,11 @@
                       <img :src="'assets/images/models/'+n.imagePath" alt="product image">
                     </div>
                     <div class="content">
-                      <h4 class="title">
-                        <a href="#">{{n.title}}</a>
+                      <h4 class="title themecolor-blue">
+                        <a @click="toMain" class="cursor-pointer">{{n.title}}</a>
                       </h4>
                       <div class="price-wrap">
-                        <span class="price">₺{{n.price}}</span>
+                        <span class="price">₺{{n.price}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></span>
                       </div>
                       <a @click="toMain" class="boxed-bt cursor-pointer">{{$t('landing.concepts.list.buynow')}}</a>
                     </div>

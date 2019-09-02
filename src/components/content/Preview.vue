@@ -14,10 +14,10 @@
            <vs-icon class="" icon="info" size="small" bg="blue" color="white" round></vs-icon>
         </span>Bilgilendirme Panosu </h4>
         <p>
-           Modelde bazı eksiklikler olabilir, hiç <b>endişe etmeyin!</b><br>
+           Modelde bazı eksiklikler olabilir, hiç <b class="text-primary">endişe etmeyin!</b><br>
         </p>
         <p class="mb-3">
-          Siz istediğiniz <b>konsepti</b> seçin. Geri kalan tüm düzenlemeler, alanında uzman tasarımcılarımız tarafından düzenlenecektir.
+          Siz istediğiniz <b class="text-primary">konsepti</b> seçin. Geri kalan tüm düzenlemeler, alanında uzman tasarımcılarımız tarafından düzenlenecektir.
         </p>
         <p class="mb-3" v-if="!limit">
           Limitiniz dolduysa uygulamamızı paylaşarak fotoğraf yükleme hakkına sahip olabilirsiniz.
@@ -41,7 +41,10 @@
          </div>
         </div>
         <p>
-          En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline" style="color:#007bff;" @click="openPopupHowtoUse">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
+          En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline text-primary" @click="openPopupHowtoUse">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
+        </p>
+        <p>
+          <b class="text-primary">Çift kişilik</b> konsept kullanabilmek için <b class="text-primary">2 fotoğraf</b> yükleyip seçmelisiniz. 
         </p>
       <hr>
         <div class="mt-0">
@@ -79,21 +82,21 @@
                 <vs-input
                   type="text"
                   class="w-full"
-                  :class="{'vs-input-danger': this.$v.inviteMail.first.$invalid && openInvitePopup}"
+                  :class="{'vs-input-danger': this.$v.inviteMail.first.$invalid && !first}"
                   label-placeholder="1.E-posta"
                   v-model="inviteMail.first"
                 />
                 <vs-input
                   type="text"
                   class="w-full"
-                  :class="{'vs-input-danger': this.$v.inviteMail.second.$invalid && openInvitePopup}"
+                  :class="{'vs-input-danger': this.$v.inviteMail.second.$invalid && !first}"
                   label-placeholder="2.E-posta"
                   v-model="inviteMail.second"
                 />
                 <vs-input
                   type="text"
                   class="w-full"
-                  :class="{'vs-input-danger': this.$v.inviteMail.third.$invalid && openInvitePopup}"
+                  :class="{'vs-input-danger': this.$v.inviteMail.third.$invalid && !first}"
                   label-placeholder="3.E-posta"
                   v-model="inviteMail.third"
                 />
@@ -127,6 +130,7 @@ import {
 export default {
   data() {
     return {
+      first:true,
       openInvitePopup:false,
       inviteMail: {
         first: "",
@@ -177,6 +181,7 @@ export default {
       this.inviteMail.first = ""
       this.inviteMail.second = ""
       this.inviteMail.third = ""
+      this.first=true
     },
      openPopupHowtoUse() {
       this.$store.commit("OPEN_SIDEBAR_POPUP", true);
@@ -207,6 +212,7 @@ export default {
           color: "success"
         });
       } else if (this.$v.inviteMail.$invalid) {
+        this.first=false;
           this.$vs.notify({
             time: 6000,
             title: "HATA!",
@@ -327,7 +333,7 @@ export default {
   },
   validations: {
     inviteMail: {
-      first: {required, email},
+      first: {required, email,},
       second: {required, email, sameAsPassword: not(sameAs("first"))},
       third: {required, email, sameAsPassword: and(not(sameAs("first")), not(sameAs("second")))}
     }

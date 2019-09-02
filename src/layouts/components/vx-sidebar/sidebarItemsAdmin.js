@@ -62,14 +62,7 @@ export default [
 		name: "Ön Sayfa",
 		slug: "landing",
 		icon: "LayoutIcon",
-	},
-	{
-		url: "/admin/catalog",
-		name: "Landing",
-		slug: "catalog",
-		icon: "LayersIcon",
-	},
-	
+	},	
 	{
 		url: "/admin/orders",
 		name: "Siparişler",

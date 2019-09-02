@@ -7,7 +7,7 @@
       :subtitle=null
       nextButtonText="İleri"
       backButtonText="Geri dön"
-      finishButtonText=""
+      finishButtonText="Bitti!"
     >
       <tab-content title="Sepet" class="mb-5" icon="feather icon-shopping-cart" :before-change="validateStep1">
         <div>
@@ -25,11 +25,44 @@
         </div>
       </tab-content>
       <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
-        <div class="text-center">
+        <div class="d-lg-flex mt-4">
           <VueCardPayment @card-submit="finishShopping"></VueCardPayment>
           <!--<p>Ödeme sayfasına yönlendiriliyorsunuz</p>
           <iframe :src=iframe height="1000" width="1000" class="border-none pt-5"></iframe>-->
           <div v-html=iframe> </div>
+           <div class="col-lg-4 pt-4 pt-md-0">
+        <div class="vx-card shadow-md py-8 px-4">
+          <ul class="list-group">
+            <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Net Toplam</h6>
+              </div>
+              <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet}}</span>
+            </li>
+             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="discountActive">
+              <div>
+                <h6 class="my-0">İndirim Tutarı</h6>
+              </div>
+              <span class="text-muted">₺2.5</span>
+            </li>
+            <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">KDV(%18)</h6>
+              </div>
+              <span class="text-muted">₺{{this.$store.state.checkout.order.kdv}}</span>
+            </li>
+            <li class="pt-3 pb-2 d-flex justify-content-between">
+              <span>Genel Toplam (TL)</span>
+              <strong>₺{{this.$store.state.checkout.order.totalPrice}}</strong>
+            </li>
+            <hr>
+            <li class="pt-2 d-flex justify-content-between">
+              <h6>Tüm siparişlerinizde kargo ücetsizdir.</h6>
+            </li>
+          </ul>
+        </div>
+        <!--card checkout -->
+      </div>
         </div>
       </tab-content>
     </form-wizard>

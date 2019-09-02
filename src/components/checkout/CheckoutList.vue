@@ -9,7 +9,7 @@
       <div class="col-lg-8">
         <div v-for="concept in this.$store.state.checkout.basketList" :key="concept.id">
           <div
-            class="row vx-card shadow-md px-4 py-4 mb-5"
+            class="d-lg-flex vx-card shadow-md px-4 py-4 mb-5"
             v-for="figure in concept.figures.filter(f => f.userId == $store.state.member.id)"
             :key="figure.id"
           >
@@ -29,7 +29,7 @@
               <span class="col-lg-12 pl-0">{{concept.description}}</span>
             </div>
             <div class="col-lg-3 pt-3 text-center">
-              <h4>₺{{concept.price}}</h4>
+              <h4>₺{{concept.price}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></h4>
               <feather-icon icon="checkIcon" class="m-0 cursor-pointer"></feather-icon>
               <!--<h6 class="mt-4 text-success" icon-pack="feather" icon="icon-check">Kargo Ücretsiz</h6>-->
               <input
@@ -67,9 +67,13 @@
               </div>
               <span class="text-muted">₺{{this.$store.state.checkout.order.kdv}}</span>
             </li>
-            <li class="py-3 d-flex justify-content-between">
+            <li class="pt-3 pb-2 d-flex justify-content-between">
               <span>Genel Toplam (TL)</span>
               <strong>₺{{this.$store.state.checkout.order.totalPrice}}</strong>
+            </li>
+            <hr>
+            <li class="pt-2 pb-1 d-flex justify-content-between">
+              <h6>Tüm siparişlerinizde kargo ücetsizdir.</h6>
             </li>
             <hr>
              <li class="py-3 justify-content-between">

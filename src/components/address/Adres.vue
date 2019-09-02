@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid border rounded-lg px-5 py-4">
-    <div class="">
+  <div class="d-lg-flex container-fluid border rounded-lg px-lg-5 py-4">
+    <div class="col-lg-8">
       <ul class="nav nav-pills mb-3" role="tablist">
         <li class="nav-item">
           <a
@@ -33,7 +33,7 @@
       <div class="mt-3 col-md-12">
          <div class="adreslerim" v-show="chooseAddress">
          <hr>
-          <div class="col-12 vx-card py-3 px-5 mt-5 mb-4" v-if="this.$store.state.checkout.addressList === null || this.$store.state.checkout.addressList.length === 0">
+          <div class="col-12 vx-card py-3 px-lg-5 mt-5 mb-4" v-if="this.$store.state.checkout.addressList === null || this.$store.state.checkout.addressList.length === 0">
              Kayıtlı adres bulunmuyor.
            <a 
             href="#new-address" 
@@ -162,6 +162,39 @@
       </div>
       <!--adres page column-->
     </div>
+    <div class="col-lg-4 pt-4 pt-md-0">
+        <div class="vx-card shadow-md py-8 px-4">
+          <ul class="list-group">
+            <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Net Toplam</h6>
+              </div>
+              <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet}}</span>
+            </li>
+             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="discountActive">
+              <div>
+                <h6 class="my-0">İndirim Tutarı</h6>
+              </div>
+              <span class="text-muted">₺2.5</span>
+            </li>
+            <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">KDV(%18)</h6>
+              </div>
+              <span class="text-muted">₺{{this.$store.state.checkout.order.kdv}}</span>
+            </li>
+            <li class="pt-3 pb-2 d-flex justify-content-between">
+              <span>Genel Toplam (TL)</span>
+              <strong>₺{{this.$store.state.checkout.order.totalPrice}}</strong>
+            </li>
+            <hr>
+            <li class="pt-2 d-flex justify-content-between">
+              <h6>Tüm siparişlerinizde kargo ücetsizdir.</h6>
+            </li>
+          </ul>
+        </div>
+        <!--card checkout -->
+      </div>
     <!--row-->
      </div>
   <!--container-->

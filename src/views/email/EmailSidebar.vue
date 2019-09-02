@@ -18,23 +18,45 @@
 				<VuePerfectScrollbar class="scroll-area p-4" :settings="settings">
 					<form @submit.prevent>
 						<span class="h6 text-sm font-light">İlgili Sipariş Kodu</span>
-						<select v-model="ticket.ordersId" class="w-full mb-6 form-control-lg selecting selectExample select-input" >
-							<option
-                      			:key="item.id"
-                      			:value="item.id"
-                      			v-for="(item) in orderList"
-                    		>{{item.orderCode}}</option>
-						</select>
+							<div :class="{'vs-select-danger': this.$v.ticket.ordersId.$invalid && !first}">	
+								<select 
+								v-model="ticket.ordersId" 
+								class="w-full mb-6 form-control-lg selecting selectExample select-input"
+								  >
+									<option
+                      				:key="item.id"
+                      				:value="item.id"
+                      				v-for="(item) in orderList"
+                    				>{{item.orderCode}}</option>
+								</select>
+							</div>
+						
 						<span class="h6 text-sm font-light">Destek Alanı</span>
-						<select v-model="ticket.type" class="w-full mb-6 form-control-lg selecting selectExample select-input" >
-							<option
-                      			:key="index"
-                      			:value="item"
-                      			v-for="(item,index) in ticketTypeList"
-                    		>{{item == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</option>
-						</select>
-						<vs-input label-placeholder="Konu" v-model="ticket.subject" class="w-full mb-6" />
-						<quill-editor v-model="chat.text" :options="editorOption"></quill-editor>
+							<div :class="{'vs-select-danger': this.$v.ticket.type.$invalid && !first}">	
+								<select
+								 v-model="ticket.type" 
+								 class="w-full mb-6 form-control-lg selecting selectExample select-input" 
+								 >
+									<option
+                      					:key="index"
+                      					:value="item"
+                      					v-for="(item,index) in ticketTypeList"
+                    				>{{item == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</option>
+								</select>
+							</div>
+
+						<vs-input 
+						label-placeholder="Konu" 
+						v-model="ticket.subject" 
+						class="w-full mb-6"
+						:class="{'vs-input-danger':this.$v.ticket.subject.$invalid && !first}"
+						 />
+
+						<quill-editor
+						 v-model="chat.text"
+						 :options="editorOption"
+						 :class="{'border-solid border border-theme-danger':this.$v.chat.text.$invalid && !first}"
+						  ></quill-editor>
 						<!--<input type="file" multiple ref="addTicketFiles" v-on:change="handleFileUpload"
                 			accept="*/*" class="input-file" />-->
 						<!--<vs-upload ref="addTicketFiles" v-on:change="handleFileUpload" multiple text="Dosya ekle" :show-upload-button="false" />-->
@@ -80,6 +102,12 @@
 </template>
 
 <script>
+import {
+  required,
+  minLength,
+  maxLength
+} from "vuelidate/lib/validators";
+
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import { quillEditor } from 'vue-quill-editor'
@@ -106,6 +134,7 @@ export default{
 	},
 	data() {
 		return {
+			first: true,
 			orderList: [],
 			files: [],
 			ticket: {
@@ -168,30 +197,46 @@ export default{
 			this.$emit('closeSidebar', false);
 		},
 		saveTicket: async function() {
-			const resTicket = await TicketService.saveTicket(this.ticket);
-			
-			if (resTicket.status < 400) {
-				this.chat.ticketId = resTicket.data.id;
-				this.chat.userId = this.$store.state.member.id;
-				const resChat = await TicketService.saveChat(this.chat);
-				this.$store.commit('email/REMOVE_IS_NOT_READ_LIST');
-				await this.$store.dispatch('email/setUserTickets');
 
-				if (resChat.status < 400 && this.file) {
-					let formData = new FormData();
-					formData.append('tickets', this.file);
-					formData.append('ticketId', resTicket.data.id);
-					const res = await TicketService.saveTicketImages(formData);
-					if (res.status >= 400) {
-						this.$vs.notify({
-          					time: 6000,
-          					title: "Başarısız!",
-          					text: "Ticket açıldı fakat dosya yüklenemedi",
-          					color: "danger"
-        				});
+			if (this.$v.$invalid) {
+			     this.$vs.notify({
+			       time: 6000,
+			       title: "HATA!",
+			       text: "Lütfen bilgileri kontrol ediniz.",
+			       color: "danger"
+			     });
+				 this.first = false;
+				 this.activePrompt= true;
+			     return;
+			  }
+			  else{ 
+				  const resTicket = await TicketService.saveTicket(this.ticket);
+
+					if (resTicket.status < 400) {
+						this.chat.ticketId = resTicket.data.id;
+						this.chat.userId = this.$store.state.member.id;
+						const resChat = await TicketService.saveChat(this.chat);
+						this.$store.commit('email/REMOVE_IS_NOT_READ_LIST');
+						await this.$store.dispatch('email/setUserTickets');
+
+						if (resChat.status < 400 && this.file) {
+							let formData = new FormData();
+							formData.append('tickets', this.file);
+							formData.append('ticketId', resTicket.data.id);
+							const res = await TicketService.saveTicketImages(formData);
+							if (res.status >= 400) {
+								this.$vs.notify({
+			       					time: 6000,
+			       					title: "Başarısız!",
+			       					text: "Ticket açıldı fakat dosya yüklenemedi",
+			       					color: "danger"
+			     				});
+							}
+						}
 					}
-				}
-			}
+			  }
+
+			
 			/*let formData = new FormData();
 			formData.append('tickets', this.file);
 			if (this.file) {
@@ -223,17 +268,27 @@ export default{
 		},
 		// compose mail methods
 		clearFields() {
-			this.mailTo = '';
-			this.mailSubject = '';
-			this.mailCC = '';
-			this.mailBCC = '';
-			this.mailMessage = '';
+			this.ticket.orderCode = '';
+			this.ticket.type = '';
+			this.ticket.subject = '';
+			this.chat.text = '';
+			this.first=true;
 		},
 	},
 	components: {
 		quillEditor,
 		VuePerfectScrollbar
-	}	
+	},
+	validations: {
+		ticket:{
+				ordersId: {required},
+	 			type: {required},
+	 			subject: {required, minLength: minLength(5), maxLength: maxLength(90) },
+		},
+		chat:{
+			text: {required, minLength: minLength(5), maxLength: maxLength(2000) }
+		}
+  	},
 }
 
   function newFunction() {

@@ -14,7 +14,7 @@
       </div>
       <h5 class="mb-2 max-ch">{{concept.conceptName}}</h5>
       <p class="text-grey max-ch">{{concept.description}}</p>
-      <p class="text-grey">₺{{concept.price}}</p>
+      <p class="text-grey">₺{{concept.price}} <span class="h6 text-grey">+{{$t('landing.pricing.kdv')}}</span></p>
       <div class="flex justify-between flex-wrap">
         <vs-button
           v-if="!this.isAdded"
@@ -41,7 +41,7 @@
             <h3>{{concept.conceptName}}</h3>
             <hr class="w-3/4"/>
             <p class="px-3 pb-4">{{concept.description}}</p>
-            <div class="col-12"><p class="text-right">Fiyat :<span class="h2 text-dark"> ₺{{concept.price}}</span></p></div>
+            <div class="col-12"><p class="text-right">Fiyat :<span class="h2 text-dark"> ₺{{concept.price}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></span></p></div>
           </div>
         </div>
       </vs-popup>

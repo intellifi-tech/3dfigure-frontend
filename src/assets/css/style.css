@@ -4158,3 +4158,15 @@ text-decoration: underline
   text-overflow: ellipsis;
   max-width: 25ch;
 }
+.themecolor-primary{
+  color:rgba(var(--vs-primary),1) !important;
+}
+.themecolor-blue{
+  color:#5369f0 !important;
+}
+.border-theme-danger{
+  border-color:rgba(var(--vs-danger),1) !important;
+}
+.bg-light-secondary{
+ background-color: #f5f5f1 !important;
+}

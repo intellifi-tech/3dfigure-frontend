@@ -1,7 +1,8 @@
 <template>
-  <div class="cardWrap" :class="{'valid' : valid}" :style="{
+  <div class="cardWrap bg-primary-gradient shadow-md valid vx-card w-full sm:w-1/3" :class="{'valid' : valid}" :style="{
       background: systemSettings.showBank ? visual.backgroundGradient : ''
     }">
+    <h5 class="text-white">Kart Bilgileri</h5>
     <form @submit.prevent="onBtn" :class="systemSettings.showBank ? bankInfo.backgroundLightness : ''">
       <!--<div class="bankLogo">
         <img v-if="systemSettings.showBank" :src="getImage(bankInfo.bankLogo)"/>
@@ -285,7 +286,7 @@ export default {
 <style scoped>
   .cardWrap {
     width: 420px;
-    height: 220px;
+    height: 245px;
     position: relative;
     margin: 0 auto;
     padding: 15px 35px;
@@ -419,7 +420,7 @@ export default {
 
   .cardWrap.valid .submit {
     background: transparent;
-    border-top: 1px solid #dbdbdb;
+    /*border-top: 1px solid #dbdbdb;*/
   }
 
   .cardWrap.valid button {

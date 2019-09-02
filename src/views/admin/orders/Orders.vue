@@ -38,7 +38,7 @@
 
     <vs-td :data="data[indextr].status">{{data[indextr].status}}</vs-td>
 
-    <vs-td :data="data[indextr].totalPriceNet">₺{{data[indextr].totalPriceNet}}</vs-td>
+    <vs-td :data="data[indextr].totalPriceNet">₺{{data[indextr].totalPriceNet}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></vs-td>
 
     <vs-td :data="data[indextr].userLogin">{{data[indextr].userLogin}}</vs-td>
 

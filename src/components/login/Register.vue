@@ -57,6 +57,7 @@
                   v-for="(item,index) in sexList"
                   :value="item.value"
                 >{{item.text}}</option>
+                 <option value="" disabled selected class="bg-grey-light">Cinsiyet seç</option>
               </select>
               </div>
               <vs-input
@@ -111,7 +112,7 @@ export default {
       confirm: "",
       checkBox1: false,
       sexList: [{ text: "Erkek", value: "M" }, { text: "Kadın", value: "F" }],
-      sex: "M",
+      sex: "",
       first: true
     };
   },
