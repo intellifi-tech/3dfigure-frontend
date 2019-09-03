@@ -201,7 +201,11 @@ export default {
       evt = (evt) || window.event
       const charCode = (evt.which) ? evt.which : evt.keyCode
       // additional exceptions: ,-'.
-      const exceptionKeysName = exceptionKeys.concat([188, 189, 190, 107, 52, 106])
+      const exceptionKeysName = exceptionKeys.concat([188, 189, 190, 107, 52, 106, 110])
+
+      if (charCode === 32) {
+        return true
+      }
 
       if (exceptionKeysName.indexOf(charCode) !== -1) {
         evt.preventDefault()
