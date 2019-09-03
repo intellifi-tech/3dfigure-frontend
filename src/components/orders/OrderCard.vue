@@ -96,7 +96,8 @@ export default {
         'REJECT': 'Reddedildi',
         'BUILD': 'Yapım Aşamasında',
         'CARGO': 'Kargoda',
-        'DONE': 'Tamamlandı'
+        'DONE': 'Tamamlandı',
+        'NOT_PAYMENT':'ÖDENMEDİ'
       }
     };
   },
@@ -146,6 +147,10 @@ export default {
       case 'DONE':
         this.statusImage = 'done.png'
         break;
+      case 'NOT_PAYMENT':
+        this.statusImage = 'warning.png'
+        break;
+        
     }
   },
   methods: {

@@ -29,20 +29,21 @@
                   <vs-input
                     disabled
                     class="w-full"
-                    label-placeholder="Email"
+                    label-placeholder="E-posta"
                     v-model="user.email"
                   />
                 </div>
               </div>
               <div class="vx-row mb-2">
                 <div class="vx-col w-full mb-2">
-                  <vs-input
-                    disabled
-                    type="text"
-                    class="w-full"
-                    label-placeholder="Cinsiyet"
-                    v-model="user.sex"
-                  />
+                   <span class="text-xs text-grey pl-2">Cinsiyet</span>
+                  <select 
+                  class="w-full form-control-lg selecting selectExample select-input bg-light-secondary" 
+                  disabled>
+                  <option >
+                  {{user.sex == 'M' ? 'Erkek' : 'Kadın'}}
+                  </option>
+                  </select>
                 </div>
               </div>
             </vx-card>
@@ -136,7 +137,7 @@ import OrderCard from '@/components/orders/OrderCard.vue'
 export default {
   data() {
     return {
-      auth: [{text: 'Admin', value: 'ROLE_ADMIN'}, {text: 'User', value: 'ROLE_USER'}, {text: 'Business User', value: 'ROLE_BUSINESS'}],
+      auth: [{text: 'Yönetici', value: 'ROLE_ADMIN'}, {text: 'Kullanıcı', value: 'ROLE_USER'}, {text: 'Ticari Kullanıcı', value: 'ROLE_BUSINESS'}],
       searchQuery: "",
       orderValues: [],
       concepts: [],
@@ -188,7 +189,6 @@ export default {
       cities: [],
       towns: [],
       city: 1,
-      sexList: [{ text: "Male", value: "M" }, { text: "Female", value: "F" }]
     };
   },
   components: {
@@ -200,5 +200,6 @@ export default {
     this.addresses = await AddressService.getUserAddress2(this.$route.query.id);
     this.orderValues = await OrderService.getUsersAllOrders(this.$route.query.id);
   }
+
 };
 </script>

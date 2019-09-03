@@ -839,7 +839,7 @@
         <div class="row">
           <div class="col-lg-12">
               <!-- main slides -->
-              <hooper :itemsToShow="4" :infiniteScroll="true" :autoPlay="true" :playSpeed="4000">
+              <hooper class="hooper-slide-concepts" :itemsToShow="4" :infiniteScroll="true" :autoPlay="true" :playSpeed="4000">
                 <template v-if="conceptList && conceptList .length">
                  <slide v-for="(n, index) in conceptList" :key="index" class="py-3">
                    <div class="single-product-item">
@@ -847,7 +847,7 @@
                       <img :src="'assets/images/models/'+n.imagePath" alt="product image">
                     </div>
                     <div class="content">
-                      <h4 class="title themecolor-blue">
+                      <h4 class="title themecolor-blue text-lg">
                         <a @click="toMain" class="cursor-pointer">{{n.title}}</a>
                       </h4>
                       <div class="price-wrap">
@@ -1050,7 +1050,7 @@
       </div>
       <div class="customer-logos slider padding-bottom-30">
               <!-- main slides -->
-              <hooper :itemsToShow="4" :infiniteScroll="true" :autoPlay="true" :playSpeed="4000">
+              <hooper class="hooper-slide-examples" :itemsToShow="4" :infiniteScroll="true" :autoPlay="true" :playSpeed="4000">
                 <template v-if="exampleList && exampleList .length">
                 <slide v-for="(n, index) in exampleList" :key="index">
                   <a
@@ -1844,13 +1844,16 @@ export default {
       this.$refs.register.checkBox1 = false
     },
     sendMail: async function() {
-      await ContactService.sendMail(this.contact);
-      /*this.$vs.notify({
+     
+     /*if (this.$v.$invalid){
+        await ContactService.sendMail(this.contact);
+        this.$vs.notify({ 
           time: 6000,
           title: "Başarılı",
           text: "Teşekkür ederiz :)",
           color: "success"
-      })*/
+          })
+       }*/
     },
     change() {
       this.man = !this.man;
@@ -1924,14 +1927,19 @@ nav.sticky{
     cursor: pointer;
 }
 @media (max-width: 489px) {
-  .hooper-slide{
-     width: 100% !important;
-     padding: 0px 62px;
+   .hooper-slide-concepts .hooper-slide{
+     width: 50% !important;
+     padding: 0px 10px;
+
+   }
+   .hooper-slide-examples .hooper-slide{
+     width: 49.5% !important;
+     padding: 0px 10px;
 
    }
   .hooper-slide .thumb img{
        width: 250px !important;
-      height: 250px !important;
+      height: 175px !important;
       object-fit: cover !important;
 
       }

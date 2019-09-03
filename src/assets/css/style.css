@@ -4170,3 +4170,7 @@ text-decoration: underline
 .bg-light-secondary{
  background-color: #f5f5f1 !important;
 }
+.fit-img, .fit-img img{
+height:125px;
+object-fit:cover;
+}

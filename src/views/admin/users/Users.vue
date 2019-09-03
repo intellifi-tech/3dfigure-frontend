@@ -24,6 +24,7 @@
       </template>
       <template slot="thead">
   <vs-th sort-key="email">E-posta</vs-th>
+  <vs-th sort-key="tcNo">Kimlik No</vs-th>
   <vs-th sort-key="firstName">Adı Soyad</vs-th>
   <vs-th sort-key="activated">Durum</vs-th> 
   <vs-th>Seçenekler</vs-th>
@@ -32,7 +33,7 @@
       <template slot-scope="{data}">
   <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
     <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
-
+    <vs-td :data="data[indextr].tcNo">{{data[indextr].tcNo}}</vs-td>
     <vs-td :data="data[indextr].firstName">{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
 
     <vs-td :data="data[indextr].activated">{{data[indextr].activated ? 'Aktif' : 'Pasif'}}</vs-td> 
@@ -64,6 +65,7 @@ export default {
     selected: {},
     users: [],
     json_fields: {
+      "tcNo":"tcNo",
       "Kullanıcı Adı": "login",
       "İlk Adı": "firstName",
       "Soyadı": "lastName",

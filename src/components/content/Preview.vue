@@ -41,7 +41,7 @@
          </div>
         </div>
         <p>
-          En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline text-primary" @click="openPopupHowtoUse">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
+          En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline text-primary" @click="popupContent">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
         </p>
         <p>
           <b class="text-primary">Çift kişilik</b> konsept kullanabilmek için <b class="text-primary">2 fotoğraf</b> yükleyip seçmelisiniz. 
@@ -108,6 +108,162 @@
               </div>
             </div>
     </vs-popup>
+    <vs-popup class="xl-popup" :active.sync="popupContentHow" title="Nasıl Yapılır?">
+      <div class="how-to-popup">  
+         <div class="man-div row m-auto p-4" v-if="man">
+          <div class="card-footer col-lg-5 px-0 rounded-lg ">
+                    <div class="single-inline-feature-item">
+                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
+                      <img
+                        src="assets/images/portre/man/man-true.jpg"
+                        class="-mt-4 img-fluid rounded-t-lg"
+                      >
+                      <div class="content pt-4 pt-lg-5 px-4">
+                        <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
+                        <p class="pt-3 pt-lg-4" v-html="$t('landing.howtouse.trueDesc')"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-7 pr-lg-0">
+                    <ul id="man-list" class="falseList">
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-12 col-md-4  px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/man/man-false-1.jpg"
+                              class="rounded-l-lg img-scale fit-img"
+                            >
+                          </div>
+                          <div class="content col-12 col-md-8 pt-3">
+                            <p class="text-sm text-dark">{{$t('landing.howtouse.falseFirst')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-12 col-md-4  px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/man/man-false-3.jpg"
+                              class="rounded-l-lg img-scale fit-img"
+                            >
+                          </div>
+                          <div class="content col-12 col-md-8 pt-3">
+                            <p class="text-sm text-dark">{{$t('landing.howtouse.falseSecond')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-12 col-md-4  px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/man/man-false-2.jpg"
+                              class="rounded-l-lg img-scale fit-img"
+                            >
+                          </div>
+                          <div class="content col-12 col-md-8 pt-3">
+                            <p class="text-sm text-dark">{{$t('landing.howtouse.falseThird')}}</p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="card-group bg-light rounded-lg">
+                          <div class="portre col-12 col-md-4  px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/man/man-false-4.jpg"
+                              class="rounded-l-lg img-scale fit-img"
+                            >
+                          </div>
+                          <div class="content col-12 col-md-8 pt-3">
+                            <p class="text-sm text-dark">{{$t('landing.howtouse.falseFourth')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                 </div> 
+        <div class="woman-div row m-auto p-4" v-else>
+          <div class="card-footer col-lg-5 px-0 rounded-lg ">
+                    <div class="single-inline-feature-item">
+                      <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
+                      <img
+                        src="assets/images/portre/woman/woman-true.jpg"
+                        class="-mt-4 img-fluid rounded-t-lg"
+                      >
+                      <div class="content pt-4 pt-lg-5 px-4">
+                        <h4>{{$t('landing.howtouse.trueHeader')}}</h4>
+                        <p class="pt-3 pt-lg-4" v-html="$t('landing.howtouse.trueDesc')"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-7 pr-lg-0">
+                    <ul id="woman-list" class="falseList">
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-12 col-md-4  px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-1.jpg"
+                              class="rounded-l-lg img-scale fit-img"
+                            >
+                          </div>
+                          <div class="content col-12 col-md-8 pt-3">
+                            <p class="text-sm text-dark">{{$t('landing.howtouse.falseFirst')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-12 col-md-4  px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-3.jpg"
+                              class="rounded-l-lg img-scale fit-img"
+                            >
+                          </div>
+                          <div class="content col-12 col-md-8 pt-3">
+                            <p class="text-sm text-dark">{{$t('landing.howtouse.falseSecond')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="card-group bg-light mb-3 rounded-lg">
+                          <div class="portre col-12 col-md-4  px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-2.jpg"
+                              class="rounded-l-lg img-scale fit-img"
+                            >
+                          </div>
+                          <div class="content col-12 col-md-8 pt-3">
+                            <p class="text-sm text-dark">{{$t('landing.howtouse.falseThird')}}</p>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="card-group bg-light rounded-lg">
+                          <div class="portre col-12 col-md-4  px-0">
+                            <img src="assets/images/icon/icon-bad.png" class="selfie-bad-icon">
+                            <img
+                              src="assets/images/portre/woman/woman-false-4.jpg"
+                              class="rounded-l-lg img-scale fit-img"
+                            >
+                          </div>
+                          <div class="content col-12 col-md-8 pt-3">
+                            <p class="text-sm text-dark">{{$t('landing.howtouse.falseFourth')}}</p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                 </div> 
+              </div>
+    </vs-popup>
   </div>
   <!--preview row-->
 </template>
@@ -130,8 +286,10 @@ import {
 export default {
   data() {
     return {
+      man: true,
       first:true,
       openInvitePopup:false,
+      popupContentHow:false,
       inviteMail: {
         first: "",
         second: "",
@@ -174,7 +332,7 @@ export default {
     showLimit: function() {
       if (this.userFigures.length != null)
       return this.$store.state.member.totalFigure - this.userFigures.length
-    }
+    },
   },
   methods: {
     closePopup() {
@@ -185,6 +343,15 @@ export default {
     },
      openPopupHowtoUse() {
       this.$store.commit("OPEN_SIDEBAR_POPUP", true);
+    },
+    popupContent(){
+      this.popupContentHow=true;
+      if (this.$store.state.member.sex == 'F') {
+        this.man=false;
+      }
+      else{
+         this.man=true;
+      }
     },
     updateGallery: async function() {},
     initialize: async function() {
@@ -329,7 +496,10 @@ export default {
     },
     showAvatar(code) {
       this.$refs.unity.sendAvatar(code);
-    }
+    },
+    change() {
+      this.man = !this.man;
+    },
   },
   validations: {
     inviteMail: {
@@ -358,5 +528,16 @@ export default {
 .btnDavet i{
   font-weight:bold;
   font-size:1rem !important;
+}
+.xl-popup .vs-popup{
+  width: 950px !important;
+}
+.xl-popup .vs-popup--content {
+  width: 100%;
+  overflow-x:hidden;
+  padding:0 !important;
+  margin: 0 !important;
+  border-bottom-left-radius:.5rem !important;
+  border-bottom-right-radius:.5rem !important;
 }
 </style>
