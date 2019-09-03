@@ -94,10 +94,15 @@ export default {
     },
     orders: [],
     status: {
-      'ANALYSIS': 'Analiz ediliyor',
-      'NOT_PAYMENT': 'Ödenmedi'
+        'ANALYSIS': 'Analiz ediliyor',
+        'ACCEPT': 'Kabul edildi',
+        'REJECT': 'Reddedildi',
+        'BUILD': 'Yapım Aşamasında',
+        'CARGO': 'Kargoda',
+        'DONE': 'Tamamlandı',
+        'NOT_PAYMENT':'Ödenmedi'
       },
-    statusList: [{text: 'Analiz ediliyor', status: 'ANALYSIS'}, {text: 'Kabul edildi', status: 'ACCEPT'}, {text: 'Red edildi', status: 'REJECT'}, {text: 'Yapılıyor', value: 'BUILD'},
+    statusList: [{text: 'Analiz ediliyor', status: 'ANALYSIS'}, {text: 'Kabul edildi', status: 'ACCEPT'}, {text: 'Red edildi', status: 'REJECT'}, {text: 'Yapış Aşamasında', value: 'BUILD'},
     {text: 'Kargoda', status: 'CARGO'},{text: 'Tamamlandı', status: 'DONE'},{text: 'Ödenmedi', status: 'NOT_PAYMENT'}],
     
   }),
