@@ -46,6 +46,13 @@ export default [
 		slug: "ticket",
 		icon: "MailIcon",
 	
+	},
+	{
+		url: "/profile",
+		name: "Profil",
+		slug: "profil",
+		icon: "UserIcon",
+	
 	}
 	
 ]
