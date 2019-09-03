@@ -306,7 +306,7 @@
                         <iframe
                           width="100%"
                           height="500"
-                          :src='"https://sketchfab.com/models/"+iframeModelID+"/embed"'
+                          :src='"https://sketchfab.com/models/"+iframeModelID+"/embed?preload=1"'
                           frameborder="0"
                           allow="autoplay; fullscreen; vr"
                           mozallowfullscreen="true"
@@ -442,7 +442,7 @@
                         <iframe
                           width="100%"
                           height="500"
-                          :src='"https://sketchfab.com/models/"+iframeModelID2+"/embed"'
+                          :src='"https://sketchfab.com/models/"+iframeModelID2+"/embed?preload=1"'
                           frameborder="0"
                           allow="autoplay; fullscreen; vr"
                           mozallowfullscreen="true"

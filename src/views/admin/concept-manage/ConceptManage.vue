@@ -38,7 +38,7 @@
             <iframe
               class="responsive card-img-top"
               style="height: 170px"
-              :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed'"
+              :src="'https://sketchfab.com/models/'+concept.sketchId+'/embed?preload=1'"
               frameborder="0"
               allow="autoplay; fullscreen; vr"
               mozallowfullscreen="true"
@@ -72,7 +72,7 @@
             <iframe
               class="responsive card-img-top"
               style="height: 170px"
-              :src="'https://sketchfab.com/models/'+selected.sketchId+'/embed'"
+              :src="'https://sketchfab.com/models/'+selected.sketchId+'/embed?preload=1'"
               frameborder="0"
               allow="autoplay; fullscreen; vr"
               mozallowfullscreen="true"
