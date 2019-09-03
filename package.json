@@ -43,6 +43,7 @@
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.15.0",
     "vue-select": "^2.5.1",
+    "vue-tidio": "^1.0.1",
     "vue-unity-webgl": "^1.2.0",
     "vue-video-player": "^5.0.2",
     "vue2-google-maps": "^0.10.3",

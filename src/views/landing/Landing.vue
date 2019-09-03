@@ -1736,7 +1736,7 @@
       </div>
     </footer>
     <!-- footer area end -->
-    <div class="back-to-top base-color-2" v-if="isVisible">
+    <div class="landing-back-to-top back-to-top base-color-2" v-if="isVisible">
       <i class="fas fa-rocket" v-scroll-to="'#body-overlay'"></i>
     </div>
   </div>

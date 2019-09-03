@@ -28,6 +28,7 @@ import VueScrollTo from 'vue-scrollto'
 import VueCookie from 'vue-cookie'
 import VueAxios from 'vue-axios'
 import axios from 'axios';
+import VueTidio from 'vue-tidio';
 import {
   TokenService
 } from '@/services/token.service'
@@ -36,6 +37,7 @@ Vue.use(VeeValidate)
 Vue.use(Vuelidate)
 Vue.use(Vuesax)
 Vue.use(VueAxios, axios)
+Vue.use(VueTidio, { appKey: 'aougvk5e2nikvtyizyzbm1hppktcxfvx' });
 Vue.use(VueAuthenticate, {
   baseUrl: 'http://3dfigur.com',
   providers: {

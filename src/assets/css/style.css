@@ -335,6 +335,9 @@
   line-height: 34px !important;
   color: inherit !important; }
 
+ .landing-back-to-top {
+   bottom: 150px !important;
+  }
 .back-to-top {
   position: fixed;
   right: 30px;
