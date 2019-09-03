@@ -73,7 +73,7 @@ LogosRaw.keys().forEach(function (key) {
 })
 
  // exception keys are: space, enter, backspace, left arrow, up arrow, right arrow, down arrow
-const exceptionKeys = [32, 13, 8, 37, 38, 39, 40]
+const exceptionKeys = [32, 13, 37, 38, 39, 40]
 
 // if there are svg, ovverride png
 LogosRawSvg.keys().forEach(function (key) {
@@ -200,12 +200,18 @@ export default {
     onlyLetters (evt) {
       evt = (evt) || window.event
       const charCode = (evt.which) ? evt.which : evt.keyCode
-
       // additional exceptions: ,-'.
-      const exceptionKeysName = exceptionKeys.concat([188, 189, 222, 190])
+      const exceptionKeysName = exceptionKeys.concat([188, 189, 190, 107, 52, 106])
 
-      if (!(charCode >= 65 && charCode <= 120) &&
-         exceptionKeysName.indexOf(charCode) === -1) {
+      if (exceptionKeysName.indexOf(charCode) !== -1) {
+        evt.preventDefault()
+      } 
+
+      if (charCode === 8) {
+        return true;
+      }
+
+      if (!(charCode >= 65 && charCode <= 222)) {
         evt.preventDefault()
       } else {
         return true
@@ -242,7 +248,9 @@ export default {
     },
 
     'card.name' () {
-      this.card.name = this.card.name.toUpperCase().replace(/[^A-Z\s'-,.]/g, '')
+      var letters = { "i": "İ", "ş": "Ş", "ğ": "Ğ", "ü": "Ü", "ö": "Ö", "ç": "Ç", "ı": "I" };
+	    this.card.name = this.card.name.replace(/(([iışğüçö]))/g, function(letter){ return letters[letter]; })
+      this.card.name = this.card.name.toUpperCase().replace(/[^A-ZiİşŞğĞüÜöÖçÇıI\s'-,.]/g, '')
     },
 
     'card.month' (newVal) {

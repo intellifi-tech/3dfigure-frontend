@@ -116,7 +116,8 @@ const router = new Router({
 			path: '',
 			component: () => import('./layouts/main/Main.vue'),
 			meta: {
-				public: false
+				public: false,
+				showChat: false
 			},
 			children: [
 				// =============================================================================
@@ -286,17 +287,6 @@ const router = new Router({
 	],
 })
 
-router.afterEach((to) => {
-	if(to.meta.showChat == undefined || to.meta.showChat == false)
-	{
-	Vue.prototype.$tidioChatApi &&
-	Vue.prototype.$tidioChatApi.display(false);
-	} else {
-		Vue.prototype.$tidioChatApi &&
-		Vue.prototype.$tidioChatApi.display(true);
-	}
-
-  });
 
 router.beforeEach(async (to, from, next) => {
 	const isAdmin = to.matched.some(record => record.meta.admin)
