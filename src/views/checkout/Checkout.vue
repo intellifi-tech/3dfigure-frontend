@@ -105,7 +105,6 @@ export default {
       this.$store.commit("checkout/SET_ORDER_LANG")
       this.$store.commit("checkout/ADD_CARD", card)
       const paymentRes = await PaymentService.pay(this.$store.state.checkout.order)
-      debugger
       if (paymentRes.status >= 400) {
           this.$vs.notify({
             time: 6000,

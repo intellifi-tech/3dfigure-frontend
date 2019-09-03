@@ -1611,7 +1611,7 @@
                         type="text"
                         id="name"
                         class="form-control"
-                        :value="contact.fullname"
+                        v-model="contact.fullname"
                         v-bind:placeholder="$t('landing.contact.form.fullname')"
                       >
                     </div>
@@ -1745,6 +1745,7 @@
 import Login from "@/components/login/Login.vue";
 import Register from "@/components/login/Register.vue";
 import { LoginService } from "@/services/login.service";
+import MailService from "@/services/mail.service"
 import LandingService from "@/services/admin/landing.service";
 import { ContactService } from "@/services/contact.service";
 import ForgotPassword from "@/components/login/ForgotPassword.vue";
@@ -1845,15 +1846,15 @@ export default {
     },
     sendMail: async function() {
      
-     /*if (this.$v.$invalid){
-        await ContactService.sendMail(this.contact);
+     
+        await MailService.sendMailForm(this.contact);
         this.$vs.notify({ 
           time: 6000,
           title: "Başarılı",
           text: "Teşekkür ederiz :)",
           color: "success"
           })
-       }*/
+       
     },
     change() {
       this.man = !this.man;
