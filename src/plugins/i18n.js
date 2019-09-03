@@ -182,7 +182,7 @@ const messages = {
                 },
                 
                 trueHeader:'Aradığımız fotoğraf tam olarak bu!',
-                trueDesc:'Tam karşıdan, <b>yüzde</b> gölge yok, <b>dişler</b> gözükmüyor.<br><br><b class="text-dark">En doğal duruşunuzu yansıtıyor.</b>',
+                trueDesc:'Tam karşıdan, <b>yüzde</b> gölge yok, <b>dişler</b> gözükmüyor.<br><b class="text-dark">En doğal duruşunuzu yansıtıyor.</b>',
                 falseFirst:'Eğer selfie çekim yaparsan vücudunun duruşu bozulur ve ağzımız açık olursa modelde bozulma olur.',
                 falseSecond:'Yüzünüze el ve başka herhangi bir cismin teması modelin bozuk olarak oluşturulmasına sebep olacaktır.',
                 falseThird:'Eğer gözlük takarsanız, gözlük yüzünüze birleşik olarak modellenecek ve kötü bir görüntü olacaktır. Eğer gözlük sizin olmazsa olmaz ise bunu biz daha sonradan ekleme yapabiliriz.',

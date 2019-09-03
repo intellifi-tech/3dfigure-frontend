@@ -358,7 +358,7 @@
                       </div>
                     </div>
                   <div class="card-footer col-lg-5 px-0 rounded-lg">
-                    <div class="single-inline-feature-item pr-5 pr-md-3">
+                    <div class="single-inline-feature-item">
                       <img src="assets/images/icon/icon-true.png" class="selfie-true-icon">
                       <img
                         src="assets/images/portre/man/man-true.jpg"

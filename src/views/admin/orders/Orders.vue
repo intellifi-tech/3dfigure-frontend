@@ -33,10 +33,10 @@
 </template>
 
       <template slot-scope="{data}">
-  <vs-tr :data="tr.status" :state="tr.status == 'DONE' ? 'success' : 'danger'" :key="indextr" v-for="(tr, indextr) in data">
+  <vs-tr :data="tr" :state="tr.status == 'DONE' ? 'success' : 'danger'" :key="indextr" v-for="(tr, indextr) in data">
     <vs-td :data="data[indextr].orderCode">{{data[indextr].orderCode}}</vs-td>
 
-    <vs-td :data="data[indextr].status"><b>{{data[indextr].status}}</b></vs-td>
+    <vs-td class="m-auto px-0 text-sm" :data="data[indextr].status"><b>{{status[data[indextr].status]}}</b></vs-td>
 
     <vs-td :data="data[indextr].totalPriceNet">₺{{data[indextr].totalPriceNet}} <span class="text-xs text-secondary">+{{$t('landing.pricing.kdv')}}</span></vs-td>
 
@@ -92,16 +92,11 @@ export default {
       "Brüt Kazanç": "totalPrice",
       "Sipariş Tarihi": "createdDate"
     },
-    status: {
-        'ANALYSIS': 'Analiz ediliyor',
-        'ACCEPT': 'Kabul edildi',
-        'REJECT': 'Reddedildi',
-        'BUILD': 'Yapım Aşamasında',
-        'CARGO': 'Kargoda',
-        'DONE': 'Tamamlandı',
-        'NOT_PAYMENT':'ÖDENMEDİ'
-      },
     orders: [],
+    status: {
+      'ANALYSIS': 'Analiz ediliyor',
+      'NOT_PAYMENT': 'Ödenmedi'
+      },
     statusList: [{text: 'Analiz ediliyor', status: 'ANALYSIS'}, {text: 'Kabul edildi', status: 'ACCEPT'}, {text: 'Red edildi', status: 'REJECT'}, {text: 'Yapılıyor', value: 'BUILD'},
     {text: 'Kargoda', status: 'CARGO'},{text: 'Tamamlandı', status: 'DONE'},{text: 'Ödenmedi', status: 'NOT_PAYMENT'}],
     

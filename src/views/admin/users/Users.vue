@@ -24,7 +24,7 @@
       </template>
       <template slot="thead">
   <vs-th sort-key="email">E-posta</vs-th>
-  <vs-th sort-key="tcNo">Kimlik No</vs-th>
+  <vs-th sort-key="tcno">Kimlik No</vs-th>
   <vs-th sort-key="firstName">Adı Soyad</vs-th>
   <vs-th sort-key="activated">Durum</vs-th> 
   <vs-th>Seçenekler</vs-th>
@@ -33,20 +33,21 @@
       <template slot-scope="{data}">
   <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
     <vs-td :data="data[indextr].email">{{data[indextr].email}}</vs-td>
-    <vs-td :data="data[indextr].tcNo">{{data[indextr].tcNo}}</vs-td>
+    <vs-td :data="data[indextr].tcno">{{data[indextr].tcno}}</vs-td>
     <vs-td :data="data[indextr].firstName">{{data[indextr].firstName + ' ' + data[indextr].lastName}}</vs-td>
 
     <vs-td :data="data[indextr].activated">{{data[indextr].activated ? 'Aktif' : 'Pasif'}}</vs-td> 
 
-    <vs-td> <div class="flex items-center ">
+    <vs-td> 
+      <div class="flex items-center ">
           <div class="pr-2">
             <vs-button class="px-3"  color="primary" type="relief" @click="$router.push('/admin/user-detail?id='+data[indextr].id)">Detay</vs-button>
-
           </div>
           <div>
             <vs-button class="px-3"  :color="data[indextr].activated ? 'success':'danger'"  @click="userDelete(data[indextr])">{{data[indextr].activated ? 'Aktif' : 'Pasif'}}</vs-button>
           </div>
-        </div></vs-td>
+        </div>
+      </vs-td>
      
   </vs-tr>
 </template>
@@ -65,7 +66,7 @@ export default {
     selected: {},
     users: [],
     json_fields: {
-      "tcNo":"tcNo",
+      "Kimlik No":"tcno",
       "Kullanıcı Adı": "login",
       "İlk Adı": "firstName",
       "Soyadı": "lastName",
