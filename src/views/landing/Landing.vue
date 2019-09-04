@@ -333,7 +333,7 @@
                           </div>
                         </div>
                       </li>
-                      <li>
+                      <li class="img-createModel">
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
                             <a @click="openLogin" class="cursor-pointer">
@@ -370,7 +370,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-7 col-lg-7 mt-4 mt-md-0 pr-lg-0">
+                  <div class="col-lg-7 pt-3 pt-lg-0 mt-4 mt-md-0 pr-lg-0">
                     <ul id="man-list" class="falseList">
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
@@ -469,7 +469,7 @@
                           </div>
                         </div>
                       </li>
-                      <li>
+                      <li class="img-createModel">
                         <div class="single-inline-feature-item pt-3">
                           <div class="content">
                             <a @click="openLogin" class="cursor-pointer">
@@ -506,7 +506,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-7 pr-lg-0">
+                  <div class="col-lg-7 pt-3 pt-lg-0 pr-lg-0">
                     <ul id="woman-list" class="falseList">
                       <li>
                         <div class="card-group bg-light mb-3 rounded-lg">
@@ -1603,7 +1603,7 @@
           <div class="col-lg-6">
             <div class="contact-form-area">
               <!-- contact form are -->
-              <form action="/" id="get_in_touch" class="contact-form">
+              <form id="get_in_touch" class="contact-form">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -1611,6 +1611,7 @@
                         type="text"
                         id="name"
                         class="form-control"
+                        :class="{'error':this.$v.contact.fullname.$invalid && !first}"
                         v-model="contact.fullname"
                         v-bind:placeholder="$t('landing.contact.form.fullname')"
                       >
@@ -1623,6 +1624,7 @@
                         id="email"
                         v-model="contact.mail"
                         class="form-control"
+                        :class="{'error':this.$v.contact.mail.$invalid && !first}"
                         v-bind:placeholder="$t('landing.contact.form.email')"
                       >
                     </div>
@@ -1634,6 +1636,7 @@
                         id="subject"
                         v-model="contact.subject"
                         class="form-control"
+                        :class="{'error':this.$v.contact.subject.$invalid && !first}"
                         v-bind:placeholder="$t('landing.contact.form.subject')"
                       >
                     </div>
@@ -1644,6 +1647,7 @@
                         class="form-control"
                         cols="30"
                         v-model="contact.message"
+                        :class="{'error':this.$v.contact.message.$invalid && !first}"
                         v-bind:placeholder="$t('landing.contact.form.message')"
                         rows="10"
                       ></textarea>
@@ -1651,7 +1655,7 @@
                     <button
                       @click="sendMail"
                       class="submit-btn"
-                      type="submit"
+                      type="button"
                     >{{$t('landing.contact.submit')}}</button>
                   </div>
                 </div>
@@ -1736,12 +1740,18 @@
       </div>
     </footer>
     <!-- footer area end -->
-    <div class="landing-back-to-top back-to-top base-color-2" v-if="isVisible">
+    <div class="back-to-top base-color-2" v-if="isVisible">
       <i class="fas fa-rocket" v-scroll-to="'#body-overlay'"></i>
     </div>
   </div>
 </template>
 <script>
+import {
+  required,
+  email,
+  minLength,
+  maxLength
+} from "vuelidate/lib/validators";
 import Login from "@/components/login/Login.vue";
 import Register from "@/components/login/Register.vue";
 import { LoginService } from "@/services/login.service";
@@ -1765,6 +1775,7 @@ export default {
       iframeModelID: "91102961ad1040748145a4c341899840",
       iframeModelID2: "ebe0accf659d43068cd774141a5731cb",
       man: true,
+      first: true,
       sampleiframe: true,
       langs: ["TR", "EN"],
       menModel: [],
@@ -1846,7 +1857,7 @@ export default {
     },
     sendMail: async function() {
      
-     
+      if (!this.$v.$invalid) {
         await MailService.sendMailForm(this.contact);
         this.$vs.notify({ 
           time: 6000,
@@ -1854,6 +1865,21 @@ export default {
           text: "Teşekkür ederiz :)",
           color: "success"
           })
+          this.contact.fullname="";
+          this.contact.mail="";
+          this.contact.subject="";
+          this.contact.message="";
+          return this.first = true;
+      }
+      else{
+        this.$vs.notify({ 
+          time: 6000,
+          title: "HATA",
+          text: "Lütfen bilgileri kontrol ediniz.",
+          color: "danger"
+          })
+        this.first = false;
+      }
        
     },
     change() {
@@ -1882,7 +1908,15 @@ export default {
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
     }
-  }
+  },
+  validations: {
+    contact:{
+        mail: { required, email },
+        fullname: { required,minLength: minLength(2), maxLength: maxLength(80)},
+        subject: { required, minLength: minLength(2), maxLength: maxLength(150) },
+        message:{required,minLength: minLength(2), maxLength: maxLength(1500)}
+    }
+  },
 };
 </script>
 <style>
