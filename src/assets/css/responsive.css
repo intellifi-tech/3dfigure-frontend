@@ -394,7 +394,10 @@
         padding-bottom: 40px;
     }
     .inline-feaure-wrap ul li{
-        width: 100%;
+        width: 48%;
+    }
+    .inline-feaure-wrap ul li.img-createModel{
+        width: 100% !important;
     }
     .inline-feaure-wrap ul li .single-inline-feature-item {
         padding-bottom: 0;
