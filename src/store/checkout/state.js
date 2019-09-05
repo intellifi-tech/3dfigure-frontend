@@ -6,6 +6,7 @@ const state = {
 	billingAddress: {
 	},
 	chooseAddress: true,
+	discount: null,
 	order: {
 		id: null,
 		orderCode: "",

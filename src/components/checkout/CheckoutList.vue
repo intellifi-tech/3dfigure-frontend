@@ -59,7 +59,7 @@
               <div>
                 <h6 class="my-0">İndirim Tutarı</h6>
               </div>
-              <span class="text-muted">₺2.5</span>
+              <span class="text-muted">₺{{this.$store.state.checkout.discount}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
@@ -129,7 +129,8 @@ export default {
       areaOrderNote:"",
       discountCode: "",
       discountActive: false,
-      discountRate: 0
+      discountRate: 0,
+      discount: 0
     };
   },
   created: async function() {
@@ -155,7 +156,7 @@ export default {
       this.deleteFromBasketList({f: figureId, c: conceptId})
     },
     addDiscount: async function() {
-      const res = await DiscountService.getRate()
+      const res = await DiscountService.getRate(this.discountCode)
       if (!res) {
         this.$vs.notify({
           time: 6000,
@@ -166,7 +167,14 @@ export default {
       } else if (!this.discountActive) {
         this.discountRate = res
         this.discountActive = true
+        this.$store.commit("checkout/SET_DISCOUNT", (this.$store.state.checkout.order.totalPrice * (res / 100)))
         this.$store.commit("checkout/SET_TOTAL_PRICE", this.$store.state.checkout.order.totalPrice * ((100-res) / 100))
+        this.$vs.notify({
+          time: 6000,
+          title: "BAŞARILI!",
+          text: "İndirim kodu uygulandı.",
+          color: "success"
+        });
       }
     },
     initPage: async function() {

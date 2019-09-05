@@ -171,11 +171,11 @@
               </div>
               <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet}}</span>
             </li>
-             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="discountActive">
+             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="this.$store.state.checkout.discount != null">
               <div>
                 <h6 class="my-0">İndirim Tutarı</h6>
               </div>
-              <span class="text-muted">₺2.5</span>
+              <span class="text-muted">₺{{this.$store.state.checkout.discount}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>

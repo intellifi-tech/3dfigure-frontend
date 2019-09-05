@@ -6,7 +6,6 @@ const actions = {
     },
     async initBasketList({ commit }) {
         const res = await CheckoutService.getUserCheckout();
-        debugger
         commit('SET_CHECKOUT_LIST', res.concepts)
         commit('INIT_BASKET_ID', {basketId: res.id, orderId: res.ordersId})
     },

@@ -20,13 +20,16 @@ const mutations = {
         state.order.totalPriceNet = totalPriceNet.toFixed(2)
     },
     SET_TOTAL_PRICE(state, totalPrice) {
-        state.totalPrice = totalPrice
+        state.order.totalPrice = totalPrice.toFixed(2)
+    },
+    SET_DISCOUNT(state, discount) {
+        state.discount = discount.toFixed(2)
     },
     SET_KDV(state, kdv) {
-        state.kdv = kdv
+        state.order.kdv = kdv.toFixed(2)
     },
     SET_TOTAL_PRICE_NET(state, totalPriceNet) {
-        state.totalPriceNet = totalPriceNet
+        state.order.totalPriceNet = totalPriceNet.toFixed(2)
     },
     DELETE_FROM_CHECKOUT_LIST(state, ids) {
         let totalPrice = 0
