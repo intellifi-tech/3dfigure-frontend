@@ -73,7 +73,7 @@
             </li>
             <hr>
             <li class="pt-2 pb-1 d-flex justify-content-between">
-              <h6>Tüm siparişlerinizde kargo ücetsizdir.</h6>
+              <h6>Tüm siparişlerinizde kargo ücretsizdir.</h6>
             </li>
             <hr>
              <li class="py-3 justify-content-between">

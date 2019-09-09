@@ -57,7 +57,7 @@
             </li>
             <hr>
             <li class="pt-2 d-flex justify-content-between">
-              <h6>Tüm siparişlerinizde kargo ücetsizdir.</h6>
+              <h6>Tüm siparişlerinizde kargo ücretsizdir.</h6>
             </li>
           </ul>
         </div>
