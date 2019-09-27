@@ -298,8 +298,8 @@ export default {
     getFiles(e) {
 
       const file = e.target.files[0];
-     
-      if (file.size > 4096 * 4096) {
+     debugger
+      if (file.size > 2048 * 2048) {
         e.preventDefault();
          this.$vs.notify({
               time: 6000,
