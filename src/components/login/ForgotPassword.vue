@@ -5,7 +5,7 @@
             <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
               <img src="/assets/images/obj/artboard.png" alt="forgot" class="w-3/5 mx-auto" />
             </div>
-            <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center bg-white">
+            <div class="vx-col w-full sm:w-full md:w-full lg:w-1/2 mx-auto self-center bg-white">
               <div class="p-8" v-if="!isPopup">
                 <div class="vx-card__title mb-10">
                   <h4 class="mb-4">{{$t('forgot.title')}}</h4>
@@ -24,7 +24,7 @@
                 to="/login"
               >{{$t('login.loginbtn')}}</vs-button>
                 <vs-button type="border" v-else @click="openLogin">{{$t('login.loginbtn')}}</vs-button>
-                <vs-button @click="newPassword" class="px-4 w-full md:w-auto float-right">{{$t('forgot.btn')}}</vs-button>
+                <vs-button @click="newPassword" class="px-4 md:w-auto float-right">{{$t('forgot.btn')}}</vs-button>
               </div>
 
               <!-- forgot reset finish -->
@@ -48,7 +48,7 @@
                 to="/login"
               >{{$t('login.loginbtn')}}</vs-button>
                 <vs-button type="border" v-else @click="openLogin">{{$t('login.loginbtn')}}</vs-button>
-                <vs-button @click="sendMail" class="px-4 w-full md:w-auto float-right">{{$t('forgot.btn')}}</vs-button>
+                <vs-button @click="sendMail" class="px-4 md:w-auto float-right">{{$t('forgot.btn')}}</vs-button>
               </div>
             </div>
           </div>

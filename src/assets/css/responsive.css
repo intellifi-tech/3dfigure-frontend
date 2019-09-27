@@ -301,7 +301,7 @@
 @media only screen and (max-width: 767px) {
     .navbar-area .navbar-collapse {
         position: absolute;
-        top: 83px;
+        top: 62px;
         background: #fbfbfb;
         z-index: 9;
         right: 0;

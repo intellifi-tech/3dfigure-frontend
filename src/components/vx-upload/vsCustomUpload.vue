@@ -296,6 +296,26 @@ export default {
       this.srcs.splice(index, 1)
     },
     getFiles(e) {
+
+      const file = e.target.files[0];
+     
+      if (file.size > 4096 * 4096) {
+        e.preventDefault();
+         this.$vs.notify({
+              time: 6000,
+              title: "HATA",
+              text: "En fazla 4 MB fotoğraf yükleyebilirsiniz!",
+              color: "danger"
+            });
+          const input = this.$refs.fileInput;
+          input.type = "text";
+          input.type = "file";   
+          
+        return;
+      }
+
+      else{
+        
       this.$emit("update:vsFile", e.target.value);
       this.hideClass = false;
       let _this = this;
@@ -309,6 +329,7 @@ export default {
           }
           switchImage(this, orientation);
         };
+
       }
       function switchImage(image, orientation) {
         _this.srcs.push({
@@ -366,12 +387,14 @@ export default {
           this.$emit("change", e.target.value, this.filesx);
         }
       }
+     
       const input = this.$refs.fileInput;
       input.type = "text";
       input.type = "file";
 
       if (this.automatic) {
         this.upload("all");
+        }
       }
     },
     upload(index, forAvatar) {

@@ -15,14 +15,14 @@
     <!-- //. search Popup -->
 
     <!-- navbar area start -->
-    <nav class="navbar navbar-area navbar-expand-lg bg-white" :class="{'sticky': isVisible,'fixed-top':isVisible}">
+    <nav class="navbar navbar-area navbar-expand-lg bg-white h-100 py-3 py-sm-1" :class="{'sticky': isVisible,'fixed-top':isVisible}">
       <div class="container nav-container">
         <div class="logo-wrapper navbar-brand col-7 col-lg-2 col-md-4">
           <a href="/" class="logo">
             <img src="assets/images/logo/logo.png" alt="logo">
           </a>
         </div>
-        <div class="collapse navbar-collapse pl-3" id="cgency">
+        <div class="collapse navbar-collapse pl-3" id="cgency" :class="{'hide':isBacktop && isVisible}">
           <!-- navbar collapse start -->
           <ul class="navbar-nav lg:items-center" id="primary-menu">
             <!-- navbar- nav -->
@@ -304,9 +304,10 @@
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
+                          class="sm-h-18"
                           width="100%"
                           height="500"
-                          :src='"https://sketchfab.com/models/"+iframeModelID+"/embed?preload=1"'
+                          :src='"https://sketchfab.com/models/"+iframeModelID+"/embed?autostart=1"'
                           frameborder="0"
                           allow="autoplay; fullscreen; vr"
                           mozallowfullscreen="true"
@@ -440,9 +441,10 @@
                     <div class="col-lg-12 px-0">
                       <div class="sketchfab-embed-wrapper rounded-lg">
                         <iframe
+                          class="sm-h-18"
                           width="100%"
                           height="500"
-                          :src='"https://sketchfab.com/models/"+iframeModelID2+"/embed?preload=1"'
+                          :src='"https://sketchfab.com/models/"+iframeModelID2+"/embed?autostart=1"'
                           frameborder="0"
                           allow="autoplay; fullscreen; vr"
                           mozallowfullscreen="true"
@@ -844,7 +846,13 @@
                  <slide v-for="(n, index) in conceptList" :key="index" class="py-3">
                    <div class="single-product-item">
                     <div class="thumb">
-                      <img :src="'assets/images/models/'+n.imagePath" alt="product image">
+                       <a
+                   :href="'assets/images/models/'+n.imagePath"
+                   data-toggle="lightbox"
+                   data-gallery="gallery"
+                   >
+                   <img :src="'assets/images/models/'+n.imagePath" alt="product image">
+                 </a>
                     </div>
                     <div class="content">
                       <h4 class="title themecolor-blue text-lg">
@@ -1740,7 +1748,7 @@
       </div>
     </footer>
     <!-- footer area end -->
-    <div class="back-to-top base-color-2" v-if="isVisible">
+    <div class="back-to-top base-color-2" v-if="isBacktop">
       <i class="fas fa-rocket" v-scroll-to="'#body-overlay'"></i>
     </div>
   </div>
@@ -1785,6 +1793,8 @@ export default {
       packageList: [],
       checkBox1: false,
       isVisible: false,
+      isBacktop:false,
+      tidioVisible:true,
       clicked: -1,
       navbarList:['home', 'howToUse', 'concepts', 'about', 'faq', 'contact'],
       contact: {
@@ -1803,14 +1813,15 @@ export default {
       return 'male-avatar.png';
     },
   },
+  created: function(){
+     document.body.addEventListener('scroll', this.handleScroll);
+  },
   beforeCreate: async function() {
     await this.$store.dispatch('getCurrentUser');
-    document.body.addEventListener('scroll', this.handleScroll);
     const res = await LandingService.getFirst()
     let halfWayThough = Math.floor(res.length / 2)
     this.menModel = res.slice(0, halfWayThough);
     this.womenModel = res.slice(halfWayThough, res.length);
-
     this.conceptList = await LandingService.getSecond()
     this.exampleList = await LandingService.getThird()
     this.packageList = await LandingService.getFourth()
@@ -1819,12 +1830,22 @@ export default {
     document.body.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+     tidioFunc(){
+        var tidioIframe =document.getElementById("tidio-chat-iframe");
+          if(!this.tidioVisible){
+            tidioIframe.className="d-none"
+           }
+           else{
+              tidioIframe.className="d-block"
+           }
+    },
      toMain: function() {
         this.$router.push("/main")
      },
     handleScroll() {
       let scroll = document.body.scrollTop
       this.isVisible = scroll > 2
+      this.isBacktop = scroll > 2
     },
     logout: function() {
       LoginService.logout()
@@ -1840,8 +1861,10 @@ export default {
     },
     changeLang() {
       sessionStorage.setItem("lang", this.$i18n.locale);
-    },
-    closePopup() {
+    },    
+    closePopup(){
+      this.isBacktop=true
+      this.tidioVisible=true;
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
       this.$store.commit("UPDATE_FORGOT_POPUP", false);
@@ -1854,6 +1877,7 @@ export default {
       this.$refs.register.password = "",
       this.$refs.register.confirm = "",
       this.$refs.register.checkBox1 = false
+      this.tidioFunc()
     },
     sendMail: async function() {
      
@@ -1889,12 +1913,16 @@ export default {
       /*************************** */
     },
     openRegister() {
+      this.isBacktop=false
+      this.tidioVisible=false
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
       this.$store.commit("UPDATE_FORGOT_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", true);
       // this.$router.push("/register");
     },
     openLogin() {
+      this.isBacktop=false
+      this.tidioVisible=false
       var isLogin = this.$store.state.member.firstName
       if(isLogin!=null && isLogin!=" "){
          this.$router.push("/main")
@@ -1902,8 +1930,11 @@ export default {
       this.$store.commit("UPDATE_FORGOT_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
       this.$store.commit("UPDATE_LOGIN_POPUP", true);
+      this.tidioFunc()
     },
     openForgot() {
+      this.isBacktop=false
+      this.tidioVisible=false
       this.$store.commit("UPDATE_FORGOT_POPUP", true);
       this.$store.commit("UPDATE_LOGIN_POPUP", false);
       this.$store.commit("UPDATE_REGISTER_POPUP", false);
@@ -1957,11 +1988,20 @@ nav.sticky{
   }
   .back-to-top{
     display:inherit;
+   animation: fadeIn ease 1s !important;
+  -webkit-animation: fadeIn ease 1s !important;
+  -moz-animation: fadeIn ease 1s !important;
+  -o-animation: fadeIn ease 1s !important;
+  -ms-animation: fadeIn ease 1s !important;
   }
   ul.concepts-list li img {
     cursor: pointer;
 }
 @media (max-width: 489px) {
+
+.sm-h-18{
+  height:18rem !important;
+  }
    .hooper-slide-concepts .hooper-slide{
      width: 50% !important;
      padding: 0px 10px;

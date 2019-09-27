@@ -334,7 +334,6 @@
   font-size: 24px !important;
   line-height: 34px !important;
   color: inherit !important; }
-
 .back-to-top {
   position: fixed;
   right: 30px;
@@ -4041,9 +4040,19 @@ text-align:left;
   display: none !important;
 }
 
+#tidio-chat-iframe{
+  animation: fadeIn ease 1s !important;
+  -webkit-animation: fadeIn ease 1s !important;
+  -moz-animation: fadeIn ease 1s !important;
+  -o-animation: fadeIn ease 1s !important;
+  -ms-animation: fadeIn ease 1s !important;
+}
+
 @media (max-width: 489px) {
   #tidio-chat-iframe{
+      bottom: -10px !important;
       right:15px !important;
+      z-index: 0 !important;
   }
 .ekko-lightbox {top:35%;}
 }
