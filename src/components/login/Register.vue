@@ -155,6 +155,10 @@ export default {
           text: 'Aktivasyon linki e-postanıza gönderilmiştir.  E-postanın ulaşması biraz zaman alabilir.',
           acceptText: "Anladım"
         })
+         
+        if (!this.isPopup) {
+          this.$router.push("/login");
+        }
         this.openLogin();
       } else {
         if (res.data.errorKey === "userexists") {

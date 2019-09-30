@@ -298,13 +298,13 @@ export default {
     getFiles(e) {
 
       const file = e.target.files[0];
-     debugger
-      if (file.size > 2048 * 2048) {
+     
+      if (file.size > 1024 * 1024) {
         e.preventDefault();
          this.$vs.notify({
               time: 6000,
               title: "HATA",
-              text: "En fazla 4 MB fotoğraf yükleyebilirsiniz!",
+              text: "En fazla 1 MB fotoğraf yükleyebilirsiniz!",
               color: "danger"
             });
           const input = this.$refs.fileInput;

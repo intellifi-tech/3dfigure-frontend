@@ -156,6 +156,8 @@ export default {
       this.deleteFromBasketList({f: figureId, c: conceptId})
     },
     addDiscount: async function() {
+      if (this.discountCode.trim() !="") {
+        
       const res = await DiscountService.getRate(this.discountCode)
       if (!res) {
         this.$vs.notify({
@@ -174,6 +176,16 @@ export default {
           title: "BAŞARILI!",
           text: "İndirim kodu uygulandı.",
           color: "success"
+        });
+        this.discountCode=""
+        }
+      }
+      else{
+         this.$vs.notify({
+          time: 6000,
+          title: "HATA!",
+          text: "İndirim kodu geçersiz!",
+          color: "danger"
         });
       }
     },
