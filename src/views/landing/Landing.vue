@@ -856,12 +856,12 @@
                     </div>
                     <div class="content">
                       <h4 class="title themecolor-blue text-lg">
-                        <a @click="toMain" class="cursor-pointer">{{n.title}}</a>
+                        <a @click="openLogin" class="cursor-pointer">{{n.title}}</a>
                       </h4>
                       <div class="price-wrap">
                         <span class="price">₺{{n.price}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></span>
                       </div>
-                      <a @click="toMain" class="boxed-bt cursor-pointer">{{$t('landing.concepts.list.buynow')}}</a>
+                      <a @click="openLogin" class="boxed-bt cursor-pointer">{{$t('landing.concepts.list.buynow')}}</a>
                     </div>
                   </div>
                  </slide>
@@ -1838,10 +1838,10 @@ export default {
            else{
               tidioIframe.className="d-block"
            }
-    },
+    },/*
      toMain: function() {
         this.$router.push("/main")
-     },
+     },*/
     handleScroll() {
       let scroll = document.body.scrollTop
       this.isVisible = scroll > 2
