@@ -56,8 +56,8 @@
                   :key="index"
                   v-for="(item,index) in sexList"
                   :value="item.value"
-                >{{item.text}}</option>
-                 <option value="" disabled selected class="bg-grey-light">Cinsiyet seç</option>
+                >{{ $t(item.text)}}</option>
+                 <option value="" disabled selected class="bg-grey-light">{{$t('register.sex.label')}}</option>
               </select>
               </div>
               <vs-input
@@ -74,7 +74,7 @@
                 v-model="confirm"
                 class="w-full mb-6"
               />
-              <vs-checkbox v-model="checkBox1" class="checkbox-reg pb-4 pt-2"><span v-html="$t('register.terms')">1</span></vs-checkbox>
+              <vs-checkbox v-model="checkBox1" class="checkbox-reg pb-4 pt-2"><span v-html="$t('register.terms')"></span></vs-checkbox>
 
               
               <vs-button
@@ -111,7 +111,7 @@ export default {
       password: "",
       confirm: "",
       checkBox1: false,
-      sexList: [{ text: "Erkek", value: "M" }, { text: "Kadın", value: "F" }],
+      sexList: [{ text: "register.sex.man", value: "M" }, { text: "register.sex.woman", value: "F" }],
       sex: "",
       first: true
     };
@@ -126,8 +126,8 @@ export default {
       if (this.$v.$invalid || !this.checkBox1) {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Lütfen bilgilerinizi kontrol ediniz.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.registration.default}`,
           color: "danger"
         });
         this.first = false
@@ -151,9 +151,9 @@ export default {
         })*/
         this.$vs.dialog({
           color:'success',
-          title: "Başarılı!",
-          text: 'Aktivasyon linki e-postanıza gönderilmiştir.  E-postanın ulaşması biraz zaman alabilir.',
-          acceptText: "Anladım"
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.registration.register.activation}`,
+          acceptText: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.registration.accept}`
         })
          
         if (!this.isPopup) {
@@ -164,15 +164,15 @@ export default {
         if (res.data.errorKey === "userexists") {
           this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Bu e-posta zaten kayıtlıdır.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.registration.register.already}`,
           color: "danger"
         });
         } else {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Kayıt başarısız.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.fail}`,
           color: "danger"
         });
         }

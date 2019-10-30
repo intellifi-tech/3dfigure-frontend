@@ -15,14 +15,14 @@
     <!-- //. search Popup -->
 
     <!-- navbar area start -->
-    <nav class="navbar navbar-area navbar-expand-lg bg-white h-100 py-3 py-sm-1" :class="{'sticky': isVisible,'fixed-top':isVisible}">
+    <nav class="navbar navbar-area navbar-expand-lg bg-white h-100 py-3 py-sm-1 py-md-3 py-lg-1" :class="{'sticky': isVisible,'fixed-top':isVisible}">
       <div class="container nav-container">
         <div class="logo-wrapper navbar-brand col-7 col-lg-2 col-md-4">
           <a href="/" class="logo">
             <img src="assets/images/logo/logo.png" alt="logo">
           </a>
         </div>
-        <div class="collapse navbar-collapse pl-3" id="cgency" :class="{'hide':isBacktop && isVisible}">
+        <div class="collapse navbar-collapse pr-md-0 py-md-0 pl-3 py-3 px-3 shadow-lg md:shadow-none" id="cgency" :class="{'hide':isBacktop && isVisible}">
           <!-- navbar collapse start -->
           <ul class="navbar-nav lg:items-center" id="primary-menu">
             <!-- navbar- nav -->
@@ -53,7 +53,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#" v-scroll-to="'#contact'">{{ $t('landing.navbar.contact') }}</a>
             </li> -->
-            <li class="nav-item pr-3 py-2 py-sm-0">
+            <li class="nav-item pr-0 py-2 py-sm-0">
               <div class="loginLink" v-if="!this.$store.state.member.firstName">
               <!-- <router-link class="nav-link" to="/pages/login">{{ $t('landing.navbar.login') }}</router-link> -->
               <a
@@ -99,14 +99,14 @@
                         @click="$router.push('/profile')"
                       >
                         <feather-icon icon="UserIcon" svgClasses="w-4 h-4"></feather-icon>
-                        <span class="ml-2">Profil</span>
+                        <span class="ml-2">{{$t('dashboard.avatarMenu.profile')}}</span>
                       </li>
                       <li
                         class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
                         @click="$router.push('/ticket')"
                       >
                         <feather-icon icon="MailIcon" svgClasses="w-4 h-4"></feather-icon>
-                        <span class="ml-2">Destek</span>
+                        <span class="ml-2">{{$t('dashboard.avatarMenu.ticket')}}</span>
                       </li>
                       <vs-divider class="m-1"></vs-divider>
                       <li
@@ -114,7 +114,7 @@
                         @click="logout()"
                       >
                         <feather-icon icon="LogOutIcon" svgClasses="w-4 h-4"></feather-icon>
-                        <span class="ml-2">Çıkış yap</span>
+                        <span class="ml-2">{{$t('dashboard.avatarMenu.logout')}}</span>
                       </li>
                     </ul>
                   </vs-dropdown-menu>
@@ -154,8 +154,10 @@
                 <forgot-password :isPopup="true"></forgot-password>
               </vs-popup>
             </li>
-            <li class="nav-item">
-             
+            <li class="ml-lg-2">
+               <vs-select class="w-full lg:w-16"  v-model="$i18n.locale"  @change="changeLang">
+                <vs-select-item v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang" :text="lang" />
+              </vs-select>
             </li>
           </ul>
           <!-- /.navbar-nav -->
@@ -176,8 +178,8 @@
         </div>
         <!-- navbar collapse end -->
         <!--<div class="nav-right-content">
-          <ul>
-            <li>
+          <ul class="ml-0">
+            <li class="ml-lg-2">
               <select v-model="$i18n.locale" id="select-lang" @change="changeLang">
                 <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
               </select>
@@ -342,7 +344,7 @@
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
                               >
-                              <h4 class="title">{{$t('landing.howtouse.createModel')}}</h4>
+                              <h6 class="hover:text-primary">{{$t('landing.howtouse.createModel')}}</h6>
                             </a>
                           </div>
                         </div>
@@ -479,7 +481,7 @@
                                 src="assets/images/icon/icon-plus.png"
                                 class="border-0 img-scale img-thumbnail"
                               >
-                              <h4 class="title">{{$t('landing.howtouse.createModel')}}</h4>
+                              <h6 class="hover:text-primary">{{$t('landing.howtouse.createModel')}}</h6>
                             </a>
                           </div>
                         </div>
@@ -859,7 +861,7 @@
                         <a @click="openLogin" class="cursor-pointer">{{n.title}}</a>
                       </h4>
                       <div class="price-wrap">
-                        <span class="price">₺{{n.price}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></span>
+                        <span class="price">{{$t('landing.pricing.symbol')}}{{n.price}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></span>
                       </div>
                       <a @click="openLogin" class="boxed-bt cursor-pointer">{{$t('landing.concepts.list.buynow')}}</a>
                     </div>
@@ -875,7 +877,7 @@
                           </div>
                           <div class="content">
                             <h5>
-                              <a>Konsept Bulunamadı</a>
+                              <a>{{$('landing.concepts.empty')}}</a>
                             </h5>
                           </div>
                         </div>
@@ -920,8 +922,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">₺34</span>
-                    <del>₺55</del>
+                    <span class="price">{{$t('landing.pricing.symbol')}}34</span>
+                    <del>{{$t('landing.pricing.symbol')}}55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -943,8 +945,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">₺34</span>
-                    <del>₺55</del>
+                    <span class="price">{{$t('landing.pricing.symbol')}}34</span>
+                    <del>{{$t('landing.pricing.symbol')}}55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -966,8 +968,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">₺34</span>
-                    <del>₺55</del>
+                    <span class="price">{{$t('landing.pricing.symbol')}}34</span>
+                    <del>{{$t('landing.pricing.symbol')}}55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -989,8 +991,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">₺34</span>
-                    <del>₺55</del>
+                    <span class="price">{{$t('landing.pricing.symbol')}}34</span>
+                    <del>{{$t('landing.pricing.symbol')}}55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -1012,8 +1014,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">₺34</span>
-                    <del>₺55</del>
+                    <span class="price">{{$t('landing.pricing.symbol')}}34</span>
+                    <del>{{$t('landing.pricing.symbol')}}55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -1035,8 +1037,8 @@
                     <a href="#">Smart Watch</a>
                   </h4>
                   <div class="price-wrap">
-                    <span class="price">₺34</span>
-                    <del>₺55</del>
+                    <span class="price">{{$t('landing.pricing.symbol')}}34</span>
+                    <del>{{$t('landing.pricing.symbol')}}55</del>
                   </div>
                   <a href="#" class="boxed-bt">Buy Now</a>
                 </div>
@@ -1080,7 +1082,7 @@
                           </div>
                           <div class="content">
                             <h5>
-                              <a>Örnek Bulunamadı</a>
+                              <a>{{$('landing.examples.empty')}}</a>
                             </h5>
                           </div>
                         </div>
@@ -1111,12 +1113,11 @@
               </div>
 
               <div class="description px-3 text-justify">
-                <p>2015 yılında başlayan çalışmalarımız ile yıllar içerisinde 3D Tarama, 3D Modelleme ve 3D Baskı alanında kendimizi çok iyi bir şekilde geliştirdik. Bu süre içerisinde 1000’i aşkın kişinin 3D Taramasını yaparken ortalama 500 kişinin de renkli olarak 3D baskısını yaptık.</p>
-
-                <p>Bu rakamların daha yüksek olması için önümüzde ki tek engel 3D Tarama yaparken, 3D Taraması yapılacak kişi ile buluşmak zorunda olmamızdı. Artık bu zorunluluğu da ortadan kaldırdık ve yıllar içerisinde yapılan 3D Tarama dataları ile eğitilen yapay zeka alt yapısını kullanarak, tam karşıdan net bir şekilde çekilmiş fotoğraf yollayan bir kişinin 3D Modelini oluşturmamız artık online ve neredeyse saniyeler içerisinde gerçekleşmektedir.</p>
-
-                <p>Yılların tecrübesi ve yapay zekanın gücü ile sizlere daha kaliteli ve hızlı hizmet sunmak için kendimizi yeniledik. Yenilenen altyapımızı test etmek, kendinizin ve sevdiklerinizin 3D Modelini oluşturmak hatta onlara güzel bir hediye vermek için sistemimizi hemen test edebilirsiniz.</p>
-              </div>
+                <p>{{$t('landing.about.descFirst')}}</p>
+                <p>{{$t('landing.about.descSecond')}}</p>
+                <p>{{$t('landing.about.descThird')}}</p>
+                <p>{{$t('landing.about.descFourth')}}</p>
+             </div>
             </div>
           </div>
         </div>
@@ -1147,7 +1148,7 @@
                         aria-expanded="true"
                         aria-controls="collapseOne"
                       >
-                        <span class="count-sss">1.&nbsp;</span> Sitenizden sipariş vermek istiyorum. Nasıl sipariş vereceğim?
+                        <span class="count-sss">1.&nbsp;</span> {{$t('landing.faq.question.one')}}
                       </a>
                     </h5>
                   </div>
@@ -1160,7 +1161,7 @@
                   >
                     <div
                       class="card-body"
-                    >3DFigur olarak tüm sipariş süreçlerimizi online olarak sürdürmekteyiz. Öncelikle sistemimize kaydınızı yaptıktan sonra karşınıza çıkacak olan kontrol paneline fotoğraflarınızı yükleyin ve sonrasında dilediğiniz konseptin seçimini yapıp ödemenizi yapıp siparişinizi tamamlayın.</div>
+                    >{{$t('landing.faq.answer.one')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1173,7 +1174,7 @@
                         aria-expanded="false"
                         aria-controls="collapseTwo"
                       >
-                        <span class="count-sss">2.&nbsp;</span>Siparişlerim ne kadar sürede elime ulaşır?
+                        <span class="count-sss">2.&nbsp;</span>{{$t('landing.faq.question.two')}}
                       </a>
                     </h5>
                   </div>
@@ -1185,7 +1186,7 @@
                   >
                     <div
                       class="card-body"
-                    >Siparişinizi verdikten sonra 3 farklı adımda ilerlemekteyiz. İlk adımda siparişinizin tasarımının istediğiniz konsepte göre hazırlanması ve sizin onayınıza sunulması. İkinci aşama ise onayladığınız tasarımın üretim süreci ve son olarakta siparişinizin teslimat süreci. Yüklemiş olduğumuz fotoğraf üretime uygun kalite de ve standartlarda ise yaklaşık 5 ile 7 iş günü içerisinde ürününüz kargoya verilecek şekilde hazır edilmektedir.</div>
+                    >{{$t('landing.faq.answer.two')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1198,7 +1199,7 @@
                         aria-expanded="false"
                         aria-controls="collapseThree"
                       >
-                        <span class="count-sss">3.&nbsp;</span>Fotoğraftan 3D Model oluşturmanız ne kadar süre almaktadır?
+                        <span class="count-sss">3.&nbsp;</span>{{$t('landing.faq.question.three')}}
                       </a>
                     </h5>
                   </div>
@@ -1210,7 +1211,7 @@
                   >
                     <div
                       class="card-body"
-                    >Eğer doğru fotoğraf yüklemesi yaptıysanız, 15 ile 45 saniye içerisinde 3D Modelinizi otomatik olarak görebileceksiniz.</div>
+                    >{{$t('landing.faq.answer.three')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1223,7 +1224,7 @@
                         aria-expanded="false"
                         aria-controls="collapseFour"
                       >
-                        <span class="count-sss">4.&nbsp;</span>Baskı öncesi kontrol yapıyor musunuz?
+                        <span class="count-sss">4.&nbsp;</span>{{$t('landing.faq.question.four')}}
                       </a>
                     </h5>
                   </div>
@@ -1235,7 +1236,7 @@
                   >
                     <div
                       class="card-body"
-                    >Üretim öncesinde tasarım süreci yer almaktadır. Tasarım sürecinin başında ise ilk olarak bizlere yollamış olduğunuz fotoğrafın kalitesi, çözünürlüğü ve modellemeye uygunluğunu test etmekteyiz. Sonrasında ise konsepte uygun olarak modellemesini gerçekleştirip sizin onayınıza sunmaktayız. Tüm bu süreç ortalama 1 iş günü sürmektedir.</div>
+                    >{{$t('landing.faq.answer.four')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1248,7 +1249,7 @@
                         aria-expanded="false"
                         aria-controls="collapseFive"
                       >
-                        <span class="count-sss">5.&nbsp;</span>Üretimden kaynaklı oluşabilecek bir hata durumunda ürün iadesi veya değişimi yapabilir miyim?
+                        <span class="count-sss">5.&nbsp;</span>{{$t('landing.faq.question.five')}}
                       </a>
                     </h5>
                   </div>
@@ -1258,12 +1259,10 @@
                     aria-labelledby="headingFive"
                     data-parent="#accordion"
                   >
-                    <div class="card-body">
-                      Sizlere tasarım onayında sunduğumuz üründen farklı bir ürün ile karşılaşmışsanız mutlaka değişimi yapılmaktadır. Değişim sürecinin hızlı ilerlemesini adına sorunu bizlere görselleri ile birlikte bildirmeniz önemlidir. Taleplerinizi
-                      <a
-                        href="mailto:siparis@3dfigur.com"
-                        class="text-primary font-semibold"
-                      >siparis@3dfigur.com</a> adresine göndererek oluşturabilirsiniz.
+                    <div 
+                    class="card-body" 
+                    v-html="$t('landing.faq.answer.five')">
+                      
                     </div>
                   </div>
                 </div>
@@ -1277,7 +1276,7 @@
                         aria-expanded="false"
                         aria-controls="collapseSix"
                       >
-                        <span class="count-sss">6.&nbsp;</span>Siparişimi verdikten sonra değişiklik yapabilir miyim?
+                        <span class="count-sss">6.&nbsp;</span>{{$t('landing.faq.question.six')}}
                       </a>
                     </h5>
                   </div>
@@ -1289,7 +1288,7 @@
                   >
                     <div
                       class="card-body"
-                    >Eğer süreç henüz tasarım onayında ise değişim talebinizi bildirdiğiniz takdirde 1 kereye mahsus olmak üzere değişiminiz onaylanacaktır.</div>
+                    >{{$t('landing.faq.answer.six')}}</div>
                   </div>
                 </div>
               </div>
@@ -1304,7 +1303,7 @@
                         aria-expanded="false"
                         aria-controls="collapseSeven"
                       >
-                        <span class="count-sss">7.&nbsp;</span>Kargo ücreti ücrete dahil midir?
+                        <span class="count-sss">7.&nbsp;</span>{{$t('landing.faq.question.seven')}}
                       </a>
                     </h5>
                   </div>
@@ -1316,7 +1315,7 @@
                   >
                     <div
                       class="card-body"
-                    >Kargo ücreti tarafımıza aittir, müşterilerimiz herhangi bir şekilde kargo masrafı ile karşılaşmayacaktır. Eğer kargo firmasından kaynaklı sorunlar olursa, bunun telafisi firmamız tarafından yapılacaktır.</div>
+                    >{{$t('landing.faq.answer.seven')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1329,7 +1328,7 @@
                         aria-expanded="false"
                         aria-controls="collapseEight"
                       >
-                        <span class="count-sss">8.&nbsp;</span>Arkadaşımın 3D Figürünü yaptırabilir miyim?
+                        <span class="count-sss">8.&nbsp;</span>{{$t('landing.faq.question.eight')}}
                       </a>
                     </h5>
                   </div>
@@ -1341,7 +1340,7 @@
                   >
                     <div
                       class="card-body"
-                    >Evet tabiki! Özellikle böyle ihtiyaçlara çözüm bulmak için bu websitesini sizlere hazırladık. Arkadaşınıza özel bir gününde en anlamlı hediyeyi hazırlayabilirsiniz.</div>
+                    >{{$t('landing.faq.answer.eight')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1354,7 +1353,7 @@
                         aria-expanded="false"
                         aria-controls="collapseNine"
                       >
-                        <span class="count-sss">9.&nbsp;</span>Daha önce vermiş olduğum siparişimin aynısından ürettirmek istiyorum. Ne yapmalıyım?
+                        <span class="count-sss">9.&nbsp;</span>{{$t('landing.faq.question.nine')}}
                       </a>
                     </h5>
                   </div>
@@ -1366,7 +1365,7 @@
                   >
                     <div
                       class="card-body"
-                    >Sisteme girişinizi yaptıktan sonra kontrol paneliniz üzerinden ‘’önceki siparişlerim’’ sekmesine gelip oradan siparişinizi tekrarlayabilirsiniz.</div>
+                    >{{$t('landing.faq.answer.nine')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1379,7 +1378,7 @@
                         aria-expanded="false"
                         aria-controls="collapseTen"
                       >
-                        <span class="count-sss">10.&nbsp;</span>İstediğim kadar fotoğraf yüklemesi yaparak 3D Model görüntülemesi sağlayabilir miyim?
+                        <span class="count-sss">10.&nbsp;</span>{{$t('landing.faq.question.ten')}}
                       </a>
                     </h5>
                   </div>
@@ -1391,7 +1390,7 @@
                   >
                     <div
                       class="card-body"
-                    >Eğer üyeliğin kurumsal üyelik olarak tanımlı değilse, bir sipariş verene kadar sadece 10 adet fotoğrafın 3D Modellemesini gösterebilirsin. Dahası için ya sipariş verip fotoğraf yükleme hakkını sıfırlaman lazım ya da arkadaşlarını sitemize davet ederek ek model yükleme hakkı kazanman lazım.</div>
+                    >{{$t('landing.faq.answer.ten')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1404,7 +1403,7 @@
                         aria-expanded="false"
                         aria-controls="collapseEleven"
                       >
-                        <span class="count-sss">11.&nbsp;</span>Gözlüklü fotoğraf yüklenmiyor ama gözlük kişinin karakteristik özelliği, ne yapmalıyım?
+                        <span class="count-sss">11.&nbsp;</span>{{$t('landing.faq.question.eleven')}}
                       </a>
                     </h5>
                   </div>
@@ -1416,7 +1415,8 @@
                   >
                     <div
                       class="card-body"
-                    >Evet, gözlüklü bir fotoğraf yüklemesi yapılmamaktadır. Eğer gözlük olmazsa olmaz ise sipariş aşamasında gözlüklü olacağını belirtirsiniz. Bu durumda talep ettiğiniz gözlük modeline en yakın modelleme yapılarak üretim sonrasında model üzerine gözlük montajı yapılmaktadır. Bununda ek bir ücreti olmaktadır.</div>
+                      v-html="$t('landing.faq.answer.eleven')"
+                    ></div>
                   </div>
                 </div>
                 <div class="card">
@@ -1429,7 +1429,7 @@
                         aria-expanded="false"
                         aria-controls="collapseTwelve"
                       >
-                        <span class="count-sss">12.&nbsp;</span>Ürünlerin boyaması nasıl yapılmaktadır? 3D Yazıcıdan renkli olarak mı üretilmektedir?
+                        <span class="count-sss">12.&nbsp;</span>{{$t('landing.faq.question.twelve')}}
                       </a>
                     </h5>
                   </div>
@@ -1442,7 +1442,7 @@
                   >
                     <div
                       class="card-body"
-                    >Tüm renkli üretimlerimiz 3D Systems adlı firmanın Projet660 Pro adlı 3D Yazıcısında yapılmaktadır. Bu 3D Yazıcı hammadde olarak kumtaşı kullanmaktadır ve tüm renklendirme işlemlerini üretim esnasında yapmaktadır. Hiç bir ürünümüz el ile boyama sürecine girmemektedir.</div>
+                    >{{$t('landing.faq.answer.twelve')}}</div>
                   </div>
                 </div>
                 <div class="card">
@@ -1455,7 +1455,7 @@
                         aria-expanded="false"
                         aria-controls="collapseThirteen"
                       >
-                        <span class="count-sss">13.&nbsp;</span>Siparişim kargodan hasarlı çıktı ne yapmalıyım?
+                        <span class="count-sss">13.&nbsp;</span>{{$t('landing.faq.question.thirteen')}}
                       </a>
                     </h5>
                   </div>
@@ -1468,7 +1468,7 @@
                   >
                     <div
                       class="card-body"
-                    >Siparişlerinizi teslim alırken lütfen kurye ile birlikte kontrolünü sağlayınız. Gönderileriniz hasarlı olması durumunda kurye ile konuşarak teslim almadan iade edebilirsiniz. Bu durumda tekrar modelin tekrar üretimi yapılarak tarafınıza gönderimi sağlanacaktır.</div>
+                    >{{$t('landing.faq.answer.thirteen')}}</div>
                   </div>
                 </div>
               </div>
@@ -1481,7 +1481,7 @@
 
     <!--pricing tables start-->
 
-    <section hidden id="pricing" class="pricing padding-bottom-100 padding-top-50">
+    <!--<section id="pricing" class="pricing padding-bottom-100 padding-top-50">
       <div class="container">
         <div class="row">
           <center class="col-12">
@@ -1547,7 +1547,7 @@
 
         </div>
       </div>
-    </section>
+    </section>-->
     <!--pricing tables end-->
 
     <!-- contact area start -->
@@ -1684,25 +1684,25 @@
             <div class="col-md-3 col-xl-3 pl-md-4 py-1 py-md-0">
               <a class="flex hover:text-white" href="/uyelik-sozlesmesi">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
-                 <h6 class="hover:underline pl-3 mt-1 text-white">Üyelik Sözleşmesi</h6>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">{{$t('landing.docs.membership')}}</h6>
              </a>     
              </div>    
             <div class="col-md-3 col-xl-3 py-1 py-md-0">
               <a class="flex hover:text-white" href="/kisisel-veri-kanunu">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
-                 <h6 class="hover:underline pl-3 mt-1 text-white">Kişisel Veri Kanunu</h6>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">{{$t('landing.docs.personal')}}</h6>
              </a>     
              </div> 
              <div class="col-md-3 col-xl-3 py-1 py-md-0">
               <a class="flex hover:text-white" href="/siparis-iptal-ve-iade-sartlari">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
-                 <h6 class="hover:underline pl-3 mt-1 text-white">Sipariş İptal ve İade Şartları</h6>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">{{$t('landing.docs.orderReturn')}}</h6>
              </a>     
              </div>
               <div class="col-md-3 col-xl-3 py-1 py-md-0">
               <a class="flex hover:text-white" href="/mesafeli-satis-sozlesmesi">
                  <i class="fas fa-file-alt text-2xl text-dark"></i>
-                 <h6 class="hover:underline pl-3 mt-1 text-white">Mesafeli Satış Sözleşmesi</h6>
+                 <h6 class="hover:underline pl-3 mt-1 text-white">{{$t('landing.docs.sales')}}</h6>
              </a>     
              </div>             
           </div>
@@ -1713,7 +1713,7 @@
           <div class="col-lg-6">
             <div class="footer-inner text-left">
               <div class="copyright-text">
-                &copy; {{$t('footer.copyright')}}
+                &copy; 2019 3DFIGUR. {{$t('footer.copyright')}}
                 <a
                   href="https://intellifi.tech"
                   target="_blank"
@@ -1726,7 +1726,7 @@
             <div class="footer-inner pt-3 pt-sm-0 text-center text-sm-right">
               <ul class="social-icon">
                 <li>
-                  <a href="https://www.instagram.com/3dfigur/" target="_blank">
+                  <a href="https://www.instagram.com/3dfigur" target="_blank">
                     <i class="fab fa-instagram"></i>
                   </a>
                 </li>
@@ -1785,7 +1785,7 @@ export default {
       man: true,
       first: true,
       sampleiframe: true,
-      langs: ["TR", "EN"],
+      langs: ["EN", "TR"],
       menModel: [],
       womenModel: [],
       conceptList: [],
@@ -1850,7 +1850,7 @@ export default {
     logout: function() {
       LoginService.logout()
       this.$vs.loading({
-          text: "Yükleniyor...",
+          text: `${this.$i18n.messages[this.$i18n.locale].landing.loading}`,
           clickEffect: true,
           textAfter: true
         });
@@ -1885,8 +1885,8 @@ export default {
         await MailService.sendMailForm(this.contact);
         this.$vs.notify({ 
           time: 6000,
-          title: "Başarılı",
-          text: "Teşekkür ederiz :)",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.thanks}`,
           color: "success"
           })
           this.contact.fullname="";
@@ -1898,8 +1898,8 @@ export default {
       else{
         this.$vs.notify({ 
           time: 6000,
-          title: "HATA",
-          text: `${this.$i18n.messages[this.$i18n.locale].landing.navbar.home}`,
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.default}`,
           color: "danger"
           })
         this.first = false;

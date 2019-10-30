@@ -1,9 +1,9 @@
 <template>
   <vx-card class="mt-5 pt-2 px-2">
-    <h4>Figür Geçmişi</h4>
+    <h4>{{$t('dashboard.order.cardTitle')}}</h4>
     <div class="search-page__search-bar flex items-center pt-4">
       <vs-input
-        placeholder="Ara"
+        :placeholder="$t('dashboard.order.searchBar')"
         v-model="searchQuery"
         class="w-full input-rounded-full no-icon-border"
         icon="icon-search"

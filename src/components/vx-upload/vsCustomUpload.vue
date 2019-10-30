@@ -279,8 +279,8 @@ export default {
           if (this.$store.state.selectedFigures.avatarKey.length == 2) {
             this.$vs.notify({
               time: 6000,
-              title: "HATA",
-              text: "En fazla 2 fotoğraf seçebilirsiniz!",
+              title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+              text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.preview.upload.selectLimit}`,
               color: "danger"
             });
           } else {
@@ -303,8 +303,8 @@ export default {
         e.preventDefault();
          this.$vs.notify({
               time: 6000,
-              title: "HATA",
-              text: "En fazla 1 MB fotoğraf yükleyebilirsiniz!",
+              title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+              text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.preview.upload.byteLimit}`,
               color: "danger"
             });
           const input = this.$refs.fileInput;

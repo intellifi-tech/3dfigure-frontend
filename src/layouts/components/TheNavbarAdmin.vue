@@ -328,7 +328,7 @@ export default {
     logout: function() {
       LoginService.logout()
       this.$vs.loading({
-          text: "Yükleniyor...",
+          text: `${this.$i18n.messages[this.$i18n.locale].landing.loading}`,
           clickEffect: true,
           textAfter: true
         });

@@ -5,15 +5,15 @@
       errorColor="rgba(var(--vs-danger), 1)"
       :title="null"
       :subtitle="null"
-      finishButtonText="Sepete Git"
-      nextButtonText="Devam et"
-      backButtonText="Geri dön"
+      :finishButtonText="$t('dashboard.main.wizard.btnFinish')"
+      :nextButtonText="$t('dashboard.main.wizard.btnNext')"
+      :backButtonText="$t('dashboard.main.wizard.btnBack')"
       class="yeniModelWizard"
       @on-complete="finishOrder"
     >
       <tab-content
         data-vv-scope="vs1"
-        title="3D Figür Oluştur"
+        :title="$t('dashboard.main.wizard.tabOne.title')"
         icon="feather icon-edit"
         :before-change="validateStep1"
       >
@@ -21,7 +21,11 @@
           <preview></preview>
         </div>
       </tab-content>
-      <tab-content title="Konsept Seç" class="mb-5" icon="feather icon-check-square">
+      <tab-content 
+      :title="$t('dashboard.main.wizard.tabTwo.title')"
+       class="mb-5" 
+       icon="feather icon-check-square"
+       >
         <div>
           <concepts></concepts>
         </div>
@@ -54,8 +58,8 @@ export default {
       if (!res) {
         this.$vs.notify({
           time: 6000,
-          title: "HATA",
-          text: "Fotoğraf yüklemeli ya da seçmelisiniz!",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.preview.isSelect}`,
           color: "danger"
         });
         return res;

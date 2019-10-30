@@ -28,7 +28,7 @@
           @click="popupActive=true"
           gradient-color-secondary="#CE9FFC"
           type="gradient"
-        >Detayı gör</vs-button>
+        >{{$t('dashboard.order.card.detail')}}</vs-button>
       </div>
       <div v-if="isAdmin" class="flex">
         <div class="w-1/3 pr-1">
@@ -59,20 +59,20 @@
       <vs-popup class="popupDetail" :title="title[order.status]" :active.sync="popupActive">
         <div class="row">
           <div class="col-12 p-4" >
-            <h3>Sipariş Bilgilendirmesi</h3>
+            <h3>{{$t('dashboard.order.card.popup.title')}}</h3>
             <hr class="w-2/3"/>
             <p class="px-3 pb-5">{{order.information}}</p>
              <vs-list>
-                 <vs-list-item title="Sipariş No" :subtitle="order.orderCode"></vs-list-item>
-                 <vs-list-item title="Kargo Takip No" :subtitle="!order.cargoCode ? 'Mevcut değil.': order.cargoCode "></vs-list-item>
-                 <vs-list-item title="Teslim Adresi" class="border-none"></vs-list-item>
+                 <vs-list-item :title="$t('dashboard.order.card.popup.orderCode')" :subtitle="order.orderCode"></vs-list-item>
+                 <vs-list-item :title="$t('dashboard.order.card.popup.cargoCode')" :subtitle="!order.cargoCode ? $t('dashboard.order.card.popup.notAvailable'): order.cargoCode "></vs-list-item>
+                 <vs-list-item :title="$t('dashboard.order.card.popup.deliveryDate')" class="border-none"></vs-list-item>
                  <div class="pl-2">
                  <div><b class="text-uppercase text-black">{{address.addressName}}</b></div>
                  <div class="w-2/3"><p>{{address.address}} </p></div>
                  <div class="w-2/3"><p>{{address.townName}} / {{address.cityName}}</p></div>
                  </div>
             </vs-list>
-            <div class="col-12"><p class="text-right">Tutar :<span class="h2 text-dark"> ₺{{conceptPrice}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></span></p></div>
+            <div class="col-12"><p class="text-right">{{$t('dashboard.order.card.popup.total')}} <span class="h2 text-dark"> {{$t('landing.pricing.symbol')}}{{conceptPrice}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></span></p></div>
           </div>
         </div>
       </vs-popup>

@@ -3,9 +3,9 @@
   <div class="vx-col w-full mb-base">
     <div class="mt-6">
       <vs-tabs vs-alignment="fixed" class="shadow-none p-3 profil-tabs">
-        <vs-tab vs-label="Profilim" class="pt-5" @click="isUpdated=true" v-on:click="first=true">
+        <vs-tab :vs-label="$t('dashboard.profile.tabOne.title')" class="pt-5" @click="isUpdated=true" v-on:click="first=true">
           <div class="md:w-1/2">
-            <h3>Profil Bilgileri</h3>
+            <h3>{{$t('dashboard.profile.tabOne.subTitle')}}</h3>
             <vx-card class="shadow-md">
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
@@ -13,7 +13,7 @@
                     :class="{'vs-input-danger':this.$v.member.firstName.$invalid && !first}"
                     class="w-full"
                     :disabled="isUpdated"
-                    label-placeholder="Ad"
+                    :label-placeholder="$t('dashboard.profile.tabOne.card.firstName')"
                     v-model="member.firstName"
                   />
                 </div>
@@ -22,7 +22,7 @@
                     :class="{'vs-input-danger':this.$v.member.lastName.$invalid && !first}"
                     class="w-full"
                     :disabled="isUpdated"
-                    label-placeholder="Soyad"
+                    :label-placeholder="$t('dashboard.profile.tabOne.card.lastName')"
                     v-model="member.lastName"
                   />
                 </div>
@@ -35,7 +35,7 @@
                     class="w-full"
                     :disabled="isUpdated"
                     type="email"
-                    label-placeholder="E-posta"
+                    :label-placeholder="$t('dashboard.profile.tabOne.card.email')"
                     v-model="member.login"
                   />
                 </div>
@@ -47,14 +47,14 @@
                     class="w-full"
                     :disabled="isUpdated"
                     type="text"
-                    label-placeholder="T.C No"
+                    :label-placeholder="$t('dashboard.profile.tabOne.card.idNo')"
                     v-model="member.tcno"
                   />
                 </div>
               </div>
               <div class="vx-row mb-4">
                 <div class="vx-col w-1/2">
-                <span class="text-xs font-light">Doğum Tarihi</span>
+                <span class="text-xs font-light">{{$t('dashboard.profile.tabOne.card.birthDay')}}</span>
                   <datepicker
                     :class="{'vs-input-danger':this.$v.member.birthDay.$invalid && !first, 'bg-light-secondary' : this.isUpdated}" 
                     class="w-full"
@@ -63,12 +63,12 @@
                     :disabled-dates="datePicker.disableD"
                     :language="datePicker.dateLang[this.$i18n.locale.toLowerCase()]"
                     :format="datePicker.formatList[this.$i18n.locale.toLowerCase()]"
-                    placeholder="gg.aa.yyyy"
+                    :placeholder="$t('dashboard.profile.tabOne.card.dayMonthYear')"
                   ></datepicker>
                 </div>
                 
                 <div class="vx-col w-1/2">
-                <span class="text-xs font-light">Cinsiyet</span>
+                <span class="text-xs font-light">{{$t('dashboard.profile.tabOne.card.sex.label')}}</span>
                   <select
                     class="select-input form-control-lg w-full focus:shadow-md"
                     :disabled="isUpdated"
@@ -79,7 +79,7 @@
                       :key="index"
                       v-for="(item,index) in sexList"
                       :value="item.value"
-                    >{{item.text}}</option>
+                    >{{ $t(item.text)}}</option>
                   </select>
                 </div>
               </div>
@@ -90,27 +90,27 @@
                     color="success"
                     @click="updateMember"
                     type="relief"
-                  >Güncelle</vs-button>
+                  >{{$t('dashboard.profile.tabOne.card.btnUpdate')}}</vs-button>
                 </div>
                 <div class="vx-col w-1/2 text-right">
-                  <vs-button type="relief" @click="isUpdated = false">Düzenle</vs-button>
+                  <vs-button type="relief" @click="isUpdated = false">{{$t('dashboard.profile.tabOne.card.btnEdit')}}</vs-button>
                 </div>
               </div>
             </vx-card>
           </div>
         </vs-tab>
 
-        <vs-tab vs-label="Adreslerim" class="row pt-5" v-on:click="first=true">
+        <vs-tab :vs-label="$t('dashboard.profile.tabTwo.title')" class="row pt-5" v-on:click="first=true">
           <div class="md:w-1/2">
             <vs-table class="px-4" v-model="adres" :data="addresses">
               <template slot="header">
-                <h3>Adresler</h3>
+                <h3>{{$t('dashboard.profile.tabTwo.subTitle')}}</h3>
               </template>
               <template slot="thead">
-                <vs-th>Kişi</vs-th>
-                <vs-th>Adres Adı</vs-th>
-                <vs-th>Telefon</vs-th>
-                <vs-th>Sil</vs-th>
+                <vs-th>{{$t('dashboard.profile.tabTwo.table.th.one')}}</vs-th>
+                <vs-th>{{$t('dashboard.profile.tabTwo.table.th.two')}}</vs-th>
+                <vs-th>{{$t('dashboard.profile.tabTwo.table.th.three')}}</vs-th>
+                <vs-th>{{$t('dashboard.profile.tabTwo.table.th.four')}}</vs-th>
               </template>
 
               <template slot-scope="{data}">
@@ -141,7 +141,7 @@
                   <vs-input
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.name.$invalid && !first }"
-                    label-placeholder="Ad"
+                    :label-placeholder="$t('dashboard.profile.tabTwo.card.firstName')"
                     v-model="name"
                   />
                 </div>
@@ -149,7 +149,7 @@
                   <vs-input
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.surname.$invalid && !first}"
-                    label-placeholder="Soyad"
+                    :label-placeholder="$t('dashboard.profile.tabTwo.card.lastName')"
                     v-model="surname"
                   />
                 </div>
@@ -159,7 +159,7 @@
                   <vs-input
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.addressName.$invalid && !first}"
-                    label-placeholder="Adres Adı"
+                    :label-placeholder="$t('dashboard.profile.tabTwo.card.addressName')"
                     v-model="adres.addressName"
                   />
                 </div>
@@ -170,7 +170,7 @@
                     type="text"
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.address.$invalid && !first}"
-                    label-placeholder="Adres"
+                    :label-placeholder="$t('dashboard.profile.tabTwo.card.address')"
                     v-model="adres.address"
                   />
                 </div>
@@ -181,7 +181,7 @@
                     type="tel"
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.mobile.$invalid && !first}"
-                    label-placeholder="Telefon"
+                    :label-placeholder="$t('dashboard.profile.tabTwo.card.phone')"
                     v-model="adres.mobile"
                   />
                 </div>
@@ -191,7 +191,7 @@
                   <vs-input
                     type="text"
                     class="w-full"
-                    label-placeholder="TCKN/Vergi No"
+                    :label-placeholder="$t('dashboard.profile.tabTwo.card.taxNo')"
                     :class="{'vs-input-danger':this.$v.adres.taxNo.$invalid && !first}"
                     v-model="adres.taxNo"
                   />
@@ -201,7 +201,6 @@
                 <div class="vx-col w-1/2">
                   <select
                     class="select-input form-control-lg selecting selectExample w-full focus:shadow-md"
-                    label="Şehir"
                     v-model="city"
                   >
                     <option
@@ -214,7 +213,6 @@
                 <div class="vx-col w-1/2">
                   <select
                     class="select-input form-control-lg selecting selectExample w-full focus:shadow-md"
-                    label="İlçe / Semt"
                     v-model="adres.townId"
                     :class="{'form-control-danger': this.$v.adres.townId.$invalid && !first}"
                   >
@@ -233,7 +231,7 @@
                     type="text"
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.postCode.$invalid && !first}"
-                    label-placeholder="Posta kodu"
+                    :label-placeholder="$t('dashboard.profile.tabTwo.card.postCode')"
                     v-model="adres.postCode"
                   />
                 </div>
@@ -244,25 +242,25 @@
                     color="success"
                     type="relief"
                     @click="addOrUpdateAddress"
-                  >{{this.adres.id != null ? 'Güncelle' : 'Ekle'}}</vs-button>
+                  >{{this.adres.id != null ? $t('dashboard.profile.tabTwo.card.btnUpdate') : $t('dashboard.profile.tabTwo.card.btnAdd')}}</vs-button>
                 </div>
                 <div class="vx-col w-1/2 text-right">
-                  <vs-button type="relief" @click="clearAddress">Temizle</vs-button>
+                  <vs-button type="relief" @click="clearAddress">{{$t('dashboard.profile.tabTwo.card.btnClear')}}</vs-button>
                 </div>
               </div>
             </vx-card>
           </div>
         </vs-tab>
-        <vs-tab vs-label="Şifre Değiştir" class="row pt-5 pl-4" v-on:click="first=true">
+        <vs-tab :vs-label="$t('dashboard.profile.tabThree.title')" class="row pt-5 pl-4" v-on:click="first=true">
           <div class="md:w-1/2">
-           <h3>Şifre Değiştir</h3>
+           <h3>{{$t('dashboard.profile.tabThree.subTitle')}}</h3>
             <vx-card class="shadow-md">
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
                   <vs-input
                     class="w-full"
                     :type="showPsw ? 'text' : 'password'"
-                    label-placeholder="Eski Şifre"
+                    :label-placeholder="$t('dashboard.profile.tabThree.card.oldPsw')"
                     v-model="passwordDTO.currentPassword"
                   />
                 </div>
@@ -274,7 +272,7 @@
                     icon-after="true"
                     :type="showPsw ? 'text' : 'password'"
                     :class="{'vs-input-danger':this.$v.passwordDTO.newPassword.$invalid && !first}"
-                    label-placeholder="Yeni Şifre"
+                    :label-placeholder="$t('dashboard.profile.tabThree.card.newPsw')"
                     v-model="passwordDTO.newPassword"
                   />
                 </div>
@@ -286,7 +284,7 @@
                     icon-after="true"
                     :type="showPsw ? 'text' : 'password'"
                     :class="{'vs-input-danger':this.$v.passwordDTO.confirm.$invalid && !first}"
-                    label-placeholder="Tekrar Yeni Şifre"
+                    :label-placeholder="$t('dashboard.profile.tabThree.card.newPswConfirm')"
                     v-model="passwordDTO.confirm"
                   />
                   
@@ -294,10 +292,10 @@
               </div>
               <div class="vx-row">
                 <div class="vx-col w-1/2 text-left">
-                  <vs-button color="success" @click="changePassword" type="relief">Güncelle</vs-button>
+                  <vs-button color="success" @click="changePassword" type="relief">{{$t('dashboard.profile.tabThree.card.btnUpdate')}}</vs-button>
                 </div>
                 <div class="vx-col w-1/2 text-right">
-                <vs-button class="float-right" icon="visibility" color="primary" @click="showFunc" type="relief">{{showPsw ? 'Gizle' : 'Göster'}}</vs-button>
+                <vs-button class="float-right" icon="visibility" color="primary" @click="showFunc" type="relief">{{showPsw ? $t('dashboard.profile.tabThree.card.btnHide') : $t('dashboard.profile.tabThree.card.btnShow')}}</vs-button>
                 </div>
               </div>
             </vx-card>
@@ -366,7 +364,8 @@ export default {
       cities: [],
       towns: [],
       city: 1,
-      sexList: [{ text: "Erkek", value: "M" }, { text: "Kadın", value: "F" }]
+      sexList: [{ text: "register.sex.man", value: "M" }, { text: "register.sex.woman", value: "F" }]
+      /*TODO çeviri*/
     };
   },
   created: async function() {
@@ -404,8 +403,8 @@ export default {
       if (res.status >= 400) {
         this.$vs.notify({
           time: 6000,
-          title:"HATA!",
-          text: "Bu adres bir sipariş ile kayıtlı olduğundan dolayı silinemez.",
+          title:`${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.profile.address.delete}`,
           color: "danger"
         });
         return;
@@ -432,8 +431,8 @@ export default {
          this.first=false;
         this.$vs.notify({
           time: 6000,
-          title:"HATA!",
-          text: "Lütfen bilgileri kontrol ediniz.",
+          title:`${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.default}`,
           color: "danger"
         });
       }
@@ -448,14 +447,14 @@ export default {
       this.$vs.notify({
         time: 6000,
         color:"success",
-        text: "Güncelleme Başarılı!"
+        text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.profile.update}`
       });
       }else {
          this.first=false;
         this.$vs.notify({
           time: 6000,
-          title:"HATA!",
-          text: "Lütfen bilgileri kontrol ediniz.",
+          title:`${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text:`${this.$i18n.messages[this.$i18n.locale].notify.error.text.default}`,
           color: "danger"
         });
       }
@@ -476,13 +475,13 @@ export default {
       } else if (this.$v.passwordDTO.newPassword.$invalid)
         this.$vs.notify({
           time: 6000,
-          text: "Şifrenizi en az 6 karakter girmelisiniz.",
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.profile.password.minLenght}`,
           color: "danger"
         });
       else {
         this.$vs.notify({
           time: 6000,
-          text: "Yeni Şifreler Uyuşmuyor!",
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.profile.password.notConfirm}`,
           color: "danger"
         });
       }

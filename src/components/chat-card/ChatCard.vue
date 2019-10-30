@@ -64,7 +64,7 @@ export default {
 			  }
 			  return i;
 			}
-			
+			/*TODO çeviri*/
   			 var weekday = new Array(7);
   			 weekday[0] = "Pazar";
   			 weekday[1] = "Pazartesi";

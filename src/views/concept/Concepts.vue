@@ -2,7 +2,7 @@
   <vx-card class="mt-5 pt-2 px-2">
     <div class="row">
       <div class="col-lg-4">
-        <h4>Konseptler</h4>
+        <h4>{{$t('dashboard.main.wizard.tabTwo.cardTitle')}}</h4>
       </div>
       <div class="col-lg-8">
         <ul class="row px-4 float-right" v-for="category in categories" :key="category.id">
@@ -14,7 +14,7 @@
     </div>
     <div class="search-page__search-bar flex items-center pt-3">
       <vs-input
-        placeholder="Konsept bul"
+        :placeholder="$t('dashboard.main.wizard.tabTwo.searchBar')"
         v-model="searchQuery"
         class="w-full input-rounded-full no-icon-border"
         icon="icon-search"

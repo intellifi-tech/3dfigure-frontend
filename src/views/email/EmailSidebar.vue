@@ -1,15 +1,20 @@
 <template>
 	<div class="email__email-sidebar h-full mt-5">
 		<div class="mx-6 clearfix" v-if="userAuth!='ROLE_ADMIN'">
-			<vs-button size="large" class="bg-primary-gradient w-full px-4" icon-pack="feather" icon="icon-edit" @click="activePrompt = true">Yeni Talep</vs-button>
+			<vs-button 
+			size="large" 
+			class="bg-primary-gradient w-full px-4" 
+			icon-pack="feather" 
+			icon="icon-edit" 
+			@click="activePrompt = true">{{$t('dashboard.ticket.sidebar.newTicket.btnNew')}}</vs-button>
 		</div>
 
 		<!-- compose email -->
 		<vs-prompt
 			class="email-compose"
-			vs-title="Yeni Talep"
-			vs-accept-text= "Gönder"
-			vs-cancel-text="İptal"
+			:vs-title= "$t('dashboard.ticket.sidebar.newTicket.prompt.title')"
+			:vs-accept-text= "$t('dashboard.ticket.sidebar.newTicket.prompt.accept')"
+			:vs-cancel-text= "$t('dashboard.ticket.sidebar.newTicket.prompt.cancel')"
 			@vs-cancel="clearFields"
 			@vs-accept="saveTicket"
 			@vs-close="clearFields"
@@ -17,7 +22,7 @@
 			:vs-active.sync="activePrompt">
 				<VuePerfectScrollbar class="scroll-area p-4" :settings="settings">
 					<form @submit.prevent>
-						<span class="h6 text-sm font-light">İlgili Sipariş Kodu</span>
+						<span class="h6 text-sm font-light">{{$t('dashboard.ticket.sidebar.newTicket.prompt.orderCode')}}</span>
 							<div :class="{'vs-select-danger': this.$v.ticket.ordersId.$invalid && !first}">	
 								<select 
 								v-model="ticket.ordersId" 
@@ -31,7 +36,7 @@
 								</select>
 							</div>
 						
-						<span class="h6 text-sm font-light">Destek Alanı</span>
+						<span class="h6 text-sm font-light">{{$t('dashboard.ticket.sidebar.newTicket.prompt.ticketType')}}</span>
 							<div :class="{'vs-select-danger': this.$v.ticket.type.$invalid && !first}">	
 								<select
 								 v-model="ticket.type" 
@@ -41,12 +46,12 @@
                       					:key="index"
                       					:value="item"
                       					v-for="(item,index) in ticketTypeList"
-                    				>{{item == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</option>
+                    				>{{item == 'SALES' ? $t('dashboard.ticket.ticketType.sales') : $t('dashboard.ticket.ticketType.technic')}}</option>
 								</select>
 							</div>
 
 						<vs-input 
-						label-placeholder="Konu" 
+						:label-placeholder="$t('dashboard.ticket.sidebar.newTicket.prompt.subject')" 
 						v-model="ticket.subject" 
 						class="w-full mb-6"
 						:class="{'vs-input-danger':this.$v.ticket.subject.$invalid && !first}"
@@ -70,7 +75,7 @@
 				<div class="flex justify-between items-center cursor-pointer" :class="{'text-primary': mailFilter == status}" @click="updateFilter(status)">
 					<div class="flex items-center mb-2">
 						<feather-icon :icon="status == 'OPEN' ? 'ClockIcon' : status == 'IN_PROGRESS' ? 'Edit2Icon' : 'CheckSquareIcon'" :svgClasses="[{'text-primary stroke-current': mailFilter == status}, 'h-6 w-6']"></feather-icon>
-						<span class="text-lg ml-3">{{status == 'OPEN' ? 'AÇIK' : status == 'IN_PROGRESS' ? 'İŞLENİYOR' : 'KAPALI'}}</span>
+						<span class="text-lg ml-3">{{status == 'OPEN' ? $t('dashboard.ticket.ticketStatus.open') : status == 'IN_PROGRESS' ? $t('dashboard.ticket.ticketStatus.inProgress') : $t('dashboard.ticket.ticketStatus.close')}}</span>
 					</div>
 					<!-- <vs-chip color="primary" v-if="unreadMails('inboxed') > 0">{{ unreadMails('inboxed') }}</vs-chip> -->
 				</div>
@@ -89,11 +94,11 @@
 			</div>
 			<vs-divider></vs-divider>
 			<div class="email__labels px-6 py-4" v-if="userAuth=='ROLE_ADMIN'">
-				<h5 class="mb-8">Departmanlar</h5>
+				<h5 class="mb-8">{{$t('dashboard.ticket.ticketType.title')}}</h5>
 				<div class="email__lables-list">
 					<div class="email__label flex items-center mb-4 cursor-pointer" :class="{'text-primary': mailFilter == tag}" v-for="(tag, index) in ticketTypeList" :key="index" @click="updateFilter(tag)">
 						<div class="ml-1 h-4 w-4 rounded-full mr-4" :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
-						<span class="text-lg">{{tag == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</span>
+						<span class="text-lg">{{tag == 'SALES' ? $t('dashboard.ticket.ticketType.sales') : $t('dashboard.ticket.ticketType.technic')}}</span>
 					</div>
 				</div>
 			</div>
@@ -164,7 +169,7 @@ export default{
 				modules: {
 					toolbar: [['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code-block'], [{ 'header': 1 }, { 'header': 2 }], [{ 'list': 'ordered'}, { 'list': 'bullet' }], [{ 'font': [] }],],
 				},
-				placeholder: 'İleti'
+				placeholder:''
 			},
 			settings: {
 				maxScrollbarLength: 60,
@@ -201,8 +206,8 @@ export default{
 			if (this.$v.$invalid) {
 			     this.$vs.notify({
 			       time: 6000,
-			       title: "HATA!",
-			       text: "Lütfen bilgileri kontrol ediniz.",
+			       title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+			       text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.default}`,
 			       color: "danger"
 			     });
 				 this.first = false;
@@ -227,8 +232,8 @@ export default{
 							if (res.status >= 400) {
 								this.$vs.notify({
 			       					time: 6000,
-			       					title: "Başarısız!",
-			       					text: "Ticket açıldı fakat dosya yüklenemedi",
+			       					title: `${this.$i18n.messages[this.$i18n.locale].notify.error.titleFail}`,
+			       					text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.ticket.openFail}`,
 			       					color: "danger"
 			     				});
 							}
