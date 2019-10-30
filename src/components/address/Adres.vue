@@ -13,7 +13,7 @@
             role="tab"
             aria-controls="address"
             aria-selected="true"
-          >Adres Seç</a>
+          >{{$t('dashboard.checkout.wizard.tabTwo.addressSelect')}}</a>
         </li>
         <li class="nav-item">
           <a
@@ -26,7 +26,7 @@
             role="tab"
             aria-controls="new-address"
             aria-selected="false"
-          >Adres Ekle</a>
+          >{{$t('dashboard.checkout.wizard.tabTwo.addressAdd')}}</a>
         </li>
       </ul>
 
@@ -34,11 +34,11 @@
          <div class="adreslerim" v-show="chooseAddress">
          <hr>
           <div class="col-12 vx-card py-3 px-lg-5 mt-5 mb-4" v-if="this.$store.state.checkout.addressList === null || this.$store.state.checkout.addressList.length === 0">
-             Kayıtlı adres bulunmuyor.
+             {{$t('dashboard.checkout.wizard.tabTwo.addressList.emptyList')}}
            <a 
             href="#new-address" 
             @click="chooseAddress=false"
-            >Yeni Adres Ekle!</a>
+            >{{$t('dashboard.checkout.wizard.tabTwo.addressList.createAddress')}}</a>
       </div>
         <ul class="adreslerimList" v-for="adres in this.$store.state.checkout.addressList" :key="adres.id">
           <li>
@@ -60,34 +60,34 @@
           <hr>
           <div class="row pl-4">
             <div class="pt-4">
-              <h4 class="mb-3 font-bold">Yeni Adres</h4>
+              <h4 class="mb-3 font-bold">{{$t('dashboard.checkout.wizard.tabTwo.newAddress.cardTitle')}}</h4>
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
-                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.adres.addressName.$invalid}" label-placeholder="Adres Adı" v-model="adres.addressName"/>
+                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.adres.addressName.$invalid}" :label-placeholder="$t('dashboard.checkout.wizard.tabTwo.newAddress.name')" v-model="adres.addressName"/>
                 </div>
               </div>
               <div class="vx-row mb-2">
                 <div class="vx-col w-1/2">
-                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.name.$invalid}" label-placeholder="Ad" v-model="name"/>
+                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.name.$invalid}" :label-placeholder="$t('dashboard.checkout.wizard.tabTwo.newAddress.firstName')" v-model="name"/>
                 </div>
                 <div class="vx-col w-1/2">
-                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.surname.$invalid}" label-placeholder="Soyad" v-model="surname"/>
+                  <vs-input class="w-full" :class="{'vs-input-danger':this.$v.surname.$invalid}" :label-placeholder="$t('dashboard.checkout.wizard.tabTwo.newAddress.lastName')" v-model="surname"/>
                 </div>
               </div>
               <div class="vx-row mb-2">
                 
                 <div class="vx-col w-full">
-                  <span class="h6 text-sm font-light">Telefon</span>
+                  <span class="h6 text-sm font-light">{{$t('dashboard.checkout.wizard.tabTwo.newAddress.phone')}}</span>
                   <div class="flex pt-2">
                   <vue-country-code defaultCountry='TR' class="selectCountry border-grey shadow-none h-12" @onSelect="changeDialCode" >
                   </vue-country-code>
-                  <vs-input type="tel" class="w-full pl-1" :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}" placeholder="(555) 000 0000" v-model="adres.mobile"/>
+                  <vs-input type="tel" class="w-full pl-1" :class="{'vs-input-danger':this.$v.adres.mobile.$invalid}" :placeholder="$t('dashboard.checkout.wizard.tabTwo.newAddress.phoneNumber')" v-model="adres.mobile"/>
                   </div>
                 </div>
               </div>
               <div class="vx-row mb-2">
                 <div class="vx-col w-full">
-                  <vs-input type="text" class="w-full" :class="{'vs-input-danger':this.$v.adres.address.$invalid}" label-placeholder="Adres" v-model="adres.address"/>
+                  <vs-input type="text" class="w-full" :class="{'vs-input-danger':this.$v.adres.address.$invalid}" :label-placeholder="$t('dashboard.checkout.wizard.tabTwo.newAddress.address')" v-model="adres.address"/>
                 </div>
               </div>
               <div class="vx-row mb-2">
@@ -96,7 +96,7 @@
                     type="text"
                     class="w-full"
                     :class="{'vs-input-danger':this.$v.adres.postCode.$invalid}"
-                    label-placeholder="Posta kodu"
+                    :label-placeholder="$t('dashboard.checkout.wizard.tabTwo.newAddress.postCode')"
                     v-model="adres.postCode"
                   />
                 </div>
@@ -106,7 +106,7 @@
                   <vs-input
                     type="text"
                     class="w-full"
-                    label-placeholder="Vergi Dairesi"
+                    :label-placeholder="$t('dashboard.checkout.wizard.tabTwo.newAddress.taxOffice')"
                     v-model="adres.taxAdmin"
                   />
                 </div>
@@ -116,7 +116,7 @@
                   <vs-input
                     type="text"
                     class="w-full"
-                    label-placeholder="TCKN/Vergi No"
+                    :label-placeholder="$t('dashboard.checkout.wizard.tabTwo.newAddress.taxNo')"
                     :class="{'vs-input-danger':this.$v.adres.taxNo.$invalid}"
                     v-model="adres.taxNo"
                   />
@@ -124,7 +124,7 @@
               </div>
               <div class="vx-row mb-6 mt-4">
                 <div class="vx-col w-1/2">
-                <span class="text-xs text-grey">Şehir</span>
+                <span class="text-xs text-grey">{{$t('dashboard.checkout.wizard.tabTwo.newAddress.city')}}</span>
                   <select
                     class="form-control-lg selecting selectExample w-full focus:shadow-md"
                     v-model="city"
@@ -138,7 +138,7 @@
                   </select>
                 </div>
                 <div class="vx-col w-1/2">
-                <span class="text-xs text-grey">İlçe/Semt</span>
+                <span class="text-xs text-grey">{{$t('dashboard.checkout.wizard.tabTwo.newAddress.town')}}</span>
                   <select
                     class="form-control-lg selecting selectExample w-full focus:shadow-md"
                     v-model="adres.townId"
@@ -155,7 +155,7 @@
             </div>
             <!-- fatura adresi-->
           </div>
-          <vs-button @click="saveAddress" color="success" type="filled" class="ml-2" icon="done">Kaydet</vs-button>
+          <vs-button @click="saveAddress" color="success" type="filled" class="ml-2" icon="done">{{$t('dashboard.checkout.wizard.tabTwo.newAddress.btnSave')}}</vs-button>
           <!--row yeni adres-->
         </div>
         <!--yeni adres section -->
@@ -167,29 +167,29 @@
           <ul class="list-group">
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
-                <h6 class="my-0">Net Toplam</h6>
+                <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.netTotal')}}</h6>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet}}</span>
+              <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.totalPriceNet}}</span>
             </li>
              <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="this.$store.state.checkout.discount != null">
               <div>
-                <h6 class="my-0">İndirim Tutarı</h6>
+                <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.discountTotal')}}</h6>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.discount}}</span>
+              <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.discount}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
-                <h6 class="my-0">KDV(%18)</h6>
+                <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.tax')}}</h6>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.order.kdv}}</span>
+              <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.kdv}}</span>
             </li>
             <li class="pt-3 pb-2 d-flex justify-content-between">
-              <span>Genel Toplam (TL)</span>
-              <strong>₺{{this.$store.state.checkout.order.totalPrice}}</strong>
+              <span>{{$t('dashboard.checkout.wizard.totalCard.grandTotal')}}</span>
+              <strong>{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.totalPrice}}</strong>
             </li>
             <hr>
             <li class="pt-2 d-flex justify-content-between">
-              <h6>Tüm siparişlerinizde kargo ücretsizdir.</h6>
+              <h6>{{$t('dashboard.checkout.wizard.totalCard.freeCargo')}}</h6>
             </li>
           </ul>
         </div>
@@ -277,8 +277,8 @@ export default {
       if (this.$v.$invalid) {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Bilgileri kontrol ediniz.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.default}`,
           color: "danger"
         });
       } else {
@@ -298,8 +298,8 @@ export default {
         }
         this.$vs.notify({
           time: 6000,
-          title: "Başarılı!",
-          text: "Adres başarılı bir şekilde eklendi.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.address.add}`,
           color: "success"
         });
         this.chooseAddress = true

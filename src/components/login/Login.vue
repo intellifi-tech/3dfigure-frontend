@@ -121,8 +121,8 @@ export default {
           } else {
             this.$vs.notify({
               time: 6000,
-              title: "HATA!",
-              text: "Lütfen giriş bilgilerinizi kontrol ediniz.",
+              title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+              text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.registration.default}`,
               color: "danger"
             });
           }
@@ -154,8 +154,8 @@ export default {
       if (this.$v.$invalid) {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Lütfen giriş bilgilerinizi kontrol ediniz.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.registration.default}`,
           color: "danger"
         });
         this.first = false;
@@ -173,8 +173,8 @@ export default {
       } else {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Lütfen giriş bilgilerinizi kontrol ediniz.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.registration.default}`,
           color: "danger"
         });
       }

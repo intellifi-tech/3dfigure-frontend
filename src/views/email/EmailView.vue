@@ -15,26 +15,26 @@
 							<div class="email__actions--single flex items-baseline justify-center">
 								<!-- MOVE TO DROPDOWN -->
 								<vs-dropdown class="flex cursor-pointer hover:text-primary" vs-custom-content vs-trigger-click>
-									<span>Durum</span>
+									<span>{{$t('dashboard.ticket.ticketStatus.title')}}</span>
 									<feather-icon icon="MailIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
 									<vs-dropdown-menu>
 										<ul class="my-2">
 											<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(status, index) in ticketStatusList" :key="index" @click="updateStatus(status)" >
 												<feather-icon :icon="status == 'OPEN' ? 'ClockIcon' : status == 'IN_PROGRESS' ? 'Edit2Icon' : 'CheckSquareIcon'" svg-classes="h-5 w-5" />
-												<span class="ml-3">{{status == 'OPEN' ? 'AÇIK' : status == 'IN_PROGRESS' ? 'İŞLENİYOR' : 'KAPALI'}}</span>
+												<span class="ml-3">{{status == 'OPEN' ? $t('dashboard.ticket.ticketStatus.open') : status == 'IN_PROGRESS' ? $t('dashboard.ticket.ticketStatus.inProgress') : $t('dashboard.ticket.ticketStatus.close')}}</span>
 											</li>
 										</ul>
 									</vs-dropdown-menu>
 								</vs-dropdown>
 
 								<vs-dropdown class="flex cursor-pointer hover:text-primary pl-4 " vs-custom-content vs-trigger-click>
-									<span>Konu</span>
+									<span>{{$t('dashboard.ticket.ticketDetail.subject')}}</span>
 									<feather-icon icon="TagIcon" svg-classes="h-6 w-6" class="cursor-pointer ml-4"></feather-icon>
 									<vs-dropdown-menu>
 										<ul class="my-2">
 											<li class="px-4 mb-2 flex items-start cursor-pointer hover:text-primary"  v-for="(tag, index) in ticketTypeList" :key="index" @click="updateType(tag)" >
 												<div class="ml-1 h-4 w-4 rounded-full mr-4" :class="tag == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
-												<span class="ml-3">{{tag == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</span>
+												<span class="ml-3">{{tag == 'SALES' ? $t('dashboard.ticket.ticketType.sales') : $t('dashboard.ticket.ticketType.technic')}}</span>
 											</li>
 										</ul>
 									</vs-dropdown-menu>
@@ -46,7 +46,7 @@
 								<div class="vx-col w-full">
 										<div class="vx-row">
 											<div class="vx-col w-full flex justify-between">
-												<vs-button @click="replyPrompt=true" class="w-full" color="success" type="filled" icon="reply" size="large">Yanıtla</vs-button>
+												<vs-button @click="replyPrompt=true" class="w-full" color="success" type="filled" icon="reply" size="large">{{$t('dashboard.ticket.ticketDetail.reply')}}</vs-button>
 											</div>
 										</div>
 								</div>
@@ -61,10 +61,10 @@
 					<div class="vx-col w-full">
 						<div class="email__labels--single flex justify-between mx-4 border-black border-bottom items-center mt-2">
 							<div class="mail__message truncate pt-2">
-								<span class="font-light h6">İlgili Sipariş Kodu : </span><span class="h6 text-black ">{{ openMail.orderCode}}</span>
+								<span class="font-light h6">{{$t('dashboard.ticket.ticketDetail.orderCode')}} </span><span class="h6 text-black ">{{ openMail.orderCode}}</span>
 							</div>
 							<div class="flex items-baseline pt-3">
-								<h6>{{openMail.type == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</h6>
+								<h6>{{openMail.type == 'SALES' ? $t('dashboard.ticket.ticketType.sales') : $t('dashboard.ticket.ticketType.technic')}}</h6>
 								<div class="mx-3 h-4 w-4 rounded-full " :class="openMail.type == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
 							</div>
 						</div>
@@ -83,9 +83,9 @@
 					<!-- reply ticket -->
 		<vs-prompt
 			class="email-compose"
-			vs-title="Mesaj Yaz"
-			vs-accept-text= "Gönder"
-			vs-cancel-text="İptal"
+			:vs-title= "$t('dashboard.ticket.ticketDetail.replyPrompt.title')"
+			:vs-accept-text= "$t('dashboard.ticket.ticketDetail.replyPrompt.accept')"
+			:vs-cancel-text= "$t('dashboard.ticket.ticketDetail.replyPrompt.cancel')"
 			@vs-cancel="clearFields"
 			@vs-accept="sendChat"
 			@vs-close="clearFields"
@@ -141,7 +141,7 @@ export default{
 				modules: {
 					toolbar: [['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code-block'], [{ 'header': 1 }, { 'header': 2 }], [{ 'list': 'ordered'}, { 'list': 'bullet' }], [{ 'font': [] }],],
 				},
-				placeholder: 'İleti'
+				placeholder: ''
 			},
 		}
 	},

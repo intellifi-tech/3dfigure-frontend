@@ -14,26 +14,26 @@
 
         <vs-popup
           class="holamundo sidebarPopup"
-          title="3D Figür"
+          :title="$t('dashboard.startPopup.title')"
           :active.sync="this.$store.state.member.firstLogin || this.$store.state.sidebarHowtoUse"
         >
           <div class="pt-0">
             <form-wizard
               ref="wizard"
-              title="3D Figürünü Oluştur!"
+              :title="$t('dashboard.startPopup.subTitle')"
               subtitle=""
-              nextButtonText="Sonraki adım"
-              backButtonText="Önceki adım"
-              finishButtonText="BAŞLA!"
+              :nextButtonText="$t('dashboard.startPopup.wizard.btnNext')"
+              :backButtonText="$t('dashboard.startPopup.wizard.btnBack')"
+              :finishButtonText="$t('dashboard.startPopup.wizard.btnFinish')"
               @on-complete="finish"
             >
-              <tab-content title="Fotoğraf Yükle" icon="feather icon-upload">
+              <tab-content :title="$t('dashboard.startPopup.wizard.tabOne')" icon="feather icon-upload">
                 <img src="assets/images/info/1.png" alt>
               </tab-content>
-              <tab-content title="Konsept Seç" icon="feather icon-check-square">
+              <tab-content :title="$t('dashboard.startPopup.wizard.tabTwo')" icon="feather icon-check-square">
                 <img src="assets/images/info/2.png" alt>
               </tab-content>
-              <tab-content title="Sipariş Süreci" icon="feather icon-truck">
+              <tab-content :title="$t('dashboard.startPopup.wizard.tabThree')" icon="feather icon-truck">
                 <img src="assets/images/info/3.png" alt>
               </tab-content>
             </form-wizard>

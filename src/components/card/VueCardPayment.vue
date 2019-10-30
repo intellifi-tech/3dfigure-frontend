@@ -2,14 +2,14 @@
   <div class="cardWrap bg-primary-gradient shadow-md valid vx-card w-full sm:w-1/3" :class="{'valid' : valid}" :style="{
       background: systemSettings.showBank ? visual.backgroundGradient : ''
     }">
-    <h5 class="text-white">Kart Bilgileri</h5>
+    <h5 class="text-white">{{$t('dashboard.checkout.wizard.tabFour.cardPayment.title')}}</h5>
     <form @submit.prevent="onBtn" :class="systemSettings.showBank ? bankInfo.backgroundLightness : ''">
       <!--<div class="bankLogo">
         <img v-if="systemSettings.showBank" :src="getImage(bankInfo.bankLogo)"/>
          <img src="~/card-info/dist/banks-logos/ru-tinkoff.svg"/> -->
      <!-- </div>-->
       <div class="row">
-        <label for="cardnumber">{{systemSettings.labels.cardNumber}}</label>
+        <label for="cardnumber">{{$t('dashboard.checkout.wizard.tabFour.cardPayment.cardNumber')}}</label>
         <input type="phone"
           :placeholder="systemSettings.placeholders.cardNumber" maxlength="23"
           v-model="card.number" name="cardnumber" autocomplete="cc-number"
@@ -18,7 +18,7 @@
       </div>
       <div class="row justify-between">
         <div class="part">
-          <label for="cc-exp-month">{{systemSettings.labels.month}}</label>
+          <label for="cc-exp-month">{{$t('dashboard.checkout.wizard.tabFour.cardPayment.month')}}</label>
           <input type="number" :placeholder="systemSettings.placeholders.month"
             :min="this.card.year == getCurrYear() ? getCurrMonth() : 1" max="12"
             v-model="card.month" name="cc-exp-month"
@@ -26,14 +26,14 @@
             />
         </div>
         <div class="part">
-          <label for="cc-exp">{{systemSettings.labels.year}}</label>
+          <label for="cc-exp">{{$t('dashboard.checkout.wizard.tabFour.cardPayment.year')}}</label>
           <input type="number" :placeholder="systemSettings.placeholders.year"
             :min="getCurrYear()" max="99" name="cc-exp" v-model="card.year"
             autocomplete="cc-exp" @keydown="isNumber" @blur="trailingZero"
           />
         </div>
         <div class="part right">
-          <label for="cvc">{{ bankInfo.codeName ? bankInfo.codeName : 'CVV' }}</label>
+          <label for="cvc">{{ bankInfo.codeName ? bankInfo.codeName : $t('dashboard.checkout.wizard.tabFour.cardPayment.cvv') }}</label>
           <input type="password" :placeholder="systemSettings.placeholders.cvv"
             name="cvc" v-model="card.cvv" maxlength="3" autocomplete="cc-cvc"
             @keydown="isNumber"
@@ -41,14 +41,14 @@
         </div>
       </div>
       <div class="row">
-        <label for="ccname">{{systemSettings.labels.cardHolder}}</label>
-        <input type="text" :placeholder="systemSettings.placeholders.cardHolder"
+        <label for="ccname">{{$t('dashboard.checkout.wizard.tabFour.cardPayment.cardOwner')}}</label>
+        <input type="text" :placeholder="$t('dashboard.checkout.wizard.tabFour.cardPayment.fullName')"
           name="ccname" v-model="card.name" autocomplete="cc-name" @keydown="onlyLetters"
           />
         
       </div>
       <div class="submit">
-        <button type="submit" class="my-4">{{systemSettings.labels.button}}</button>
+        <button type="submit" class="my-4">{{$t('dashboard.checkout.wizard.tabFour.cardPayment.btnPayment')}}</button>
       </div>
       <div class="logoDiv">
         <img v-if="systemSettings.showPaymentSystem" :src="getImage(bankInfo.brandLogo)" class="brandLogo py-1 right"/>
@@ -61,6 +61,8 @@
 <script>
 import * as CardValidator from 'card-validator'
 import CardInfo from 'card-info'
+
+/*TODO validation notify settings*/
 
 // get all logos file from card-info plugin to use it further
 const LogosRaw = require.context('card-info/dist/', true, /\.png/)

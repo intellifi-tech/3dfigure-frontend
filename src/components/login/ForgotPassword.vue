@@ -90,8 +90,8 @@ props: {
       } else {
        this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "İşlem başarısız.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.fail}`,
           color: "danger"
         });
       }
@@ -102,8 +102,8 @@ props: {
        if (this.$v.$invalid) {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Lütfen e-postayı kontrol ediniz.",
+          title:`${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text:`${this.$i18n.messages[this.$i18n.locale].notify.error.text.registration.email.default}`,
           color: "danger"
         });
         this.first = false
@@ -113,8 +113,8 @@ props: {
       if (res < 400) {
         this.$vs.notify({
           time: 6000,
-          title: "Başarılı!",
-          text: "Sıfırlama e-postası gönderildi.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.registration.email.reset}`,
           color: "success"
         });
         this.$store.commit("UPDATE_FORGOT_POPUP", false);
@@ -124,8 +124,8 @@ props: {
       else if(res == 404){
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "E-posta bulunamadı.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.registration.email.notfound}`,
           color: "danger"
         });
         this.first=false
@@ -133,8 +133,8 @@ props: {
       else {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "İşlem başarısız.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.fail}`,
           color: "danger"
         });
         this.first=false

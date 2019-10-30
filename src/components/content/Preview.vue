@@ -12,15 +12,13 @@
       <h4 class="pb-4">
         <span class="align-text-bottom  mr-2">
            <vs-icon class="" icon="info" size="small" bg="blue" color="white" round></vs-icon>
-        </span>Bilgilendirme Panosu </h4>
-        <p>
-           Modelde bazı eksiklikler olabilir, hiç <b class="text-primary">endişe etmeyin!</b><br>
+        </span>{{$t('dashboard.main.wizard.tabOne.infoBoard.title')}}</h4>
+        <p v-html="$t('dashboard.main.wizard.tabOne.infoBoard.descOne')">
+           <br>
         </p>
-        <p class="mb-3">
-          Siz istediğiniz <b class="text-primary">konsepti</b> seçin. Geri kalan tüm düzenlemeler, alanında uzman tasarımcılarımız tarafından düzenlenecektir.
+        <p class="mb-3" v-html="$t('dashboard.main.wizard.tabOne.infoBoard.descTwo')">
         </p>
-        <p class="mb-3" v-if="!limit">
-          Limitiniz dolduysa uygulamamızı paylaşarak fotoğraf yükleme hakkına sahip olabilirsiniz.
+        <p class="mb-3" v-if="!limit" v-html="$t('dashboard.main.wizard.tabOne.infoBoard.descLimit')">
         </p>
       </vx-card>
     </div>
@@ -29,10 +27,10 @@
       <vx-card class="fotograflarim-card">
         <div class="row">
          <div class="col-xl-4 pt-2">
-            <h4 class="pb-4"> Fotoğraflarım</h4>
+            <h4 class="pb-4"> {{$t('dashboard.main.wizard.tabOne.gallery.title')}}</h4>
          </div>
          <div class="col-xl-8 text-md-right pt-2">
-            <h6>Fotoğraf yükleme hakkınız: </h6>
+            <h6>{{$t('dashboard.main.wizard.tabOne.gallery.subTitle')}} </h6>
             <div class="alignright flex">
             <span class="text-primary h3 pr-2"> {{showLimit}} / {{ this.$store.state.member.totalFigure}}</span>
             <vs-button @click="openInvitePopup=true" class="btnDavet" color="success" type="filled" icon="add" size="small" radius></vs-button>
@@ -40,11 +38,10 @@
           
          </div>
         </div>
-        <p>
-          En iyi 3D Figürünü oluşturmak için, <b class="cursor-pointer hover:underline text-primary" @click="popupContent">en doğru fotoğrafı</b> yükle ve galerinden fotoğrafını seç!
+        <p>   
+          <span>{{$t('dashboard.main.wizard.tabOne.gallery.descOneFirst')}} <b class="cursor-pointer hover:underline text-primary" @click="popupContent">{{$t('dashboard.main.wizard.tabOne.gallery.descOneSecond')}}</b> {{$t('dashboard.main.wizard.tabOne.gallery.descOneThird')}}</span>
         </p>
-        <p>
-          <b class="text-primary">Çift kişilik</b> konsept kullanabilmek için <b class="text-primary">2 fotoğraf</b> yükleyip seçmelisiniz. 
+        <p v-html="$t('dashboard.main.wizard.tabOne.gallery.descTwo')">
         </p>
       <hr>
         <div class="mt-0">
@@ -71,44 +68,44 @@
     </div>
     <!--fotoğraflar card column -->
      
-<vs-popup @close="closePopup" :active.sync="openInvitePopup" title="Arkadaşını Davet Et">
+<vs-popup @close="closePopup" :active.sync="openInvitePopup" :title="$t('dashboard.main.wizard.tabOne.gallery.invitePopup.title')">
      <div class="vx-row mb-4">
              <div class="vx-col w-full mb-3">
-                <span>Fotoğraf yükleme hakkınız bittiğinde <b>3 arkadaşınızın</b> e-posta adresine davet yollayarak <b>3 yükleme hakkı</b> daha kazanabilirsiniz.</span>
+                <span v-html="$t('dashboard.main.wizard.tabOne.gallery.invitePopup.descOne')"></span>
                 <br><br>
-                <span>Ayrıca sipariş verdikten sonra tüm haklarınız <b>yenilenir.</b></span>
+                <span v-html="$t('dashboard.main.wizard.tabOne.gallery.invitePopup.descTwo')"></span>
               </div>
               <div class="vx-col w-full">
                 <vs-input
                   type="text"
                   class="w-full"
                   :class="{'vs-input-danger': this.$v.inviteMail.first.$invalid && !first}"
-                  label-placeholder="1.E-posta"
+                  :label-placeholder="$t('dashboard.main.wizard.tabOne.gallery.invitePopup.inputOne')"
                   v-model="inviteMail.first"
                 />
                 <vs-input
                   type="text"
                   class="w-full"
                   :class="{'vs-input-danger': this.$v.inviteMail.second.$invalid && !first}"
-                  label-placeholder="2.E-posta"
+                  :label-placeholder="$t('dashboard.main.wizard.tabOne.gallery.invitePopup.inputTwo')"
                   v-model="inviteMail.second"
                 />
                 <vs-input
                   type="text"
                   class="w-full"
                   :class="{'vs-input-danger': this.$v.inviteMail.third.$invalid && !first}"
-                  label-placeholder="3.E-posta"
+                  :label-placeholder="$t('dashboard.main.wizard.tabOne.gallery.invitePopup.inputThree')"
                   v-model="inviteMail.third"
                 />
               </div>
       </div>
              <div class="vx-row mb-1">
               <div class="vx-col w-full">
-                       <vs-button color="success" class="float-right" @click="mailSend">Davet et</vs-button>
+                       <vs-button icon="mail" color="success" class="float-right" @click="mailSend">{{$t('dashboard.main.wizard.tabOne.gallery.invitePopup.btnSubmit')}}</vs-button>
               </div>
             </div>
     </vs-popup>
-    <vs-popup class="xl-popup" :active.sync="popupContentHow" title="Nasıl Yapılır?">
+    <vs-popup class="xl-popup" :active.sync="popupContentHow" :title="$t('dashboard.main.wizard.tabOne.gallery.howToPopup.title')">
       <div class="how-to-popup">  
          <div class="man-div row m-auto p-4" v-if="man">
           <div class="card-footer col-lg-5 px-0 rounded-lg ">
@@ -374,23 +371,23 @@ export default {
       this.$store.dispatch("updateFirstLogin", this.$store.state.member)
       this.$vs.notify({
           time: 6000,
-          title: "Başarılı!",
-          text: "Davet gönderildi.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.invite}`,
           color: "success"
         });
       } else if (this.$v.inviteMail.$invalid) {
         this.first=false;
           this.$vs.notify({
             time: 6000,
-            title: "HATA!",
-            text: "Girilen e-postaları kontrol ediniz.",
+            title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+            text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.preview.invite}`,
             color: "danger"
           });
       } else {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Davet gönderme hakkınız dolmuştur.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.preview.inviteLimit}`,
           color: "danger"
         });
       }
@@ -402,64 +399,70 @@ export default {
         this.$refs.upload.srcs[index].avatarKey = response.code;
         // Open loading page
         this.$vs.loading({
-          text: "Fotoğraf, bulut sunucumuza yükleniyor..",
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.upload.loading.one}`,
           clickEffect: true,
           textAfter: true
         });
         setTimeout(() => {
           this.$vs.loading.close();
           this.$vs.loading({
-            text: "Şimdi fotoğraflar üzerinden analiz yapılıyor..",
+            text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.upload.loading.two}`,
             clickEffect: true,
             textAfter: true
           });
           setTimeout(() => {
             this.$vs.loading.close();
             this.$vs.loading({
-              text:
-                "Derin öğrenme ile en doğru geometri ve doku oluşturuluyor..",
+              text:`${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.upload.loading.three}`,
               clickEffect: true,
               textAfter: true
             });
             setTimeout(() => {
               this.$vs.loading.close();
               this.$vs.loading({
-                text: "Biraz bekletiyoruz ama bir de heykeltraşları düşünün..",
+                text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.upload.loading.four}`,
                 clickEffect: true,
                 textAfter: true
               });
               setTimeout(() => {
                 this.$vs.loading.close();
                 this.$vs.loading({
-                  text: "Sonuca yaklaştık.. Hazır mısınız…?",
+                  text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.upload.loading.five}`,
                   clickEffect: true,
                   textAfter: true
                 });
                 setTimeout(async () => {
                   this.$vs.loading.close();
                   this.$vs.loading({
-                      text: "Biliyoruz merakla bekliyorsunuz..",
+                      text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.upload.loading.six}`,
                       clickEffect: true,
                       textAfter: true
                   });
                   setTimeout(() => {
                     this.$vs.loading.close();
                     this.$vs.loading({
-                      text: "Biz de bu çalışmayı büyük bir özenle size özel hazırlıyoruz..",
+                      text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.upload.loading.seven}`,
                       clickEffect: true,
                       textAfter: true
                     });
-                    setTimeout(() => {this.$vs.loading.close();}, 8000)
+                    setTimeout(() => {
+                      this.$vs.loading.close();
+                       this.$vs.notify({
+                           time: 6000,
+                           title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+                           text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.preview.upload.default}`,
+                           color: "success"
+                         });
+                      }, 8000)
                   }, 8000)
                   var res = await AvatarSdkService.getAvatarInformation(
                     response.code
                   );
                   if (res.data.status === "Failed") {
                     this.$vs.notify({
-                      title: "HATA!",
-                      time: 30000,
-                      text:
-                        "Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!",
+                      title:`${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+                      time: 6000,
+                      text:`${this.$i18n.messages[this.$i18n.locale].notify.error.text.preview.upload.default}`,
                       color: "danger"
                     });
                     this.$refs.upload.srcs.pop()
@@ -485,8 +488,8 @@ export default {
       } else {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.preview.upload.default}`,
           color: "danger"
         });
       }

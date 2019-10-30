@@ -5,62 +5,62 @@
       errorColor="rgba(var(--vs-danger), 1)"
       :title=null
       :subtitle=null
-      nextButtonText="İleri"
-      backButtonText="Geri dön"
-      finishButtonText="Bitti!"
+      :nextButtonText="$t('dashboard.checkout.wizard.btnNext')"
+      :backButtonText="$t('dashboard.checkout.wizard.btnBack')"
+      :finishButtonText="$t('dashboard.checkout.wizard.btnFinish')"
     >
-      <tab-content title="Sepet" class="mb-5" icon="feather icon-shopping-cart" :before-change="validateStep1">
+      <tab-content :title="$t('dashboard.checkout.wizard.tabOne.title')" class="mb-5" icon="feather icon-shopping-cart" :before-change="validateStep1">
         <div>
           <checkout-list @valid="dummyFunc"></checkout-list>
         </div>
       </tab-content>
-      <tab-content title="Fatura Adresi" class="mb-5" icon="feather icon-file-text" :before-change="validateStep3">
+      <tab-content :title="$t('dashboard.checkout.wizard.tabTwo.title')" class="mb-5" icon="feather icon-file-text" :before-change="validateStep3">
         <div>
           <adres :isBilling=true></adres>
         </div>
       </tab-content>
-      <tab-content title="Kargo Adresi" class="mb-5" icon="feather icon-home" :before-change="validateStep2">
+      <tab-content :title="$t('dashboard.checkout.wizard.tabThree.title')" class="mb-5" icon="feather icon-home" :before-change="validateStep2">
         <div>
           <adres :isBilling=false></adres>
         </div>
       </tab-content>
-      <tab-content title="Ödeme" class="mb-5" icon="feather icon-credit-card">
+      <tab-content :title="$t('dashboard.checkout.wizard.tabFour.title')" class="mb-5" icon="feather icon-credit-card">
         <div class="d-lg-flex mt-4">
           <VueCardPayment @card-submit="finishShopping"></VueCardPayment>
           <!--<p>Ödeme sayfasına yönlendiriliyorsunuz</p>
           <iframe :src=iframe height="1000" width="1000" class="border-none pt-5"></iframe>-->
           <div v-html=iframe> </div>
            <div class="col-lg-4 pt-4 pt-md-0">
-        <div class="vx-card shadow-md py-8 px-4">
-          <ul class="list-group">
-            <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
-              <div>
-                <h6 class="my-0">Net Toplam</h6>
+              <div class="vx-card shadow-md py-8 px-4">
+                <ul class="list-group">
+                  <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
+                    <div>
+                      <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.netTotal')}}</h6>
+                    </div>
+                    <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.totalPriceNet}}</span>
+                  </li>
+                   <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="this.$store.state.checkout.discount != null">
+                    <div>
+                      <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.discountTotal')}}</h6>
+                    </div>
+                    <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.discount}}</span>
+                  </li>
+                  <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
+                    <div>
+                      <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.tax')}}</h6>
+                    </div>
+                    <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.kdv}}</span>
+                  </li>
+                  <li class="pt-3 pb-2 d-flex justify-content-between">
+                    <span>{{$t('dashboard.checkout.wizard.totalCard.grandTotal')}}</span>
+                    <strong>{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.totalPrice}}</strong>
+                  </li>
+                  <hr>
+                  <li class="pt-2 d-flex justify-content-between">
+                    <h6>{{$t('dashboard.checkout.wizard.totalCard.freeCargo')}}</h6>
+                  </li>
+                </ul>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet}}</span>
-            </li>
-             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="this.$store.state.checkout.discount != null">
-              <div>
-                <h6 class="my-0">İndirim Tutarı</h6>
-              </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.discount}}</span>
-            </li>
-            <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
-              <div>
-                <h6 class="my-0">KDV(%18)</h6>
-              </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.order.kdv}}</span>
-            </li>
-            <li class="pt-3 pb-2 d-flex justify-content-between">
-              <span>Genel Toplam (TL)</span>
-              <strong>₺{{this.$store.state.checkout.order.totalPrice}}</strong>
-            </li>
-            <hr>
-            <li class="pt-2 d-flex justify-content-between">
-              <h6>Tüm siparişlerinizde kargo ücretsizdir.</h6>
-            </li>
-          </ul>
-        </div>
         <!--card checkout -->
       </div>
         </div>
@@ -106,7 +106,7 @@ export default {
       this.$store.commit("checkout/ADD_CARD", card)
       //
       this.$vs.loading({
-          text: "3D Ödeme Ekranına yönlendiriliyorsunuz...",
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.checkout.pay}`,
           textAfter: true
         });
         setTimeout(() => {
@@ -116,8 +116,8 @@ export default {
       if (paymentRes.status >= 400) {
           this.$vs.notify({
             time: 6000,
-            title: "HATA!",
-            text: "Bir hata oluştu",
+            title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+            text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.systemError}`,
             color: "danger"
           });
           return
@@ -125,7 +125,7 @@ export default {
       if (paymentRes.data.status == 'failure') {
           this.$vs.notify({
             time: 6000,
-            title: "HATA!",
+            title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
             text: `${paymentRes.data.errorMessage}`,
             color: "danger"
           });
@@ -141,8 +141,8 @@ export default {
       {
           this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Lütfen notları kontrol ediniz!",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.checkout.step1}`,
           color: "danger"
         });
       }
@@ -156,8 +156,8 @@ export default {
       if (this.$store.state.checkout.order.deliveryId == -1) {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Lütfen Adres seçiniz!",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.checkout.step2}`,
           color: "danger"
         });
         return false
@@ -169,8 +169,8 @@ export default {
       if (this.$store.state.checkout.order.billingId == -1) {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "Lütfen Adres seçiniz!",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.checkout.step3}`,
           color: "danger"
         });
         return false

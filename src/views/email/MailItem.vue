@@ -26,10 +26,10 @@
 		<!-- MAIL ROW 2 : MSG & ACTIONS -->
 		<div class="flex w-full justify-between">
 			<div class="mail__message truncate pt-2">
-				<span class="font-light">{{ mail.status  == 'OPEN' ? 'AÇIK' : mail.status == 'IN_PROGRESS' ? 'İŞLENİYOR' : 'KAPALI'}}</span>
+				<span class="font-light">{{ mail.status  == 'OPEN' ? $t('dashboard.ticket.ticketStatus.open') : mail.status == 'IN_PROGRESS' ? $t('dashboard.ticket.ticketStatus.inProgress') : $t('dashboard.ticket.ticketStatus.close')}}</span>
 			</div>
 			<div class="flex items-baseline pt-3">
-				<h6>{{mail.type == 'SALES' ? 'SATIŞ' : 'TEKNİK DESTEK'}}</h6>
+				<h6>{{mail.type == 'SALES' ? $t('dashboard.ticket.ticketType.sales') : $t('dashboard.ticket.ticketType.technic')}}</h6>
 				<div class="mx-3 h-4 w-4 rounded-full " :class="mail.type == 'SALES' ? 'bg-warning' : 'bg-primary'"></div>
 			</div>
 		</div>
@@ -84,7 +84,7 @@ export default{
 			  }
 			  return i;
 			}
-			
+			/*TODO çeviri*/
   			 var weekday = new Array(7);
   			 weekday[0] = "Pazar";
   			 weekday[1] = "Pazartesi";

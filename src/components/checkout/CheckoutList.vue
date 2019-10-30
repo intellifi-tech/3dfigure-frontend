@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class="col-12 vx-card py-3 px-5 mt-5" v-if="this.$store.state.checkout.basketList === null || this.$store.state.checkout.basketList.length === 0">
-      Sepette ürün bulunmuyor.
-     <router-link to="main">Yeni Model Oluştur!</router-link>
+      {{$t('dashboard.checkout.wizard.tabOne.checkoutList.emptyCart')}}
+     <router-link to="main">{{$t('dashboard.checkout.wizard.tabOne.checkoutList.createModel')}}</router-link>
     </div>
 
     <div class="row" v-else>
@@ -29,13 +29,13 @@
               <span class="col-lg-12 pl-0">{{concept.description}}</span>
             </div>
             <div class="col-lg-3 pt-3 text-center">
-              <h4>₺{{concept.price}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></h4>
+              <h4>{{$t('landing.pricing.symbol')}}{{concept.price}} <span class="h6 text-secondary">+{{$t('landing.pricing.kdv')}}</span></h4>
               <feather-icon icon="checkIcon" class="m-0 cursor-pointer"></feather-icon>
               <!--<h6 class="mt-4 text-success" icon-pack="feather" icon="icon-check">Kargo Ücretsiz</h6>-->
               <input
                 type="button"
                 @click="outBasket(figure.id, concept.id)"
-                value="KALDIR"
+                :value="$t('dashboard.checkout.wizard.tabOne.checkoutList.removeItem')"
                 class="btn btn-block btn-danger mt-4"
               >
             </div>
@@ -51,33 +51,33 @@
           <ul class="list-group">
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
-                <h6 class="my-0">Net Toplam</h6>
+                <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.netTotal')}}</h6>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.order.totalPriceNet}}</span>
+              <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.totalPriceNet}}</span>
             </li>
-             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="discountActive">
+             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between" v-if="this.$store.state.checkout.discount != null">
               <div>
-                <h6 class="my-0">İndirim Tutarı</h6>
+                <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.discountTotal')}}</h6>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.discount}}</span>
+              <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.discount}}</span>
             </li>
             <li class="mb-2 py-3 border-bottom border-black d-flex justify-content-between">
               <div>
-                <h6 class="my-0">KDV(%18)</h6>
+                <h6 class="my-0">{{$t('dashboard.checkout.wizard.totalCard.tax')}}</h6>
               </div>
-              <span class="text-muted">₺{{this.$store.state.checkout.order.kdv}}</span>
+              <span class="text-muted">{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.kdv}}</span>
             </li>
             <li class="pt-3 pb-2 d-flex justify-content-between">
-              <span>Genel Toplam (TL)</span>
-              <strong>₺{{this.$store.state.checkout.order.totalPrice}}</strong>
+              <span>{{$t('dashboard.checkout.wizard.totalCard.grandTotal')}}</span>
+              <strong>{{$t('landing.pricing.symbol')}}{{this.$store.state.checkout.order.totalPrice}}</strong>
             </li>
             <hr>
             <li class="pt-2 pb-1 d-flex justify-content-between">
-              <h6>Tüm siparişlerinizde kargo ücretsizdir.</h6>
+              <h6>{{$t('dashboard.checkout.wizard.totalCard.freeCargo')}}</h6>
             </li>
             <hr>
              <li class="py-3 justify-content-between">
-              <h6 class="font-sans text-secondary">İndirim Kodu :</h6>
+              <h6 class="font-sans text-secondary">{{$t('dashboard.checkout.wizard.totalCard.discountCode')}}</h6>
               <div>
               <vs-input 
                class="mt-3 w-full sepet-textarea float-left"
@@ -88,12 +88,12 @@
                @click="addDiscount"
                icon="done"
                color="success"
-              >Kodu Aktifleştir</vs-button>
+              >{{$t('dashboard.checkout.wizard.totalCard.btnActiveDiscount')}}</vs-button>
               </div>
 
              </li>
              <li class="mb-2 justify-content-between">
-              <h6 class="font-sans text-secondary">Sipariş Notu :</h6>
+              <h6 class="font-sans text-secondary">{{$t('dashboard.checkout.wizard.totalCard.orderNote')}}</h6>
               <vs-textarea 
                 class="mt-3 w-full sepet-textarea"
                 v-model="areaOrderNote"
@@ -104,7 +104,7 @@
           </ul>
           <div><!--<vs-button color="success" type="filled" @click="$router.push('/main', exact)">Alışverişe Devam Et</vs-button>-->
             <router-link to="main"  exact>
-              <vs-button color="primary" type="filled" icon="add" class="w-full">Yeni Model Oluştur</vs-button>
+              <vs-button color="primary" type="filled" icon="add" class="w-full">{{$t('dashboard.checkout.wizard.totalCard.btnCreateModel')}}</vs-button>
             </router-link>
           </div>
         </div>
@@ -162,8 +162,8 @@ export default {
       if (!res) {
         this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "İndirim kodu geçersiz!",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.checkout.discountCode}`,
           color: "danger"
         });
       } else if (!this.discountActive) {
@@ -173,8 +173,8 @@ export default {
         this.$store.commit("checkout/SET_TOTAL_PRICE", this.$store.state.checkout.order.totalPrice * ((100-res) / 100))
         this.$vs.notify({
           time: 6000,
-          title: "BAŞARILI!",
-          text: "İndirim kodu uygulandı.",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.success.text.checkout.discountCode}`,
           color: "success"
         });
         this.discountCode=""
@@ -183,8 +183,8 @@ export default {
       else{
          this.$vs.notify({
           time: 6000,
-          title: "HATA!",
-          text: "İndirim kodu geçersiz!",
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+          text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.checkout.discountCode}`,
           color: "danger"
         });
       }

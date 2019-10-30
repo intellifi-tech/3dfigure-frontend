@@ -33,11 +33,11 @@
 						<vs-navbar collapse class="nabarx sidebar-navbar">
  						    <div slot="title">
  						      <vs-navbar-title>
- 						        Bilgilendirme
+ 						        {{$t('dashboard.sidebar.footer.title')}}
  						      </vs-navbar-title>
  						    </div>
  						    <vs-navbar-item index="0">
- 						      <a href="#" @click="openPopupHowtoUse">Nasıl Çalışır?</a>
+ 						      <a href="#" @click="openPopupHowtoUse">{{$t('dashboard.sidebar.footer.subtitle')}}</a>
  						    </vs-navbar-item>
  						</vs-navbar>
 					</div>
@@ -67,7 +67,7 @@
       :target="sidebarItem.target"
       :isDisabled="sidebarItem.isDisabled"
     >
-      <span v-show="!sidebarItemsMin" class="truncate">{{ sidebarItem.name }}</span>
+      <span v-show="!sidebarItemsMin" class="truncate">{{ $t(sidebarItem.name) }}</span>
       <vs-chip
         class="ml-auto"
         :color="sidebarItem.tagColor"

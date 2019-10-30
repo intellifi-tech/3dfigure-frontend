@@ -1,17 +1,17 @@
 <template lang="html">
   <div>
-            <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
+    <div class="float-right flex items-center col-2 pt-3 ml-0 pr-0">
       <div class="w-full mr-0 pr-0">
-        <json-excel
-      class="vs-component vs-button w-full vs-button-warning vs-button-filled includeIcon"
-      :data="orders"
-      :fields="json_fields"
-      worksheet="My Worksheet"
-      name="orders.xls">
-      Export Excel
-    </json-excel>
-          </div>
+           <json-excel
+             class="vs-component vs-button w-full vs-button-warning vs-button-filled includeIcon"
+             :data="orders"
+             :fields="json_fields"
+             worksheet="My Worksheet"
+             name="orders.xls">
+             Export Excel
+           </json-excel>
       </div>
+    </div>
     <vs-table
       v-model="selected"
       pagination
@@ -38,7 +38,7 @@
 
     <vs-td class="m-auto px-0 text-sm" :data="data[indextr].status"><b>{{status[data[indextr].status]}}</b></vs-td>
 
-    <vs-td :data="data[indextr].totalPriceNet">₺{{data[indextr].totalPriceNet}} <span class="text-xs text-secondary">+{{$t('landing.pricing.kdv')}}</span></vs-td>
+    <vs-td :data="data[indextr].totalPriceNet">{{$t('landing.pricing.symbol')}}{{data[indextr].totalPriceNet}} <span class="text-xs text-secondary">+{{$t('landing.pricing.kdv')}}</span></vs-td>
 
     <vs-td :data="data[indextr].userLogin">{{data[indextr].userLogin}}</vs-td>
 

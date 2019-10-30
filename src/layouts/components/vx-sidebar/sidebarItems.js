@@ -23,33 +23,33 @@
 export default [
 	{
 		url: "/main",
-		name: "Yeni Model",
+		name: "dashboard.sidebar.newModel",
 		slug: "yeni-model",
 		icon: "EditIcon",
 	},
 	{
 		url: "/order",
-		name: "Figür Geçmişi",
+		name: "dashboard.sidebar.orderHistory",
 		slug: "figurgecmisi",
 		icon: "GridIcon",
 	},
 	{
 		url: "/checkout",
-		name: "Sepetim",
+		name: "dashboard.sidebar.cart",
 		slug: "checkout",
 		icon: "ShoppingCartIcon",
 	
 	},
 	{
 		url: "/ticket",
-		name: "Destek",
+		name: "dashboard.sidebar.ticket",
 		slug: "ticket",
 		icon: "MailIcon",
 	
 	},
 	{
 		url: "/profile",
-		name: "Profil",
+		name: "dashboard.sidebar.profile",
 		slug: "profil",
 		icon: "UserIcon",
 	

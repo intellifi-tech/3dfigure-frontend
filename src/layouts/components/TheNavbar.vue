@@ -167,14 +167,14 @@
                   @click="$router.push('/profile')"
                 >
                   <feather-icon icon="UserIcon" svgClasses="w-4 h-4"></feather-icon>
-                  <span class="ml-2">Profil</span>
+                  <span class="ml-2">{{$t('dashboard.avatarMenu.profile')}}</span>
                 </li>
                 <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
                   @click="$router.push('/ticket')"
                 >
                   <feather-icon icon="MailIcon" svgClasses="w-4 h-4"></feather-icon>
-                  <span class="ml-2">Destek</span>
+                  <span class="ml-2">{{$t('dashboard.avatarMenu.ticket')}}</span>
                 </li>
                <!-- <li
                   class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
@@ -196,7 +196,7 @@
                   @click="logout()"
                 >
                   <feather-icon icon="LogOutIcon" svgClasses="w-4 h-4"></feather-icon>
-                  <span class="ml-2">Çıkış yap</span>
+                  <span class="ml-2">{{$t('dashboard.avatarMenu.logout')}}</span>
                 </li>
               </ul>
             </vs-dropdown-menu>
@@ -321,7 +321,7 @@ export default {
     logout: function() {
       LoginService.logout()
       this.$vs.loading({
-          text: "Yükleniyor...",
+          text: `${this.$i18n.messages[this.$i18n.locale].landing.loading}`,
           clickEffect: true,
           textAfter: true
         });
