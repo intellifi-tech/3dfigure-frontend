@@ -67,7 +67,7 @@
       :target="sidebarItem.target"
       :isDisabled="sidebarItem.isDisabled"
     >
-      <span v-show="!sidebarItemsMin" class="truncate">{{ sidebarItem.name }}</span>
+      <span v-show="!sidebarItemsMin" class="truncate">{{ $t(sidebarItem.name) }}</span>
       <vs-chip
         class="ml-auto"
         :color="sidebarItem.tagColor"

@@ -1899,7 +1899,7 @@ export default {
         this.$vs.notify({ 
           time: 6000,
           title: "HATA",
-          text: "Lütfen bilgileri kontrol ediniz.",
+          text: `${this.$i18n.messages[this.$i18n.locale].landing.navbar.home}`,
           color: "danger"
           })
         this.first = false;

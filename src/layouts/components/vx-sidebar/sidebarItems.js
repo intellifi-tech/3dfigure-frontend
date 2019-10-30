@@ -23,7 +23,7 @@
 export default [
 	{
 		url: "/main",
-		name: "Yeni Model",
+		name: "landing.navbar.home",
 		slug: "yeni-model",
 		icon: "EditIcon",
 	},
