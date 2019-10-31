@@ -101,16 +101,46 @@ export default {
   },
   methods: {
     onSuccess(googleUser) {
-        console.log(googleUser);
- 
+      
+      const googleProfile = googleUser.getBasicProfile();
+
+          var credential = {
+            mail: googleUser.googleProfile.PG.U3,
+            id: googleUser.googleProfile.Eea,
+            firstName: googleUser.googleProfile.ig,
+            lastName: googleUser.googleProfile.wea,
+            gender: "M"
+          }
+          var status = await LoginService.socialLogin(credential);
+          if (status == 200) {
+
+              this.$vs.notify({
+              time: 6000,
+              title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+              color: "success"
+            });
+
+            this.$store.commit("UPDATE_LOGIN_POPUP", false);
+            this.$router.push("/main");
+          } else {
+            this.$vs.notify({
+              time: 6000,
+              title: `${this.$i18n.messages[this.$i18n.locale].notify.error.title}`,
+              text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.registration.default}`,
+              color: "danger"
+            });
+          }
+
         // This only gets the user information: id, name, imageUrl and email
         console.log(googleUser.getBasicProfile());
     },
     onFailure(googleUser) {
-        console.log(googleUser);
- 
-        // This only gets the user information: id, name, imageUrl and email
-        console.log(googleUser.getBasicProfile());
+       this.$vs.notify({
+              time: 6000,
+              title: `${this.$i18n.messages[this.$i18n.locale].notify.error.titleFail}`,
+              text: `${this.$i18n.messages[this.$i18n.locale].notify.error.text.fail}`,
+              color: "danger"
+            });
     },
     logged: async function(response) {
       if (response.status === "connected") {
