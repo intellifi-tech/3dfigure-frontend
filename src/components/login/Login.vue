@@ -51,7 +51,7 @@
               <div class="social-login-buttons flex">
 
                 <v-facebook-login class="cursor-pointer" app-id="455703481829848" @login="logged"></v-facebook-login>
-                <!--<GoogleLogin :params="params" :renderParams="renderParams"></GoogleLogin>-->
+                <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default {
   data() {
     return {
       params: {
-                    client_id: "xxxxxx"
+                    client_id: "52221044644-o9fjb833c210qmve614omko17tnlu2qq.apps.googleusercontent.com"
                 },
                 // only needed if you want to render the button with the google ui
                 renderParams: {
@@ -101,6 +101,18 @@ export default {
     }
   },
   methods: {
+    onSuccess(googleUser) {
+        console.log(googleUser);
+ 
+        // This only gets the user information: id, name, imageUrl and email
+        console.log(googleUser.getBasicProfile());
+    },
+    onFailure(googleUser) {
+        console.log(googleUser);
+ 
+        // This only gets the user information: id, name, imageUrl and email
+        console.log(googleUser.getBasicProfile());
+    },
     logged: async function(response) {
       if (response.status === "connected") {
         const response2 = await FacebookService.getFaceInfos(
