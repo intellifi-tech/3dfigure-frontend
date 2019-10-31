@@ -84,8 +84,6 @@ export default {
                 },
                 // only needed if you want to render the button with the google ui
                 renderParams: {
-                    width: 250,
-                    height: 50,
                     longtitle: true
                 },
       username: "",
