@@ -84,6 +84,8 @@ export default {
                 },
                 // only needed if you want to render the button with the google ui
                 renderParams: {
+                    width: 211,
+                    height: 39,
                     longtitle: true
                 },
       username: "",
@@ -218,3 +220,13 @@ export default {
   }
 };
 </script>
+<style>
+/*google login button*/
+.social-login-buttons .abcRioButtonIcon{
+  padding: 11px !important;
+}
+.social-login-buttons .abcRioButtonContents{
+  font-size: 15px;line-height: 40px;
+}
+
+</style>
