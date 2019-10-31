@@ -100,7 +100,7 @@ export default {
     }
   },
   methods: {
-    onSuccess(googleUser) {
+    onSuccess:async function(googleUser) {
       
       const googleProfile = googleUser.getBasicProfile();
 
