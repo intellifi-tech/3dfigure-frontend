@@ -50,7 +50,7 @@
               <span>{{$t('login.sos')}}</span>
               <div class="social-login-buttons">
                 <v-facebook-login class="cursor-pointer mb-3" app-id="455703481829848" @login="logged"></v-facebook-login>
-                <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+                <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure" :logoutButton="true"></GoogleLogin>
               </div>
             </div>
           </div>
@@ -102,9 +102,15 @@ export default {
   methods: {
     onSuccess:async function(googleUser) {
       
-        console.log(googleUser.BasicProfile.getName());
 
-      const obj = googleUser;
+      var obj = googleUser.getBasicProfile();
+
+
+      var userName= obj.getName();
+      var userMail=obj.getEMail();
+
+      console.log(obj.getName());
+      console.log(obj.getEmail());
 
           var credential = {
             mail: obj.w3.U3,
