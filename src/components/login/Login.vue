@@ -156,6 +156,13 @@ export default {
           }
           var status = await LoginService.socialLogin(credential);
           if (status == 200) {
+
+              this.$vs.notify({
+              time: 6000,
+              title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+              color: "success"
+            });
+
             this.$store.commit("UPDATE_LOGIN_POPUP", false);
             this.$router.push("/main");
           } else {
@@ -208,6 +215,14 @@ export default {
       };
       var status = await LoginService.login(credential);
       if (status == 200) {
+
+       this.$vs.notify({
+          time: 3000,
+          title: `${this.$i18n.messages[this.$i18n.locale].notify.success.title}`,
+          color: "success"
+        });
+
+
         this.$store.commit("UPDATE_LOGIN_POPUP", false);
         this.$router.push("/main");
       } else {
