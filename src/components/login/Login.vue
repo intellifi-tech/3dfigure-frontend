@@ -50,7 +50,7 @@
               <span>{{$t('login.sos')}}</span>
               <div class="social-login-buttons">
                 <v-facebook-login class="cursor-pointer mb-3" app-id="455703481829848" @login="logged"></v-facebook-login>
-                <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure" :logoutButton="true"></GoogleLogin>
+                <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure" ></GoogleLogin>
               </div>
             </div>
           </div>
