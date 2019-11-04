@@ -102,7 +102,9 @@ export default {
   methods: {
     onSuccess:async function(googleUser) {
       
-      const obj = JSON.stringify(googleUser);
+        console.log(googleUser.BasicProfile.getName());
+
+      const obj = googleUser;
 
           var credential = {
             mail: obj.w3.U3,
@@ -131,8 +133,7 @@ export default {
             });
           }
 
-        // This only gets the user information: id, name, imageUrl and email
-        console.log(JSON.stringify(googleUser));
+       
     },
     onFailure(googleUser) {
        this.$vs.notify({
