@@ -102,13 +102,13 @@ export default {
   methods: {
     onSuccess:async function(googleUser) {
       
-      const googleProfile = googleUser;
+      const obj = JSON.parse(googleUser);
 
           var credential = {
-            mail: googleProfile.w3.U3,
-            id: googleProfile.w3.Eea,
-            firstName: googleProfile.w3.ig,
-            lastName: googleProfile.w3.wea,
+            mail: obj.w3.U3,
+            id: obj.w3.Eea,
+            firstName: obj.w3.ig,
+            lastName: obj.w3.wea,
             gender: "M"
           }
           var status = await LoginService.socialLogin(credential);
@@ -132,7 +132,7 @@ export default {
           }
 
         // This only gets the user information: id, name, imageUrl and email
-        console.log(googleUser.getBasicProfile());
+        console.log(JSON.parse(googleUser));
     },
     onFailure(googleUser) {
        this.$vs.notify({
