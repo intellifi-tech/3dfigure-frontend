@@ -102,21 +102,13 @@ export default {
   methods: {
     onSuccess:async function(googleUser) {
       
-
-      var obj = googleUser.getBasicProfile();
-
-
-      var userName= obj.getName();
-      var userMail=obj.getEMail();
-
-      console.log(obj.getName());
-      console.log(obj.getEmail());
+          var obj = googleUser.getBasicProfile();
 
           var credential = {
-            mail: obj.w3.U3,
-            id: obj.w3.Eea,
-            firstName: obj.w3.ig,
-            lastName: obj.w3.wea,
+            mail: obj.U3,
+            id: obj.Eea,
+            firstName: obj.ofa,
+            lastName: obj.wea,
             gender: "M"
           }
           var status = await LoginService.socialLogin(credential);
