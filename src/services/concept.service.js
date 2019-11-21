@@ -4,7 +4,7 @@ const ConceptService = {
 
     getAllConcepts: async function (page, isDouble) {
         try {
-            const response = await ApiService.get("/concepts/dashboard/" + isDouble + "?page=" + page + "&size=8")
+            const response = await ApiService.get("/concepts/dashboard/" + sessionStorage.getItem('lang') + '/' + isDouble + "?page=" + page + "&size=8")
             return response.data
         } catch (error) {
             return error.response.status
@@ -13,7 +13,7 @@ const ConceptService = {
     },
     searchConcept: async function (isDouble, text) {
         try {
-            const response = await ApiService.get("/concepts/search/" + isDouble + "/"+text)
+            const response = await ApiService.get("/concepts/search/" + sessionStorage.getItem('lang') + '/' + isDouble + "/"+text)
             return response.data
         } catch (error) {
             return error.response.status
@@ -31,7 +31,7 @@ const ConceptService = {
     },
     getAllConceptsByCategory: async function (ids, page, isDouble) {
         try {
-            const response = await ApiService.get("/concepts/cat/" + ids + "/" + isDouble + "?page=" + page + "&size=8")
+            const response = await ApiService.get("/concepts/cat/" + sessionStorage.getItem('lang') + '/' + ids + "/" + isDouble + "?page=" + page + "&size=8")
             return response.data
         } catch (error) {
             return error.response.status
