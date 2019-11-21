@@ -38,13 +38,6 @@ pipeline {
 
     }
 
-    post {
-    failure {
-      //notifyBuild('FAILURE')
-    }
-
-    }
-
    
 }
 
