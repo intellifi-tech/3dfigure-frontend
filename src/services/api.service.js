@@ -51,6 +51,10 @@ const ApiService = {
         return axios.delete(resource)
     },
 
+    all(resourceList) {
+        return axios.all(resourceList)
+    },
+
     /**
      * Perform a custom Axios request.
      *

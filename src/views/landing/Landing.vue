@@ -1817,14 +1817,16 @@ export default {
      document.body.addEventListener('scroll', this.handleScroll);
   },
   beforeCreate: async function() {
+    const c = await LandingService.getCountry();
+    this.$i18n.locale = c.countryCode == 'TR' ? 'TR' : 'EN';
     await this.$store.dispatch('getCurrentUser');
-    const res = await LandingService.getFirst()
-    let halfWayThough = Math.floor(res.length / 2)
-    this.menModel = res.slice(0, halfWayThough);
-    this.womenModel = res.slice(halfWayThough, res.length);
-    this.conceptList = await LandingService.getSecond()
-    this.exampleList = await LandingService.getThird()
-    this.packageList = await LandingService.getFourth()
+    const res = await LandingService.initLanding()
+    let halfWayThough = Math.floor(res[0].data.length / 2)
+    this.menModel = res[0].data.slice(0, halfWayThough);
+    this.womenModel = res[0].data.slice(halfWayThough, res.length);
+    this.conceptList = res[1].data
+    this.exampleList = res[2].data
+    this.packageList = res[3].data
   },
   destroyed() {
     document.body.removeEventListener('scroll', this.handleScroll);

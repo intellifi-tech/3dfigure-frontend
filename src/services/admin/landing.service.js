@@ -100,6 +100,24 @@ const LandingService = {
             // throw new AuthenticationError(error.response.status, error.response.data.detail)
         }
     },
+
+    initLanding: async function () {
+        try {
+            const responseList = await ApiService.all([ ApiService.get("/landing/first"), ApiService.get("/landing/second"), ApiService.get("/landing/third"), ApiService.get("/landing/fourth")])
+            return responseList
+        } catch (error) {
+            return error
+        }
+    },
+
+    getCountry: async function () {
+        try {
+            const response = await ApiService.get("http://ip-api.com/json")
+            return response.data
+        } catch (error) {
+            return error;
+        }
+    }
 }
 
 export default LandingService
