@@ -295,21 +295,7 @@ router.beforeEach(async (to, from, next) => {
 	const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
 	const api = to.matched.some(record => record.meta.api)
 	const loggedIn = !!ApiService.getHeader()
-	if (sessionStorage.getItem('lang') !== null && sessionStorage.getItem('lang') !== i18n.locale) {
-		sessionStorage.setItem('lang', i18n.locale)
-	}
-
-	/*const c = await LandingService.getCountry();
-	console.log("router "+c.countryCode)
-	const lc =	sessionStorage.getItem('lang')
-	const ctr =  c.countryCode
-
-	 if(ctr !== "TR"){
-		 	sessionStorage.setItem('lang', i18n.locale)
-		}
-		else{
-			sessionStorage.setItem('lang', i18n.fallbackLocale)
-		}	*/
+	i18n.locale = sessionStorage.getItem('lang')
 	
 	if (!api) {
 

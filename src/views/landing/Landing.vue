@@ -1819,11 +1819,12 @@ export default {
   beforeCreate: async function() {
     const c = await LandingService.getCountry();
     this.$i18n.locale = c.countryCode == 'TR' ? 'TR' : 'EN';
+    this.changeLang()
     await this.$store.dispatch('getCurrentUser');
     const res = await LandingService.initLanding()
     let halfWayThough = Math.floor(res[0].data.length / 2)
     this.menModel = res[0].data.slice(0, halfWayThough);
-    this.womenModel = res[0].data.slice(halfWayThough, res.length);
+    this.womenModel = res[0].data.slice(halfWayThough, res[0].length);
     this.conceptList = res[1].data
     this.exampleList = res[2].data
     this.packageList = res[3].data

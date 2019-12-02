@@ -112,7 +112,9 @@ const LandingService = {
 
     getCountry: async function () {
         try {
+            ApiService.removeHeader()
             const response = await ApiService.get("http://ip-api.com/json")
+            ApiService.setHeader()
             return response.data
         } catch (error) {
             return error;
