@@ -387,7 +387,7 @@ const messages = {
                         netTotal:'Net Total',
                         discountTotal:'Discount Amount',
                         tax:'TAX(%18)',
-                        grandTotal:'General Total (TL)',
+                        grandTotal:'General Total (USD)',
                         freeCargo:'Shipping is free for all orders.',
                         discountCode:'Discount Code :',
                         btnActiveDiscount:'Activate Code',
