@@ -191,7 +191,7 @@ const messages = {
                 header:'Pricing',
                 subheader:'Choose the package that suits you!',
                 kdv:'TAX',
-               /*TODO symbol:'$',*/
+                symbol:'$',
                 buynow:'Buy Now',
                 contactUs:'Contact us',
                 tableFirst:{
