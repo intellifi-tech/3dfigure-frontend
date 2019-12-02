@@ -26,7 +26,7 @@ const messages = {
                         upload:{
                             default:'Could not create figure! Please try another photo!',
                             selectLimit:'You can select up to 2 photos!',
-                            byteLimit:'You can upload photos up to 5 MB!'
+                            byteLimit:'You can upload photos up to 8 MB!'
                         }
                     },
                     registration:{ 
@@ -350,6 +350,7 @@ const messages = {
                         title:'Select Concept',
                         cardTitle:'Concepts',
                         searchBar:'Find concept',
+                        selectBox:'Select Concept',
                         conceptCard:{
                             addCart:'Add Cart',
                             removeCart:'Remove Cart',
@@ -562,7 +563,7 @@ const messages = {
                         upload:{
                             default:'Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!',
                             selectLimit:'En fazla 2 fotoğraf seçebilirsiniz!',
-                            byteLimit:'En fazla 5 MB fotoğraf yükleyebilirsiniz!'
+                            byteLimit:'En fazla 8 MB fotoğraf yükleyebilirsiniz!'
                         }
                     },
                     registration:{ 
@@ -884,6 +885,7 @@ const messages = {
                         title:'Konsept Seç',
                         cardTitle:'Konseptler',
                         searchBar:'Konsept bul',
+                        selectBox:'Konsept Seç',
                         conceptCard:{
                             addCart:'Sepete Ekle',
                             removeCart:'Sepetten Çıkar',

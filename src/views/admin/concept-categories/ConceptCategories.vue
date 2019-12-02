@@ -107,8 +107,7 @@ export default {
       }
   }),
   created: async function() {
-    const result  = await CategoryService.getAllCategories()
-    this.categories=  result.filter(word => word.lang == sessionStorage.getItem('lang') );
+    this.categories = await CategoryService.getAllCategories()	
   },
   methods: {
     deleteCategory: function(category, index) {
