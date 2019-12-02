@@ -18,6 +18,7 @@ import Router from 'vue-router'
 import i18n from '@/plugins/i18n.js'
 import ApiService from '@/services/api.service'
 import UserService from '@/services/user.service'
+import LandingService from '@/services/admin/landing.service'
 import store from '@/store/store.js';
 
 Vue.use(Router)
@@ -297,6 +298,19 @@ router.beforeEach(async (to, from, next) => {
 	if (sessionStorage.getItem('lang') !== null && sessionStorage.getItem('lang') !== i18n.locale) {
 		sessionStorage.setItem('lang', i18n.locale)
 	}
+
+	/*const c = await LandingService.getCountry();
+	console.log("router "+c.countryCode)
+	const lc =	sessionStorage.getItem('lang')
+	const ctr =  c.countryCode
+
+	 if(ctr !== "TR"){
+		 	sessionStorage.setItem('lang', i18n.locale)
+		}
+		else{
+			sessionStorage.setItem('lang', i18n.fallbackLocale)
+		}	*/
+	
 	if (!api) {
 
 		if (isAdmin) {
@@ -324,4 +338,11 @@ router.beforeEach(async (to, from, next) => {
 	next();
 })
 
+router.afterEach(() => {
+	// Remove initial loading
+	const appLoading = document.getElementById('loading-bg')
+	  if (appLoading) {
+		  appLoading.style.display = "none";
+	  }
+  })
 export default router;
