@@ -358,9 +358,9 @@ export default {
              setTimeout( ()=> {
                this.$vs.loading.close('#unityDiv > .con-vs-loading')
              }, 8500);
-           }, 10);
+           }, 500);
         }
-      }, 300);
+      }, 500);
     },
     closePopup() {
       this.inviteMail.first = ""
