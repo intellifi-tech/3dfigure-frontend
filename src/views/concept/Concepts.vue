@@ -6,7 +6,7 @@
       </div>
       <div class="col-lg-8">
      <vs-select
-        placeholder="Konsept seç"
+        :placeholder="$t('dashboard.main.wizard.tabTwo.selectBox')"
         multiple
         class="px-4 float-right form-control-lg selecting selectExample w-full md:w-1/2 focus:shadow-md"
         v-model="tags"
