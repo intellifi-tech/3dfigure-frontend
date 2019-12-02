@@ -26,7 +26,7 @@ const messages = {
                         upload:{
                             default:'Could not create figure! Please try another photo!',
                             selectLimit:'You can select up to 2 photos!',
-                            byteLimit:'You can upload photos up to 1 MB!'
+                            byteLimit:'You can upload photos up to 5 MB!'
                         }
                     },
                     registration:{ 
@@ -562,7 +562,7 @@ const messages = {
                         upload:{
                             default:'Figür oluşturulamadı! Lütfen başka fotoğraf deneyiniz!',
                             selectLimit:'En fazla 2 fotoğraf seçebilirsiniz!',
-                            byteLimit:'En fazla 1 MB fotoğraf yükleyebilirsiniz!'
+                            byteLimit:'En fazla 5 MB fotoğraf yükleyebilirsiniz!'
                         }
                     },
                     registration:{ 

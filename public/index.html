@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>assets/images/logo/favicon-32x32.png">
+    <link rel="stylesheet" type="text/css" href="<%= BASE_URL %>assets/css/loader.css">
     <title>3D Figür</title>
     <meta name="description" content="Kendinizin ya da sevdiklerinizin tek bir fotoğrafını yükleyip en özel hediyeyi oluştur. Fotoğrafını Yükle ve 3D Modelini Ücretsiz Oluştur!">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -58,6 +59,16 @@ https://mc.yandex.ru/watch/55176826
   </head>
   <body>
     
+    <div id="loading-bg">
+      <div class="loading-logo">
+        <img src="<%= BASE_URL %>assets/images/logo/favicon-64x64.png" alt="Logo">
+      </div>
+      <div class="loading">
+        <div class="effect-1 effects"></div>
+        <div class="effect-2 effects"></div>
+        <div class="effect-3 effects"></div>
+      </div>
+    </div>
     <div id="app">
     </div>
 

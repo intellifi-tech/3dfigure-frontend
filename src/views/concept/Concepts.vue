@@ -1,15 +1,18 @@
 <template>
   <vx-card class="mt-5 pt-2 px-2">
-    <div class="row">
+    <div class="d-md-flex d-inline-block align-items-center">
       <div class="col-lg-4">
         <h4>{{$t('dashboard.main.wizard.tabTwo.cardTitle')}}</h4>
       </div>
       <div class="col-lg-8">
-        <ul class="row px-4 float-right" v-for="category in categories" :key="category.id">
-          <li>
-            <vs-checkbox v-model="tags" :vs-value="category.id">{{category.name}}</vs-checkbox>
-          </li>
-        </ul>
+     <vs-select
+        placeholder="Konsept seç"
+        multiple
+        class="px-4 float-right form-control-lg selecting selectExample w-full md:w-1/2 focus:shadow-md"
+        v-model="tags"
+        >
+        <vs-select-item :key="index" :value="category.id" :text="category.name" v-for="(category,index) in categories"></vs-select-item>
+      </vs-select>
       </div>
     </div>
     <div class="search-page__search-bar flex items-center pt-3">
@@ -56,7 +59,8 @@ export default {
     };
   },
   created: async function() {
-    this.categories = await CategoryService.getAllCategories();
+    const result  = await CategoryService.getAllCategories()
+    this.categories=  result.filter(word => word.lang == sessionStorage.getItem('lang') );
   },
   methods: {
     searchConcept: async function() {

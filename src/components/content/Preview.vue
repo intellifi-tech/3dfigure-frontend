@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-6 mb-4">
-      <vx-card class="mb-4">
+      <vx-card class="mb-4 sm-d-block vs-con-loading__container" id="unityDiv" v-if="isUserAgent">
         <unity ref="unity"></unity>
       </vx-card>
       <vx-card
@@ -283,6 +283,7 @@ import {
 export default {
   data() {
     return {
+      isUserAgent:true,
       man: true,
       first:true,
       openInvitePopup:false,
@@ -316,6 +317,7 @@ export default {
     };
   },
   created: async function() {
+    this.getUserAgent();
     // fetch the data when the view is created and the data is
     // already being observed
     await this.initialize();
@@ -332,6 +334,34 @@ export default {
     },
   },
   methods: {
+    getUserAgent:function(){
+       setTimeout( ()=> {
+      if( navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/BB10/i)
+        || navigator.userAgent.match(/Playbook/i)
+        || navigator.userAgent.match(/Windows Phone/i)
+        ){
+          this.isUserAgent=false
+        }
+        /*div için loading func() yerine else kullanıldı*/
+        else{
+          setTimeout( ()=> {
+             this.$vs.loading({
+               container: '#unityDiv',
+               scale: 0.9,
+               color: "primary",
+             })
+             setTimeout( ()=> {
+               this.$vs.loading.close('#unityDiv > .con-vs-loading')
+             }, 8500);
+           }, 10);
+        }
+      }, 300);
+    },
     closePopup() {
       this.inviteMail.first = ""
       this.inviteMail.second = ""

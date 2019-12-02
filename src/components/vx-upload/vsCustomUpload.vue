@@ -299,7 +299,7 @@ export default {
 
       const file = e.target.files[0];
      
-      if (file.size > 1024 * 1024) {
+      if (file.size > 8192 * 1024) {
         e.preventDefault();
          this.$vs.notify({
               time: 6000,
