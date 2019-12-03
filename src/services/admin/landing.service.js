@@ -113,7 +113,9 @@ const LandingService = {
     getCountry: async function () {
         try {
             ApiService.removeHeader()
-            const response = await ApiService.get("http://ip-api.com/json")
+            const clientIP = await ApiService.get("https://api.ipify.org?format=json")
+            const dataIP = clientIP.data.ip
+            const response = await ApiService.get("https://api.ipinfodb.com/v3/ip-country/?key=72272381594bbe2bb0dc285c72cca1eec0dc97e960bfc3cc4bba19b0ca176db4&ip="+dataIP+"&format=json")
             ApiService.setHeader()
             return response.data
         } catch (error) {
