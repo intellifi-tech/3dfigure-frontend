@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <h1>{{this.ip}}</h1>
     <!-- search Popup -->
     <div class="body-overlay" id="body-overlay"></div>
     <!--<div class="search-popup" id="search-popup">
@@ -1780,6 +1781,7 @@ export default {
   },
   data() {
     return {
+      ip:'',
       iframeModelID: "91102961ad1040748145a4c341899840",
       iframeModelID2: "ebe0accf659d43068cd774141a5731cb",
       man: true,
