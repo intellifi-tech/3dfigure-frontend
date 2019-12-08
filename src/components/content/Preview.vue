@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-6 mb-4">
-      <vx-card class="mb-4 sm-d-block vs-con-loading__container" id="unityDiv" v-if="isUserAgent">
+      <vx-card class="mb-4 sm-d-block vs-con-loading__container" id="unityDiv" v-show="isUserAgent">
         <unity ref="unity"></unity>
       </vx-card>
       <vx-card
