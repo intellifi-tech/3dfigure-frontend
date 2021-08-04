@@ -17,7 +17,7 @@
     "perfect-scrollbar": "^1.4.0",
     "prismjs": "^1.15.0",
     "tailwindcss": "^0.7.4",
-    "tar": ">=4.4.2",
+    "tar": ">=4.4.15",
     "vee-validate": "^2.2.5",
     "vue": "2.5.19",
     "vue-apexcharts": "^1.4.0",
